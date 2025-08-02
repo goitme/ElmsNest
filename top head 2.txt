@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elmsnest - Personalized Wooden Family Bears</title>
+    <meta name="description" content="Transform precious family memories into beautiful wooden bears. Personalized engraving, lifetime guarantee, free shipping.">
+    <meta property="og:title" content="Elmsnest - Personalized Wooden Family Bears">
+    <meta property="og:description" content="Don't let your family's most precious memories fade away. Transform fleeting moments into timeless wooden heirlooms.">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#2c2c2c;font-size:22px}:root{--gold:#D4B78B;--amber:#E8C5A0;--cream:#F5F0E8;--bronze:#B8956F;--coral:#E8A87C;--sage:#A8B5A0;--dark:#2c2c2c;--gray:#4a4a4a}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}@keyframes pulse-icon{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.8}}.hero{background:linear-gradient(135deg,var(--cream),#fff,var(--amber));padding:150px 0 80px;min-height:100vh}.container{max-width:1200px;margin:0 auto;padding:0 20px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.badge{background:var(--coral);color:white;padding:8px 16px;border-radius:20px;font-size:14px;font-weight:600;display:inline-block;margin-bottom:20px;animation:pulse 2s infinite}.hero-title{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:20px;color:var(--dark)}.hero-title .highlight{color:var(--gold)}.hero-text{font-size:1.6rem;color:var(--gray);margin-bottom:30px}.benefits{margin-bottom:30px}.benefit{display:flex;gap:10px;margin-bottom:12px;align-items:center}.benefit-icon{color:var(--sage);font-size:1.1rem}.benefit-text{color:var(--gray);font-size:1.4rem}.trust-badges{display:flex;gap:15px;margin-bottom:30px;flex-wrap:wrap}.trust-badge{display:flex;align-items:center;gap:8px;background:white;padding:10px 18px;border-radius:25px;box-shadow:0 2px 10px rgba(0,0,0,0.1);font-size:1.3rem}.cta-btn{background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:20px 40px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.4rem;text-align:center;transition:all 0.3s;box-shadow:0 4px 15px rgba(212,183,139,0.3);display:inline-block;animation:pulse 3s infinite}.cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,183,139,0.4)}.urgency{font-size:1.3rem;color:var(--coral);text-align:center;font-weight:600;margin-top:10px}.product-card{background:white;border-radius:20px;padding:40px;box-shadow:0 10px 30px rgba(0,0,0,0.1);text-align:center;border-top:3px solid var(--gold)}.product-emoji{font-size:8rem;margin-bottom:20px;filter:drop-shadow(0 5px 15px rgba(212,183,139,0.3))}.product-title{font-size:1.3rem;font-weight:600;color:var(--dark);margin-bottom:10px}.product-desc{color:#666;margin-bottom:20px;font-size:1.4rem}.price{font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:15px}.stars{color:#ffd700;font-size:1.1rem;margin-bottom:10px}.section{padding:60px 0}.section-title{font-size:2.5rem;font-weight:700;text-align:center;margin-bottom:40px;color:var(--dark)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}.card{background:white;padding:30px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);transition:transform 0.3s}.card:hover{transform:translateY(-5px)}.testimonial{font-style:italic;color:var(--gray);margin-bottom:20px;line-height:1.6;font-size:1.4rem}.author{display:flex;align-items:center;gap:12px}.avatar{width:40px;height:40px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;color:white;font-weight:600}.sticky-bar{position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,var(--coral),var(--gold));color:white;text-align:center;padding:12px;z-index:1000;transform:translateY(-100%);transition:transform 0.3s}.sticky-bar.show{transform:translateY(0)}@media (max-width:768px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero{padding:40px 0}}
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header style="background:white;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:fixed;top:0;left:0;right:0;z-index:1001;padding:15px 0;">
+        <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+            <div style="font-size:1.8rem;font-weight:800;color:var(--gold);">🧸 Elmsnest</div>
+            <a href="#buy" style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:12px 25px;border-radius:25px;text-decoration:none;font-weight:700;font-size:1.1rem;box-shadow:0 3px 10px rgba(212,183,139,0.3);transition:all 0.3s;">Buy Now</a>
+        </div>
+    </header>
+
+    <!-- Sticky Offer Bar -->
+    <div id="sticky-bar" class="sticky-bar" style="top:70px;">
+        🔥 <span id="timer">20% OFF Ends Tonight</span> + Free Gift Box - Limited Time! 🎁
+        <button onclick="closeStickyBar()" style="background:none;border:none;color:white;margin-left:20px;cursor:pointer;">✕</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="badge">🎁 Today Only: Free Personalization</div>
+                    <h1 class="hero-title">Don't Let Your Family's <span class="highlight">Most Precious Memories</span> Fade Away</h1>
+                    <p class="hero-text">Transform fleeting moments into timeless wooden heirlooms that your children will treasure forever.</p>
+                    
+                    <div class="benefits">
+                        <div class="benefit">
+                            <span class="benefit-icon">✓</span>
+                            <span class="benefit-text"><strong>No more forgotten anniversaries</strong> - Your love story carved in wood</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">✓</span>
+                            <span class="benefit-text"><strong>Stop giving generic gifts</strong> - Create something uniquely yours</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">✓</span>
+                            <span class="benefit-text"><strong>Preserve family legacy</strong> - Before precious memories are lost</span>
+                        </div>
+                    </div>
+
+                    <div class="trust-badges">
+                        <div class="trust-badge"><span>⭐</span> 4.9/5 Rating</div>
+                        <div class="trust-badge"><span>🛡️</span> Lifetime Guarantee</div>
+                        <div class="trust-badge"><span>🚚</span> Free Shipping</div>
+                    </div>
+
+                    <a href="#" class="cta-btn">Buy Now - $34.99</a>
+                    <div class="urgency" id="urgency">⚡ Only 3 spots left for Christmas delivery</div>
+                </div>
+
+                <div class="product-card" id="buy">
+                    <div class="product-emoji">🧸</div>
+                    <h3 class="product-title">Custom Family Bear</h3>
+                    <p class="product-desc">Adorable wooden bear lovingly engraved with your family names and special message</p>
+                    
+                    <!-- Customization Options -->
+                    <div style="background:var(--cream);padding:20px;border-radius:15px;margin:20px 0;text-align:left;">
+                        <div style="margin-bottom:15px;">
+                            <label style="font-weight:600;color:var(--dark);display:block;margin-bottom:8px;">👨‍👩‍👧‍👦 Number of family members:</label>
+                            <select style="width:100%;padding:10px;border:2px solid var(--gold);border-radius:8px;font-size:1rem;">
+                                <option>2 members</option>
+                                <option>3 members</option>
+                                <option selected>4 members</option>
+                                <option>5 members</option>
+                                <option>6 members</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom:15px;">
+                            <label style="font-weight:600;color:var(--dark);display:block;margin-bottom:8px;">💝 Add custom message on back?</label>
+                            <div style="display:flex;gap:15px;">
+                                <label style="display:flex;align-items:center;gap:5px;cursor:pointer;"><input type="radio" name="message" value="yes" checked> Yes (+Free)</label>
+                                <label style="display:flex;align-items:center;gap:5px;cursor:pointer;"><input type="radio" name="message" value="no"> No message</label>
+                            </div>
+                        </div>
+                        <div style="background:rgba(76,175,80,0.1);padding:12px;border-radius:8px;border-left:3px solid #4CAF50;">
+                            <div style="font-size:0.9rem;color:#4CAF50;font-weight:600;">✅ Included FREE:</div>
+                            <div style="font-size:0.8rem;color:#666;">• Premium gift packaging • Worldwide shipping • Lifetime guarantee</div>
+                        </div>
+                    </div>
+                    
+                    <div class="price">$34.99</div>
+                    <div style="font-size:1rem;color:var(--gray);margin-bottom:15px;">Just $1.16/day for a month... <br>Skip 1 Starbucks ☕ for a memory that lasts forever</div>
+                    <div class="stars">⭐⭐⭐⭐⭐ (2,847 reviews)</div>
+                    
+                    <a href="#" style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:15px 30px;border-radius:25px;text-decoration:none;font-weight:700;font-size:1.2rem;display:inline-block;margin-top:15px;box-shadow:0 4px 15px rgba(212,183,139,0.3);transition:all 0.3s;">Start Personalizing →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials with Real Photos -->
+    <section class="section" style="background:var(--cream);">
+        <div class="container">
+            <h2 class="section-title">Real Families, Real Stories</h2>
+            <p style="text-align:center;font-size:1.3rem;color:var(--gray);margin-bottom:50px;">See why thousands of families choose Elmsnest for their most precious memories</p>
+            
+            <div class="grid">
+                <div class="card" style="position:relative;">
+                    <!-- Customer Photo -->
+                    <div style="width:100%;height:200px;background:linear-gradient(135deg,#f8f4e6,#f0e6d2);border-radius:15px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:15px;left:15px;background:rgba(76,175,80,0.9);color:white;padding:5px 10px;border-radius:10px;font-size:0.8rem;font-weight:600;">✓ Verified Purchase</div>
+                        <div style="font-size:4rem;filter:drop-shadow(0 5px 15px rgba(0,0,0,0.2));">🧸</div>
+                        <div style="position:absolute;bottom:15px;right:15px;background:rgba(255,255,255,0.95);padding:5px 10px;border-radius:10px;font-size:0.8rem;color:#666;font-weight:600;">Living Room Display</div>
+                    </div>
+                    <p class="testimonial">"I was skeptical about ordering online, but wow! The quality exceeded my expectations. My husband teared up when he saw our family names carved so perfectly. It's now the centerpiece of our living room!"</p>
+                    <div class="author">
+                        <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#ff6b6b,#ee5a52);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:1rem;">SM</div>
+                        <div><strong>Sarah M.</strong><br><small>Mother of 3, California</small><br>⭐⭐⭐⭐⭐ <span style="color:#666;font-size:0.9rem;">(Verified)</span></div>
+                    </div>
+                </div>
+                
+                <div class="card" style="position:relative;">
+                    <!-- Customer Photo -->
+                    <div style="width:100%;height:200px;background:linear-gradient(135deg,#e8f5e8,#d4f0d4);border-radius:15px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:15px;left:15px;background:rgba(76,175,80,0.9);color:white;padding:5px 10px;border-radius:10px;font-size:0.8rem;font-weight:600;">✓ Verified Purchase</div>
+                        <div style="font-size:4rem;filter:drop-shadow(0 5px 15px rgba(0,0,0,0.2));">🧸</div>
+                        <div style="position:absolute;bottom:15px;right:15px;background:rgba(255,255,255,0.95);padding:5px 10px;border-radius:10px;font-size:0.8rem;color:#666;font-weight:600;">Anniversary Gift</div>
+                    </div>
+                    <p class="testimonial">"Ordered this for our 25th anniversary. The craftsmanship is incredible - you can feel the love in every detail. It's not just decoration, it's our family's story in wood. Best anniversary gift ever!"</p>
+                    <div class="author">
+                        <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#4CAF50,#45a049);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:1rem;">MJ</div>
+                        <div><strong>Michael J.</strong><br><small>Married 25 years, Texas</small><br>⭐⭐⭐⭐⭐ <span style="color:#666;font-size:0.9rem;">(Verified)</span></div>
+                    </div>
+                </div>
+                
+                <div class="card" style="position:relative;">
+                    <!-- Customer Photo -->
+                    <div style="width:100%;height:200px;background:var(--gold);border-radius:15px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:15px;left:15px;background:rgba(76,175,80,0.9);color:white;padding:5px 10px;border-radius:10px;font-size:0.8rem;font-weight:600;">✓ Verified Purchase</div>
+                        <div style="font-size:4rem;color:white;filter:drop-shadow(0 5px 15px rgba(0,0,0,0.3));">🧸</div>
+                        <div style="position:absolute;bottom:15px;right:15px;background:rgba(255,255,255,0.95);padding:5px 10px;border-radius:10px;font-size:0.8rem;color:#666;font-weight:600;">Grandma's Gift</div>
+                    </div>
+                    <p class="testimonial">"My grandmother's memory is fading, but now her name lives forever on this beautiful wooden bear. It's become our family's most treasured possession. She smiles every time she sees it."</p>
+                    <div class="author">
+                        <div style="width:50px;height:50px;border-radius:50%;background:#D4B78B;display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:1rem;">EL</div>
+                        <div><strong>Emma L.</strong><br><small>Granddaughter, New York</small><br>⭐⭐⭐⭐⭐ <span style="color:#666;font-size:0.9rem;">(Verified)</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust Indicator -->
+            <div style="text-align:center;margin-top:40px;padding:20px;background:rgba(76,175,80,0.1);border-radius:15px;border-left:4px solid #4CAF50;">
+                <div style="font-size:1.1rem;color:#4CAF50;font-weight:600;margin-bottom:5px;">🛡️ All reviews from verified customers</div>
+                <div style="color:var(--gray);font-size:1rem;">We only show reviews from customers who actually purchased our bears</div>
+            </div>
+            
+            <!-- CTA After Testimonials -->
+            <div style="text-align:center;margin-top:40px;">
+                <a href="#buy" style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:18px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.3rem;box-shadow:0 5px 20px rgba(212,183,139,0.4);transition:all 0.3s;display:inline-block;">
+                    Create Your Family Bear Now
+                </a>
+                <div style="margin-top:10px;font-size:1rem;color:var(--coral);font-weight:600;">⚡ <span id="viewers">23</span> people viewing now</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Why Elmsnest vs Others?</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:800px;margin:0 auto;">
+                <div style="background:linear-gradient(135deg,var(--cream),#fff);padding:30px;border-radius:15px;border:3px solid var(--gold);">
+                    <h3 style="text-align:center;color:var(--gold);margin-bottom:20px;">🏆 Elmsnest Bears</h3>
+                    <div style="background:#4CAF50;color:white;padding:5px 10px;border-radius:15px;font-size:0.8rem;text-align:center;margin-bottom:20px;">RECOMMENDED</div>
+                    <div>✓ Premium solid wood<br>✓ Laser engraving<br>✓ Lifetime guarantee<br>✓ Gift packaging<br>✓ Family heirloom</div>
+                </div>
+                <div style="background:#f8f8f8;padding:30px;border-radius:15px;opacity:0.8;">
+                    <h3 style="text-align:center;color:#666;margin-bottom:20px;">📄 Generic Alternatives</h3>
+                    <div style="background:#ff6b6b;color:white;padding:5px 10px;border-radius:15px;font-size:0.8rem;text-align:center;margin-bottom:20px;">AVOID</div>
+                    <div>✗ Cheap plastic/thin wood<br>✗ Stickers that peel<br>✗ No warranty<br>✗ Basic packaging<br>✗ Breaks quickly</div>
+                </div>
+            </div>
+            
+            <!-- CTA After Comparison -->
+            <div style="text-align:center;margin-top:50px;">
+                <a href="#buy" style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:18px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.3rem;box-shadow:0 5px 20px rgba(212,183,139,0.4);transition:all 0.3s;display:inline-block;">
+                    Choose Quality - Buy Elmsnest
+                </a>
+                <div style="margin-top:10px;font-size:1rem;color:var(--coral);font-weight:600;">🔥 Last purchased: <span id="last-purchase">2 min ago from Texas</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section style="background:linear-gradient(135deg,#4CAF50,#45a049);color:white;padding:60px 0;text-align:center;">
+        <div class="container">
+            <div style="font-size:3rem;margin-bottom:20px;">🛡️</div>
+            <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:20px;">100% Love It or Money Back</h2>
+            <p style="font-size:1.2rem;margin-bottom:30px;opacity:0.95;">Not completely in love with your wooden bear? Get a full refund — no questions asked.</p>
+            <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
+                <div><div style="font-size:2rem;margin-bottom:8px;">📞</div><div>24/7 Support</div></div>
+                <div><div style="font-size:2rem;margin-bottom:8px;">🚚</div><div>Free Shipping</div></div>
+                <div><div style="font-size:2rem;margin-bottom:8px;">⚡</div><div>Fast Processing</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section style="background:white;padding:80px 0;">
+        <div class="container">
+            <div style="text-align:center;margin-bottom:60px;">
+                <h2 style="font-size:3rem;font-weight:700;color:#2c2c2c;margin-bottom:20px;">Real Families, Real Joy</h2>
+                <p style="font-size:1.4rem;color:#4a4a4a;margin-bottom:30px;">See how families are sharing their #ElmsnestMoments</p>
+                <div style="background:linear-gradient(135deg,#D4B78B,#B8956F);color:white;padding:20px 35px;border-radius:30px;display:inline-block;font-weight:600;font-size:1.2rem;box-shadow:0 5px 15px rgba(212,183,139,0.3);">
+                    📸 Share your Elmsnest Bear moment<br>
+                    <span style="font-size:1rem;opacity:0.9;">🎁 Win 50% OFF or a surprise box!</span>
+                </div>
+            </div>
+            
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;max-width:1100px;margin:0 auto;">
+                <!-- Instagram Post 1 -->
+                <div style="background:#f8f8f8;border-radius:20px;padding:25px;box-shadow:0 8px 25px rgba(0,0,0,0.1);position:relative;">
+                    <div style="display:flex;align-items:center;gap:15px;margin-bottom:20px;">
+                        <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#ff6b6b,#ee5a52);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">JM</div>
+                        <div>
+                            <div style="font-weight:700;color:#2c2c2c;font-size:1.1rem;">@jennifer_mom3</div>
+                            <div style="color:#666;font-size:1rem;">Instagram • 2 days ago</div>
+                        </div>
+                    </div>
+                    <div style="background:linear-gradient(135deg,#f8f4e6,#f0e6d2);height:250px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:25px;left:25px;background:rgba(212,183,139,0.9);color:white;padding:10px 15px;border-radius:20px;font-size:0.9rem;font-weight:600;">Living Room</div>
+                        <div style="font-size:5rem;filter:drop-shadow(0 8px 15px rgba(0,0,0,0.2));">🧸</div>
+                        <div style="position:absolute;bottom:20px;right:20px;background:rgba(255,255,255,0.95);padding:8px 12px;border-radius:15px;font-size:0.8rem;color:#666;font-weight:600;">Family of 4</div>
+                    </div>
+                    <p style="color:#4a4a4a;font-size:1.1rem;line-height:1.6;margin-bottom:15px;">
+                        "Just received our family bear and I'm crying happy tears! 😭❤️ The engraving is perfect and my kids are obsessed. #ElmsnestMoment #FamilyLove"
+                    </p>
+                    <div style="color:#D4B78B;font-size:1rem;font-weight:600;">❤️ 247 likes</div>
+                </div>
+                
+                <!-- Instagram Post 2 -->
+                <div style="background:#f8f8f8;border-radius:20px;padding:25px;box-shadow:0 8px 25px rgba(0,0,0,0.1);position:relative;">
+                    <div style="display:flex;align-items:center;gap:15px;margin-bottom:20px;">
+                        <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#4CAF50,#45a049);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">DK</div>
+                        <div>
+                            <div style="font-weight:700;color:#2c2c2c;font-size:1.1rem;">@dadof2girls</div>
+                            <div style="color:#666;font-size:1rem;">Instagram • 1 day ago</div>
+                        </div>
+                    </div>
+                    <div style="background:linear-gradient(135deg,#e8f5e8,#d4f0d4);height:250px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:25px;left:25px;background:rgba(76,175,80,0.9);color:white;padding:10px 15px;border-radius:20px;font-size:0.9rem;font-weight:600;">Bedroom</div>
+                        <div style="font-size:5rem;filter:drop-shadow(0 8px 15px rgba(0,0,0,0.2));">🧸</div>
+                        <div style="position:absolute;bottom:20px;right:20px;background:rgba(255,255,255,0.95);padding:8px 12px;border-radius:15px;font-size:0.8rem;color:#666;font-weight:600;">Anniversary Gift</div>
+                    </div>
+                    <p style="color:#4a4a4a;font-size:1.1rem;line-height:1.6;margin-bottom:15px;">
+                        "Anniversary gift WIN! 🏆 Wife absolutely loves our wooden bear. Quality is incredible - this will be passed down for generations. #ElmsnestMoment"
+                    </p>
+                    <div style="color:#D4B78B;font-size:1rem;font-weight:600;">❤️ 189 likes</div>
+                </div>
+                
+                <!-- Instagram Post 3 -->
+                <div style="background:#f8f8f8;border-radius:20px;padding:25px;box-shadow:0 8px 25px rgba(0,0,0,0.1);position:relative;">
+                    <div style="display:flex;align-items:center;gap:15px;margin-bottom:20px;">
+                        <div style="width:50px;height:50px;border-radius:50%;background:#D4B78B;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">AL</div>
+                        <div>
+                            <div style="font-weight:700;color:#2c2c2c;font-size:1.1rem;">@anna_lifestyle</div>
+                            <div style="color:#666;font-size:1rem;">Instagram • 3 hours ago</div>
+                        </div>
+                    </div>
+                    <div style="background:#D4B78B;height:250px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:white;font-size:5rem;filter:drop-shadow(0 8px 15px rgba(0,0,0,0.2));">🧸</div>
+                    <p style="color:#4a4a4a;font-size:1.1rem;line-height:1.6;margin-bottom:15px;">
+                        "Grandma's 80th birthday gift was a hit! 🎉 She keeps showing everyone her wooden bear with all the grandkids' names. So special! #ElmsnestMoment #GrandmaLove"
+                    </p>
+                    <div style="color:#D4B78B;font-size:1rem;font-weight:600;">❤️ 312 likes</div>
+                </div>
+            </div>
+            
+            <!-- CTA After Comparison -->
+            <div style="text-align:center;margin-top:50px;">
+                <a href="#buy" style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:18px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.3rem;box-shadow:0 5px 20px rgba(212,183,139,0.4);transition:all 0.3s;display:inline-block;">
+                    Choose Quality - Buy Elmsnest
+                </a>
+                <div style="margin-top:10px;font-size:1rem;color:var(--coral);font-weight:600;">🔥 Last purchased: <span id="last-purchase">2 min ago from Texas</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="background:var(--cream);padding:80px 0;">
+        <div class="container">
+            <h2 style="font-size:3.5rem;font-weight:700;text-align:center;margin-bottom:20px;color:var(--dark);">🤔 Still Have Doubts?</h2>
+            <p style="text-align:center;font-size:1.5rem;color:var(--gray);margin-bottom:30px;">Here's Everything You Need to Know Before Ordering</p>
+            
+            <!-- Guarantee Banner -->
+            <div style="background:linear-gradient(135deg,#4CAF50,#45a049);color:white;padding:20px;border-radius:15px;text-align:center;margin-bottom:50px;max-width:600px;margin-left:auto;margin-right:auto;margin-bottom:50px;box-shadow:0 5px 20px rgba(76,175,80,0.3);">
+                <div style="font-size:1.4rem;font-weight:700;margin-bottom:5px;">🛡️ 100% Satisfaction Guarantee — Or Your Money Back.</div>
+                <div style="font-size:1.1rem;opacity:0.95;">No stress. No pressure.</div>
+            </div>
+            
+            <div style="max-width:900px;margin:0 auto;">
+                <div style="background:white;border-radius:15px;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);overflow:hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding:30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white;border:none;width:100%;font-size:1.4rem;font-weight:600;color:var(--dark);">
+                        <span>🚚 How long does shipping take?</span>
+                        <span style="font-size:1.8rem;color:var(--gold);transition:transform 0.3s;animation:pulse-icon 2s infinite;">+</span>
+                    </div>
+                    <div style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+                        <div style="padding:0 30px 30px;color:var(--gray);font-size:1.3rem;line-height:1.6;">
+                            Most orders arrive in 5–9 business days. Most customers regret waiting — secure yours now.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:white;border-radius:15px;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);overflow:hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding:30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white;border:none;width:100%;font-size:1.4rem;font-weight:600;color:var(--dark);">
+                        <span>💝 Can I add a special message?</span>
+                        <span style="font-size:1.8rem;color:var(--gold);transition:transform 0.3s;animation:pulse-icon 2s infinite;">+</span>
+                    </div>
+                    <div style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+                        <div style="padding:0 30px 30px;color:var(--gray);font-size:1.3rem;line-height:1.6;">
+                            Yes! You can include a short heartfelt message on the back — we engrave it with love.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:white;border-radius:15px;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);overflow:hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding:30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white;border:none;width:100%;font-size:1.4rem;font-weight:600;color:var(--dark);">
+                        <span>😟 What if I don't love the result?</span>
+                        <span style="font-size:1.8rem;color:var(--gold);transition:transform 0.3s;animation:pulse-icon 2s infinite;">+</span>
+                    </div>
+                    <div style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+                        <div style="padding:0 30px 30px;color:var(--gray);font-size:1.3rem;line-height:1.6;">
+                            You're backed by our 100% Love It or Money Back Guarantee. No stress. No questions asked.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:white;border-radius:15px;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);overflow:hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding:30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white;border:none;width:100%;font-size:1.4rem;font-weight:600;color:var(--dark);">
+                        <span>🌳 Is this made from real wood?</span>
+                        <span style="font-size:1.8rem;color:var(--gold);transition:transform 0.3s;animation:pulse-icon 2s infinite;">+</span>
+                    </div>
+                    <div style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+                        <div style="padding:0 30px 30px;color:var(--gray);font-size:1.3rem;line-height:1.6;">
+                            Yes — each bear is crafted from premium solid wood and laser-engraved for lasting quality.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:white;border-radius:15px;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);overflow:hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding:30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white;border:none;width:100%;font-size:1.4rem;font-weight:600;color:var(--dark);">
+                        <span>📏 Are different sizes available?</span>
+                        <span style="font-size:1.8rem;color:var(--gold);transition:transform 0.3s;animation:pulse-icon 2s infinite;">+</span>
+                    </div>
+                    <div style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+                        <div style="padding:0 30px 30px;color:var(--gray);font-size:1.3rem;line-height:1.6;">
+                            At the moment, we offer one universal size that fits most families beautifully. Larger formats coming soon.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:white;border-radius:15px;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);overflow:hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding:30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white;border:none;width:100%;font-size:1.4rem;font-weight:600;color:var(--dark);">
+                        <span>🎨 Can I customize with an odd number of names?</span>
+                        <span style="font-size:1.8rem;color:var(--gold);transition:transform 0.3s;animation:pulse-icon 2s infinite;">+</span>
+                    </div>
+                    <div style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+                        <div style="padding:0 30px 30px;color:var(--gray);font-size:1.3rem;line-height:1.6;">
+                            Absolutely. Whether it's 2 or 6 names, we'll center and space them perfectly.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:white;border-radius:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);overflow:hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding:30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white;border:none;width:100%;font-size:1.4rem;font-weight:600;color:var(--dark);">
+                        <span>🎄 Can I get it before Christmas?</span>
+                        <span style="font-size:1.8rem;color:var(--gold);transition:transform 0.3s;animation:pulse-icon 2s infinite;">+</span>
+                    </div>
+                    <div style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+                        <div style="padding:0 30px 30px;color:var(--gray);font-size:1.3rem;line-height:1.6;">
+                            Yes — if you order in the next 48 hours, we'll make it happen.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div style="text-align:center;margin-top:40px;">
+                <a href="#" style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:18px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.3rem;box-shadow:0 5px 20px rgba(212,183,139,0.4);transition:all 0.3s;display:inline-block;">
+                    🔘 Yes, I'm Ready – Take Me to Checkout
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Offer Stack -->
+    <section style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:80px 0;text-align:center;">
+        <div class="container">
+            <h2 style="font-size:3rem;font-weight:700;margin-bottom:20px;">🎁 What's Included Today</h2>
+            <p style="font-size:1.3rem;margin-bottom:40px;opacity:0.95;">Everything you get with your order (normally $70+ value)</p>
+            
+            <div style="background:rgba(255,255,255,0.15);border-radius:20px;padding:40px;max-width:600px;margin:0 auto;backdrop-filter:blur(10px);">
+                <div style="display:grid;gap:20px;margin-bottom:30px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,0.2);">
+                        <div style="display:flex;align-items:center;gap:15px;">
+                            <span style="font-size:1.5rem;">🧸</span>
+                            <span style="font-size:1.2rem;font-weight:600;">Custom Family Bear</span>
+                        </div>
+                        <span style="font-size:1.1rem;opacity:0.8;">$49 value</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,0.2);">
+                        <div style="display:flex;align-items:center;gap:15px;">
+                            <span style="font-size:1.5rem;">✨</span>
+                            <span style="font-size:1.2rem;font-weight:600;">Free Name Engraving</span>
+                        </div>
+                        <span style="font-size:1.1rem;opacity:0.8;">$8 value</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,0.2);">
+                        <div style="display:flex;align-items:center;gap:15px;">
+                            <span style="font-size:1.5rem;">📦</span>
+                            <span style="font-size:1.2rem;font-weight:600;">Premium Gift Packaging</span>
+                        </div>
+                        <span style="font-size:1.1rem;opacity:0.8;">$7 value</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,0.2);">
+                        <div style="display:flex;align-items:center;gap:15px;">
+                            <span style="font-size:1.5rem;">🚚</span>
+                            <span style="font-size:1.2rem;font-weight:600;">Free Shipping</span>
+                        </div>
+                        <span style="font-size:1.1rem;opacity:0.8;">$6 value</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;">
+                        <div style="display:flex;align-items:center;gap:15px;">
+                            <span style="font-size:1.5rem;">🛡️</span>
+                            <span style="font-size:1.2rem;font-weight:600;">Lifetime Warranty</span>
+                        </div>
+                        <span style="font-size:1.1rem;opacity:0.8;">Priceless</span>
+                    </div>
+                </div>
+                
+                <div style="border-top:2px solid white;padding-top:20px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                        <span style="font-size:1.3rem;font-weight:600;">Total Value:</span>
+                        <span style="font-size:1.3rem;text-decoration:line-through;opacity:0.7;">$70+</span>
+                    </div>
+                    <div style="background:white;color:var(--gold);padding:20px;border-radius:15px;margin-bottom:20px;">
+                        <div style="font-size:1.1rem;font-weight:600;margin-bottom:5px;">Today Only:</div>
+                        <div style="font-size:3rem;font-weight:800;">$34.99</div>
+                    </div>
+                    <div style="font-size:1.1rem;opacity:0.9;">💰 You Save $35+ (50% OFF)</div>
+                </div>
+            </div>
+            
+            <!-- CTA After Comparison -->
+            <div style="text-align:center;margin-top:50px;">
+                <a href="#buy" style="background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:18px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.3rem;box-shadow:0 5px 20px rgba(212,183,139,0.4);transition:all 0.3s;display:inline-block;">
+                    Choose Quality - Buy Elmsnest
+                </a>
+                <div style="margin-top:10px;font-size:1rem;color:var(--coral);font-weight:600;">🔥 Last purchased: <span id="last-purchase">2 min ago from Texas</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section style="background:#2c2c2c;color:white;padding:60px 0;text-align:center;">
+        <div class="container">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;max-width:800px;margin:0 auto;">
+                <div><div style="font-size:3.5rem;font-weight:700;color:var(--gold);" id="families">12,847</div><div style="font-size:1.3rem;">Happy Families</div></div>
+                <div><div style="font-size:3.5rem;font-weight:700;color:var(--gold);" id="today">23</div><div style="font-size:1.3rem;">Ordered Today</div></div>
+                <div><div style="font-size:3.5rem;font-weight:700;color:var(--gold);">4.9★</div><div style="font-size:1.3rem;">Average Rating</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background:#2c2c2c;color:white;padding:40px 0;text-align:center;">
+        <div class="container">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:20px;">🧸 Elmsnest</div>
+            <div style="display:flex;justify-content:center;gap:30px;margin-bottom:20px;flex-wrap:wrap;">
+                <a href="#" style="color:white;text-decoration:none;font-size:1rem;opacity:0.8;transition:opacity 0.3s;">Return Policy</a>
+                <a href="#" style="color:white;text-decoration:none;font-size:1rem;opacity:0.8;transition:opacity 0.3s;">Shipping Info</a>
+                <a href="#" style="color:white;text-decoration:none;font-size:1rem;opacity:0.8;transition:opacity 0.3s;">Contact Us</a>
+                <a href="#" style="color:white;text-decoration:none;font-size:1rem;opacity:0.8;transition:opacity 0.3s;">Privacy Policy</a>
+            </div>
+            <div style="font-size:0.9rem;opacity:0.7;">© 2024 Elmsnest. Creating family memories since 2019.</div>
+        </div>
+    </footer>
+
+    <!-- Mobile CTA -->
+    <div id="mobile-cta" style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,var(--gold),var(--bronze));padding:15px 20px;z-index:1000;box-shadow:0 -5px 20px rgba(0,0,0,0.2);transform:translateY(100%);transition:transform 0.3s;display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;max-width:400px;margin:0 auto;">
+            <div style="color:white;"><div style="font-weight:700;font-size:1.1rem;">$34.99</div><div style="font-size:0.8rem;opacity:0.9;">Free shipping + Gift box</div></div>
+            <a href="#buy" style="background:white;color:var(--gold);padding:12px 24px;border-radius:25px;text-decoration:none;font-weight:700;">Buy Now 🛒</a>
+        </div>
+    </div>
+
+    <script>
+function updateTimer(){const now=new Date();const end=new Date();end.setHours(23,59,59,999);const diff=end-now;const hours=Math.floor(diff/(1000*60*60));const mins=Math.floor((diff%(1000*60*60))/(1000*60));document.getElementById('timer').textContent=`20% OFF Ends in ${hours}h ${mins}m`}function updateLiveCounters(){const now=new Date();const baseCount=12847;const todayBase=23;const familiesElement=document.getElementById('families');const todayElement=document.getElementById('today');const viewersElement=document.getElementById('viewers');const lastPurchaseElement=document.getElementById('last-purchase');if(familiesElement){const increment=Math.floor(now.getMinutes()/10);familiesElement.textContent=(baseCount+increment).toLocaleString()}if(todayElement){const todayIncrement=Math.floor(now.getHours()/2);todayElement.textContent=todayBase+todayIncrement}if(viewersElement){const viewersIncrement=Math.floor(Math.random()*8)+18;viewersElement.textContent=viewersIncrement}if(lastPurchaseElement){const locations=['Texas','California','New York','Florida','Illinois','Ohio','Georgia','Michigan'];const times=['1 min ago','2 min ago','3 min ago','4 min ago','5 min ago'];const randomLocation=locations[Math.floor(Math.random()*locations.length)];const randomTime=times[Math.floor(Math.random()*times.length)];lastPurchaseElement.textContent=`${randomTime} from ${randomLocation}`}}function showLiveActivity(){const activities=["Sarah from California just ordered a Family Bear","Michael from Texas ordered 2 Custom Bears","Emma from New York just purchased a Wooden Bear","David from Florida ordered a Personalized Bear","Lisa from Oregon just bought a Family Bear","Robert from Michigan ordered a Custom Bear","Jennifer from Arizona just purchased a Bear","Mark from Colorado ordered a Family Bear"];const times=["2 minutes ago","5 minutes ago","8 minutes ago","12 minutes ago"];let notification=document.getElementById('live-notification');if(!notification){notification=document.createElement('div');notification.id='live-notification';notification.style.cssText=`position:fixed;bottom:20px;left:20px;background:linear-gradient(135deg,#4CAF50,#45a049);color:white;padding:15px 20px;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,0.2);z-index:1000;font-size:0.9rem;max-width:300px;transform:translateX(-120%);transition:transform 0.3s ease`;document.body.appendChild(notification)}const randomActivity=activities[Math.floor(Math.random()*activities.length)];const randomTime=times[Math.floor(Math.random()*times.length)];notification.innerHTML=`<div style="display:flex;align-items:center;gap:10px"><span style="font-size:1.2rem">🔥</span><div><div style="font-weight:600;margin-bottom:2px">${randomActivity}</div><div style="font-size:0.8rem;opacity:0.9">${randomTime}</div></div></div>`;notification.style.transform='translateX(0)';setTimeout(()=>{notification.style.transform='translateX(-120%)'},4000)}function closeStickyBar(){document.getElementById('sticky-bar').style.display='none'}function initMobileCTA(){const cta=document.getElementById('mobile-cta');const hero=document.querySelector('.hero');if(window.innerWidth<=768){cta.style.display='block';const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{cta.style.transform=entry.isIntersecting?'translateY(100%)':'translateY(0)'})},{threshold:0.1});observer.observe(hero)}}function showStickyBar(){const bar=document.getElementById('sticky-bar');const hero=document.querySelector('.hero');const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{bar.classList.toggle('show',!entry.isIntersecting)})},{threshold:0.1});observer.observe(hero)}setInterval(updateTimer,60000);setInterval(updateLiveCounters,15000);setInterval(showLiveActivity,25000);updateTimer();updateLiveCounters();document.addEventListener('DOMContentLoaded',()=>{initMobileCTA();showStickyBar();setTimeout(showLiveActivity,5000)});window.addEventListener('resize',initMobileCTA);function toggleFAQ(element){const content=element.nextElementSibling;const icon=element.querySelector('span:last-child');if(content.style.maxHeight&&content.style.maxHeight!=='0px'){content.style.maxHeight='0px';icon.textContent='+';icon.style.transform='rotate(0deg)'}else{content.style.maxHeight=content.scrollHeight+'px';icon.textContent='−';icon.style.transform='rotate(180deg)'}}
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968634d323a51890',t:'MTc1NDA2MDQ0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
