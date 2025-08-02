@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elmsnest – Personalized Wooden Family Bears</title>
+
+    <!-- SEO & Social Sharing -->
+    <meta name="description" content="Transform precious family memories into beautiful wooden bears. Personalized engraving, lifetime guarantee, free shipping.">
+    <meta property="og:title" content="Elmsnest – Personalized Wooden Family Bears">
+    <meta property="og:description" content="Don't let your family's most precious memories fade away. Transform fleeting moments into timeless wooden heirlooms.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:image" content="https://yourcdn.com/og_elmsnest.jpg">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles – leaving inline for self-contained demo (consider extracting to styles.css) -->
+    <style>
+        /* CSS reset + variables */
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#2c2c2c;font-size:18px}:root{--gold:#D4B78B;--amber:#E8C5A0;--cream:#F5F0E8;--bronze:#B8956F;--coral:#E8A87C;--sage:#A8B5A0;--dark:#2c2c2c;--gray:#4a4a4a}
+        /* Animations */
+        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}@keyframes pulse-icon{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.8}}
+        /* Layout helpers */
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+        .section{padding:60px 0}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+        /* Hero */
+        .hero{background:linear-gradient(135deg,var(--cream),#fff,var(--amber));padding:150px 0 80px;min-height:100vh}
+        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+        .badge{background:var(--coral);color:white;padding:8px 16px;border-radius:20px;font-size:14px;font-weight:600;display:inline-block;margin-bottom:20px;animation:pulse 2s infinite}
+        .hero-title{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:20px;color:var(--dark)}.hero-title .highlight{color:var(--gold)}
+        .hero-text{font-size:1.35rem;color:var(--gray);margin-bottom:30px}
+        /* CTA */
+        .cta-btn{background:linear-gradient(135deg,var(--gold),var(--bronze));color:white;padding:18px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.2rem;text-align:center;transition:all 0.3s;box-shadow:0 4px 15px rgba(212,183,139,0.3);display:inline-block;animation:pulse 3s infinite}
+        .cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,183,139,0.4)}
+        .urgency{font-size:1rem;color:var(--coral);text-align:center;font-weight:600;margin-top:10px}
+        /* Product card */
+        .product-card{background:white;border-radius:20px;padding:40px;box-shadow:0 10px 30px rgba(0,0,0,0.1);text-align:center;border-top:3px solid var(--gold)}
+        .product-emoji{font-size:6rem;margin-bottom:15px;filter:drop-shadow(0 5px 15px rgba(212,183,139,0.3))}
+        .product-title{font-size:1.3rem;font-weight:600;color:var(--dark);margin-bottom:10px}
+        .product-desc{color:#666;margin-bottom:20px;font-size:1rem}
+        .price{font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:15px}
+        .stars{color:#ffd700;font-size:1.1rem;margin-bottom:10px}
+        /* Sticky offer bar */
+        .sticky-bar{position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,var(--coral),var(--gold));color:white;text-align:center;padding:12px;z-index:1000;transform:translateY(-100%);transition:transform 0.3s}
+        .sticky-bar.show{transform:translateY(0)}
+        /* Cards */
+        .card{background:white;padding:30px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);transition:transform 0.3s}.card:hover{transform:translateY(-5px)}
+        .testimonial{font-style:italic;color:var(--gray);margin-bottom:20px;line-height:1.6;font-size:1rem}
+        /* Responsive tweaks */
+        @media(max-width:768px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero{padding:60px 0}.product-card{margin-top:40px}}
+    </style>
+</head>
+<body>
+<header style="background:white;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:fixed;top:0;left:0;right:0;z-index:1001;padding:15px 0;">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--gold);">🧸 Elmsnest</div>
+        <a href="#buy" class="cta-btn" style="padding:10px 25px;font-size:1rem;animation:none;">Buy Now</a>
+    </div>
+</header>
+
+<!-- Sticky Offer Bar -->
+<div id="sticky-bar" class="sticky-bar">
+    🔥 <span id="timer">20% OFF Ends Tonight</span> + Free Gift Box - Limited Time!
+    <button onclick="closeStickyBar()" style="background:none;border:none;color:white;margin-left:20px;cursor:pointer;font-size:1.2rem;">✕</button>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div>
+                <div class="badge">🎁 Today Only: Free Personalization</div>
+                <h1 class="hero-title">Don't Let Your Family's <span class="highlight">Most Precious Memories</span> Fade Away</h1>
+                <p class="hero-text">Transform fleeting moments into timeless wooden heirlooms that your children will treasure forever.</p>
+                <a href="#buy" class="cta-btn">Buy Now – $34.99</a>
+                <div class="urgency" id="urgency">⚡ Only 3 spots left for Christmas delivery</div>
+            </div>
+            <div class="product-card" id="buy">
+                <div class="product-emoji">🧸</div>
+                <h3 class="product-title">Custom Family Bear</h3>
+                <p class="product-desc">Adorable wooden bear lovingly engraved with your family names and special message</p>
+                <div style="background:var(--cream);padding:20px;border-radius:15px;margin:20px 0;text-align:left;font-size:0.9rem;">
+                    <label style="font-weight:600;color:var(--dark);display:block;margin-bottom:8px;">👨‍👩‍👧‍👦 Number of family members:</label>
+                    <select style="width:100%;padding:10px;border:2px solid var(--gold);border-radius:8px;font-size:1rem;">
+                        <option>2 members</option>
+                        <option>3 members</option>
+                        <option selected>4 members</option>
+                        <option>5 members</option>
+                        <option>6 members</option>
+                    </select>
+                    <label style="font-weight:600;color:var(--dark);display:block;margin:15px 0 8px;">💝 Add custom message on back?</label>
+                    <div style="display:flex;gap:15px;">
+                        <label style="display:flex;align-items:center;gap:5px;cursor:pointer;"><input type="radio" name="message" value="yes" checked> Yes (Free)</label>
+                        <label style="display:flex;align-items:center;gap:5px;cursor:pointer;"><input type="radio" name="message" value="no"> No message</label>
+                    </div>
+                </div>
+                <div class="price">$34.99</div>
+                <div class="stars">⭐⭐⭐⭐⭐ (2,847 reviews)</div>
+                <a href="#" class="cta-btn" style="margin-top:15px;">Start Personalizing →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section" style="background:var(--cream);">
+    <div class="container">
+        <h2 style="text-align:center;font-size:2.5rem;font-weight:700;margin-bottom:40px;color:var(--dark);">Real Families, Real Stories</h2>
+        <div class="grid">
+            <div class="card">
+                <div style="font-size:4rem;text-align:center;margin-bottom:20px;">🧸</div>
+                <p class="testimonial">"The quality exceeded my expectations. My husband teared up when he saw our family names carved so perfectly. It's now the centrepiece of our living room!"</p>
+                <div style="text-align:center;font-weight:600;">Sarah M. — California</div>
+            </div>
+            <div class="card">
+                <div style="font-size:4rem;text-align:center;margin-bottom:20px;">🧸</div>
+                <p class="testimonial">"Ordered this for our 25th anniversary. The craftsmanship is incredible – you can feel the love in every detail. Best anniversary gift ever!"</p>
+                <div style="text-align:center;font-weight:600;">Michael J. — Texas</div>
+            </div>
+            <div class="card">
+                <div style="font-size:4rem;text-align:center;margin-bottom:20px;">🧸</div>
+                <p class="testimonial">"My grandmother's name now lives forever on this beautiful wooden bear. She smiles every time she sees it."</p>
+                <div style="text-align:center;font-weight:600;">Emma L. — New York</div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:40px;">
+            <a href="#buy" class="cta-btn">Create Your Family Bear Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Guarantee -->
+<section style="background:linear-gradient(135deg,#4CAF50,#45a049);color:white;padding:60px 0;text-align:center;">
+    <div class="container">
+        <div style="font-size:2.5rem;margin-bottom:20px;">🛡️</div>
+        <h2 style="font-size:2rem;font-weight:700;margin-bottom:20px;">100% Love It or Money Back</h2>
+        <p style="font-size:1rem;margin-bottom:30px;opacity:0.95;">Not completely in love with your wooden bear? Get a full refund — no questions asked.</p>
+        <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-size:0.9rem;">
+            <div>📞 24/7 Support</div>
+            <div>🚚 Free Shipping</div>
+            <div>⚡ Fast Processing</div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer style="background:#2c2c2c;color:white;padding:40px 0;text-align:center;">
+    <div class="container">
+        <div style="font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:20px;">🧸 Elmsnest</div>
+        <div style="display:flex;justify-content:center;gap:30px;margin-bottom:20px;flex-wrap:wrap;font-size:0.9rem;">
+            <a href="#" style="color:white;text-decoration:none;opacity:0.8;">Return Policy</a>
+            <a href="#" style="color:white;text-decoration:none;opacity:0.8;">Shipping Info</a>
+            <a href="#" style="color:white;text-decoration:none;opacity:0.8;">Contact Us</a>
+            <a href="#" style="color:white;text-decoration:none;opacity:0.8;">Privacy Policy</a>
+        </div>
+        <div style="font-size:0.8rem;opacity:0.7;">© 2024 Elmsnest. Creating family memories since 2019.</div>
+    </div>
+</footer>
+
+<!-- Mobile CTA -->
+<div id="mobile-cta" style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,var(--gold),var(--bronze));padding:15px 20px;z-index:1000;box-shadow:0 -5px 20px rgba(0,0,0,0.2);transform:translateY(100%);transition:transform 0.3s;display:none;">
+    <div style="display:flex;align-items:center;justify-content:space-between;max-width:400px;margin:0 auto;">
+        <div style="color:white;"><div style="font-weight:700;font-size:1.1rem;">$34.99</div><div style="font-size:0.8rem;opacity:0.9;">Free shipping + Gift box</div></div>
+        <a href="#buy" style="background:white;color:var(--gold);padding:12px 24px;border-radius:25px;text-decoration:none;font-weight:700;">Buy Now 🛒</a>
+    </div>
+</div>
+
+<script>
+function updateTimer(){const now=new Date();const end=new Date();end.setHours(23,59,59,999);const diff=end-now;const hours=Math.floor(diff/(1000*60*60));const mins=Math.floor((diff%(1000*60*60))/(1000*60));document.getElementById('timer').textContent=`20% OFF Ends in ${hours}h ${mins}m`}
+function updateLiveCounters(){const familiesElement=document.getElementById('families');const todayElement=document.getElementById('today');const viewersElement=document.getElementById('viewers');const lastPurchaseElement=document.getElementById('last-purchase');const now=new Date();const baseFamilies=12847;const baseToday=23;if(familiesElement){familiesElement.textContent=(baseFamilies+Math.floor(now.getMinutes()/10)).toLocaleString()}if(todayElement){todayElement.textContent=baseToday+Math.floor(now.getHours()/2)}if(viewersElement){viewersElement.textContent=Math.floor(Math.random()*8)+18}if(lastPurchaseElement){const locations=['Texas','California','New York','Florida','Illinois','Ohio','Georgia','Michigan'];const times=['1 min ago','2 min ago','3 min ago','4 min ago','5 min ago'];lastPurchaseElement.textContent=`${times[Math.floor(Math.random()*times.length)]} from ${locations[Math.floor(Math.random()*locations.length)]}`}}
+function showLiveActivity(){const activities=["Sarah from California just ordered a Family Bear","Michael from Texas ordered 2 Custom Bears","Emma from New York just purchased a Wooden Bear","David from Florida ordered a Personalized Bear"];const times=["2 minutes ago","5 minutes ago","8 minutes ago","12 minutes ago"];let notification=document.getElementById('live-notification');if(!notification){notification=document.createElement('div');notification.id='live-notification';notification.style.cssText=`position:fixed;bottom:20px;left:20px;background:linear-gradient(135deg,#4CAF50,#45a049);color:white;padding:15px 20px;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,0.2);z-index:1000;font-size:0.9rem;max-width:300px;transform:translateX(-120%);transition:transform 0.3s`;
+    document.body.appendChild(notification);}notification.innerHTML=`<div style="display:flex;align-items:center;gap:10px"><span style="font-size:1.2rem">🔥</span><div><div style="font-weight:600;margin-bottom:2px">${activities[Math.floor(Math.random()*activities.length)]}</div><div style="font-size:0.8rem;opacity:0.9">${times[Math.floor(Math.random()*times.length)]}</div></div></div>`;notification.style.transform='translateX(0)';setTimeout(()=>{notification.style.transform='translateX(-120%)'},4000)}
+function closeStickyBar(){document.getElementById('sticky-bar').style.display='none'}
+function initMobileCTA(){const cta=document.getElementById('mobile-cta');const hero=document.querySelector('.hero');if(window.innerWidth<=768){cta.style.display='block';const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{cta.style.transform=entry.isIntersecting?'translateY(100%)':'translateY(0)'})},{threshold:0.1});observer.observe(hero)}}
+function showStickyBar(){const bar=document.getElementById('sticky-bar');const hero=document.querySelector('.hero');const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{bar.classList.toggle('show',!entry.isIntersecting)})},{threshold:0.1});observer.observe(hero)}
+setInterval(updateTimer,60000);setInterval(updateLiveCounters,15000);setInterval(showLiveActivity,25000);document.addEventListener('DOMContentLoaded',()=>{updateTimer();updateLiveCounters();initMobileCTA();showStickyBar();setTimeout(showLiveActivity,5000)});window.addEventListener('resize',initMobileCTA);
+</script>
+</body>
+</html>
