@@ -1,0 +1,472 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #2c2c2c;
+    background: linear-gradient(135deg, #f4f1ea 0%, #ede4d3 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #f9f6f0 0%, #ede4d3 50%, #e8dcc6 100%);
+    padding: 60px 0 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-text {
+    max-width: 550px;
+}
+
+.badge {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+}
+
+.subheadline {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.cta-button {
+    border: none;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.cta-button.primary {
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    color: white;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+    box-shadow: 0 8px 30px rgba(139, 69, 19, 0.3);
+}
+
+.cta-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(139, 69, 19, 0.4);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 8px 30px rgba(139, 69, 19, 0.3); }
+    50% { box-shadow: 0 8px 40px rgba(139, 69, 19, 0.5); }
+    100% { box-shadow: 0 8px 30px rgba(139, 69, 19, 0.3); }
+}
+
+.hero-image {
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Value Proposition Section */
+.value-proposition {
+    padding: 80px 0;
+    background: white;
+}
+
+.value-proposition h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c2c2c;
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+.value-points {
+    display: grid;
+    gap: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.value-point {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: #f9f6f0;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.value-point:hover {
+    transform: translateX(10px);
+}
+
+.value-point .icon {
+    font-size: 1.5rem;
+    color: #8B4513;
+}
+
+.value-point span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+/* Customer Images Section */
+.customer-images {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f4f1ea 0%, #ede4d3 100%);
+}
+
+.customer-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.customer-image {
+    text-align: center;
+}
+
+.customer-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial {
+    font-style: italic;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Product Snapshot Card */
+.product-snapshot {
+    padding: 80px 0;
+    background: white;
+}
+
+.product-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card .product-image img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    color: #2c2c2c;
+    margin-bottom: 15px;
+}
+
+.product-card .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #8B4513;
+    margin-bottom: 15px;
+}
+
+.rating {
+    margin-bottom: 25px;
+}
+
+.stars {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.reviews {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.cta-button.secondary {
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    color: white;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+}
+
+.cta-button.secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+}
+
+/* Trust Section */
+.trust-section {
+    padding: 60px 0;
+    background: #f9f6f0;
+}
+
+.trust-badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.trust-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.trust-badge .icon {
+    font-size: 2rem;
+}
+
+.trust-badge span:last-child {
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+/* Comparison Table */
+.comparison {
+    padding: 80px 0;
+    background: white;
+}
+
+.comparison h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c2c2c;
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+.comparison-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comparison-column {
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.comparison-column.elmsnest {
+    background: linear-gradient(135deg, #e8f5e8, #d4edda);
+    border: 2px solid #28a745;
+}
+
+.comparison-column.others {
+    background: linear-gradient(135deg, #f8e8e8, #f5c6cb);
+    border: 2px solid #dc3545;
+}
+
+.comparison-column h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.comparison-column ul {
+    list-style: none;
+    text-align: left;
+}
+
+.comparison-column li {
+    padding: 8px 0;
+    font-size: 1rem;
+}
+
+/* Guarantee Section */
+.guarantee {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f4f1ea 0%, #ede4d3 100%);
+}
+
+.guarantee-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.guarantee-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.guarantee h2 {
+    font-size: 2.2rem;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.guarantee p {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Mobile Sticky CTA */
+.mobile-sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px 20px;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.sticky-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sticky-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c2c2c;
+}
+
+.cta-button.sticky {
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    color: white;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .mobile-sticky-cta {
+        display: block;
+    }
+
+    .hero {
+        padding: 40px 0 60px;
+        min-height: auto;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .subheadline {
+        font-size: 1.1rem;
+    }
+
+    .comparison-table {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .trust-badges {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .customer-gallery {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .value-proposition h2,
+    .comparison h2 {
+        font-size: 2rem;
+    }
+
+    .guarantee h2 {
+        font-size: 1.8rem;
+    }
+
+    body {
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .value-proposition h2,
+    .comparison h2 {
+        font-size: 1.6rem;
+    }
+
+    .cta-button.primary {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+
+    .trust-badges {
+        grid-template-columns: 1fr;
+    }
+}
