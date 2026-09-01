@@ -1,0 +1,22 @@
+{%- comment -%}
+  ElmsNest v2 — price (WINNING-SPEC §3.5).
+  Usage: {% render 'elmsnest-v2-price', product: product %}
+  Prints <span class="env2-price"><bdi>…</bdi> ₪</span> — number first, then the sign (§3.2).
+  Rule: single price → "169.90 ₪"
+        narrow range (max <= min * 1.25) → "219.90–252.90 ₪"
+        wide range → "מ־89.90 ₪"
+  Size it from the section: .env2-<section>__price .env2-price{--env2-price-size:30px}
+  Renders nothing when product is blank.
+{%- endcomment -%}
+{%- if product != blank -%}
+  {%- assign env2_min = product.price_min -%}
+  {%- assign env2_max = product.price_max -%}
+  {%- assign env2_cap = env2_min | times: 1.25 -%}
+  {%- if product.price_varies == false or env2_min == env2_max -%}
+    <span class="env2-price"><bdi>{{ env2_min | money_without_currency }}</bdi> ₪</span>
+  {%- elsif env2_max <= env2_cap -%}
+    <span class="env2-price"><bdi>{{ env2_min | money_without_currency }}–{{ env2_max | money_without_currency }}</bdi> ₪</span>
+  {%- else -%}
+    <span class="env2-price">מ־<bdi>{{ env2_min | money_without_currency }}</bdi> ₪</span>
+  {%- endif -%}
+{%- endif -%}

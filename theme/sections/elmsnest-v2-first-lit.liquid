@@ -1,0 +1,241 @@
+{%- comment -%}
+  ElmsNest v2 — §4.2 "מה שנדלק ראשון" (first to light).
+  Screen 2: four real products from the four places — one tall (block 1) + three staggered
+  (blocks 2–4). Each is a lamp ([data-lamp]): dim until it enters the viewport, then lit.
+  Shared plumbing (fonts/base/price/buy snippets) is rendered by elmsnest-v2-hero; this
+  section only assumes it and degrades to "everything lit" without it.
+{%- endcomment -%}
+<section id="env2-first" data-env2-first-lit class="env2-section env2-first" dir="rtl" style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    <div class="env2-first__head">
+      <div class="env2-first__title">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="env2-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="env2-h env2-first__h2">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.intro != blank -%}
+        <p class="env2-first__intro">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="env2-first__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign product = block.settings.product
+          assign idx = block.settings.image_index | default: 1 | minus: 1
+          assign img = blank
+          if product != blank
+            assign img = product.images[idx] | default: product.featured_image
+          endif
+          assign op = block.settings.object_position | default: '50% 50%' | strip | escape
+          if op == blank
+            assign op = '50% 50%'
+          endif
+        -%}
+
+        {%- if forloop.first -%}
+          {%- comment -%} the tall one: photo 4/5, halo behind it on the sky, scrim caption overlapping the bottom {%- endcomment -%}
+          <figure class="env2-first__big" data-lamp {{ block.shopify_attributes }}>
+            <div class="env2-halo env2-first__halo" aria-hidden="true"></div>
+            <div class="env2-ph env2-first__ph env2-first__ph--big" style="--env2-first-op:{{ op }}">
+              {%- if img != blank -%}
+                {{ img | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '480,720,1000,1400,1800', sizes: '(max-width: 900px) calc(100vw - 40px), 640px', alt: product.title }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'env2-first__placeholder' }}
+              {%- endif -%}
+            </div>
+            <figcaption class="env2-first__cap">
+              {%- if block.settings.kicker != blank -%}
+                <span class="env2-eyebrow env2-first__bk">{{ block.settings.kicker }}</span>
+              {%- endif -%}
+              {%- if product != blank -%}
+                <h3 class="env2-first__t env2-first__t--big"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+                <div class="env2-first__row">
+                  <span class="env2-first__price env2-first__price--big">{% render 'elmsnest-v2-price', product: product %}</span>
+                  <span class="env2-first__buy">{% render 'elmsnest-v2-buy', product: product, label: block.settings.button_label %}</span>
+                </div>
+                {%- if block.settings.variant_note != blank -%}
+                  <span class="env2-first__var">{{ block.settings.variant_note }}</span>
+                {%- endif -%}
+              {%- else -%}
+                <h3 class="env2-first__t env2-first__t--big">בחרו מוצר בבלוק הזה</h3>
+              {%- endif -%}
+            </figcaption>
+          </figure>
+        {%- else -%}
+          {%- if forloop.index == 2 -%}
+            <div class="env2-first__stack">
+          {%- endif -%}
+          <article class="env2-first__item" data-lamp {{ block.shopify_attributes }}>
+            <div class="env2-ph env2-first__ph" style="--env2-first-op:{{ op }}">
+              {%- if img != blank -%}
+                {{ img | image_url: width: 520 | image_tag: loading: 'lazy', widths: '260,400,520,800', sizes: '(max-width: 900px) 180px, 260px', alt: product.title }}
+              {%- else -%}
+                {{ 'product-2' | placeholder_svg_tag: 'env2-first__placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="env2-first__txt">
+              {%- if block.settings.kicker != blank -%}
+                <span class="env2-kicker env2-first__k">{{ block.settings.kicker }}</span>
+              {%- endif -%}
+              {%- if product != blank -%}
+                <h3 class="env2-first__t"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+                <span class="env2-first__price">{% render 'elmsnest-v2-price', product: product %}</span>
+                {%- if block.settings.variant_note != blank -%}
+                  <span class="env2-first__var">{{ block.settings.variant_note }}</span>
+                {%- endif -%}
+                <span class="env2-first__buy">{% render 'elmsnest-v2-buy', product: product, label: block.settings.button_label, small: true %}</span>
+              {%- else -%}
+                <h3 class="env2-first__t">בחרו מוצר בבלוק הזה</h3>
+              {%- endif -%}
+            </div>
+          </article>
+          {%- if forloop.last -%}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- §4.2 first-lit: 1 tall + 3 staggered, each a lamp ---------- */
+.env2-first{padding-block:120px 80px}
+.env2-first *,.env2-first *::before,.env2-first *::after{box-sizing:border-box}
+.env2-first__head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;margin-bottom:56px}
+.env2-first__title{min-width:0}
+/* note: this bundle loads in <head> BEFORE the base inline style, so anything that overrides a base
+   helper (.env2-h, .env2-eyebrow, [data-lamp] …) needs higher specificity, not later source order */
+.env2-first__h2.env2-h{font-size:clamp(40px,5.6vw,84px);margin-top:14px}
+.env2-first__intro{max-width:34ch;margin:0 0 8px;font-size:16px;line-height:1.55;color:var(--env2-ink-2)}
+
+.env2-first__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:start}
+
+/* photos: object-position per block via --env2-first-op (set inline on .env2-ph) */
+.env2-first__ph img{object-position:var(--env2-first-op,50% 50%)}
+.env2-first__placeholder{width:100%;height:100%;object-fit:cover;background:#05070c;opacity:.35}
+
+/* the tall one */
+.env2-first__big{position:relative;margin:0;isolation:isolate}
+/* the halo lives beside the photo (not inside it) so the glow spills onto the sky when the lamp lights;
+   the gradient keeps colour past the photo edge — the base one fades out before it gets there.
+   Specificity beats the base rule ([data-lamp] .env2-halo), which is inlined AFTER this bundle. */
+.env2-first__big[data-lamp] .env2-first__halo{inset:-14% -20% -10%;background:radial-gradient(closest-side at 50% 52%,rgba(255,196,110,.55),rgba(255,196,110,.30) 58%,rgba(255,196,110,0) 100%);filter:blur(18px)}
+.env2-first__ph--big{aspect-ratio:4/5}
+.env2-first__cap{position:relative;z-index:2;width:min(86%,440px);margin:-84px 0 0 auto;margin-inline-start:0;padding:24px 26px 22px;display:grid;gap:8px;background:var(--env2-scrim);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08)}
+.env2-first__cap::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(5,8,14,.10),rgba(5,8,14,.34))}
+.env2-first__bk.env2-eyebrow{font-size:11px;letter-spacing:.16em}
+.env2-first__t{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:16.5px;line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:pretty}
+.env2-first__t a{color:inherit;transition:color .3s}
+.env2-first__t a:hover,.env2-first__t a:focus-visible{color:var(--env2-glow)}
+.env2-first__t--big{font-size:18px;line-height:1.3}
+.env2-first__row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:6px}
+.env2-first__price{display:block}
+.env2-first__price .env2-price.env2-price{--env2-price-size:24px}
+.env2-first__price--big{display:inline-block}
+.env2-first__price--big .env2-price.env2-price{--env2-price-size:30px}
+.env2-first__buy{display:inline-block}
+.env2-first__var{display:block;font-size:12.5px;line-height:1.4;color:var(--env2-mute)}
+.env2-first__cap .env2-first__var{margin-top:-2px}
+
+/* the stack: three staggered items, thumbs on the sky, text set beside them */
+.env2-first__stack{display:grid;gap:44px;padding-top:40px;min-width:0}
+.env2-first__item{display:grid;grid-template-columns:var(--env2-first-iw,220px) minmax(0,1fr);gap:22px;align-items:end;margin:0}
+.env2-first__item:nth-child(2){--env2-first-iw:170px;margin-inline-start:22%}
+.env2-first__item:nth-child(3){--env2-first-iw:260px;margin-inline-end:8%}
+.env2-first__item .env2-first__ph{aspect-ratio:1/1.05}
+.env2-first__item:nth-child(1) .env2-first__ph{aspect-ratio:1/.88}
+.env2-first__item:nth-child(3) .env2-first__ph{aspect-ratio:1/.84}
+.env2-first__txt{display:block;min-width:0}
+.env2-first__k{display:block}
+.env2-first__item .env2-first__t{margin:8px 0 10px}
+.env2-first__item .env2-first__price{margin-bottom:12px}
+.env2-first__item .env2-first__var{margin:-6px 0 12px}
+
+/* ---------- mobile: a different composition, not a collapsed grid (dusk 315–329) ---------- */
+@media (max-width:900px){
+  .env2-first{padding-block:72px 56px}
+  .env2-first__head{grid-template-columns:1fr;gap:16px;margin-bottom:32px}
+  .env2-first__intro{margin-bottom:0}
+  .env2-first__grid{grid-template-columns:1fr;gap:40px}
+  .env2-first__ph--big{aspect-ratio:4/5}
+  .env2-first__cap{width:92%;margin:-54px 0 0 auto;margin-inline-start:0;padding:18px}
+  .env2-first__row{flex-direction:column;align-items:flex-start;gap:12px}
+  .env2-first__price--big .env2-price.env2-price{--env2-price-size:26px}
+  .env2-first__stack{gap:32px;padding-top:0}
+  .env2-first__item{grid-template-columns:var(--env2-first-iw,150px) minmax(0,1fr);gap:16px}
+  .env2-first__item:nth-child(1){--env2-first-iw:160px}
+  .env2-first__item:nth-child(2){--env2-first-iw:120px;margin-inline-start:0;margin-inline-end:12%;direction:ltr}
+  .env2-first__item:nth-child(2)>*{direction:rtl}
+  .env2-first__item:nth-child(3){--env2-first-iw:180px;margin-inline-end:0}
+  .env2-first__t{font-size:15px}
+  .env2-first__price .env2-price.env2-price{--env2-price-size:21px}
+}
+@media (max-width:360px){
+  .env2-first__item{grid-template-columns:var(--env2-first-iw,130px) minmax(0,1fr)}
+  .env2-first__item:nth-child(1){--env2-first-iw:140px}
+  .env2-first__item:nth-child(3){--env2-first-iw:150px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §4.2 first-lit: nothing to run but the lamps. Hand them to the shared observer;
+   without the base (a page without the hero) render everything lit. */
+(function(){
+  function init(el){
+    if (el.__env2FirstLit) return;
+    el.__env2FirstLit = true;
+    if (window.env2 && window.env2.observe) {
+      window.env2.observe(el);
+    } else {
+      el.querySelectorAll('[data-lamp]').forEach(function(l){ l.classList.add('lit'); });
+    }
+  }
+  function boot(root){
+    (root && root.querySelectorAll ? root : document).querySelectorAll('[data-env2-first-lit]').forEach(init);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ boot(document); });
+  else boot(document);
+  document.addEventListener('shopify:section:load', function(e){ boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — מה שנדלק ראשון",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה (eyebrow)", "default": "01 · נדלקים עכשיו" },
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "מה שנדלק ראשון" },
+    { "type": "textarea", "id": "intro", "label": "פסקת פתיחה (בצד השמאלי של הכותרת)", "default": "ארבעה מוצרים מארבעת המקומות. כל אחד נדלק כשהוא נכנס למסך — כמו בגינה, כשמתחיל להחשיך." }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "מוצר (הראשון = הגדול)",
+      "limit": 4,
+      "settings": [
+        { "type": "product", "id": "product", "label": "מוצר" },
+        { "type": "range", "id": "image_index", "label": "איזו תמונה של המוצר (מיקום בגלריה)", "min": 1, "max": 4, "step": 1, "default": 1 },
+        { "type": "text", "id": "kicker", "label": "שורת מקום (מקום · למה זה מתאים)", "default": "קיר · להאיר נקודה מסוימת", "info": "רק המקום והנוסח המאושר — בלי תגיות אחרות." },
+        { "type": "text", "id": "button_label", "label": "טקסט כפתור (רק למוצר עם כמה וריאנטים)", "default": "לבחירת דגם" },
+        { "type": "text", "id": "variant_note", "label": "הערת וריאנטים (למשל: 5 או 8 מטר)" },
+        { "type": "text", "id": "object_position", "label": "מיקום החיתוך בתמונה (object-position)", "default": "50% 50%", "info": "למשל 50% 0 כדי להצמיד לחלק העליון." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — מה שנדלק ראשון",
+      "blocks": [
+        { "type": "product", "settings": { "product": "outdoor-bidirectional-led-wall-light-ip65", "image_index": 1, "kicker": "קיר · להאיר נקודה מסוימת", "button_label": "לבחירת גוון", "object_position": "50% 50%" } },
+        { "type": "product", "settings": { "product": "powerful-solar-garden-light", "image_index": 4, "kicker": "שביל · לראות את הדרך", "button_label": "לבחירת דגם", "object_position": "50% 0" } },
+        { "type": "product", "settings": { "product": "solar-edison-string-lights", "image_index": 4, "kicker": "מרפסת · ליצור אווירה", "button_label": "לבחירת אורך", "variant_note": "5 או 8 מטר", "object_position": "50% 50%" } },
+        { "type": "product", "settings": { "product": "solar-firefly-garden-lights", "image_index": 4, "kicker": "גינה · הארה ממוקדת של עץ או ערוגה", "button_label": "לבחירת דגם", "object_position": "50% 0" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

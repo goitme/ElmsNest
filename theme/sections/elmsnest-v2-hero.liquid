@@ -1,0 +1,223 @@
+{%- comment -%}
+  ElmsNest v2 — 4.1 hero: the last minute of daylight (WINNING-SPEC §4.1).
+  Renders the shared fonts + base ONCE for the page (this section only).
+  Screen 1: the idea (dusk), the brand line, and a real product with ₪ + add-to-cart.
+  The Kalles header is transparent over the top 70px; the hero clears it with padding.
+{%- endcomment -%}
+{% render 'elmsnest-v2-fonts' %}{% render 'elmsnest-v2-base' %}
+{%- liquid
+  assign product = section.settings.product
+  assign bg_i = section.settings.bg_image_index | default: 1 | minus: 1
+  assign bgm_i = section.settings.bg_image_index_mobile | default: 1 | minus: 1
+  assign card_i = section.settings.card_image_index | default: 4 | minus: 1
+
+  assign bg_desktop = section.settings.bg_image
+  if bg_desktop == blank and product != blank
+    assign bg_desktop = product.images[bg_i] | default: product.featured_image
+  endif
+  assign bg_mobile = section.settings.bg_image_mobile
+  if bg_mobile == blank and product != blank
+    assign bg_mobile = product.images[bgm_i] | default: product.featured_image
+  endif
+  if bg_mobile == blank
+    assign bg_mobile = bg_desktop
+  endif
+  assign card_img = blank
+  if product != blank
+    assign card_img = product.images[card_i] | default: product.featured_image
+  endif
+  assign card_title = section.settings.card_title_override | default: product.title
+  assign bg_alt = bg_desktop.alt | default: product.title | default: '' | escape
+
+  assign wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
+  assign wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
+  assign wa_href = '/pages/contact-us'
+  if section.settings.whatsapp_url != blank
+    assign wa_href = section.settings.whatsapp_url
+    unless wa_href contains '?'
+      assign wa_href = wa_href | append: '?text=' | append: wa_text
+    endunless
+  elsif wa != blank
+    assign wa_href = 'https://wa.me/' | append: wa | append: '?text=' | append: wa_text
+  endif
+-%}
+<section id="env2-hero" data-env2-hero class="env2-section env2-hero" dir="rtl" style="scroll-margin-top:90px" aria-labelledby="env2-hero-h1">
+  {%- if bg_desktop != blank -%}
+  <div class="env2-hero__bg" aria-hidden="true">
+    <picture>
+      <source media="(max-width:900px)" srcset="{{ bg_mobile | image_url: width: 1000 }} 1000w, {{ bg_mobile | image_url: width: 1400 }} 1400w" sizes="100vw">
+      {{ bg_desktop | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '900,1400,1800,2400', sizes: '100vw', alt: bg_alt, class: 'env2-hero__img' }}
+    </picture>
+  </div>
+  {%- endif -%}
+  <div class="env2-hero__scrim" aria-hidden="true"></div>
+
+  {%- if section.settings.show_sun_rail -%}
+  <aside class="env2-hero__sun" aria-hidden="true">
+    <span class="env2-hero__sun-label">שקיעה</span>
+    <span class="env2-hero__rail"><span class="env2-hero__dot"></span></span>
+    <span class="env2-hero__sun-label">לילה</span>
+  </aside>
+  {%- endif -%}
+
+  <div class="env2-wrap env2-hero__wrap">
+    <div class="env2-hero__copy">
+      {%- if section.settings.note_title != blank or section.settings.note_text != blank -%}
+      <p class="env2-hero__note"><b class="env2-hero__note-title">{{ section.settings.note_title }}</b> {{ section.settings.note_text }}</p>
+      {%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}
+      <p class="env2-eyebrow env2-eyebrow--ink env2-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 id="env2-hero-h1" class="env2-h env2-hero__h1">{{ section.settings.heading_line1 }}{% if section.settings.heading_line2 != blank %}<br><em>{{ section.settings.heading_line2 }}</em>{% endif %}</h1>
+      {%- if section.settings.lead != blank -%}
+      <p class="env2-lead env2-hero__lead">{{ section.settings.lead }}</p>
+      {%- endif -%}
+      <div class="env2-hero__ctas">
+        {%- if section.settings.cta_primary_label != blank -%}
+        <a class="env2-btn" href="{{ section.settings.cta_primary_link | default: '#env2-places' }}">{{ section.settings.cta_primary_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.cta_secondary_label != blank -%}
+        <a class="env2-btn env2-btn--ghost" href="{{ wa_href }}"{% if wa_href contains 'wa.me' %} target="_blank" rel="noopener"{% endif %}>{{ section.settings.cta_secondary_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if product != blank -%}
+    <article class="env2-hero__card" data-lamp>
+      <a class="env2-ph env2-hero__ph" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+        {%- if card_img != blank -%}
+        {{ card_img | image_url: width: 400 | image_tag: loading: 'eager', widths: '264,400,528', sizes: '132px', alt: '', class: 'env2-hero__thumb' }}
+        {%- endif -%}
+      </a>
+      <div class="env2-hero__card-body">
+        {%- if section.settings.card_kicker != blank -%}
+        <span class="env2-kicker env2-hero__kicker">{{ section.settings.card_kicker }}</span>
+        {%- endif -%}
+        <h2 class="env2-hero__title"><a href="{{ product.url }}">{{ card_title }}</a></h2>
+        <div class="env2-hero__price">{% render 'elmsnest-v2-price', product: product %}</div>
+        <div class="env2-hero__buy">{% render 'elmsnest-v2-buy', product: product, small: true %}</div>
+      </div>
+    </article>
+    {%- elsif request.design_mode -%}
+    <article class="env2-hero__card env2-hero__card--empty">
+      <p class="env2-hero__empty">בחרו מוצר בהגדרות הסקשן — הוא יופיע כאן עם מחיר וכפתור קנייה, והתמונה שלו תהיה רקע ההירו.</p>
+    </article>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+/* ===== 4.1 hero — the last minute of daylight ===== */
+.env2-hero{min-height:100vh;min-height:100svh;display:grid;align-items:end;overflow:clip;isolation:isolate;margin:0}
+.env2-hero__bg{position:absolute;inset:0;z-index:-2;background:#1f3357;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 60%,rgba(0,0,0,.55) 84%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 60%,rgba(0,0,0,.55) 84%,transparent 100%)}
+.env2-hero__bg picture{display:contents}
+.env2-hero__img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:brightness(max(.45, calc(1 - 2.2*var(--env2-p,0)))) saturate(1.05);transition:filter .2s linear;will-change:filter}
+/* the scrim dissolves with the photo (same mask) so the hero ends on the page sky, never on a seam */
+.env2-hero__scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 60%,rgba(0,0,0,.55) 84%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 60%,rgba(0,0,0,.55) 84%,transparent 100%);background:
+  linear-gradient(180deg,rgba(20,32,60,.55) 0,rgba(20,32,60,0) 28%),
+  linear-gradient(0deg,var(--env2-sky-1) 0,rgba(31,51,87,.6) 22%,rgba(31,51,87,0) 55%),
+  linear-gradient(90deg,rgba(10,16,30,0) 40%,rgba(10,16,30,.55) 100%),
+  radial-gradient(58% 62% at 82% 52%,rgba(8,13,26,.58),rgba(8,13,26,0) 72%)}
+.env2-hero__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:40px;align-items:end;padding-block:120px 96px}
+.env2-hero__copy{min-width:0}
+.env2-hero__note{position:absolute;top:118px;inset-inline-end:0;max-width:300px;margin:0;font-size:12.5px;line-height:1.6;color:var(--env2-ink-2);padding-inline-start:16px;border-inline-start:1px solid rgba(255,255,255,.25);text-shadow:0 1px 18px rgba(0,0,0,.45)}
+.env2-hero__note-title{display:block;color:var(--env2-ink);font-weight:500;font-family:var(--env2-serif);font-size:15px;letter-spacing:.06em}
+.env2-hero__eyebrow{text-shadow:0 1px 14px rgba(0,0,0,.5)}
+.env2-hero__h1{font-size:clamp(54px,9.4vw,150px);margin:22px 0 26px;text-shadow:0 2px 44px rgba(0,0,0,.55),0 1px 3px rgba(0,0,0,.35)}
+.env2-hero__lead{text-shadow:0 1px 18px rgba(0,0,0,.5)}
+.env2-hero__ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+/* the first lamp — a product, inside the hero, lit ~1.6s after paint */
+.env2-hero__card{justify-self:start;width:min(100%,360px);display:grid;grid-template-columns:132px minmax(0,1fr);gap:18px;align-items:end;padding:16px;margin:0;background:var(--env2-scrim);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);position:relative}
+.env2-hero__ph{aspect-ratio:1/1.1;display:block;width:100%}
+.env2-hero__thumb{width:100%;height:100%}
+.env2-hero__card-body{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+.env2-hero__kicker{display:block}
+.env2-hero__title{font-family:var(--env2-sans);font-weight:400;font-size:15px;line-height:1.35;margin:6px 0 10px;color:var(--env2-ink);unicode-bidi:isolate;letter-spacing:0;text-transform:none}
+.env2-hero__title a{color:inherit}
+.env2-hero__price{margin-bottom:10px}
+.env2-hero__price .env2-price{--env2-price-size:26px;display:block}
+.env2-hero__buy{display:block}
+.env2-hero__card--empty{display:block;color:var(--env2-ink-2);font-size:13px}
+.env2-hero__empty{margin:0}
+/* the sun goes down — fixed hairline rail, desktop only */
+.env2-hero__sun{position:fixed;inset-inline-end:22px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;align-items:center;gap:12px;font-family:var(--env2-sans);font-size:10.5px;font-weight:400;letter-spacing:.14em;color:var(--env2-ink-2);pointer-events:none}
+.env2-hero__rail{position:relative;display:block;width:1px;height:150px;background:linear-gradient(var(--env2-sky-0),var(--env2-glow) 50%,#000);opacity:.8}
+.env2-hero__dot{position:absolute;inset-inline-start:-4px;top:calc(var(--env2-p,0)*100% - 4px);width:9px;height:9px;border-radius:50%;background:var(--env2-glow);box-shadow:0 0 12px 3px rgba(255,211,148,.6);transition:top .15s linear}
+@media (max-width:900px){
+  .env2-hero__sun{display:none}
+  .env2-hero__img{object-position:22% 50%}
+  .env2-hero__scrim{background:
+    linear-gradient(180deg,rgba(20,32,60,.5) 0,rgba(20,32,60,0) 25%),
+    linear-gradient(0deg,var(--env2-sky-1) 0,rgba(31,51,87,.85) 26%,rgba(31,51,87,0) 60%),
+    radial-gradient(90% 55% at 70% 45%,rgba(8,13,26,.45),rgba(8,13,26,0) 70%)}
+  .env2-hero__wrap{grid-template-columns:1fr;gap:24px;padding-block:96px 84px}
+  .env2-hero__note{position:static;max-width:34ch;margin:0 0 14px;border:0;padding:0;font-size:12px}
+  .env2-hero__note-title{display:inline;font-size:13.5px;margin-inline-end:4px}
+  .env2-hero__note-title::after{content:" — "}
+  .env2-hero__h1{font-size:clamp(54px,15.5vw,72px);margin:10px 0 16px}
+  .env2-hero__lead{font-size:16px}
+  .env2-hero__ctas{margin-top:22px;gap:10px}
+  .env2-hero__card{justify-self:stretch;width:100%;grid-template-columns:minmax(0,1fr) 104px;padding:12px;gap:14px}
+  .env2-hero__ph{order:2}
+  .env2-hero__card-body{order:1}
+  .env2-hero__title{font-size:14.5px;margin:4px 0 8px}
+  .env2-hero__price{margin-bottom:8px}
+  .env2-hero__price .env2-price{--env2-price-size:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  .env2-hero__sun{display:none}
+  .env2-hero__img{filter:none;transition:none}
+}
+{% endstylesheet %}
+
+{% javascript %}
+document.querySelectorAll('[data-env2-hero]').forEach(function(el){
+  if (window.env2 && window.env2.observe) { window.env2.observe(el); }
+  else { el.querySelectorAll('[data-lamp]').forEach(function(l){ l.classList.add('lit'); }); }
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — הירו",
+  "tag": "section",
+  "class": "env2-hero-section",
+  "settings": [
+    { "type": "header", "content": "המוצר שבתמונה" },
+    { "type": "product", "id": "product", "label": "מוצר (התמונה שלו היא הרקע, והוא נמכר בכרטיס)" },
+    { "type": "range", "id": "bg_image_index", "label": "תמונת רקע — מספר תמונה במוצר (דסקטופ)", "min": 1, "max": 4, "step": 1, "default": 1 },
+    { "type": "range", "id": "bg_image_index_mobile", "label": "תמונת רקע — מספר תמונה במוצר (מובייל)", "min": 1, "max": 4, "step": 1, "default": 1 },
+    { "type": "image_picker", "id": "bg_image", "label": "תמונת רקע — החלפה ידנית (דסקטופ)" },
+    { "type": "image_picker", "id": "bg_image_mobile", "label": "תמונת רקע — החלפה ידנית (מובייל)" },
+    { "type": "range", "id": "card_image_index", "label": "תמונת הכרטיס — מספר תמונה במוצר", "min": 1, "max": 4, "step": 1, "default": 4 },
+    { "type": "text", "id": "card_kicker", "label": "כותרת קטנה בכרטיס", "default": "המנורה שבתמונה · שביל" },
+    { "type": "text", "id": "card_title_override", "label": "שם המוצר בכרטיס (ריק = השם מהחנות)", "default": "מנורת שביל סולארית מנירוסטה, תאורה אוטומטית IP65" },
+    { "type": "header", "content": "טקסטים" },
+    { "type": "text", "id": "note_title", "label": "הערה — כותרת", "default": "השעה הכחולה" },
+    { "type": "textarea", "id": "note_text", "label": "הערה — טקסט", "default": "הדקות שבין השקיעה ללילה. הדף הזה מחשיך איתן, וכל מנורה נדלקת כשמגיעים אליה." },
+    { "type": "text", "id": "eyebrow", "label": "שורת פתיחה", "default": "תאורת חוץ, לפי המקום" },
+    { "type": "text", "id": "heading_line1", "label": "כותרת — שורה ראשונה", "default": "כשהשמש יורדת," },
+    { "type": "text", "id": "heading_line2", "label": "כותרת — שורה שנייה (זוהרת)", "default": "הגינה נדלקת." },
+    { "type": "textarea", "id": "lead", "label": "פסקת פתיחה", "default": "מנורות שביל, קיר, מרפסת וגינה. קטגוריה אחת בלבד — ואם מוצר לא מתאים למקום שלכם, נגיד את זה לפני שתזמינו." },
+    { "type": "header", "content": "כפתורים" },
+    { "type": "text", "id": "cta_primary_label", "label": "כפתור ראשי — טקסט", "default": "לארבע הקולקציות" },
+    { "type": "url", "id": "cta_primary_link", "label": "כפתור ראשי — קישור (ריק = #env2-places)" },
+    { "type": "text", "id": "cta_secondary_label", "label": "כפתור משני — טקסט (וואטסאפ)", "default": "לשלוח תמונה של המקום" },
+    { "type": "url", "id": "whatsapp_url", "label": "קישור וואטסאפ (ריק = מספר הוואטסאפ מהגדרות החנות, או עמוד יצירת קשר)" },
+    { "type": "header", "content": "תנועה" },
+    { "type": "checkbox", "id": "show_sun_rail", "label": "להציג את מסילת השקיעה (דסקטופ)", "default": true }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — השעה הכחולה",
+      "settings": {
+        "product": "stainless-steel-solar-path-light-ip65",
+        "bg_image_index": 1,
+        "bg_image_index_mobile": 1,
+        "card_image_index": 4,
+        "show_sun_rail": true
+      }
+    }
+  ]
+}
+{% endschema %}

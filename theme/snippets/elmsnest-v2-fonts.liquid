@@ -1,0 +1,18 @@
+{%- comment -%}
+  ElmsNest v2 — fonts (WINNING-SPEC §3.2).
+  Render ONCE per page, at the top of elmsnest-v2-hero only:
+    {% render 'elmsnest-v2-fonts' %}
+  Frank Ruhl Libre 400/500/700/900 (display) + Heebo 300/400/500 (text).
+  Google serves the Hebrew + Latin subsets automatically for both families.
+  "FRL Fallback" is a metric-matched local face (David on Windows, Times New Roman on
+  Windows/macOS — both carry Hebrew) so the hero h1 does not jump on swap.
+  Overrides derive from the real FRL metrics (ascent .957, descent .334, line-gap 0,
+  measured with fontTools on the woff2), expressed against the size-adjusted em.
+{%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500&display=swap">
+<style id="env2-fonts">
+@font-face{font-family:"FRL Fallback";src:local("David"),local("Times New Roman"),local("TimesNewRomanPSMT");size-adjust:94%;ascent-override:102%;descent-override:36%;line-gap-override:0%}
+:root{--env2-serif:"Frank Ruhl Libre","FRL Fallback","Noto Serif Hebrew",serif;--env2-sans:"Heebo","Assistant",system-ui,-apple-system,"Segoe UI",sans-serif}
+</style>

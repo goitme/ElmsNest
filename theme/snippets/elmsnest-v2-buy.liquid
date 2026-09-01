@@ -1,0 +1,36 @@
+{%- comment -%}
+  ElmsNest v2 — buy control (WINNING-SPEC §3.5).
+  Usage: {% render 'elmsnest-v2-buy', product: product, label: 'לבחירת גוון' %}
+         {% render 'elmsnest-v2-buy', product: product, add_label: 'הוספה לסל', small: true %}
+  One available variant → no-JS-safe POST form to routes.cart_add_url with hidden id + quantity=1
+                          and a .env2-btn submit ("הוספה לסל" unless add_label is given).
+  Anything else (several variants, or sold out) → <a class="env2-btn env2-btn--ghost" href="product.url">
+                          with label | default: 'לבחירת דגם' (sold out: 'לעמוד המוצר').
+  small: true adds .env2-btn--sm (hero card). Renders nothing when product is blank.
+{%- endcomment -%}
+{%- if product != blank -%}
+  {%- liquid
+    assign env2_variant = product.selected_or_first_available_variant | default: product.variants.first
+    assign env2_single = false
+    if product.variants.size == 1 and product.available and env2_variant.available
+      assign env2_single = true
+    endif
+    assign env2_btn_class = 'env2-btn'
+    if small
+      assign env2_btn_class = 'env2-btn env2-btn--sm'
+    endif
+  -%}
+  {%- if env2_single -%}
+    <form method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8" class="env2-buy" data-env2-buy>
+      <input type="hidden" name="form_type" value="product">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="id" value="{{ env2_variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" name="add" class="{{ env2_btn_class }}">{{ add_label | default: 'הוספה לסל' }}</button>
+    </form>
+  {%- elsif product.available -%}
+    <a class="{{ env2_btn_class }} env2-btn--ghost" href="{{ product.url }}">{{ label | default: 'לבחירת דגם' }}</a>
+  {%- else -%}
+    <a class="{{ env2_btn_class }} env2-btn--ghost" href="{{ product.url }}">{{ label | default: 'לעמוד המוצר' }}</a>
+  {%- endif -%}
+{%- endif -%}
