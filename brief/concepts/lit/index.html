@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ElmsNest — תאורת חוץ. במקום הנכון.</title>
+<link rel="stylesheet" href="../../assets/fonts.css">
+<style>
+:root{
+  --bg:#0a0806; --bg2:#12100c; --ink:#f4ede2; --ink2:#c9bfb0; --dim:#7d746a;
+  --gold:#e4b664; --gold2:#ffd98a; --line:rgba(228,182,100,.22); --line2:rgba(244,237,226,.12);
+  --disp:'Karantina','Secular One',Impact,sans-serif; --head:'Secular One','Heebo',sans-serif; --body:'Heebo','Assistant',system-ui,sans-serif;
+  --hdr:72px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--ink);scroll-behavior:smooth}
+body{font-family:var(--body);font-weight:300;font-size:17px;line-height:1.5;background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+section{scroll-margin-top:var(--hdr)}
+h1,h2,h3{font-weight:400}
+.k{font-family:var(--disp);font-weight:700;line-height:.86;letter-spacing:.005em}
+.h{font-family:var(--head)}
+bdi{unicode-bidi:isolate}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.7em;font-family:var(--head);font-size:17px;line-height:1;padding:18px 30px;border:1px solid var(--gold);color:var(--gold);background:rgba(10,8,6,.55);backdrop-filter:blur(6px);transition:background .35s,color .35s,box-shadow .5s;white-space:nowrap}
+.btn svg{width:18px;height:18px;flex:none}
+.btn:hover{background:var(--gold);color:#0a0806;box-shadow:0 0 0 1px var(--gold),0 0 48px rgba(228,182,100,.55)}
+.btn.solid{background:var(--gold);color:#0a0806}
+.btn.solid:hover{background:var(--gold2);box-shadow:0 0 64px rgba(255,217,138,.6)}
+.btn.ghost{border-color:var(--line2);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--gold);background:transparent;color:var(--gold);box-shadow:none}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:50;height:var(--hdr);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(16px,3vw,44px);background:rgba(10,8,6,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
+.hdr::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent);opacity:.55;transform:scaleX(.2);animation:hline 3s ease-out .4s forwards}
+@keyframes hline{to{transform:scaleX(1)}}
+.logo{display:flex;align-items:center;gap:12px;justify-self:start}
+.logo img{width:42px;height:42px}
+.logo b{font-family:var(--disp);font-weight:700;font-size:30px;letter-spacing:.02em;color:var(--gold);line-height:1}
+.nav{display:flex;gap:clamp(18px,2.4vw,38px);font-size:15px;font-weight:400;color:var(--ink2)}
+.nav a{position:relative;padding:6px 0;transition:color .3s}
+.nav a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .35s}
+.nav a:hover{color:var(--gold)}.nav a:hover::after{transform:scaleX(1)}
+.icons{display:flex;gap:6px;justify-self:end}
+.icons a,.icons button{width:44px;height:44px;display:grid;place-items:center;color:var(--ink2);transition:color .3s}
+.icons svg{width:22px;height:22px}
+.icons a:hover,.icons button:hover{color:var(--gold)}
+.icons .burger{display:none}
+.cart .n{position:absolute;translate:12px -10px;font-family:var(--disp);font-size:13px;color:var(--gold)}
+
+/* ---------- hero poster ---------- */
+.hero{position:relative;height:calc(100svh - var(--hdr));min-height:640px;overflow:hidden;isolation:isolate}
+.hero .img{position:absolute;inset:0;z-index:-1}
+.hero .img img{width:100%;height:100%;object-fit:cover;object-position:60% 55%;transform:scale(1.06);animation:heroin 2.4s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes heroin{to{transform:scale(1)}}
+.hero .img::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.55) 0%,rgba(10,8,6,.05) 35%,rgba(10,8,6,.1) 60%,rgba(10,8,6,.92) 100%),linear-gradient(270deg,rgba(10,8,6,.55),transparent 45%)}
+.sweep{position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 42%,rgba(255,225,170,.28) 50%,transparent 58%);transform:translateX(-130%);opacity:0}
+.hero .sweep{animation:sweep 1.9s cubic-bezier(.4,0,.2,1) .7s forwards}
+@keyframes sweep{0%{transform:translateX(-130%);opacity:1}100%{transform:translateX(130%);opacity:1}}
+.hero .meta{position:absolute;top:28px;inset-inline-start:clamp(16px,3vw,44px);display:flex;gap:26px;font-size:13px;letter-spacing:.14em;color:var(--ink2);text-transform:uppercase}
+.hero .meta b{font-family:var(--disp);font-weight:700;font-size:20px;color:var(--gold);letter-spacing:.05em}
+.hero h1{position:absolute;top:clamp(64px,9vh,120px);inset-inline-start:clamp(16px,3vw,44px);font-size:clamp(96px,15.5vw,236px);color:var(--ink);text-shadow:0 0 80px rgba(0,0,0,.6);max-inline-size:8.2em}
+.hero h1 em{font-style:normal;color:var(--gold);text-shadow:0 0 40px rgba(228,182,100,.55)}
+.hero .lock{position:absolute;bottom:0;inset-inline:0;padding:0 clamp(16px,3vw,44px) 36px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:28px}
+.hero .who{max-width:520px}
+.hero .who .cat{font-size:13px;letter-spacing:.14em;color:var(--gold);margin-bottom:10px}
+.hero .who h2{font-family:var(--head);font-size:clamp(24px,2.3vw,34px);line-height:1.15;margin-bottom:12px}
+.hero .who p{color:var(--ink2);font-size:16px;max-width:44ch}
+.hero .who .spec{display:flex;gap:14px;margin-top:16px;font-size:13px;letter-spacing:.1em;color:var(--ink2)}
+.hero .who .spec span+span::before{content:"·";color:var(--gold);margin-inline-end:14px}
+.hero .buy{display:flex;align-items:end;gap:28px}
+.price{display:inline-flex;align-items:baseline;gap:.08em;font-family:var(--disp);font-weight:700;line-height:.8;color:var(--gold);text-shadow:0 0 36px rgba(228,182,100,.35)}
+.price b{font-weight:300;font-size:.42em;font-family:'Karantina';translate:0 -.15em}
+.price i{font-style:normal;font-family:var(--body);font-weight:300;font-size:.22em;color:var(--ink2);margin-inline-end:.4em;align-self:center}
+.hero .price{font-size:clamp(96px,11vw,176px);animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{50%{text-shadow:0 0 64px rgba(255,217,138,.65)}}
+.hero .scroll{position:absolute;bottom:40px;inset-inline-start:50%;translate:50% 0;width:1px;height:56px;background:linear-gradient(var(--gold),transparent);opacity:.6;display:none}
+
+/* ---------- marquee ---------- */
+.marq{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;position:relative;background:var(--bg)}
+.marq .track{display:flex;width:max-content;animation:marq 60s linear infinite}
+.marq:hover .track{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(50%)}}
+.marq .set{display:flex;align-items:center;flex:none}
+.mi{font-family:var(--disp);font-weight:400;font-size:clamp(34px,4.6vw,66px);line-height:1;color:var(--ink);white-space:nowrap;padding:0 .35em;display:inline-flex;align-items:baseline;gap:.35em}
+.mi em{font-style:normal;color:var(--gold);font-weight:700}
+.md{width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none;box-shadow:0 0 12px var(--gold)}
+
+/* ---------- section kicker ---------- */
+.kick{display:flex;align-items:center;gap:16px;font-size:13px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+.kick::after{content:"";height:1px;flex:1;background:var(--line)}
+.kick b{font-family:var(--disp);font-size:22px;font-weight:700;letter-spacing:.04em}
+
+/* ---------- sticky poster stack ---------- */
+.stack{position:relative}
+.stackhead{position:sticky;top:var(--hdr);z-index:1;padding:14px clamp(16px,3vw,44px);background:var(--bg);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line2)}
+.stackhead h2{font-family:var(--head);font-size:clamp(20px,2vw,28px)}
+.stackhead .cnt{font-family:var(--disp);font-size:26px;color:var(--gold);letter-spacing:.06em}
+.poster{position:sticky;top:calc(var(--hdr) + 56px);height:calc(100svh - var(--hdr) - 56px);min-height:560px;display:grid;grid-template-columns:1.15fr .85fr;background:var(--bg);border-top:1px solid var(--line);overflow:hidden}
+.poster:nth-child(odd){grid-template-columns:.85fr 1.15fr}
+.poster .img{position:relative;overflow:hidden;background:#000}
+.poster .img img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.poster.in .img img{transform:scale(1)}
+.poster.in .sweep{animation:sweep 1.6s cubic-bezier(.4,0,.2,1) .2s forwards}
+.poster:nth-child(even) .img{order:2}
+.poster .txt{position:relative;padding:clamp(28px,4vw,64px) clamp(20px,3.4vw,56px);display:flex;flex-direction:column;justify-content:space-between}
+.poster .num{font-family:var(--disp);font-weight:700;font-size:clamp(120px,15vw,230px);line-height:.8;color:transparent;-webkit-text-stroke:1px var(--line);position:absolute;top:24px;inset-inline-end:24px;user-select:none}
+.poster .place{font-size:13px;letter-spacing:.14em;color:var(--gold)}
+.poster h3{font-family:var(--head);font-size:clamp(34px,3.6vw,58px);line-height:1.05;margin-top:18px;max-width:11ch}
+.poster .spec{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 0;color:var(--ink2);font-size:15px}
+.poster .spec span{padding-inline-end:14px;margin-inline-end:14px;border-inline-end:1px solid var(--line2)}
+.poster .spec span:last-child{border:0}
+.poster .lead{margin-top:22px;color:var(--ink2);max-width:40ch;font-size:16px}
+.poster .foot{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-top:32px;flex-wrap:wrap;padding-inline-end:40px}
+.poster .price{font-size:clamp(84px,8.4vw,150px)}
+.poster:nth-child(even) .txt{background:linear-gradient(200deg,#151209,var(--bg) 60%)}
+.poster.white{color:#0a0806;background:#efe7d8}
+.poster.white .txt{background:#efe7d8;color:#0a0806}
+.poster.white .place{color:#8a6420}
+.poster.white .spec,.poster.white .lead{color:#4d4538}
+.poster.white .spec span{border-color:rgba(10,8,6,.18)}
+.poster.white .num{-webkit-text-stroke:1px rgba(10,8,6,.22)}
+.poster.white .price{color:#0a0806;text-shadow:none}
+.poster.white .price i{color:#4d4538}
+.poster.white .btn{border-color:#0a0806;color:#0a0806;background:transparent;backdrop-filter:none}
+.poster.white .btn:hover{background:#0a0806;color:var(--gold);box-shadow:none}
+
+/* ---------- collections strip ---------- */
+.cols{padding:96px 0 80px;position:relative}
+.cols .top{padding:0 clamp(16px,3vw,44px);display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;margin-bottom:36px}
+.cols h2{font-family:var(--disp);font-weight:700;font-size:clamp(84px,11vw,172px);line-height:.82}
+.cols h2 b{color:var(--gold);font-weight:700}
+.cols h2 span{display:block;padding-inline-start:.9em}
+.cols .hint{color:var(--dim);font-size:14px;letter-spacing:.1em;display:flex;align-items:center;gap:12px}
+.cols .hint svg{width:38px;height:12px}
+.strip{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 clamp(16px,3vw,44px) 24px;scrollbar-width:none;-ms-overflow-style:none}
+.strip::-webkit-scrollbar{display:none}
+.strip{--ch:min(600px,70svh)}
+.card{position:relative;flex:none;height:var(--ch);width:calc(var(--ch)*.75);scroll-snap-align:start;overflow:hidden;background:#000;border:1px solid var(--line2)}
+.card:nth-child(2){width:calc(var(--ch)*1.45)}
+.card:nth-child(3){width:calc(var(--ch)*.62)}
+.card:nth-child(4){width:calc(var(--ch)*1.05)}
+.card img{width:100%;height:100%;object-fit:cover;filter:brightness(.72) saturate(.9);transform:scale(1.04);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .9s}
+.card:hover img{transform:scale(1);filter:brightness(1) saturate(1)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,8,6,.9),transparent 55%);pointer-events:none}
+.card .n{position:absolute;top:14px;inset-inline-end:22px;font-family:var(--disp);font-weight:700;font-size:clamp(96px,12vw,190px);line-height:.8;color:var(--ink);opacity:.92;z-index:1;text-shadow:0 0 40px rgba(0,0,0,.6)}
+.card .n small{font-size:.22em;font-weight:300;letter-spacing:.06em;margin-inline-start:.2em}
+.card .b{position:absolute;bottom:22px;inset-inline:22px;z-index:1;display:flex;justify-content:space-between;align-items:end;gap:16px}
+.card .b h3{font-family:var(--head);font-size:clamp(24px,2.4vw,36px);line-height:1.05}
+.card .b p{color:var(--gold);font-family:var(--disp);font-weight:700;font-size:30px;line-height:1;white-space:nowrap}
+.card .b p i{font-style:normal;font-family:var(--body);font-weight:300;font-size:13px;color:var(--ink2);display:block;letter-spacing:.1em}
+.card .ring{position:absolute;inset:0;border:1px solid var(--gold);opacity:0;transition:opacity .5s;pointer-events:none;z-index:2;box-shadow:inset 0 0 60px rgba(228,182,100,.25)}
+.card:hover .ring{opacity:1}
+
+/* ---------- statement ---------- */
+.state{min-height:100svh;display:grid;place-items:center;text-align:center;padding:120px clamp(16px,3vw,44px);position:relative;overflow:hidden;background:radial-gradient(60% 50% at 50% 60%,#1a150b,var(--bg) 70%)}
+.state .q{font-size:15px;color:var(--dim);max-width:52ch;margin:0 auto 40px;line-height:1.7}
+.state .q b{font-weight:400;color:var(--ink2)}
+.state h2{font-family:var(--disp);font-weight:700;font-size:clamp(88px,14.5vw,250px);line-height:.86}
+.state h2 .no{color:var(--gold);display:inline-block;text-shadow:0 0 60px rgba(228,182,100,.5);opacity:.18}
+.state.in h2 .no{animation:flick 2.2s steps(1,end) .3s forwards}
+@keyframes flick{0%{opacity:.18}6%{opacity:1}9%{opacity:.2}14%{opacity:1}18%{opacity:.25}22%{opacity:1}40%{opacity:1}44%{opacity:.5}47%{opacity:1}100%{opacity:1;text-shadow:0 0 90px rgba(255,217,138,.75)}}
+br.m{display:none}
+.state .sub{margin-top:44px;font-family:var(--head);font-size:clamp(18px,1.7vw,24px);color:var(--ink2);max-width:36ch;line-height:1.5}
+.state .arrow{margin-top:56px;display:inline-flex;flex-direction:column;align-items:center;gap:10px;color:var(--gold);font-size:13px;letter-spacing:.16em}
+.state .arrow i{width:1px;height:48px;background:linear-gradient(var(--gold),transparent)}
+
+/* ---------- ledger ---------- */
+.ledger{padding:40px clamp(16px,3vw,44px) 120px;max-width:1320px;margin:0 auto}
+.ledger .top{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;margin-bottom:18px}
+.ledger h2{font-family:var(--head);font-size:clamp(34px,4.2vw,64px);line-height:1;max-width:14ch}
+.ledger h2 small{display:block;font-family:var(--body);font-weight:300;font-size:16px;color:var(--dim);margin-top:14px;letter-spacing:.02em}
+.tog{display:inline-flex;border:1px solid var(--line);padding:4px;gap:4px;background:var(--bg2)}
+.tog button{padding:12px 22px;font-family:var(--head);font-size:15px;color:var(--dim);display:flex;align-items:center;gap:10px;transition:color .3s,background .3s}
+.tog button .lamp{width:9px;height:9px;border-radius:50%;border:1px solid currentColor}
+.tog button[aria-pressed="true"]{background:rgba(228,182,100,.12);color:var(--gold)}
+.tog button[aria-pressed="true"] .lamp{background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.lhead,.lrow{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:32px;align-items:center}
+.lhead{font-size:12px;letter-spacing:.18em;color:var(--dim);padding:22px 0 12px;border-bottom:1px solid var(--line)}
+.lhead .yes{color:var(--gold)}
+.lrow{padding:38px 0;border-bottom:1px solid var(--line2);position:relative;transition:background .5s}
+.lrow::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 120% at 50% 50%,rgba(228,182,100,.09),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
+.lrow:hover::before{opacity:1}
+.lrow .place{font-family:var(--head);font-size:clamp(22px,2.3vw,34px);line-height:1.1}
+.lrow .place a{font-family:var(--body);font-weight:300;display:block;font-size:14px;color:var(--dim);margin-top:8px;transition:color .3s}
+.lrow .place a:hover{color:var(--gold)}
+.lrow .place a bdi{font-family:var(--disp);font-size:20px;color:var(--gold);font-weight:700}
+.cell{display:flex;align-items:flex-start;gap:16px;font-size:clamp(17px,1.4vw,21px);line-height:1.35;transition:opacity .6s,color .6s}
+.cell .lamp{flex:none;width:14px;height:14px;border-radius:50%;margin-top:.35em;border:1px solid var(--gold);transition:background .6s,box-shadow .6s,border-color .6s}
+.cell.yes .lamp{background:var(--gold);box-shadow:0 0 16px var(--gold),0 0 40px rgba(228,182,100,.5)}
+.cell.no{opacity:.42;color:var(--ink2)}
+.cell.no .lamp{border-color:var(--dim)}
+.ledger[data-mode="no"] .cell.yes{opacity:.32;color:var(--ink2)}
+.ledger[data-mode="no"] .cell.yes .lamp{background:transparent;box-shadow:none;border-color:var(--dim)}
+.ledger[data-mode="no"] .cell.no{opacity:1;color:var(--ink)}
+.ledger[data-mode="no"] .cell.no .lamp{border-color:#c8452f;background:#c8452f;box-shadow:0 0 16px #c8452f,0 0 40px rgba(200,69,47,.45)}
+.ledger[data-mode="no"] .lhead .no{color:#e0664f}
+.wa{margin-top:56px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;padding:28px 32px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(228,182,100,.08),transparent 60%)}
+.wa .big{font-family:var(--disp);font-weight:700;font-size:clamp(40px,4.6vw,70px);line-height:.85;color:var(--gold)}
+.wa p{color:var(--ink2);font-size:16px;max-width:52ch}
+.wa p b{font-weight:400;color:var(--ink)}
+
+/* ---------- price wall ---------- */
+.wall{padding:110px clamp(16px,3vw,44px) 80px;border-top:1px solid var(--line);position:relative}
+.wall .top{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.wall h2{font-family:var(--disp);font-weight:700;font-size:clamp(84px,13vw,210px);line-height:.82;letter-spacing:.005em}
+.wall h2 b{color:var(--gold);font-weight:700}
+.wall .top p{max-width:34ch;color:var(--ink2);font-size:16px;padding-bottom:12px}
+.wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0 40px}
+.wcol{border-inline-start:1px solid var(--line2);padding-inline-start:24px}
+.wcol:last-child{border-inline-end:1px solid var(--line2);padding-inline-end:24px}
+.wh{font-family:var(--head);font-size:18px;color:var(--ink2);padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:baseline}
+.wh bdi{font-family:var(--disp);font-weight:700;font-size:34px;color:var(--gold);line-height:1}
+.wrow{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--line2);transition:color .3s,padding .3s}
+.wrow:hover{color:var(--gold);padding-inline-start:8px}
+.wp{font-family:var(--disp);font-weight:700;font-size:44px;line-height:.9;white-space:nowrap;display:inline-flex;align-items:baseline;gap:.08em}
+.wp i{font-style:normal;font-weight:300;font-size:.5em;color:var(--dim);margin-inline-end:.15em}
+.wp b{font-weight:300;font-size:.5em}
+.wn{font-size:14px;color:var(--ink2);line-height:1.3}
+.wrow:hover .wn{color:var(--ink)}
+.wmore{display:inline-block;margin-top:18px;font-size:13px;letter-spacing:.12em;color:var(--gold);border-bottom:1px solid var(--line)}
+.peek{position:fixed;z-index:40;width:220px;height:220px;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .3s,transform .3s;border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 40px rgba(228,182,100,.2);overflow:hidden;background:#000;display:none}
+.peek img{width:100%;height:100%;object-fit:cover}
+.peek.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media(hover:hover) and (min-width:900px){.peek{display:block}}
+
+/* ---------- small print ---------- */
+.terms{padding:80px clamp(16px,3vw,44px) 110px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 2fr;gap:48px;max-width:1320px;margin:0 auto}
+.terms h2{font-family:var(--head);font-size:clamp(26px,2.6vw,40px);line-height:1.1}
+.terms h2 small{display:block;font-family:var(--body);font-weight:300;font-size:15px;color:var(--dim);margin-top:12px}
+.tl{display:flex;flex-wrap:wrap;gap:22px 44px;align-items:baseline}
+.tl div{display:flex;align-items:baseline;gap:14px;max-width:100%}
+.tl .v{font-family:var(--disp);font-weight:700;font-size:clamp(56px,6vw,96px);line-height:.85;color:var(--gold);white-space:nowrap}
+.tl .v small{font-size:.4em;font-weight:300}
+.tl p{font-size:15px;color:var(--ink2);max-width:30ch;line-height:1.45}
+.tl p b{font-weight:400;color:var(--ink)}
+.tl p a{color:var(--gold);border-bottom:1px solid var(--line)}
+
+/* ---------- footer ---------- */
+.ftr{border-top:1px solid var(--line);padding:56px clamp(16px,3vw,44px) 0;overflow:hidden}
+.ftr .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px}
+.ftr h4{font-family:var(--head);font-size:15px;color:var(--gold);letter-spacing:.06em;margin-bottom:16px}
+.ftr ul{list-style:none;display:grid;gap:9px;font-size:15px;color:var(--ink2)}
+.ftr ul a:hover{color:var(--gold)}
+.ftr .about p{color:var(--ink2);max-width:36ch;font-size:15px;margin-top:14px}
+.ftr .soc{display:flex;gap:12px;margin-top:22px}
+.ftr .soc a{width:44px;height:44px;border:1px solid var(--line2);display:grid;place-items:center;color:var(--ink2);transition:.3s}
+.ftr .soc a:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 24px rgba(228,182,100,.35)}
+.ftr .soc svg{width:20px;height:20px}
+.ftr .mark{font-family:var(--disp);font-weight:700;font-size:clamp(120px,24vw,400px);line-height:.72;text-align:center;color:transparent;-webkit-text-stroke:1px var(--line);direction:ltr;letter-spacing:.02em;translate:0 .12em;user-select:none;transition:color 1.2s,text-shadow 1.2s}
+.ftr .mark.in{color:rgba(228,182,100,.14)}
+.ftr .mark:hover{color:var(--gold);text-shadow:0 0 120px rgba(228,182,100,.6)}
+.ftr .legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 0;border-top:1px solid var(--line2);font-size:13px;color:var(--dim)}
+.wafab{position:fixed;bottom:20px;inset-inline-end:20px;z-index:45;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:rgba(10,8,6,.85);backdrop-filter:blur(8px);color:var(--gold);opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .4s,transform .4s,box-shadow .4s,background .3s}
+.wafab.show{opacity:1;transform:none;pointer-events:auto}
+.wafab:hover{background:var(--gold);color:#0a0806;box-shadow:0 0 34px rgba(228,182,100,.5)}
+.wafab svg{width:22px;height:22px}
+.wafab span{position:absolute;inset-inline-end:62px;white-space:nowrap;font-size:13px;color:var(--ink2);opacity:0;transition:opacity .3s;pointer-events:none}
+.wafab:hover span{opacity:1}
+
+/* ---------- responsive ---------- */
+@media(max-width:1100px){
+  .wgrid{grid-template-columns:repeat(2,1fr);gap:40px}
+  .wcol:last-child{border-inline-end:0;padding-inline-end:0}
+  .ftr .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  :root{--hdr:62px}
+  .hdr{grid-template-columns:auto 1fr auto}
+  .nav{display:none}
+  .icons .burger{display:grid}
+  .logo img{width:36px;height:36px}.logo b{font-size:26px}
+  .hero{height:calc(100svh - var(--hdr));min-height:700px}
+  .hero .img img{object-position:62% 50%}
+  .hero .img::before{background:linear-gradient(180deg,rgba(10,8,6,.62) 0%,rgba(10,8,6,.1) 32%,rgba(10,8,6,.15) 52%,rgba(10,8,6,.96) 82%)}
+  .hero .meta{top:18px;gap:16px;font-size:11px}
+  .hero h1{top:52px;font-size:clamp(80px,24vw,110px);max-inline-size:6em}
+  .hero .lock{grid-template-columns:1fr;gap:16px;padding-bottom:24px}
+  .hero .who h2{font-size:22px}.hero .who p{font-size:14px;line-height:1.45}
+  .hero .who .spec{gap:12px;font-size:12px;flex-wrap:wrap}
+  .hero .buy{justify-content:space-between;width:100%;align-items:center}
+  .hero .price{font-size:clamp(64px,19vw,84px)}
+  .btn{padding:16px 22px;font-size:16px}
+  .marq{padding:16px 0}
+  .stackhead{padding:12px 16px}.stackhead .cnt,.stackhead .rng{display:none}
+  .poster,.poster:nth-child(odd){grid-template-columns:1fr;grid-template-rows:54% 1fr;top:calc(var(--hdr) + 50px);height:calc(100svh - var(--hdr) - 50px);min-height:640px}
+  .poster:nth-child(even) .img{order:0}
+  .poster .txt{padding:22px 18px 20px;justify-content:flex-end}
+  .poster .num{top:-8px;inset-inline-end:14px;font-size:110px;position:absolute;translate:0 -100%;color:var(--ink);-webkit-text-stroke:0;opacity:.9;text-shadow:0 0 30px rgba(0,0,0,.7)}
+  .poster.white .num{color:#efe7d8}
+  .poster h3{font-size:28px;margin-top:8px;max-width:100%}
+  .poster .spec{margin-top:12px;font-size:13px}
+  .poster .lead{display:none}
+  .poster .foot{margin-top:16px;align-items:center;padding-inline-end:52px}
+  .poster .price{font-size:64px}
+  .cols{padding:72px 0 48px}
+  .cols .top{grid-template-columns:1fr;margin-bottom:24px}
+  .cols h2{font-size:clamp(72px,24vw,110px)}
+  .cols h2 span{padding-inline-start:.6em}
+  .strip{--ch:min(460px,58svh)}
+  .card{width:78vw}.card:nth-child(2){width:88vw}.card:nth-child(3){width:64vw}.card:nth-child(4){width:82vw}
+  .card .n{font-size:96px}
+  .card .b{flex-direction:column;align-items:flex-start;gap:8px}
+  .state{min-height:88svh;padding:96px 18px}
+  .state h2{font-size:clamp(84px,25vw,120px)}
+  br.d{display:none}br.m{display:inline}
+  .state h2 .no{font-size:1.5em;line-height:.8;display:block;margin-top:.05em}
+  .state .q{font-size:14px}
+  .ledger{padding:24px 18px 80px}
+  .ledger .top{grid-template-columns:1fr;gap:20px}
+  .lhead{display:none}
+  .lrow{grid-template-columns:1fr;gap:16px;padding:28px 0}
+  .lrow .place{font-size:26px}
+  .cell{font-size:17px}
+  .cell::before{content:attr(data-l);font-size:11px;letter-spacing:.16em;color:var(--dim);display:block;flex:none;width:64px;margin-top:.45em}
+  .wa{grid-template-columns:1fr;gap:16px;padding:22px}
+  .wall{padding:80px 18px 60px}
+  .wall .top{margin-bottom:28px}
+  .wall h2{font-size:clamp(84px,26vw,120px)}
+  .wgrid{grid-template-columns:1fr;gap:36px}
+  .wcol{padding-inline-start:16px}
+  .wp{font-size:36px}
+  .terms{grid-template-columns:1fr;gap:28px;padding:64px 18px 80px}
+  .tl{gap:18px 28px}
+  .tl .v{font-size:56px}
+  .ftr .grid{grid-template-columns:1fr 1fr;gap:28px}
+  .ftr .about{grid-column:1/-1}
+  .ftr .mark{font-size:25vw;letter-spacing:0}
+  .wafab{bottom:14px;inset-inline-end:14px;width:46px;height:46px}
+  .wafab span{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero .img img{transform:none}.sweep{display:none}
+  .state h2 .no{opacity:1}
+  .poster .img img{transform:none}
+  .marq .track{animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a class="logo" href="/" aria-label="ElmsNest — דף הבית"><img src="../../assets/img/logo.png" alt=""><b>ElmsNest</b></a>
+  <nav class="nav" aria-label="ניווט ראשי">
+    <a href="/">דף הבית</a>
+    <a href="#cols">קולקציות</a>
+    <a href="/pages/guide-garden-lighting">מדריך לבחירה</a>
+    <a href="/pages/מי-אנחנו">מי אנחנו</a>
+    <a href="/pages/contact-us">יצירת קשר</a>
+  </nav>
+  <div class="icons">
+    <button class="burger" aria-label="תפריט"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h12"/></svg></button>
+    <a href="/search" aria-label="חיפוש"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg></a>
+    <a href="/cart" class="cart" aria-label="סל קניות"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16l-1.4 11H5.4L4 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></a>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 HERO POSTER -->
+<section class="hero" aria-labelledby="h1">
+  <div class="img"><img src="../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="מנורות שביל סולאריות מנירוסטה דולקות לאורך גדר חיה בלילה" fetchpriority="high"><div class="sweep"></div></div>
+  <div class="meta"><span>פוסטר <bdi><b>01</b>/<b>27</b></bdi></span><span>תאורת חוץ בלבד</span></div>
+  <h1 id="h1" class="k">אור.<br>במקום <em>הנכון.</em></h1>
+  <div class="lock">
+    <div class="who">
+      <div class="cat">שביל · עמוד · גינה</div>
+      <h2>מנורת שביל סולארית מנירוסטה</h2>
+      <p>נטענת ביום, נדלקת לבד עם החשיכה. לשביל שרוצים לראות בו את הדרך — לא להציף אותו באור.</p>
+      <div class="spec"><span><bdi>IP65</bdi></span><span>נירוסטה</span><span>הדלקה אוטומטית</span><span>יחידה אחת</span></div>
+    </div>
+    <div class="buy">
+      <div class="price"><bdi>169.90</bdi><b>₪</b></div>
+      <form method="post" action="/cart/add"><input type="hidden" name="id" value="stainless-steel-solar-path-light-ip65"><input type="hidden" name="quantity" value="1">
+        <button class="btn solid" type="submit">הוסיפו לסל<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button></form>
+    </div>
+  </div>
+</section>
+
+<!-- 02 MARQUEE -->
+<div class="marq" aria-label="מוצרים ומחירים">
+  <div class="track">
+    <div class="set"><span class="mi">מנורת שביל מנירוסטה IP65<em><bdi>169.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת קיר IP65 – 6W/12W<em><bdi>219.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת קיר נטענת מגנטית<em><bdi>159.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">ספוט סולארי 52 LED<em><bdi>219.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">גחליליות סולאריות לגינה<em><bdi>99.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">גרילנדת אדיסון סולארית<em><bdi>139.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">גרילנדת כדורי קריסטל<em><bdi>89.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת עמוד LED 5W<em><bdi>129.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורות שביל מתנדנדות ברוח<em><bdi>189.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת גינה דו־ראשית 10W<em><bdi>189.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span></div>
+    <div class="set" aria-hidden="true"><span class="mi">מנורת שביל מנירוסטה IP65<em><bdi>169.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת קיר IP65 – 6W/12W<em><bdi>219.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת קיר נטענת מגנטית<em><bdi>159.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">ספוט סולארי 52 LED<em><bdi>219.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">גחליליות סולאריות לגינה<em><bdi>99.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">גרילנדת אדיסון סולארית<em><bdi>139.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">גרילנדת כדורי קריסטל<em><bdi>89.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת עמוד LED 5W<em><bdi>129.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורות שביל מתנדנדות ברוח<em><bdi>189.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span><span class="mi">מנורת גינה דו־ראשית 10W<em><bdi>189.90</bdi> ₪</em></span><span class="md" aria-hidden="true"></span></div>
+  </div>
+</div>
+
+<!-- 03 STICKY POSTER STACK -->
+<section class="stack" id="posters" aria-labelledby="stk">
+  <div class="stackhead"><h2 id="stk">הקטלוג המואר <span class="rng">— פוסטרים <bdi>02–05</bdi></span></h2><span class="cnt" aria-hidden="true"><bdi dir="ltr">99.90 – 219.90</bdi> ₪</span></div>
+
+  <article class="poster white">
+    <div class="img"><img src="../../assets/img/dual-head-garden-light-10w-ip65-0.jpg" alt="מנורת גינה דו־ראשית שחורה על רקע בהיר" loading="lazy"><div class="sweep"></div></div>
+    <div class="txt">
+      <div class="num" aria-hidden="true">02</div>
+      <div>
+        <div class="place">הדגשת אזור בגינה</div>
+        <h3>מנורת גינה דו־ראשית מתכווננת <bdi>180°</bdi></h3>
+        <div class="spec"><span><bdi>10W</bdi></span><span><bdi>IP65</bdi></span><span>שני ראשים</span><span>כוונון <bdi>180°</bdi></span></div>
+        <p class="lead">שני ראשים שמכוונים כל אחד לכיוון אחר — עץ מצד אחד, ערוגה מהצד השני. הארה ממוקדת, לא הצפה.</p>
+      </div>
+      <div class="foot">
+        <div class="price"><bdi>189.90</bdi><b>₪</b></div>
+        <form method="post" action="/cart/add"><input type="hidden" name="id" value="dual-head-garden-light-10w-ip65"><input type="hidden" name="quantity" value="1"><button class="btn" type="submit">הוסיפו לסל</button></form>
+      </div>
+    </div>
+  </article>
+
+  <article class="poster">
+    <div class="img"><img src="../../assets/img/solar-edison-string-lights-3.jpg" alt="גרילנדת נורות אדיסון סולארית מעל פינת ישיבה בערב" loading="lazy"><div class="sweep"></div></div>
+    <div class="txt">
+      <div class="num" aria-hidden="true">03</div>
+      <div>
+        <div class="place">מרפסת ופינת ישיבה</div>
+        <h3>גרילנדת נורות אדיסון סולארית</h3>
+        <div class="spec"><span><bdi>5</bdi> או <bdi>8</bdi> מטר</span><span>פאנל סולארי</span><span>אור חם</span></div>
+        <p class="lead">אור אווירה מעל השולחן. לא נועדה להאיר את המרפסת כולה — ואם זה מה שצריך, נגיד לכם.</p>
+      </div>
+      <div class="foot">
+        <div class="price"><i>מ־</i><bdi>139.90</bdi><b>₪</b></div>
+        <a class="btn" href="/products/solar-edison-string-lights">בחרו אורך</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="poster">
+    <div class="img"><img src="../../assets/img/waterproof-led-wall-light-ip65-6w-12w-1.jpg" alt="מנורת קיר שחורה מאירה למעלה ולמטה על קיר אפור" loading="lazy"><div class="sweep"></div></div>
+    <div class="txt">
+      <div class="num" aria-hidden="true">04</div>
+      <div>
+        <div class="place">כניסה, קיר וחזית</div>
+        <h3>מנורת קיר <bdi>LED</bdi> עמידה למים</h3>
+        <div class="spec"><span><bdi>6W</bdi> / <bdi>12W</bdi></span><span><bdi>IP65</bdi></span><span>אור למעלה ולמטה</span></div>
+        <p class="lead">לכניסה או לחזית: שני אלומות אור על הקיר, למעלה ולמטה. מאירה נקודה — לא את כל החצר.</p>
+      </div>
+      <div class="foot">
+        <div class="price"><i>מ־</i><bdi>219.90</bdi><b>₪</b></div>
+        <a class="btn" href="/products/waterproof-led-wall-light-ip65-6w-12w">בחרו הספק וצבע</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="poster">
+    <div class="img"><img src="../../assets/img/solar-firefly-garden-lights-3.jpg" alt="תאורת גחליליות סולארית מתנדנדת בין צמחייה בלילה" loading="lazy"><div class="sweep"></div></div>
+    <div class="txt">
+      <div class="num" aria-hidden="true">05</div>
+      <div>
+        <div class="place">ערוגה ופינת גינה</div>
+        <h3>תאורת גחליליות סולארית</h3>
+        <div class="spec"><span><bdi>10</bdi> נורות</span><span>מתנדנדות ברוח</span><span>סולארי</span></div>
+        <p class="lead">נקודות אור קטנות שזזות ברוח. לאווירה בערוגה — לא לראות בעזרתן את הדרך.</p>
+      </div>
+      <div class="foot">
+        <div class="price"><bdi>99.90</bdi><b>₪</b></div>
+        <form method="post" action="/cart/add"><input type="hidden" name="id" value="solar-firefly-garden-lights"><input type="hidden" name="quantity" value="1"><button class="btn" type="submit">הוסיפו לסל</button></form>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- 04 COLLECTIONS STRIP -->
+<section class="cols" id="cols" aria-labelledby="colh">
+  <div class="top">
+    <h2 id="colh" class="k"><b>4</b> מקומות.<span><b>27</b> אורות.</span></h2>
+    <div class="hint"><span>גללו הצידה</span><svg viewBox="0 0 38 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M37 6H1m5-5L1 6l5 5"/></svg></div>
+  </div>
+  <div class="strip" tabindex="0" aria-label="קולקציות">
+    <a class="card" href="/collections/תאורת-שביל-סולארית"><img src="../../assets/img/collection-path.jpg" alt="" loading="lazy"><div class="n">8<small>מוצרים</small></div><div class="b"><h3>שביל, עמוד וגינה</h3><p><i>החל מ־</i><bdi>69.90</bdi> ₪</p></div><div class="ring"></div></a>
+    <a class="card" href="/collections/solar-wall-lights"><img src="../../assets/img/collection-wall.jpg" alt="" loading="lazy"><div class="n">6<small>מוצרים</small></div><div class="b"><h3>תאורת קיר</h3><p><i>החל מ־</i><bdi>99.90</bdi> ₪</p></div><div class="ring"></div></a>
+    <a class="card" href="/collections/ספוטים-ופרוז-קטורים-סולאריים"><img src="../../assets/img/collection-spot.jpg" alt="" loading="lazy"><div class="n">6<small>מוצרים</small></div><div class="b"><h3>ספוטים ופרוז׳קטורים</h3><p><i>החל מ־</i><bdi>99.90</bdi> ₪</p></div><div class="ring"></div></a>
+    <a class="card" href="/collections/גרילנדות-ותאורה-דקורטיבית"><img src="../../assets/img/collection-decor.jpg" alt="" loading="lazy"><div class="n">7<small>מוצרים</small></div><div class="b"><h3>גרילנדות ודקורטיבי</h3><p><i>החל מ־</i><bdi>89.90</bdi> ₪</p></div><div class="ring"></div></a>
+  </div>
+</section>
+
+<!-- 05 STATEMENT -->
+<section class="state" id="honest" aria-labelledby="sth">
+  <div>
+    <p class="q">מתוך «מי אנחנו»: <b>כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.</b></p>
+    <h2 id="sth" class="k">אנחנו נגיד<br class="m"> לכם<br class="d"> גם מתי<br class="m"> <span class="no">לא.</span></h2>
+    <p class="sub">קטגוריה אחת — תאורת חוץ. מתאימים אותה למקום: שביל, קיר, גינה, מרפסת. ואם המוצר לא מתאים למקום שלכם, נגיד לכם לפני שתשלמו.</p>
+    <a class="arrow" href="#ledger"><span>הפנקס</span><i></i></a>
+  </div>
+</section>
+
+<!-- 06 LEDGER -->
+<section class="ledger" id="ledger" data-mode="yes" aria-labelledby="ldh">
+  <div class="top">
+    <h2 id="ldh">לפי המקום — מה מתאים, ומה לא.<small>ארבע שורות. תמצות של המדריך המלא לבחירת תאורה לגינה.</small></h2>
+    <div class="tog" role="group" aria-label="הדליקו עמודה">
+      <button type="button" data-mode="yes" aria-pressed="true"><span class="lamp"></span>הדליקו: מתאים</button>
+      <button type="button" data-mode="no" aria-pressed="false"><span class="lamp"></span>הדליקו: לא מתאים</button>
+    </div>
+  </div>
+  <div class="lhead" aria-hidden="true"><span>המקום</span><span class="yes">מתאים כש…</span><span class="no">לא מתאים כש…</span></div>
+  <div class="lrow">
+    <div class="place">שביל, מדרגות ומעברים<a href="/collections/תאורת-שביל-סולארית"><bdi>8</bdi> מוצרים ←</a></div>
+    <div class="cell yes" data-l="מתאים"><span class="lamp"></span><span>רוצים לראות את הדרך</span></div>
+    <div class="cell no" data-l="לא"><span class="lamp"></span><span>המקום כמעט אינו מקבל אור יום</span></div>
+  </div>
+  <div class="lrow">
+    <div class="place">כניסה, קיר וחזית<a href="/collections/solar-wall-lights"><bdi>6</bdi> מוצרים ←</a></div>
+    <div class="cell yes" data-l="מתאים"><span class="lamp"></span><span>רוצים להאיר נקודה מסוימת</span></div>
+    <div class="cell no" data-l="לא"><span class="lamp"></span><span>נדרש אור חזק וקבוע לאורך כל הלילה</span></div>
+  </div>
+  <div class="lrow">
+    <div class="place">מרפסת ופינת ישיבה<a href="/collections/גרילנדות-ותאורה-דקורטיבית"><bdi>7</bdi> מוצרים ←</a></div>
+    <div class="cell yes" data-l="מתאים"><span class="lamp"></span><span>רוצים ליצור אווירה</span></div>
+    <div class="cell no" data-l="לא"><span class="lamp"></span><span>צריך אור חזק — זו אינה מטרתה</span></div>
+  </div>
+  <div class="lrow">
+    <div class="place">הדגשת אזור בגינה<a href="/collections/ספוטים-ופרוז-קטורים-סולאריים"><bdi>6</bdi> מוצרים ←</a></div>
+    <div class="cell yes" data-l="מתאים"><span class="lamp"></span><span>הארה ממוקדת של עץ או ערוגה</span></div>
+    <div class="cell no" data-l="לא"><span class="lamp"></span><span>נדרשת התקנה מיוחדת או חיבור קבוע</span></div>
+  </div>
+  <div class="wa">
+    <div class="big">לא בטוחים?</div>
+    <p><b>שלחו תמונה של המקום בוואטסאפ</b> — נבדוק אם המוצר מתאים לפני שאתם מזמינים. בלי דוחות, בלי חיישנים: מסתכלים על התמונה ואומרים כן או לא.</p>
+    <a class="btn ghost" href="https://wa.me/" rel="noopener">לשלוח תמונה<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.4 18.9L4 20Z"/></svg></a>
+  </div>
+</section>
+
+<!-- 07 PRICE WALL -->
+<section class="wall" id="wall" aria-labelledby="wlh">
+  <div class="top">
+    <h2 id="wlh" class="k">כל <b>27</b> המוצרים.<br>כל המחירים.</h2>
+    <p>אין כאן «הנמכר ביותר» ואין «מומלץ» — לא נמציא מספרים. יש מחיר, ויש מקום שבו המוצר עובד.</p>
+  </div>
+  <div class="wgrid"><div class="wcol" data-col="path"><h3 class="wh"><bdi>08</bdi> <span>שביל, עמוד וגינה</span></h3><a class="wrow" href="/products/waterproof-solar-deck-step-lights" data-img="../../assets/img/waterproof-solar-deck-step-lights-1.jpg">
+  <span class="wp"><bdi>149.90</bdi><b>₪</b></span>
+  <span class="wn">תאורה סולארית לדק ולמדרגות</span></a><a class="wrow" href="/products/stainless-steel-solar-path-light-ip65" data-img="../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg">
+  <span class="wp"><bdi>169.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת שביל מנירוסטה IP65</span></a><a class="wrow" href="/products/retro-solar-path-lights-set" data-img="../../assets/img/retro-solar-path-lights-set-2.jpg">
+  <span class="wp"><bdi><i>מ־</i>219.90</bdi><b>₪</b></span>
+  <span class="wn">סט מנורות שביל רטרו</span></a><a class="wrow" href="/products/warm-solar-step-deck-lights" data-img="../../assets/img/warm-solar-step-deck-lights-3.jpg">
+  <span class="wp"><bdi><i>מ־</i>69.90</bdi><b>₪</b></span>
+  <span class="wn">מנורות סולאריות למדרגות ולדק</span></a><a class="wrow" href="/products/modern-solar-path-lights-set" data-img="../../assets/img/modern-solar-path-lights-set-2.jpg">
+  <span class="wp"><bdi><i>מ־</i>549.90</bdi><b>₪</b></span>
+  <span class="wn">סט תאורת שביל בצורת 7</span></a><a class="wrow" href="/products/modern-led-bollard-light-5w-ip65" data-img="../../assets/img/modern-led-bollard-light-5w-ip65-1.jpg">
+  <span class="wp"><bdi>129.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת עמוד LED 5W</span></a><a class="wrow" href="/products/swaying-solar-path-lights-ip65" data-img="../../assets/img/swaying-solar-path-lights-ip65-3.jpg">
+  <span class="wp"><bdi><i>מ־</i>189.90</bdi><b>₪</b></span>
+  <span class="wn">מנורות שביל מתנדנדות ברוח</span></a><a class="wrow" href="/products/powerful-solar-garden-light" data-img="../../assets/img/powerful-solar-garden-light-2.jpg">
+  <span class="wp"><bdi>179.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת גינה סולארית עוצמתית</span></a><a class="wmore" href="/collections/תאורת-שביל-סולארית">לכל הקולקציה</a></div><div class="wcol" data-col="wall"><h3 class="wh"><bdi>06</bdi> <span>תאורת קיר</span></h3><a class="wrow" href="/products/solar-wall-light-motion-sensor-ip65" data-img="../../assets/img/solar-wall-light-motion-sensor-ip65-3.jpg">
+  <span class="wp"><bdi><i>מ־</i>129.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת קיר סולארית עם חיישן תנועה</span></a><a class="wrow" href="/products/modern-led-wall-light-6w-up-down" data-img="../../assets/img/modern-led-wall-light-6w-up-down-0.jpg">
+  <span class="wp"><bdi><i>מ־</i>109.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת קיר 6W Up & Down</span></a><a class="wrow" href="/products/modern-led-wall-light-indoor-outdoor" data-img="../../assets/img/modern-led-wall-light-indoor-outdoor-3.jpg">
+  <span class="wp"><bdi><i>מ־</i>99.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת קיר LED לפנים או לחוץ</span></a><a class="wrow" href="/products/waterproof-led-wall-light-ip65-6w-12w" data-img="../../assets/img/waterproof-led-wall-light-ip65-6w-12w-1.jpg">
+  <span class="wp"><bdi><i>מ־</i>219.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת קיר IP65 – 6W/12W</span></a><a class="wrow" href="/products/magnetic-rechargeable-touch-wall-light" data-img="../../assets/img/magnetic-rechargeable-touch-wall-light-2.jpg">
+  <span class="wp"><bdi>159.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת קיר נטענת מגנטית</span></a><a class="wrow" href="/products/outdoor-bidirectional-led-wall-light-ip65" data-img="../../assets/img/outdoor-bidirectional-led-wall-light-ip65-0.jpg">
+  <span class="wp"><bdi><i>מ־</i>159.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת קיר דו־כיוונית IP65</span></a><a class="wmore" href="/collections/solar-wall-lights">לכל הקולקציה</a></div><div class="wcol" data-col="spot"><h3 class="wh"><bdi>06</bdi> <span>ספוטים ופרוז׳קטורים</span></h3><a class="wrow" href="/products/solar-garden-lantern-9-led" data-img="../../assets/img/solar-garden-lantern-9-led-2.jpg">
+  <span class="wp"><bdi>169.90</bdi><b>₪</b></span>
+  <span class="wn">פנס סולארי לגינה 9 LED</span></a><a class="wrow" href="/products/solar-garden-spotlight-52-led" data-img="../../assets/img/solar-garden-spotlight-52-led-1.jpg">
+  <span class="wp"><bdi><i>מ־</i>219.90</bdi><b>₪</b></span>
+  <span class="wn">ספוט סולארי 52 LED</span></a><a class="wrow" href="/products/solar-security-light-100-led" data-img="../../assets/img/solar-security-light-100-led-1.jpg">
+  <span class="wp"><bdi>99.90</bdi><b>₪</b></span>
+  <span class="wn">תאורת אבטחה 100 LED</span></a><a class="wrow" href="/products/solar-floodlight-ip67-remote-timer" data-img="../../assets/img/solar-floodlight-ip67-remote-timer-1.jpg">
+  <span class="wp"><bdi><i>מ־</i>199.90</bdi><b>₪</b></span>
+  <span class="wn">פרוז׳קטור סולארי IP67</span></a><a class="wrow" href="/products/rechargeable-telescopic-camping-lantern" data-img="../../assets/img/rechargeable-telescopic-camping-lantern-0.jpg">
+  <span class="wp"><bdi>189.90</bdi><b>₪</b></span>
+  <span class="wn">פנס קמפינג טלסקופי נטען</span></a><a class="wrow" href="/products/dual-head-garden-light-10w-ip65" data-img="../../assets/img/dual-head-garden-light-10w-ip65-0.jpg">
+  <span class="wp"><bdi>189.90</bdi><b>₪</b></span>
+  <span class="wn">מנורת גינה דו־ראשית 10W</span></a><a class="wmore" href="/collections/ספוטים-ופרוז-קטורים-סולאריים">לכל הקולקציה</a></div><div class="wcol" data-col="decor"><h3 class="wh"><bdi>07</bdi> <span>גרילנדות ודקורטיבי</span></h3><a class="wrow" href="/products/decorative-led-net-lights" data-img="../../assets/img/decorative-led-net-lights-0.jpg">
+  <span class="wp"><bdi><i>מ־</i>109.90</bdi><b>₪</b></span>
+  <span class="wn">רשת תאורת LED דקורטיבית</span></a><a class="wrow" href="/products/led-globe-string-lights" data-img="../../assets/img/led-globe-string-lights-3.jpg">
+  <span class="wp"><bdi><i>מ־</i>89.90</bdi><b>₪</b></span>
+  <span class="wn">גרילנדת כדורי LED</span></a><a class="wrow" href="/products/lighted-birch-branches-20-led" data-img="../../assets/img/lighted-birch-branches-20-led-1.jpg">
+  <span class="wp"><bdi>89.90</bdi><b>₪</b></span>
+  <span class="wn">ענפי ליבנה מוארים 20 LED</span></a><a class="wrow" href="/products/solar-firefly-garden-lights" data-img="../../assets/img/solar-firefly-garden-lights-3.jpg">
+  <span class="wp"><bdi>99.90</bdi><b>₪</b></span>
+  <span class="wn">גחליליות סולאריות לגינה</span></a><a class="wrow" href="/products/solar-rope-string-lights" data-img="../../assets/img/solar-rope-string-lights-2.jpg">
+  <span class="wp"><bdi><i>מ־</i>89.90</bdi><b>₪</b></span>
+  <span class="wn">שרשרת חבל סולארית</span></a><a class="wrow" href="/products/solar-edison-string-lights" data-img="../../assets/img/solar-edison-string-lights-3.jpg">
+  <span class="wp"><bdi><i>מ־</i>139.90</bdi><b>₪</b></span>
+  <span class="wn">גרילנדת אדיסון סולארית</span></a><a class="wrow" href="/products/solar-crystal-ball-string-lights" data-img="../../assets/img/solar-crystal-ball-string-lights-2.jpg">
+  <span class="wp"><bdi><i>מ־</i>89.90</bdi><b>₪</b></span>
+  <span class="wn">גרילנדת כדורי קריסטל</span></a><a class="wmore" href="/collections/גרילנדות-ותאורה-דקורטיבית">לכל הקולקציה</a></div></div>
+  <div class="peek" aria-hidden="true"><img src="" alt=""></div>
+</section>
+
+<!-- 08 SMALL PRINT -->
+<section class="terms" id="terms" aria-labelledby="trh">
+  <h2 id="trh">האותיות הקטנות. בגדול.<small>תנאי משלוח וביטול, בלי לחפש בתחתית העמוד.</small></h2>
+  <div class="tl">
+    <div><span class="v"><bdi>0</bdi> <small>₪</small></span><p><b>משלוח חינם לנקודת איסוף.</b> עד הבית — <bdi>29.90</bdi> ₪.</p></div>
+    <div><span class="v"><bdi>8–17</bdi></span><p><b>ימי עסקים עד אליכם.</b> <bdi>1–3</bdi> ימי טיפול ועוד <bdi>7–14</bdi> ימי משלוח; חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל. <a href="/pages/shipping-delivery">פירוט</a></p></div>
+    <div><span class="v"><bdi>14</bdi> <small>יום</small></span><p><b>ביטול עסקה מקבלת המוצר</b> לפי חוק הגנת הצרכן. דמי ביטול עד <bdi>5%</bdi> או <bdi>100</bdi> ₪ — הנמוך מביניהם.</p></div>
+    <div><span class="v"><bdi>1</bdi> <small>תמונה</small></span><p><b>לפני שמזמינים:</b> שלחו תמונה של המקום בוואטסאפ ונבדוק התאמה. <a href="/pages/help-faq">שאלות נפוצות</a></p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="grid">
+    <div class="about">
+      <a class="logo" href="/"><img src="../../assets/img/logo.png" alt="ElmsNest"><b>ElmsNest</b></a>
+      <p>תאורת חוץ בלבד — סולארית ונטענת — לשביל, לקיר, לגינה ולמרפסת. מתאימים לפי המקום, ואומרים גם מתי לא.</p>
+      <div class="soc">
+        <a href="https://instagram.com/elmsnest" aria-label="אינסטגרם" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="https://tiktok.com/@elmsnest" aria-label="טיקטוק" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5M14 4c.4 2.6 2 4.2 4.5 4.5"/></svg></a>
+        <a href="https://wa.me/" aria-label="וואטסאפ" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.4 18.9L4 20Z"/></svg></a>
+      </div>
+    </div>
+    <div><h4>קולקציות</h4><ul>
+      <li><a href="/collections/תאורת-שביל-סולארית">שביל, עמוד וגינה</a></li>
+      <li><a href="/collections/solar-wall-lights">תאורת קיר</a></li>
+      <li><a href="/collections/ספוטים-ופרוז-קטורים-סולאריים">ספוטים ופרוז׳קטורים</a></li>
+      <li><a href="/collections/גרילנדות-ותאורה-דקורטיבית">גרילנדות ודקורטיבי</a></li></ul></div>
+    <div><h4>לפני שקונים</h4><ul>
+      <li><a href="/pages/guide-garden-lighting">מדריך לבחירת תאורה לגינה</a></li>
+      <li><a href="/pages/why-solar-lighting">למה תאורה סולארית</a></li>
+      <li><a href="/pages/processing-time">זמני טיפול</a></li>
+      <li><a href="/pages/shipping-delivery">משלוחים</a></li></ul></div>
+    <div><h4>ElmsNest</h4><ul>
+      <li><a href="/pages/מי-אנחנו">מי אנחנו</a></li>
+      <li><a href="/pages/help-faq">שאלות נפוצות</a></li>
+      <li><a href="/pages/contact-us">יצירת קשר</a></li>
+      <li><a href="#terms">תנאי ביטול</a></li></ul></div>
+  </div>
+  <div class="mark" aria-hidden="true">ElmsNest</div>
+  <div class="legal"><span>© ElmsNest <bdi>2026</bdi> · elmsnest.com</span><span>ביטול עסקה עד <bdi>14</bdi> יום מקבלת המוצר לפי חוק הגנת הצרכן · <a href="#terms">כל התנאים</a></span></div>
+</footer>
+
+<a class="wafab" href="https://wa.me/" rel="noopener" aria-label="שלחו תמונה של המקום בוואטסאפ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.4 18.9L4 20Z"/></svg><span>שלחו תמונה של המקום</span></a>
+
+<script>
+(function(){
+  var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // light sweep / flicker / footer mark on enter
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, {threshold:.35});
+    document.querySelectorAll('.poster,.state,.ftr .mark').forEach(function(el){ io.observe(el); });
+  } else { document.querySelectorAll('.poster,.state,.ftr .mark').forEach(function(el){ el.classList.add('in'); }); }
+
+  // ledger toggle: light one column, dim the other
+  var ledger = document.getElementById('ledger');
+  ledger.querySelectorAll('.tog button').forEach(function(b){
+    b.addEventListener('click', function(){
+      ledger.dataset.mode = b.dataset.mode;
+      ledger.querySelectorAll('.tog button').forEach(function(x){ x.setAttribute('aria-pressed', x===b ? 'true' : 'false'); });
+    });
+  });
+
+  // price wall: floating image follows the cursor (hover devices only)
+  var peek = document.querySelector('.peek'), pimg = peek && peek.querySelector('img'), wallEl = document.getElementById('wall');
+  if (peek && wallEl && matchMedia('(hover:hover)').matches && !rm) {
+    var x=0,y=0,tx=0,ty=0,raf=null;
+    function tick(){ x += (tx-x)*.18; y += (ty-y)*.18; peek.style.left = x+'px'; peek.style.top = y+'px'; if(Math.abs(tx-x)>.5||Math.abs(ty-y)>.5) raf=requestAnimationFrame(tick); else raf=null; }
+    wallEl.addEventListener('mousemove', function(e){ tx=e.clientX; ty=e.clientY; if(!raf) raf=requestAnimationFrame(tick); });
+    wallEl.querySelectorAll('.wrow').forEach(function(r){
+      r.addEventListener('mouseenter', function(){ var s=r.dataset.img; if(pimg.getAttribute('src')!==s) pimg.src=s; peek.classList.add('on'); });
+      r.addEventListener('mouseleave', function(){ peek.classList.remove('on'); });
+    });
+  }
+
+  // WhatsApp fab appears once the hero poster has been read
+  var fab = document.querySelector('.wafab'), hero = document.querySelector('.hero');
+  function fabCheck(){ if (fab && hero) fab.classList.toggle('show', window.scrollY > hero.offsetHeight * .6); }
+  window.addEventListener('scroll', fabCheck, {passive:true}); fabCheck();
+
+  // collections strip: wheel scrolls horizontally on desktop
+  var strip = document.querySelector('.strip');
+  if (strip) strip.addEventListener('wheel', function(e){ if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && strip.scrollWidth > strip.clientWidth) { e.preventDefault(); strip.scrollLeft -= e.deltaY; } }, {passive:false});
+})();
+</script>
+</body>
+</html>
