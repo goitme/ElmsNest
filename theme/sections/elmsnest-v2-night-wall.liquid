@@ -1,0 +1,240 @@
+{%- comment -%}
+  ElmsNest v2 — §4.5 "הלילה כבר כאן. קיר אחד מספיק." (night wall).
+  Night has fallen: one product photo fills the viewport and its own light is the only light.
+  The whole background is a lamp ([data-lamp]) — the wall light literally switches on as the
+  section is reached. Text at the inline start over a veil; the lamp sits in the end half.
+  Companion line under the price (graft G9 from "one"). No thumbs, no cards, no boxes.
+  Shared plumbing (fonts/base/price/buy snippets) is rendered by elmsnest-v2-hero; this section
+  only assumes it and degrades to "lit" without it.
+  This is the ONE section allowed to paint its own ground (its photo + veil) — WINNING-SPEC §3.1.
+{%- endcomment -%}
+{%- liquid
+  assign product = section.settings.product
+  assign companion = section.settings.companion_product
+  assign idx = section.settings.image_index | default: 4 | minus: 1
+  assign img = section.settings.image
+  if img == blank and product != blank
+    assign img = product.images[idx] | default: product.featured_image
+  endif
+  assign op = section.settings.object_position | default: '30% 50%' | strip | escape
+  if op == blank
+    assign op = '30% 50%'
+  endif
+  assign opm = section.settings.object_position_mobile | default: '45% 50%' | strip | escape
+  if opm == blank
+    assign opm = '45% 50%'
+  endif
+  assign title = section.settings.title_override
+  if title == blank and product != blank
+    assign title = product.title
+  endif
+  assign alt = product.title | default: section.settings.heading_line1 | escape
+-%}
+<section id="env2-wall" data-env2-night-wall class="env2-section env2-wall" dir="rtl" style="scroll-margin-top:90px">
+
+  {%- comment -%} the background is the lamp: dim until reached, then the wall light comes on {%- endcomment -%}
+  <div class="env2-wall__bg" data-lamp aria-hidden="true">
+    <div class="env2-ph env2-wall__ph" style="--env2-wall-op:{{ op }};--env2-wall-op-m:{{ opm }}">
+      {%- if img != blank -%}
+        {{ img | image_url: width: 2000 | image_tag: loading: 'lazy', widths: '900,1400,1800,2400', sizes: '100vw', alt: alt, class: 'env2-wall__img' }}
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'env2-wall__placeholder' }}
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="env2-wall__veil" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-wall__wrap">
+    <div class="env2-wall__txt">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="env2-eyebrow env2-wall__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h2 class="env2-h env2-wall__h2">
+        {{- section.settings.heading_line1 -}}
+        {%- if section.settings.heading_line2 != blank -%}
+          <br><em class="env2-wall__glow">{{ section.settings.heading_line2 }}</em>
+        {%- endif -%}
+      </h2>
+
+      <article class="env2-wall__prod">
+        {%- if section.settings.kicker != blank -%}
+          <span class="env2-kicker env2-wall__k">{{ section.settings.kicker }}</span>
+        {%- endif -%}
+
+        {%- if product != blank -%}
+          <h3 class="env2-wall__t"><a href="{{ product.url }}">{{ title | escape }}</a></h3>
+
+          {%- comment -%} spec line: only what Shopify holds — option names + values, nothing typed {%- endcomment -%}
+          {%- assign n = 0 -%}
+          {%- capture spec -%}
+            {%- for option in product.options_with_values -%}
+              {%- if option.name == 'Title' or option.name == 'Default Title' -%}{%- continue -%}{%- endif -%}
+              {%- assign n = n | plus: 1 -%}
+              <span class="env2-wall__opt">{{ option.name | escape }}: {% for v in option.values %}<bdi>{{ v | escape }}</bdi>{% unless forloop.last %} / {% endunless %}{% endfor %}</span>
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- if n > 0 -%}
+            <p class="env2-wall__spec">{{ spec }}</p>
+          {%- endif -%}
+
+          <div class="env2-wall__row">
+            <span class="env2-wall__price">{% render 'elmsnest-v2-price', product: product %}</span>
+            <span class="env2-wall__buy">{% render 'elmsnest-v2-buy', product: product, label: section.settings.button_label %}</span>
+          </div>
+        {%- else -%}
+          <h3 class="env2-wall__t">בחרו מוצר בהגדרות המקטע</h3>
+        {%- endif -%}
+
+        {%- if companion != blank -%}
+          {%- comment -%} one inline sentence; the "· price ←" tail never breaks away from the title on its own {%- endcomment -%}
+          <a class="env2-wall__also" href="{{ companion.url }}">
+            {%- if section.settings.companion_prefix != blank -%}
+              <span class="env2-wall__also-pre">{{ section.settings.companion_prefix }}</span>{{ ' ' }}
+            {%- endif -%}
+            <span class="env2-wall__also-t">{{ companion.title | escape }}</span>{{ ' ' }}
+            <span class="env2-wall__also-tail"><span class="env2-wall__also-sep" aria-hidden="true">·</span> <span class="env2-wall__also-price">{% render 'elmsnest-v2-price', product: companion %}</span> <span class="env2-wall__also-arrow" aria-hidden="true">←</span></span>
+          </a>
+        {%- endif -%}
+      </article>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- §4.5 night wall: one photo fills the viewport, its own light is the only light ----------
+   note: this bundle loads in <head> BEFORE the base inline style, so anything that overrides a base
+   helper (.env2-h, .env2-price, [data-lamp] .env2-ph …) needs higher specificity, not later source order */
+.env2-wall{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;isolation:isolate}
+.env2-wall *,.env2-wall *::before,.env2-wall *::after{box-sizing:border-box}
+
+/* the background = the lamp. Below the fold it is a dark grey wall (22 % brightness); it lights on arrival */
+.env2-wall__bg{position:absolute;inset:0;z-index:-1;margin:0}
+/* specificity (0,3,0) beats the base's [data-lamp] .env2-ph{position:relative}, which is inlined after this bundle */
+.env2-wall .env2-wall__bg[data-lamp] .env2-wall__ph{position:absolute;inset:0;background:#05070c}
+/* the photo box runs wider than the viewport and is anchored at the start edge, so the lamp
+   (centre of a square photo) lands in the END half instead of under the text column */
+.env2-wall .env2-wall__bg[data-lamp] .env2-wall__ph img{position:absolute;top:0;inset-inline-start:0;width:118%;max-width:none;height:100%;object-fit:cover;object-position:var(--env2-wall-op,30% 50%)}
+.env2-wall__placeholder{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.25}
+/* warm halo where the lamp actually is (end half), not in the middle of the frame */
+.env2-wall__bg[data-lamp] .env2-wall__ph::after{inset:-10%;background:radial-gradient(38% 46% at 34% 50%,rgba(255,211,148,.40),rgba(255,211,148,0) 70%)}
+
+/* veil: end side stays clear for the lamp, start side goes to near-night for the text;
+   top blends into sky-2 (the switch section), bottom into sky-3 (atmosphere) */
+.env2-wall__veil{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(7,11,21,0) 26%,rgba(7,11,21,.62) 56%,rgba(7,11,21,.94) 100%),
+    linear-gradient(0deg,var(--env2-sky-3) 0,transparent 30%),
+    linear-gradient(180deg,var(--env2-sky-2) 0,transparent 25%)}
+
+/* text at the inline start (right in RTL); the end column is left to the lamp */
+.env2-wall__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);padding-block:120px;min-width:0}
+.env2-wall__txt{display:grid;gap:22px;align-content:center;min-width:0;text-shadow:0 2px 28px rgba(2,3,6,.55)}
+.env2-wall__h2.env2-h{font-size:clamp(46px,7.2vw,118px);line-height:.95}
+.env2-wall__h2 .env2-wall__glow{font-style:normal;color:var(--env2-glow)}
+
+.env2-wall__prod{margin:16px 0 0;padding-top:22px;border-top:1px solid rgba(244,238,227,.18);display:grid;gap:8px;max-width:440px}
+.env2-wall__t{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:19px;line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:pretty}
+.env2-wall__t a{color:inherit;transition:color .3s}
+.env2-wall__t a:hover,.env2-wall__t a:focus-visible{color:var(--env2-glow)}
+.env2-wall__spec{margin:0;font-size:13px;line-height:1.5;color:var(--env2-mute);display:flex;flex-wrap:wrap;column-gap:14px;row-gap:2px}
+.env2-wall__opt{white-space:nowrap}
+.env2-wall__opt+.env2-wall__opt::before{content:"·";margin-inline-end:14px;color:var(--env2-mute)}
+.env2-wall__row{display:flex;align-items:center;gap:22px;margin-top:10px;flex-wrap:wrap}
+.env2-wall__price{display:inline-block}
+.env2-wall__price .env2-price.env2-price{--env2-price-size:34px}
+.env2-wall__buy{display:inline-block}
+
+/* companion line (G9): caption-sized, mute, gold price, no thumb */
+.env2-wall__also{display:block;margin-top:14px;font-size:12.5px;line-height:1.6;color:var(--env2-mute);transition:color .3s;text-wrap:pretty}
+.env2-wall__also-t{color:var(--env2-ink-2);transition:color .3s}
+.env2-wall__also-tail{white-space:nowrap}
+.env2-wall__also-price .env2-price.env2-price{--env2-price-size:13.5px;color:var(--env2-gold)}
+.env2-wall__also-arrow{display:inline-block;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.env2-wall__also:hover,.env2-wall__also:focus-visible{color:var(--env2-ink-2)}
+.env2-wall__also:hover .env2-wall__also-t,.env2-wall__also:focus-visible .env2-wall__also-t{color:var(--env2-glow)}
+.env2-wall__also:hover .env2-wall__also-arrow{transform:translateX(-3px)}
+
+/* ---------- mobile: photo on top (62vh), text below over the fade ---------- */
+@media (max-width:900px){
+  .env2-wall{min-height:auto;display:block}
+  .env2-wall__bg{inset:0 0 auto 0;height:62vh;height:62svh}
+  .env2-wall .env2-wall__bg[data-lamp] .env2-wall__ph img{width:100%;object-position:var(--env2-wall-op-m,45% 50%)}
+  .env2-wall__bg[data-lamp] .env2-wall__ph::after{background:radial-gradient(50% 50% at 50% 48%,rgba(255,211,148,.40),rgba(255,211,148,0) 70%)}
+  .env2-wall__veil{background:
+    linear-gradient(0deg,var(--env2-sky-3) 0,rgba(7,11,21,.92) 48%,rgba(7,11,21,.15) 75%,transparent 100%),
+    linear-gradient(180deg,var(--env2-sky-2) 0,transparent 20%)}
+  .env2-wall__wrap{grid-template-columns:minmax(0,1fr);gap:0;padding-block:52vh 60px;padding-block:52svh 60px}
+  .env2-wall__txt{gap:18px}
+  .env2-wall__h2.env2-h{font-size:clamp(48px,14vw,64px)}
+  .env2-wall__prod{max-width:none}
+  .env2-wall__t{font-size:16px}
+  .env2-wall__price .env2-price.env2-price{--env2-price-size:30px}
+  .env2-wall__row{gap:16px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §4.5 night wall: nothing to run but the lamp (the whole background). Hand it to the shared
+   observer; without the base (a page without the hero) render it lit. */
+(function(){
+  function init(el){
+    if (el.__env2Wall) return;
+    el.__env2Wall = true;
+    if (window.env2 && window.env2.observe) {
+      window.env2.observe(el);
+    } else {
+      el.querySelectorAll('[data-lamp]').forEach(function(l){ l.classList.add('lit'); });
+    }
+  }
+  function boot(root){
+    (root && root.querySelectorAll ? root : document).querySelectorAll('[data-env2-night-wall]').forEach(init);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ boot(document); });
+  else boot(document);
+  document.addEventListener('shopify:section:load', function(e){ boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — הלילה כבר כאן",
+  "settings": [
+    { "type": "header", "content": "המוצר והתמונה" },
+    { "type": "product", "id": "product", "label": "מוצר (מנורת הקיר שממלאת את המסך)" },
+    { "type": "range", "id": "image_index", "label": "איזו תמונה של המוצר (מיקום בגלריה)", "min": 1, "max": 4, "step": 1, "default": 4 },
+    { "type": "image_picker", "id": "image", "label": "תמונה חלופית (דורסת את תמונת המוצר)" },
+    { "type": "text", "id": "object_position", "label": "מיקום החיתוך — מחשב (object-position)", "default": "30% 50%", "info": "המנורה צריכה לשבת בחצי השמאלי; הטקסט יושב מימין." },
+    { "type": "text", "id": "object_position_mobile", "label": "מיקום החיתוך — נייד (object-position)", "default": "45% 50%" },
+    { "type": "header", "content": "טקסט" },
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה (eyebrow)", "default": "03 · הלילה" },
+    { "type": "text", "id": "heading_line1", "label": "כותרת — שורה 1", "default": "הלילה כבר כאן." },
+    { "type": "text", "id": "heading_line2", "label": "כותרת — שורה 2 (בזהב)", "default": "קיר אחד מספיק." },
+    { "type": "text", "id": "kicker", "label": "שורת מקום (מקום · סוג)", "default": "קיר · LED" },
+    { "type": "text", "id": "title_override", "label": "שם המוצר לתצוגה (ריק = השם מהחנות)", "default": "מנורת קיר LED עמידה למים IP65, אור למעלה ולמטה", "info": "המחיר, ההספקים והצבעים נמשכים מהמוצר עצמו — לא מוקלדים כאן." },
+    { "type": "text", "id": "button_label", "label": "טקסט כפתור (למוצר עם כמה וריאנטים)", "default": "לבחירת הספק" },
+    { "type": "header", "content": "מוצר משלים (שורה אחת, בלי תמונה)" },
+    { "type": "product", "id": "companion_product", "label": "מוצר משלים" },
+    { "type": "text", "id": "companion_prefix", "label": "פתיח לשורת המוצר המשלים", "default": "גם לקיר:" }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — הלילה כבר כאן",
+      "settings": {
+        "product": "waterproof-led-wall-light-ip65-6w-12w",
+        "image_index": 4,
+        "object_position": "30% 50%",
+        "object_position_mobile": "45% 50%",
+        "eyebrow": "03 · הלילה",
+        "heading_line1": "הלילה כבר כאן.",
+        "heading_line2": "קיר אחד מספיק.",
+        "kicker": "קיר · LED",
+        "title_override": "מנורת קיר LED עמידה למים IP65, אור למעלה ולמטה",
+        "button_label": "לבחירת הספק",
+        "companion_product": "magnetic-rechargeable-touch-wall-light",
+        "companion_prefix": "גם לקיר:"
+      }
+    }
+  ]
+}
+{% endschema %}

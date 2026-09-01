@@ -1,0 +1,68 @@
+{
+  "name": "t:sections.name_group.header",
+  "type": "header",
+  "sections": {
+    "header_inline_blocks_xePFbC": {
+      "type": "header-inline-blocks",
+      "blocks": {
+        "menu_mobile": {
+          "type": "_menu_mobile",
+          "static": true,
+          "settings": {
+            "main_menu_mobile": "",
+            "menu_categories": "",
+            "only_click_icon": false,
+            "header_mobile_colors": "scheme-env2-night",
+            "note_mobile": "<span class=\"hdt-flex hdt-flex-col hdt-text-base\" style=\"line-height:24px\"><span>צריכים עזרה?</span><span>אימייל: <b>info@elmsnest.com</b></span></span>"
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "header_layout": "logo_center",
+        "header_fullwidth": true,
+        "header_height": 70,
+        "logo": "shopify://shop_images/ElmsNest_Logo_Night.png",
+        "logo_width": 50,
+        "header_colors": "scheme-env2-night",
+        "main_menu": "main-menu",
+        "lazy_mn": true,
+        "menu_position": "center",
+        "menu_size": "base",
+        "menu_weight": "normal",
+        "text_transform": false,
+        "dropdown_arrow": false,
+        "spacing_nav": 30,
+        "open_event": "hover",
+        "menu_type": "split",
+        "header_menu_colors": "scheme-env2-night",
+        "h_icon": "kalles",
+        "hover_icon": "2",
+        "search_type": "icon",
+        "show_currency": false,
+        "show_language": false,
+        "enabled_user": false,
+        "enabled_wishlist": false,
+        "enabled_cart": true,
+        "cart_des": "1",
+        "header_socials": false,
+        "header_height_mb": 60,
+        "logo_mobile": "shopify://shop_images/ElmsNest_Logo_Night.png",
+        "logo_width_mb": 50,
+        "header_transparent": true,
+        "logo_transparent": "shopify://shop_images/ElmsNest_Logo_Night.png",
+        "header_transparent_colors": "scheme-env2-night",
+        "background_opacity_transparent": 0,
+        "header_space_top": 0,
+        "header_space_top_mobile": 0,
+        "sticky_type": "on_scroll_up",
+        "header_sticky_colors": "scheme-env2-night",
+        "background_opacity_sticky": 0.7,
+        "sticky_glass": true
+      }
+    }
+  },
+  "order": [
+    "header_inline_blocks_xePFbC"
+  ]
+}

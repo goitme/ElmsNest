@@ -1,0 +1,484 @@
+{%- comment -%}
+  ElmsNest v2 — §4.4 "אנחנו נגיד לכם גם מתי לא." (the honesty device).
+  One photograph split by a draggable line: lit on the start side ("מתאים כדי …"), dark
+  (brightness .09) on the end side ("לא מתאים כש־ …"). Four places, one stage; only the active
+  place is visible. Dragging the line to the dark extreme puts the lamp out and the hint appears.
+  The "לא." in the headline is outline-only until the headline is in view, then lights like a lamp.
+  Shared plumbing (fonts/base/price/buy snippets) is rendered by elmsnest-v2-hero; this section
+  only assumes it and degrades to "everything lit" without it.
+{%- endcomment -%}
+{%- liquid
+  assign split = section.settings.default_split | default: 62
+  assign v0 = 100 | minus: split
+  assign wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
+  assign wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
+  assign wa_href = '/pages/contact-us'
+  if section.settings.whatsapp_url != blank and section.settings.whatsapp_url != 'https://wa.me/'
+    assign wa_href = section.settings.whatsapp_url | append: '?text=' | append: wa_text
+  elsif wa != blank
+    assign wa_href = 'https://wa.me/' | append: wa | append: '?text=' | append: wa_text
+  endif
+  assign sid = section.id | replace: '_', '-' | downcase
+-%}
+<section id="env2-switch" data-env2-switch class="env2-section env2-switch" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.3" data-split="{{ split }}">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-switch__wrap">
+
+    {%- comment -%} ▲ column A — the words, the index, the quick toggle {%- endcomment -%}
+    <div class="env2-switch__a">
+      <div class="env2-switch__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="env2-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="env2-h env2-switch__h2" data-env2-switch-h2>{{ section.settings.heading_before }} <span class="env2-no env2-switch__no">{{ section.settings.heading_no }}</span></h2>
+        {%- if section.settings.lead != blank -%}
+          <p class="env2-lead env2-switch__lead">{{ section.settings.lead }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="env2-switch__index" role="tablist" aria-label="בחירת מקום" aria-orientation="vertical">
+        {%- for block in section.blocks -%}
+          <button type="button" class="env2-switch__tab{% if forloop.first %} is-active{% endif %}" role="tab" id="env2-switch-tab-{{ sid }}-{{ forloop.index }}" aria-controls="env2-switch-place-{{ sid }}-{{ forloop.index }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" data-env2-switch-tab="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <span class="env2-switch__tn"><bdi>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</bdi></span>
+            <span class="env2-switch__tt">{{ block.settings.title }}</span>
+            <span class="env2-switch__ts">{{ block.settings.title_short | default: block.settings.title }}</span>
+            <span class="env2-switch__dot" aria-hidden="true"></span>
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <div class="env2-switch__toggle" aria-label="מצב האור">
+        <button type="button" class="env2-switch__tg" data-env2-switch-on aria-pressed="false">{{ section.settings.toggle_on_label }}</button>
+        <span class="env2-switch__tsep" aria-hidden="true">·</span>
+        <button type="button" class="env2-switch__tg" data-env2-switch-off aria-pressed="false">{{ section.settings.toggle_off_label }}</button>
+      </div>
+    </div>
+
+    {%- comment -%} ▼ column B — THE STAGE: one photo, one line, four places {%- endcomment -%}
+    <div class="env2-switch__b">
+      <div class="env2-switch__stage" data-env2-switch-stage data-lamp style="--v:{{ v0 }}%">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign product = block.settings.product
+            assign idx = block.settings.image_index | default: 1 | minus: 1
+            assign img = block.settings.image
+            if img == blank and product != blank
+              assign img = product.images[idx] | default: product.featured_image
+            endif
+            assign op = block.settings.object_position | default: '50% 50%' | strip | escape
+            if op == blank
+              assign op = '50% 50%'
+            endif
+            assign alt = block.settings.title | append: ' — ' | append: block.settings.suits
+            if product != blank
+              assign alt = alt | append: ' · ' | append: product.title
+            endif
+          -%}
+          <div class="env2-switch__place{% if forloop.first %} is-active{% endif %}" id="env2-switch-place-{{ sid }}-{{ forloop.index }}" role="tabpanel" aria-labelledby="env2-switch-tab-{{ sid }}-{{ forloop.index }}" data-env2-switch-place="{{ forloop.index0 }}" style="--env2-switch-op:{{ op }}">
+            {%- comment -%} dark layer: the whole photo at 9 % — the lamp that refuses to light {%- endcomment -%}
+            <figure class="env2-switch__layer env2-switch__layer--dark">
+              {%- if img != blank -%}
+                {{ img | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600,900,1200,1600', sizes: '(max-width: 900px) 100vw, 720px', alt: '' }}
+              {%- endif -%}
+              <figcaption class="env2-switch__cap env2-switch__cap--dark">
+                <span class="env2-switch__k">{{ section.settings.label_no }}</span>
+                <p class="env2-switch__p">{{ block.settings.not_suits }}</p>
+              </figcaption>
+            </figure>
+            {%- comment -%} lit layer: same photo, clipped to the start side of the line {%- endcomment -%}
+            <figure class="env2-switch__layer env2-switch__layer--lit">
+              <div class="env2-ph env2-switch__ph">
+                {%- if img != blank -%}
+                  {{ img | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600,900,1200,1600', sizes: '(max-width: 900px) 100vw, 720px', alt: alt }}
+                {%- else -%}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'env2-switch__placeholder' }}
+                {%- endif -%}
+                <div class="env2-switch__glow" aria-hidden="true"></div>
+              </div>
+              <figcaption class="env2-switch__cap env2-switch__cap--lit">
+                <span class="env2-switch__k">{{ section.settings.label_yes }}</span>
+                <p class="env2-switch__p">{{ block.settings.suits }}</p>
+              </figcaption>
+            </figure>
+          </div>
+        {%- endfor -%}
+
+        <input class="env2-switch__range" type="range" min="0" max="100" step="1" value="{{ v0 }}" dir="ltr" aria-label="מיקום קו האור" aria-valuetext="{{ split }}% מואר">
+        <span class="env2-switch__bar" aria-hidden="true"></span>
+        <span class="env2-switch__knob" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m9 6-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+        <span class="env2-switch__hint" aria-live="polite" data-text="{{ section.settings.hint_dark | escape }}"></span>
+      </div>
+
+      <div class="env2-switch__under">
+        {%- if section.settings.helper != blank -%}
+          <p class="env2-switch__helper">{{ section.settings.helper }}</p>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.collection != blank -%}
+            <a class="env2-link env2-switch__plink{% if forloop.first %} is-active{% endif %}" href="{{ block.settings.collection.url }}" data-env2-switch-link="{{ forloop.index0 }}"{% unless forloop.first %} hidden{% endunless %}>לכל המוצרים ל{{ block.settings.title_short | default: block.settings.title }} ←</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- comment -%} below both columns: the quote, the guide, the photo check {%- endcomment -%}
+    <div class="env2-switch__foot">
+      {%- if section.settings.quote != blank -%}
+        <blockquote class="env2-switch__quote">
+          <p class="env2-switch__q">{{ section.settings.quote }}</p>
+          {%- if section.settings.quote_cite != blank -%}
+            <cite class="env2-switch__cite">{{ section.settings.quote_cite }}</cite>
+          {%- endif -%}
+        </blockquote>
+      {%- endif -%}
+      <div class="env2-switch__more">
+        {%- if section.settings.guide_label != blank -%}
+          <a class="env2-link env2-switch__guide" href="{{ section.settings.guide_link | default: '/pages/guide-garden-lighting' }}">{{ section.settings.guide_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.photo_line != blank -%}
+          <p class="env2-switch__photo">{{ section.settings.photo_line }}</p>
+        {%- endif -%}
+        {%- if section.settings.whatsapp_label != blank -%}
+          <a class="env2-link env2-switch__wa" href="{{ wa_href }}"{% if wa_href contains 'wa.me' %} target="_blank" rel="noopener"{% endif %}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.3-3.8A8 8 0 1 1 8.2 19L4 20z"/><path d="M9.5 9c.2 1.8 2 3.6 3.9 4l1.1-1.1-1.7-.8-.6.6c-.6-.3-1.2-.9-1.5-1.5l.6-.6-.8-1.7L9.5 9z" fill="currentColor" stroke="none"/></svg>
+            {{ section.settings.whatsapp_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- §4.4 switch: one photo, one line, four places ----------
+   note: this bundle loads in <head> BEFORE the base inline style, so anything that overrides a base
+   helper (.env2-h, .env2-lead, [data-lamp] .env2-ph …) needs higher specificity, not later source order */
+.env2-switch{padding-block:100px 90px}
+.env2-switch *,.env2-switch *::before,.env2-switch *::after{box-sizing:border-box}
+.env2-switch__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:0 clamp(32px,5vw,96px);align-items:center;min-height:calc(100svh - 190px)}
+
+/* ▲ column A */
+.env2-switch__a{display:grid;gap:0;align-content:center;min-width:0}
+.env2-switch__head{display:grid;gap:22px;padding-bottom:34px}
+.env2-switch__h2.env2-h{font-size:clamp(40px,5.6vw,84px)}
+.env2-switch__lead.env2-lead{max-width:40ch}
+
+/* "לא." — a lamp in the headline: outline only, then it switches on (G5).
+   Default (no JS, reduced motion) = lit; html.env2-js dims it until .is-on. */
+.env2-switch__no{display:inline-block;color:var(--env2-glow);-webkit-text-stroke:0 transparent;text-shadow:0 0 40px rgba(255,211,148,.45);transition:color .4s,text-shadow .6s,-webkit-text-stroke-color .4s}
+.env2-js .env2-switch__no:not(.is-on){color:transparent;-webkit-text-stroke:1px rgba(255,211,148,.45);text-shadow:none}
+.env2-js .env2-switch__no.is-on{animation:env2-lamp-on .55s linear 1}
+
+/* the place index: four rows on hairlines, not four chips */
+.env2-switch__index{display:grid;border-top:1px solid var(--env2-hair);border-bottom:1px solid var(--env2-hair)}
+.env2-switch__tab{display:grid;grid-template-columns:34px minmax(0,1fr) 10px;align-items:center;gap:14px;width:100%;margin:0;padding:15px 0;border:0;border-top:1px solid var(--env2-hair);background:none;cursor:pointer;text-align:start;color:var(--env2-ink-2);opacity:.55;font:inherit;transition:opacity .3s,color .3s}
+.env2-switch__tab:first-child{border-top:0}
+.env2-switch__tab:hover,.env2-switch__tab:focus-visible{opacity:.85}
+.env2-switch__tab.is-active{opacity:1;color:var(--env2-gold)}
+.env2-switch__tn{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;color:var(--env2-gold)}
+.env2-switch__tt{font-family:var(--env2-serif);font-weight:500;font-size:22px;line-height:1.1;letter-spacing:-.005em}
+.env2-switch__ts{display:none}
+.env2-switch__dot{width:8px;height:8px;border-radius:50%;background:transparent;box-shadow:inset 0 0 0 1px var(--env2-hair-num);transition:background .4s,box-shadow .6s}
+.env2-switch__tab.is-active .env2-switch__dot{background:var(--env2-glow);box-shadow:0 0 12px 3px rgba(255,211,148,.55)}
+
+/* the quick toggle: two tracked words, hairline gold underline on the active one (G3) */
+.env2-switch__toggle{display:flex;align-items:baseline;gap:18px;padding-top:22px;font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.22em;color:var(--env2-mute)}
+.env2-switch__tg{margin:0;padding:0 0 6px;border:0;border-bottom:1px solid transparent;background:none;cursor:pointer;font:inherit;letter-spacing:inherit;color:inherit;transition:color .35s,border-color .35s}
+.env2-switch__tg:hover,.env2-switch__tg:focus-visible{color:var(--env2-ink)}
+.env2-switch__tg.is-active{color:var(--env2-ink);border-bottom-color:var(--env2-gold)}
+.env2-switch__tsep{opacity:.5}
+
+/* ▼ column B — the stage */
+.env2-switch__b{min-width:0}
+/* full-bleed on the end side (§3.3): the stage runs from the column edge to the viewport edge */
+.env2-switch__stage{position:relative;aspect-ratio:4/3;width:auto;margin-inline-end:calc(-1 * max(var(--env2-gut),(100vw - var(--env2-w)) / 2));overflow:hidden;background:#05070c;isolation:isolate;cursor:ew-resize;--v:38%}
+.env2-switch__place{position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;z-index:0}
+.env2-switch__place.is-active{opacity:1;z-index:1}
+.env2-switch__layer{position:absolute;inset:0;margin:0}
+.env2-switch__layer img,.env2-switch__placeholder{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--env2-switch-op,50% 50%)}
+.env2-switch__placeholder{background:#05070c;opacity:.35}
+/* one continuous bottom scrim per layer, so the captions carry no box of their own */
+.env2-switch__layer::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;background:linear-gradient(0deg,rgba(2,3,6,.82),rgba(2,3,6,.35) 45%,rgba(2,3,6,0));z-index:1}
+/* dark: the same photo at 9 % (G3) — dark in the default render, at the default split */
+.env2-switch__layer--dark img{filter:brightness(.09) saturate(.3) contrast(1.05)}
+/* lit: clipped to the start side of the line (G1); the line follows the pointer */
+/* the lit figure stacks above the dark one (and its scrim); each figure is its own stacking context */
+.env2-switch__layer--dark{z-index:1}
+.env2-switch__layer--lit{z-index:2;clip-path:inset(0 0 0 var(--v));transition:clip-path .12s linear}
+.env2-switch__layer--lit::after{background:linear-gradient(0deg,rgba(2,3,6,.74),rgba(2,3,6,.3) 45%,rgba(2,3,6,0))}
+.env2-switch__stage.is-anim .env2-switch__layer--lit{transition:clip-path .6s cubic-bezier(.2,.8,.2,1)}
+.env2-switch__stage[data-lamp] .env2-switch__ph{position:absolute;inset:0;overflow:hidden;background:#05070c}
+.env2-switch__stage[data-lamp] .env2-switch__ph img{transform:none}
+.env2-switch__stage[data-lamp] .env2-switch__ph::after{inset:-10%;background:radial-gradient(55% 55% at 50% 50%,rgba(255,211,148,.30),rgba(255,211,148,0) 70%)}
+/* the warm halo: grows in with the lamp, flickers once when the line crosses into the dark zone (G4) */
+.env2-switch__glow{position:absolute;inset:-12%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(42% 46% at 50% 56%,rgba(255,196,110,.45),rgba(255,196,110,0) 72%);opacity:var(--lit,1);transition:opacity 1.6s .2s;z-index:1}
+.env2-switch__stage.is-dark .env2-switch__glow{animation:env2-flick .24s steps(1,end) 1}
+
+/* captions live inside the photo, hug the line, and are clipped with their layer */
+.env2-switch__cap{position:absolute;bottom:0;margin:0;padding:22px 24px 24px;display:grid;gap:8px;overflow:hidden;z-index:2}
+/* each caption box keeps a floor width (40 %) so at the extremes it slides under the other layer / into the clip
+   instead of wrapping letter by letter; the text edge that hugs the line is the one that gets covered first */
+.env2-switch__cap--lit{right:0;width:max(min(48%,calc(100% - var(--v))),40%);text-align:end;padding-inline-start:26px}
+.env2-switch__cap--dark{left:0;width:max(min(48%,var(--v)),40%);text-align:start;padding-inline-end:26px}
+.env2-switch__k{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;line-height:1.3}
+.env2-switch__cap--lit .env2-switch__k{color:var(--env2-gold)}
+.env2-switch__cap--dark .env2-switch__k{color:var(--env2-mute)}
+.env2-switch__p{margin:0;font-family:var(--env2-serif);font-weight:500;font-size:24px;line-height:1.2;color:var(--env2-ink);text-wrap:pretty;text-shadow:0 1px 18px rgba(0,0,0,.5)}
+.env2-switch__cap--dark .env2-switch__p{font-size:20px;color:var(--env2-ink-2)}
+
+/* the line, the knob, the range that covers the stage */
+.env2-switch__range{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none;background:none;touch-action:pan-y}
+.env2-switch__bar{position:absolute;top:0;bottom:0;left:var(--v);width:1px;background:var(--env2-ink);opacity:.85;pointer-events:none;box-shadow:0 0 10px rgba(0,0,0,.6);transition:left .12s linear;z-index:4}
+.env2-switch__knob{position:absolute;top:50%;left:clamp(24px,var(--v),calc(100% - 24px));transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--env2-ink);color:var(--env2-btn-ink);display:grid;place-items:center;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.6);transition:left .12s linear,box-shadow .35s;z-index:5}
+.env2-switch__knob svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.env2-switch__stage.is-anim .env2-switch__bar,.env2-switch__stage.is-anim .env2-switch__knob{transition:left .6s cubic-bezier(.2,.8,.2,1)}
+.env2-switch__range:focus-visible~.env2-switch__knob{outline:2px solid var(--env2-glow);outline-offset:4px;box-shadow:0 10px 30px rgba(0,0,0,.6),0 0 0 8px rgba(255,211,148,.18)}
+.env2-switch__stage:hover .env2-switch__knob{box-shadow:0 10px 30px rgba(0,0,0,.6),0 0 24px rgba(255,211,148,.35)}
+/* the dark lamp refuses to light — the hint at the dark extreme (G4) */
+.env2-switch__hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;white-space:nowrap;font-family:var(--env2-sans);font-size:12px;font-weight:500;letter-spacing:.14em;color:var(--env2-mute);opacity:0;transition:opacity .4s}
+.env2-switch__stage.is-dark .env2-switch__hint{opacity:1;transition-delay:.25s}
+
+/* under the stage: helper at start, the active place's collection link at end */
+.env2-switch__under{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-top:14px;min-height:24px}
+.env2-switch__helper{margin:0;font-size:12px;letter-spacing:.04em;color:var(--env2-mute)}
+.env2-switch__plink.env2-link{font-size:13px;color:var(--env2-ink-2)}
+.env2-switch__plink[hidden]{display:none}
+
+/* below both columns: quote at start, guide + photo check at end */
+.env2-switch__foot{grid-column:1/-1;margin-top:64px;padding-top:40px;border-top:1px solid var(--env2-hair);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:end}
+.env2-switch__quote{margin:0}
+.env2-switch__q{margin:0;font-family:var(--env2-serif);font-weight:400;font-size:clamp(22px,2.4vw,32px);line-height:1.25;max-width:26ch;color:var(--env2-ink);text-wrap:pretty}
+.env2-switch__cite{display:block;margin-top:14px;font-family:var(--env2-sans);font-style:normal;font-size:13px;letter-spacing:.06em;color:var(--env2-mute)}
+.env2-switch__more{display:grid;gap:18px;justify-items:start}
+.env2-switch__photo{margin:0;max-width:36ch;font-size:15.5px;line-height:1.5;color:var(--env2-ink-2)}
+.env2-switch__wa.env2-link{color:var(--env2-ink);border-color:rgba(255,211,148,.4)}
+.env2-switch__wa svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- mobile: words, then the index as one text row, then the stage full-bleed at 4/5 ---------- */
+@media (max-width:900px){
+  .env2-switch{padding-block:72px 56px}
+  /* columns dissolve; the wrap orders their children: words, index, stage, helper, toggle, foot */
+  .env2-switch__wrap{grid-template-columns:minmax(0,1fr);gap:0;min-height:0;align-items:start}
+  .env2-switch__a,.env2-switch__b{display:contents}
+  .env2-switch__head{order:1}.env2-switch__index{order:2}.env2-switch__stage{order:3}.env2-switch__under{order:4}.env2-switch__toggle{order:5}.env2-switch__foot{order:6}
+  .env2-switch__head{gap:16px;padding-bottom:22px}
+  .env2-switch__h2.env2-h{font-size:40px}
+  .env2-switch__lead.env2-lead{font-size:16px}
+  .env2-switch__index{display:flex;flex-wrap:wrap;gap:0 4px;border:0;margin-bottom:18px}
+  .env2-switch__tab{display:inline-flex;align-items:baseline;gap:6px;width:auto;padding:6px 0;border:0;opacity:.7;font-size:13px}
+  .env2-switch__tab+.env2-switch__tab::before{content:"·";margin-inline-end:4px;color:var(--env2-mute)}
+  .env2-switch__tt,.env2-switch__dot{display:none}
+  .env2-switch__ts{display:inline;font-family:var(--env2-sans);font-weight:400;font-size:13px;letter-spacing:.02em;padding-bottom:3px;border-bottom:1px solid transparent}
+  .env2-switch__tab.is-active .env2-switch__ts{border-bottom-color:var(--env2-gold)}
+  .env2-switch__stage{aspect-ratio:4/5;margin-inline:calc(-1*var(--env2-gut))}
+  .env2-switch__cap{padding:14px 16px 16px;gap:5px}
+  .env2-switch__cap--lit{padding-inline-start:18px}
+  .env2-switch__cap--dark{padding-inline-end:18px}
+  .env2-switch__k{font-size:10px}
+  .env2-switch__p{font-size:15px;line-height:1.25}
+  .env2-switch__cap--dark .env2-switch__p{font-size:13.5px}
+  .env2-switch__knob{width:40px;height:40px}
+  .env2-switch__hint{font-size:11px}
+  .env2-switch__under{margin-top:12px}
+  .env2-switch__toggle{justify-content:center;padding-top:20px}
+  .env2-switch__foot{margin-top:44px;padding-top:32px;grid-template-columns:1fr;gap:28px}
+  .env2-switch__q{font-size:22px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §4.4 switch: the draggable line, the four places, the quick toggle, the "לא." that switches on.
+   Pointer, touch and keyboard all go through the one <input type=range> that covers the stage. */
+(function(){
+  var rm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var narrow = function(){ return !!(window.matchMedia && window.matchMedia('(max-width: 900px)').matches); };
+  function clamp(n){ n = Math.round(n); return n < 0 ? 0 : (n > 100 ? 100 : n); }
+
+  function init(el){
+    if (el.__env2Switch) return;
+    el.__env2Switch = true;
+
+    var stage = el.querySelector('[data-env2-switch-stage]');
+    var range = stage ? stage.querySelector('.env2-switch__range') : null;
+    var hint = stage ? stage.querySelector('.env2-switch__hint') : null;
+    var tabs = [].slice.call(el.querySelectorAll('[data-env2-switch-tab]'));
+    var places = [].slice.call(el.querySelectorAll('[data-env2-switch-place]'));
+    var links = [].slice.call(el.querySelectorAll('[data-env2-switch-link]'));
+    var onBtn = el.querySelector('[data-env2-switch-on]');
+    var offBtn = el.querySelector('[data-env2-switch-off]');
+    var h2 = el.querySelector('[data-env2-switch-h2]');
+    var no = el.querySelector('.env2-switch__no');
+    var animT = null, hintT = null;
+
+    /* ---- the line ---- */
+    function setV(v, animate){
+      if (!stage || !range) return;
+      v = clamp(v);
+      range.value = v;
+      range.setAttribute('aria-valuetext', (100 - v) + '% מואר');
+      if (animate && !rm) {
+        stage.classList.add('is-anim');
+        clearTimeout(animT);
+        animT = setTimeout(function(){ stage.classList.remove('is-anim'); }, 700);
+      } else {
+        stage.classList.remove('is-anim');
+      }
+      stage.style.setProperty('--v', v + '%');
+      var dark = v >= 88;
+      if (dark !== stage.classList.contains('is-dark')) {
+        stage.classList.toggle('is-dark', dark);
+        if (hint) {
+          clearTimeout(hintT);
+          if (dark) hint.textContent = hint.getAttribute('data-text') || '';
+          else hintT = setTimeout(function(){ hint.textContent = ''; }, 450);
+        }
+      }
+      if (onBtn) { onBtn.classList.toggle('is-active', v <= 4); onBtn.setAttribute('aria-pressed', v <= 4 ? 'true' : 'false'); }
+      if (offBtn) { offBtn.classList.toggle('is-active', v >= 96); offBtn.setAttribute('aria-pressed', v >= 96 ? 'true' : 'false'); }
+    }
+    if (range) {
+      range.addEventListener('input', function(){ setV(range.value, false); });
+      range.addEventListener('change', function(){ setV(range.value, false); });
+      range.addEventListener('keydown', function(e){
+        var v = +range.value, k = e.key, d = 0;
+        if (k === 'ArrowRight' || k === 'ArrowUp') d = 2;
+        else if (k === 'ArrowLeft' || k === 'ArrowDown') d = -2;
+        else if (k === 'PageUp') d = 10;
+        else if (k === 'PageDown') d = -10;
+        else if (k === 'Home') { e.preventDefault(); setV(0, true); return; }
+        else if (k === 'End') { e.preventDefault(); setV(100, true); return; }
+        else return;
+        e.preventDefault();
+        setV(v + d, false);
+      });
+    }
+    if (onBtn) onBtn.addEventListener('click', function(){ setV(4, true); });
+    if (offBtn) offBtn.addEventListener('click', function(){ setV(96, true); });
+
+    /* ---- the four places (roving-tabindex tabs; crossfade .5s, keep the split) ---- */
+    function select(i, focus){
+      tabs.forEach(function(t, j){
+        var on = j === i;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.setAttribute('tabindex', on ? '0' : '-1');
+        if (on && focus) t.focus();
+      });
+      places.forEach(function(p, j){ p.classList.toggle('is-active', j === i); });
+      links.forEach(function(a){
+        var on = a.getAttribute('data-env2-switch-link') === String(i);
+        a.classList.toggle('is-active', on);
+        a.hidden = !on;
+      });
+    }
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(){ select(i, false); });
+      t.addEventListener('keydown', function(e){
+        var k = e.key, n = tabs.length, j = i;
+        if (k === 'ArrowDown' || k === 'ArrowLeft') j = (i + 1) % n;
+        else if (k === 'ArrowUp' || k === 'ArrowRight') j = (i - 1 + n) % n;
+        else if (k === 'Home') j = 0;
+        else if (k === 'End') j = n - 1;
+        else return;
+        e.preventDefault();
+        select(j, true);
+      });
+    });
+
+    /* ---- "לא." switches on when the headline is 40 % in view (once), 300 ms later ---- */
+    function lightNo(){ if (no) no.classList.add('is-on'); }
+    if (no) {
+      if (rm || !('IntersectionObserver' in window)) {
+        lightNo();
+      } else {
+        var io = new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if (!e.isIntersecting) return;
+            io.disconnect();
+            setTimeout(lightNo, 300);
+          });
+        }, { threshold: 0.4 });
+        io.observe(h2 || no);
+      }
+    }
+
+    /* ---- initial split: lit % from the schema (mobile sits 4 points lower) ---- */
+    var split = parseInt(el.getAttribute('data-split'), 10);
+    if (isNaN(split)) split = 62;
+    if (narrow()) split -= 4;
+    setV(100 - split, false);
+    select(0, false);
+
+    /* the stage is a lamp: hand it to the shared observer, or render it lit without the base */
+    if (window.env2 && window.env2.observe) {
+      window.env2.observe(el);
+    } else {
+      el.querySelectorAll('[data-lamp]').forEach(function(l){ l.classList.add('lit'); });
+    }
+  }
+
+  function boot(root){
+    (root && root.querySelectorAll ? root : document).querySelectorAll('[data-env2-switch]').forEach(init);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ boot(document); });
+  else boot(document);
+  document.addEventListener('shopify:section:load', function(e){ boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — גם מתי לא",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה (eyebrow)", "default": "02 · לפני שקונים" },
+    { "type": "text", "id": "heading_before", "label": "כותרת — החלק שלפני המילה שנדלקת", "default": "אנחנו נגיד לכם גם מתי" },
+    { "type": "text", "id": "heading_no", "label": "כותרת — המילה שנדלקת", "default": "לא." },
+    { "type": "textarea", "id": "lead", "label": "פסקת פתיחה", "default": "לכל מקום יש מנורה שמתאימה לו, ומצב שבו היא לא תעבוד. גררו את הקו — וראו מתי האור נשאר כבוי." },
+    { "type": "text", "id": "label_yes", "label": "תווית הצד המואר", "default": "מתאים כדי" },
+    { "type": "text", "id": "label_no", "label": "תווית הצד החשוך", "default": "לא מתאים כש־" },
+    { "type": "text", "id": "hint_dark", "label": "רמז כשהקו נגרר עד הסוף לחושך", "default": "לא נדלק. זו הנקודה." },
+    { "type": "text", "id": "helper", "label": "שורת עזרה מתחת לבמה", "default": "גררו את הקו · או בחרו מקום" },
+    { "type": "range", "id": "default_split", "label": "כמה אחוז מהתמונה מואר בהתחלה", "min": 20, "max": 80, "step": 1, "unit": "%", "default": 62 },
+    { "type": "text", "id": "toggle_on_label", "label": "מתג מהיר — דולק", "default": "דולק" },
+    { "type": "text", "id": "toggle_off_label", "label": "מתג מהיר — כבוי", "default": "כבוי" },
+    { "type": "textarea", "id": "quote", "label": "ציטוט (מתוך «מי אנחנו»)", "default": "«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»" },
+    { "type": "text", "id": "quote_cite", "label": "מקור הציטוט", "default": "מתוך «מי אנחנו», elmsnest.com" },
+    { "type": "text", "id": "guide_label", "label": "קישור למדריך — טקסט", "default": "למדריך המלא לבחירת תאורה לגינה ←" },
+    { "type": "url", "id": "guide_link", "label": "קישור למדריך — כתובת" },
+    { "type": "textarea", "id": "photo_line", "label": "שורת בדיקת התאמה בתמונה", "default": "לא בטוחים איזה מקום זה? שלחו תמונה — נבדוק התאמה לפני שתזמינו." },
+    { "type": "text", "id": "whatsapp_label", "label": "קישור וואטסאפ — טקסט", "default": "לשליחת תמונה בוואטסאפ" },
+    { "type": "text", "id": "whatsapp_url", "label": "קישור וואטסאפ — כתובת (https://wa.me/972…)", "default": "https://wa.me/", "info": "אם נשאר ריק או ברירת מחדל — נלקח מהמספר בהגדרות הערכה, ואם אין — עמוד יצירת קשר." }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "place",
+      "name": "מקום",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "שם המקום", "default": "שביל, מדרגות ומעברים" },
+        { "type": "text", "id": "title_short", "label": "שם קצר (לשורת הבחירה בנייד ולקישור)", "default": "שביל" },
+        { "type": "text", "id": "suits", "label": "מתאים כדי…", "default": "לראות את הדרך", "info": "רק הנוסח המאושר מהמדריך." },
+        { "type": "text", "id": "not_suits", "label": "לא מתאים כש־…", "default": "המקום כמעט אינו מקבל אור יום", "info": "רק הנוסח המאושר מהמדריך." },
+        { "type": "product", "id": "product", "label": "מוצר (מקור התמונה)" },
+        { "type": "range", "id": "image_index", "label": "איזו תמונה של המוצר (מיקום בגלריה)", "min": 1, "max": 4, "step": 1, "default": 2 },
+        { "type": "image_picker", "id": "image", "label": "תמונה אחרת (במקום תמונת המוצר)" },
+        { "type": "text", "id": "object_position", "label": "מיקום החיתוך בתמונה (object-position)", "default": "50% 50%", "info": "למשל 50% 20% כדי להצמיד לחלק העליון." },
+        { "type": "collection", "id": "collection", "label": "קולקציה (קישור מתחת לבמה)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — גם מתי לא",
+      "blocks": [
+        { "type": "place", "settings": { "title": "שביל, מדרגות ומעברים", "title_short": "שביל", "suits": "לראות את הדרך", "not_suits": "המקום כמעט אינו מקבל אור יום", "product": "stainless-steel-solar-path-light-ip65", "image_index": 2, "object_position": "45% 50%", "collection": "תאורת-שביל-סולארית" } },
+        { "type": "place", "settings": { "title": "כניסה, קיר וחזית", "title_short": "קיר", "suits": "להאיר נקודה מסוימת", "not_suits": "נדרש אור חזק וקבוע לאורך כל הלילה", "product": "modern-led-wall-light-6w-up-down", "image_index": 1, "object_position": "50% 50%", "collection": "solar-wall-lights" } },
+        { "type": "place", "settings": { "title": "מרפסת ופינת ישיבה", "title_short": "מרפסת", "suits": "ליצור אווירה", "not_suits": "צריך אור חזק — זו אינה מטרתה", "product": "solar-crystal-ball-string-lights", "image_index": 3, "object_position": "50% 50%", "collection": "גרילנדות-ותאורה-דקורטיבית" } },
+        { "type": "place", "settings": { "title": "הדגשת אזור בגינה", "title_short": "גינה", "suits": "הארה ממוקדת של עץ או ערוגה", "not_suits": "נדרשת התקנה מיוחדת או חיבור קבוע", "product": "solar-firefly-garden-lights", "image_index": 3, "object_position": "50% 20%", "collection": "ספוטים-ופרוז-קטורים-סולאריים" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

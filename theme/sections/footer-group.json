@@ -1,0 +1,318 @@
+{
+  "type": "footer",
+  "name": "t:sections.name_group.footer",
+  "sections": {
+    "footer_KwXhWr": {
+      "type": "footer",
+      "blocks": {
+        "footer_logo": {
+          "type": "_footer-column",
+          "settings": {
+            "col_heading": "",
+            "hide_on_desktop": false,
+            "hide_on_mobile": false,
+            "only_mobile": false,
+            "sec_heading_size": "lg",
+            "font_size_text_lg": 16,
+            "font_size_text": 14,
+            "font_weight_text": "medium",
+            "letter_spacing_text": 0,
+            "space": 15,
+            "alignment": "right",
+            "alignment_mb": "right",
+            "colors_by_section": false,
+            "color_scheme": "scheme-env2-night",
+            "background_opacity": 0,
+            "width_lg": 31,
+            "width_md": 100,
+            "width": 100,
+            "mg": "",
+            "mg_mb": ",,30px,",
+            "pd": "",
+            "pd_mb": ""
+          },
+          "blocks": {
+            "footer_image": {
+              "type": "_footer-image",
+              "settings": {
+                "img": "shopify://shop_images/ElmsNest_Logo_Night.png",
+                "custom_width": "custom",
+                "image_w": 72,
+                "image_w_tb": 72,
+                "image_w_mb": 64
+              },
+              "blocks": {}
+            },
+            "footer_about": {
+              "type": "text",
+              "settings": {
+                "text": "<p>תאורת חוץ בלבד, לפי המקום: שביל, קיר, גינה, מרפסת. אם משהו לא מתאים לכם — נגיד לפני שתזמינו.</p>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "line_height": "",
+                "font_weight": "normal",
+                "text_color": "hdt-text-secondary",
+                "countdown": "",
+                "txt_day": "ימים",
+                "font_size_text_lg": 15,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "footer_image",
+            "footer_about"
+          ]
+        },
+        "footer_collections": {
+          "type": "_footer-column",
+          "settings": {
+            "col_heading": "קולקציות",
+            "hide_on_desktop": false,
+            "hide_on_mobile": false,
+            "only_mobile": false,
+            "sec_heading_size": "lg",
+            "font_size_text_lg": 16,
+            "font_size_text": 14,
+            "font_weight_text": "medium",
+            "letter_spacing_text": 0,
+            "space": 22,
+            "alignment": "right",
+            "alignment_mb": "right",
+            "colors_by_section": false,
+            "color_scheme": "scheme-env2-night",
+            "background_opacity": 0,
+            "width_lg": 23,
+            "width_md": 50,
+            "width": 100,
+            "mg": "",
+            "mg_mb": ",,24px,",
+            "pd": "",
+            "pd_mb": ""
+          },
+          "blocks": {
+            "links": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"/collections/תאורת-שביל-סולארית\">שביל, עמוד וגינה</a></p><p><a href=\"/collections/solar-wall-lights\">תאורת קיר</a></p><p><a href=\"/collections/ספוטים-ופרוז-קטורים-סולאריים\">ספוטים ופרוז׳קטורים</a></p><p><a href=\"/collections/גרילנדות-ותאורה-דקורטיבית\">גרילנדות ודקורטיבי</a></p>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "line_height": "",
+                "font_weight": "normal",
+                "text_color": "hdt-text-secondary",
+                "countdown": "",
+                "txt_day": "ימים",
+                "font_size_text_lg": 15,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "links"
+          ]
+        },
+        "footer_info": {
+          "type": "_footer-column",
+          "settings": {
+            "col_heading": "מידע",
+            "hide_on_desktop": false,
+            "hide_on_mobile": false,
+            "only_mobile": false,
+            "sec_heading_size": "lg",
+            "font_size_text_lg": 16,
+            "font_size_text": 14,
+            "font_weight_text": "medium",
+            "letter_spacing_text": 0,
+            "space": 22,
+            "alignment": "right",
+            "alignment_mb": "right",
+            "colors_by_section": false,
+            "color_scheme": "scheme-env2-night",
+            "background_opacity": 0,
+            "width_lg": 23,
+            "width_md": 50,
+            "width": 100,
+            "mg": "",
+            "mg_mb": ",,24px,",
+            "pd": "",
+            "pd_mb": ""
+          },
+          "blocks": {
+            "links": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"/pages/guide-garden-lighting\">מדריך לבחירת תאורה לגינה</a></p><p><a href=\"/pages/why-solar-lighting\">למה תאורה סולארית</a></p><p><a href=\"/pages/מי-אנחנו\">מי אנחנו</a></p><p><a href=\"/pages/shipping-delivery\">משלוחים ואספקה</a></p><p><a href=\"/pages/processing-time\">זמני טיפול</a></p><p><a href=\"/pages/help-faq\">שאלות נפוצות</a></p>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "line_height": "",
+                "font_weight": "normal",
+                "text_color": "hdt-text-secondary",
+                "countdown": "",
+                "txt_day": "ימים",
+                "font_size_text_lg": 15,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "links"
+          ]
+        },
+        "footer_contact": {
+          "type": "_footer-column",
+          "settings": {
+            "col_heading": "יצירת קשר",
+            "hide_on_desktop": false,
+            "hide_on_mobile": false,
+            "only_mobile": false,
+            "sec_heading_size": "lg",
+            "font_size_text_lg": 16,
+            "font_size_text": 14,
+            "font_weight_text": "medium",
+            "letter_spacing_text": 0,
+            "space": 22,
+            "alignment": "right",
+            "alignment_mb": "right",
+            "colors_by_section": false,
+            "color_scheme": "scheme-env2-night",
+            "background_opacity": 0,
+            "width_lg": 23,
+            "width_md": 50,
+            "width": 100,
+            "mg": "",
+            "mg_mb": ",,24px,",
+            "pd": "",
+            "pd_mb": ""
+          },
+          "blocks": {
+            "links": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"/pages/contact-us\">עמוד יצירת קשר</a></p><p><a href=\"https://wa.me/\">וואטסאפ — לשלוח תמונה של המקום</a></p>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "line_height": "",
+                "font_weight": "normal",
+                "text_color": "hdt-text-secondary",
+                "countdown": "",
+                "txt_day": "ימים",
+                "font_size_text_lg": 15,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "links"
+          ]
+        }
+      },
+      "block_order": [
+        "footer_logo",
+        "footer_collections",
+        "footer_info",
+        "footer_contact"
+      ],
+      "settings": {
+        "collapse": true,
+        "full_width": true,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "64px,,64px,",
+        "pd_mb": "44px,,44px,",
+        "colors_by_section": true,
+        "color_scheme": "scheme-env2-night",
+        "background_opacity": 1
+      }
+    },
+    "footer_bottom": {
+      "type": "footer",
+      "blocks": {
+        "copyright": {
+          "type": "_footer-column",
+          "settings": {
+            "col_heading": "",
+            "hide_on_desktop": false,
+            "hide_on_mobile": false,
+            "only_mobile": false,
+            "sec_heading_size": "h4",
+            "font_size_text_lg": 16,
+            "font_size_text": 14,
+            "font_weight_text": "normal",
+            "letter_spacing_text": 0,
+            "space": 30,
+            "alignment": "center",
+            "alignment_mb": "center",
+            "colors_by_section": false,
+            "color_scheme": "scheme-env2-night",
+            "background_opacity": 0,
+            "width_lg": 100,
+            "width_md": 100,
+            "width": 100,
+            "mg": "",
+            "mg_mb": "",
+            "pd": "",
+            "pd_mb": ""
+          },
+          "blocks": {
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>© ElmsNest 2026 · elmsnest.com · <a href=\"/#env2-terms\">תנאי משלוח וביטול</a></p>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "line_height": "",
+                "font_weight": "normal",
+                "text_color": "hdt-text-secondary",
+                "countdown": "",
+                "txt_day": "ימים",
+                "font_size_text_lg": 14,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text"
+          ]
+        }
+      },
+      "block_order": [
+        "copyright"
+      ],
+      "settings": {
+        "collapse": true,
+        "full_width": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "18px,,18px,",
+        "pd_mb": "14px,,14px,",
+        "colors_by_section": true,
+        "color_scheme": "scheme-env2-night",
+        "background_opacity": 1
+      }
+    }
+  },
+  "order": [
+    "footer_KwXhWr",
+    "footer_bottom"
+  ]
+}

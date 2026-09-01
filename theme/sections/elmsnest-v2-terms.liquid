@@ -1,0 +1,207 @@
+{%- comment -%}
+  ElmsNest v2 — §4.7 "ארבעה מספרים שכדאי לדעת" (the consumer-protection terms).
+  A numeral ledger: four rows on hairlines, an enormous glow numeral with its unit at the
+  start of each row, the term itself (bold line + one sentence) at the end. Not four boxes,
+  not small print — "לא אותיות קטנות". Foot: the four policy-page links, 12.5 px, hairline-underlined.
+  No lamps, no sweeps: this is the quiet section before the garden (stars at .55 only).
+  Shared plumbing (fonts/base) is rendered by elmsnest-v2-hero; this section assumes it.
+  Bidi: every digit-leading token of a line's text ("1–3", "7–14", "29.90", "5%", "100") is
+  wrapped in <bdi> at render time, so ranges never flip to "3–1" inside the Hebrew sentence
+  (the dusk mockup had that defect) and the merchant can keep typing plain text.
+{%- endcomment -%}
+{%- liquid
+  assign wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
+  assign wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
+  if wa != blank
+    assign wa_url = 'https://wa.me/' | append: wa | append: '?text=' | append: wa_text
+  else
+    assign wa_url = '/pages/contact-us'
+  endif
+  assign digits = '0123456789'
+  assign line_blocks = section.blocks | where: 'type', 'line'
+  assign link_blocks = section.blocks | where: 'type', 'link'
+-%}
+<section id="env2-terms" data-env2-terms class="env2-section env2-terms" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.55" aria-labelledby="env2-terms-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-terms__wrap">
+    <div class="env2-terms__head">
+      <div class="env2-terms__title">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="env2-eyebrow env2-terms__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 id="env2-terms-h2" class="env2-h env2-terms__h2">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.intro != blank -%}
+        <p class="env2-terms__intro">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if line_blocks.size > 0 -%}
+      <ol class="env2-terms__ledger">
+        {%- for block in line_blocks -%}
+          {%- capture line_text -%}
+            {%- assign words = block.settings.text | strip | escape | split: ' ' -%}
+            {%- for w in words -%}
+              {%- assign c = w | slice: 0, 1 -%}
+              {%- if c != blank and digits contains c -%}<bdi>{{ w }}</bdi>{%- else -%}{{ w }}{%- endif -%}
+              {%- unless forloop.last %} {% endunless -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- assign link_href = block.settings.link_url | default: wa_url -%}
+          <li class="env2-terms__line" {{ block.shopify_attributes }}>
+            <span class="env2-terms__n">
+              <bdi class="env2-terms__num">{{ block.settings.number }}</bdi>
+              {%- if block.settings.unit != blank -%}
+                <small class="env2-terms__unit">{{ block.settings.unit }}</small>
+              {%- endif -%}
+            </span>
+            <div class="env2-terms__t">
+              {%- if block.settings.title != blank -%}
+                <b class="env2-terms__b">{{ block.settings.title }}</b>
+              {%- endif -%}
+              {%- if block.settings.text != blank or block.settings.link_label != blank -%}
+                <p class="env2-terms__p">
+                  {{- line_text -}}
+                  {%- if block.settings.link_label != blank %} <a class="env2-terms__a" href="{{ link_href }}">{{ block.settings.link_label }}</a>{% endif -%}
+                </p>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    {%- endif -%}
+
+    {%- if link_blocks.size > 0 -%}
+      <nav class="env2-terms__foot" aria-label="עמודי מדיניות">
+        {%- for block in link_blocks -%}
+          <a class="env2-terms__foot-a" href="{{ block.settings.url | default: '#' }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- §4.7 terms: a night ledger — rows on hairlines, numeral at the start, text at the end ----------
+   note: this bundle loads in <head> BEFORE the base inline style; anything that overrides a base
+   helper (.env2-h …) needs higher specificity, not later source order. */
+.env2-terms{padding-block:120px 100px}
+.env2-terms__wrap{position:relative;z-index:1}
+
+/* head: eyebrow + h2 at the start, one-line intro at the end, bottoms aligned */
+.env2-terms__head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;gap:24px 40px;margin-bottom:40px}
+.env2-terms__title{min-width:0}
+.env2-terms__eyebrow{margin-bottom:22px}
+.env2-terms__h2.env2-h{font-size:clamp(40px,5.6vw,84px);max-width:11ch}
+.env2-terms__intro{justify-self:end;text-align:end;max-width:40ch;margin:0 0 .35em;font-family:var(--env2-sans);font-weight:300;font-size:15.5px;line-height:1.55;color:var(--env2-ink-2)}
+
+/* the ledger: a list with no list styling; every row a hairline, the last one closed below */
+.env2-terms__ledger{list-style:none;margin:0;padding:0;display:grid}
+.env2-terms__line{display:grid;grid-template-columns:minmax(200px,.5fr) minmax(0,1fr);gap:32px;align-items:baseline;margin:0;padding:30px 0;border-top:1px solid var(--env2-hair)}
+.env2-terms__line:last-child{border-bottom:1px solid var(--env2-hair)}
+
+/* the numeral: glow serif at 100 px, tabular, unit at .32em in ink-2 right after it */
+.env2-terms__n{display:block;min-width:0;font-family:var(--env2-serif);font-weight:500;font-size:clamp(52px,7vw,104px);line-height:.9;letter-spacing:-.02em;color:var(--env2-glow);font-variant-numeric:tabular-nums;text-shadow:0 0 34px rgba(255,211,148,.22);white-space:nowrap}
+.env2-terms__num{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-terms__unit{display:inline;font-family:var(--env2-serif);font-weight:400;font-size:.32em;line-height:1;letter-spacing:0;color:var(--env2-ink-2);margin-inline-start:.25em;text-shadow:none}
+
+/* the term: bold line + one sentence, never wider than 56ch */
+.env2-terms__t{display:grid;gap:6px;min-width:0;max-width:56ch}
+.env2-terms__b{display:block;font-family:var(--env2-sans);font-weight:500;font-size:19px;line-height:1.35;color:var(--env2-ink)}
+.env2-terms__p{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.6;color:var(--env2-ink-2)}
+.env2-terms__p bdi{unicode-bidi:isolate}
+.env2-terms__a{color:var(--env2-glow);border-bottom:1px solid rgba(255,211,148,.4);padding-bottom:1px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-terms__a:hover,.env2-terms__a:focus-visible{color:var(--env2-ink);border-color:var(--env2-ink);text-decoration:none}
+
+/* foot: the policy pages, small and quiet, hairline-underlined */
+.env2-terms__foot{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--env2-sans);font-weight:400;font-size:12.5px;line-height:1.4;color:var(--env2-mute)}
+.env2-terms__foot-a{color:inherit;border-bottom:1px solid rgba(143,149,163,.4);padding-bottom:2px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-terms__foot-a:hover,.env2-terms__foot-a:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+
+/* ---------- mobile: head stacks, rows stack (numeral 58 px, then the text) ---------- */
+@media (max-width:900px){
+  .env2-terms{padding-block:72px 56px}
+  .env2-terms__head{grid-template-columns:1fr;gap:14px;margin-bottom:24px}
+  .env2-terms__eyebrow{margin-bottom:14px}
+  .env2-terms__h2.env2-h{max-width:none}
+  .env2-terms__intro{justify-self:start;text-align:start;margin-bottom:0;font-size:15px}
+  .env2-terms__line{grid-template-columns:1fr;gap:12px;padding:24px 0}
+  .env2-terms__n{font-size:58px}
+  .env2-terms__b{font-size:17px}
+  .env2-terms__foot{gap:10px 18px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §4.7 terms: nothing moves here (§4.7 "Motion: none beyond the stars"). The only job is the
+   shared convention — hand any lamp to the observer, or light it without the base. */
+(function(){
+  function init(el){
+    if (el.__env2Terms) return;
+    el.__env2Terms = true;
+    if (window.env2 && window.env2.observe) {
+      window.env2.observe(el);
+    } else {
+      el.querySelectorAll('[data-lamp]').forEach(function(l){ l.classList.add('lit'); });
+    }
+  }
+  function boot(root){
+    (root && root.querySelectorAll ? root : document).querySelectorAll('[data-env2-terms]').forEach(init);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ boot(document); });
+  else boot(document);
+  document.addEventListener('shopify:section:load', function(e){ boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — ארבעה מספרים",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה קטנה", "default": "05 · לפני שמזמינים" },
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "ארבעה מספרים שכדאי לדעת" },
+    { "type": "textarea", "id": "intro", "label": "שורת פתיחה (בצד השמאלי של הכותרת)", "default": "לא אותיות קטנות. אותיות גדולות, במקום גלוי, לפני שמשלמים." }
+  ],
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "line",
+      "name": "שורה במספר",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "number", "label": "המספר הגדול", "default": "14", "info": "לדוגמה: 0 · 8–17 · 14 · 1" },
+        { "type": "text", "id": "unit", "label": "יחידה (מוצגת קטן ליד המספר)", "default": "יום" },
+        { "type": "text", "id": "title", "label": "השורה המודגשת", "default": "ביטול עסקה לפי חוק הגנת הצרכן." },
+        { "type": "textarea", "id": "text", "label": "משפט הסבר", "default": "עד 14 יום מקבלת המוצר. דמי ביטול עד 5% ממחיר העסקה או 100 ₪ — הנמוך מביניהם.", "info": "מספרים וטווחים (למשל 1–3) נשמרים בכיוון הנכון אוטומטית." },
+        { "type": "text", "id": "link_label", "label": "טקסט קישור בסוף המשפט (לא חובה)" },
+        { "type": "url", "id": "link_url", "label": "יעד הקישור", "info": "ריק = קישור לוואטסאפ עם הודעה מוכנה (לפי מספר הוואטסאפ בהגדרות הערכה), או לעמוד יצירת קשר אם אין מספר." }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "קישור בתחתית",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "label", "label": "טקסט", "default": "משלוחים ואספקה" },
+        { "type": "url", "id": "url", "label": "יעד" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — ארבעה מספרים",
+      "blocks": [
+        { "type": "line", "settings": { "number": "0", "unit": "₪", "title": "משלוח לנקודת איסוף — חינם.", "text": "משלוח עד הבית: 29.90 ₪." } },
+        { "type": "line", "settings": { "number": "8–17", "unit": "ימי עסקים", "title": "מרגע ההזמנה עד הדלת.", "text": "1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן אנחנו כותבים את זה כאן, ולא מגלים אחרי." } },
+        { "type": "line", "settings": { "number": "14", "unit": "יום", "title": "ביטול עסקה לפי חוק הגנת הצרכן.", "text": "עד 14 יום מקבלת המוצר. דמי ביטול עד 5% ממחיר העסקה או 100 ₪ — הנמוך מביניהם." } },
+        { "type": "line", "settings": { "number": "1", "unit": "תמונה", "title": "שלחו תמונה של המקום בוואטסאפ.", "text": "נבדוק התאמה לפני שתזמינו — ואם המוצר לא מתאים, נגיד.", "link_label": "לשליחת תמונה" } },
+        { "type": "link", "settings": { "label": "משלוחים ואספקה", "url": "/pages/shipping-delivery" } },
+        { "type": "link", "settings": { "label": "זמני טיפול", "url": "/pages/processing-time" } },
+        { "type": "link", "settings": { "label": "שאלות נפוצות", "url": "/pages/help-faq" } },
+        { "type": "link", "settings": { "label": "למה תאורה סולארית", "url": "/pages/why-solar-lighting" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

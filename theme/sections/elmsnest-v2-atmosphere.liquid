@@ -1,0 +1,304 @@
+{%- comment -%}
+  ElmsNest v2 — §4.6 "אווירה" (the terrace place as one typographic moment).
+  The word is filled with the string-light photo (background-clip:text, G7), a sagging string of
+  bulbs hangs from its baseline (G8) and lights in sequence, and three decorative products hang
+  from the string at different heights. Also the page's reach line (real count + real ₪ range).
+  Shared plumbing (fonts/base/price/buy) is rendered by elmsnest-v2-hero; this section only
+  assumes it and degrades to "everything lit" without it. No section background: the sky shows.
+{%- endcomment -%}
+{%- liquid
+  assign fill = section.settings.fill_image
+  if fill == blank and section.settings.fill_collection != blank
+    assign fill = section.settings.fill_collection.featured_image
+  endif
+  assign word = section.settings.word | default: 'אווירה'
+  assign all_products = collections.all.products
+  assign all_count = collections.all.products_count
+  assign price_mins = all_products | map: 'price_min' | sort
+  assign price_maxs = all_products | map: 'price_max' | sort
+  assign reach_min = price_mins | first
+  assign reach_max = price_maxs | last
+  assign reach_link = section.settings.reach_link | default: '/collections/all'
+-%}
+<section id="env2-atmosphere" data-env2-atmosphere class="env2-section env2-atm" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-atm__head">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="env2-eyebrow env2-atm__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.sub != blank -%}
+      <p class="env2-atm__sub">{{ section.settings.sub }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="env2-atm__stage">
+    {%- comment -%} the word: photo-filled, a lamp (its glow and brightness follow --lit) {%- endcomment -%}
+    <h2 class="env2-atm__word{% if fill == blank %} env2-atm__word--nofill{% endif %}" data-lamp{% if fill != blank %} style="background-image:url('{{ fill | image_url: width: 1600 }}')"{% endif %}>{{ word }}</h2>
+
+    {%- comment -%} the string: a quadratic catenary (sag 120 desktop / 60 mobile), bulbs as HTML dots so
+        they stay round when the SVG stretches; the three drop-lines are computed from each block's x {%- endcomment -%}
+    <div class="env2-atm__string" data-env2-atm-string data-lamp="manual" aria-hidden="true">
+      <svg class="env2-atm__svg env2-atm__svg--d" viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+        <path class="env2-atm__wire" d="M0 20 Q 720 260 1440 20" vector-effect="non-scaling-stroke"/>
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign sx = block.settings.x | default: 50
+            assign t = 100 | minus: sx | times: 1.0 | divided_by: 100
+            assign u = 1.0 | minus: t
+            assign wy1 = u | times: u | times: 20.0
+            assign wy2 = u | times: t | times: 520.0
+            assign wy3 = t | times: t | times: 20.0
+            assign wy = wy1 | plus: wy2 | plus: wy3
+            assign wx = t | times: 1440.0
+          -%}
+          <line class="env2-atm__drop" x1="{{ wx }}" y1="{{ wy }}" x2="{{ wx }}" y2="220" vector-effect="non-scaling-stroke"/>
+        {%- endfor -%}
+      </svg>
+      <svg class="env2-atm__svg env2-atm__svg--m" viewBox="0 0 390 120" preserveAspectRatio="none" focusable="false">
+        <path class="env2-atm__wire" d="M0 14 Q 195 134 390 14" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:6%;--env2-atm-bt:21.4%;--env2-atm-bi:0"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:15%;--env2-atm-bt:36.9%;--env2-atm-bi:1"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:26%;--env2-atm-bt:51.1%;--env2-atm-bi:2"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:38%;--env2-atm-bt:60.5%;--env2-atm-bi:3"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:50%;--env2-atm-bt:63.6%;--env2-atm-bi:4"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:62%;--env2-atm-bt:60.5%;--env2-atm-bi:5"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:72%;--env2-atm-bt:53.1%;--env2-atm-bi:6"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:82%;--env2-atm-bt:41.3%;--env2-atm-bi:7"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:93%;--env2-atm-bt:23.3%;--env2-atm-bi:8"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:12%;--env2-atm-bt:32.8%;--env2-atm-bi:0"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:31%;--env2-atm-bt:54.4%;--env2-atm-bi:1"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:50%;--env2-atm-bt:61.7%;--env2-atm-bi:2"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:69%;--env2-atm-bt:54.4%;--env2-atm-bi:3"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:88%;--env2-atm-bt:32.8%;--env2-atm-bi:4"></i>
+    </div>
+
+    {%- comment -%} the hanging trio: absolutely positioned on desktop (x from the start edge, top = hang),
+        a snap scroller standing on a hairline floor on mobile {%- endcomment -%}
+    <div class="env2-atm__band">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign product = block.settings.product
+          assign idx = block.settings.image_index | default: 1 | minus: 1
+          assign img = blank
+          if product != blank
+            assign img = product.images[idx] | default: product.featured_image
+          endif
+          assign op = block.settings.object_position | default: '50% 50%' | strip | escape
+          if op == blank
+            assign op = '50% 50%'
+          endif
+          assign hw = block.settings.width | default: 240
+          assign hh = block.settings.hang | default: 0
+          assign hx = block.settings.x | default: 50
+          assign har = block.settings.aspect | default: '1/1.1'
+        -%}
+        <article class="env2-atm__hang" data-lamp style="--env2-atm-w:{{ hw }}px;--env2-atm-hang:{{ hh }}px;--env2-atm-x:{{ hx }}%;--env2-atm-ar:{{ har }};--env2-atm-op:{{ op }}" {{ block.shopify_attributes }}>
+          <div class="env2-atm__fig">
+            <div class="env2-ph env2-atm__ph{% if op contains '100%' %} env2-atm__ph--deep{% endif %}">
+              {%- if img != blank -%}
+                {{ img | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320,480,640,960', sizes: '(max-width: 900px) 230px, 320px', alt: product.title }}
+              {%- else -%}
+                {{ 'product-3' | placeholder_svg_tag: 'env2-atm__placeholder' }}
+              {%- endif -%}
+            </div>
+            <span class="env2-atm__pool" aria-hidden="true"></span>
+          </div>
+          <div class="env2-atm__txt">
+            {%- if product != blank -%}
+              <h3 class="env2-atm__t"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+              <span class="env2-atm__price">{% render 'elmsnest-v2-price', product: product %}</span>
+              <span class="env2-atm__buy">{% render 'elmsnest-v2-buy', product: product, label: block.settings.button_label, small: true %}</span>
+            {%- else -%}
+              <h3 class="env2-atm__t">בחרו מוצר בבלוק הזה</h3>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} reach line: real count, real ₪ range (computed from collections.all), link to all {%- endcomment -%}
+  <div class="env2-wrap env2-atm__reach">
+    <p class="env2-atm__reach-line">
+      <span class="env2-atm__n"><bdi>{{ all_count }}</bdi></span> מוצרים
+      {%- if reach_min and reach_max %} <span class="env2-atm__dot">·</span> <span class="env2-atm__n"><bdi>{{ reach_min | money_without_currency }}–{{ reach_max | money_without_currency }}</bdi></span> ₪{% endif %}
+      <span class="env2-atm__dot">·</span>
+      <a class="env2-link env2-atm__all" href="{{ reach_link }}">{{ section.settings.reach_label | default: 'לכל המוצרים, לפי מקום' }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+    </p>
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- §4.6 atmosphere: the word, the string, the hanging trio ---------- */
+.env2-atm{padding-block:120px 96px;overflow:clip}
+.env2-atm *,.env2-atm *::before,.env2-atm *::after{box-sizing:border-box}
+.env2-atm__head,.env2-atm__stage,.env2-atm__reach{position:relative;z-index:1}
+
+/* head: eyebrow at the start, sub at the end, bottoms aligned; the word follows full-bleed */
+.env2-atm__head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px 40px}
+.env2-atm__sub{margin:0;max-width:36ch;font-size:16px;line-height:1.55;color:var(--env2-ink-2);text-align:end}
+
+/* the word: FRL 900, photo-filled, a lamp — dim + no glow until reached (switch line 218, restyled) */
+.env2-atm__stage{position:relative}
+.env2-atm__word{position:relative;z-index:2;margin:20px 0 0;padding-inline:var(--env2-gut);width:100%;
+  font-family:var(--env2-serif);font-weight:900;font-size:clamp(96px,24vw,340px);line-height:.9;letter-spacing:.01em;text-align:center;white-space:nowrap;
+  color:transparent;background-color:transparent;background-position:center 34%;background-size:cover;background-repeat:no-repeat;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-stroke:1px rgba(233,185,110,.45);
+  filter:brightness(calc(.5 + .85*var(--lit,1))) contrast(1.08) drop-shadow(0 0 40px rgba(255,179,71,calc(.35*var(--lit,1))));
+  transition:filter 1.8s cubic-bezier(.2,.7,.2,1)}
+.env2-atm__word--nofill{color:var(--env2-glow);-webkit-text-stroke:0;opacity:calc(.35 + .65*var(--lit,1));transition:opacity 1.8s}
+
+/* the string: SVG wire (stretches with the viewport) + HTML bulbs on the same percentages */
+.env2-atm__string{position:relative;z-index:1;height:220px;margin-top:calc(-.1*clamp(96px,24vw,340px));pointer-events:none}
+.env2-atm__svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+.env2-atm__svg--m{display:none}
+.env2-atm__wire{fill:none;stroke:rgba(244,238,227,.35);stroke-width:1}
+.env2-atm__drop{stroke:rgba(244,238,227,.35);stroke-width:1}
+.env2-atm__bulb{position:absolute;inset-inline-start:var(--env2-atm-bs,50%);top:calc(var(--env2-atm-bt,50%) + 7px);width:10px;height:10px;margin-inline-start:-5px;margin-top:-5px;border-radius:50%;
+  background:#0b1120;box-shadow:0 0 0 1px rgba(244,238,227,.32)}
+.env2-atm__bulb::before{content:"";position:absolute;bottom:100%;left:50%;width:1px;height:8px;margin-left:-.5px;background:rgba(244,238,227,.45)}
+.env2-atm__bulb::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#fff6dd,var(--env2-glow) 55%,var(--env2-ember));
+  box-shadow:0 0 6px 1px rgba(255,211,148,.95),0 0 22px 7px rgba(247,162,74,.38),0 0 60px 18px rgba(247,162,74,.14);
+  opacity:var(--lit,1);transition:opacity .4s calc(var(--env2-atm-bi,0)*80ms)}
+.env2-atm__bulb--m{display:none}
+
+/* the trio: a fixed-height band, each product on its line at (x, hang) */
+.env2-atm__band{position:relative;height:540px;margin-top:-1px}
+.env2-atm__hang{position:absolute;top:var(--env2-atm-hang,0px);inset-inline-start:var(--env2-atm-x,50%);width:var(--env2-atm-w,240px);margin:0;margin-inline-start:calc(-.5*var(--env2-atm-w,240px));display:grid;gap:10px}
+.env2-atm__hang::before{content:"";position:absolute;bottom:100%;inset-inline-start:50%;width:1px;height:var(--env2-atm-hang,0px);background:rgba(244,238,227,.35);pointer-events:none}
+.env2-atm__fig{position:relative;isolation:isolate}
+.env2-atm__ph{aspect-ratio:var(--env2-atm-ar,1/1.1)}
+.env2-atm__ph img{object-position:var(--env2-atm-op,50% 50%)}
+/* bottom-anchored crops (object-position … 100%) zoom in from the bottom so a badge in the top third of a
+   square source is gone at 4/3 (the rope light's IP65 tag ends at 28 % — 4/3 alone crops 25 %) */
+.env2-atm__hang .env2-atm__fig .env2-atm__ph--deep img{transform:scale(1.14);transform-origin:50% 100%}
+.env2-atm__placeholder{width:100%;height:100%;object-fit:cover;background:#05070c;opacity:.35}
+/* dusk's pool of light under each object (.obj .ph::before) — outside the clipped photo so it shows */
+.env2-atm__pool{position:absolute;inset-inline:14%;bottom:-26px;height:30px;z-index:2;pointer-events:none;
+  background:radial-gradient(50% 100% at 50% 100%,rgba(255,211,148,.38),transparent 70%);filter:blur(7px);
+  opacity:var(--lit,1);transition:opacity 1.6s .3s}
+.env2-atm__txt{display:grid;gap:6px;justify-items:start;margin-top:4px}
+.env2-atm__t{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:15px;line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:pretty}
+.env2-atm__t a{color:inherit;transition:color .3s}
+.env2-atm__t a:hover,.env2-atm__t a:focus-visible{color:var(--env2-glow)}
+.env2-atm__price .env2-price.env2-price{--env2-price-size:19px}
+.env2-atm__buy{display:inline-block;margin-top:2px}
+
+/* reach line: hairline above, end-aligned; the numbers in the serif glow */
+.env2-atm__reach{margin-top:40px;padding-top:22px;border-top:1px solid var(--env2-hair);display:flex;justify-content:flex-end}
+.env2-atm__reach-line{margin:0;font-size:14px;line-height:1.5;color:var(--env2-ink-2);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 8px}
+.env2-atm__n{font-family:var(--env2-serif);font-weight:500;font-size:20px;line-height:1;color:var(--env2-glow);font-variant-numeric:tabular-nums}
+.env2-atm__dot{color:var(--env2-mute)}
+.env2-atm__all.env2-link{font-size:14px}
+
+/* ---------- mobile: word 96px, shorter string, products on a floor you scroll ---------- */
+@media (max-width:900px){
+  .env2-atm{padding-block:72px 56px}
+  .env2-atm__head{grid-template-columns:1fr;gap:14px}
+  .env2-atm__sub{text-align:start;font-size:15px}
+  .env2-atm__word{margin-top:14px}
+  .env2-atm__string{height:120px;margin-top:calc(-.06*clamp(96px,24vw,340px))}
+  .env2-atm__svg--d,.env2-atm__bulb--d{display:none}
+  .env2-atm__svg--m,.env2-atm__bulb--m{display:block}
+  .env2-atm__band{height:auto;margin-top:8px;display:flex;align-items:flex-end;gap:18px;padding:20px var(--env2-gut) 36px;
+    overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--env2-gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .env2-atm__band::-webkit-scrollbar{display:none}
+  .env2-atm__band::after{content:"";position:absolute;inset-inline:-10vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,211,148,.45) 30%,rgba(255,211,148,.45) 70%,transparent)}
+  .env2-atm__hang{position:static;flex:0 0 var(--env2-atm-mw,200px);width:var(--env2-atm-mw,200px);margin:0;scroll-snap-align:start}
+  .env2-atm__hang::before{display:none}
+  .env2-atm__hang:nth-child(1){--env2-atm-mw:230px}
+  .env2-atm__hang:nth-child(2){--env2-atm-mw:200px}
+  .env2-atm__hang:nth-child(3){--env2-atm-mw:170px}
+  .env2-atm__pool{bottom:-22px;height:26px}
+  .env2-atm__reach{margin-top:28px;justify-content:flex-start}
+}
+@media (max-width:360px){
+  .env2-atm__hang:nth-child(1){--env2-atm-mw:200px}
+  .env2-atm__hang:nth-child(2){--env2-atm-mw:180px}
+  .env2-atm__hang:nth-child(3){--env2-atm-mw:160px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §4.6 atmosphere: the string lights when 30 % of it is in view (its bulbs then switch on in
+   sequence via CSS transition delays); everything else is a plain lamp handed to the shared
+   observer. Without the base (a page without the hero) render everything lit. */
+(function(){
+  function lightAll(el){ el.querySelectorAll('[data-lamp]').forEach(function(l){ l.classList.add('lit'); }); }
+  function init(sec){
+    if (sec.__env2Atm) return;
+    sec.__env2Atm = true;
+    var str = sec.querySelector('[data-env2-atm-string]');
+    var base = window.env2 && window.env2.observe ? window.env2 : null;
+    var rm = base ? base.rm : !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (str) {
+      if (rm || !base || !('IntersectionObserver' in window)) {
+        str.classList.add('lit');
+      } else {
+        var io = new IntersectionObserver(function(es){
+          es.forEach(function(e){ if (e.isIntersecting) { str.classList.add('lit'); io.disconnect(); } });
+        }, { threshold: 0.3, rootMargin: '0px 0px -6% 0px' });
+        io.observe(str);
+      }
+    }
+    if (base) base.observe(sec); else lightAll(sec);
+  }
+  function boot(root){
+    (root && root.querySelectorAll ? root : document).querySelectorAll('[data-env2-atmosphere]').forEach(init);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ boot(document); });
+  else boot(document);
+  document.addEventListener('shopify:section:load', function(e){ boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — אווירה",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה (eyebrow)", "default": "04 · מרפסת ופינת ישיבה" },
+    { "type": "text", "id": "word", "label": "המילה הגדולה", "default": "אווירה", "info": "מילה אחת, ממולאת בתמונה. עד 6 אותיות כדי שתיכנס במובייל." },
+    { "type": "collection", "id": "fill_collection", "label": "קולקציה שתמונתה ממלאת את המילה", "info": "ברירת מחדל: גרילנדות ותאורה דקורטיבית (גרילנדה מתחת לעץ)." },
+    { "type": "image_picker", "id": "fill_image", "label": "תמונת מילוי (דריסה)" },
+    { "type": "textarea", "id": "sub", "label": "שורת משנה (בצד השמאלי)", "default": "גרילנדות ותאורה דקורטיבית: אור חם בגובה העיניים — כדי לשבת, לא כדי לקרוא." },
+    { "type": "text", "id": "reach_label", "label": "טקסט הקישור לכל המוצרים", "default": "לכל המוצרים, לפי מקום" },
+    { "type": "url", "id": "reach_link", "label": "יעד הקישור", "info": "ברירת מחדל: /collections/all. המספר וטווח המחירים מחושבים מהחנות, לא מוקלדים." }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "מוצר תלוי",
+      "limit": 3,
+      "settings": [
+        { "type": "product", "id": "product", "label": "מוצר" },
+        { "type": "range", "id": "image_index", "label": "איזו תמונה של המוצר (מיקום בגלריה)", "min": 1, "max": 4, "step": 1, "default": 1 },
+        { "type": "text", "id": "button_label", "label": "טקסט כפתור (רק למוצר עם כמה וריאנטים)", "default": "לבחירת אורך" },
+        { "type": "range", "id": "width", "label": "רוחב התמונה", "min": 160, "max": 320, "step": 10, "unit": "px", "default": 240 },
+        { "type": "range", "id": "hang", "label": "אורך החוט (כמה נמוך המוצר תלוי)", "min": 0, "max": 160, "step": 10, "unit": "px", "default": 0 },
+        { "type": "range", "id": "x", "label": "מיקום על החוט (אחוז מהצד הימני)", "min": 10, "max": 90, "step": 1, "unit": "%", "default": 50 },
+        { "type": "select", "id": "aspect", "label": "יחס התמונה", "default": "1/1.1", "options": [
+          { "value": "1/1.1", "label": "כמעט ריבוע (1/1.1)" },
+          { "value": "4/3", "label": "רוחבי (4/3)" },
+          { "value": "1/1.4", "label": "גבוה (1/1.4)" }
+        ] },
+        { "type": "text", "id": "object_position", "label": "מיקום החיתוך בתמונה (object-position)", "default": "50% 50%", "info": "למשל 50% 100% כדי להצמיד לחלק התחתון." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — אווירה",
+      "settings": { "fill_collection": "גרילנדות-ותאורה-דקורטיבית" },
+      "blocks": [
+        { "type": "product", "settings": { "product": "solar-rope-string-lights", "image_index": 3, "button_label": "לבחירת אורך", "width": 240, "hang": 60, "x": 15, "aspect": "4/3", "object_position": "50% 100%" } },
+        { "type": "product", "settings": { "product": "solar-crystal-ball-string-lights", "image_index": 1, "button_label": "לבחירת אורך", "width": 300, "hang": 0, "x": 50, "aspect": "1/1.1", "object_position": "50% 50%" } },
+        { "type": "product", "settings": { "product": "lighted-birch-branches-20-led", "image_index": 2, "button_label": "לבחירה", "width": 200, "hang": 120, "x": 82, "aspect": "1/1.4", "object_position": "50% 50%" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

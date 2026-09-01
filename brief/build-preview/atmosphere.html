@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>env2 atmosphere — offline proof</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<!-- from snippets/elmsnest-v2-fonts.liquid (Google link omitted offline; local woff2 via fonts.css) -->
+<style id="env2-fonts">
+@font-face{font-family:"FRL Fallback";src:local("David"),local("Times New Roman"),local("TimesNewRomanPSMT");size-adjust:94%;ascent-override:102%;descent-override:36%;line-gap-override:0%}
+:root{--env2-serif:"Frank Ruhl Libre","FRL Fallback","Noto Serif Hebrew",serif;--env2-sans:"Heebo","Assistant",system-ui,-apple-system,"Segoe UI",sans-serif}
+</style>
+<!-- from snippets/elmsnest-v2-base.liquid, verbatim (Liquid comment stripped) -->
+<script>document.documentElement.classList.add('env2-js');</script>
+
+<style id="env2-atmosphere-bundle">
+/* ---- from sections/elmsnest-v2-atmosphere.liquid {% stylesheet %} — loaded in <head> BEFORE the base, as Shopify bundles it ---- */
+
+/* ---------- §4.6 atmosphere: the word, the string, the hanging trio ---------- */
+.env2-atm{padding-block:120px 96px;overflow:clip}
+.env2-atm *,.env2-atm *::before,.env2-atm *::after{box-sizing:border-box}
+.env2-atm__head,.env2-atm__stage,.env2-atm__reach{position:relative;z-index:1}
+
+/* head: eyebrow at the start, sub at the end, bottoms aligned; the word follows full-bleed */
+.env2-atm__head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px 40px}
+.env2-atm__sub{margin:0;max-width:36ch;font-size:16px;line-height:1.55;color:var(--env2-ink-2);text-align:end}
+
+/* the word: FRL 900, photo-filled, a lamp — dim + no glow until reached (switch line 218, restyled) */
+.env2-atm__stage{position:relative}
+.env2-atm__word{position:relative;z-index:2;margin:20px 0 0;padding-inline:var(--env2-gut);width:100%;
+  font-family:var(--env2-serif);font-weight:900;font-size:clamp(96px,24vw,340px);line-height:.9;letter-spacing:.01em;text-align:center;white-space:nowrap;
+  color:transparent;background-color:transparent;background-position:center 34%;background-size:cover;background-repeat:no-repeat;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-stroke:1px rgba(233,185,110,.45);
+  filter:brightness(calc(.5 + .85*var(--lit,1))) contrast(1.08) drop-shadow(0 0 40px rgba(255,179,71,calc(.35*var(--lit,1))));
+  transition:filter 1.8s cubic-bezier(.2,.7,.2,1)}
+.env2-atm__word--nofill{color:var(--env2-glow);-webkit-text-stroke:0;opacity:calc(.35 + .65*var(--lit,1));transition:opacity 1.8s}
+
+/* the string: SVG wire (stretches with the viewport) + HTML bulbs on the same percentages */
+.env2-atm__string{position:relative;z-index:1;height:220px;margin-top:calc(-.1*clamp(96px,24vw,340px));pointer-events:none}
+.env2-atm__svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+.env2-atm__svg--m{display:none}
+.env2-atm__wire{fill:none;stroke:rgba(244,238,227,.35);stroke-width:1}
+.env2-atm__drop{stroke:rgba(244,238,227,.35);stroke-width:1}
+.env2-atm__bulb{position:absolute;inset-inline-start:var(--env2-atm-bs,50%);top:calc(var(--env2-atm-bt,50%) + 7px);width:10px;height:10px;margin-inline-start:-5px;margin-top:-5px;border-radius:50%;
+  background:#0b1120;box-shadow:0 0 0 1px rgba(244,238,227,.32)}
+.env2-atm__bulb::before{content:"";position:absolute;bottom:100%;left:50%;width:1px;height:8px;margin-left:-.5px;background:rgba(244,238,227,.45)}
+.env2-atm__bulb::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#fff6dd,var(--env2-glow) 55%,var(--env2-ember));
+  box-shadow:0 0 6px 1px rgba(255,211,148,.95),0 0 22px 7px rgba(247,162,74,.38),0 0 60px 18px rgba(247,162,74,.14);
+  opacity:var(--lit,1);transition:opacity .4s calc(var(--env2-atm-bi,0)*80ms)}
+.env2-atm__bulb--m{display:none}
+
+/* the trio: a fixed-height band, each product on its line at (x, hang) */
+.env2-atm__band{position:relative;height:540px;margin-top:-1px}
+.env2-atm__hang{position:absolute;top:var(--env2-atm-hang,0px);inset-inline-start:var(--env2-atm-x,50%);width:var(--env2-atm-w,240px);margin:0;margin-inline-start:calc(-.5*var(--env2-atm-w,240px));display:grid;gap:10px}
+.env2-atm__hang::before{content:"";position:absolute;bottom:100%;inset-inline-start:50%;width:1px;height:var(--env2-atm-hang,0px);background:rgba(244,238,227,.35);pointer-events:none}
+.env2-atm__fig{position:relative;isolation:isolate}
+.env2-atm__ph{aspect-ratio:var(--env2-atm-ar,1/1.1)}
+.env2-atm__ph img{object-position:var(--env2-atm-op,50% 50%)}
+/* bottom-anchored crops (object-position … 100%) zoom in from the bottom so a badge in the top third of a
+   square source is gone at 4/3 (the rope light's IP65 tag ends at 28 % — 4/3 alone crops 25 %) */
+.env2-atm__hang .env2-atm__fig .env2-atm__ph--deep img{transform:scale(1.14);transform-origin:50% 100%}
+.env2-atm__placeholder{width:100%;height:100%;object-fit:cover;background:#05070c;opacity:.35}
+/* dusk's pool of light under each object (.obj .ph::before) — outside the clipped photo so it shows */
+.env2-atm__pool{position:absolute;inset-inline:14%;bottom:-26px;height:30px;z-index:2;pointer-events:none;
+  background:radial-gradient(50% 100% at 50% 100%,rgba(255,211,148,.38),transparent 70%);filter:blur(7px);
+  opacity:var(--lit,1);transition:opacity 1.6s .3s}
+.env2-atm__txt{display:grid;gap:6px;justify-items:start;margin-top:4px}
+.env2-atm__t{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:15px;line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:pretty}
+.env2-atm__t a{color:inherit;transition:color .3s}
+.env2-atm__t a:hover,.env2-atm__t a:focus-visible{color:var(--env2-glow)}
+.env2-atm__price .env2-price.env2-price{--env2-price-size:19px}
+.env2-atm__buy{display:inline-block;margin-top:2px}
+
+/* reach line: hairline above, end-aligned; the numbers in the serif glow */
+.env2-atm__reach{margin-top:40px;padding-top:22px;border-top:1px solid var(--env2-hair);display:flex;justify-content:flex-end}
+.env2-atm__reach-line{margin:0;font-size:14px;line-height:1.5;color:var(--env2-ink-2);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 8px}
+.env2-atm__n{font-family:var(--env2-serif);font-weight:500;font-size:20px;line-height:1;color:var(--env2-glow);font-variant-numeric:tabular-nums}
+.env2-atm__dot{color:var(--env2-mute)}
+.env2-atm__all.env2-link{font-size:14px}
+
+/* ---------- mobile: word 96px, shorter string, products on a floor you scroll ---------- */
+@media (max-width:900px){
+  .env2-atm{padding-block:72px 56px}
+  .env2-atm__head{grid-template-columns:1fr;gap:14px}
+  .env2-atm__sub{text-align:start;font-size:15px}
+  .env2-atm__word{margin-top:14px}
+  .env2-atm__string{height:120px;margin-top:calc(-.06*clamp(96px,24vw,340px))}
+  .env2-atm__svg--d,.env2-atm__bulb--d{display:none}
+  .env2-atm__svg--m,.env2-atm__bulb--m{display:block}
+  .env2-atm__band{height:auto;margin-top:8px;display:flex;align-items:flex-end;gap:18px;padding:20px var(--env2-gut) 36px;
+    overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--env2-gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .env2-atm__band::-webkit-scrollbar{display:none}
+  .env2-atm__band::after{content:"";position:absolute;inset-inline:-10vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,211,148,.45) 30%,rgba(255,211,148,.45) 70%,transparent)}
+  .env2-atm__hang{position:static;flex:0 0 var(--env2-atm-mw,200px);width:var(--env2-atm-mw,200px);margin:0;scroll-snap-align:start}
+  .env2-atm__hang::before{display:none}
+  .env2-atm__hang:nth-child(1){--env2-atm-mw:230px}
+  .env2-atm__hang:nth-child(2){--env2-atm-mw:200px}
+  .env2-atm__hang:nth-child(3){--env2-atm-mw:170px}
+  .env2-atm__pool{bottom:-22px;height:26px}
+  .env2-atm__reach{margin-top:28px;justify-content:flex-start}
+}
+@media (max-width:360px){
+  .env2-atm__hang:nth-child(1){--env2-atm-mw:200px}
+  .env2-atm__hang:nth-child(2){--env2-atm-mw:180px}
+  .env2-atm__hang:nth-child(3){--env2-atm-mw:160px}
+}
+
+</style>
+<style id="env2-base">
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1): ONE sky gradient on the index document ----------
+   Kalles paints body with its cream scheme and wraps content in painted containers;
+   on the index template only, the body becomes the sky and the wrappers go clear. */
+:root:has(body.template-index),:root:has(body.hdt-page-type-index){background:#020306}
+body.template-index,body.hdt-page-type-index{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,#4a6a9c 0%,#1f3357 14%,#0f1a2f 34%,#070b15 58%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+body.template-index #wrapper,body.template-index .main-content,body.template-index main,body.template-index #MainContent,
+body.template-index .hdt-main-content,body.template-index .hdt-page-content,body.template-index .shopify-section,
+body.hdt-page-type-index #wrapper,body.hdt-page-type-index .main-content,body.hdt-page-type-index main,body.hdt-page-type-index #MainContent,
+body.hdt-page-type-index .hdt-main-content,body.hdt-page-type-index .hdt-page-content,body.hdt-page-type-index .shopify-section{background:transparent}
+/* the transparent Kalles header sits over the first section; nothing here fights it —
+   the hero simply starts at the top of #MainContent with no gap above it */
+body.template-index #MainContent>.shopify-section:first-child .env2-section,
+body.hdt-page-type-index #MainContent>.shopify-section:first-child .env2-section{margin-top:0}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:13px;padding:10px 15px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<script id="env2-base-js">
+(function(){
+  if (window.env2 && window.env2.observe) return;
+  var root = document.documentElement;
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen = (typeof WeakSet === 'function') ? new WeakSet() : null;
+  var tracked = [];
+  var io = null;
+
+  function light(el){ if (el && el.classList) el.classList.add('lit'); }
+  function inView(el){
+    var vh = window.innerHeight || root.clientHeight; var r = el.getBoundingClientRect();
+    return r.top < vh * 0.82 && r.bottom > vh * 0.1;
+  }
+  /* belt and braces: light anything already inside the viewport (passive scroll, rAF) */
+  function sweep(){
+    for (var i = tracked.length - 1; i >= 0; i--) {
+      var el = tracked[i];
+      if (el.classList.contains('lit')) { tracked.splice(i, 1); continue; }
+      if (inView(el)) { light(el); if (io) io.unobserve(el); tracked.splice(i, 1); }
+    }
+  }
+  function getIO(){
+    if (io || !('IntersectionObserver' in window)) return io;
+    io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { light(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+    return io;
+  }
+  /* observe(root): idempotent, safe per section, safe on document. Lamps with
+     data-lamp="manual" are left to their section (light them with env2.light(el)),
+     except under reduced motion, where every lamp is lit at once. */
+  function observe(rootEl){
+    rootEl = rootEl || document;
+    var list = [];
+    if (rootEl.nodeType === 1 && rootEl.hasAttribute('data-lamp')) list.push(rootEl);
+    var q = rootEl.querySelectorAll ? rootEl.querySelectorAll('[data-lamp]') : [];
+    for (var i = 0; i < q.length; i++) list.push(q[i]);
+    list.forEach(function(el){
+      if (el.classList.contains('lit')) return;
+      if (seen ? seen.has(el) : el.__env2seen) return;
+      if (el.getAttribute('data-lamp') === 'manual' && !rm) return;
+      if (seen) seen.add(el); else el.__env2seen = true;
+      if (rm || !getIO()) { light(el); return; }
+      tracked.push(el); io.observe(el);
+    });
+    sweep();
+    return list.length;
+  }
+
+  /* scroll progress → --env2-p (alias --p) on <html>; the sun rail and the hero use it */
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var max = Math.max(1, root.scrollHeight - window.innerHeight);
+      var y = window.scrollY || window.pageYOffset || 0;
+      var p = rm ? 0 : Math.min(1, Math.max(0, y / max));
+      var v = p.toFixed(4);
+      root.style.setProperty('--env2-p', v); root.style.setProperty('--p', v);
+      sweep();
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
+
+  /* in-page anchors to sections (#env2-…) scroll smoothly, instantly under reduced motion */
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#env2-"]') : null;
+    if (!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+    if (window.history && history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+  });
+
+  window.env2 = { rm: rm, observe: observe, sweep: sweep, light: light, version: '2.0' };
+
+  function boot(){ observe(document); onScroll(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  document.addEventListener('shopify:section:load', function(e){ observe(e.target || document); });
+})();
+</script>
+<style>
+/* ---- preview-only: simulate Kalles (70px dark header spacer) and the slice of the page sky this
+   section sits on in the real document (≈62–76 % of the page: sky-3 deep night) ---- */
+body{margin:0}
+body.template-index{background-image:linear-gradient(180deg,#0a1222 0%,#070b15 55%,#04070f 100%)!important}
+.fake-hdr{height:70px;background:#020306;display:flex;align-items:center;justify-content:space-between;padding:0 32px;color:#f4eee3;font:500 13px/1 "Heebo",sans-serif;letter-spacing:.1em}
+.fake-hdr b{color:#e9b96e;font:900 20px/1 "Frank Ruhl Libre",serif}
+</style>
+</head>
+<body class="template-index">
+<div class="fake-hdr"><b>ElmsNest</b><span>דף הבית · קולקציות · מדריך · מי אנחנו</span></div>
+<div id="wrapper"><main id="MainContent">
+<div class="shopify-section">
+<section id="env2-atmosphere" data-env2-atmosphere class="env2-section env2-atm" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-atm__head">
+    <p class="env2-eyebrow env2-atm__eyebrow">04 · מרפסת ופינת ישיבה</p>
+    <p class="env2-atm__sub">גרילנדות ותאורה דקורטיבית: אור חם בגובה העיניים — כדי לשבת, לא כדי לקרוא.</p>
+  </div>
+
+  <div class="env2-atm__stage">
+    <h2 class="env2-atm__word" data-lamp style="background-image:url('../assets/img/collection-decor.jpg')">אווירה</h2>
+
+    <div class="env2-atm__string" data-env2-atm-string data-lamp="manual" aria-hidden="true">
+      <svg class="env2-atm__svg env2-atm__svg--d" viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+        <path class="env2-atm__wire" d="M0 20 Q 720 260 1440 20" vector-effect="non-scaling-stroke"/>
+        <line class="env2-atm__drop" x1="1224.0" y1="81.2" x2="1224.0" y2="220" vector-effect="non-scaling-stroke"/>
+        <line class="env2-atm__drop" x1="720.0" y1="140.0" x2="720.0" y2="220" vector-effect="non-scaling-stroke"/>
+        <line class="env2-atm__drop" x1="259.2" y1="90.8" x2="259.2" y2="220" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <svg class="env2-atm__svg env2-atm__svg--m" viewBox="0 0 390 120" preserveAspectRatio="none" focusable="false">
+        <path class="env2-atm__wire" d="M0 14 Q 195 134 390 14" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:6%;--env2-atm-bt:21.4%;--env2-atm-bi:0"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:15%;--env2-atm-bt:36.9%;--env2-atm-bi:1"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:26%;--env2-atm-bt:51.1%;--env2-atm-bi:2"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:38%;--env2-atm-bt:60.5%;--env2-atm-bi:3"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:50%;--env2-atm-bt:63.6%;--env2-atm-bi:4"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:62%;--env2-atm-bt:60.5%;--env2-atm-bi:5"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:72%;--env2-atm-bt:53.1%;--env2-atm-bi:6"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:82%;--env2-atm-bt:41.3%;--env2-atm-bi:7"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--d" style="--env2-atm-bs:93%;--env2-atm-bt:23.3%;--env2-atm-bi:8"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:12%;--env2-atm-bt:32.8%;--env2-atm-bi:0"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:31%;--env2-atm-bt:54.4%;--env2-atm-bi:1"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:50%;--env2-atm-bt:61.7%;--env2-atm-bi:2"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:69%;--env2-atm-bt:54.4%;--env2-atm-bi:3"></i>
+      <i class="env2-atm__bulb env2-atm__bulb--m" style="--env2-atm-bs:88%;--env2-atm-bt:32.8%;--env2-atm-bi:4"></i>
+    </div>
+
+    <div class="env2-atm__band">
+        <article class="env2-atm__hang" data-lamp style="--env2-atm-w:240px;--env2-atm-hang:60px;--env2-atm-x:15%;--env2-atm-ar:4/3;--env2-atm-op:50% 100%">
+          <div class="env2-atm__fig">
+            <div class="env2-ph env2-atm__ph env2-atm__ph--deep"><img src="../assets/img/solar-rope-string-lights-2.jpg" width="1000" height="1000" loading="lazy" alt="שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"></div>
+            <span class="env2-atm__pool" aria-hidden="true"></span>
+          </div>
+          <div class="env2-atm__txt">
+            <h3 class="env2-atm__t"><a href="#p1">שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED</a></h3>
+            <span class="env2-atm__price"><span class="env2-price">מ־<bdi>89.90</bdi> ₪</span></span>
+            <span class="env2-atm__buy"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="#">לבחירת אורך</a></span>
+          </div>
+        </article>
+        <article class="env2-atm__hang" data-lamp style="--env2-atm-w:300px;--env2-atm-hang:0px;--env2-atm-x:50%;--env2-atm-ar:1/1.1;--env2-atm-op:50% 50%">
+          <div class="env2-atm__fig">
+            <div class="env2-ph env2-atm__ph"><img src="../assets/img/solar-crystal-ball-string-lights-0.jpg" width="1000" height="1000" loading="lazy" alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות"></div>
+            <span class="env2-atm__pool" aria-hidden="true"></span>
+          </div>
+          <div class="env2-atm__txt">
+            <h3 class="env2-atm__t"><a href="#p2">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</a></h3>
+            <span class="env2-atm__price"><span class="env2-price">מ־<bdi>89.90</bdi> ₪</span></span>
+            <span class="env2-atm__buy"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="#">לבחירת אורך</a></span>
+          </div>
+        </article>
+        <article class="env2-atm__hang" data-lamp style="--env2-atm-w:200px;--env2-atm-hang:120px;--env2-atm-x:82%;--env2-atm-ar:1/1.4;--env2-atm-op:50% 50%">
+          <div class="env2-atm__fig">
+            <div class="env2-ph env2-atm__ph"><img src="../assets/img/lighted-birch-branches-20-led-1.jpg" width="1000" height="1000" loading="lazy" alt="ענפי ליבנה מוארים – 20 נורות LED לעיצוב הבית"></div>
+            <span class="env2-atm__pool" aria-hidden="true"></span>
+          </div>
+          <div class="env2-atm__txt">
+            <h3 class="env2-atm__t"><a href="#p3">ענפי ליבנה מוארים – 20 נורות LED לעיצוב הבית</a></h3>
+            <span class="env2-atm__price"><span class="env2-price"><bdi>89.90</bdi> ₪</span></span>
+            <span class="env2-atm__buy"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="#">לבחירה</a></span>
+          </div>
+        </article>
+    </div>
+  </div>
+
+  <div class="env2-wrap env2-atm__reach">
+    <p class="env2-atm__reach-line">
+      <span class="env2-atm__n"><bdi>27</bdi></span> מוצרים <span class="env2-atm__dot">·</span> <span class="env2-atm__n"><bdi>69.90–999.90</bdi></span> ₪
+      <span class="env2-atm__dot">·</span>
+      <a class="env2-link env2-atm__all" href="#all">לכל המוצרים, לפי מקום <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+    </p>
+  </div>
+</section>
+</div>
+</main></div>
+<script>
+/* ---- from sections/elmsnest-v2-atmosphere.liquid {% javascript %} ---- */
+
+/* §4.6 atmosphere: the string lights when 30 % of it is in view (its bulbs then switch on in
+   sequence via CSS transition delays); everything else is a plain lamp handed to the shared
+   observer. Without the base (a page without the hero) render everything lit. */
+(function(){
+  function lightAll(el){ el.querySelectorAll('[data-lamp]').forEach(function(l){ l.classList.add('lit'); }); }
+  function init(sec){
+    if (sec.__env2Atm) return;
+    sec.__env2Atm = true;
+    var str = sec.querySelector('[data-env2-atm-string]');
+    var base = window.env2 && window.env2.observe ? window.env2 : null;
+    var rm = base ? base.rm : !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (str) {
+      if (rm || !base || !('IntersectionObserver' in window)) {
+        str.classList.add('lit');
+      } else {
+        var io = new IntersectionObserver(function(es){
+          es.forEach(function(e){ if (e.isIntersecting) { str.classList.add('lit'); io.disconnect(); } });
+        }, { threshold: 0.3, rootMargin: '0px 0px -6% 0px' });
+        io.observe(str);
+      }
+    }
+    if (base) base.observe(sec); else lightAll(sec);
+  }
+  function boot(root){
+    (root && root.querySelectorAll ? root : document).querySelectorAll('[data-env2-atmosphere]').forEach(init);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ boot(document); });
+  else boot(document);
+  document.addEventListener('shopify:section:load', function(e){ boot(e.target || document); });
+})();
+
+</script>
+</body>
+</html>
