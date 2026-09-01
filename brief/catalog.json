@@ -1,0 +1,383 @@
+{
+ "note": "All images are AI-generated 1254x1254 PNGs. Several featured images (index 0) are marketing creatives with Hebrew text baked in; alternates (index 1-3) are often cleaner product/lifestyle shots. collection: path=תאורת-שביל-סולארית, wall=solar-wall-lights, spot=ספוטים-ופרוז-קטורים-סולאריים, decor=גרילנדות-ותאורה-דקורטיבית",
+ "products": [
+  {
+   "handle": "waterproof-solar-deck-step-lights",
+   "title": "תאורה סולארית עמידה למים לדק ולמדרגות",
+   "collection": "path",
+   "price_min": 149.9,
+   "price_max": 149.9,
+   "variants": 4,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_52_49PM.png?v=1785086055",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_57_23PM.png?v=1785086055",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_49_17PM.png?v=1785086055",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_49_21PM.png?v=1785086055"
+   ]
+  },
+  {
+   "handle": "solar-garden-lantern-9-led",
+   "title": "פנס סולארי לגינה 9 LED | עמיד למים ומתכוונן",
+   "collection": "spot",
+   "price_min": 169.9,
+   "price_max": 169.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_5.png?v=1785255888",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_6.png?v=1785255888",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_14PM_1.png?v=1785255888",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_2.png?v=1785255888"
+   ]
+  },
+  {
+   "handle": "solar-wall-light-motion-sensor-ip65",
+   "title": "מנורת קיר סולארית LED עם חיישן תנועה – עמידה למים IP65",
+   "collection": "wall",
+   "price_min": 129.9,
+   "price_max": 159.9,
+   "variants": 4,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPT_Image_Jul_28_2026_08_00_45_PM_2_4324c9b8-fe70-47dc-af8a-9b91fd784207.png?v=1785258083",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_47PM_5.png?v=1785692931",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_34_49PM_5.png?v=1785256512",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_34_48PM_2.png?v=1785256513"
+   ]
+  },
+  {
+   "handle": "stainless-steel-solar-path-light-ip65",
+   "title": "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65",
+   "collection": "path",
+   "price_min": 169.9,
+   "price_max": 169.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_59PM_4.png?v=1785261020",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_59PM_5.png?v=1785261020",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_59PM_6.png?v=1785261020",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_58PM_1.png?v=1785261019"
+   ]
+  },
+  {
+   "handle": "retro-solar-path-lights-set",
+   "title": "סט מנורות שביל סולאריות רטרו באור חם – 2/4/6 יחידות",
+   "collection": "path",
+   "price_min": 219.9,
+   "price_max": 529.9,
+   "variants": 3,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_2.png?v=1785263955",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_3.png?v=1785263955",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_39_01PM.png?v=1785263955",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_4.png?v=1785263955"
+   ]
+  },
+  {
+   "handle": "warm-solar-step-deck-lights",
+   "title": "מנורות סולאריות למדרגות ולדק באור חם – 1/4/8/12 יחידות",
+   "collection": "path",
+   "price_min": 69.9,
+   "price_max": 349.9,
+   "variants": 8,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_47PM_6.png?v=1785692900",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_08PM_2.png?v=1785262889",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_09PM_3.png?v=1785262889",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_09PM_4.png?v=1785262890"
+   ]
+  },
+  {
+   "handle": "modern-led-wall-light-6w-up-down",
+   "title": "מנורת קיר LED מודרנית 6W עם תאורת Up & Down",
+   "collection": "wall",
+   "price_min": 109.9,
+   "price_max": 193.9,
+   "variants": 8,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_37PM_1.png?v=1785611851",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_47PM_7.png?v=1785692873",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_37PM_4.png?v=1785611851",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_38PM_6.png?v=1785611851"
+   ]
+  },
+  {
+   "handle": "modern-led-wall-light-indoor-outdoor",
+   "title": "מנורת קיר LED מודרנית – גרסאות לפנים או לחוץ",
+   "collection": "wall",
+   "price_min": 99.9,
+   "price_max": 121.9,
+   "variants": 8,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_45PM_1.png?v=1785692716",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_48PM_3.png?v=1785610205",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_48PM_5.png?v=1785610205",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_49PM_6.png?v=1785610205"
+   ]
+  },
+  {
+   "handle": "waterproof-led-wall-light-ip65-6w-12w",
+   "title": "מנורת קיר LED עמידה למים IP65 – 6W/12W",
+   "collection": "wall",
+   "price_min": 219.9,
+   "price_max": 252.9,
+   "variants": 8,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_46PM_2.png?v=1785692651",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_21PM_1.png?v=1785609761",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_22PM_6.png?v=1785609761",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_21PM_2.png?v=1785609761"
+   ]
+  },
+  {
+   "handle": "magnetic-rechargeable-touch-wall-light",
+   "title": "מנורת קיר נטענת מגנטית עם שליטה במגע",
+   "collection": "wall",
+   "price_min": 159.9,
+   "price_max": 159.9,
+   "variants": 2,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_46PM_3.png?v=1785692589",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_53PM_4.png?v=1785609133",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_54PM_6.png?v=1785609133",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_52PM_3.png?v=1785609133"
+   ]
+  },
+  {
+   "handle": "outdoor-bidirectional-led-wall-light-ip65",
+   "title": "מנורת קיר LED חיצונית דו־כיוונית IP65",
+   "collection": "wall",
+   "price_min": 159.9,
+   "price_max": 162.9,
+   "variants": 4,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_41PM_6.png?v=1785609524",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_46PM_4.png?v=1785692558",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_41PM_3.png?v=1785609524",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_41PM_4.png?v=1785609524"
+   ]
+  },
+  {
+   "handle": "solar-garden-spotlight-52-led",
+   "title": "ספוט סולארי עוצמתי לגינה – 52 LED עם 3 מצבי תאורה",
+   "collection": "spot",
+   "price_min": 219.9,
+   "price_max": 429.9,
+   "variants": 4,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_10PM_4.png?v=1785695202",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_10PM_3.png?v=1785695202",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_11PM_5.png?v=1785695202",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_11PM_6.png?v=1785695202"
+   ]
+  },
+  {
+   "handle": "solar-security-light-100-led",
+   "title": "תאורת אבטחה סולארית 100 LED עם חיישן תנועה",
+   "collection": "spot",
+   "price_min": 99.9,
+   "price_max": 99.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_1.png?v=1785696241",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_2.png?v=1785696241",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_3.png?v=1785696240",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_4.png?v=1785696241"
+   ]
+  },
+  {
+   "handle": "modern-solar-path-lights-set",
+   "title": "סט תאורת שביל סולארית מודרנית בצורת 7 – 4/8 יחידות",
+   "collection": "path",
+   "price_min": 549.9,
+   "price_max": 999.9,
+   "variants": 2,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_25PM_6.png?v=1785695578",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_24PM_1.png?v=1785695578",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_24PM_2.png?v=1785695578",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_24PM_3.png?v=1785695578"
+   ]
+  },
+  {
+   "handle": "solar-floodlight-ip67-remote-timer",
+   "title": "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED",
+   "collection": "spot",
+   "price_min": 199.9,
+   "price_max": 499.9,
+   "variants": 3,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_50PM_5.png?v=1785695956",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_51PM_6.png?v=1785695956",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_50PM_3.png?v=1785695956",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_50PM_4.png?v=1785695956"
+   ]
+  },
+  {
+   "handle": "decorative-led-net-lights",
+   "title": "רשת תאורת LED דקורטיבית לחוץ ולגינה – 1.5 עד 12 מטר",
+   "collection": "decor",
+   "price_min": 109.9,
+   "price_max": 469.9,
+   "variants": 30,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_06PM_1.png?v=1785868047",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_07PM_5.png?v=1785868048",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_08PM_6.png?v=1785868047",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_06PM_2.png?v=1785868047"
+   ]
+  },
+  {
+   "handle": "led-globe-string-lights",
+   "title": "גרילנדת כדורי LED דקורטיבית – USB או סוללות",
+   "collection": "decor",
+   "price_min": 89.9,
+   "price_max": 179.9,
+   "variants": 30,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_2.png?v=1785868493",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_3.png?v=1785868492",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_4.png?v=1785868493",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_5.png?v=1785868493"
+   ]
+  },
+  {
+   "handle": "lighted-birch-branches-20-led",
+   "title": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב הבית",
+   "collection": "decor",
+   "price_min": 89.9,
+   "price_max": 89.9,
+   "variants": 2,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_57PM_4.png?v=1785868815",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_56PM_1.png?v=1785868815",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_57PM_5.png?v=1785868815",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_58PM_6.png?v=1785868815"
+   ]
+  },
+  {
+   "handle": "solar-firefly-garden-lights",
+   "title": "תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות",
+   "collection": "decor",
+   "price_min": 99.9,
+   "price_max": 99.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_04PM_3.png?v=1785869132",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_04PM_4.png?v=1785869132",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_05PM_5.png?v=1785869132",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_05PM_6.png?v=1785869132"
+   ]
+  },
+  {
+   "handle": "solar-rope-string-lights",
+   "title": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED",
+   "collection": "decor",
+   "price_min": 89.9,
+   "price_max": 159.9,
+   "variants": 16,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_58PM_1.png?v=1785869537",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_59PM_6.png?v=1785869537",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_59PM_5.png?v=1785869537",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_58PM_2.png?v=1785869537"
+   ]
+  },
+  {
+   "handle": "solar-edison-string-lights",
+   "title": "גרילנדת נורות אדיסון סולארית – 5 או 8 מטר",
+   "collection": "decor",
+   "price_min": 139.9,
+   "price_max": 179.9,
+   "variants": 2,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_29PM_4.png?v=1785869804",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_29PM_5.png?v=1785869803",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_30PM_6.png?v=1785869803",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_28PM_1.png?v=1785869803"
+   ]
+  },
+  {
+   "handle": "solar-crystal-ball-string-lights",
+   "title": "גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות",
+   "collection": "decor",
+   "price_min": 89.9,
+   "price_max": 179.9,
+   "variants": 24,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_35PM_1.png?v=1785870294",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_38PM_6.png?v=1785870294",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_37PM_4.png?v=1785870294",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_37PM_5.png?v=1785870294"
+   ]
+  },
+  {
+   "handle": "modern-led-bollard-light-5w-ip65",
+   "title": "מנורת עמוד LED מודרנית לגינה ולחצר – 5W IP65",
+   "collection": "path",
+   "price_min": 129.9,
+   "price_max": 129.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_6.png?v=1786209452",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_1.png?v=1786209452",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_2.png?v=1786209452",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_3.png?v=1786209452"
+   ]
+  },
+  {
+   "handle": "rechargeable-telescopic-camping-lantern",
+   "title": "פנס קמפינג טלסקופי נטען 360° עם תאורת צד",
+   "collection": "spot",
+   "price_min": 189.9,
+   "price_max": 189.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_6.png?v=1786209056",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_1.png?v=1786209056",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_2.png?v=1786209056",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_3.png?v=1786209056"
+   ]
+  },
+  {
+   "handle": "swaying-solar-path-lights-ip65",
+   "title": "סט מנורות שביל סולאריות מתנדנדות ברוח – 2/6 יחידות IP65",
+   "collection": "path",
+   "price_min": 189.9,
+   "price_max": 329.9,
+   "variants": 2,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_10PM_4_0f15bfe5-77cb-48ea-a464-421bc917adfb.png?v=1786208660",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_10PM_5_58ae31f7-5782-49c0-a872-708805dbb2c8.png?v=1786208660",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_11PM_6_af560e3d-dedd-4d4b-b286-6fce7de8c06c.png?v=1786208660",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_09PM_1_b6d155b7-61ab-4fa9-bdf7-4b1daf118901.png?v=1786208660"
+   ]
+  },
+  {
+   "handle": "powerful-solar-garden-light",
+   "title": "מנורת גינה סולארית עוצמתית LED – תאורה אוטומטית לחוץ",
+   "collection": "path",
+   "price_min": 179.9,
+   "price_max": 179.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_3.png?v=1786208258",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_4.png?v=1786208258",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_5.png?v=1786208258",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_50PM_6.png?v=1786208258"
+   ]
+  },
+  {
+   "handle": "dual-head-garden-light-10w-ip65",
+   "title": "מנורת גינה דו־ראשית מתכווננת 180° – 10W IP65",
+   "collection": "spot",
+   "price_min": 189.9,
+   "price_max": 189.9,
+   "variants": 1,
+   "images": [
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_30PM_1.png?v=1786207196",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_31PM_2.png?v=1786207196",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_31PM_3.png?v=1786207196",
+    "https://cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_32PM_4.png?v=1786207196"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+# Reproducible binary asset pack — regenerate with: cd brief/assets && python3 fetch.py
+brief/assets/img/
+brief/assets/fonts/
+# Agent screenshots (large 2x PNGs); the mockup HTML itself is committed
+brief/concepts/**/*.png
+brief/build-preview/**/*.png
+node_modules/
