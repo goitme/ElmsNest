@@ -1,0 +1,265 @@
+{%- comment -%}
+  ElmsNest hero — rebuild 2026-09-01.
+
+  Replaces sections/elmsnest-home-hero.liquid. Three faults were named on the
+  old page and all three start here:
+
+  1. It did not sell. The old hero opened on «מה מתאים ומה לא» — a guide's
+     promise. A visitor who arrives ready to buy had no priced thing to look
+     at until far down the page. The hero now carries the two things a
+     storefront owes a first screen: where to go, and a signal that this is
+     a shop. The guide promise moves to the secondary link, where it still
+     qualifies traffic without being the only door.
+
+  2. It read flat. The store sells light, and light is only visible against
+     dark — so the ground is night and the scrim is warm, not neutral grey.
+     The radial warm cast sits behind the copy on the side the eye lands on
+     first in RTL (inline-start = right), which is also where the product
+     glow tends to sit in these photographs.
+
+  3. Too much text. One heading, one line, two links, one strip. Nothing else.
+
+  Image: defaults to the two pre-optimised webp assets that layout/theme.liquid
+  already preloads for the index template. Leave the pickers empty and the
+  preload matches what renders — set a picker and you reintroduce the double
+  download the old page had (preload of the asset + fetch of a shop_images
+  file that was never preloaded).
+{%- endcomment -%}
+
+{%- liquid
+  assign has_custom_desktop = false
+  if section.settings.image != blank
+    assign has_custom_desktop = true
+  endif
+  assign has_custom_mobile = false
+  if section.settings.image_mobile != blank
+    assign has_custom_mobile = true
+  endif
+-%}
+
+<section class="en-hero" dir="rtl" aria-labelledby="en-hero-title-{{ section.id }}">
+
+  <div class="en-hero__media">
+    {%- if has_custom_desktop or has_custom_mobile -%}
+      {%- if has_custom_mobile -%}
+        {{ section.settings.image_mobile
+          | image_url: width: 1100
+          | image_tag:
+            class: 'en-hero__img en-hero__img--mb',
+            widths: '480,750,900,1100',
+            sizes: '100vw',
+            fetchpriority: 'high',
+            alt: section.settings.image_alt
+        }}
+      {%- endif -%}
+      {%- if has_custom_desktop -%}
+        {{ section.settings.image
+          | image_url: width: 2200
+          | image_tag:
+            class: 'en-hero__img en-hero__img--dt',
+            widths: '1000,1400,1800,2200',
+            sizes: '100vw',
+            fetchpriority: 'high',
+            alt: section.settings.image_alt
+        }}
+      {%- endif -%}
+    {%- else -%}
+      <img
+        class="en-hero__img en-hero__img--mb"
+        src="{{ 'elmsnest-hero-mobile-performance.webp' | asset_url }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        fetchpriority="high"
+        decoding="async"
+        width="750" height="900">
+      <img
+        class="en-hero__img en-hero__img--dt"
+        src="{{ 'elmsnest-hero-desktop-performance.webp' | asset_url }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        fetchpriority="high"
+        decoding="async"
+        width="2000" height="1125">
+    {%- endif -%}
+    <span class="en-hero__scrim" aria-hidden="true"></span>
+    <span class="en-hero__glow" aria-hidden="true"></span>
+  </div>
+
+  <div class="en-hero__wrap">
+    <div class="en-hero__copy">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="en-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h1 class="en-hero__title" id="en-hero-title-{{ section.id }}">{{ section.settings.heading }}</h1>
+
+      {%- if section.settings.text != blank -%}
+        <p class="en-hero__lede">{{ section.settings.text }}</p>
+      {%- endif -%}
+
+      <div class="en-hero__actions">
+        {%- if section.settings.primary_label != blank -%}
+          <a class="en-btn en-btn--solid"
+             href="{{ section.settings.primary_url | default: routes.all_products_collection_url }}">
+            {{ section.settings.primary_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a class="en-btn en-btn--ghost"
+             href="{{ section.settings.secondary_url | default: pages['guide-garden-lighting'].url }}">
+            {{ section.settings.secondary_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}
+        The strip is deliberately three short facts on one line, not the old
+        four-term terms block. The full terms still exist further down the
+        page; this is the version that fits above the fold without becoming
+        the fold.
+      {%- endcomment -%}
+      {%- assign facts = section.settings.facts | split: '|' -%}
+      {%- if facts.size > 0 -%}
+        <ul class="en-hero__facts">
+          {%- for fact in facts -%}
+            {%- assign fact_clean = fact | strip -%}
+            {%- if fact_clean != blank -%}
+              <li>{{ fact_clean }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.en-hero,.en-hero *{box-sizing:border-box}
+.en-hero{
+  --night:var(--en-night,43 33 24);
+  --ink:var(--en-ink,247 240 230);
+  --gold:var(--en-gold,217 173 95);
+  position:relative;direction:rtl;isolation:isolate;
+  display:flex;align-items:flex-end;
+  min-height:clamp(520px,78svh,760px);
+  background:rgb(var(--night));color:rgb(var(--ink))
+}
+
+.en-hero__media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.en-hero__img{width:100%;height:100%;object-fit:cover;display:block}
+.en-hero__img--mb{display:block}
+.en-hero__img--dt{display:none}
+@media(min-width:750px){
+  .en-hero__img--mb{display:none}
+  .en-hero__img--dt{display:block}
+}
+
+/* Two overlays, not one. The scrim is a directional wash that keeps the copy
+   side legible while leaving the far side of the photograph open; the glow is
+   the warm cast that makes a night photograph read as "lit" rather than
+   "underexposed". A single flat black overlay does the first job and kills
+   the second, which is how the old page ended up looking grey. */
+.en-hero__scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to left,rgb(var(--night)/.92) 0%,rgb(var(--night)/.72) 34%,rgb(var(--night)/.34) 62%,rgb(var(--night)/.18) 100%),
+    linear-gradient(to top,rgb(var(--night)/.78) 0%,rgb(var(--night)/0) 55%)
+}
+.en-hero__glow{
+  position:absolute;inset:0;mix-blend-mode:screen;opacity:.5;
+  background:radial-gradient(58% 70% at 78% 42%,rgb(var(--gold)/.30) 0%,rgb(var(--gold)/.10) 42%,transparent 72%)
+}
+
+.en-hero__wrap{
+  position:relative;z-index:1;
+  width:min(1200px,100%);margin-inline:auto;
+  padding:clamp(48px,8vw,96px) clamp(18px,4vw,40px) clamp(40px,6vw,72px)
+}
+.en-hero__copy{max-width:38rem}
+
+.en-hero__eyebrow{
+  margin:0 0 14px;color:rgb(var(--gold));
+  font-size:13px;font-weight:700;letter-spacing:.06em;line-height:1.2
+}
+.en-hero__title{
+  margin:0;color:rgb(var(--ink))!important;
+  font-size:clamp(34px,5.6vw,62px);font-weight:700;line-height:1.06;
+  letter-spacing:normal;text-wrap:balance
+}
+.en-hero__lede{
+  margin:16px 0 0;color:rgb(var(--ink)/.82);
+  font-size:clamp(16px,1.9vw,19px);line-height:1.5;max-width:32rem
+}
+
+.en-hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,3.4vw,34px)}
+.en-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:54px;padding:14px 32px;border-radius:0;
+  font-size:16px;font-weight:600;text-decoration:none;
+  transition:background-color .18s ease,color .18s ease,border-color .18s ease
+}
+/* Square, because every button in this theme is square (button_radius: 0).
+   Rounding only the hero would read as a different site's component. */
+.en-btn--solid{
+  background:rgb(var(--gold));color:rgb(var(--night))!important;
+  border:1px solid rgb(var(--gold))
+}
+.en-btn--solid:hover{background:rgb(var(--ink));border-color:rgb(var(--ink))}
+.en-btn--ghost{
+  background:transparent;color:rgb(var(--ink))!important;
+  border:1px solid rgb(var(--ink)/.55)
+}
+.en-btn--ghost:hover{border-color:rgb(var(--ink));background:rgb(var(--ink)/.10)}
+.en-btn:focus-visible{outline:3px solid rgb(var(--gold));outline-offset:3px}
+
+.en-hero__facts{
+  display:flex;flex-wrap:wrap;gap:8px clamp(16px,2.4vw,28px);
+  margin:clamp(26px,3.4vw,36px) 0 0;padding:16px 0 0;list-style:none;
+  border-block-start:1px solid rgb(var(--ink)/.22)
+}
+.en-hero__facts li{
+  position:relative;color:rgb(var(--ink)/.78);
+  font-size:14px;line-height:1.4;padding-inline-start:16px
+}
+.en-hero__facts li::before{
+  content:"";position:absolute;inset-inline-start:0;inset-block-start:.55em;
+  width:6px;height:6px;background:rgb(var(--gold))
+}
+
+@media(max-width:749px){
+  .en-hero{min-height:clamp(460px,72svh,600px)}
+  .en-hero__wrap{padding-inline:16px}
+  .en-hero__scrim{
+    background:
+      linear-gradient(to top,rgb(var(--night)/.94) 0%,rgb(var(--night)/.66) 46%,rgb(var(--night)/.28) 100%)
+  }
+  .en-hero__actions .en-btn{flex:1 1 100%}
+}
+@media(prefers-reduced-motion:reduce){.en-btn{transition:none}}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "ElmsNest hero",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "תוכן" },
+    { "type": "text", "id": "eyebrow", "label": "שורת פתיחה", "default": "תאורת חוץ לגינה, לשביל ולמרפסת" },
+    { "type": "text", "id": "heading", "label": "כותרת ראשית", "default": "האור שהחצר שלכם חיכתה לו" },
+    { "type": "text", "id": "text", "label": "משפט תומך", "info": "שורה אחת. הפירוט נמצא בהמשך העמוד.", "default": "בוחרים לפי המקום שרוצים להאיר — ואם מוצר לא מתאים לו, נגיד את זה מראש." },
+    { "type": "header", "content": "כפתורים" },
+    { "type": "text", "id": "primary_label", "label": "כפתור ראשי", "default": "לכל גופי התאורה" },
+    { "type": "url", "id": "primary_url", "label": "קישור ראשי", "info": "ברירת מחדל: כל המוצרים" },
+    { "type": "text", "id": "secondary_label", "label": "כפתור משני", "default": "איך בוחרים תאורה?" },
+    { "type": "url", "id": "secondary_url", "label": "קישור משני", "info": "ברירת מחדל: המדריך לבחירת תאורה" },
+    { "type": "header", "content": "שורת עובדות" },
+    { "type": "text", "id": "facts", "label": "עובדות", "info": "מופרדות בתו |", "default": "משלוח חינם לנקודת איסוף | ביטול עד 14 ימים | בדיקת התאמה בוואטסאפ לפני הזמנה" },
+    { "type": "header", "content": "תמונה" },
+    { "type": "paragraph", "content": "השאירו ריק כדי להשתמש בתמונות ה-webp המותאמות שכבר נטענות מראש. בחירת תמונה כאן מבטלת את היתרון הזה." },
+    { "type": "image_picker", "id": "image", "label": "תמונה — מסך רחב" },
+    { "type": "image_picker", "id": "image_mobile", "label": "תמונה — מובייל" },
+    { "type": "text", "id": "image_alt", "label": "תיאור התמונה", "default": "תאורת חוץ דולקת בגינה בשעת ערב" }
+  ],
+  "presets": [{ "name": "ElmsNest hero" }]
+}
+{% endschema %}

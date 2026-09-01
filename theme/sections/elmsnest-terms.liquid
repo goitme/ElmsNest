@@ -1,0 +1,150 @@
+{%- comment -%}
+  ElmsNest terms strip — rebuilt condensed, 2026-09-01.
+
+  Replaces sections/elmsnest-home-trust.liquid. The content of that section is
+  the reason this store is trustworthy and none of it is being dropped: the
+  8–17 day window, the «may ship from warehouses outside Israel» disclosure,
+  the 14-day cancellation right with its 5%/₪100 cap. Those are consumer
+  protection facts and a homepage that hides them is worse than one that
+  over-explains them.
+
+  What changed is where the words sit. Previously each of the four terms
+  printed label + value + a full note, so the strip ran four paragraphs deep
+  immediately under the hero — the single biggest contributor to the «too much
+  text» reading, and it sat in the position where a storefront should be
+  showing what it sells. Now the strip shows label + value only, and each note
+  moves inside a <details> the buyer opens if it matters to them.
+
+  <details> and not a JS accordion, deliberately: the text stays in the DOM for
+  search and for anyone with scripts off, and Ctrl+F still finds the ₪100 cap.
+  A legal disclosure that only exists after a script runs is not a disclosure.
+{%- endcomment -%}
+
+<section id="elmsnest-terms" class="en-tm" dir="rtl" aria-labelledby="en-tm-title-{{ section.id }}">
+  <div class="en-tm__wrap">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="en-tm__title" id="en-tm-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <ul class="en-tm__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="en-tm__item" {{ block.shopify_attributes }}>
+          <p class="en-tm__label">{{ block.settings.label }}</p>
+          <p class="en-tm__value">{{ block.settings.value }}</p>
+          {%- if block.settings.note != blank -%}
+            <details class="en-tm__more">
+              <summary>{{ section.settings.more_word }}</summary>
+              <div class="en-tm__note">{{ block.settings.note }}</div>
+            </details>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if section.settings.foot != blank -%}
+      <p class="en-tm__foot">{{ section.settings.foot }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+.en-tm,.en-tm *{box-sizing:border-box}
+.en-tm{
+  --night:var(--en-night,43 33 24);
+  --ink:var(--en-ink,247 240 230);
+  --gold:var(--en-gold,217 173 95);
+  direction:rtl;padding:clamp(44px,5.4vw,68px) 0;
+  background:rgb(var(--night));color:rgb(var(--ink));
+  scroll-margin-top:90px
+}
+.en-tm__wrap{width:min(1200px,100%);margin-inline:auto;padding-inline:clamp(18px,4vw,40px)}
+.en-tm__title{
+  margin:0 0 clamp(20px,2.6vw,28px);color:rgb(var(--ink))!important;
+  font-size:clamp(22px,2.8vw,30px);line-height:1.2;letter-spacing:normal
+}
+
+.en-tm__grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;margin:0;padding:0;list-style:none;
+  border-block:1px solid rgb(var(--ink)/.22)
+}
+.en-tm__item{
+  min-width:0;padding:clamp(18px,2vw,24px) clamp(16px,1.8vw,22px);
+  border-inline-start:1px solid rgb(var(--ink)/.22)
+}
+.en-tm__item:first-child{border-inline-start:0}
+
+.en-tm__label{
+  margin:0 0 6px;color:rgb(var(--gold));
+  font-size:11px;font-weight:700;letter-spacing:.06em;line-height:1.2
+}
+.en-tm__value{margin:0;color:rgb(var(--ink));font-size:clamp(15px,1.7vw,17px);font-weight:600;line-height:1.35}
+
+.en-tm__more{margin-block-start:9px}
+.en-tm__more summary{
+  display:inline-flex;align-items:center;gap:6px;cursor:pointer;list-style:none;
+  color:rgb(var(--ink)/.62);font-size:12.5px;line-height:1.3;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px
+}
+.en-tm__more summary::-webkit-details-marker{display:none}
+.en-tm__more summary::after{content:"+";font-size:14px;line-height:1}
+.en-tm__more[open] summary::after{content:"−"}
+.en-tm__more summary:hover{color:rgb(var(--ink))}
+.en-tm__more summary:focus-visible{outline:2px solid rgb(var(--gold));outline-offset:3px}
+.en-tm__note{
+  margin-block-start:8px;color:rgb(var(--ink)/.74);
+  font-size:13px;line-height:1.55
+}
+.en-tm__note p{margin:0 0 6px;color:inherit!important}
+.en-tm__note p:last-child{margin-block-end:0}
+.en-tm__note a{color:rgb(var(--gold))!important}
+
+.en-tm__foot{
+  margin:clamp(16px,2vw,22px) 0 0;
+  color:rgb(var(--ink)/.55);font-size:12.5px;line-height:1.5
+}
+
+@media(max-width:1099px){
+  .en-tm__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .en-tm__item:nth-child(odd){border-inline-start:0}
+  .en-tm__item:nth-child(n+3){border-block-start:1px solid rgb(var(--ink)/.22)}
+}
+@media(max-width:749px){
+  .en-tm__wrap{padding-inline:16px}
+  .en-tm__grid{grid-template-columns:1fr}
+  .en-tm__item{border-inline-start:0}
+  .en-tm__item + .en-tm__item{border-block-start:1px solid rgb(var(--ink)/.22)}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "ElmsNest terms",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "לפני שמזמינים" },
+    { "type": "text", "id": "more_word", "label": "מילת ההרחבה", "default": "פירוט" },
+    { "type": "text", "id": "foot", "label": "הערת שוליים" }
+  ],
+  "blocks": [
+    {
+      "type": "term",
+      "name": "תנאי",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "label", "label": "תווית" },
+        { "type": "text", "id": "value", "label": "הערך", "info": "שורה אחת קצרה" },
+        { "type": "richtext", "id": "note", "label": "פירוט", "info": "נפתח בלחיצה. כאן נכנסים הנתונים המשפטיים המלאים — אין לקצר אותם." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest terms",
+      "blocks": [{ "type": "term" }, { "type": "term" }, { "type": "term" }, { "type": "term" }]
+    }
+  ]
+}
+{% endschema %}

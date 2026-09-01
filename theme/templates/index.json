@@ -1,0 +1,169 @@
+{
+  "sections": {
+    "hero": {
+      "type": "elmsnest-hero",
+      "settings": {
+        "eyebrow": "תאורה סולארית, חשמלית ונטענת",
+        "heading": "תאורת חוץ שמתאימה בדיוק למקום שלכם",
+        "text": "בוחרים לפי המקום — גינה, שביל, קיר או מרפסת. ואם מוצר לא מתאים לו, נגיד את זה מראש.",
+        "primary_label": "לכל גופי התאורה",
+        "primary_url": "shopify://collections",
+        "secondary_label": "איך בוחרים תאורה?",
+        "secondary_url": "",
+        "facts": "משלוח חינם לנקודת איסוף | ביטול עד 14 ימים | בדיקת התאמה בוואטסאפ לפני הזמנה",
+        "image_alt": "תאורת חוץ דולקת בגינה בשעת ערב"
+      }
+    },
+    "products": {
+      "type": "elmsnest-products",
+      "settings": {
+        "eyebrow": "אפשר להתחיל מכאן",
+        "heading": "מוצרים נבחרים",
+        "collection": "",
+        "limit": 8,
+        "link_label": "לכל המוצרים",
+        "add_label": "הוספה לסל",
+        "pick_label": "בחירת דגם",
+        "sale_word": "מבצע"
+      }
+    },
+    "collections": {
+      "type": "elmsnest-collections",
+      "blocks": {
+        "col_path": {
+          "type": "collection",
+          "settings": {
+            "collection": "תאורת-שביל-סולארית",
+            "label": "שביל, עמוד וגינה",
+            "line": "לאורך השביל, במדרגות ובפינות הגינה."
+          }
+        },
+        "col_wall": {
+          "type": "collection",
+          "settings": {
+            "collection": "solar-wall-lights",
+            "label": "תאורת קיר",
+            "line": "לכניסה, לחזית ולמעברים."
+          }
+        },
+        "col_decor": {
+          "type": "collection",
+          "settings": {
+            "collection": "גרילנדות-ותאורה-דקורטיבית",
+            "label": "גרילנדות ותאורה דקורטיבית",
+            "line": "אור ואווירה לאירוח בחוץ."
+          }
+        },
+        "col_spots": {
+          "type": "collection",
+          "settings": {
+            "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+            "label": "ספוטים ותאורה ניידת",
+            "line": "להדגיש אזור, או לקחת אור לשטח."
+          }
+        }
+      },
+      "block_order": ["col_path", "col_wall", "col_decor", "col_spots"],
+      "settings": {
+        "heading": "לפי המקום שרוצים להאיר",
+        "intro": "ארבע קטגוריות, לפי איפה גוף התאורה יעמוד בפועל.",
+        "count_word": "מוצרים"
+      }
+    },
+    "places": {
+      "type": "elmsnest-places",
+      "blocks": {
+        "place_path": {
+          "type": "place",
+          "settings": {
+            "collection": "תאורת-שביל-סולארית",
+            "place_label": "שביל, מדרגות ומעברים",
+            "job": "לראות את הדרך באזורי מעבר.",
+            "not_for": "המקום כמעט אינו מקבל אור יום."
+          }
+        },
+        "place_wall": {
+          "type": "place",
+          "settings": {
+            "collection": "solar-wall-lights",
+            "place_label": "כניסה, קיר וחזית",
+            "job": "להאיר נקודה מסוימת בצורה ברורה.",
+            "not_for": "נדרש אור חזק וקבוע לאורך כל הלילה."
+          }
+        },
+        "place_terrace": {
+          "type": "place",
+          "settings": {
+            "collection": "גרילנדות-ותאורה-דקורטיבית",
+            "place_label": "מרפסת ופינת ישיבה",
+            "job": "ליצור אווירה סביב האירוח.",
+            "not_for": "צריך אור חזק — זו אינה מטרתה."
+          }
+        },
+        "place_accent": {
+          "type": "place",
+          "settings": {
+            "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+            "place_label": "הדגשת אזור בגינה",
+            "job": "הארה ממוקדת של עץ, ערוגה או פינה.",
+            "not_for": "נדרשת התקנה מיוחדת או חיבור קבוע."
+          }
+        }
+      },
+      "block_order": ["place_path", "place_wall", "place_terrace", "place_accent"],
+      "settings": {
+        "heading": "איפה צריך אור?",
+        "intro": "לכל מקום — מה שמתאים, ומה שלא.",
+        "job_label": "מתאים ל",
+        "not_label": "לא מתאים כאשר",
+        "count_word": "מוצרים",
+        "guide_label": "למדריך המלא",
+        "guide_url": ""
+      }
+    },
+    "terms": {
+      "type": "elmsnest-terms",
+      "blocks": {
+        "term_ship": {
+          "type": "term",
+          "settings": {
+            "label": "משלוח",
+            "value": "חינם לנקודת איסוף",
+            "note": "<p>משלוח עד הבית בתוספת 29.90 ₪.</p>"
+          }
+        },
+        "term_time": {
+          "type": "term",
+          "settings": {
+            "label": "זמן אספקה",
+            "value": "8–17 ימי עסקים",
+            "note": "<p>1–3 ימי טיפול ועוד 7–14 ימי משלוח. מוצרים עשויים להישלח ממחסנים מחוץ לישראל.</p>"
+          }
+        },
+        "term_fit": {
+          "type": "term",
+          "settings": {
+            "label": "לפני ההזמנה",
+            "value": "נבדוק התאמה למקום",
+            "note": "<p>שלחו בוואטסאפ תמונה של המקום וקישור למוצר — ואם המוצר לא מתאים, נגיד את זה מראש.</p>"
+          }
+        },
+        "term_cancel": {
+          "type": "term",
+          "settings": {
+            "label": "ביטול עסקה",
+            "value": "עד 14 ימים מקבלת המוצר",
+            "note": "<p>לפי חוק הגנת הצרכן. דמי ביטול עד 5% ממחיר העסקה או 100 ₪, הנמוך מביניהם.</p>"
+          }
+        }
+      },
+      "block_order": ["term_ship", "term_time", "term_fit", "term_cancel"],
+      "settings": {
+        "heading": "לפני שמזמינים",
+        "more_word": "פירוט",
+        "foot": ""
+      }
+    }
+  },
+  "order": ["hero", "products", "collections", "places", "terms"]
+}
