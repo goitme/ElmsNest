@@ -247,7 +247,9 @@
 
 /* below both columns: quote at start, guide + photo check at end */
 .env2-switch__foot{grid-column:1/-1;margin-top:64px;padding-top:40px;border-top:1px solid var(--env2-hair);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:end}
-.env2-switch__quote{margin:0}
+/* Kalles styles a bare <blockquote> as a cream panel (background2, 30/60px padding, a 50px open-quote); none of that here */
+.env2-switch .env2-switch__quote{margin:0;padding:0;border:0;background:none;quotes:none}
+.env2-switch .env2-switch__quote::before,.env2-switch .env2-switch__quote::after{content:none;display:none}
 .env2-switch__q{margin:0;font-family:var(--env2-serif);font-weight:400;font-size:clamp(22px,2.4vw,32px);line-height:1.25;max-width:26ch;color:var(--env2-ink);text-wrap:pretty}
 .env2-switch__cite{display:block;margin-top:14px;font-family:var(--env2-sans);font-style:normal;font-size:13px;letter-spacing:.06em;color:var(--env2-mute)}
 .env2-switch__more{display:grid;gap:18px;justify-items:start}

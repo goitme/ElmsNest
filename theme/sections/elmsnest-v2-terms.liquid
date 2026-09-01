@@ -40,14 +40,24 @@
     {%- if line_blocks.size > 0 -%}
       <ol class="env2-terms__ledger">
         {%- for block in line_blocks -%}
-          {%- capture line_text -%}
-            {%- assign words = block.settings.text | strip | escape | split: ' ' -%}
-            {%- for w in words -%}
-              {%- assign c = w | slice: 0, 1 -%}
-              {%- if c != blank and digits contains c -%}<bdi>{{ w }}</bdi>{%- else -%}{{ w }}{%- endif -%}
-              {%- unless forloop.last %} {% endunless -%}
-            {%- endfor -%}
-          {%- endcapture -%}
+          {%- comment -%} built with append (not literal text) so Shopify's whitespace trimming cannot eat the spaces {%- endcomment -%}
+          {%- liquid
+            assign line_text = ''
+            assign words = block.settings.text | strip | escape | split: ' '
+            for w in words
+              assign c = w | slice: 0, 1
+              if c != blank and digits contains c
+                assign tok = '<bdi>' | append: w | append: '</bdi>'
+              else
+                assign tok = w
+              endif
+              if forloop.first
+                assign line_text = tok
+              else
+                assign line_text = line_text | append: ' ' | append: tok
+              endif
+            endfor
+          -%}
           {%- assign link_href = block.settings.link_url | default: wa_url -%}
           <li class="env2-terms__line" {{ block.shopify_attributes }}>
             <span class="env2-terms__n">

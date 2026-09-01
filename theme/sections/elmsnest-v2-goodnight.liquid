@@ -78,14 +78,23 @@
       {%- if strip_items.size > 0 -%}
         <p class="env2-goodnight__strip">
           {%- for item in strip_items -%}
-            {%- capture item_html -%}
-              {%- assign words = item | strip | split: ' ' -%}
-              {%- for w in words -%}
-                {%- assign c = w | slice: 0, 1 -%}
-                {%- if c != blank and digits contains c -%}<bdi>{{ w }}</bdi>{%- else -%}{{ w }}{%- endif -%}
-                {%- unless forloop.last %} {% endunless -%}
-              {%- endfor -%}
-            {%- endcapture -%}
+            {%- liquid
+              assign item_html = ''
+              assign words = item | strip | split: ' '
+              for w in words
+                assign c = w | slice: 0, 1
+                if c != blank and digits contains c
+                  assign tok = '<bdi>' | append: w | append: '</bdi>'
+                else
+                  assign tok = w
+                endif
+                if forloop.first
+                  assign item_html = tok
+                else
+                  assign item_html = item_html | append: ' ' | append: tok
+                endif
+              endfor
+            -%}
             {%- if forloop.last and strip_link != blank and strip_items.size > 1 -%}
               <a class="env2-goodnight__strip-a" href="{{ strip_link }}">{{ item_html }}</a>
             {%- else -%}
