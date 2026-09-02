@@ -1,0 +1,1107 @@
+{
+  "_about": "ElmsNest PDP metafield sheet, generated 2026-09-02 from the saved Admin GraphQL result of all 27 products. Namespace `custom`. Empty string = not stated in the product's own description/options/title (never inferred). READ-ONLY proposal: nothing here has been written to Shopify. `power_source` is a proposed NEW definition (single_line_text). `not_fit_for_pair` and `flags` are for the owner's review and are NOT metafields. For solar-wall-light-motion-sensor-ip65 the values equal the live ones (a write is a no-op).",
+  "_fields": [
+    "power_source",
+    "ip_rating",
+    "charge_time_hours",
+    "light_hours",
+    "color_temp",
+    "sensor_range_m",
+    "sensor_angle_deg",
+    "material",
+    "dimensions",
+    "power_watt",
+    "lumens",
+    "battery",
+    "light_modes",
+    "direct_answer",
+    "not_fit_for",
+    "faq",
+    "home_card_line"
+  ],
+  "products": {
+    "waterproof-solar-deck-step-lights": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "עד כ־10 שעות, בהתאם לטעינה",
+      "color_temp": "גוון חם 3000K",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "800mAh",
+      "light_modes": "",
+      "direct_answer": "תאורת מדרגות סולארית שמוסיפה פס אור חם לכל מדרגה, דק או שביל — בלי כבלים גלויים.",
+      "not_fit_for": "המקום כמעט אינו מקבל אור יום",
+      "not_fit_for_pair": 1,
+      "faq": [
+        {
+          "q": "כמה שעות התאורה פועלת?",
+          "a": "עד כ־10 שעות תאורה בהתאם לטעינה."
+        },
+        {
+          "q": "איך מתקינים?",
+          "a": "התקנה באמצעות מדבקות חזקות או ברגים."
+        },
+        {
+          "q": "צריך להדליק בכל ערב?",
+          "a": "במהלך היום הסוללה נטענת. כשמחשיך, התאורה נדלקת אוטומטית — בלי לזכור להפעיל ובלי לרוץ לכבות בבוקר."
+        },
+        {
+          "q": "האם עמידה בגשם?",
+          "a": "עמידות IP65."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "images[0] is a baked creative (\"האירו את המדרגות בשתי דרכים\", \"2 אפשרויות התקנה — בצד או במרכז\", \"עמידות במים IP65\"); IP65 matches the description, the \"בצד או במרכז\" placement claim exists only as image pixels — not used.",
+        "No charge time, LED count has no metafield (24 LED per unit stays in the description only).",
+        "Product sits in the `sale` collection with a compare-at price (owner decided 2026-09-02 to clear it) — not a metafield matter, noted for completeness."
+      ]
+    },
+    "solar-garden-lantern-9-led": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "ספוט סולארי מתכוונן שהופך עץ, עציץ, קיר אבן או שביל חשוך לנקודת עניין — בלי תשתית חשמל.",
+      "not_fit_for": "נדרשת התקנה מיוחדת או חיבור קבוע",
+      "not_fit_for_pair": 4,
+      "faq": [
+        {
+          "q": "אפשר לכוון את האור?",
+          "a": "הראש המתכוונן מאפשר להפנות את האור אל האלמנט שרוצים להדגיש, במקום להאיר שטח לא רלוונטי."
+        },
+        {
+          "q": "נדלק לבד?",
+          "a": "התאורה פועלת אוטומטית עם החשכה."
+        },
+        {
+          "q": "אפשר להזיז אחרי ההתקנה?",
+          "a": "אין חיווט קבוע, לכן אפשר לשנות את מיקום הספוט כאשר מסדרים מחדש את הגינה."
+        },
+        {
+          "q": "איפה למקם את הפאנל?",
+          "a": "מכוונים גם את הפאנל לאזור מואר ביום, כדי לנצל טוב יותר את הטעינה הסולארית."
+        }
+      ],
+      "home_card_line": "9 נורות LED · ראש תאורה מתכוונן · עמידות IP65",
+      "flags": [
+        "No light hours, charge time, lumens or battery anywhere in the description — all left empty.",
+        "images[0] is a baked creative (\"תאורה סולארית לגינה\", \"טעינה אוטומטית ביום\", \"תאורה אוטומטית בלילה\") — no numbers, nothing to reconcile.",
+        "Title says \"עמיד למים\"; description states IP65 — consistent."
+      ]
+    },
+    "solar-wall-light-motion-sensor-ip65": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "גוון חם",
+      "sensor_range_m": "עד כ־6 מטרים",
+      "sensor_angle_deg": "120°",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "3",
+      "direct_answer": "מנורת קיר סולארית עם חיישן תנועה PIR — לכניסה, לחצר, לגדר ולמעברים צדדיים. האור החם נדלק כשמתקרבים, ללא תשתית חשמל. מתאימה לקיר שמקבל שמש ישירה במהלך היום.",
+      "not_fit_for": "מנורה סולארית תלויה באור שמש ישיר. היא לא תמיד מחליפה תאורה חשמלית חזקה, ובחורף הביצועים עשויים להיות חלשים יותר. אם הקיר או הכניסה שלכם מוצלים רוב היום — כדאי לשקול חלופה עם חיבור לחשמל.",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "מתי ההזמנה מגיעה?",
+          "a": "הזמן הכולל המשוער ממועד ההזמנה הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח. משלוח לנקודת איסוף בישראל — חינם; שליח עד הבית — 29.90 ₪."
+        },
+        {
+          "q": "האם המנורה עמידה בגשם?",
+          "a": "למנורה עמידות בתקן IP65 והיא מיועדת להתקנה חיצונית. אנחנו מסתמכים רק על נתונים שמפורסמים בעמוד — נתון שאינו מצוין כאן אינו מובטח."
+        },
+        {
+          "q": "איך עובדים שלושת מצבי התאורה?",
+          "a": "בוחרים מצב אחד: אור חזק בעת תנועה, אור חלש שמתחזק כשמתקרבים, או תאורה קבועה לאורך הלילה."
+        },
+        {
+          "q": "אפשר לבטל את ההזמנה?",
+          "a": "ניתן למסור הודעת ביטול עד 14 ימים ממועד קבלת המוצר, בהתאם למדיניות הביטולים וההחזרים."
+        }
+      ],
+      "home_card_line": "חיישן תנועה PIR · 3 מצבי תאורה · עמידות IP65",
+      "flags": [
+        "REFERENCE PRODUCT — the only one with live custom.* values. All spec values below equal the live ones; direct_answer / not_fit_for / faq are kept exactly as live (writing metafields.json is a no-op for this product).",
+        "Live not_fit_for is a 3-sentence owner text, NOT one of the four BRIEF §3 pairs verbatim. If the owner wants uniformity, the matching pair is 2 (\"נדרש אור חזק וקבוע לאורך כל הלילה\"). Not changed here.",
+        "Live faq contains two policy answers (8–17 business days, 29.90 ₪, 14-day cancellation) whose source is the shipping/cancellation policy, not the description — legitimate published facts, kept.",
+        "No light hours, charge time or battery in the description — those fields stay empty (never filled live either)."
+      ]
+    },
+    "stainless-steel-solar-path-light-ip65": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "כ־6 שעות בממוצע",
+      "light_hours": "כ־8–10 שעות",
+      "color_temp": "גוון צהוב חם",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "נירוסטה",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת שביל סולארית מנירוסטה — נטענת ביום, נדלקת לבד בלילה, לאורך שביל, מדשאה או כניסה.",
+      "not_fit_for": "המקום כמעט אינו מקבל אור יום",
+      "not_fit_for_pair": 1,
+      "faq": [
+        {
+          "q": "כמה זמן היא מאירה?",
+          "a": "לאחר טעינה טובה בשמש, התאורה יכולה לפעול כ־8–10 שעות בהתאם לתנאי הסביבה."
+        },
+        {
+          "q": "איך מתקינים?",
+          "a": "מרכיבים את היתד ונועצים באדמה — ללא חפירה, חיווט או חיבור לחשמל."
+        },
+        {
+          "q": "מה עושים לפני השימוש הראשון?",
+          "a": "לפני שימוש ראשון: מצב ON וטעינה של לפחות 3 שעות."
+        },
+        {
+          "q": "צריך להדליק ולכבות?",
+          "a": "החיישן מדליק את המנורה בחושך ומכבה אותה בבוקר באופן אוטומטי."
+        }
+      ],
+      "home_card_line": "גוף נירוסטה · עמידות IP65 · זמן עבודה כ־8–10 שעות",
+      "flags": [
+        "DIMENSIONS EXIST ONLY AS IMAGE PIXELS: images[2] is a \"מידות והתקנה\" slide (height 43 ס״מ / 16.9″, tube Ø 6 ס״מ, panel 4 ס״מ, 4-step assembly). Not in the description → `dimensions` left empty; owner may add the numbers to the description first.",
+        "Tag \"YN-PL3-BS\" is a supplier SKU visible on the storefront tag list."
+      ]
+    },
+    "retro-solar-path-lights-set": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "גוון חם",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורות שביל סולאריות בעיצוב רטרו עם נורת פילמנט חמה — לאורך שביל, סביב ערוגה או ליד פינת הישיבה.",
+      "not_fit_for": "המקום כמעט אינו מקבל אור יום",
+      "not_fit_for_pair": 1,
+      "faq": [
+        {
+          "q": "צריך חיבור לחשמל?",
+          "a": "כל מנורה נטענת מהשמש ופועלת באופן עצמאי, כך שנשאר רק לבחור את המיקום."
+        },
+        {
+          "q": "איך מתקינים?",
+          "a": "התקנה בנעיצה באדמה."
+        },
+        {
+          "q": "כמה יחידות לבחור?",
+          "a": "סטים של 2, 4 או 6 יחידות מאפשרים ליצור קו קצר בכניסה או רצף מלא לאורך השביל."
+        }
+      ],
+      "home_card_line": "טעינה סולארית · עמידות IP65 · סטים של 2, 4 או 6 יחידות",
+      "flags": [
+        "No light hours, charge time, battery or LED count in the description — the spec list is qualitative only.",
+        "images[0] baked: \"עמיד למים IP65\" (consistent), \"עמיד לחום\", \"עמיד לחורף\" — the heat/winter claims exist only as image pixels; not used."
+      ]
+    },
+    "warm-solar-step-deck-lights": {
+      "power_source": "סולארי",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "גוון חם",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורות סולאריות קומפקטיות באור חם למדרגות, לדק, לגדר ולשביל — בלי כבלים ובלי עבודת חשמל.",
+      "not_fit_for": "המקום כמעט אינו מקבל אור יום",
+      "not_fit_for_pair": 1,
+      "faq": [
+        {
+          "q": "צריך חשמלאי?",
+          "a": "אין צורך להעביר כבלים או להוסיף שקעים. כל יחידה פועלת באופן עצמאי באמצעות השמש."
+        },
+        {
+          "q": "נדלקות לבד?",
+          "a": "הדלקה אוטומטית בשעות החשכה."
+        },
+        {
+          "q": "לאן האור מופנה?",
+          "a": "התאורה מופנית כלפי מטה ומדגישה את אזור הדריכה בלי להציף את כל החצר באור מיותר."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "NO IP RATING, no hours, no battery, no material anywhere in title/description/tags — every numeric spec field is empty.",
+        "SPEC EXISTS ONLY AS IMAGE PIXELS: images[0] (\"תאורה סולארית אלגנטית למעקה\") claims \"עמידות למים\", \"ABS איכותי בשילוב אלומיניום\", \"עדשת זכוכית\" — none of it is in the description; not used."
+      ]
+    },
+    "modern-led-wall-light-6w-up-down": {
+      "power_source": "לא צוין",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "אור חם 3000K או אור קר 6500K",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "אלומיניום",
+      "dimensions": "",
+      "power_watt": "6W",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת קיר Up & Down בעוצמה 6W לשימוש פנימי — למסדרון, לסלון, לחדר השינה או לקיר שרוצים לתת לו נוכחות.",
+      "not_fit_for": "",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "מתאימה לחוץ?",
+          "a": "לשימוש פנימי באזור יבש."
+        },
+        {
+          "q": "איזה גוון לבחור?",
+          "a": "אור חם 3000K מתאים לרוגע ואירוח; אור קר 6500K מעניק מראה בהיר וחד יותר."
+        },
+        {
+          "q": "יחידה אחת או זוג?",
+          "a": "בחרו מנורה בודדת לנקודת עניין או זוג משני צידי מיטה, תמונה או מעבר."
+        }
+      ],
+      "home_card_line": "לשימוש פנימי באזור יבש",
+      "flags": [
+        "POWER SOURCE NOT STATED. A 6W indoor wall light is presumably mains-wired, but the description never says so — power_source = \"לא צוין\" until the owner confirms.",
+        "CATALOGUE CONTRADICTION: an indoor, non-solar lamp (bullet \"לשימוש פנימי באזור יבש\") sits in collection `solar-wall-lights` and carries the tag \"תאורת קיר סולארית\".",
+        "No IP rating (correct for an indoor product) — must not inherit any \"עמיד למים\" wording."
+      ]
+    },
+    "modern-led-wall-light-indoor-outdoor": {
+      "power_source": "חשמל 220V",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "אור חם 3000K או אור קר 6500K",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "ABS (גרסת פנים) או אלומיניום עמיד למים (גרסת חוץ)",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת קיר LED דו־כיוונית — גרסת ABS לחללים יבשים בפנים, גרסת אלומיניום עמידה למים לאזורי חוץ.",
+      "not_fit_for": "",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "איזו גרסה לבחור למרפסת?",
+          "a": "לאזור חיצוני או חשוף ללחות בחרו בגרסת האלומיניום העמידה למים. לחלל פנימי ויבש אפשר לבחור בגרסת ABS."
+        },
+        {
+          "q": "צריך חיבור לחשמל?",
+          "a": "חיבור קבוע לחשמל."
+        },
+        {
+          "q": "מה ההבדל בין הגוונים?",
+          "a": "3000K מתאים לאווירה רגועה; 6500K מעניק נראות בהירה וחדה יותר."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "WATERPROOF CONTRADICTION BY VARIANT: option \"סוג גוף\" = \"ABS – לא עמיד למים\" vs \"אלומיניום – עמיד למים\". A product-level ip_rating would be wrong for half the variants → left empty; no IP number is stated for the aluminium version either.",
+        "Wired lamp (\"חיבור קבוע לחשמל\") in collection `solar-wall-lights`, tagged \"תאורת קיר סולארית\" — not solar.",
+        "No wattage anywhere."
+      ]
+    },
+    "waterproof-led-wall-light-ip65-6w-12w": {
+      "power_source": "לא צוין",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "אור חם 3000K או אור קר 6000K",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "אלומיניום",
+      "dimensions": "",
+      "power_watt": "6W או 12W",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת קיר מאלומיניום עם אור כלפי מעלה ומטה ועמידות IP65 — לכניסה, למרפסת, למדרגות וגם לחללים פנימיים.",
+      "not_fit_for": "",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "מתאימה לחוץ?",
+          "a": "עמידות IP65 מאפשרת התקנה באזורים חיצוניים החשופים לתנאי מזג אוויר משתנים."
+        },
+        {
+          "q": "6W או 12W?",
+          "a": "6W לאפקט עדין וממוקד; 12W לנוכחות חזקה יותר על שטח גדול."
+        },
+        {
+          "q": "איזה גוון לבחור?",
+          "a": "3000K יוצר חמימות; 6000K מעניק מראה לבן, חד ומודרני."
+        },
+        {
+          "q": "כמה מנורות צריך?",
+          "a": "בכניסה צרה אפשר להסתפק ביחידה. על חזית רחבה או לאורך מעבר, התקנה סימטרית או רציפה תיצור אפקט שלם ומרשים יותר."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "POWER SOURCE NOT STATED anywhere (description, options, tags). Tagged \"תאורת קיר סולארית\" and in `solar-wall-lights` although nothing says solar and 6W/12W wattages suggest mains.",
+        "images[0] is a baked slide (\"תאורה שמעצבת אווירה / גוף תאורת קיר מעוצב עם הארה דו כיוונית\") — no numbers."
+      ]
+    },
+    "magnetic-rechargeable-touch-wall-light": {
+      "power_source": "נטען",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "3000K, 4000K או 6000K",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "סוללה נטענת 1200mAh",
+      "light_modes": "",
+      "direct_answer": "מנורת קיר מגנטית נטענת — תאורה ליד המיטה, במסדרון, במטבח או בפינת העבודה בלי נקודת חשמל קבועה.",
+      "not_fit_for": "נדרש אור חזק וקבוע לאורך כל הלילה",
+      "not_fit_for_pair": 2,
+      "faq": [
+        {
+          "q": "איך טוענים?",
+          "a": "טעינה באמצעות USB."
+        },
+        {
+          "q": "אפשר לכוון את האור?",
+          "a": "החיבור המגנטי מאפשר סיבוב של 360° והטיה של עד 90° לכיוון מדויק."
+        },
+        {
+          "q": "איך מעמעמים?",
+          "a": "שליטה במגע ועמעום בלחיצה ארוכה מאפשרים להתאים את העוצמה בלי לקום."
+        },
+        {
+          "q": "צריך לקדוח?",
+          "a": "הסוללה הנטענת והבסיס המגנטי שומרים על התקנה נקייה וגמישה."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "Indoor rechargeable lamp in `solar-wall-lights`, tagged \"תאורת קיר סולארית\" — not solar, not outdoor.",
+        "images[0] baked: \"הדבקה קלה ללא קידוח\", \"ניתן להסרה והצמדה מחדש\" — the adhesive/no-drill mounting claim exists only as image pixels (description says only \"בסיס מגנטי\"); not used.",
+        "No runtime, charge time or IP in the description. light_modes left empty: the three values are colour tones (גוונים), not modes."
+      ]
+    },
+    "outdoor-bidirectional-led-wall-light-ip65": {
+      "power_source": "לא צוין",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "אור חם 3000K או לבן 6000K",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת חוץ שחורה עם אור כלפי מעלה ומטה — לכניסה, למרפסת או למעבר; עמידות IP65 לקירות חוץ.",
+      "not_fit_for": "",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "מתאימה לקיר חיצוני?",
+          "a": "עמידות IP65 מתאימה לכניסות, מרפסות, גינות ומעברים חשופים."
+        },
+        {
+          "q": "מה ההבדל בין דגם A לדגם B?",
+          "a": "דגם A ו־דגם B מאפשרים לבחור את צורת האלומה והאופי שמתאימים לחזית."
+        },
+        {
+          "q": "איזה גוון לבחור?",
+          "a": "3000K מעניק חמימות מזמינה; 6000K יוצר מראה לבן, מודרני ובולט."
+        }
+      ],
+      "home_card_line": "עמידות IP65 · אור חם 3000K או לבן 6000K",
+      "flags": [
+        "POWER SOURCE AND WATTAGE NOT STATED; tagged \"תאורת קיר סולארית\" without any solar wording.",
+        "The description never explains what differs between \"דגם A\" and \"דגם B\" beyond \"צורת האלומה והאופי\" — the FAQ answer is weak but is all that exists."
+      ]
+    },
+    "solar-garden-spotlight-52-led": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "עד כ־15/10/6 שעות לפי העוצמה",
+      "color_temp": "לבן חם או לבן קר",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "3",
+      "direct_answer": "ספוט סולארי עוצמתי שיוצר נקודת אור ברורה על עץ, קיר, שביל או פינת גינה — התקנה בקרקע או על הקיר.",
+      "not_fit_for": "נדרשת התקנה מיוחדת או חיבור קבוע",
+      "not_fit_for_pair": 4,
+      "faq": [
+        {
+          "q": "כמה שעות הוא מאיר?",
+          "a": "עד כ־15/10/6 שעות לפי העוצמה."
+        },
+        {
+          "q": "איך מתקינים?",
+          "a": "נועצים בקרקע כספוט נוף או מחברים לקיר בעזרת אביזרי ההתקנה המצורפים."
+        },
+        {
+          "q": "מה שלושת המצבים?",
+          "a": "בחרו תאורה נמוכה לערב ארוך, בינונית לאיזון או גבוהה כשצריך נוכחות חזקה יותר."
+        },
+        {
+          "q": "חם או קר?",
+          "a": "אור חם יוצר עומק ואווירה רכה סביב צמחייה; אור קר נותן נראות בהירה ובולטת יותר לשבילים ולכניסות."
+        }
+      ],
+      "home_card_line": "52 נורות LED · 3 מצבי עוצמה · עד כ־15/10/6 שעות",
+      "flags": [
+        "SPEC EXISTS ONLY AS IMAGE PIXELS: images[0] claims \"טווח עבודה: -20° עד 60°C\", \"עמיד לחום ולקור\", \"עמידות לכל מזג אוויר\" — the temperature range is nowhere in the description; not used.",
+        "No charge time, lumens or battery stated."
+      ]
+    },
+    "solar-security-light-100-led": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "",
+      "sensor_range_m": "כ־6–8 מטרים",
+      "sensor_angle_deg": "120°",
+      "material": "PC ו־ABS",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "3",
+      "direct_answer": "תאורת אבטחה סולארית עם חיישן תנועה — לכניסה, לשער, לחניה או למעבר צדדי, בלי חיווט.",
+      "not_fit_for": "נדרש אור חזק וקבוע לאורך כל הלילה",
+      "not_fit_for_pair": 2,
+      "faq": [
+        {
+          "q": "מאיזה מרחק החיישן מזהה?",
+          "a": "חיישן PIR בזווית 120° ובטווח של כ־6–8 מטרים מגיב עוד לפני שמגיעים אל המנורה."
+        },
+        {
+          "q": "מה שלושת המצבים?",
+          "a": "אור קבוע, אור חלש שמתחזק בעת תנועה או אור חזק שמופעל רק כשמישהו מתקרב."
+        },
+        {
+          "q": "עמידה בגשם?",
+          "a": "מבנה PC ו־ABS עם עמידות IP65 מתאים לגשם ולמזג אוויר משתנה."
+        },
+        {
+          "q": "איזה מצב לבחור?",
+          "a": "למעבר פעיל בחרו אור חלש שמתחזק. לאזור שצריך להאיר רק בעת תנועה, בחרו הפעלה חזקה וממוקדת."
+        }
+      ],
+      "home_card_line": "100 נורות LED · חיישן PIR · טווח זיהוי כ־6–8 מטרים",
+      "flags": [
+        "No colour temperature, hours, lumens or battery in the description.",
+        "images[0] baked (\"נטען ביום, מאיר בלילה\", \"טעינה סולארית\") — no numbers."
+      ]
+    },
+    "modern-solar-path-lights-set": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "כ־4–8 שעות",
+      "light_hours": "כ־8–12 שעות בהתאם לתנאים",
+      "color_temp": "גוון חם 2700K",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "כ־15 לומן לכל מנורה",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "סט מנורות שביל סולאריות בצורת 7 שמפנות אור חם כלפי מטה — רצף נקי לאורך שבילים, ערוגות ומדשאות.",
+      "not_fit_for": "המקום כמעט אינו מקבל אור יום",
+      "not_fit_for_pair": 1,
+      "faq": [
+        {
+          "q": "כמה שעות עובדות?",
+          "a": "עבודה כ־8–12 שעות בהתאם לתנאים."
+        },
+        {
+          "q": "כמה זמן טעינה?",
+          "a": "טעינה כ־4–8 שעות."
+        },
+        {
+          "q": "4 או 8 יחידות?",
+          "a": "4 יחידות מתאימות למקטע ממוקד; 8 יחידות יוצרות רצף מלא ומרשים יותר."
+        },
+        {
+          "q": "האור מסנוור?",
+          "a": "האלומה יורדת אל הקרקע ומייצרת נראות נעימה בלי סנוור ישיר לעיניים."
+        }
+      ],
+      "home_card_line": "גוון חם 2700K · עמידות IP65 · סט של 4 או 8 יחידות",
+      "flags": [
+        "images[0] baked (\"מוסיפה אווירה לכל שביל וגינה\", badge \"זמין בסט של 4 או 8 יחידות\") — consistent with the variants; no other numbers."
+      ]
+    },
+    "solar-floodlight-ip67-remote-timer": {
+      "power_source": "סולארי",
+      "ip_rating": "IP67",
+      "charge_time_hours": "כ־6–8 שעות",
+      "light_hours": "כ־8–10 שעות בהתאם לתנאים",
+      "color_temp": "",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "100W / 200W / 300W לפי הדגם",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "פרוז׳קטור סולארי עם פאנל נפרד, שלט וטיימר — לחצר, לחניה, לכניסה או לאזור עבודה בחוץ.",
+      "not_fit_for": "נדרש אור חזק וקבוע לאורך כל הלילה",
+      "not_fit_for_pair": 2,
+      "faq": [
+        {
+          "q": "מה עושים אם המקום מוצל?",
+          "a": "ההפרדה ביניהם מאפשרת לקבל טעינה טובה גם כאשר אזור ההארה עצמו מוצל או נמצא מתחת לקירוי."
+        },
+        {
+          "q": "איך עובד הטיימר?",
+          "a": "משנים עוצמה ומפעילים טיימר של 3, 5 או 8 שעות בלי לטפס ובלי לגשת למנורה."
+        },
+        {
+          "q": "כמה שעות עובד?",
+          "a": "עבודה כ־8–10 שעות בהתאם לתנאים."
+        },
+        {
+          "q": "איזה דגם לבחור?",
+          "a": "לאזור כניסה או מרפסת דגם קטן עשוי להספיק. לחניה או חצר רחבה, מספר LED גבוה יותר יעניק כיסוי משמעותי יותר."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "IMAGE CONTRADICTS THE VARIANTS: images[0] carries the badge \"זמין בסט של 4 או 8 יחידות\" (copied from the path-set creative) — this product sells single units of 72/128/200 LED. Never render images[0].",
+        "power_watt comes ONLY from the option labels (\"72 LED / 100W\" …). 100–300W for a solar floodlight is almost certainly a marketing-equivalent figure — owner must confirm before it is written; otherwise leave power_watt empty.",
+        "light_modes left empty: the description says \"משנים עוצמה\" without a count.",
+        "images[0] also shows \"IP67\" on the housing — consistent with the description."
+      ]
+    },
+    "decorative-led-net-lights": {
+      "power_source": "חשמל 220V",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "לבן חם, לבן קר, כחול, סגול או RGB",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "מ־1.5×1.5 עד 12×2 או 6×4 מטר",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "רשת תאורת LED בחיבור 220V שפורסים על גדר, קיר או פרגולה — רקע מואר למסיבה, לאירוח או לערב בגינה.",
+      "not_fit_for": "צריך אור חזק — זו אינה מטרתה",
+      "not_fit_for_pair": 3,
+      "faq": [
+        {
+          "q": "איך מחברים לחשמל?",
+          "a": "חיבור 220V. יש להשתמש בחיבור חשמל מתאים ומוגן באזור חוץ."
+        },
+        {
+          "q": "איזו מידה לבחור?",
+          "a": "מדדו את הקיר או הגדר לפני ההזמנה. לרקע מלא בחרו מידה שקרובה ככל האפשר לשטח שאותו רוצים לכסות."
+        },
+        {
+          "q": "כמה נורות יש?",
+          "a": "96 עד 780 נורות LED לפי המידה."
+        }
+      ],
+      "home_card_line": "חיבור 220V · מ־1.5×1.5 עד 12×2 או 6×4 מטר",
+      "flags": [
+        "NO IP RATING for a 220V product sold \"לחוץ ולגינה\" — the only protection wording is the caution bullet; ip_rating stays empty. Owner should obtain the rating before selling it as outdoor.",
+        "images[0] baked (\"רשת תאורת LED לאווירה קסומה\", \"מתאים לחוץ ולפנים\") — no numbers."
+      ]
+    },
+    "led-globe-string-lights": {
+      "power_source": "USB או סוללות (לפי הווריאנט)",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "לבן חם, לבן קר או צבעוני",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "אורך 1.5 עד 12 מטר; קוטר כדור כ־1 ס״מ",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "קופסת סוללות — סוללות אינן כלולות",
+      "light_modes": "",
+      "direct_answer": "גרילנדת כדורי LED עדינים ב־USB או בסוללות — למדף, למרפסת, לאוהל או לשולחן; שכבה של אור ואווירה.",
+      "not_fit_for": "צריך אור חזק — זו אינה מטרתה",
+      "not_fit_for_pair": 3,
+      "faq": [
+        {
+          "q": "USB או סוללות?",
+          "a": "USB לשימוש ממושך ליד מקור מתח; קופסת סוללות למקומות שבהם אין שקע קרוב."
+        },
+        {
+          "q": "הסוללות כלולות?",
+          "a": "סוללות אינן כלולות."
+        },
+        {
+          "q": "איזה אורך לבחור?",
+          "a": "1.5–3 מטר מתאימים למדף או שולחן; 6–12 מטר מאפשרים לעטוף מסגרת, קיר, אוהל או אזור ישיבה רחב."
+        },
+        {
+          "q": "מאירה חדר?",
+          "a": "הן לא נועדו להאיר חדר שלם — הן נועדו לגרום לו להרגיש אחרת."
+        }
+      ],
+      "home_card_line": "1.5 עד 12 מטר · 10 עד 100 נורות LED · USB או סוללות",
+      "flags": [
+        "No IP rating and no outdoor claim beyond \"מרפסת\"/\"אוהל\" — do not present as weatherproof.",
+        "Battery type/count not stated (only \"קופסת סוללות\", \"סוללות אינן כלולות\").",
+        "images[0] baked (\"נגיעת אור לכל פינה\", \"מתאים לחללים קטנים\") — no numbers."
+      ]
+    },
+    "lighted-birch-branches-20-led": {
+      "power_source": "סוללות",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "לבן חם או לבן קר",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "גובה כ־72 ס״מ",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "2 סוללות AA — אינן כלולות",
+      "light_modes": "",
+      "direct_answer": "ענפי ליבנה מוארים עם 20 נורות LED בסוללות — לאגרטל על קונסולה, במרכז שולחן או בפינת הסלון.",
+      "not_fit_for": "צריך אור חזק — זו אינה מטרתה",
+      "not_fit_for_pair": 3,
+      "faq": [
+        {
+          "q": "איך מפעילים?",
+          "a": "הפעלה באמצעות 2 סוללות AA. סוללות אינן כלולות."
+        },
+        {
+          "q": "מה הגובה?",
+          "a": "גובה כ־72 ס״מ."
+        },
+        {
+          "q": "אפשר לעצב את הענפים?",
+          "a": "הענפים גמישים, כך שאפשר לפתוח, לכופף ולסדר אותם לפי צורת האגרטל והסגנון הרצוי."
+        }
+      ],
+      "home_card_line": "גובה כ־72 ס״מ · 20 נורות LED · לבן חם או לבן קר",
+      "flags": [
+        "Indoor décor item (\"לעיצוב הבית\") in an outdoor-lighting catalogue (BRIEF §2 says all 27 are outdoor) — none of the four places applies; not_fit_for is a loose fit.",
+        "No IP rating (correct — indoor)."
+      ]
+    },
+    "solar-firefly-garden-lights": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "כ־6–12 שעות לאחר טעינה מלאה",
+      "color_temp": "",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "תאורת גחליליות סולארית — עשר נקודות אור על ענפים גמישים שנעים ברוח, בין פרחים, ליד שביל או בעציץ.",
+      "not_fit_for": "צריך אור חזק — זו אינה מטרתה",
+      "not_fit_for_pair": 3,
+      "faq": [
+        {
+          "q": "כמה שעות מאירה?",
+          "a": "כ־6–12 שעות תאורה לאחר טעינה מלאה."
+        },
+        {
+          "q": "איפה למקם?",
+          "a": "ליד ערוגה, בקצה הדשא או לצד פינת ישיבה — אזור פתוח יאפשר לענפים לנוע ולהציג את האפקט בצורה ברורה יותר."
+        },
+        {
+          "q": "נשארת בגשם?",
+          "a": "עמידות IP65 מתאימה לגשם, שמש ולתנאי מזג אוויר משתנים."
+        },
+        {
+          "q": "איך מתקינים?",
+          "a": "נועצים באדמה, מכוונים את הפאנל לשמש ונותנים לרוח ליצור את האפקט."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "No charge time or battery stated. Images 2–3 carry small captions (ledger) — no numeric claims seen."
+      ]
+    },
+    "solar-rope-string-lights": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "לבן חם, לבן קר, כחול או צבעוני",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "אורך 7, 12, 22 או 32 מ׳",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "שרשרת חבל סולארית עד 32 מטר — להקיף עצים, לעבור לאורך גדר או למלא פרגולה בנקודות אור, בלי תלות בשקע.",
+      "not_fit_for": "צריך אור חזק — זו אינה מטרתה",
+      "not_fit_for_pair": 3,
+      "faq": [
+        {
+          "q": "איזה אורך לבחור?",
+          "a": "בעת ליפוף סביב עץ או פרגולה נדרש יותר אורך ממה שנראה לעין. בחרו מידה עם מרווח כדי להגיע לתוצאה מלאה ולא להיעצר באמצע."
+        },
+        {
+          "q": "צריך שקע?",
+          "a": "הפאנל הסולארי נטען מהשמש ומשחרר אתכם מכבלים שמגבילים את המיקום."
+        },
+        {
+          "q": "נדלקת לבד?",
+          "a": "השרשרת נטענת ביום ופועלת אוטומטית עם רדת החשכה."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "No light hours or charge time in the description — unusual for a solar product; left empty.",
+        "images[2] shows an IP65 badge — consistent with the description."
+      ]
+    },
+    "solar-edison-string-lights": {
+      "power_source": "סולארי",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "כ־5–6 שעות לאחר טעינה מלאה",
+      "color_temp": "גוון חם",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "אורך 5 מטר (10 נורות) או 8 מטר (20 נורות)",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "גרילנדת נורות אדיסון סולארית — אור חם מעל פינת הישיבה, לאורך הפרגולה או באוהל, בלי שקע ובלי כבל מאריך.",
+      "not_fit_for": "צריך אור חזק — זו אינה מטרתה",
+      "not_fit_for_pair": 3,
+      "faq": [
+        {
+          "q": "כמה שעות מאירה?",
+          "a": "כ־5–6 שעות תאורה לאחר טעינה מלאה."
+        },
+        {
+          "q": "5 או 8 מטר?",
+          "a": "5 מטר עם 10 נורות לפינה ממוקדת; 8 מטר עם 20 נורות לכיסוי רחב ועשיר יותר."
+        },
+        {
+          "q": "צריך להדליק כל ערב?",
+          "a": "לאחר ההגדרה הראשונית, הפאנל נטען ביום והגרילנדה נדלקת אוטומטית בלילה."
+        },
+        {
+          "q": "איך לתלות?",
+          "a": "השארת ירידה עדינה בין נקודות התלייה מעניקה לגרילנדה מראה טבעי, רך ומזמין יותר."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "NO IP RATING for an outdoor solar string light (sold for \"מרפסת, פרגולה, גינה וקמפינג\") — ip_rating empty.",
+        "No charge time stated."
+      ]
+    },
+    "solar-crystal-ball-string-lights": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "כ־8–10 שעות לאחר טעינה מלאה",
+      "color_temp": "צהוב, כחול, צבעוני או לבן",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "אורך 5–22 מטר",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "8",
+      "direct_answer": "גרילנדת כדורי קריסטל סולארית — נצנוץ סביב אזור הישיבה, לאורך גדר או בתוך אוהל, בלי חיבור לחשמל.",
+      "not_fit_for": "צריך אור חזק — זו אינה מטרתה",
+      "not_fit_for_pair": 3,
+      "faq": [
+        {
+          "q": "מה שמונת המצבים?",
+          "a": "בחרו אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע."
+        },
+        {
+          "q": "כמה שעות עובדת?",
+          "a": "כ־8–10 שעות עבודה לאחר טעינה מלאה."
+        },
+        {
+          "q": "נשארת בחוץ?",
+          "a": "עמידות IP65 מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים."
+        },
+        {
+          "q": "איזה אורך לבחור?",
+          "a": "מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "Gallery slides (\"22 מטר / 200 נורות LED\", \"עמיד למים IP65\", \"התקנה פשוטה\") agree with the description — nothing image-only.",
+        "No charge time stated."
+      ]
+    },
+    "modern-led-bollard-light-5w-ip65": {
+      "power_source": "חשמל 220V",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "גוון חם",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "אלומיניום",
+      "dimensions": "",
+      "power_watt": "5W",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת עמוד LED מינימליסטית 5W (AC 85–265V) — להאיר שבילים, כניסות, מדשאות ופינות חוץ באור חם.",
+      "not_fit_for": "",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "מה מקור המתח?",
+          "a": "מתח: AC 85–265V · נורה כלולה."
+        },
+        {
+          "q": "מתאימה לגשם?",
+          "a": "דירוג IP65 מספק הגנה מפני אבק, גשם ולחות לשימוש שוטף בגינה."
+        },
+        {
+          "q": "ממה עשוי הגוף?",
+          "a": "גוף אלומיניום עמיד."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "MAINS PRODUCT IN THE SOLAR PATH COLLECTION (`תאורת-שביל-סולארית`) — the collection name promises solar; the title does not say solar but a buyer landing from that collection will assume it.",
+        "IMAGE CONTRADICTS THE DESCRIPTION: images[0] says \"שנה אחריות\" (1 year) and carries the third-party mark \"LUMIÈRE OUTDOOR LIGHTING\"; the description says \"אחריות יצרן: שנתיים\" (2 years). Warranty wording is under the owner ban (INVENTORY) — not put in any metafield.",
+        "No dimensions (height) stated for a bollard; certification \"תקן CE\" unverifiable — not mapped.",
+        "Description is the older plain format (\"פרטים טכניים\" line, no `.elms-sales` bullets)."
+      ]
+    },
+    "rechargeable-telescopic-camping-lantern": {
+      "power_source": "נטען",
+      "ip_rating": "",
+      "charge_time_hours": "כ־3 שעות (5V/2A)",
+      "light_hours": "כ־3 שעות בפנס הקדמי וכ־5+ שעות בתאורת הצד",
+      "color_temp": "",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "ABS",
+      "dimensions": "מקופל כ־25.2×10×4.2 ס״מ; נפתח עד גובה כ־51.8 ס״מ",
+      "power_watt": "",
+      "lumens": "עד כ־310 לומן (פנס קדמי) / עד כ־170 לומן (תאורת צד)",
+      "battery": "",
+      "light_modes": "פנס: חזק / חלש / הבהוב · תאורת צד: חזק / חלש",
+      "direct_answer": "פנס קמפינג טלסקופי נטען עם פנס קדמי חזק ותאורת צד רחבה — לאוהל, לרכב או לאזור עבודה.",
+      "not_fit_for": "",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "כמה זמן עובד?",
+          "a": "זמן עבודה מוצהר: כ־3 שעות בפנס הקדמי וכ־5+ שעות בתאורת הצד."
+        },
+        {
+          "q": "איך טוענים?",
+          "a": "טעינה של כ־3 שעות באמצעות 5V/2A, בלי להסתמך על סוללות חד־פעמיות."
+        },
+        {
+          "q": "מה הגודל?",
+          "a": "מתקפל לגודל כ־25.2×10×4.2 ס״מ ונוח לאחסון ברכב או בציוד הקמפינג."
+        },
+        {
+          "q": "עמיד למים?",
+          "a": "עמידות למים לשימוש יומיומי."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "TITLE CONTRADICTS THE IMAGE: title says \"360°\", images[0] says \"ראש מסתובב 270°\"; the description states neither. No rotation number is written anywhere in the text — none used.",
+        "No IP number (\"עמידות למים לשימוש יומיומי\" only) — ip_rating empty; \"ABS עמיד לנפילות\" is drop-resistance, not waterproofing.",
+        "Non-solar portable lantern in collection `ספוטים-ופרוז-קטורים-סולאריים`.",
+        "No battery capacity stated. Description is the older plain format."
+      ]
+    },
+    "swaying-solar-path-lights-ip65": {
+      "power_source": "סולארי",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "עד כ־12 שעות, לאחר טעינה מלאה בשמש ובהתאם לתנאי מזג האוויר",
+      "color_temp": "לבן חם",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "ABS",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורות שביל סולאריות שנעות בעדינות עם הרוח — לאורך שבילים, ערוגות, מדשאות ופינות ישיבה, ללא חיווט.",
+      "not_fit_for": "המקום כמעט אינו מקבל אור יום",
+      "not_fit_for_pair": 1,
+      "faq": [
+        {
+          "q": "כמה שעות מאירות?",
+          "a": "עד כ־12 שעות תאורה: לאחר טעינה מלאה בשמש ובהתאם לתנאי מזג האוויר."
+        },
+        {
+          "q": "צריך חיווט?",
+          "a": "נטענות מהשמש במהלך היום ופועלות באופן אוטומטי בשעות החשכה."
+        },
+        {
+          "q": "עמידות לגשם?",
+          "a": "דירוג IP65 וגוף ABS מספקים הגנה מפני גשם, אבק ולחות."
+        },
+        {
+          "q": "2 או 6 יחידות?",
+          "a": "בחרו 2 יחידות לנקודת עניין — או 6 יחידות כדי ליצור אפקט גינה שלם."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "IMAGE CONTRADICTS THE DESCRIPTION: images[0] (\"פאנל סולארי מוגדל\") claims \"עד 14 שעות תאורה\", \"+30% יעילות טעינה\", \"50,000 שעות עבודה\"; the description says \"עד כ־12 שעות\". Only the description value is used; never render images[0].",
+        "Certification list (CE, RoHS, UL, FCC, LVD) is unverifiable from the store — not mapped to any metafield.",
+        "Description is the older plain format."
+      ]
+    },
+    "powerful-solar-garden-light": {
+      "power_source": "סולארי",
+      "ip_rating": "",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "",
+      "dimensions": "",
+      "power_watt": "",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת גינה סולארית שמוסיפה אור ברור לחצר, לשביל, למדשאה ולכניסה — נטענת ביום ונדלקת אוטומטית עם החשכה.",
+      "not_fit_for": "המקום כמעט אינו מקבל אור יום",
+      "not_fit_for_pair": 1,
+      "faq": [
+        {
+          "q": "צריך חיבור לחשמל?",
+          "a": "פאנל סולארי טוען את המנורה ביום, כך שאין צורך בחיבור קבוע לחשמל."
+        },
+        {
+          "q": "נדלקת לבד?",
+          "a": "חיישן יום/לילה מאפשר פעולה אוטומטית בשעות הערב."
+        },
+        {
+          "q": "מתאימה לגשם?",
+          "a": "בנויה לעבודה בסביבה חיצונית ובתנאי גשם, לחות ומזג אוויר משתנה."
+        },
+        {
+          "q": "איפה למקם?",
+          "a": "ממקמים באזור שמקבל שמש, נותנים לה להיטען — ומהערב היא מתחילה לעבוד בשבילכם."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "NO NUMERIC SPEC AT ALL: no IP, hours, lumens, watt, battery, size. The title promises \"עוצמתית\" with nothing to back it; \"מתאימה לחוץ … בתנאי גשם\" without an IP rating. All 12 spec fields empty.",
+        "images[0] is clean (no baked claims); images[2] has a small caption (ledger).",
+        "Description is the older plain format."
+      ]
+    },
+    "dual-head-garden-light-10w-ip65": {
+      "power_source": "חשמל 220V",
+      "ip_rating": "IP65",
+      "charge_time_hours": "",
+      "light_hours": "",
+      "color_temp": "גוון חם",
+      "sensor_range_m": "",
+      "sensor_angle_deg": "",
+      "material": "אלומיניום",
+      "dimensions": "",
+      "power_watt": "10W",
+      "lumens": "",
+      "battery": "",
+      "light_modes": "",
+      "direct_answer": "מנורת גינה דו־ראשית 10W עם סיבוב של עד 180° — שליטה על פיזור האור בחצר, בשביל, ליד קיר או בכניסה.",
+      "not_fit_for": "",
+      "not_fit_for_pair": "",
+      "faq": [
+        {
+          "q": "אפשר לכוון כל ראש בנפרד?",
+          "a": "סיבוב של עד 180° מאפשר להפנות את האור לשני אזורים שונים וליצור כיסוי מדויק יותר."
+        },
+        {
+          "q": "מתאימה לחוץ?",
+          "a": "דירוג IP65 מספק עמידות מפני אבק, גשם ולחות לשימוש שוטף."
+        },
+        {
+          "q": "מה מקור המתח?",
+          "a": "מתח: AC 85–265V · נורות כלולות."
+        }
+      ],
+      "home_card_line": "",
+      "flags": [
+        "MAINS PRODUCT in collection `ספוטים-ופרוז-קטורים-סולאריים` (solar spotlights) — a buyer from that collection expects solar.",
+        "Warranty wording (\"אחריות יצרן: שנתיים\") is under the owner ban — not mapped. \"תקן CE\" unverifiable.",
+        "images[1–3] are on the never-use list (baked \"ראש מתכוונן 180°\", \"אור חם ונעים\") — consistent with the description, no extra numbers.",
+        "Description is the older plain format."
+      ]
+    }
+  }
+}
