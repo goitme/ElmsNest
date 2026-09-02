@@ -919,3 +919,35 @@ empty (that is the state today on 26 of 27 products): `not_fit_for` empty → no
 index / path / wall, and confirm (1) `הוספה לסל` bottom edge < 700 px on 390, (2) the toggle inside the
 second screen, (3) no caption under 13 px, (4) the dark state genuinely dark in the still, (5) no horizontal
 scroll at 360 px, (6) `6W/12W` renders in that order.
+
+---
+
+## 8. Addendum — corrections issued by the lead before the build (2026-09-02)
+
+**8.1 The template file is `templates/product.elmsnest.json`, not `templates/product.json`.**
+All 27 products carry `templateSuffix: "elmsnest"` (verified read-only against the Admin API on 2026-09-02).
+`templateSuffix` is a property of the **product**, shared by every theme, so changing it would immediately change
+which template the **published** theme renders — a live-store change this round is forbidden from making. Therefore:
+
+- Write the new section list into `templates/product.elmsnest.json` on the dev theme (replace its contents).
+- Do **not** create `templates/product.json`, do **not** delete `product.elmsnest.json`, and do **not** touch any
+  product's `templateSuffix`.
+- §5's JSON body is otherwise correct (same eight sections, same order, same ids).
+- The old sections (`elms-pdp-*`, `elmsnest-product-guidance`, `brc-nav-product`, `main-product`) leave the template
+  but their **files stay on the theme** until the owner signs off the preview; nothing is deleted this round.
+
+**8.2 The base guard.** §5 says `elmsnest-v2-base` is reused "guard widened to `hdt-page-type-product`". That snippet
+is now a 344-byte deprecation stub — round 0 replaced it with `snippets/elmsnest-v2-core.liquid`, which is rendered
+from `layout/theme.liquid` on **every** template and already carries the tokens, the fonts, `[data-lamp]`,
+`window.env2`, the buttons and the side-page ground. So: render nothing global from the PDP sections; assume the core.
+`snippets/elmsnest-v2-ground-product.liquid` (§5) is still needed for the PDP's own §3.1 ground and must be rendered
+by `elmsnest-v2-pdp-stage` only, exactly as the hero renders `elmsnest-v2-ground-index`.
+
+**8.3 Known core bug the stage must not inherit.** `.env2-section a{color:inherit}` outranks
+`.env2-btn{color:var(--env2-btn-ink)}`, so an **anchor** styled as a primary button renders ink-on-glow at 1.21:1
+(REPORT §9.1). Until the lead approves the one-line core fix, every primary call to action in the PDP sections must be
+a `<button>` inside a form, or must set its own colour explicitly (`.env2-pdp-…__btn{color:var(--env2-btn-ink)}`).
+Check the computed colour in the render; do not assume.
+
+**8.4 Notice colours.** `--en-warning-text` / `-success-` / `-error-` / `-info-` are still cream-era on the night
+ground (REPORT §9.2). No PDP section may use them; write your own state colours from the env2 palette.
