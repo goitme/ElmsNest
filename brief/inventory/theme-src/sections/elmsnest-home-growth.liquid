@@ -1,0 +1,264 @@
+{%- comment -%}
+  The closing spread: the scene, the notes, the two guides, the last action.
+
+  No copy was removed. The three support items kept their exact wording but
+  stopped being circle-icon tiles — that pattern had already appeared twice on
+  this page and says "generic storefront" louder than it says anything about
+  outdoor lighting. They are now the notes at the foot of the sheet, which is
+  what they always were.
+{%- endcomment -%}
+
+{%- liquid
+  assign atmosphere_collection = collections['גרילנדות-ותאורה-דקורטיבית']
+  assign atmosphere_image = atmosphere_collection.image | default: atmosphere_collection.products.first.featured_image
+-%}
+
+<section class="en-close" dir="rtl" aria-labelledby="en-close-title-{{ section.id }}">
+  <div class="en-close__wrap">
+
+    <div class="en-close__scene">
+      <div class="en-close__scene-media">
+        {%- if atmosphere_image != blank -%}
+          {{ atmosphere_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '480,640,720,840,960,1200,1400', sizes: '(max-width: 749px) 100vw, 50vw', alt: 'תאורת אווירה למרפסת ולגינה' }}
+        {%- endif -%}
+      </div>
+
+      <div class="en-close__scene-copy">
+        <h2 id="en-close-title-{{ section.id }}">לא רק להאיר. להפוך את החוץ למקום שנעים להיות בו.</h2>
+        {%- comment -%}
+          "יכולה" was the only hedged verb on the page, sitting right under the
+          most confident heading. Same facts, indicative mood — each verb is
+          licensed by a published product description.
+        {%- endcomment -%}
+        <p class="en-close__lede">תאורה נכונה מקבלת את פניכם בכניסה, מובילה לאורך השביל ומוסיפה למרפסת אור חם שמזמין להישאר.</p>
+
+        {%- comment -%}
+          The schedule sold three places and offered one path — to the wrong
+          place in two of the three cases. Each row now opens its own
+          collection; not one word of the copy changed.
+        {%- endcomment -%}
+        <ol class="en-close__places">
+          <li><a class="en-close__place" href="{{ collections['solar-wall-lights'].url }}"><span class="en-close__idx"><bdi dir="ltr">01</bdi></span><b>כניסה וקירות</b><span class="en-close__what">אור שממסגר את הבית</span><span class="en-close__place-go" aria-hidden="true">←</span></a></li>
+          <li><a class="en-close__place" href="{{ collections['תאורת-שביל-סולארית'].url }}"><span class="en-close__idx"><bdi dir="ltr">02</bdi></span><b>שביל וגינה</b><span class="en-close__what">נקודות אור לאורך הדרך</span><span class="en-close__place-go" aria-hidden="true">←</span></a></li>
+          <li><a class="en-close__place" href="{{ collections['גרילנדות-ותאורה-דקורטיבית'].url }}"><span class="en-close__idx"><bdi dir="ltr">03</bdi></span><b>מרפסת ואירוח</b><span class="en-close__what">אווירה לערבים בחוץ</span><span class="en-close__place-go" aria-hidden="true">←</span></a></li>
+        </ol>
+
+        {%- if atmosphere_collection != blank -%}
+          <a class="en-close__scene-cta" href="{{ atmosphere_collection.url }}">לתאורה דקורטיבית <span aria-hidden="true">←</span></a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%}
+      Note 2: "check every product page" put the brand's promised work on the
+      reader; now it says we already wrote it there. Note 3: an offer of help
+      phrased as permission became an instruction plus the committee's negative
+      promise. Note 4 is new — the category's structural advantage (no
+      electrician, no cables) existed on every solar product page and nowhere
+      on this one; scoped to הסולארית so it never repeats the "רק סולארי"
+      overclaim the committee killed.
+    {%- endcomment -%}
+    <dl class="en-close__notes" aria-label="מידע שעוזר לבחור">
+      <div><dt>קולקציות ממוקדות</dt><dd>קיר, שביל ואווירה — בלי ללכת לאיבוד בין קטגוריות לא קשורות.</dd></div>
+      <div><dt>הפרטים לפני ההזמנה</dt><dd>בכל עמוד מוצר כתבנו את מקור החשמל, האפשרויות ואופן ההתקנה — כדי שתדעו מראש מה מתאים למקום שלכם.</dd></div>
+      <div><dt>התקנה ללא חיבור לחשמל</dt><dd>בתאורה הסולארית אין כבלים ואין צורך להזמין חשמלאי — נטענת ביום ונדלקת לבד בלילה.</dd></div>
+      <div><dt>צריכים עזרה בבחירה?</dt><dd>שלחו לנו קישור למוצר ותמונה של המקום — נבדוק התאמה, ואם לא מתאים נגיד מראש.</dd></div>
+    </dl>
+
+    <div class="en-close__learn" aria-labelledby="en-learn-title-{{ section.id }}">
+      <h2 id="en-learn-title-{{ section.id }}">שני מדריכים קצרים שיעשו סדר</h2>
+      <div class="en-close__guides">
+        <a href="{{ pages['guide-garden-lighting'].url | default: routes.root_url }}">
+          <strong>איך בוחרים תאורה לגינה?</strong>
+          <span class="en-close__guide-what">לפי המקום, המטרה ואופן ההתקנה</span>
+          <span class="en-close__guide-go">מדריך מעשי <b aria-hidden="true">←</b></span>
+        </a>
+        <a href="{{ pages['why-solar-lighting'].url | default: routes.root_url }}">
+          <strong>מתי תאורה סולארית מתאימה?</strong>
+          {%- comment -%}
+            The teaser hid the differentiator. The quote is verbatim from the
+            published guide itself — a live demonstration of "נגיד את זה
+            מראש" at the exact point the buyer decides whether to click.
+          {%- endcomment -%}
+          <span class="en-close__guide-what">"היא לא תמיד מחליפה תאורה חשמלית חזקה" — המגבלות ומה חשוב לבדוק</span>
+          <span class="en-close__guide-go">לפני שקונים <b aria-hidden="true">←</b></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="en-close__final">
+      <div>
+        <h2>כל תאורת החוץ, במקום אחד.</h2>
+        {%- comment -%}
+          The bookend: the 9/9/9 committee line returns at the last decision
+          point, where it also justifies the help button beside it.
+        {%- endcomment -%}
+        <p class="en-close__final-note">ואם מוצר לא מתאים למקום שלכם — נגיד את זה מראש.</p>
+      </div>
+      <div class="en-close__final-actions">
+        <a class="is-primary" href="{{ routes.all_products_collection_url }}">לכל המוצרים</a>
+        <a href="{{ pages['contact-us'].url | default: routes.root_url }}">עזרה לפני ההזמנה</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% stylesheet %}
+.en-close,.en-close *{box-sizing:border-box}
+.en-close{
+  --rule:rgb(var(--en-text-primary)/.16);
+  --rule-strong:rgb(var(--en-text-primary)/.30);
+  direction:rtl;padding:0 0 clamp(60px,7vw,92px);
+  background:rgb(var(--en-surface-page));color:rgb(var(--en-text-primary))
+}
+.en-close__wrap{width:min(1200px,100%);margin-inline:auto;padding-inline:clamp(18px,4vw,40px)}
+
+/* The scene: the one place on this sheet that goes back outside at night. */
+.en-close__scene{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  border:1px solid var(--rule-strong);background:rgb(var(--en-night))
+}
+.en-close__scene-media{min-height:100%}
+.en-close__scene-media img{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.86)}
+.en-close__scene-copy{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(28px,4vw,52px);color:rgb(var(--en-ink))
+}
+.en-close__scene-copy h2{
+  margin:0;color:rgb(var(--en-ink))!important;
+  font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:normal;text-wrap:balance
+}
+.en-close__lede{margin:18px 0 0;color:rgb(var(--en-ink)/.80)!important;font-size:17px;line-height:1.5}
+
+/* The three places as a ruled schedule, matching the hero's own list form. */
+.en-close__places{
+  margin:clamp(24px,3vw,32px) 0 0;padding:0;list-style:none;
+  border-block-start:1px solid rgb(var(--en-ink)/.26)
+}
+.en-close__places li{border-block-end:1px solid rgb(var(--en-ink)/.26)}
+.en-close__place{
+  display:grid;grid-template-columns:auto auto 1fr auto;align-items:baseline;gap:12px;
+  padding:13px 8px;margin-inline:-8px;
+  color:inherit!important;text-decoration:none;
+  transition:background-color .18s ease
+}
+.en-close__place:hover{background:rgb(var(--en-ink)/.07)}
+.en-close__place-go{color:rgb(var(--en-ink)/.62)!important;font-size:16px;font-weight:600;transition:transform .18s ease}
+.en-close__place:hover .en-close__place-go{color:rgb(var(--en-ink))!important;transform:translateX(-3px)}
+.en-close__idx{
+  color:rgb(var(--en-ink)/.55)!important;
+  font-size:12px;font-weight:700;font-variant-numeric:tabular-nums
+}
+.en-close__places b{color:rgb(var(--en-ink))!important;font-size:16px;font-weight:700}
+.en-close__what{color:rgb(var(--en-ink)/.74)!important;font-size:15px;line-height:1.5}
+
+.en-close__scene-cta{
+  display:inline-flex;align-items:center;align-self:flex-start;gap:8px;
+  min-height:52px;margin-top:clamp(22px,3vw,30px);padding:12px 28px;border-radius:0;
+  border:1px solid rgb(var(--en-ink));background:rgb(var(--en-ink));
+  color:rgb(var(--en-night))!important;text-decoration:none;font-weight:600;font-size:16px;
+  transition:background-color .18s ease,border-color .18s ease
+}
+.en-close__scene-cta:hover{background:#fff;border-color:#fff}
+
+/* Foot notes: label over note, separated by rules, no tiles and no circles. */
+.en-close__notes{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  margin:clamp(40px,5vw,60px) 0 0;padding:0;
+  border-block-start:1px solid var(--rule)
+}
+.en-close__notes>div{
+  padding:20px clamp(14px,2vw,24px);
+  border-inline-start:1px solid var(--rule);
+  border-block-end:1px solid var(--rule)
+}
+.en-close__notes>div:first-child{border-inline-start:0}
+.en-close__notes dt{margin:0 0 6px;color:rgb(var(--en-text-primary))!important;font-size:16px;font-weight:700}
+.en-close__notes dd{margin:0;color:rgb(var(--en-text-secondary))!important;font-size:15px;line-height:1.5}
+
+.en-close__learn{margin-top:clamp(48px,6vw,76px)}
+.en-close__learn h2{
+  margin:0 0 clamp(18px,2.4vw,26px);color:rgb(var(--en-text-primary))!important;
+  font-size:clamp(26px,3.4vw,40px);line-height:1.12;letter-spacing:normal
+}
+.en-close__guides{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  border-block-start:1px solid var(--rule-strong)
+}
+.en-close__guides a{
+  display:flex;flex-direction:column;gap:8px;
+  padding:clamp(22px,2.6vw,30px) clamp(16px,2vw,26px);
+  border-inline-start:1px solid var(--rule);border-block-end:1px solid var(--rule-strong);
+  color:rgb(var(--en-text-primary))!important;text-decoration:none;
+  transition:background-color .18s ease
+}
+.en-close__guides a:first-child{border-inline-start:0}
+.en-close__guides a:hover{background:rgb(var(--en-text-primary)/.05)}
+.en-close__guides strong{color:rgb(var(--en-text-primary))!important;font-size:clamp(20px,2.2vw,26px);line-height:1.22;letter-spacing:normal}
+.en-close__guide-what{color:rgb(var(--en-text-secondary))!important;font-size:15px;line-height:1.5}
+.en-close__guide-go{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:clamp(14px,2vw,22px);padding-block-start:14px;
+  border-block-start:1px solid var(--rule);
+  color:rgb(var(--en-text-primary))!important;font-size:14px;font-weight:600
+}
+.en-close__guide-go b{font-size:18px;transition:transform .18s ease}
+.en-close__guides a:hover .en-close__guide-go b{transform:translateX(-3px)}
+
+.en-close__final{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;
+  margin-top:clamp(48px,6vw,76px);padding-block-start:clamp(26px,3vw,34px);
+  border-block-start:1px solid var(--rule-strong)
+}
+.en-close__final h2{
+  margin:0;color:rgb(var(--en-text-primary))!important;
+  font-size:clamp(24px,3vw,36px);line-height:1.15;letter-spacing:normal
+}
+.en-close__final-note{
+  margin:8px 0 0;color:rgb(var(--en-text-secondary))!important;
+  font-size:16px;line-height:1.5
+}
+.en-close__final-actions{display:flex;flex-wrap:wrap;gap:12px}
+.en-close__final-actions a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:12px 28px;border-radius:0;
+  border:1px solid rgb(var(--en-text-primary)/.42);
+  color:rgb(var(--en-text-primary))!important;text-decoration:none;font-weight:600;font-size:16px;
+  transition:background-color .18s ease,border-color .18s ease
+}
+.en-close__final-actions a:hover{border-color:rgb(var(--en-text-primary));background:rgb(var(--en-text-primary)/.06)}
+.en-close__final-actions a.is-primary{
+  border-color:rgb(var(--en-text-primary));background:rgb(var(--en-text-primary));
+  color:rgb(var(--en-surface-page))!important
+}
+.en-close__final-actions a.is-primary:hover{background:rgb(var(--en-color-dark));border-color:rgb(var(--en-color-dark))}
+
+.en-close a:focus-visible{outline:3px solid rgb(var(--en-text-primary));outline-offset:3px}
+.en-close__scene a:focus-visible{outline-color:rgb(var(--en-ink))}
+
+@media(max-width:900px){
+  .en-close__scene{grid-template-columns:1fr}
+  .en-close__scene-media{min-height:320px}
+  .en-close__notes{grid-template-columns:1fr}
+  .en-close__notes>div{border-inline-start:0;padding-inline:0}
+  .en-close__guides{grid-template-columns:1fr}
+  .en-close__guides a{border-inline-start:0;padding-inline:0}
+}
+@media(max-width:560px){
+  .en-close__wrap{padding-inline:16px}
+  .en-close__place{grid-template-columns:auto 1fr auto;row-gap:2px}
+  .en-close__what{grid-column:1 / 3}
+  .en-close__scene-cta,.en-close__final-actions,.en-close__final-actions a{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.en-close *{transition:none!important}}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "ElmsNest closing spread",
+  "tag": "section",
+  "settings": [],
+  "presets": [{ "name": "ElmsNest closing spread" }]
+}
+{% endschema %}

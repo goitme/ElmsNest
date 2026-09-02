@@ -1,0 +1,618 @@
+{%- comment -%}
+  ElmsNest PDP — התקנה בשלבים (v2).
+
+  v1 היה ארבע עמודות של פסקאות עם מספר זעיר בתוך מסגרת — רצועה שאם מסתירים
+  ממנה את הפסקאות לא נשאר בה כלום. v2 בונה את המשקל הוויזואלי משני דברים
+  שאינם טקסט רץ: ספרת השלב כמספר גדול בגוון האור, ותמונה אמיתית לצד הרשימה.
+
+  התמונה נמשכת כברירת מחדל מ־product.media, בדיוק כמו במקטע התצוגה, כדי שהרצועה
+  תעבוד על כל 26 המוצרים בלי עבודה ידנית. הסוחר יכול לדרוס עם תמונה משלו, וגם
+  לתת תמונה נפרדת לכל שלב.
+
+  הסדר הוא <ol> אמיתי: הקורא מסך מכריז מיקום ומספר, והספרה הגלויה מוסתרת ממנו
+  כדי שלא תיקרא פעמיים. הספרה נגזרת מהלולאה ולא מהטקסט — מחיקה או שינוי סדר
+  של שלב בעורך ממספרת מחדש נכון.
+
+  אין כאן שום נתון מוצר ספציפי (זמן טעינה, שעות תאורה) — אלה שייכים למפרט הטכני
+  שנשען על metafields.
+
+  כל תכונת CSS תלוית־כיוון היא לוגית — החנות בעברית RTL.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_step_count = 0
+  for block in section.blocks
+    if block.settings.title != blank or block.settings.text != blank
+      assign elms_step_count = elms_step_count | plus: 1
+    endif
+  endfor
+
+  assign elms_ground = section.settings.ground
+  if elms_ground == 'custom'
+    if section.settings.bg_color == blank or section.settings.text_color == blank
+      assign elms_ground = 'cream'
+    endif
+  endif
+
+  assign elms_images = product.media | where: 'media_type', 'image'
+  assign elms_image_max = elms_images.size | minus: 1
+  assign elms_image_idx = section.settings.image_index | minus: 1
+  if elms_image_idx > elms_image_max
+    assign elms_image_idx = elms_image_max
+  endif
+
+  assign elms_has_auto = false
+  if elms_image_idx >= 0
+    for elms_candidate in elms_images limit: 1 offset: elms_image_idx
+      assign elms_auto_image = elms_candidate
+      assign elms_has_auto = true
+    endfor
+  endif
+
+  assign elms_media = 'none'
+  if section.settings.show_image
+    if section.settings.image != blank
+      assign elms_media = 'manual'
+    elsif elms_has_auto
+      assign elms_media = 'auto'
+    endif
+  endif
+-%}
+
+{%- if section.settings.enable and elms_step_count > 0 -%}
+  <section
+    class="elms-pdp elms-install elms-install--{{ elms_ground }}"
+    dir="rtl"
+    {% if section.settings.heading != blank %}
+      aria-labelledby="elms-install-title-{{ section.id }}"
+    {% else %}
+      aria-label="שלבי ההתקנה"
+    {% endif %}
+    style="--elms-install-pt: {{ section.settings.padding_top }}px; --elms-install-pb: {{ section.settings.padding_bottom }}px;{% if elms_ground == 'custom' %} --elms-install-bg: {{ section.settings.bg_color }}; --elms-install-fg: {{ section.settings.text_color }}; --elms-install-kicker: {{ section.settings.text_color | color_mix: section.settings.bg_color, 55 }}; --elms-install-soft: {{ section.settings.text_color | color_mix: section.settings.bg_color, 70 }}; --elms-install-rule: {{ section.settings.text_color | color_mix: section.settings.bg_color, 20 }}; --elms-install-frame: {{ section.settings.text_color | color_mix: section.settings.bg_color, 20 }}; --elms-install-card: {{ section.settings.bg_color }};{% endif %}"
+  >
+    <div class="elms-install__wrap">
+      {%- if section.settings.kicker != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+        <header class="elms-install__header">
+          {%- if section.settings.kicker != blank -%}
+            <p class="elms-install__kicker">{{ section.settings.kicker }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="elms-install__title" id="elms-install-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <p class="elms-install__sub">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      <div class="elms-install__layout{% if elms_media != 'none' %} elms-install__layout--media{% endif %}">
+        {%- if elms_media != 'none' -%}
+          <figure class="elms-install__media">
+            <div class="elms-install__frame">
+              {%- if elms_media == 'manual' -%}
+                {%- assign elms_alt = section.settings.image.alt | default: product.title -%}
+                {{
+                  section.settings.image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    class: 'elms-install__img',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(max-width: 899px) 92vw, min(470px, 33vw)',
+                    alt: elms_alt
+                }}
+              {%- else -%}
+                {%- assign elms_alt = elms_auto_image.alt | default: product.title -%}
+                {{
+                  elms_auto_image.preview_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    class: 'elms-install__img',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(max-width: 899px) 92vw, min(470px, 33vw)',
+                    alt: elms_alt
+                }}
+              {%- endif -%}
+            </div>
+            {%- if section.settings.image_caption != blank -%}
+              <figcaption class="elms-install__caption">{{ section.settings.image_caption }}</figcaption>
+            {%- endif -%}
+          </figure>
+        {%- endif -%}
+
+        <ol class="elms-install__list">
+          {%- assign elms_step_n = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.title != blank or block.settings.text != blank -%}
+              {%- assign elms_step_n = elms_step_n | plus: 1 -%}
+              <li
+                class="elms-install__step{% if block.settings.image != blank %} elms-install__step--media{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                <span class="elms-install__num" aria-hidden="true">
+                  <bdi dir="ltr">{{ elms_step_n }}</bdi>
+                </span>
+                <span class="elms-install__body">
+                  {%- if block.settings.title != blank -%}
+                    <span class="elms-install__step-title">{{ block.settings.title }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <span class="elms-install__step-text">{{ block.settings.text }}</span>
+                  {%- endif -%}
+                </span>
+                {%- if block.settings.image != blank -%}
+                  <span class="elms-install__thumb">
+                    {%- assign elms_thumb_alt = block.settings.image.alt | default: block.settings.title | default: product.title -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 400
+                      | image_tag:
+                        loading: 'lazy',
+                        decoding: 'async',
+                        class: 'elms-install__thumb-img',
+                        widths: '160, 240, 320, 400',
+                        sizes: '(max-width: 720px) 180px, 132px',
+                        alt: elms_thumb_alt
+                    }}
+                  </span>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ol>
+      </div>
+
+      {%- if section.settings.note != blank -%}
+        <p class="elms-install__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-install,
+  .elms-install * { box-sizing: border-box; }
+
+  /* --- Grounds. Amber is an accent only: kicker rule and step numerals. -
+     The band rhythm floors at 64px even if a merchant saved a tighter value,
+     and the saved value acts as the desktop ceiling. */
+
+  .elms-install {
+    direction: rtl;
+    --elms-install-bg: rgb(var(--en-surface-page));
+    --elms-install-fg: rgb(var(--en-text-primary));
+    --elms-install-kicker: rgb(var(--en-text-muted));
+    --elms-install-soft: rgb(var(--en-text-secondary));
+    --elms-install-rule: rgb(var(--en-border-subtle));
+    --elms-install-frame: rgb(var(--en-border-subtle));
+    --elms-install-card: rgb(var(--en-surface-card));
+    --elms-install-accent: rgb(var(--en-amber));
+    /* Pure amber on cream is a 1.9:1 wash. The numeral keeps the amber token
+       but is deepened toward the band ink, which reads at 3.6:1. */
+    --elms-install-num: color-mix(in srgb, rgb(var(--en-amber)) 62%, rgb(var(--en-text-primary)));
+    background: var(--elms-install-bg);
+    color: var(--elms-install-fg);
+    padding-block-start: clamp(64px, 8vw, var(--elms-install-pt, 96px));
+    padding-block-end: clamp(64px, 8vw, var(--elms-install-pb, 96px));
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  .elms-install--night {
+    --elms-install-bg: rgb(var(--en-night));
+    --elms-install-fg: rgb(var(--en-ink));
+    --elms-install-kicker: rgb(var(--en-amber));
+    --elms-install-soft: rgb(var(--en-ink) / .68);
+    --elms-install-rule: rgb(var(--en-ink) / .16);
+    --elms-install-frame: rgb(var(--en-ink) / .10);
+    --elms-install-card: rgb(var(--en-ink) / .06);
+    --elms-install-num: rgb(var(--en-amber-soft));
+  }
+
+  .elms-install__wrap {
+    inline-size: min(1180px, 100%);
+    margin-inline: auto;
+  }
+
+  /* --- Header: kicker / title / sub. Ratio title:body is 46:16 = 2.9x. - */
+
+  /* No measure cap on the header itself: `ch` resolves against the header's own
+     16px font-size, so 58ch clamped the whole block to ~460px and wrapped the
+     46px title into a ribbon. The cap belongs on each child in `em`, which
+     scales with that child's type. */
+  .elms-install__header {
+    margin-block-end: clamp(32px, 4vw, 56px);
+  }
+
+  .elms-install__kicker {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .10em;
+    color: var(--elms-install-kicker);
+  }
+
+  .elms-install__kicker::after {
+    content: "";
+    display: block;
+    inline-size: 40px;
+    block-size: 2px;
+    margin-block-start: 12px;
+    background: var(--elms-install-accent);
+  }
+
+  /* The theme sets its own h2 colour, which beats plain inheritance from the
+     section root — so the title states its ground colour explicitly. */
+  .elms-install__title {
+    margin: 0;
+    max-inline-size: 14em;
+    color: var(--elms-install-fg);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+
+  .elms-install__sub {
+    margin: 16px 0 0;
+    max-inline-size: 32em;
+    font-size: clamp(16px, 1.3vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-install-soft);
+    text-align: start;
+  }
+
+  /* --- Layout: image beside the steps on desktop, above them on mobile. - */
+
+  .elms-install__layout {
+    display: grid;
+    gap: clamp(24px, 3vw, 48px);
+  }
+
+  .elms-install__media {
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  .elms-install__frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--elms-install-card);
+    border: 1px solid var(--elms-install-frame);
+  }
+
+  /* Sources are square 1254x1254, so cover crops nothing. */
+  .elms-install__img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .elms-install__caption {
+    margin: 12px 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-install-soft);
+    text-align: start;
+  }
+
+  /* --- Steps: one ruled column, never separate boxes. ------------------- */
+
+  .elms-install__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: 1px solid var(--elms-install-rule);
+  }
+
+  .elms-install__step {
+    display: grid;
+    grid-template-columns: clamp(52px, 6vw, 78px) minmax(0, 1fr);
+    column-gap: clamp(12px, 1.4vw, 20px);
+    align-items: start;
+    padding-block: clamp(20px, 2.4vw, 30px);
+    border-block-end: 1px solid var(--elms-install-rule);
+  }
+
+  .elms-install__step--media {
+    grid-template-columns: clamp(52px, 6vw, 78px) minmax(0, 1fr) clamp(88px, 11vw, 132px);
+  }
+
+  .elms-install__num {
+    display: block;
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--elms-install-num);
+  }
+
+  /* Nudges the 20px title toward the cap-height of the numeral beside it. */
+  .elms-install__body {
+    display: block;
+    min-inline-size: 0;
+    padding-block-start: clamp(2px, .5vw, 8px);
+  }
+
+  .elms-install__step-title {
+    display: block;
+    max-inline-size: 23em;
+    color: var(--elms-install-fg);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  /* Without the section image the list owns the full 1180px, and a 16px line
+     that long is unreadable — so the measure is capped, not the container.
+     In `em`, so the cap tracks this element's own 16px, not its parent's. */
+  .elms-install__step-text {
+    display: block;
+    margin-block-start: 8px;
+    max-inline-size: 32em;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--elms-install-soft);
+    text-align: start;
+  }
+
+  .elms-install__thumb {
+    display: block;
+    overflow: hidden;
+    background: var(--elms-install-card);
+    border: 1px solid var(--elms-install-frame);
+  }
+
+  .elms-install__thumb-img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .elms-install__note {
+    margin-block-start: clamp(28px, 3vw, 40px);
+    padding-block-start: 18px;
+    border-block-start: 1px solid var(--elms-install-rule);
+    max-inline-size: 38em;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-install-soft);
+    text-align: start;
+  }
+
+  /* The media column is held at 360px minimum — a thumbnail is not an asset. */
+  @media (min-width: 900px) {
+    .elms-install__layout--media {
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .78fr);
+      align-items: start;
+    }
+    .elms-install__layout--media > .elms-install__list {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .elms-install__layout--media > .elms-install__media {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .elms-install__step,
+    .elms-install__step--media {
+      grid-template-columns: clamp(44px, 12vw, 58px) minmax(0, 1fr);
+    }
+    .elms-install__thumb {
+      grid-column: 2;
+      grid-row: 2;
+      inline-size: min(100%, 180px);
+      margin-block-start: 14px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · התקנה בשלבים",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "שורת פתיחה קצרה",
+      "info": "מופיעה מעל הכותרת. השאירו ריק כדי להסתיר.",
+      "default": "שלב אחר שלב"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "ההתקנה — ללא חוטים וללא חשמלאי"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "שורת משנה",
+      "default": "רוב מוצרי התאורה הסולארית מותקנים בלי חיבור לחשמל ובלי הזמנת בעל מקצוע."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "הערה בתחתית המקטע",
+      "info": "מקום להבהיר שדגמים המחוברים לחשמל דורשים חשמלאי.",
+      "default": "דגמים המחוברים לרשת החשמל דורשים חיבור על ידי חשמלאי מוסמך. אופן ההפעלה של כל דגם מצוין במפרט הטכני."
+    },
+    {
+      "type": "header",
+      "content": "תמונת המקטע"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "הצגת תמונה לצד השלבים",
+      "info": "במסך רחב התמונה יושבת לצד רשימת השלבים, ובנייד מעליה.",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "תמונה ידנית",
+      "info": "רשות. אם לא נבחרה תמונה, המקטע מושך אוטומטית תמונה מתוך תמונות המוצר."
+    },
+    {
+      "type": "range",
+      "id": "image_index",
+      "label": "איזו תמונת מוצר להציג",
+      "info": "רלוונטי רק במצב האוטומטי. תמונה 1 כבר מוצגת בגלריה שבראש העמוד. אם למוצר אין מספיק תמונות תוצג האחרונה שקיימת.",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "image_caption",
+      "label": "כיתוב מתחת לתמונה",
+      "info": "רשות. השאירו ריק כדי להסתיר."
+    },
+    {
+      "type": "header",
+      "content": "עיצוב"
+    },
+    {
+      "type": "select",
+      "id": "ground",
+      "label": "רקע המקטע",
+      "options": [
+        { "value": "cream", "label": "בהיר (קרם)" },
+        { "value": "night", "label": "לילי כהה" },
+        { "value": "custom", "label": "צבעים מותאמים אישית" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "header",
+      "content": "צבעים מותאמים אישית"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "צבע רקע",
+      "info": "פועל רק כאשר רקע המקטע מוגדר כמותאם אישית. אם אחד משני הצבעים ריק, המקטע חוזר לרקע הבהיר."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "צבע טקסט",
+      "info": "פועל רק כאשר רקע המקטע מוגדר כמותאם אישית."
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "info": "הריווח בפועל לא יורד מתחת ל־64px, כדי לשמור על מקצב הרצועות בעמוד.",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "info": "הריווח בפועל לא יורד מתחת ל־64px, כדי לשמור על מקצב הרצועות בעמוד.",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "שלב",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "כותרת השלב",
+          "default": "בוחרים מקום שמקבל שמש"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "תיאור השלב",
+          "default": "מאתרים נקודה שמקבלת שמש ישירה במהלך היום — שם ממקמים את הפאנל הסולארי."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "תמונה לשלב",
+          "info": "רשות. מוצגת כריבוע קטן בקצה השורה של השלב."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · התקנה בשלבים",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "בוחרים מקום שמקבל שמש",
+            "text": "מאתרים נקודה שמקבלת שמש ישירה במהלך היום — שם ממקמים את הפאנל הסולארי."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "מקבעים את גוף התאורה",
+            "text": "מקבעים לקיר, לגדר או נועצים באדמה, לפי סוג המוצר ואופן ההתקנה שמצוין במפרט."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "מפעילים ומכוונים",
+            "text": "מדליקים את המתג, מכוונים את זווית הפאנל לשמש ואת זווית התאורה לאזור שרוצים להאיר."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "טעינה ראשונה",
+            "text": "מומלץ לאפשר טעינה מלאה ביום הראשון. לאחר מכן התאורה נדלקת אוטומטית עם החשכה."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+{%- comment -%}
+  ElmsNest PDP — one cell of the comparison table.
+
+  Usage: {% render 'elms-pdp-compare-cell', mark: 'check', text: 'עד 14 יום' %}
+
+  Meaning never rests on colour: each state has its own glyph shape and its own
+  visually-hidden Hebrew word, so the cell reads correctly to a screen reader,
+  in greyscale, and to a colour-blind visitor. Colour is inherited from the
+  section, not set here.
+
+  A cell with neither a mark nor text renders an em dash so the table never has
+  a silently empty box that reads as "unknown" to sighted users but as nothing
+  at all to assistive tech.
+{%- endcomment -%}
+{%- liquid
+  assign elms_mark = mark | default: 'none'
+  assign elms_text = text | default: ''
+-%}
+<span class="elms-compare__mark">
+  {%- case elms_mark -%}
+    {%- when 'check' -%}
+      <span class="elms-compare__glyph">
+        {%- render 'elms-pdp-icon', name: 'check' -%}
+      </span>
+      <span class="elms-compare__sr">יש</span>
+    {%- when 'cross' -%}
+      <span class="elms-compare__glyph">
+        {%- render 'elms-pdp-icon', name: 'cross' -%}
+      </span>
+      <span class="elms-compare__sr">אין</span>
+    {%- when 'partial' -%}
+      <span class="elms-compare__glyph" aria-hidden="true">–</span>
+      <span class="elms-compare__sr">חלקי</span>
+  {%- endcase -%}
+
+  {%- if elms_text != blank -%}
+    <span class="elms-compare__mark-text"><bdi dir="auto">{{ elms_text }}</bdi></span>
+  {%- elsif elms_mark == 'none' -%}
+    <span class="elms-compare__mark-text" aria-hidden="true">—</span>
+    <span class="elms-compare__sr">לא צוין</span>
+  {%- endif -%}
+</span>

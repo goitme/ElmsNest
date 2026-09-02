@@ -1,0 +1,797 @@
+{%- comment -%}
+  ElmsNest PDP — טבלת השוואה (v2).
+
+  v1 was a bare 13px table on the cream ground: correct, and invisible. v2 keeps
+  the real <table> — one <th scope="row"> per criterion, one <th scope="col"> per
+  side — and gives it weight on the night ground, where the amber accent is the
+  colour of the light the products emit.
+
+  The ElmsNest column is the hero and says so structurally, not by adjective:
+  an amber cap rule, an amber crest, an amber column name and a lifted amber
+  wash that runs unbroken from the header down through the last row. The
+  comparison column stays plain — it is not attacked, it is simply not lit.
+
+  Marks are never colour alone. Every mark renders a distinct glyph shape
+  (✓ / ✗ / –) plus a word: the merchant's own text when they wrote one, and the
+  Hebrew state word otherwise, so the meaning survives greyscale, colour-blind
+  vision and a screen reader with images off.
+
+  The comparison column defaults deliberately say "משתנה" rather than asserting a
+  failure of unnamed competitors: the store cannot verify what an arbitrary
+  generic lamp does. Every cell is a schema setting, so any sharper claim is the
+  merchant's own and made knowingly. Nothing here is an invented spec, rating or
+  count — the section renders only what the merchant typed.
+
+  Every direction-dependent CSS property is logical — the store is Hebrew RTL.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_row_count = 0
+  for block in section.blocks
+    if block.settings.criterion != blank
+      assign elms_row_count = elms_row_count | plus: 1
+    endif
+  endfor
+
+  assign elms_ground = section.settings.ground | default: 'night'
+  assign elms_crest = section.settings.crest_icon | default: 'sun'
+  assign elms_sides = 'a,b' | split: ','
+-%}
+
+{%- if section.settings.enable and elms_row_count > 0 -%}
+  <section
+    class="elms-pdp elms-compare elms-compare--{{ elms_ground }}"
+    dir="rtl"
+    {% if section.settings.heading != blank %}
+      aria-labelledby="elms-compare-title-{{ section.id }}"
+    {% else %}
+      aria-label="השוואה"
+    {% endif %}
+    style="--elms-compare-pt: {{ section.settings.padding_top }}px; --elms-compare-pb: {{ section.settings.padding_bottom }}px;{% if elms_ground == 'custom' %} --elms-compare-bg: {{ section.settings.bg_color }}; --elms-compare-fg: {{ section.settings.text_color }}; --elms-compare-soft: {{ section.settings.text_color | color_mix: section.settings.bg_color, 70 }}; --elms-compare-faint: {{ section.settings.text_color | color_mix: section.settings.bg_color, 52 }}; --elms-compare-line: {{ section.settings.text_color | color_mix: section.settings.bg_color, 16 }}; --elms-compare-kicker: {{ section.settings.text_color | color_mix: section.settings.bg_color, 70 }}; --elms-compare-accent: {{ section.settings.text_color }}; --elms-compare-accent-text: {{ section.settings.text_color }}; --elms-compare-hero-bg: {{ section.settings.text_color | color_mix: section.settings.bg_color, 5 }}; --elms-compare-hero-head: {{ section.settings.text_color | color_mix: section.settings.bg_color, 10 }}; --elms-compare-hero-line: {{ section.settings.text_color | color_mix: section.settings.bg_color, 24 }}; --elms-compare-focus: {{ section.settings.text_color }};{% endif %}"
+  >
+    <div class="elms-compare__wrap">
+      {%- if section.settings.kicker != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+        <header class="elms-compare__header">
+          {%- if section.settings.kicker != blank -%}
+            <p class="elms-compare__kicker">{{ section.settings.kicker }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="elms-compare__title" id="elms-compare-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <p class="elms-compare__sub">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      {%- comment -%}
+        Measured, not assumed: an overflow-x container with a min-inline-size
+        does NOT contain itself in RTL. At a 375px viewport Chromium reported
+        document.documentElement.scrollWidth = 446 against a 375px client width,
+        i.e. the page itself gained a horizontal scrollbar. So below 760px the
+        table stacks into one card per row instead of scrolling.
+
+        The stack is a display change only. Every element keeps an explicit ARIA
+        role, because a <table> that is display:block loses its implicit table
+        role in Chromium and Firefox — with the roles declared the table
+        semantics survive the restyle. The <thead> goes away at that width, so
+        every cell also carries its own column name.
+
+        The overflow-x container stays as a floor for the widths where the table
+        does render as a table and a merchant has typed an unusually long row.
+      {%- endcomment -%}
+      <div class="elms-compare__scroll" tabindex="0" role="region" aria-label="טבלת השוואה">
+        <table class="elms-compare__table" role="table">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader" class="elms-compare__th elms-compare__th--criterion">
+                {{ section.settings.criterion_label }}
+              </th>
+
+              <th scope="col" role="columnheader" class="elms-compare__th elms-compare__th--a">
+                <span class="elms-compare__crest">
+                  {%- render 'elms-pdp-icon', name: elms_crest -%}
+                </span>
+                <span class="elms-compare__col-name"><bdi dir="auto">{{ section.settings.col_a_label }}</bdi></span>
+              </th>
+
+              <th scope="col" role="columnheader" class="elms-compare__th elms-compare__th--b">
+                <span class="elms-compare__col-name"><bdi dir="auto">{{ section.settings.col_b_label }}</bdi></span>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody role="rowgroup">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.criterion != blank -%}
+                <tr role="row" {{ block.shopify_attributes }}>
+                  <th scope="row" role="rowheader" class="elms-compare__criterion">{{ block.settings.criterion }}</th>
+
+                  {%- for elms_side in elms_sides -%}
+                    {%- liquid
+                      if elms_side == 'a'
+                        assign elms_mark = block.settings.mark_a | default: 'none'
+                        assign elms_text = block.settings.text_a
+                        assign elms_col_name = section.settings.col_a_label
+                      else
+                        assign elms_mark = block.settings.mark_b | default: 'none'
+                        assign elms_text = block.settings.text_b
+                        assign elms_col_name = section.settings.col_b_label
+                      endif
+
+                      case elms_mark
+                        when 'check'
+                          assign elms_word = 'יש'
+                        when 'cross'
+                          assign elms_word = 'אין'
+                        when 'partial'
+                          assign elms_word = 'חלקי'
+                        else
+                          assign elms_word = 'לא צוין'
+                      endcase
+                    -%}
+                    <td role="cell" class="elms-compare__cell elms-compare__cell--{{ elms_side }}">
+                      {%- comment -%}
+                        Hidden while the <thead> is visible, shown once the row
+                        becomes a card and the column headers are gone.
+                      {%- endcomment -%}
+                      <span class="elms-compare__cell-label"><bdi dir="auto">{{ elms_col_name }}</bdi></span>
+
+                      <span class="elms-compare__mark elms-compare__mark--{{ elms_mark }}">
+                        {%- case elms_mark -%}
+                          {%- when 'check' -%}
+                            <span class="elms-compare__glyph" aria-hidden="true">
+                              {%- render 'elms-pdp-icon', name: 'check' -%}
+                            </span>
+                          {%- when 'cross' -%}
+                            <span class="elms-compare__glyph" aria-hidden="true">
+                              {%- render 'elms-pdp-icon', name: 'cross' -%}
+                            </span>
+                          {%- when 'partial' -%}
+                            <span class="elms-compare__glyph" aria-hidden="true">–</span>
+                        {%- endcase -%}
+
+                        <span class="elms-compare__mark-text">
+                          {%- if elms_text != blank -%}
+                            {%- unless elms_mark == 'none' -%}
+                              <span class="elms-compare__sr">{{ elms_word }}. </span>
+                            {%- endunless -%}
+                            <bdi dir="auto">{{ elms_text }}</bdi>
+                          {%- else -%}
+                            {{ elms_word }}
+                          {%- endif -%}
+                        </span>
+                      </span>
+                    </td>
+                  {%- endfor -%}
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+
+      {%- comment -%}
+        The rule belongs to the band and spans it; the note's measure does not,
+        so the two live on separate elements.
+      {%- endcomment -%}
+      {%- if section.settings.note != blank -%}
+        <div class="elms-compare__foot">
+          <p class="elms-compare__note">{{ section.settings.note }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-compare,
+  .elms-compare * { box-sizing: border-box; }
+
+  .elms-compare {
+    direction: rtl;
+    background: var(--elms-compare-bg);
+    color: var(--elms-compare-fg);
+    padding-block-start: var(--elms-compare-pt);
+    padding-block-end: var(--elms-compare-pb);
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  /* --- Grounds ---------------------------------------------------------
+     Night is the default: the amber accent only means "light" against a dark
+     ground. On cream, amber on paper is a 1.8:1 text contrast, so the accent
+     role falls back to the ink tokens and amber is simply not used. */
+
+  .elms-compare--night {
+    --elms-compare-bg: rgb(var(--en-night));
+    --elms-compare-fg: rgb(var(--en-ink));
+    --elms-compare-soft: rgb(var(--en-ink) / .68);
+    --elms-compare-faint: rgb(var(--en-ink) / .52);
+    --elms-compare-line: rgb(var(--en-ink) / .14);
+    --elms-compare-kicker: rgb(var(--en-amber));
+    --elms-compare-accent: rgb(var(--en-amber));
+    --elms-compare-accent-text: rgb(var(--en-amber-soft));
+    --elms-compare-hero-bg: rgb(var(--en-amber) / .08);
+    --elms-compare-hero-head: rgb(var(--en-amber) / .15);
+    --elms-compare-hero-line: rgb(var(--en-amber) / .32);
+    --elms-compare-focus: rgb(var(--en-focus-dark));
+  }
+
+  .elms-compare--cream {
+    --elms-compare-bg: rgb(var(--en-surface-page));
+    --elms-compare-fg: rgb(var(--en-text-primary));
+    --elms-compare-soft: rgb(var(--en-text-secondary));
+    --elms-compare-faint: rgb(var(--en-text-muted));
+    --elms-compare-line: rgb(var(--en-border-subtle));
+    --elms-compare-kicker: rgb(var(--en-text-muted));
+    --elms-compare-accent: rgb(var(--en-text-primary));
+    --elms-compare-accent-text: rgb(var(--en-text-primary));
+    --elms-compare-hero-bg: rgb(var(--en-text-primary) / .05);
+    --elms-compare-hero-head: rgb(var(--en-text-primary) / .09);
+    --elms-compare-hero-line: rgb(var(--en-text-primary) / .22);
+    --elms-compare-focus: rgb(var(--en-focus-light));
+  }
+
+  /* The custom ground reads every colour from the merchant's two colour
+     settings, injected on the section element itself. */
+
+  .elms-compare__wrap {
+    inline-size: min(1180px, 100%);
+    margin-inline: auto;
+  }
+
+  /* --- Band header. Title:body is 46:16 = 2.9x at 1440px. -------------- */
+
+  /* Measure lives on the title and the sub in `em`, never on the header in
+     `ch`. `ch` resolves against the containing block's font-size, not the
+     heading's: 58ch on this header measured 500.25px at a 1440px viewport
+     inside a 1180px wrap, i.e. it squeezed the 46px title into a ribbon.
+     `em` scales with each element's own size, so the limit follows the type. */
+  .elms-compare__header {
+    margin-block-end: clamp(32px, 4vw, 56px);
+  }
+
+  .elms-compare__kicker {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .10em;
+    color: var(--elms-compare-kicker);
+  }
+
+  .elms-compare__kicker::after {
+    content: "";
+    display: block;
+    inline-size: 40px;
+    block-size: 2px;
+    margin-block-start: 12px;
+    background: var(--elms-compare-kicker);
+  }
+
+  /* The theme sets its own h2 colour, which beats plain inheritance from the
+     section root — so the title states its ground colour explicitly. */
+  .elms-compare__title {
+    max-inline-size: 14em;
+    margin: 0;
+    color: var(--elms-compare-fg);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+
+  .elms-compare__sub {
+    max-inline-size: 32em;
+    margin: 16px 0 0;
+    font-size: clamp(16px, 1.3vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-compare-soft);
+    text-align: start;
+  }
+
+  /* --- Table shell ------------------------------------------------------ */
+
+  .elms-compare__scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--elms-compare-line);
+  }
+
+  .elms-compare__scroll:focus-visible {
+    outline: 3px solid var(--elms-compare-focus);
+    outline-offset: 2px;
+  }
+
+  /* --- Table ----------------------------------------------------------- */
+
+  .elms-compare__table {
+    inline-size: 100%;
+    min-inline-size: 600px;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+
+  .elms-compare__table th,
+  .elms-compare__table td {
+    padding-block: 18px;
+    padding-inline: clamp(14px, 1.6vw, 22px);
+    text-align: start;
+    vertical-align: top;
+    line-height: 1.6;
+    border-block-end: 1px solid var(--elms-compare-line);
+  }
+
+  .elms-compare__table thead th {
+    vertical-align: bottom;
+    padding-block-start: clamp(20px, 2.4vw, 30px);
+    font-weight: 400;
+  }
+
+  .elms-compare__th--criterion {
+    inline-size: 40%;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .10em;
+    color: var(--elms-compare-faint);
+  }
+
+  .elms-compare__th--a,
+  .elms-compare__th--b { inline-size: 30%; }
+
+  /* The hero column: an amber cap rule, an amber wash and amber hairlines
+     that run unbroken from this cell down to the last row. */
+  .elms-compare__th--a {
+    background: var(--elms-compare-hero-head);
+    border-block-start: 3px solid var(--elms-compare-accent);
+    border-inline: 1px solid var(--elms-compare-hero-line);
+  }
+
+  .elms-compare__crest {
+    display: block;
+    inline-size: 44px;
+    block-size: 44px;
+    margin-block-end: 14px;
+    color: var(--elms-compare-accent);
+  }
+
+  .elms-compare__crest svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .elms-compare__col-name {
+    display: block;
+    font-size: clamp(20px, 1.9vw, 24px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -.01em;
+  }
+
+  .elms-compare__th--a .elms-compare__col-name { color: var(--elms-compare-accent-text); }
+  .elms-compare__th--b .elms-compare__col-name { color: var(--elms-compare-soft); }
+
+  .elms-compare__criterion {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--elms-compare-fg);
+  }
+
+  .elms-compare__cell--a {
+    background: var(--elms-compare-hero-bg);
+    border-inline: 1px solid var(--elms-compare-hero-line);
+    color: var(--elms-compare-fg);
+  }
+
+  .elms-compare__cell--b { color: var(--elms-compare-soft); }
+
+  /* The column name repeated inside every cell — dead weight while the real
+     column headers are on screen, so it only exists in the stacked layout. */
+  .elms-compare__cell-label { display: none; }
+
+  /* Scoped to the widths that actually render a table, so the stacked layout
+     below does not have to out-specify these. */
+  @media (min-width: 761px) {
+    .elms-compare__table tbody tr:last-child th,
+    .elms-compare__table tbody tr:last-child td { border-block-end: 0; }
+
+    /* The hero wash needs a floor, or the column bleeds into the frame. */
+    .elms-compare__table tbody tr:last-child .elms-compare__cell--a {
+      border-block-end: 1px solid var(--elms-compare-hero-line);
+    }
+  }
+
+  /* --- Marks. Shape + word first, colour last. -------------------------- */
+
+  .elms-compare__mark {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .elms-compare__glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    inline-size: 26px;
+    block-size: 26px;
+    margin-block-start: 1px;
+    border: 1px solid currentColor;
+    color: var(--elms-compare-faint);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .elms-compare__glyph svg {
+    display: block;
+    inline-size: 18px;
+    block-size: 18px;
+  }
+
+  .elms-compare__cell--a .elms-compare__mark--check .elms-compare__glyph {
+    background: var(--elms-compare-hero-head);
+    color: var(--elms-compare-accent);
+  }
+
+  .elms-compare__mark-text {
+    min-inline-size: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+  }
+
+  .elms-compare__sr {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .elms-compare__foot {
+    margin-block-start: clamp(28px, 3vw, 40px);
+    padding-block-start: 18px;
+    border-block-start: 1px solid var(--elms-compare-line);
+  }
+
+  .elms-compare__note {
+    max-inline-size: 42em;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-compare-soft);
+    text-align: start;
+  }
+
+  /* --- Stacked cards. One card per criterion, hero panel first. ---------
+     Three columns at 360px leave roughly 100px per value, so below 760px the
+     rows stack instead of scrolling. This is a display change only — the ARIA
+     roles in the markup keep the table semantics through it. */
+
+  @media (max-width: 760px) {
+    .elms-compare {
+      padding-block-start: calc(var(--elms-compare-pt) * .62);
+      padding-block-end: calc(var(--elms-compare-pb) * .62);
+    }
+
+    .elms-compare__scroll { border: 0; }
+
+    .elms-compare__table {
+      display: block;
+      min-inline-size: 0;
+    }
+
+    /* The hero column header survives the stack as a banner rather than being
+       hidden with the rest of the <thead>: it carries the 44px crest, which is
+       the band's largest visual, and hiding the whole thead took the band's
+       only >=40px asset with it (measured 0x0 below 761px). The criterion and
+       comparison headers still go — every cell carries its own column name. */
+    .elms-compare__table thead,
+    .elms-compare__table thead tr { display: block; }
+
+    .elms-compare__table .elms-compare__th--criterion,
+    .elms-compare__table .elms-compare__th--b { display: none; }
+
+    .elms-compare__table .elms-compare__th--a {
+      inline-size: auto;
+      border-inline: 0;
+      border-block-end: 1px solid var(--elms-compare-hero-line);
+      margin-block-end: 14px;
+    }
+
+    .elms-compare__table tbody { display: block; }
+
+    .elms-compare__table tbody tr {
+      display: block;
+      border: 1px solid var(--elms-compare-line);
+    }
+
+    .elms-compare__table tbody tr + tr { margin-block-start: 14px; }
+
+    .elms-compare__table th,
+    .elms-compare__table td {
+      display: block;
+      padding-block: 15px;
+      padding-inline: 16px;
+      border-block-end: 0;
+    }
+
+    .elms-compare__table .elms-compare__criterion {
+      border-block-end: 1px solid var(--elms-compare-line);
+    }
+
+    /* The hero panel keeps its wash and takes an amber bar on the leading edge
+       in place of the two hairlines it had as a column. */
+    .elms-compare__table .elms-compare__cell--a {
+      border-inline: 0;
+      border-inline-start: 3px solid var(--elms-compare-accent);
+      border-block-end: 1px solid var(--elms-compare-line);
+    }
+
+    .elms-compare__cell-label {
+      display: block;
+      margin-block-end: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: .10em;
+    }
+
+    .elms-compare__cell--a .elms-compare__cell-label { color: var(--elms-compare-accent-text); }
+    .elms-compare__cell--b .elms-compare__cell-label { color: var(--elms-compare-faint); }
+
+    .elms-compare__mark { gap: 10px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · טבלת השוואה",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "שורת פתיחה קצרה",
+      "info": "מופיעה מעל הכותרת בצבע ההדגשה. השאירו ריק כדי להסתיר.",
+      "default": "השוואה"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "מה ההבדל מול מנורה סולארית זולה"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "שורת משנה",
+      "default": "ההשוואה מתייחסת לאופן שבו אנחנו מוכרים — לא להבטחת ביצועים של מוצר מסוים."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "הערה בתחתית המקטע",
+      "default": "אנחנו לא מתחייבים על ביצועי מוצרים של מוכרים אחרים. הטבלה מתארת את מה שאנחנו מפרסמים בעמוד המוצר שלנו."
+    },
+    {
+      "type": "header",
+      "content": "כותרות העמודות"
+    },
+    {
+      "type": "text",
+      "id": "criterion_label",
+      "label": "כותרת עמודת הקריטריון",
+      "default": "מה בודקים"
+    },
+    {
+      "type": "text",
+      "id": "col_a_label",
+      "label": "כותרת העמודה שלנו",
+      "default": "ElmsNest"
+    },
+    {
+      "type": "text",
+      "id": "col_b_label",
+      "label": "כותרת עמודת ההשוואה",
+      "default": "מנורה גנרית זולה"
+    },
+    {
+      "type": "select",
+      "id": "crest_icon",
+      "label": "סמל העמודה שלנו",
+      "info": "מופיע מעל שם העמודה שלנו, בצבע ההדגשה.",
+      "options": [
+        { "value": "sun", "label": "שמש — טעינה סולארית" },
+        { "value": "bolt", "label": "ברק — הספק" },
+        { "value": "shield", "label": "מגן — עמידות" },
+        { "value": "check", "label": "וי" }
+      ],
+      "default": "sun"
+    },
+    {
+      "type": "header",
+      "content": "עיצוב"
+    },
+    {
+      "type": "select",
+      "id": "ground",
+      "label": "רקע המקטע",
+      "info": "הרקע הלילי הוא ברירת המחדל — שם עמודת ElmsNest נקראת כעמודה מוארת.",
+      "options": [
+        { "value": "night", "label": "לילי כהה" },
+        { "value": "cream", "label": "בהיר" },
+        { "value": "custom", "label": "מותאם אישית — לפי הצבעים למטה" }
+      ],
+      "default": "night"
+    },
+    {
+      "type": "header",
+      "content": "צבעים מותאמים אישית",
+      "info": "פועלים רק כאשר רקע המקטע מוגדר כ״מותאם אישית״."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "צבע רקע",
+      "default": "#12100E"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "צבע טקסט",
+      "default": "#E8E3D9"
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "שורת השוואה",
+      "settings": [
+        {
+          "type": "text",
+          "id": "criterion",
+          "label": "מה בודקים",
+          "default": "מפרט טכני מלא בעמוד"
+        },
+        {
+          "type": "select",
+          "id": "mark_a",
+          "label": "סימון — העמודה שלנו",
+          "options": [
+            { "value": "check", "label": "✓ יש" },
+            { "value": "cross", "label": "✗ אין" },
+            { "value": "partial", "label": "– חלקי" },
+            { "value": "none", "label": "ללא סימון" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "text_a",
+          "label": "טקסט — העמודה שלנו",
+          "info": "השאירו ריק כדי להציג את מילת הסימון בלבד (יש / אין / חלקי)."
+        },
+        {
+          "type": "select",
+          "id": "mark_b",
+          "label": "סימון — עמודת ההשוואה",
+          "options": [
+            { "value": "check", "label": "✓ יש" },
+            { "value": "cross", "label": "✗ אין" },
+            { "value": "partial", "label": "– חלקי" },
+            { "value": "none", "label": "ללא סימון" }
+          ],
+          "default": "partial"
+        },
+        {
+          "type": "text",
+          "id": "text_b",
+          "label": "טקסט — עמודת ההשוואה",
+          "default": "משתנה"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · טבלת השוואה",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "criterion": "מפרט טכני מבוסס על נתוני היצרן",
+            "mark_a": "check",
+            "text_a": "",
+            "mark_b": "partial",
+            "text_b": "משתנה"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "criterion": "עמוד מוצר בעברית מלאה",
+            "mark_a": "check",
+            "text_a": "",
+            "mark_b": "partial",
+            "text_b": "לעיתים תרגום אוטומטי"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "criterion": "אפשר לשאול לפני ההזמנה",
+            "mark_a": "check",
+            "text_a": "בוואטסאפ",
+            "mark_b": "partial",
+            "text_b": "משתנה"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "criterion": "ביטול עסקה לפי חוק הגנת הצרכן",
+            "mark_a": "check",
+            "text_a": "עד 14 יום",
+            "mark_b": "partial",
+            "text_b": "תלוי במוכר"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "criterion": "נאמר לכם גם מתי המוצר לא מתאים",
+            "mark_a": "check",
+            "text_a": "",
+            "mark_b": "cross",
+            "text_b": "לרוב לא"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

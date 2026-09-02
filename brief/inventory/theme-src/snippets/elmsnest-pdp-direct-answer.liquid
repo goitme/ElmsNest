@@ -1,0 +1,9 @@
+{%- comment -%}
+  ElmsNest PDP direct answer (P6) — short paragraph straight under the
+  product title, sourced from product.metafields.custom.direct_answer.
+  Drops silently when the metafield is empty.
+{%- endcomment -%}
+{%- assign en_da = product.metafields.custom.direct_answer | metafield_text -%}
+{%- if en_da != blank -%}
+<p class="en-direct-answer" dir="rtl">{{ en_da | newline_to_br }}</p>
+{%- endif -%}

@@ -1,0 +1,429 @@
+{%- comment -%}
+  ElmsNest PDP — רצועת ביטחון (v2).
+
+  v1 של הרצועה נראתה כמו אותיות קטנות: אייקון בגודל 22px לצד טקסט של 13–16px,
+  והכול ישב בתוך רשת עם קווים מכל צד — כלומר קופסאות. v2 הופכת את שורת האייקונים
+  לנכס החזותי של הרצועה: אייקון של 40–44px מעל כותרת פריט של 20px ושורת הסבר אחת,
+  וההפרדה בין הפריטים היא קו שיער אנכי בלבד — בלי מסגרות.
+
+  כותרת המקטע היא רשות וריקה כברירת מחדל — בלעדיה הרצועה נשארת שקטה מתחת לראש
+  העמוד. כשהסוחר בכל זאת ממלא כותרת, היא מוצגת בקנה המידה של כותרת מקטע מלאה
+  ולא בקנה מידה זעיר: כותרת שקטנה מהטקסט שמתחתיה היא בדיוק התקלה של v1.
+
+  שום דבר כאן לא קורא נתוני מוצר — הרצועה אומרת את אותו דבר נכון על כל המוצרים,
+  והנוסח כולו בידי הסוחר דרך הבלוקים. אין כאן נתון, דירוג או מלאי מומצא.
+
+  כל תכונת CSS תלוית־כיוון היא לוגית — החנות בעברית RTL.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_cols = section.blocks.size | at_most: 4
+  if elms_cols < 1
+    assign elms_cols = 1
+  endif
+-%}
+
+{%- capture elms_trust_style -%}
+  --elms-trust-cols: {{ elms_cols }};
+  --elms-trust-pt: {{ section.settings.padding_top }}px;
+  --elms-trust-pb: {{ section.settings.padding_bottom }}px;
+  {%- if section.settings.bg_color != blank -%}
+    --elms-trust-bg: {{ section.settings.bg_color }};
+  {%- endif -%}
+  {%- if section.settings.text_color != blank -%}
+    --elms-trust-fg-custom: {{ section.settings.text_color }};
+    {%- if section.settings.bg_color != blank -%}
+      --elms-trust-soft-custom: {{ section.settings.text_color | color_mix: section.settings.bg_color, 72 }};
+      --elms-trust-rule-custom: {{ section.settings.text_color | color_mix: section.settings.bg_color, 26 }};
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if section.settings.enable and section.blocks.size > 0 -%}
+  <section
+    class="elms-pdp elms-trust elms-trust--{{ section.settings.ground }}"
+    dir="rtl"
+    {% if section.settings.heading != blank %}
+      aria-labelledby="elms-trust-title-{{ section.id }}"
+    {% else %}
+      aria-label="יתרונות הקנייה בחנות"
+    {% endif %}
+    style="{{ elms_trust_style | strip_newlines | strip }}"
+  >
+    <div class="elms-trust__wrap">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="elms-trust__title" id="elms-trust-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <ul class="elms-trust__list" role="list">
+        {%- for block in section.blocks -%}
+          <li class="elms-trust__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon != 'none' -%}
+              <span class="elms-trust__icon" aria-hidden="true">
+                {%- render 'elms-pdp-icon', name: block.settings.icon -%}
+              </span>
+            {%- endif -%}
+            {%- if block.settings.label != blank -%}
+              <span class="elms-trust__label">{{ block.settings.label }}</span>
+            {%- endif -%}
+            {%- if block.settings.note != blank -%}
+              <span class="elms-trust__note">{{ block.settings.note }}</span>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-trust,
+  .elms-trust * { box-sizing: border-box; }
+
+  .elms-trust {
+    direction: rtl;
+    background: var(--elms-trust-ground);
+    color: var(--elms-trust-fg);
+    padding-block-start: var(--elms-trust-pt);
+    padding-block-end: var(--elms-trust-pb);
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  /* --- Grounds. Amber stays an accent: it lights the icons on night only. - */
+
+  .elms-trust--cream {
+    --elms-trust-ground: rgb(var(--en-surface-page));
+    --elms-trust-fg: rgb(var(--en-text-primary));
+    --elms-trust-soft: rgb(var(--en-text-secondary));
+    --elms-trust-icon: rgb(var(--en-text-primary));
+    --elms-trust-rule: rgb(var(--en-border-subtle));
+  }
+
+  .elms-trust--card {
+    --elms-trust-ground: rgb(var(--en-surface-card));
+    --elms-trust-fg: rgb(var(--en-text-primary));
+    --elms-trust-soft: rgb(var(--en-text-secondary));
+    --elms-trust-icon: rgb(var(--en-text-primary));
+    --elms-trust-rule: rgb(var(--en-border-subtle));
+  }
+
+  .elms-trust--night {
+    --elms-trust-ground: rgb(var(--en-night));
+    --elms-trust-fg: rgb(var(--en-ink));
+    --elms-trust-soft: rgb(var(--en-ink) / .68);
+    --elms-trust-icon: rgb(var(--en-amber));
+    --elms-trust-rule: rgb(var(--en-ink) / .16);
+  }
+
+  /* Merchant colours arrive as custom properties on the section element, and
+     every one of them falls back to a token when the colour setting is empty. */
+  .elms-trust--custom {
+    --elms-trust-ground: var(--elms-trust-bg, rgb(var(--en-surface-card)));
+    --elms-trust-fg: var(--elms-trust-fg-custom, rgb(var(--en-text-primary)));
+    --elms-trust-soft: var(--elms-trust-soft-custom, rgb(var(--en-text-secondary)));
+    --elms-trust-icon: var(--elms-trust-fg-custom, rgb(var(--en-text-primary)));
+    --elms-trust-rule: var(--elms-trust-rule-custom, rgb(var(--en-border-subtle)));
+  }
+
+  .elms-trust__wrap {
+    inline-size: min(1180px, 100%);
+    margin-inline: auto;
+  }
+
+  /* The theme sets its own h2 colour, which beats plain inheritance from the
+     section root — so the title states its ground colour explicitly.
+     Band-title scale: a heading rendered smaller than the text under it is the
+     v1 failure, so when the merchant fills a title it gets the real scale.
+     Line length is capped in em, never ch — ch resolves against the containing
+     block's font-size and would clamp a 46px title to a narrow ribbon. */
+  .elms-trust__title {
+    margin: 0 0 clamp(32px, 4vw, 56px);
+    max-inline-size: 14em;
+    color: var(--elms-trust-fg);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -.01em;
+    text-align: start;
+    text-wrap: balance;
+  }
+
+  /* --- The row. Separation is a hairline, never a box. ------------------- */
+
+  .elms-trust__list {
+    display: grid;
+    grid-template-columns: repeat(var(--elms-trust-cols), minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .elms-trust__item {
+    position: relative;
+    min-inline-size: 0;
+    padding-block: clamp(14px, 1.6vw, 22px);
+    padding-inline: clamp(18px, 2.2vw, 30px);
+  }
+
+  .elms-trust__item:first-child {
+    padding-inline-start: 0;
+    --elms-trust-rule-on: 0;
+  }
+
+  .elms-trust__item:last-child {
+    padding-inline-end: 0;
+  }
+
+  .elms-trust__item::before {
+    content: "";
+    position: absolute;
+    inset-block: clamp(2px, .8vw, 10px);
+    inset-inline-start: 0;
+    inline-size: 1px;
+    background: var(--elms-trust-rule);
+    opacity: var(--elms-trust-rule-on, 1);
+  }
+
+  /* --- The visual asset: a 40px+ icon row, not an inline glyph. ---------- */
+
+  .elms-trust__icon {
+    display: block;
+    inline-size: clamp(40px, 3vw, 44px);
+    block-size: clamp(40px, 3vw, 44px);
+    margin-block-end: clamp(12px, 1.3vw, 18px);
+    color: var(--elms-trust-icon);
+  }
+
+  .elms-trust__icon svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    stroke-width: 1.2;
+  }
+
+  [dir="rtl"] .elms-trust .elms-icon--flip { transform: scaleX(-1); }
+
+  .elms-trust__label {
+    display: block;
+    font-size: clamp(17px, 1.4vw, 20px);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--elms-trust-fg);
+    text-align: start;
+    text-wrap: balance;
+  }
+
+  .elms-trust__note {
+    display: block;
+    margin-block-start: 8px;
+    max-inline-size: 17em;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-trust-soft);
+    text-align: start;
+  }
+
+  /* --- Mobile and tablet: 2×2. Four columns below ~900px squeezed every
+         supporting line into three ragged lines, so the row breaks earlier
+         than the theme's usual 760px. The hairlines follow the two columns. */
+
+  @media (max-width: 900px) {
+    .elms-trust {
+      padding-block-start: calc(var(--elms-trust-pt) * .8);
+      padding-block-end: calc(var(--elms-trust-pb) * .8);
+    }
+
+    .elms-trust__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .elms-trust__item:nth-child(odd) {
+      padding-inline-start: 0;
+      padding-inline-end: clamp(14px, 2vw, 22px);
+      --elms-trust-rule-on: 0;
+    }
+
+    .elms-trust__item:nth-child(even) {
+      padding-inline-start: clamp(14px, 2vw, 22px);
+      padding-inline-end: 0;
+      --elms-trust-rule-on: 1;
+    }
+
+    .elms-trust__item:nth-child(n + 3) { padding-block-start: clamp(18px, 2.6vw, 26px); }
+
+    /* Second row: a horizontal hairline instead of a gap, so the 2×2 reads as
+       one strip rather than two stacked rows. */
+    .elms-trust__item:nth-child(n + 3)::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      inset-block-start: 0;
+      block-size: 1px;
+      background: var(--elms-trust-rule);
+    }
+
+    .elms-trust__icon { margin-block-end: 10px; }
+
+    .elms-trust__note { margin-block-start: 6px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · רצועת ביטחון",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "info": "רשות. השאירו ריק — הרצועה עובדת היטב גם בלי כותרת. אם תמלאו, הכותרת תוצג בקנה מידה של כותרת מקטע מלאה."
+    },
+    {
+      "type": "header",
+      "content": "עיצוב"
+    },
+    {
+      "type": "select",
+      "id": "ground",
+      "label": "רקע המקטע",
+      "info": "הרקעים מבוססים על צבעי המותג. בחרו ״מותאם אישית״ רק אם אתם רוצים לקבוע צבעים ידנית.",
+      "options": [
+        { "value": "cream", "label": "בהיר" },
+        { "value": "card", "label": "בהיר בוהק" },
+        { "value": "night", "label": "לילי כהה" },
+        { "value": "custom", "label": "מותאם אישית" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "header",
+      "content": "צבעים מותאמים אישית"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "צבע רקע",
+      "info": "משפיע רק כאשר ״רקע המקטע״ מוגדר כ״מותאם אישית״."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "צבע טקסט",
+      "info": "משפיע רק כאשר ״רקע המקטע״ מוגדר כ״מותאם אישית״."
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "פריט",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "אייקון",
+          "options": [
+            { "value": "none", "label": "ללא" },
+            { "value": "truck", "label": "משלוח" },
+            { "value": "drop", "label": "עמידות למים" },
+            { "value": "return", "label": "ביטול והחזרה" },
+            { "value": "chat", "label": "יצירת קשר" },
+            { "value": "sun", "label": "טעינה סולארית" },
+            { "value": "tool", "label": "התקנה" },
+            { "value": "clock", "label": "זמן ותזמון" },
+            { "value": "bolt", "label": "הפעלה אוטומטית" },
+            { "value": "ruler", "label": "מידות" },
+            { "value": "check", "label": "סימון אישור" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "כותרת הפריט",
+          "info": "שורה אחת קצרה. זו השורה הגדולה בפריט.",
+          "default": "משלוח לנקודת איסוף — חינם"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "שורת הסבר",
+          "info": "שורה קצרה. כתבו רק מה שנכון לחנות — אין להבטיח נתון שאינו מפורסם.",
+          "default": "שליח עד הבית בתוספת תשלום"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · רצועת ביטחון",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "label": "משלוח לנקודת איסוף — חינם",
+            "note": "שליח עד הבית בתוספת תשלום"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "label": "ביטול עסקה עד 14 יום",
+            "note": "בהתאם לחוק הגנת הצרכן ולמדיניות הביטולים"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "drop",
+            "label": "מיועד לשימוש בחוץ",
+            "note": "דרגת העמידות המדויקת מופיעה במפרט הטכני"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "label": "אפשר לשאול לפני שמזמינים",
+            "note": "נשמח לעזור לבדוק אם המוצר מתאים למקום שלכם"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

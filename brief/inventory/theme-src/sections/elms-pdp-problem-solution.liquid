@@ -1,0 +1,256 @@
+{%- comment -%}
+  ElmsNest PDP — הבעיה והפתרון.
+
+  One visual block that names the situation the buyer is actually in — a dark
+  yard, no socket where the light is needed, no wish to call an electrician —
+  and answers it. Two stacked statements beside one photograph.
+
+  Everything is a schema setting and nothing reads product data, so the wording
+  is identical across the catalogue. That is deliberate: the problem this
+  category solves is the same on all 27 products, while the numbers that differ
+  per product live in the metafield-driven spec sections.
+
+  NOTE: several products carry a long marketing description that already tells
+  this story inside the product body. On those, either turn this section off or
+  hide the description block — otherwise the page says the same thing twice.
+
+  Media order flips at the "image_position" setting using logical CSS order,
+  never a float or a left/right offset.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_ps_has_text = false
+  if section.settings.problem_title != blank or section.settings.problem_text != blank or section.settings.solution_title != blank or section.settings.solution_text != blank
+    assign elms_ps_has_text = true
+  endif
+-%}
+
+{%- if section.settings.enable and elms_ps_has_text -%}
+  <section
+    class="elms-pdp elms-ps"
+    dir="rtl"
+    {% if section.settings.heading != blank %}aria-labelledby="elms-ps-title-{{ section.id }}"{% else %}aria-label="הבעיה והפתרון"{% endif %}
+    style="--elms-ps-bg: {{ section.settings.bg_color }}; --elms-ps-fg: {{ section.settings.text_color }}; --elms-ps-fg-soft: {{ section.settings.text_color | color_mix: section.settings.bg_color, 70 }}; --elms-ps-line: {{ section.settings.text_color | color_mix: section.settings.bg_color, 20 }}; --elms-ps-media-order: {% if section.settings.image_position == 'start' %}0{% else %}2{% endif %}; --elms-ps-pt: {{ section.settings.padding_top }}px; --elms-ps-pb: {{ section.settings.padding_bottom }}px; --elms-ps-pt-mb: {{ section.settings.padding_top | times: 0.7 | round }}px; --elms-ps-pb-mb: {{ section.settings.padding_bottom | times: 0.7 | round }}px;"
+  >
+    <div class="elms-ps__wrap">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="elms-ps__title" id="elms-ps-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <div class="elms-ps__layout{% unless section.settings.image != blank %} elms-ps__layout--textonly{% endunless %}">
+        {%- if section.settings.image != blank -%}
+          <div class="elms-ps__media">
+            {%- assign elms_ps_alt = section.settings.image.alt | default: section.settings.solution_title | default: product.title -%}
+            {{
+              section.settings.image
+              | image_url: width: 1400
+              | image_tag:
+                loading: 'lazy',
+                decoding: 'async',
+                class: 'elms-ps__img',
+                widths: '400, 600, 800, 1000, 1400',
+                sizes: '(max-width: 860px) 92vw, min(540px, 48vw)',
+                alt: elms_ps_alt
+            }}
+          </div>
+        {%- endif -%}
+
+        <div class="elms-ps__copy">
+          {%- if section.settings.problem_title != blank or section.settings.problem_text != blank -%}
+            <div class="elms-ps__part elms-ps__part--problem">
+              {%- if section.settings.problem_kicker != blank -%}
+                <span class="elms-ps__kicker">{{ section.settings.problem_kicker }}</span>
+              {%- endif -%}
+              {%- if section.settings.problem_title != blank -%}
+                <h3 class="elms-ps__part-title">{{ section.settings.problem_title }}</h3>
+              {%- endif -%}
+              {%- if section.settings.problem_text != blank -%}
+                <div class="elms-ps__part-text">{{ section.settings.problem_text }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.solution_title != blank or section.settings.solution_text != blank -%}
+            <div class="elms-ps__part elms-ps__part--solution">
+              {%- if section.settings.solution_kicker != blank -%}
+                <span class="elms-ps__kicker">{{ section.settings.solution_kicker }}</span>
+              {%- endif -%}
+              {%- if section.settings.solution_title != blank -%}
+                <h3 class="elms-ps__part-title">{{ section.settings.solution_title }}</h3>
+              {%- endif -%}
+              {%- if section.settings.solution_text != blank -%}
+                <div class="elms-ps__part-text">{{ section.settings.solution_text }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-ps,
+  .elms-ps *{box-sizing:border-box}
+  .elms-ps{direction:rtl;background:var(--elms-ps-bg);color:var(--elms-ps-fg);padding-block-start:var(--elms-ps-pt);padding-block-end:var(--elms-ps-pb);padding-inline:20px}
+  .elms-ps__wrap{inline-size:min(1120px,100%);margin-inline:auto}
+  .elms-ps__title{margin:0 0 22px;font-size:clamp(22px,2vw,24px);font-weight:600;line-height:1.3}
+  .elms-ps__layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:center}
+  .elms-ps__layout--textonly{grid-template-columns:minmax(0,1fr)}
+  .elms-ps__media{order:var(--elms-ps-media-order);min-inline-size:0;overflow:hidden;background:rgb(var(--en-night))}
+  .elms-ps__img{display:block;inline-size:100%;block-size:100%;aspect-ratio:4 / 3;object-fit:cover}
+  .elms-ps__copy{order:1;min-inline-size:0}
+  /* With no image the copy would otherwise run the full 1120px; cap the
+     measure so the line length stays readable. */
+  .elms-ps__layout--textonly .elms-ps__copy{max-inline-size:70ch}
+  .elms-ps__part{padding-inline-start:16px;border-inline-start:2px solid var(--elms-ps-line)}
+  .elms-ps__part + .elms-ps__part{margin-block-start:22px}
+  .elms-ps__part--solution{border-inline-start-color:rgb(var(--en-amber))}
+  .elms-ps__kicker{display:block;margin-block-end:5px;font-size:13px;font-weight:600;line-height:1.5;color:var(--elms-ps-fg-soft)}
+  .elms-ps__part-title{margin:0 0 7px;font-size:16px;font-weight:600;line-height:1.5}
+  .elms-ps__part-text{font-size:15px;font-weight:400;line-height:1.75;color:var(--elms-ps-fg-soft)}
+  .elms-ps__part-text p{margin:0 0 8px}
+  .elms-ps__part-text p:last-child{margin-block-end:0}
+  @media (max-width:860px){
+    .elms-ps__layout{grid-template-columns:minmax(0,1fr);gap:20px}
+    .elms-ps__media{order:0}
+    .elms-ps__copy{order:1}
+  }
+  @media (max-width:720px){
+    .elms-ps{padding-block-start:var(--elms-ps-pt-mb);padding-block-end:var(--elms-ps-pb-mb);padding-inline:14px}
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · הבעיה והפתרון",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "אם תיאור המוצר כבר מספר את אותו סיפור — כבו את המקטע הזה או הסתירו את בלוק התיאור, כדי שהעמוד לא יחזור על עצמו."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "החצר חשוכה — ואין שקע איפה שצריך אור"
+    },
+    {
+      "type": "header",
+      "content": "הבעיה"
+    },
+    {
+      "type": "text",
+      "id": "problem_kicker",
+      "label": "תווית",
+      "default": "המצב היום"
+    },
+    {
+      "type": "text",
+      "id": "problem_title",
+      "label": "כותרת",
+      "default": "תשתית חשמל בחוץ היא פרויקט"
+    },
+    {
+      "type": "richtext",
+      "id": "problem_text",
+      "label": "טקסט",
+      "default": "<p>להביא חשמל לשביל, לגדר או לפינת הישיבה דורש חפירה, צנרת וחשמלאי — ולרוב זה נדחה שוב ושוב, והאזור נשאר חשוך.</p>"
+    },
+    {
+      "type": "header",
+      "content": "הפתרון"
+    },
+    {
+      "type": "text",
+      "id": "solution_kicker",
+      "label": "תווית",
+      "default": "מה שאנחנו מציעים"
+    },
+    {
+      "type": "text",
+      "id": "solution_title",
+      "label": "כותרת",
+      "default": "תאורה שמותקנת בלי חוטים"
+    },
+    {
+      "type": "richtext",
+      "id": "solution_text",
+      "label": "טקסט",
+      "default": "<p>הפאנל נטען מהשמש במהלך היום והתאורה נדלקת אוטומטית עם החשכה. ההתקנה היא קיבוע לקיר או נעיצה באדמה — בלי חפירה ובלי חשמלאי.</p>"
+    },
+    {
+      "type": "header",
+      "content": "תמונה"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "תמונה"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "מיקום התמונה במסך רחב",
+      "options": [
+        { "value": "start", "label": "בתחילת השורה" },
+        { "value": "end", "label": "בסוף השורה" }
+      ],
+      "default": "end"
+    },
+    {
+      "type": "header",
+      "content": "צבעים"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "צבע רקע",
+      "default": "#F7F0E6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "צבע טקסט",
+      "default": "#2B2118"
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · הבעיה והפתרון"
+    }
+  ]
+}
+{% endschema %}

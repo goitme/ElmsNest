@@ -1,0 +1,363 @@
+{%- comment -%}
+  ElmsNest PDP — תיאור המוצר ברוחב מלא.
+
+  תיאור המוצר של ElmsNest הוא עמוד מכירה שלם (.elms-sales) עם עיצוב משלו,
+  אבל Kalles מציג אותו בתוך עמודת המידע הצרה שליד הגלריה — כ־600px.
+  שם כותרת של 48px ורשת של שני טורים נדחסות ונראות עמוסות.
+  המקטע הזה מוציא אותו לרוחב מלא, ומיישר את העיצוב שלו לשפה של שאר העמוד:
+  פינות חדות, טוקנים של הערכה, וסולם הטיפוגרפיה של מפרט העיצוב.
+
+  הכללים כאן ממוקדים תחת ‎.elms-desc‎, כלומר ספציפיות גבוהה יותר מה־<style>
+  שמוטמע בתוך התיאור עצמו — כך שאין צורך ב־!important ואין דליפה החוצה.
+
+  כל תכונה תלוית־כיוון היא לוגית — החנות בעברית RTL.
+{%- endcomment -%}
+
+{%- if section.settings.enable and product.description != blank -%}
+  <section
+    class="elms-pdp elms-desc elms-desc--{{ section.settings.ground }}"
+    dir="rtl"
+    aria-label="{{ section.settings.aria_label | default: 'תיאור המוצר' }}"
+    style="--elms-desc-pt: {{ section.settings.padding_top }}px; --elms-desc-pb: {{ section.settings.padding_bottom }}px;"
+  >
+    <div class="elms-desc__wrap">
+      {{ product.description }}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-desc,
+  .elms-desc * { box-sizing: border-box; }
+
+  .elms-desc {
+    direction: rtl;
+    padding-block-start: var(--elms-desc-pt);
+    padding-block-end: var(--elms-desc-pb);
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  .elms-desc--cream {
+    background: rgb(var(--en-surface-page));
+    color: rgb(var(--en-text-primary));
+  }
+
+  .elms-desc--card {
+    background: rgb(var(--en-surface-card));
+    color: rgb(var(--en-text-primary));
+  }
+
+  .elms-desc__wrap {
+    inline-size: min(1180px, 100%);
+    margin-inline: auto;
+  }
+
+  /* --- Realign the merchant-authored .elms-sales block ------------------
+     Its own <style> ships a 22px-rounded gradient card in a different gold.
+     The rest of the page is sharp-edged and token-driven, so the two read as
+     two different sites. Everything below re-grounds it without touching the
+     product data. Parent class = higher specificity, so no !important. */
+
+  .elms-desc .elms-sales {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    color: rgb(var(--en-text-primary));
+  }
+
+  .elms-desc .elms-sales__hero {
+    padding: 0;
+    background: none;
+    text-align: start;
+    max-inline-size: 46em;
+    margin-block-end: clamp(32px, 4vw, 56px);
+  }
+
+  .elms-desc .elms-sales__kicker {
+    display: block;
+    margin: 0 0 14px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    color: rgb(var(--en-text-muted));
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .10em;
+  }
+
+  .elms-desc .elms-sales__kicker::after {
+    content: "";
+    display: block;
+    inline-size: 40px;
+    block-size: 2px;
+    margin-block-start: 12px;
+    background: rgb(var(--en-amber));
+  }
+
+  /* The theme's own h2/h3 colour rules beat inheritance, so state them. */
+  .elms-desc .elms-sales h2 {
+    max-inline-size: 14em;
+    margin: 0;
+    color: rgb(var(--en-text-primary));
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -.01em;
+  }
+
+  .elms-desc .elms-sales h3 {
+    margin: 0 0 10px;
+    color: rgb(var(--en-text-primary));
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .elms-desc .elms-sales__lead {
+    max-inline-size: 32em;
+    margin: 16px 0 0;
+    color: rgb(var(--en-text-secondary));
+    font-size: clamp(16px, 1.3vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* The promise line is the one thing that should stop the eye. Give it the
+     amber hairline instead of a shadowed pill. */
+  .elms-desc .elms-sales__promise {
+    max-inline-size: 40em;
+    margin: 24px 0 0;
+    padding: 0;
+    padding-inline-start: 18px;
+    background: none;
+    border: 0;
+    border-inline-start: 3px solid rgb(var(--en-amber));
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .elms-desc .elms-sales__promise strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .elms-desc .elms-sales__promise span {
+    display: block;
+    margin-block-start: 6px;
+    color: rgb(var(--en-text-secondary));
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .elms-desc .elms-sales__body { padding: 0; }
+
+  .elms-desc .elms-sales__story {
+    max-inline-size: 46em;
+    margin: 0 0 clamp(28px, 3vw, 44px);
+    padding: 0;
+    padding-inline-start: 18px;
+    background: none;
+    border: 0;
+    border-inline-start: 3px solid rgb(var(--en-border-subtle));
+    border-radius: 0;
+  }
+
+  .elms-desc .elms-sales__story p,
+  .elms-desc .elms-sales__choice p {
+    margin: 0;
+    color: rgb(var(--en-text-secondary));
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* Benefit cards: sharp, real padding, one hairline — the page's card style. */
+  .elms-desc .elms-sales__benefits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+    max-inline-size: none;
+    margin: 0;
+  }
+
+  .elms-desc .elms-sales__benefits article {
+    padding: clamp(20px, 2.5vw, 32px);
+    background: rgb(var(--en-surface-card));
+    border: 1px solid rgb(var(--en-border-subtle));
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .elms-desc .elms-sales__benefits b {
+    display: block;
+    margin-block-end: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .elms-desc .elms-sales__benefits p {
+    margin: 0;
+    color: rgb(var(--en-text-secondary));
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .elms-desc .elms-sales__choice {
+    max-inline-size: 46em;
+    margin: clamp(28px, 3vw, 44px) 0 0;
+    padding: 0;
+    padding-inline-start: 18px;
+    border: 0;
+    border-inline-start: 3px solid rgb(var(--en-border-subtle));
+    border-radius: 0;
+  }
+
+  /* Spec list moves to the night ground — the same treatment the in-column
+     spec sheet already uses, so measured values keep one visual home. */
+  .elms-desc .elms-sales__specs {
+    max-inline-size: none;
+    margin: clamp(32px, 4vw, 56px) 0 0;
+    padding: clamp(24px, 3vw, 40px);
+    background: rgb(var(--en-night));
+    border-radius: 0;
+  }
+
+  .elms-desc .elms-sales__specs h3 {
+    color: rgb(var(--en-ink));
+    font-size: 20px;
+    margin-block-end: 16px;
+  }
+
+  .elms-desc .elms-sales__specs ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px clamp(20px, 3vw, 40px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .elms-desc .elms-sales__specs li {
+    position: relative;
+    padding: 0;
+    padding-inline-start: 18px;
+    color: rgb(var(--en-ink) / .82);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .elms-desc .elms-sales__specs li::before {
+    content: "";
+    position: absolute;
+    inset-block-start: .62em;
+    inset-inline-start: 0;
+    inline-size: 7px;
+    block-size: 7px;
+    background: rgb(var(--en-amber));
+  }
+
+  .elms-desc .elms-sales__cta {
+    margin-block-start: clamp(32px, 4vw, 56px);
+    padding: clamp(24px, 3vw, 40px) 0 0;
+    background: none;
+    border-block-start: 1px solid rgb(var(--en-border-subtle));
+    border-radius: 0;
+    text-align: start;
+  }
+
+  .elms-desc .elms-sales__cta strong {
+    display: block;
+    max-inline-size: 20em;
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .elms-desc .elms-sales__cta span {
+    display: block;
+    max-inline-size: 32em;
+    margin-block-start: 8px;
+    color: rgb(var(--en-text-secondary));
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .elms-desc .elms-sales__specs ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 700px) {
+    .elms-desc {
+      padding-block-start: calc(var(--elms-desc-pt) * .62);
+      padding-block-end: calc(var(--elms-desc-pb) * .62);
+    }
+    .elms-desc .elms-sales__hero { padding: 0; }
+    .elms-desc .elms-sales__body { padding: 0; }
+    .elms-desc .elms-sales__benefits { grid-template-columns: 1fr; }
+    .elms-desc .elms-sales__specs ul { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · תיאור המוצר",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "שם המקטע לקוראי מסך",
+      "default": "תיאור המוצר"
+    },
+    {
+      "type": "select",
+      "id": "ground",
+      "label": "רקע המקטע",
+      "options": [
+        { "value": "cream", "label": "בהיר" },
+        { "value": "card", "label": "בהיר מוגבה" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · תיאור המוצר"
+    }
+  ]
+}
+{% endschema %}

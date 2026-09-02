@@ -1,0 +1,528 @@
+{%- comment -%}
+  The document pages of the specification-sheet world.
+
+  Five pages' content lives here (guide, why-solar, processing-time, about,
+  FAQ) — in the theme, under git, with live collection links — while their
+  Shopify page bodies stay hidden. The shared `.en-doc` system below replaces
+  the previous `.en-editorial / .en-ed-*` language wholesale: that system was
+  the last carrier of pills, kickers, shadows, gradients and circle icons in
+  the theme, and the spec-sheet world bans all five.
+
+  Marketing lives in the structure, not in slogans: every page answers a real
+  pre-purchase question, states only figures that exist in the published
+  policies, links each place to its collection, and keeps the store's edge —
+  saying when a product does NOT fit — explicit and sourced.
+{%- endcomment -%}
+
+{%- liquid
+  assign page_key = page.handle
+  assign path_collection = collections['תאורת-שביל-סולארית']
+  assign wall_collection = collections['solar-wall-lights']
+  assign spot_collection = collections['ספוטים-ופרוז-קטורים-סולאריים']
+  assign decor_collection = collections['גרילנדות-ותאורה-דקורטיבית']
+  assign brand_image = images['pexels-taryn-elliott-4112233.jpg']
+  assign editorial_page = false
+  case page_key
+    when 'guide-garden-lighting', 'why-solar-lighting', 'processing-time', 'מי-אנחנו', 'help-faq'
+      assign editorial_page = true
+  endcase
+-%}
+
+{%- if editorial_page -%}
+<style>
+  #shopify-section-{{ section.id }} ~ [id$="__heading"],
+  #shopify-section-{{ section.id }} ~ [id$="__main"]{display:none!important}
+</style>
+<main class="en-doc" dir="rtl">
+  {%- case page_key -%}
+
+    {%- when 'guide-garden-lighting' -%}
+      <header class="en-doc__band">
+        <div class="en-doc__shell">
+          <h1>בוחרים תאורת גינה לפי המקום — לא לפי התמונה</h1>
+          <p class="en-doc__role">ארבע החלטות קצרות: איפה צריך אור, מה הוא צריך לעשות, איזה מקור חשמל מתאים, ומה בודקים לפני שמזמינים.</p>
+        </div>
+      </header>
+
+      <div class="en-doc__shell en-doc__main">
+        <nav class="en-doc__toc" aria-label="תוכן המדריך">
+          <a href="#guide-place">לפי מקום</a>
+          <a href="#guide-purpose">לפי מטרה</a>
+          <a href="#guide-power">מקור חשמל</a>
+          <a href="#guide-check">לפני ההזמנה</a>
+        </nav>
+
+        <section id="guide-place" class="en-doc__sec">
+          <h2><bdi dir="ltr">01</bdi> · איפה צריך אור?</h2>
+          <p class="en-doc__intro">בחרו את האזור הקרוב ביותר לצורך שלכם והמשיכו לקולקציה המתאימה. כל קולקציה מכילה רק מוצרים לאותו מקום.</p>
+          <div class="en-doc__links">
+            <a class="en-doc__link" href="{{ path_collection.url | default: routes.all_products_collection_url }}">
+              <span class="en-doc__link-t"><strong>שביל, עמוד וגינה</strong><span>לסימון הדרך, לערוגות ולפינות הגינה</span></span>
+              <span class="en-doc__link-m">{% if path_collection.products_count > 0 %}<bdi dir="ltr">{{ path_collection.products_count }}</bdi> מוצרים{% endif %} <span aria-hidden="true">←</span></span>
+            </a>
+            <a class="en-doc__link" href="{{ wall_collection.url | default: routes.all_products_collection_url }}">
+              <span class="en-doc__link-t"><strong>כניסה וקיר</strong><span>לדלת, לחזית ולאזורי מעבר</span></span>
+              <span class="en-doc__link-m">{% if wall_collection.products_count > 0 %}<bdi dir="ltr">{{ wall_collection.products_count }}</bdi> מוצרים{% endif %} <span aria-hidden="true">←</span></span>
+            </a>
+            <a class="en-doc__link" href="{{ spot_collection.url | default: routes.all_products_collection_url }}">
+              <span class="en-doc__link-t"><strong>הארה ממוקדת</strong><span>לעץ, לקיר, לפינה חשוכה או לשטח</span></span>
+              <span class="en-doc__link-m">{% if spot_collection.products_count > 0 %}<bdi dir="ltr">{{ spot_collection.products_count }}</bdi> מוצרים{% endif %} <span aria-hidden="true">←</span></span>
+            </a>
+            <a class="en-doc__link" href="{{ decor_collection.url | default: routes.all_products_collection_url }}">
+              <span class="en-doc__link-t"><strong>מרפסת ואירוח</strong><span>לאור חם ולאווירה בפינת הישיבה</span></span>
+              <span class="en-doc__link-m">{% if decor_collection.products_count > 0 %}<bdi dir="ltr">{{ decor_collection.products_count }}</bdi> מוצרים{% endif %} <span aria-hidden="true">←</span></span>
+            </a>
+          </div>
+        </section>
+
+        <section id="guide-purpose" class="en-doc__sec">
+          <h2><bdi dir="ltr">02</bdi> · מה האור צריך לעשות?</h2>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">א</bdi></span><div><strong>לעזור להתמצא</strong><p>לשביל, למדרגות ולאזורי מעבר שבהם חשוב לראות את הדרך.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">ב</bdi></span><div><strong>להאיר נקודה</strong><p>לכניסה, לקיר, לעץ או לאזור שרוצים להדגיש בצורה ברורה.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">ג</bdi></span><div><strong>ליצור אווירה</strong><p>למרפסת, לפרגולה ולפינת ישיבה שבהן האור הוא חלק מהחוויה. תאורת אווירה אינה מיועדת להאיר חזק — וזה בסדר, זה תפקידה.</p></div></li>
+          </ol>
+        </section>
+
+        <section id="guide-power" class="en-doc__sec">
+          <h2><bdi dir="ltr">03</bdi> · איזה מקור חשמל מתאים?</h2>
+          <p class="en-doc__intro">הנתונים משתנים בין מוצרים. בדקו תמיד את עמוד המוצר, ואל תניחו שמפרט של מוצר אחד נכון גם לאחר.</p>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">1</bdi></span><div><strong>סולארי — למקום שמקבל שמש</strong><p>מתאים כשרוצים להימנע מחיבור קבוע. הפאנל צריך אור יום של ממש: בצל כבוד רוב היום, ובימים מעוננים או בחורף, הביצועים יורדים. אם המקום כמעט לא מקבל שמש — אל תבחרו סולארי, יש פתרון מתאים יותר.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">2</bdi></span><div><strong>סוללה או <bdi dir="ltr">USB</bdi> — לשליטה בטעינה</strong><p>לא תלוי בשמש. בדקו איך טוענים או מחליפים סוללה, והאם שגרת התחזוקה מתאימה לכם.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">3</bdi></span><div><strong>חיבור לחשמל — להתקנה קבועה</strong><p>לעוצמה קבועה בלי תלות בטעינה. כשנדרשת עבודת חשמל — היעזרו בבעל מקצוע מוסמך.</p></div></li>
+          </ol>
+        </section>
+
+        <section id="guide-check" class="en-doc__sec">
+          <h2><bdi dir="ltr">04</bdi> · מה בודקים לפני ההזמנה?</h2>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">01</bdi></span><div><strong>מידות המוצר והשטח הזמין</strong></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">02</bdi></span><div><strong>מקור החשמל ואופן ההתקנה</strong></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">03</bdi></span><div><strong>מה כלול באריזה</strong></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">04</bdi></span><div><strong>נתוני אור ועמידות שמופיעים במפורש</strong></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">05</bdi></span><div><strong>התאמה למיקום המתוכנן</strong></div></li>
+          </ol>
+          <p class="en-doc__note">פרט חשוב חסר בעמוד המוצר? אל תנחשו. <a href="{{ pages['contact-us'].url | default: routes.root_url }}">שלחו לנו את שם המוצר ואת השאלה</a> — נבדוק לפני שתזמינו.</p>
+          <div class="en-doc__cta">
+            <a class="en-doc__btn" href="{{ routes.all_products_collection_url }}">לכל גופי התאורה</a>
+            <a class="en-doc__btn en-doc__btn--ghost" href="{{ pages['contact-us'].url | default: routes.root_url }}">שאלה לפני הזמנה</a>
+          </div>
+        </section>
+      </div>
+
+    {%- when 'why-solar-lighting' -%}
+      <header class="en-doc__band">
+        <div class="en-doc__shell">
+          <h1>למה תאורה סולארית — ומתי לא</h1>
+          <p class="en-doc__role">היתרון: פחות תלות בחיבור קבוע לחשמל. ההתאמה תלויה בשמש שהמקום מקבל, במטרת האור ובנתוני המוצר הספציפי.</p>
+        </div>
+      </header>
+
+      <div class="en-doc__shell en-doc__main">
+        <section class="en-doc__sec">
+          <h2>איך זה עובד בפועל</h2>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">1</bdi></span><div><strong>ביום</strong><p>הפאנל הסולארי נטען מאור היום. צל, כיוון הפאנל ועונת השנה משפיעים על הטעינה.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">2</bdi></span><div><strong>בערב</strong><p>התאורה נדלקת ועובדת על האנרגיה שנאגרה, בהתאם למוצר ולתנאי הטעינה.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">3</bdi></span><div><strong>מה זה אומר</strong><p>השמש היא חלק מהמפרט. בימים מעוננים או בחורף הביצועים עשויים להיות חלשים יותר — זו לא תקלה, זה אופי הפתרון.</p></div></li>
+          </ol>
+        </section>
+
+        <section class="en-doc__sec">
+          <h2>מתי זה מתאים — ומתי עדיף פתרון אחר</h2>
+          <div class="en-doc__grid2">
+            <div class="en-doc__panel">
+              <h3>יכול להתאים כאשר</h3>
+              <ul class="en-doc__list">
+                <li>המיקום מקבל חשיפה טובה לאור יום</li>
+                <li>לא רוצים חיבור קבוע לחשמל או שאין נקודה קרובה</li>
+                <li>המטרה היא אווירה, סימון דרך או הארה נקודתית</li>
+                <li>נתוני המוצר תואמים לשימוש המתוכנן</li>
+              </ul>
+            </div>
+            <div class="en-doc__panel">
+              <h3>עדיף פתרון אחר כאשר</h3>
+              <ul class="en-doc__list">
+                <li>המקום כמעט ואינו מקבל אור יום — סולארי לא יספיק שם</li>
+                <li>נדרש אור חזק וקבוע לאורך כל הלילה — תאורה סולארית לא תמיד מחליפה תאורה חשמלית חזקה</li>
+                <li>יש דרישות התקנה מיוחדות — אז חיבור קבוע עם בעל מקצוע, או מוצר נטען ב־<bdi dir="ltr">USB</bdi></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="en-doc__sec">
+          <h2>שלוש בדיקות לפני שבוחרים</h2>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">1</bdi></span><div><strong>כמה אור יום מגיע למקום?</strong></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">2</bdi></span><div><strong>האם המטרה היא אווירה, התמצאות או הארה ממוקדת?</strong></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">3</bdi></span><div><strong>אילו נתונים מופיעים במפורש בעמוד המוצר?</strong></div></li>
+          </ol>
+          <p class="en-doc__note">חלק מהמוצרים בחנות מיועדים בעיקר לאווירה ולא לאור חזק. אם הנתון שחשוב לכם לא מופיע בעמוד המוצר — שאלו אותנו לפני ההזמנה.</p>
+          <div class="en-doc__cta">
+            <a class="en-doc__btn" href="{{ pages['guide-garden-lighting'].url | default: routes.root_url }}">איך בוחרים תאורה לגינה?</a>
+            <a class="en-doc__btn en-doc__btn--ghost" href="{{ routes.all_products_collection_url }}">לכל גופי התאורה</a>
+          </div>
+        </section>
+      </div>
+
+    {%- when 'processing-time' -%}
+      <header class="en-doc__band">
+        <div class="en-doc__shell">
+          <h1>זמני טיפול בהזמנה</h1>
+          <p class="en-doc__role">המספרים כאן זהים למדיניות המשלוחים המלאה — אין הבטחות נפרדות.</p>
+          <dl class="en-doc__plate" aria-label="זמני טיפול ואספקה">
+            <div class="en-doc__cell"><dt>טיפול בהזמנה</dt><dd><bdi dir="ltr">1–3</bdi> ימי עסקים</dd></div>
+            <div class="en-doc__cell"><dt>זמן הובלה</dt><dd><bdi dir="ltr">7–14</bdi> ימי עסקים</dd></div>
+            <div class="en-doc__cell"><dt>סה״כ משוער</dt><dd><bdi dir="ltr">8–17</bdi> ימי עסקים</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <div class="en-doc__shell en-doc__main">
+        <section class="en-doc__sec">
+          <h2>מה קורה אחרי שהזמנתם</h2>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">1</bdi></span><div><strong>ההזמנה נקלטת</strong><p>אישור נשלח לאימייל שהוזן ברכישה. בדקו שהשם, הטלפון והכתובת נכונים — ואם יש טעות, פנו אלינו מיד.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">2</bdi></span><div><strong>ההזמנה מטופלת ונמסרת לשילוח</strong><p>עד <bdi dir="ltr">3</bdi> ימי עסקים. כשמספר מעקב זמין — נשלח לכם אותו.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">3</bdi></span><div><strong>ההזמנה בדרך</strong><p>זמן ההובלה המשוער הוא <bdi dir="ltr">7–14</bdi> ימי עסקים. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.</p></div></li>
+          </ol>
+          <p class="en-doc__note">יום עסקים: ראשון עד חמישי, למעט ערבי חג, חגים וימי שבתון.</p>
+        </section>
+
+        <section class="en-doc__sec">
+          <h2>עברו <bdi dir="ltr">17</bdi> ימי עסקים והחבילה לא הגיעה?</h2>
+          <p class="en-doc__intro">פנו אלינו עם מספר ההזמנה והאימייל ששימש לרכישה — נבדוק את המשלוח מול חברת השילוח ונחזור אליכם עם תשובה.</p>
+          <div class="en-doc__cta">
+            <a class="en-doc__btn" href="{{ pages['contact-us'].url | default: routes.root_url }}">ליצירת קשר</a>
+            <a class="en-doc__btn en-doc__btn--ghost" href="{{ shop.shipping_policy.url | default: routes.root_url }}">למדיניות המשלוחים המלאה</a>
+          </div>
+        </section>
+      </div>
+
+    {%- when 'מי-אנחנו' -%}
+      <header class="en-doc__band en-doc__band--media">
+        {%- if brand_image != blank -%}
+          {{ brand_image | image_url: width: 2200 | image_tag: class: 'en-doc__band-img', loading: 'eager', fetchpriority: 'high', widths: '800,1200,1600,2200', sizes: '100vw', alt: '' }}
+        {%- endif -%}
+        <span class="en-doc__band-shade" aria-hidden="true"></span>
+        <div class="en-doc__shell">
+          <h1>רק תאורת חוץ. וזה בכוונה.</h1>
+          <p class="en-doc__role">אנחנו עוזרים להתאים גוף תאורה למקום שלכם — וגם אומרים כשמשהו לא מתאים.</p>
+        </div>
+      </header>
+
+      <div class="en-doc__shell en-doc__main">
+        <section class="en-doc__sec">
+          <h2>למה הקמנו את ElmsNest</h2>
+          <p class="en-doc__intro">בחירת תאורה באינטרנט יכולה להיות מבלבלת: מקורות חשמל שונים, דרכי התקנה שונות ומוצרים שנראים דומים אך מיועדים לצרכים אחרים. ElmsNest עוסקת בתחום אחד — תאורת חוץ — ומארגנת את הבחירה לפי מקום, מטרה ואופן שימוש, כדי שיהיה ברור מה מתאים לפני שקונים.</p>
+        </section>
+
+        <section class="en-doc__sec">
+          <h2>העקרונות שמכוונים אותנו</h2>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">01</bdi></span><div><strong>בהירות לפני הבטחות</strong><p>כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">02</bdi></span><div><strong>בחירה לפי צורך</strong><p>העיצוב חשוב, אך ההתאמה למקום ולאופן ההתקנה חשובה לא פחות.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">03</bdi></span><div><strong>שאלה לפני הזמנה</strong><p>אם פרט חיוני חסר, עדיף לעצור ולבדוק לפני שקונים.</p></div></li>
+          </ol>
+        </section>
+
+        <section class="en-doc__sec">
+          <h2>מה זה אומר בפועל</h2>
+          <ol class="en-doc__sched">
+            <li><span class="en-doc__num"><bdi dir="ltr">1</bdi></span><div><strong>אין אצלנו קטגוריה אחרת</strong><p>לא מוצרי בית, לא גאדג׳טים — תאורת חוץ בלבד: סולארית, נטענת, בסוללה או בחיבור לחשמל.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">2</bdi></span><div><strong>המפרט לפני הקנייה</strong><p>בכל עמוד מוצר: מקור החשמל, המידות ואופן ההתקנה. נתון שלא מופיע — לא ממציאים.</p></div></li>
+            <li><span class="en-doc__num"><bdi dir="ltr">3</bdi></span><div><strong>וכשמשהו לא מתאים — אומרים</strong><p>במדריכים שלנו כתוב גם מתי תאורה סולארית היא לא הבחירה הנכונה. עדיף לקוח שקנה נכון מלקוח שהתאכזב.</p></div></li>
+          </ol>
+        </section>
+
+        <section class="en-doc__sec">
+          <h2>מה תמצאו בחנות</h2>
+          <div class="en-doc__links">
+            <a class="en-doc__link" href="{{ path_collection.url | default: routes.all_products_collection_url }}"><span class="en-doc__link-t"><strong>שביל, עמוד וגינה</strong></span><span class="en-doc__link-m"><span aria-hidden="true">←</span></span></a>
+            <a class="en-doc__link" href="{{ wall_collection.url | default: routes.all_products_collection_url }}"><span class="en-doc__link-t"><strong>תאורת קיר</strong></span><span class="en-doc__link-m"><span aria-hidden="true">←</span></span></a>
+            <a class="en-doc__link" href="{{ spot_collection.url | default: routes.all_products_collection_url }}"><span class="en-doc__link-t"><strong>ספוטים ותאורה ניידת</strong></span><span class="en-doc__link-m"><span aria-hidden="true">←</span></span></a>
+            <a class="en-doc__link" href="{{ decor_collection.url | default: routes.all_products_collection_url }}"><span class="en-doc__link-t"><strong>אווירה ודקורציה</strong></span><span class="en-doc__link-m"><span aria-hidden="true">←</span></span></a>
+          </div>
+          <div class="en-doc__cta">
+            <a class="en-doc__btn" href="{{ routes.all_products_collection_url }}">לכל גופי התאורה</a>
+            <a class="en-doc__btn en-doc__btn--ghost" href="{{ pages['guide-garden-lighting'].url | default: routes.root_url }}">איך בוחרים תאורה לגינה?</a>
+          </div>
+        </section>
+      </div>
+
+    {%- when 'help-faq' -%}
+      <header class="en-doc__band">
+        <div class="en-doc__shell">
+          <h1>שאלות נפוצות</h1>
+          <p class="en-doc__role">תשובות קצרות לפני ואחרי ההזמנה. לא מצאתם תשובה? <a href="{{ pages['contact-us'].url | default: routes.root_url }}">כתבו לנו</a>.</p>
+        </div>
+      </header>
+
+      <div class="en-doc__shell en-doc__main">
+        <nav class="en-doc__toc" aria-label="נושאי השאלות">
+          <a href="#faq-products">מוצרים והתאמה</a>
+          <a href="#faq-orders">הזמנות ומשלוח</a>
+          <a href="#faq-policies">ביטול והחזרות</a>
+        </nav>
+
+        <section id="faq-products" class="en-doc__sec">
+          <h2>מוצרים והתאמה</h2>
+          <div class="en-doc__faq">
+            <details open>
+              <summary>האם כל המוצרים בחנות סולאריים?</summary>
+              <p>לא. ElmsNest מציעה תאורת חוץ בלבד, אבל מקורות החשמל שונים: סולארי, נטען ב־<bdi dir="ltr">USB</bdi>, סוללות או חיבור לחשמל. בדקו בכל עמוד מוצר את מקור החשמל ואופן ההתקנה.</p>
+            </details>
+            <details>
+              <summary>האם תאורה סולארית עובדת גם בחורף?</summary>
+              <p>היא עובדת, אבל חלש יותר: בימים מעוננים ובחורף הפאנל נטען פחות. אם המקום כמעט לא מקבל שמש — עדיף פתרון אחר, ואנחנו אומרים את זה גם כשזה אומר לוותר על מכירה. <a href="{{ pages['why-solar-lighting'].url | default: routes.root_url }}">מתי תאורה סולארית מתאימה ומתי לא</a>.</p>
+            </details>
+            <details>
+              <summary>איך בוחרים תאורה שמתאימה למקום?</summary>
+              <p>מתחילים במקום ובמטרת האור, ורק אז בודקים מקור חשמל, מידות ואופן התקנה. <a href="{{ pages['guide-garden-lighting'].url | default: routes.root_url }}">מדריך הבחירה המלא</a> עובר על זה בארבעה צעדים.</p>
+            </details>
+            <details>
+              <summary>נתון שחשוב לי לא מופיע בעמוד המוצר. מה עושים?</summary>
+              <p>לא מנחשים. שלחו לנו את שם המוצר ואת השאלה לפני ההזמנה — נבדוק את המידע הזמין ונחזור אליכם. אם נתון אינו מופיע, איננו מציגים אותו כעובדה.</p>
+            </details>
+          </div>
+        </section>
+
+        <section id="faq-orders" class="en-doc__sec">
+          <h2>הזמנות ומשלוח</h2>
+          <div class="en-doc__faq">
+            <details>
+              <summary>כמה עולה המשלוח?</summary>
+              <p>משלוח לנקודת איסוף בישראל — חינם. שליח עד הבית — <bdi dir="ltr">29.90</bdi> ₪. המחיר הסופי מוצג בקופה לפני התשלום.</p>
+            </details>
+            <details>
+              <summary>תוך כמה זמן ההזמנה מגיעה?</summary>
+              <p>הזמן הכולל המשוער הוא <bdi dir="ltr">8–17</bdi> ימי עסקים: <bdi dir="ltr">1–3</bdi> ימי טיפול ועוד <bdi dir="ltr">7–14</bdi> ימי משלוח. הפירוט המלא ב<a href="{{ shop.shipping_policy.url | default: routes.root_url }}">מדיניות המשלוחים</a>.</p>
+            </details>
+            <details>
+              <summary>איך עוקבים אחרי ההזמנה?</summary>
+              <p>כשמספר מעקב זמין, הוא נשלח לאימייל או לטלפון שנמסרו בהזמנה. לפעמים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.</p>
+            </details>
+            <details>
+              <summary>איך פונים לגבי הזמנה קיימת?</summary>
+              <p>דרך <a href="{{ pages['contact-us'].url | default: routes.root_url }}">עמוד יצירת הקשר</a>, עם מספר ההזמנה והאימייל ששימש לרכישה.</p>
+            </details>
+          </div>
+        </section>
+
+        <section id="faq-policies" class="en-doc__sec">
+          <h2>ביטול והחזרות</h2>
+          <div class="en-doc__faq">
+            <details>
+              <summary>אפשר לבטל עסקה אחרי שהזמנתי?</summary>
+              <p>כן. בעסקת מכר מרחוק אפשר למסור הודעת ביטול עד <bdi dir="ltr">14</bdi> ימים מקבלת המוצר, לפי חוק הגנת הצרכן. כאשר הדין מאפשר גביית דמי ביטול, שיעורם <bdi dir="ltr">5%</bdi> ממחיר העסקה או <bdi dir="ltr">100</bdi> ₪ — הנמוך מביניהם. הפרטים המלאים ב<a href="{{ shop.refund_policy.url | default: routes.root_url }}">מדיניות הביטולים וההחזרים</a>.</p>
+            </details>
+            <details>
+              <summary>קיבלתי מוצר פגום או שגוי. מה עושים?</summary>
+              <p>פנו אלינו בהקדם עם מספר ההזמנה ותמונות של הבעיה. בביטול שנובע מפגם, מאי־התאמה או מאי־אספקה במועד — לא נגבים דמי ביטול. אל תשלחו מוצר חזרה לפני שקיבלתם מאיתנו הנחיות כתובות.</p>
+            </details>
+          </div>
+          <div class="en-doc__cta">
+            <a class="en-doc__btn" href="{{ pages['contact-us'].url | default: routes.root_url }}">ליצירת קשר</a>
+            <a class="en-doc__btn en-doc__btn--ghost" href="{{ shop.refund_policy.url | default: routes.root_url }}">למדיניות המלאה</a>
+          </div>
+        </section>
+      </div>
+
+    {%- else -%}
+      <div class="en-doc__shell en-doc__main"><article class="en-doc__prose">{{ page.content }}</article></div>
+  {%- endcase -%}
+
+  <nav class="en-doc__foot" aria-label="ניווט משלים">
+    <div class="en-doc__shell">
+      <a href="{{ routes.root_url }}">לדף הבית</a>
+      <a href="{{ routes.all_products_collection_url }}">לכל גופי התאורה</a>
+      <a href="{{ pages['guide-garden-lighting'].url | default: routes.root_url }}">מדריך הבחירה</a>
+      <a href="{{ pages['contact-us'].url | default: routes.root_url }}">יצירת קשר</a>
+    </div>
+  </nav>
+</main>
+{%- endif -%}
+
+{% stylesheet %}
+.en-doc,.en-doc *{box-sizing:border-box}
+.en-doc{
+  --rule:rgb(var(--en-text-primary)/.16);
+  --rule-strong:rgb(var(--en-text-primary)/.30);
+  --rule-night:rgb(var(--en-ink)/.28);
+  direction:rtl;background:rgb(var(--en-surface-page));color:rgb(var(--en-text-primary));line-height:1.7
+}
+.en-doc h1,.en-doc h2,.en-doc h3,.en-doc p{margin-top:0}
+.en-doc a{color:inherit}
+.en-doc__shell{width:min(1040px,100%);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+
+/* The night band: where the document states its name and its one-line job. */
+.en-doc__band{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding-block:clamp(44px,7vw,84px);
+  background:rgb(var(--en-night));color:rgb(var(--en-ink))
+}
+.en-doc__band h1{
+  margin:0;color:rgb(var(--en-ink))!important;
+  font-size:clamp(30px,4.6vw,52px);font-weight:700;line-height:1.06;letter-spacing:-.035em;
+  text-wrap:balance;max-width:44rem
+}
+.en-doc__role{margin:14px 0 0;max-width:40rem;color:rgb(var(--en-ink)/.8)!important;font-size:17px;line-height:1.7}
+.en-doc__role a{color:rgb(var(--en-ink))!important;text-decoration:underline;text-underline-offset:4px}
+.en-doc__band--media{padding-block:clamp(64px,9vw,110px)}
+.en-doc__band-img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;filter:brightness(.6) contrast(1.06) saturate(.88)}
+.en-doc__band-shade{
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to left,rgb(var(--en-night)/.92) 0%,rgb(var(--en-night)/.66) 55%,rgb(var(--en-night)/.38) 100%)
+}
+
+/* The plate on a band: measured figures only, amber, tabular. */
+.en-doc__plate{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  margin:clamp(20px,3vw,30px) 0 0;padding:0;max-width:44rem;
+  border:1px solid var(--rule-night);background:rgb(var(--en-night)/.86)
+}
+.en-doc__cell{padding:13px 16px;border-inline-start:1px solid var(--rule-night)}
+.en-doc__cell:first-child{border-inline-start:0}
+.en-doc__plate dt{margin:0 0 6px;color:rgb(var(--en-ink)/.85);font-size:12px;font-weight:600;line-height:1.2}
+.en-doc__plate dd{
+  margin:0;color:rgb(var(--en-amber));
+  font-size:clamp(17px,1.9vw,21px);font-weight:700;line-height:1.25;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em
+}
+
+.en-doc__main{padding-block:clamp(36px,5vw,60px) clamp(48px,6vw,72px)}
+
+.en-doc__toc{
+  display:flex;flex-wrap:wrap;
+  border-block:1px solid var(--rule-strong);margin-bottom:clamp(8px,1.5vw,16px)
+}
+.en-doc__toc a{
+  padding:13px 18px;border-inline-start:1px solid var(--rule);
+  color:rgb(var(--en-text-primary))!important;text-decoration:none;
+  font-size:14px;font-weight:600;transition:background-color .15s ease
+}
+.en-doc__toc a:first-child{border-inline-start:0;padding-inline-start:0}
+.en-doc__toc a:hover{background:rgb(var(--en-text-primary)/.06)}
+
+.en-doc__sec{padding-block:clamp(26px,4vw,40px);border-block-start:1px solid var(--rule-strong);scroll-margin-top:100px}
+.en-doc__sec:first-of-type{border-block-start:0}
+.en-doc__toc+.en-doc__sec{border-block-start:0}
+.en-doc__sec h2{
+  margin:0 0 12px;color:rgb(var(--en-text-primary))!important;
+  font-size:clamp(24px,3vw,34px);font-weight:700;line-height:1.12;letter-spacing:-.03em
+}
+.en-doc__intro{margin:0 0 18px;max-width:44rem;color:rgb(var(--en-text-secondary))!important;font-size:16px;line-height:1.75}
+
+/* Ruled schedule: number, title, note. The list form of the whole world. */
+.en-doc__sched{margin:6px 0 0;padding:0;list-style:none}
+.en-doc__sched li{
+  display:grid;grid-template-columns:44px minmax(0,1fr);gap:6px;
+  padding-block:15px;border-block-end:1px solid var(--rule)
+}
+.en-doc__num{color:rgb(var(--en-text-muted))!important;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.9}
+.en-doc__sched strong{display:block;color:rgb(var(--en-text-primary))!important;font-size:17px;font-weight:700;line-height:1.45}
+.en-doc__sched p{margin:4px 0 0;color:rgb(var(--en-text-secondary))!important;font-size:15px;line-height:1.7;max-width:42rem}
+
+/* Ruled link rows into collections. */
+.en-doc__links{border-block-start:1px solid var(--rule)}
+.en-doc__link{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  min-height:62px;padding-block:14px;border-block-end:1px solid var(--rule);
+  color:rgb(var(--en-text-primary))!important;text-decoration:none;
+  transition:background-color .15s ease
+}
+.en-doc__link:hover{background:rgb(var(--en-text-primary)/.05)}
+.en-doc__link-t strong{display:block;font-size:17px;font-weight:700;line-height:1.35}
+.en-doc__link-t span{display:block;margin-top:2px;color:rgb(var(--en-text-secondary));font-size:14px;line-height:1.5}
+.en-doc__link-m{flex:0 0 auto;color:rgb(var(--en-text-secondary));font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.en-doc__link:hover .en-doc__link-m{color:rgb(var(--en-text-primary))}
+
+/* Two ruled panels: fits / choose differently. Neutral — the words do it. */
+.en-doc__grid2{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule-strong)}
+.en-doc__panel{padding:clamp(18px,2.6vw,28px);border-inline-start:1px solid var(--rule)}
+.en-doc__panel:first-child{border-inline-start:0}
+.en-doc__panel h3{margin:0 0 12px;color:rgb(var(--en-text-primary))!important;font-size:18px;font-weight:700}
+.en-doc__list{margin:0;padding:0;list-style:none}
+.en-doc__list li{
+  position:relative;padding:10px 18px 10px 0;border-block-start:1px solid var(--rule);
+  color:rgb(var(--en-text-secondary));font-size:15px;line-height:1.65
+}
+.en-doc__list li:before{content:'—';position:absolute;right:0;color:rgb(var(--en-text-muted))}
+.en-doc__list li{padding-right:26px}
+
+/* FAQ as ruled rows, native details, no chrome. */
+.en-doc__faq{border-block-start:1px solid var(--rule)}
+.en-doc__faq details{border-block-end:1px solid var(--rule)}
+.en-doc__faq summary{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  min-height:58px;padding-block:15px;cursor:pointer;list-style:none;
+  color:rgb(var(--en-text-primary));font-size:17px;font-weight:600;line-height:1.4
+}
+.en-doc__faq summary::-webkit-details-marker{display:none}
+.en-doc__faq summary:after{
+  content:'+';flex:0 0 auto;color:rgb(var(--en-text-muted));
+  font-size:22px;font-weight:400;line-height:1
+}
+.en-doc__faq details[open] summary:after{content:'−'}
+.en-doc__faq details>p{margin:0;padding:0 0 20px;max-width:44rem;color:rgb(var(--en-text-secondary))!important;font-size:15px;line-height:1.75}
+.en-doc__faq a{color:rgb(var(--en-text-primary))!important;text-decoration:underline;text-underline-offset:4px}
+
+.en-doc__note{margin:16px 0 0;max-width:44rem;color:rgb(var(--en-text-secondary))!important;font-size:14px;line-height:1.7}
+.en-doc__note a{color:rgb(var(--en-text-primary))!important;text-decoration:underline;text-underline-offset:4px}
+
+.en-doc__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(20px,3vw,28px)}
+.en-doc__btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:12px 26px;border-radius:0;
+  border:1px solid rgb(var(--en-text-primary));
+  background:rgb(var(--en-text-primary));color:rgb(var(--en-surface-page))!important;
+  text-decoration:none;font-size:15px;font-weight:600;
+  transition:background-color .18s ease,border-color .18s ease
+}
+.en-doc__btn:hover{background:rgb(var(--en-color-dark));border-color:rgb(var(--en-color-dark))}
+.en-doc__btn--ghost{
+  background:transparent;border-color:rgb(var(--en-text-primary)/.42);
+  color:rgb(var(--en-text-primary))!important
+}
+.en-doc__btn--ghost:hover{background:rgb(var(--en-text-primary)/.06);border-color:rgb(var(--en-text-primary))}
+
+.en-doc__prose h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.025em;margin:28px 0 10px}
+.en-doc__prose p,.en-doc__prose li{color:rgb(var(--en-text-secondary));font-size:16px;line-height:1.75}
+.en-doc__prose a{color:rgb(var(--en-text-primary))!important;text-decoration:underline;text-underline-offset:4px}
+
+.en-doc__foot{border-block-start:1px solid var(--rule-strong);background:rgb(var(--en-surface-page))}
+.en-doc__foot>div{display:flex;flex-wrap:wrap;gap:8px 26px;padding-block:20px}
+.en-doc__foot a{
+  color:rgb(var(--en-text-primary))!important;text-decoration:underline;
+  text-underline-offset:5px;text-decoration-color:rgb(var(--en-text-primary)/.35);
+  font-size:14px;font-weight:600
+}
+.en-doc__foot a:hover{text-decoration-color:rgb(var(--en-text-primary))}
+
+.en-doc a:focus-visible,.en-doc summary:focus-visible{outline:3px solid rgb(var(--en-text-primary));outline-offset:2px}
+.en-doc__band a:focus-visible{outline-color:rgb(var(--en-ink))}
+
+@media(max-width:760px){
+  .en-doc__grid2{grid-template-columns:1fr}
+  .en-doc__panel{border-inline-start:0;border-block-start:1px solid var(--rule)}
+  .en-doc__panel:first-child{border-block-start:0}
+}
+@media(max-width:640px){
+  .en-doc__plate{grid-template-columns:1fr;max-width:100%}
+  .en-doc__cell{border-inline-start:0;border-block-start:1px solid var(--rule-night)}
+  .en-doc__cell:first-child{border-block-start:0}
+  .en-doc__toc{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .en-doc__toc::-webkit-scrollbar{display:none}
+  .en-doc__toc a{flex:0 0 auto;white-space:nowrap}
+  .en-doc__sched li{grid-template-columns:34px minmax(0,1fr)}
+  .en-doc__link{flex-direction:column;align-items:flex-start;gap:6px}
+  .en-doc__cta,.en-doc__cta .en-doc__btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.en-doc *{transition:none!important}}
+{% endstylesheet %}
+
+{% schema %}
+{"name":"ElmsNest editorial pages","tag":"section","settings":[],"presets":[{"name":"ElmsNest editorial pages"}]}
+{% endschema %}

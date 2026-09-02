@@ -1,0 +1,200 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main_heading_Gg63eE": {
+      "type": "main-heading",
+      "blocks": {
+        "heading_liquid_gEADwf": {
+          "type": "_heading_liquid",
+          "settings": {
+            "text": "{{ page.title }}",
+            "line_height": "hdt-lh-1",
+            "font_family": "hdt-font-1",
+            "text_size": "2xl",
+            "text_color": "hdt-s-text",
+            "italic": false,
+            "uppercase": true,
+            "font_size_text_lg": 16,
+            "font_size_text": 14,
+            "letter_spacing_text": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading_liquid_gEADwf"
+      ],
+      "settings": {
+        "use_dynamic_source": true,
+        "color_scheme": "scheme-77e4ef58-56a9-4631-876a-12098ba7d57d",
+        "bg_overlay": 0,
+        "space_item": 0,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "50px,,50px,",
+        "pd_mb": "50px,,50px,"
+      }
+    },
+    "contact_form_zzPDf3": {
+      "type": "contact-form",
+      "blocks": {
+        "contact_col_39rTtM": {
+          "type": "_contact_col",
+          "settings": {},
+          "blocks": {
+            "spacer_hw8izD": {
+              "type": "spacer",
+              "settings": {
+                "direction": false,
+                "space_lg": 20,
+                "space_md": 20,
+                "space": 20
+              },
+              "blocks": {}
+            },
+            "text_MXnny3": {
+              "type": "text",
+              "settings": {
+                "text": "",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "4xl",
+                "line_height": "",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "countdown": "2025-12-30 15:00:00",
+                "txt_day": "days",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "spacer_DkBKe7": {
+              "type": "spacer",
+              "settings": {
+                "direction": false,
+                "space_lg": 20,
+                "space_md": 20,
+                "space": 20
+              },
+              "blocks": {}
+            },
+            "contact_form_4UVE84": {
+              "type": "_contact-form",
+              "settings": {
+                "success_message": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "spacer_hw8izD",
+            "text_MXnny3",
+            "spacer_DkBKe7",
+            "contact_form_4UVE84"
+          ]
+        },
+        "contact_col_gcMnTL": {
+          "type": "_contact_col",
+          "settings": {},
+          "blocks": {
+            "spacer_jDxYgm": {
+              "type": "spacer",
+              "settings": {
+                "direction": false,
+                "space_lg": 20,
+                "space_md": 20,
+                "space": 20
+              },
+              "blocks": {}
+            },
+            "text_QJ8PKt": {
+              "type": "text",
+              "settings": {
+                "text": "",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "4xl",
+                "line_height": "",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "countdown": "2025-12-30 15:00:00",
+                "txt_day": "days",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "spacer_zDgFxQ": {
+              "type": "spacer",
+              "settings": {
+                "direction": false,
+                "space_lg": 20,
+                "space_md": 20,
+                "space": 20
+              },
+              "blocks": {}
+            },
+            "liquid_XznGcy": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "<div dir=\"rtl\" style=\"text-align: right; line-height: 1.8;\">\n  <h3 style=\"font-size: 20px; font-weight: 700; margin: 0 0 14px;\">שאלה לפני הזמנה?</h3>\n  <p>זה בדיוק בשבילנו. כדי שנוכל לבדוק התאמה למקום שלכם, צרפו להודעה:</p>\n  <ul style=\"margin: 0 0 18px; padding-inline-start: 20px;\">\n    <li>תמונה של המקום שרוצים להאיר</li>\n    <li>קישור למוצר ששוקלים</li>\n    <li>השאלה עצמה — למשל כמה שמש המקום מקבל, או אילו מידות דרושות</li>\n  </ul>\n  <p>ואם משהו לא מתאים למקום — נגיד את זה מראש.</p>\n  <h3 style=\"font-size: 20px; font-weight: 700; margin: 22px 0 14px;\">פנייה על הזמנה קיימת?</h3>\n  <p>ציינו מספר הזמנה ואת האימייל ששימש לרכישה, ונבדוק את הפנייה.</p>\n  <p style=\"margin-top: 18px;\"><strong>דוא״ל:</strong> info@elmsnest.com<br><strong>ElmsNest</strong>, ישראל</p>\n</div>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "--f_family_1",
+                "text_size": "base",
+                "font_weight": "medium",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "spacer_jDxYgm",
+            "text_QJ8PKt",
+            "spacer_zDgFxQ",
+            "liquid_XznGcy"
+          ]
+        }
+      },
+      "block_order": [
+        "contact_col_39rTtM",
+        "contact_col_gcMnTL"
+      ],
+      "custom_css": [
+        ".hdt-rte :where(:not(meta, span) + *) {margin-top: 20px;}"
+      ],
+      "settings": {
+        "colors_by_section": false,
+        "color_scheme": "",
+        "background_opacity": 0,
+        "section_layout": "container",
+        "hdt_background_parallax": false,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_rate": 80
+      }
+    }
+  },
+  "order": [
+    "main_heading_Gg63eE",
+    "contact_form_zzPDf3"
+  ]
+}

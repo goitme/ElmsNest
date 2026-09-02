@@ -1,0 +1,89 @@
+{%- comment -%}
+  A catalogue cell, not a floating card: hairline rules, square corners, no
+  shadow and no lift on hover. The product photographs already carry four
+  different supplier design systems, so the frame around them stays silent.
+  Numerals are tabular and wrapped in <bdi> because a Latin price inside a
+  Hebrew RTL cell reorders without it.
+{%- endcomment -%}
+{%- if product != blank -%}
+  <article class="en-cell{% unless product.available %} is-sold-out{% endunless %}">
+    <a class="en-cell__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_image != blank -%}
+        {%- assign product_alt = product.featured_image.alt | default: product.title -%}
+        {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '260,380,540,720,900', sizes: '(max-width: 749px) 78vw, (max-width: 1024px) 33vw, 25vw', alt: product_alt, class: 'en-cell__primary-image' }}
+        {%- if product.images.size > 1 -%}
+          {%- assign second_image = product.images[1] -%}
+          <img
+            class="en-cell__secondary-image"
+            data-en-secondary-image
+            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+            data-src="{{ second_image | image_url: width: 900 }}"
+            data-srcset="{{ second_image | image_url: width: 380 }} 380w, {{ second_image | image_url: width: 540 }} 540w, {{ second_image | image_url: width: 720 }} 720w, {{ second_image | image_url: width: 900 }} 900w"
+            sizes="(max-width: 1024px) 33vw, 25vw"
+            width="{{ second_image.width }}"
+            height="{{ second_image.height }}"
+            loading="lazy"
+            decoding="async"
+            alt="{{ second_image.alt | default: product.title | escape }}"
+          >
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'en-cell__placeholder' }}
+      {%- endif -%}
+      <span class="en-cell__flags">
+        {%- if product.compare_at_price_max > product.price -%}<b class="en-cell__flag--sale">מבצע</b>{%- endif -%}
+        {%- unless product.available -%}<b class="en-cell__flag--out">אזל מהמלאי</b>{%- endunless -%}
+      </span>
+    </a>
+
+    <div class="en-cell__body">
+      {%- if category_label != blank -%}<p class="en-cell__category">{{ category_label }}</p>{%- endif -%}
+      <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+      <div class="en-cell__price">
+        {%- comment -%}
+          A "from 219.90" on a product whose real ceiling is 529.90 is a number
+          the buyer finds has moved after they click, which is the cheapest
+          possible way to spend the trust this store's first principle is built
+          on. Both ends are stated instead: the span is the honest figure, and
+          it also tells a scanning eye that larger sets exist without any
+          claim being made about them.
+
+          The whole range sits inside ONE bdi. Two separate ones would let the
+          bidi algorithm reorder the pair around the dash in an RTL line, which
+          would print the ceiling first and read as a price rise.
+
+          Products whose variants are all the same price fall to the plain
+          branch and show a single figure - which is also how the known
+          mispriced deck-light set will render, leaving that fault visible
+          rather than papering over it with a fake span.
+        {%- endcomment -%}
+        {%- if product.price_varies -%}
+          <bdi dir="ltr" class="en-cell__span">
+            <strong>{{ product.price | money }}</strong><span class="en-cell__to">–{{ product.price_max | money }}</span>
+          </bdi>
+        {%- else -%}
+          <strong><bdi dir="ltr">{{ product.price | money }}</bdi></strong>
+        {%- endif -%}
+        {%- if product.compare_at_price_max > product.price -%}<s><bdi dir="ltr">{{ product.compare_at_price_max | money }}</bdi></s>{%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%}
+      One purchase verb for every buyable cell. "הוסף לסל" would be a lie here —
+      the link opens the product page, it does not add to cart — and splitting
+      the label by variant count made the grid read as two different components.
+      A sold-out product keeps the viewing label: a buy CTA on an unbuyable
+      product is the kind of false promise the copy council ruled out.
+    {%- endcomment -%}
+    <a class="en-cell__action" href="{{ product.url }}">
+      <span>
+        {%- if product.available -%}
+          לרכישה
+        {%- else -%}
+          לצפייה במוצר
+        {%- endif -%}
+      </span>
+      <span class="en-cell__arrow" aria-hidden="true">←</span>
+    </a>
+  </article>
+{%- endif -%}

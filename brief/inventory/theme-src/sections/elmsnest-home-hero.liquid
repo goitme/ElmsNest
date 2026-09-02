@@ -1,0 +1,376 @@
+{%- liquid
+  assign desktop_image = section.settings.image
+  assign mobile_image = section.settings.image_mobile | default: desktop_image
+  assign use_performance_hero = false
+  if desktop_image.src contains 'pexels-taryn-elliott-4112233.jpg' and mobile_image.src contains 'pexels-taryn-elliott-4112236_2.jpg'
+    assign use_performance_hero = true
+  endif
+-%}
+
+<section class="en-hero" dir="rtl" aria-labelledby="en-hero-title-{{ section.id }}">
+  <div class="en-hero__media" aria-hidden="true">
+    {%- if desktop_image != blank -%}
+      <picture>
+        {%- if use_performance_hero -%}
+          <source media="(max-width: 749px)" srcset="{{ 'elmsnest-hero-mobile-performance.webp' | asset_url }}">
+          <img src="{{ 'elmsnest-hero-desktop-performance.webp' | asset_url }}" width="1456" height="768" loading="eager" fetchpriority="high" alt="">
+        {%- else -%}
+          {%- if mobile_image != blank -%}
+            <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 480 }} 480w, {{ mobile_image | image_url: width: 640 }} 640w, {{ mobile_image | image_url: width: 760 }} 760w, {{ mobile_image | image_url: width: 900 }} 900w" sizes="100vw">
+          {%- endif -%}
+          {{ desktop_image | image_url: width: 1920 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '900,1200,1600,1920', sizes: '100vw', alt: '' }}
+        {%- endif -%}
+      </picture>
+    {%- endif -%}
+  </div>
+  <span class="en-hero__shade" aria-hidden="true"></span>
+  {%- comment -%}
+    Two purely decorative layers that play the moment a solar fixture exists
+    for: dusk falls, the cell has charged, the lamps come on. Both are
+    aria-hidden and carry no content of their own.
+  {%- endcomment -%}
+  <span class="en-hero__glow" aria-hidden="true"></span>
+  <span class="en-hero__dusk" aria-hidden="true"></span>
+
+  <div class="en-hero__wrap">
+    <div class="en-hero__content">
+
+      <h1 id="en-hero-title-{{ section.id }}">{{ section.settings.heading }}</h1>
+
+      {%- comment -%}
+        The rating plate. Every value below is transcribed from the product
+        specification sections the store already publishes, never inferred.
+        Adding a value here without a source in the catalogue breaks the
+        brand's own first principle.
+      {%- endcomment -%}
+      <dl class="en-plate" aria-label="נתוני מפרט מתוך עמודי המוצרים בקטלוג">
+        <div class="en-plate__cell">
+          <dt>עמידות</dt>
+          <dd><bdi dir="ltr">IP65</bdi></dd>
+        </div>
+        <div class="en-plate__cell">
+          <dt>גוון אור</dt>
+          <dd><bdi dir="ltr">3000K</bdi></dd>
+        </div>
+        <div class="en-plate__cell">
+          <dt>שעות תאורה</dt>
+          <dd><bdi dir="ltr">8–10</bdi></dd>
+        </div>
+        <div class="en-plate__cell">
+          <dt>חיווט חשמל</dt>
+          <dd><bdi dir="ltr">0</bdi></dd>
+        </div>
+      </dl>
+      {%- comment -%}
+        Scope line. The plate's four values are each licensed by a published
+        product page, but the catalogue also holds 2700K, IP67 and wired
+        models — presenting them unscoped claimed a uniformity the catalogue
+        contradicts one click later.
+      {%- endcomment -%}
+      <p class="en-plate__scope">נתונים מתוך מפרטי מוצרים בחנות · המפרט המלא של כל דגם — בעמוד המוצר</p>
+
+      {%- if section.settings.text != blank -%}<div class="en-hero__text">{{ section.settings.text }}</div>{%- endif -%}
+
+      {%- comment -%}
+        The two buttons answer two different states of mind: the visitor who
+        knows what they want goes to the catalogue; the visitor who does not
+        goes to the choosing guide. The council flagged the previous pair for
+        pointing at the same section under two labels.
+      {%- endcomment -%}
+      <div class="en-hero__actions">
+        <a class="en-hero__primary" href="#elmsnest-home-products">{{ section.settings.primary_label }}</a>
+        <a class="en-hero__secondary" href="{{ section.settings.secondary_url | default: pages['guide-garden-lighting'].url | default: '#elmsnest-home-shop' }}">{{ section.settings.secondary_label }}</a>
+      </div>
+
+      {%- comment -%}
+        Fit-to-place is the buying decision, so the four collections are
+        presented as a ruled schedule of places, not as decorative pills.
+      {%- endcomment -%}
+      <nav class="en-hero__places" aria-label="קולקציות תאורת חוץ">
+        {%- comment -%}
+          Labels come from the collections themselves, never from a hand-written
+          string: a hand-written label drifts from the catalogue and starts making
+          claims the collection cannot keep. "תאורת קיר סולארית" was one — only one
+          of its six products is solar. The index must name what it opens.
+        {%- endcomment -%}
+        {%- assign place_handles = 'תאורת-שביל-סולארית,solar-wall-lights,ספוטים-ופרוז-קטורים-סולאריים,גרילנדות-ותאורה-דקורטיבית' | split: ',' -%}
+        {%- for place_handle in place_handles -%}
+          {%- assign place = collections[place_handle] -%}
+          {%- if place != blank and place.products_count > 0 -%}
+            <a href="{{ place.url }}"><span>{{ place.title }}</span></a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.en-hero,.en-hero *{box-sizing:border-box}
+/* Kalles sets the root font size to 10px, so every rem here resolved at 62.5%
+   of what it was written for: `44rem` was meant to be 704px and rendered 440.
+   The column was half the width intended, which is what pushed the headline to
+   three lines and squeezed the schedule cells to 110px. Lengths on this section
+   are px from here on — a rem in this theme does not mean what it reads. */
+.en-hero{
+  --plate-rule:rgb(var(--en-ink)/.30);
+  position:relative;display:flex;min-height:min(88vh,760px);
+  direction:rtl;background:rgb(var(--en-night));color:rgb(var(--en-ink));
+  overflow:hidden;isolation:isolate
+}
+.en-hero__media{position:absolute;inset:0;z-index:-4}
+/* Two art-directed assets share this element: a 1456x768 landscape (desktop,
+   native resolution — the 960px pathway source could only ever deliver a third
+   of the pixels a full-bleed 1440 band needs) and a 560x1046 portrait band of
+   the pathway shot (mobile). Both are graded down so the lamps stay the
+   brightest thing on screen; mobile gets a lighter grade below because the
+   full-coverage content plus this grade read as a black rectangle in testing.
+   object-position keeps each subject lamp in frame when cover crops the sides
+   (>1440 desktop, 640-749 phablet): the lamp heads sit in the upper third. */
+.en-hero__media img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;
+  filter:brightness(.66) contrast(1.08) saturate(.88)
+}
+@media(max-width:749px){
+  .en-hero__media img{filter:brightness(.8) contrast(1.08) saturate(.88)}
+}
+
+/* Darkest on the reading side. `to left` is physical and the section is RTL,
+   so the first stop lands on the right, under the content. The council found
+   the previous build mixing a logical margin with a physical gradient, which
+   put the text over the brightest part of the photograph. */
+.en-hero__shade{
+  position:absolute;inset:0;z-index:-3;
+  background:
+    linear-gradient(to left,rgb(var(--en-night)/.94) 0%,rgb(var(--en-night)/.82) 40%,rgb(var(--en-night)/.52) 76%,rgb(var(--en-night)/.40) 100%),
+    linear-gradient(to top,rgb(var(--en-night)/.82) 0%,rgb(var(--en-night)/.18) 52%,transparent 100%)
+}
+
+/* The section sits under a transparent header (Kalles pulls it up by
+   --header-height), so the first line has to clear the nav on its own. */
+/* The section must not fill the viewport exactly. Half of visitors never
+   scroll at all, and a first screen that looks finished is read as finished —
+   so the terms strip below has to show its top edge unprompted. The rhythm
+   here is tuned to leave that edge visible at 1440x900 and 390x844; if content
+   is added to the hero, re-measure rather than assume it still fits. */
+.en-hero__wrap{
+  width:min(1200px,100%);margin-inline:auto;
+  padding:calc(var(--header-height,0px) + var(--top-bar-height,0px) + clamp(28px,3.4vw,52px)) clamp(18px,4vw,40px) clamp(26px,3.6vw,56px)
+}
+.en-hero__content{max-width:700px}
+
+.en-hero h1{
+  margin:0;color:rgb(var(--en-ink));
+  /* No negative tracking on Hebrew display text. Tightening is a Latin habit —
+     it buys density there because Latin has open counters and a long x-height
+     run. Hebrew letters hang from the top line with tight counters already, and
+     W3C hlreq names letter-spacing as Hebrew's EXPANSION tool for emphasis, the
+     substitute for a case distinction the script does not have. Compressing it
+     spends that tool in the wrong direction. */
+  font-size:clamp(34px,5.4vw,64px);line-height:1.04;letter-spacing:normal;font-weight:700;
+  text-wrap:balance
+}
+
+/* The rating plate: a ruled instrument panel, not a stat row. Amber is spent
+   on measured values only — never on a control, a rule, or a hover state — so
+   that seeing it anywhere on the page means "this number was measured". */
+/* Near-solid ground: at .86 the bright lantern pixels behind the plate bled
+   through and worst-pixel contrast under the labels dropped to 1.4-2.5:1
+   (detector finding, 2026-08-14). The plate is an instrument face, not a
+   glass card — it may sit ON the photo, never let the photo through it. */
+.en-plate{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  margin:clamp(16px,2.2vw,24px) 0 0;padding:0;
+  border:1px solid var(--plate-rule);
+  background:rgb(var(--en-night)/.97)
+}
+.en-plate__cell{padding:14px 16px;border-inline-start:1px solid var(--plate-rule)}
+.en-plate__cell:first-child{border-inline-start:0}
+.en-plate dt{
+  margin:0 0 7px;color:rgb(var(--en-ink)/.92);
+  /* The eyebrow role. In Latin this line would be uppercase; on Hebrew that
+     declaration measures 0.00px, so the whole distinction has to be carried by
+     weight and tracking instead. This is the sanctioned direction. */
+  font-size:12px;font-weight:600;line-height:1.2;letter-spacing:.04em
+}
+.en-plate dd{
+  margin:0;color:rgb(var(--en-amber));
+  font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em
+}
+.en-plate__scope{margin:8px 0 0;color:rgb(var(--en-ink)/.60);font-size:12px;line-height:1.4}
+
+.en-hero__text{margin-top:16px;max-width:520px}
+/* 1.5 is the running-text leading for the whole sheet. The sections had drifted
+   to five values (1.5 / 1.55 / 1.6 / 1.7 / 1.72) for the same kind of text; the
+   measured leading on live Hebrew storefronts sits at 1.43-1.56, and the "1.7 for
+   Hebrew" figure traces back to an AI-written skill citing no typographic source. */
+.en-hero__text p{margin:0;color:rgb(var(--en-ink)/.82);font-size:17px;line-height:1.5}
+
+/* Square corners, because everything else on this surface is ruled. A pill
+   here would be the one soft shape in an instrument panel. */
+.en-hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(18px,2.2vw,26px)}
+.en-hero__actions a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:12px 28px;border-radius:0;
+  font-weight:600;font-size:16px;text-decoration:none;
+  transition:background-color .18s ease,border-color .18s ease,color .18s ease
+}
+.en-hero__primary{
+  border:1px solid rgb(var(--en-ink));
+  background:rgb(var(--en-ink));color:rgb(var(--en-night))!important
+}
+.en-hero__primary:hover{background:#fff;border-color:#fff}
+.en-hero__secondary{
+  border:1px solid rgb(var(--en-ink)/.58);
+  background:transparent;color:rgb(var(--en-ink))!important
+}
+.en-hero__secondary:hover{border-color:rgb(var(--en-ink));background:rgb(var(--en-ink)/.08)}
+.en-hero__actions a:focus-visible{outline:3px solid rgb(var(--en-ink));outline-offset:3px}
+
+/* A schedule of places, ruled and closed on all four sides so it reads as
+   part of the panel rather than a table someone forgot to finish. */
+/* margin trimmed when the plate scope line was added, so the terms strip
+   keeps its measured peek above the fold at 1440x900 and 390x844 */
+.en-hero__places{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  margin-top:clamp(14px,1.8vw,20px);
+  border:1px solid var(--plate-rule);border-block-end:0
+}
+.en-hero__places a{
+  display:flex;align-items:center;min-height:52px;padding:14px 16px;
+  border-block-end:1px solid var(--plate-rule);
+  color:rgb(var(--en-ink)/.88)!important;text-decoration:none;
+  font-size:15px;font-weight:600;line-height:1.3;text-wrap:balance;
+  transition:color .18s ease,background-color .18s ease
+}
+.en-hero__places a+a{border-inline-start:1px solid var(--plate-rule)}
+.en-hero__places a:hover{color:rgb(var(--en-ink))!important;background:rgb(var(--en-ink)/.09)}
+.en-hero__places a:focus-visible{outline:3px solid rgb(var(--en-ink));outline-offset:-3px}
+
+@media(max-width:900px){
+  .en-hero__places{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .en-hero__places a:nth-child(3){border-inline-start:0}
+}
+@media(max-width:640px){
+  .en-hero{min-height:auto}
+  .en-plate{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .en-plate__cell:nth-child(3){border-inline-start:0}
+  .en-plate__cell:nth-child(n+3){border-top:1px solid var(--plate-rule)}
+  .en-hero__actions a{flex:1 1 100%}
+  /* Two columns, not one: four stacked rows cost 209px of a 844px screen and
+     were the single reason nothing below the hero could show. */
+  .en-hero__places{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .en-hero__places a+a{border-inline-start:1px solid var(--plate-rule)}
+  .en-hero__places a:nth-child(odd){border-inline-start:0}
+  .en-hero__places a{min-height:46px;padding:12px 14px;font-size:14px}
+}
+/* ── Dusk to lit ─────────────────────────────────────────────────────────
+   A solar lamp's entire promise is the transition this photograph is frozen
+   inside. Playing that transition on load answers the buyer's first
+   objection - "does it actually light anything?" - before a line of copy is
+   read, and it demonstrates rather than claims, which is the rule the rest
+   of this sheet is built on.
+
+   Both layers animate opacity ONLY. Animating the image's own filter would
+   repaint a full-bleed 1456px asset every frame; opacity on a sibling layer
+   is composited on the GPU and costs the LCP element nothing. The photograph
+   paints at full size immediately - only the veil above it moves.
+
+   Every default state below is the FINISHED state. A visitor with
+   reduced-motion, a browser that drops the animation, or a section
+   stylesheet that compiles late all land on the intended hero, never on a
+   half-dark one. */
+.en-hero__dusk{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:rgb(var(--en-night));opacity:0;
+  animation:en-dusk-lift 1.45s cubic-bezier(.33,.72,.32,1) both
+}
+@keyframes en-dusk-lift{from{opacity:.66}to{opacity:0}}
+
+/* Amber here is not an accent and not decoration: it is the light the lamps
+   in the photograph emit, which is the one job DESIGN.md licenses amber for.
+   Stops are placed on the actual fixtures in the asset - the wall lamp upper
+   left, the three-lamp column mid-frame, the string lights over the hedge.
+   screen ADDS light instead of laying a film over the image, so the
+   photograph stays sharp underneath it.
+
+   These percentages are read off the image file itself
+   (elmsnest-hero-desktop-performance.webp, 1456x768), so they are tied to the
+   photograph and not to reading direction - RTL must not mirror them. That is
+   why they are physical and not logical, per the gradient rule in DESIGN.md. */
+.en-hero__glow{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  mix-blend-mode:screen;opacity:.46;
+  background:
+    radial-gradient(30% 34% at 18% 25%,rgb(var(--en-amber)/.50) 0%,rgb(var(--en-amber)/.16) 46%,transparent 72%),
+    radial-gradient(15% 26% at 40% 47%,rgb(var(--en-amber)/.34) 0%,transparent 70%),
+    radial-gradient(22% 12% at 62% 38%,rgb(var(--en-amber)/.30) 0%,transparent 72%);
+  animation:en-glow-rise 2.1s ease-out both
+}
+/* The light holds off until the dark has started lifting, so the two layers
+   read as one event - night receding, lamps catching - rather than two. */
+@keyframes en-glow-rise{0%,38%{opacity:0}100%{opacity:.46}}
+
+/* Mobile gets no glow at all, and that is a measurement, not a preference.
+
+   The mobile crop puts the path lamp behind the content column, and the plate,
+   copy, buttons and schedule together cover most of what is left. An A/B pixel
+   diff of the mobile hero with the glow on against the same hero with it
+   hidden came back at 1.07 mean delta over 4.66% of pixels - invisible - while
+   the same diff on desktop measured 6.78 over 20.49%, concentrated in exactly
+   the row bands the wall lamp and the string lights occupy.
+
+   A glow with no visible source is haze, not light. So mobile carries the
+   moment on the dusk lift alone, which acts on the whole frame rather than on
+   a point and therefore survives the crop. It is set deeper here because the
+   mobile asset is already graded lighter (brightness .8, above) and only a
+   sliver of it is ever on screen. */
+@media(max-width:749px){
+  .en-hero__glow{display:none}
+  .en-hero__dusk{animation-name:en-dusk-lift-mobile}
+}
+@keyframes en-dusk-lift-mobile{from{opacity:.80}to{opacity:0}}
+
+/* ── The plate reads one field at a time ─────────────────────────────────
+   Four values arriving together are skimmed as a texture; four arriving in
+   sequence are read as four measurements, which is the entire point of
+   presenting them on a rating plate. Delays are short (.16-.40s) because
+   this content is above the fold - a longer stagger would be withholding
+   the page's proof, not pacing it.
+
+   7px of travel, ending at rest. DESIGN.md's "nothing lifts" rule governs
+   hover, where a lift is a floating-card idiom; an entrance that settles
+   into its own cell is a different gesture and stays inside the rule. */
+.en-plate__cell{animation:en-field-in .52s cubic-bezier(.2,.7,.3,1) both}
+.en-plate__cell:nth-child(1){animation-delay:.16s}
+.en-plate__cell:nth-child(2){animation-delay:.24s}
+.en-plate__cell:nth-child(3){animation-delay:.32s}
+.en-plate__cell:nth-child(4){animation-delay:.40s}
+@keyframes en-field-in{from{opacity:0;transform:translateY(7px)}}
+
+@media(prefers-reduced-motion:reduce){
+  .en-hero__actions a,.en-hero__places a{transition:none}
+  /* Not "instant" versions of the same motion - no motion, final state. */
+  .en-hero__dusk,.en-hero__glow,.en-plate__cell{animation:none}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "ElmsNest hero",
+  "tag": "section",
+  "class": "hdt-section section-allow-transparent",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "תמונת רקע (דסקטופ)" },
+    { "type": "image_picker", "id": "image_mobile", "label": "תמונת רקע (מובייל)" },
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "תאורת חוץ סולארית — מה מתאים ומה לא" },
+    { "type": "richtext", "id": "text", "label": "טקסט" },
+    { "type": "text", "id": "primary_label", "label": "כפתור ראשי", "default": "לקטלוג המלא" },
+    { "type": "text", "id": "secondary_label", "label": "כפתור משני", "default": "לא בטוחים? למדריך הבחירה" },
+    { "type": "url", "id": "secondary_url", "label": "קישור כפתור משני", "info": "ברירת מחדל: מדריך בחירת תאורה לגינה" }
+  ],
+  "presets": [{ "name": "ElmsNest hero" }]
+}
+{% endschema %}

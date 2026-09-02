@@ -1,0 +1,14 @@
+{%- comment -%}
+  ElmsNest «למי זה פחות מתאים» (P7) — the honest-guide differentiator.
+  Sourced from product.metafields.custom.not_fit_for; rendered inside
+  sections/elmsnest-product-guidance.liquid. Drops silently when empty.
+  Styling lives in the guidance section's stylesheet (the section renders
+  on both templates, elmsnest-pdp.css does not load on the old one).
+{%- endcomment -%}
+{%- assign en_nf = product.metafields.custom.not_fit_for | metafield_text -%}
+{%- if en_nf != blank -%}
+<aside class="en-pdp-guide__notfit" dir="rtl">
+  <h3>למי זה פחות מתאים</h3>
+  <p>{{ en_nf | newline_to_br }}</p>
+</aside>
+{%- endif -%}

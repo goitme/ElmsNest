@@ -1,0 +1,357 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "brc-nav-product",
+      "settings": {
+        "back_next_pr": true,
+        "colors_by_section": true,
+        "color_scheme": "scheme-c9476b69-abc7-454f-a946-2d5a9f5f3a37",
+        "background_opacity": 1,
+        "section_layout": "wrapper_container",
+        "hdt_background_parallax": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "20px,,20px,",
+        "pd_mb": "15px,,15px,"
+      }
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "group_product_9RYttB": {
+          "type": "_group-product",
+          "settings": {
+            "colors_by_block": false,
+            "color_scheme": ""
+          },
+          "blocks": {
+            "product_title_ehRqkq": {
+              "type": "_product-title",
+              "settings": {
+                "txt_tr_pr": "none",
+                "tag": "h1",
+                "heading_size": "h_custom",
+                "font_size_heading_lg": 32,
+                "font_size_heading": 25,
+                "font_weight": "semibold",
+                "letter_spacing_heading": 0
+              },
+              "blocks": {}
+            },
+            "product_price_eTf3F8": {
+              "type": "_product-price",
+              "name": "t:sections.main-product.blocks.price.name",
+              "settings": {
+                "label_onsale_style": "none"
+              },
+              "blocks": {}
+            },
+            "liquid_CpnXHU": {
+              "type": "_liquid",
+              "name": "t:blocks.liquid.name",
+              "disabled": true,
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "<section class=\"fsb\" dir=\"rtl\" aria-labelledby=\"fsb-title\">\n  <div class=\"fsb__inner\">\n    <div class=\"fsb__icon\" aria-hidden=\"true\">\n      <svg viewBox=\"0 0 32 32\" fill=\"none\">\n        <path d=\"M4.5 8.5h14v13h-14zM18.5 13h5.2l4.3 4.5v4h-9.5zM21.5 13v4.5H28\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/>\n        <circle cx=\"9\" cy=\"23\" r=\"2.6\" fill=\"currentColor\"/>\n        <circle cx=\"23.5\" cy=\"23\" r=\"2.6\" fill=\"currentColor\"/>\n      </svg>\n    </div>\n\n    <div class=\"fsb__copy\">\n      <p class=\"fsb__kicker\">חדשות טובות בדרך אליכם</p>\n      <h2 id=\"fsb-title\" class=\"fsb__title\">משלוח חינם לנקודת איסוף</h2>\n      <p class=\"fsb__detail\">איסוף נוח ללא עלות; שליח עד הבית בתוספת 29.90 ₪</p>\n    </div>\n  </div>\n</section>\n\n<style>\n.fsb,.fsb *{box-sizing:border-box}.fsb{position:relative;width:calc(100% - 28px);margin:14px;overflow:hidden;direction:rtl;color:#332114;background:linear-gradient(110deg,#f8f3eb,#fffaf2,#f2eadf);border:1px solid rgba(129,91,54,.12);border-radius:3px;box-shadow:0 5px 16px rgba(78,49,24,.08);font-family:inherit}.fsb:before{content:\"\";position:absolute;inset:0;pointer-events:none;opacity:.28;background-image:radial-gradient(circle,rgba(139,85,40,.2) 1px,transparent 1.2px);background-size:20px 20px;-webkit-mask-image:linear-gradient(to left,#000,transparent 42%);mask-image:linear-gradient(to left,#000,transparent 42%)}.fsb__inner{position:relative;z-index:1;width:min(1120px,100%);min-height:48px;margin:auto;padding:6px clamp(10px,3vw,20px);display:grid;grid-template-columns:36px minmax(0,1fr);align-items:center;gap:clamp(8px,2vw,16px)}.fsb__icon{width:32px;height:32px;display:grid;place-items:center;color:#7b421d;background:linear-gradient(145deg,#f2e5d1,#ddc49d);border:1px solid rgba(123,66,29,.12);border-radius:8px;box-shadow:inset 0 1px rgba(255,255,255,.7),0 4px 12px rgba(91,54,25,.09)}.fsb__icon svg{display:block;width:18px;height:18px}.fsb__copy{min-width:0;text-align:right}.fsb__kicker,.fsb__title,.fsb__detail{margin:0}.fsb__kicker{margin-bottom:2px;color:#8b5528;font-size:11px;font-weight:700;line-height:1.2;letter-spacing:.04rem}.fsb__title{margin-bottom:1px;color:#332114;font-size:17px;font-weight:800;line-height:1.15;letter-spacing:-.02rem}.fsb__detail{color:#704d31;font-size:11px;font-weight:500;line-height:1.3}@media(max-width:640px){.fsb{width:calc(100% - 16px);margin:8px}.fsb__inner{grid-template-columns:32px minmax(0,1fr);gap:6px 8px;padding:6px}}\n</style>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "liquid_TJzckp": {
+              "type": "_liquid",
+              "name": "t:blocks.liquid.name",
+              "disabled": true,
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "<div class=\"hdt-product-info__item hdt-product__tax-ship\">\n  <div class=\"hdt-product__policies hdt-s-text2 hdt-rte\">\n    <span>המחיר כולל מס. משלוח לנקודת איסוף חינם; שליח עד הבית בתוספת 29.90 ₪.</span>\n\n    <a href=\"/policies/shipping-policy\" class=\"hdt-shipping-policy-link\">\n      למדיניות המשלוחים המלאה\n    </a>\n  </div>\n</div>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "product_inventory_cQVk3B": {
+              "type": "_product-inventory",
+              "name": "t:sections.main-product.blocks.inventory.name",
+              "disabled": true,
+              "settings": {
+                "inventory_threshold": 0,
+                "show_inventory_tracked": false,
+                "show_inventory_quantity": true,
+                "show_progress_bar": true,
+                "progress_bar_max": 50
+              },
+              "blocks": {}
+            },
+            "product_variant_picker_XNdArY": {
+              "type": "_product-variant-picker",
+              "name": "t:sections.main-product.blocks.variant_picker.name",
+              "settings": {
+                "color_picker_type": "block",
+                "color_size": "medium",
+                "picker_type": "block",
+                "size_chart_source": "page",
+                "size_chart_page": ""
+              },
+              "blocks": {}
+            },
+            "product_buy_button_aPmAbD": {
+              "type": "_product-buy-button",
+              "settings": {
+                "show_quantity_selector": true,
+                "show_dynamic_checkout": true,
+                "show_gift_card_recipient": false,
+                "show_wishlist": false,
+                "color_wishlist": "#b88a3b",
+                "color_hover_wishlist": "#e8ded0",
+                "color_active_wishlist": "#e81e1e",
+                "show_compare": false,
+                "color_compare": "#e8ded0",
+                "color_hover_compare": "#56cfe1",
+                "color_active_compare": "#e81e1e",
+                "ani": "none",
+                "time": 6,
+                "btn_transform": "",
+                "btn_style": "",
+                "btn_fullwidth": true
+              },
+              "blocks": {}
+            },
+            "product_pickup_Jpchr6": {
+              "type": "_product-pickup",
+              "name": "t:sections.main-product.blocks.pickup_availability.name",
+              "settings": {},
+              "blocks": {}
+            },
+            "product_description_AJaqwJ": {
+              "type": "_product-description",
+              "settings": {
+                "des": "1",
+                "short_des": "",
+                "readm": false,
+                "length": 130,
+                "readm_txt": "קראו עוד",
+                "readl_txt": "הציגו פחות",
+                "ffamily": "",
+                "text_size": "base",
+                "line_height": "",
+                "font_weight": "normal",
+                "heading_color": "",
+                "text_color": "hdt-text-secondary",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_title_ehRqkq",
+            "product_price_eTf3F8",
+            "liquid_CpnXHU",
+            "liquid_TJzckp",
+            "product_inventory_cQVk3B",
+            "product_variant_picker_XNdArY",
+            "product_buy_button_aPmAbD",
+            "product_pickup_Jpchr6",
+            "product_description_AJaqwJ"
+          ]
+        },
+        "main-product-sidebar": {
+          "type": "_product_sidebar",
+          "static": true,
+          "settings": {
+            "color_scheme": "",
+            "space": 50,
+            "last_order": false
+          },
+          "blocks": {}
+        },
+        "main-product-medias": {
+          "type": "_product-medias",
+          "static": true,
+          "settings": {
+            "media_box_size": 50,
+            "desktop_media_layout": "thumbnail_left",
+            "media_size": "medium",
+            "mobile_media_layout": "thumbnails",
+            "show_first_media": false,
+            "use_select_varaint_change_media": true,
+            "enable_media_autoplay": false,
+            "enable_video_looping": false,
+            "enable_thumb_efect": true,
+            "image_ratio": "adapt_image",
+            "image_size": true,
+            "image_zoom": "zoom_lightbox",
+            "enable_lightbox_icon": false,
+            "image_zoom_type": "external",
+            "zoom_level": 2,
+            "max_zoom_lightbox": 3,
+            "navUI": true,
+            "nav_style": "outline",
+            "nav_shape": "rounded",
+            "nav_size": "small",
+            "nav_hide_mobile": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_product_9RYttB"
+      ],
+      "settings": {
+        "product_list_fbt": [],
+        "sticky_atc": true,
+        "hdt_layout_atc_mob": "hdt_layout_atc_mob_default",
+        "hdt_show_sticky_atc": "hdt_show_scrolls_outside_the_scope_of_the_form",
+        "ani": "none",
+        "time": 6,
+        "btn_transform": "",
+        "btn_style": "",
+        "colors_by_section": false,
+        "color_scheme": "",
+        "background_opacity": 1,
+        "fullwidth": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "30px,,60px,",
+        "pd_mb": "22px,,45px,"
+      }
+    },
+    "elmsnest_product_guidance": {
+      "type": "elmsnest-product-guidance",
+      "settings": {}
+    },
+    "elmsnest_related_products": {
+      "type": "related-products",
+      "blocks": {
+        "pr-heading": {
+          "type": "section-heading",
+          "static": true,
+          "settings": {
+            "design_heading": "1",
+            "horizontal": false,
+            "alignment": "center",
+            "heading_gap": 18,
+            "margin_bottom": 30
+          },
+          "blocks": {
+            "heading_section_elmsnest": {
+              "type": "_heading_section",
+              "settings": {
+                "heading": "מוצרים נוספים שכדאי להכיר",
+                "line_height": "",
+                "heading_size": "h5",
+                "text_color": "hdt-s-text",
+                "font_size_heading_lg": 38,
+                "font_size_heading": 25,
+                "letter_spacing_heading": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_section_elmsnest"
+          ]
+        }
+      },
+      "settings": {
+        "product_des": "1",
+        "image_ratio": "adapt_image",
+        "image_size": true,
+        "show_vendor": false,
+        "display_type": "1",
+        "pr_border": "none",
+        "limit": 8,
+        "col_dk": "4",
+        "col_tb": "3",
+        "col_mb": "2",
+        "space_items": "x",
+        "loop": false,
+        "autoplay": 0,
+        "pauseOnHover": false,
+        "navUI": true,
+        "nav_position": "default",
+        "nav_visible": "hover",
+        "nav_style": "outline",
+        "nav_shape": "rounded",
+        "nav_size": "small",
+        "nav_hide_mobile": false,
+        "dotUI": false,
+        "pag_style": "default",
+        "pag_rounded": false,
+        "pag_space": 10,
+        "pag_mgt": 10,
+        "only_show_mobile": false,
+        "pag_hide_mobile": false,
+        "colors_by_section": false,
+        "color_scheme": "",
+        "background_opacity": 0,
+        "section_layout": "container",
+        "hdt_background_parallax": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "60px,,45px,",
+        "pd_mb": "42px,,30px,"
+      }
+    },
+    "sidebar": {
+      "type": "sidebar-product",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "space": 50
+      }
+    },
+    "custom_liquid_eAd3KJ": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<section class=\"elms-feeling-hero\" dir=\"rtl\">\n  <img\n    class=\"elms-feeling-hero__image\"\n    src=\"https://cdn.shopify.com/s/files/1/0689/4927/8894/files/elmsnest-garden-evening.jpg?v=1784834443&width=1200\"\n    srcset=\"\n      https://cdn.shopify.com/s/files/1/0689/4927/8894/files/elmsnest-garden-evening.jpg?v=1784834443&width=750 750w,\n      https://cdn.shopify.com/s/files/1/0689/4927/8894/files/elmsnest-garden-evening.jpg?v=1784834443&width=1200 1200w,\n      https://cdn.shopify.com/s/files/1/0689/4927/8894/files/elmsnest-garden-evening.jpg?v=1784834443&width=1600 1600w\n    \"\n    sizes=\"(max-width:749px) calc(100vw - 20px), min(1500px, calc(100vw - 32px))\"\n    alt=\"גינה מוארת באווירה חמימה בשעות הערב\"\n    loading=\"lazy\"\n    decoding=\"async\"\n    width=\"1536\"\n    height=\"2048\"\n  >\n\n  <div class=\"elms-feeling-hero__content\">\n    <span class=\"elms-feeling-hero__eyebrow\">הבית, כמו שאתם אוהבים</span>\n    <h2 class=\"elms-feeling-hero__title\">הבית מתחיל בתחושה</h2>\n    <p class=\"elms-feeling-hero__text\">לא רק מוצרים — אלא אווירה שתרצו לחזור אליה בכל ערב.</p>\n  </div>\n</section>\n\n<style>\n.elms-feeling-hero,.elms-feeling-hero *{box-sizing:border-box}.elms-feeling-hero{position:relative;isolation:isolate;width:calc(100% - 32px);max-width:1500px;min-height:680px;margin:40px auto;overflow:hidden;background:#1b1915;border-radius:26px;box-shadow:0 20px 55px rgba(25,18,10,.16)}.elms-feeling-hero:before{content:\"\";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(6,7,5,.02),rgba(6,7,5,.08) 40%,rgba(6,7,5,.56)),linear-gradient(0deg,rgba(5,6,4,.48),rgba(5,6,4,.08) 55%,transparent 78%)}.elms-feeling-hero:after{content:\"\";position:absolute;inset:0;z-index:-1;pointer-events:none;border:1px solid rgba(255,255,255,.14);border-radius:inherit}.elms-feeling-hero__image{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block;object-fit:cover;object-position:center 58%;transition:transform 1.2s ease}.elms-feeling-hero__content{position:absolute;z-index:1;right:clamp(24px,6vw,90px);bottom:clamp(32px,7vw,90px);width:min(620px,calc(100% - 48px));color:#fff;text-align:right;text-shadow:0 3px 22px rgba(0,0,0,.38)}.elms-feeling-hero__eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:16px;color:#f1d7a4;font-size:13px;font-weight:700;line-height:1.3;letter-spacing:.08em}.elms-feeling-hero__eyebrow:before{content:\"\";width:32px;height:1px;background:currentColor}.elms-feeling-hero__title{max-width:580px;margin:0 0 16px;color:#fff;font-size:clamp(40px,5.2vw,72px);font-weight:800;line-height:1.02;letter-spacing:-.045em}.elms-feeling-hero__text{max-width:550px;margin:0;color:rgba(255,255,255,.92);font-size:clamp(17px,1.7vw,22px);line-height:1.65}@media(hover:hover){.elms-feeling-hero:hover .elms-feeling-hero__image{transform:scale(1.025)}}@media(max-width:749px){.elms-feeling-hero{width:calc(100% - 20px);min-height:580px;margin:24px auto;border-radius:18px}.elms-feeling-hero:before{background:linear-gradient(0deg,rgba(7,8,6,.78),rgba(7,8,6,.38) 42%,rgba(7,8,6,.03) 74%)}.elms-feeling-hero__image{object-position:46% center}.elms-feeling-hero__content{right:22px;bottom:34px;width:calc(100% - 44px)}.elms-feeling-hero__eyebrow{margin-bottom:12px;font-size:11px}.elms-feeling-hero__title{margin-bottom:13px;font-size:39px;line-height:1.08}.elms-feeling-hero__text{max-width:340px;font-size:16px;line-height:1.6}}@media(prefers-reduced-motion:reduce){.elms-feeling-hero__image{transition:none}}\n</style>",
+        "colors_by_section": false,
+        "color_scheme": "",
+        "background_opacity": 0,
+        "section_layout": "full_width",
+        "hdt_background_parallax": false,
+        "mg": ",,50px,",
+        "mg_mb": ",,30px,",
+        "pd": "",
+        "pd_mb": ""
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main-product",
+    "elmsnest_product_guidance",
+    "elmsnest_related_products",
+    "sidebar",
+    "custom_liquid_eAd3KJ"
+  ]
+}

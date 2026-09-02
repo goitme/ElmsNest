@@ -1,0 +1,49 @@
+{%- comment -%}
+  ElmsNest PDP — inline icon set.
+
+  Usage: {% render 'elms-pdp-icon', name: 'truck' %}
+
+  Every icon is a 24×24 stroked glyph inheriting currentColor, so the
+  consuming section controls the colour through its own text-colour setting.
+  The svg carries aria-hidden and focusable="false": icons here are always
+  decorative, and every one of them sits beside a text label. Nothing in this
+  snippet is product-specific, so it is safe on all products.
+
+  'truck' is the only direction-implying glyph; it carries .elms-icon--flip and
+  the consuming section mirrors it under [dir="rtl"].
+{%- endcomment -%}
+{%- liquid
+  assign elms_icon_name = name | default: 'none'
+  assign elms_icon_flip = ''
+  if elms_icon_name == 'truck'
+    assign elms_icon_flip = ' elms-icon--flip'
+  endif
+-%}
+{%- case elms_icon_name -%}
+  {%- when 'truck' -%}
+    <svg class="elms-icon{{ elms_icon_flip }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 16.5V6.75A.75.75 0 0 1 3.75 6H14v10.5"/><path d="M14 9.5h3.4a1.5 1.5 0 0 1 1.28.72L21 14v2.5"/><circle cx="7.5" cy="17.5" r="1.9"/><circle cx="17" cy="17.5" r="1.9"/><path d="M9.4 17.5h5.7"/></svg>
+  {%- when 'drop' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5c3 3.7 5.5 6.6 5.5 9.5a5.5 5.5 0 1 1-11 0c0-2.9 2.5-5.8 5.5-9.5Z"/></svg>
+  {%- when 'return' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.2h-4.2"/></svg>
+  {%- when 'chat' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 12.5c0 3.6-3.6 6.5-8 6.5a9.6 9.6 0 0 1-2.6-.35L5 20.5l1.2-3.1C4.85 16.2 4 14.45 4 12.5 4 8.9 7.6 6 12 6s8 2.9 8 6.5Z"/></svg>
+  {%- when 'sun' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.1M12 19.1v2.1M21.2 12h-2.1M4.9 12H2.8M18.5 5.5 17 7M7 17l-1.5 1.5M18.5 18.5 17 17M7 7 5.5 5.5"/></svg>
+  {%- when 'tool' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.2 4.4a4.6 4.6 0 0 0-5.9 5.9l-5 5a1.8 1.8 0 0 0 2.6 2.6l5-5a4.6 4.6 0 0 0 5.9-5.9l-2.6 2.6-2.6-.7-.7-2.6 2.6-2.6Z"/></svg>
+  {%- when 'clock' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.4V12l3 1.8"/></svg>
+  {%- when 'shield' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.2 5 6v5.4c0 4 2.9 7.5 7 9.4 4.1-1.9 7-5.4 7-9.4V6l-7-2.8Z"/></svg>
+  {%- when 'bolt' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.2 2.8 5.5 13.4h5.6l-.9 7.8 7.7-10.6h-5.6l.9-7.8Z"/></svg>
+  {%- when 'check' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.8 12.4 4.6 4.6 9.8-9.8"/></svg>
+  {%- when 'cross' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.2 6.2 17.8 17.8M17.8 6.2 6.2 17.8"/></svg>
+  {%- when 'star' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 3.6 2.6 5.3 5.8.85-4.2 4.1 1 5.75L12 16.9l-5.2 2.7 1-5.75-4.2-4.1 5.8-.85L12 3.6Z"/></svg>
+  {%- when 'ruler' -%}
+    <svg class="elms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3.6 14.6 11-11 4.8 4.8-11 11z"/><path d="M7.2 11h2.2M9.8 8.4H12M12.4 5.8h2.2"/></svg>
+{%- endcase -%}

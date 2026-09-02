@@ -1,0 +1,723 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "brc-nav-product",
+      "settings": {
+        "back_next_pr": true,
+        "colors_by_section": true,
+        "color_scheme": "scheme-c9476b69-abc7-454f-a946-2d5a9f5f3a37",
+        "background_opacity": 1,
+        "section_layout": "wrapper_container",
+        "hdt_background_parallax": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "20px,,20px,",
+        "pd_mb": "15px,,15px,"
+      }
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "group_product_9RYttB": {
+          "type": "_group-product",
+          "settings": {
+            "colors_by_block": false,
+            "color_scheme": ""
+          },
+          "blocks": {
+            "product_title_ehRqkq": {
+              "type": "_product-title",
+              "settings": {
+                "txt_tr_pr": "none",
+                "tag": "h1",
+                "heading_size": "h_custom",
+                "font_size_heading_lg": 38,
+                "font_size_heading": 26,
+                "font_weight": "semibold",
+                "letter_spacing_heading": 0
+              },
+              "blocks": {}
+            },
+            "liquid_en_direct_answer": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-pdp-direct-answer', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "liquid_en_price": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-pdp-price', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "liquid_en_facts": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-pdp-facts', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "product_variant_picker_XNdArY": {
+              "type": "_product-variant-picker",
+              "settings": {
+                "color_picker_type": "block",
+                "color_size": "medium",
+                "picker_type": "block",
+                "size_chart_source": "page",
+                "size_chart_page": ""
+              },
+              "blocks": {}
+            },
+            "liquid_en_unit_price": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-pdp-unit-price', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "product_buy_button_aPmAbD": {
+              "type": "_product-buy-button",
+              "settings": {
+                "show_quantity_selector": false,
+                "show_dynamic_checkout": true,
+                "show_gift_card_recipient": false,
+                "show_wishlist": false,
+                "color_wishlist": "#b88a3b",
+                "color_hover_wishlist": "#e8ded0",
+                "color_active_wishlist": "#e81e1e",
+                "show_compare": false,
+                "color_compare": "#e8ded0",
+                "color_hover_compare": "#56cfe1",
+                "color_active_compare": "#e81e1e",
+                "ani": "none",
+                "time": 6,
+                "btn_transform": "",
+                "btn_style": "",
+                "btn_fullwidth": true
+              },
+              "blocks": {}
+            },
+            "liquid_en_trust": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-pdp-trust', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "liquid_en_specs": {
+              "type": "_liquid",
+              "disabled": true,
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-pdp-specs', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "liquid_en_faq": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-pdp-faq', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_title_ehRqkq",
+            "liquid_en_direct_answer",
+            "liquid_en_price",
+            "liquid_en_facts",
+            "product_variant_picker_XNdArY",
+            "liquid_en_unit_price",
+            "product_buy_button_aPmAbD",
+            "liquid_en_trust",
+            "liquid_en_specs",
+            "liquid_en_faq"
+          ]
+        },
+        "main-product-sidebar": {
+          "type": "_product_sidebar",
+          "static": true,
+          "settings": {
+            "color_scheme": "",
+            "space": 50,
+            "last_order": false
+          },
+          "blocks": {}
+        },
+        "main-product-medias": {
+          "type": "_product-medias",
+          "static": true,
+          "settings": {
+            "media_box_size": 50,
+            "desktop_media_layout": "thumbnail_left",
+            "media_size": "medium",
+            "mobile_media_layout": "thumbnails",
+            "show_first_media": false,
+            "use_select_varaint_change_media": true,
+            "enable_media_autoplay": false,
+            "enable_video_looping": false,
+            "enable_thumb_efect": true,
+            "image_ratio": "adapt_image",
+            "image_size": true,
+            "image_zoom": "zoom_lightbox",
+            "enable_lightbox_icon": false,
+            "image_zoom_type": "external",
+            "zoom_level": 2,
+            "max_zoom_lightbox": 3,
+            "navUI": true,
+            "nav_style": "outline",
+            "nav_shape": "default",
+            "nav_size": "small",
+            "nav_hide_mobile": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_product_9RYttB"
+      ],
+      "settings": {
+        "product_list_fbt": [],
+        "sticky_atc": true,
+        "hdt_layout_atc_mob": "hdt_layout_atc_mob_default",
+        "hdt_show_sticky_atc": "hdt_show_scrolls_outside_the_scope_of_the_form",
+        "ani": "none",
+        "time": 6,
+        "btn_transform": "",
+        "btn_style": "",
+        "colors_by_section": false,
+        "color_scheme": "",
+        "background_opacity": 1,
+        "fullwidth": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "30px,,60px,",
+        "pd_mb": "22px,,45px,"
+      }
+    },
+    "elms_trust_strip": {
+      "type": "elms-pdp-trust-strip",
+      "blocks": {
+        "trust_shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "label": "משלוח לנקודת איסוף חינם",
+            "note": "שליח עד הבית — 29.90 ₪"
+          }
+        },
+        "trust_cancel": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "label": "ביטול עסקה עד 14 יום",
+            "note": "בהתאם לחוק הגנת הצרכן ולמדיניות הביטולים"
+          }
+        },
+        "trust_outdoor": {
+          "type": "item",
+          "settings": {
+            "icon": "drop",
+            "label": "מיועד לשימוש בחוץ",
+            "note": "דרגת העמידות המדויקת מופיעה במפרט הטכני"
+          }
+        },
+        "trust_ask": {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "label": "אפשר לשאול לפני שמזמינים",
+            "note": "נבדוק יחד אם המוצר מתאים למקום שלכם"
+          }
+        }
+      },
+      "block_order": [
+        "trust_shipping",
+        "trust_cancel",
+        "trust_outdoor",
+        "trust_ask"
+      ],
+      "settings": {
+        "enable": true,
+        "heading": "",
+        "ground": "card",
+        "bg_color": "",
+        "text_color": "",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "elms_description": {
+      "type": "elms-pdp-description",
+      "settings": {
+        "enable": true,
+        "aria_label": "תיאור המוצר",
+        "ground": "cream",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "elms_showcase": {
+      "type": "elms-pdp-night-gallery",
+      "settings": {
+        "enable": true,
+        "kicker": "מקרוב",
+        "heading": "ככה זה נראה בפועל",
+        "subheading": "כל מה שחשוב לדעת לפני שמזמינים — ההתקנה, עוצמת האור והפעולה האוטומטית עם החשכה.",
+        "note": "התמונות להמחשה. התוצאה בפועל משתנה לפי גובה ההתקנה, זווית הפאנל ומזג האוויר.",
+        "source": "auto",
+        "skip_first": 1,
+        "max_images": 6,
+        "ground": "night",
+        "columns": "2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "elms_installation": {
+      "type": "elms-pdp-installation",
+      "blocks": {
+        "step_sun": {
+          "type": "step",
+          "settings": {
+            "title": "בוחרים מקום שמקבל שמש",
+            "text": "מאתרים נקודה שמקבלת שמש ישירה במהלך היום שם ממקמים את הפאנל הסולארי."
+          }
+        },
+        "step_mount": {
+          "type": "step",
+          "settings": {
+            "title": "מקבעים את גוף התאורה",
+            "text": "מקבעים לקיר, לגדר או נועצים באדמה, לפי סוג המוצר ואופן ההתקנה שמצוין במפרט."
+          }
+        },
+        "step_aim": {
+          "type": "step",
+          "settings": {
+            "title": "מפעילים ומכוונים",
+            "text": "מדליקים את המתג, מכוונים את זווית הפאנל לשמש ואת זווית התאורה לאזור שרוצים להאיר."
+          }
+        },
+        "step_charge": {
+          "type": "step",
+          "settings": {
+            "title": "טעינה ראשונה",
+            "text": "מומלץ לאפשר טעינה מלאה ביום הראשון. לאחר מכן התאורה נדלקת אוטומטית עם החשכה."
+          }
+        }
+      },
+      "block_order": [
+        "step_sun",
+        "step_mount",
+        "step_aim",
+        "step_charge"
+      ],
+      "settings": {
+        "enable": true,
+        "kicker": "התקנה",
+        "heading": "ההתקנה  ללא חוטים וללא חשמלאי",
+        "subheading": "רוב מוצרי התאורה הסולארית מותקנים בלי חיבור לחשמל ובלי הזמנת בעל מקצוע.",
+        "note": "דגמים המחוברים לרשת החשמל דורשים חיבור על ידי חשמלאי מוסמך. אופן ההפעלה של כל דגם מצוין במפרט הטכני.",
+        "show_image": true,
+        "image_index": 4,
+        "image_caption": "",
+        "ground": "cream",
+        "bg_color": "",
+        "text_color": "",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "elms_comparison": {
+      "type": "elms-pdp-comparison",
+      "blocks": {
+        "cmp_specs": {
+          "type": "row",
+          "settings": {
+            "criterion": "מפרט טכני מבוסס על נתוני היצרן",
+            "mark_a": "check",
+            "text_a": "",
+            "mark_b": "partial",
+            "text_b": "משתנה"
+          }
+        },
+        "cmp_hebrew": {
+          "type": "row",
+          "settings": {
+            "criterion": "עמוד מוצר בעברית מלאה",
+            "mark_a": "check",
+            "text_a": "",
+            "mark_b": "partial",
+            "text_b": "לעיתים תרגום אוטומטי"
+          }
+        },
+        "cmp_ask": {
+          "type": "row",
+          "settings": {
+            "criterion": "אפשר לשאול לפני ההזמנה",
+            "mark_a": "check",
+            "text_a": "בוואטסאפ",
+            "mark_b": "partial",
+            "text_b": "משתנה"
+          }
+        },
+        "cmp_cancel": {
+          "type": "row",
+          "settings": {
+            "criterion": "ביטול עסקה לפי חוק הגנת הצרכן",
+            "mark_a": "check",
+            "text_a": "עד 14 יום",
+            "mark_b": "partial",
+            "text_b": "תלוי במוכר"
+          }
+        },
+        "cmp_notfit": {
+          "type": "row",
+          "settings": {
+            "criterion": "נאמר לכם גם מתי המוצר לא מתאים",
+            "mark_a": "check",
+            "text_a": "",
+            "mark_b": "cross",
+            "text_b": "לרוב לא"
+          }
+        }
+      },
+      "block_order": [
+        "cmp_specs",
+        "cmp_hebrew",
+        "cmp_ask",
+        "cmp_cancel",
+        "cmp_notfit"
+      ],
+      "settings": {
+        "enable": true,
+        "kicker": "השוואה",
+        "heading": "מה ההבדל מול מנורה סולארית זולה",
+        "subheading": "ההשוואה מתייחסת לאופן שבו אנחנו מוכרים — לא להבטחת ביצועים של מוצר מסוים.",
+        "note": "אנחנו לא מתחייבים על ביצועי מוצרים של מוכרים אחרים. הטבלה מתארת את מה שאנחנו מפרסמים בעמוד המוצר שלנו.",
+        "criterion_label": "מה בודקים",
+        "col_a_label": "ElmsNest",
+        "col_b_label": "מנורה גנרית זולה",
+        "crest_icon": "sun",
+        "ground": "night",
+        "bg_color": "#12100e",
+        "text_color": "#e8e3d9",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "elmsnest_product_guidance": {
+      "type": "elmsnest-product-guidance",
+      "settings": {
+        "enable": true,
+        "kicker": "לפני שמזמינים",
+        "heading": "בודקים שהמוצר מתאים למקום שלכם",
+        "subheading": "תאורת חוץ נבחרת לפי מיקום, מטרה, מקור חשמל ואופן התקנה לא רק לפי התמונה.",
+        "step1_icon": "sun",
+        "step1_title": "מיקום ושימוש",
+        "step1_text": "החליטו אם המוצר מיועד לקיר, לשביל, למדרגה, למרפסת או לאזור ישיבה.",
+        "step2_icon": "bolt",
+        "step2_title": "מקור חשמל",
+        "step2_text": "בדקו בעמוד המוצר אם ההפעלה סולארית, באמצעות סוללה, <bdi dir=\"ltr\">USB</bdi> או חיבור לחשמל.",
+        "step3_icon": "ruler",
+        "step3_title": "מידות והתקנה",
+        "step3_text": "ודאו שהמידות ואופן ההתקנה מתאימים לשטח. אם פרט חסר, פנו אלינו לפני ההזמנה.",
+        "link_icon": "tool",
+        "link_label": "איך בוחרים תאורה לגינה?",
+        "fact1_q": "זמן אספקה",
+        "fact1_a": "הזמן הכולל המשוער הוא <bdi dir=\"ltr\">8–17</bdi> ימי עסקים: <bdi dir=\"ltr\">1–3</bdi> ימי טיפול ועוד <bdi dir=\"ltr\">7–14</bdi> ימי משלוח. משלוח לנקודת איסוף — חינם; שליח עד הבית — <bdi dir=\"ltr\">29.90</bdi> ₪.",
+        "fact2_q": "מידע טכני",
+        "fact2_a": "הסתמכו רק על הפרטים שמופיעים בעמוד המוצר. אל תניחו עמידות למים, עוצמת אור או זמן עבודה אם הנתון אינו מצוין.",
+        "fact3_q": "צריכים עזרה לפני הקנייה?",
+        "fact3_a": "שלחו לנו את שם המוצר, המקום שבו תרצו להתקין אותו והפרט שחשוב לכם לבדוק.",
+        "fact3_link": "לעמוד יצירת הקשר",
+        "ground": "cream"
+      }
+    },
+    "elms_faq": {
+      "type": "elms-pdp-faq",
+      "blocks": {
+        "faq_when": {
+          "type": "question",
+          "disabled": true,
+          "settings": {
+            "question": "מתי ההזמנה מגיעה?",
+            "answer": "<p>הזמן הכולל המשוער ממועד ההזמנה הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח. משלוח לנקודת איסוף בישראל — חינם; שליח עד הבית — 29.90 ₪.</p>"
+          }
+        },
+        "faq_cancel": {
+          "type": "question",
+          "disabled": true,
+          "settings": {
+            "question": "אפשר לבטל את ההזמנה?",
+            "answer": "<p>ניתן למסור הודעת ביטול עד 14 ימים ממועד קבלת המוצר, בהתאם לחוק הגנת הצרכן ולמדיניות הביטולים וההחזרים.</p>"
+          }
+        },
+        "faq_fit": {
+          "type": "question",
+          "disabled": true,
+          "settings": {
+            "question": "איך אדע שהמוצר מתאים למקום שלי?",
+            "answer": "<p>בדקו במפרט הטכני את אופן ההפעלה, המידות ודרגת העמידות. אם פרט חסר — שלחו לנו הודעה לפני ההזמנה ונבדוק יחד.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_when",
+        "faq_cancel",
+        "faq_fit"
+      ],
+      "settings": {
+        "enable": true,
+        "kicker": "שאלות",
+        "heading": "שאלות ותשובות",
+        "subheading": "",
+        "source": "both",
+        "note": "לא מצאתם תשובה? שלחו לנו הודעה לפני שאתם מזמינים.",
+        "ground": "cream",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "bg_color": "#fffdf7",
+        "text_color": "#2b2118"
+      }
+    },
+    "elms_policy": {
+      "type": "elms-pdp-warranty-shipping",
+      "blocks": {
+        "policy_time": {
+          "type": "panel",
+          "settings": {
+            "icon": "clock",
+            "title": "זמן אספקה",
+            "body": "<p>הזמן הכולל המשוער הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח.</p>",
+            "link_page": "processing-time",
+            "link_text": "לפרטי זמני הטיפול"
+          }
+        },
+        "policy_ship": {
+          "type": "panel",
+          "settings": {
+            "icon": "truck",
+            "title": "דמי משלוח",
+            "body": "<p>משלוח לנקודת איסוף בישראל — חינם. שליח עד הבית — 29.90 ₪.</p>",
+            "link_page": "shipping-delivery",
+            "link_text": "למדיניות המשלוחים"
+          }
+        },
+        "policy_cancel": {
+          "type": "panel",
+          "settings": {
+            "icon": "return",
+            "title": "ביטול עסקה",
+            "body": "<p>ניתן למסור הודעת ביטול עד 14 ימים ממועד קבלת המוצר, בהתאם לחוק הגנת הצרכן ולמדיניות הביטולים וההחזרים.</p>",
+            "link_page": "",
+            "link_text": ""
+          }
+        },
+        "policy_ask": {
+          "type": "panel",
+          "settings": {
+            "icon": "chat",
+            "title": "שאלה לפני ההזמנה",
+            "body": "<p>שלחו לנו את שם המוצר, המקום שבו תרצו להתקין אותו והפרט שחשוב לכם לבדוק.</p>",
+            "link_page": "contact-us",
+            "link_text": "לעמוד יצירת הקשר"
+          }
+        }
+      },
+      "block_order": [
+        "policy_time",
+        "policy_ship",
+        "policy_cancel",
+        "policy_ask"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable": true,
+        "kicker": "משלוח ואחריות",
+        "heading": "משלוח, ביטול והחזרות",
+        "subheading": "כל הפרטים לפני שמזמינים — בלי הפתעות אחרי התשלום.",
+        "note": "",
+        "ground": "night",
+        "columns": "4",
+        "bg_color": "#f7f0e6",
+        "text_color": "#2b2118",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "elmsnest_related_products": {
+      "type": "related-products",
+      "blocks": {
+        "pr-heading": {
+          "type": "section-heading",
+          "static": true,
+          "settings": {
+            "design_heading": "1",
+            "horizontal": false,
+            "alignment": "center",
+            "heading_gap": 18,
+            "margin_bottom": 30
+          },
+          "blocks": {
+            "heading_section_elmsnest": {
+              "type": "_heading_section",
+              "settings": {
+                "heading": "מוצרים נוספים שכדאי להכיר",
+                "line_height": "",
+                "heading_size": "h5",
+                "text_color": "hdt-s-text",
+                "font_size_heading_lg": 38,
+                "font_size_heading": 25,
+                "letter_spacing_heading": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_section_elmsnest"
+          ]
+        }
+      },
+      "settings": {
+        "product_des": "1",
+        "image_ratio": "adapt_image",
+        "image_size": true,
+        "show_vendor": false,
+        "display_type": "1",
+        "pr_border": "none",
+        "limit": 8,
+        "col_dk": "4",
+        "col_tb": "3",
+        "col_mb": "2",
+        "space_items": "x",
+        "loop": false,
+        "autoplay": 0,
+        "pauseOnHover": false,
+        "navUI": true,
+        "nav_position": "default",
+        "nav_visible": "hover",
+        "nav_style": "outline",
+        "nav_shape": "default",
+        "nav_size": "small",
+        "nav_hide_mobile": false,
+        "dotUI": false,
+        "pag_style": "default",
+        "pag_rounded": false,
+        "pag_space": 10,
+        "pag_mgt": 10,
+        "only_show_mobile": false,
+        "pag_hide_mobile": false,
+        "colors_by_section": false,
+        "color_scheme": "",
+        "background_opacity": 0,
+        "section_layout": "container",
+        "hdt_background_parallax": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "60px,,45px,",
+        "pd_mb": "42px,,30px,"
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main-product",
+    "elms_trust_strip",
+    "elms_description",
+    "elms_showcase",
+    "elms_installation",
+    "elms_comparison",
+    "elmsnest_product_guidance",
+    "elms_faq",
+    "elms_policy",
+    "elmsnest_related_products"
+  ]
+}

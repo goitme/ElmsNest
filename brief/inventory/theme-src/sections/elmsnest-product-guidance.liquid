@@ -1,0 +1,743 @@
+{%- comment -%}
+  ElmsNest PDP — מדריך התאמה לפני הזמנה (v2).
+
+  v1 של המקטע הזה היה 970 פיקסלים של פסקאות בלבד: כותרת, שלוש שורות ממוספרות
+  וטקסט. אין בו אף תמונה, אף אייקון ואף מספר גדול — ולכן, לפי סעיף 0 של מפרט
+  העיצוב, הוא נכשל: אם מסתירים את כל ה־<p> לא נשאר כלום.
+
+  v2 שומר על הניסוח העברי בדיוק כפי שהיה, ומעביר אותו להגדרות סוחר. מה שהשתנה
+  הוא המיכל: כותרת־רצועה מלאה (kicker + h2 + שורת משנה), מספר ענבר גדול לכל שלב,
+  אייקון 44px מתוך elms-pdp-icon לצד המספר, ופריסת שתי עמודות במסך רחב — כך
+  שהמקטע מפסיק להיות רשימה אנכית אחת ארוכה.
+
+  שלושת השלבים והפאנל «למי זה פחות מתאים» יושבים באותו גריד. כשהשדה
+  custom.not_fit_for ריק הפאנל לא מוצג, והשלב השלישי נשאר לבד בשורה — ולכן הוא
+  נמתח על כל הרוחב ומתמרכז בחצי ממנו, בדיוק כמו בתצוגת המוצר.
+
+  הריווח האנכי נעול על clamp(64px, 8vw, 112px) לפי סעיף 2 של המפרט ולא נחשף
+  כהגדרת סוחר — קצב הרצועות בעמוד המוצר נקבע במפרט, לא בעורך הערכות.
+
+  כל תכונת CSS תלוית־כיוון היא לוגית — החנות בעברית RTL.
+{%- endcomment -%}
+
+{%- liquid
+  assign en_guide_steps = '1,2,3' | split: ','
+  assign en_guide_n = 0
+-%}
+
+{%- if section.settings.enable -%}
+  <section
+    class="en-pdp-guide elms-pdp en-pdp-guide--{{ section.settings.ground }}"
+    dir="rtl"
+    {% if section.settings.heading != blank %}
+      aria-labelledby="en-pdp-guide-title-{{ section.id }}"
+    {% else %}
+      aria-label="מדריך התאמה"
+    {% endif %}
+  >
+    <div class="en-pdp-guide__wrap">
+      {%- if section.settings.kicker != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+        <header class="en-pdp-guide__header">
+          {%- if section.settings.kicker != blank -%}
+            <p class="en-pdp-guide__kicker">{{ section.settings.kicker }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="en-pdp-guide__title" id="en-pdp-guide-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <p class="en-pdp-guide__sub">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      <div class="en-pdp-guide__grid">
+        {%- for en_i in en_guide_steps -%}
+          {%- liquid
+            assign en_key_icon = 'step' | append: en_i | append: '_icon'
+            assign en_key_title = 'step' | append: en_i | append: '_title'
+            assign en_key_text = 'step' | append: en_i | append: '_text'
+            assign en_step_icon = section.settings[en_key_icon]
+            assign en_step_title = section.settings[en_key_title]
+            assign en_step_text = section.settings[en_key_text]
+          -%}
+          {%- if en_step_title != blank -%}
+            {%- liquid
+              assign en_guide_n = en_guide_n | plus: 1
+              assign en_guide_num = en_guide_n | prepend: '0'
+            -%}
+            <article class="en-pdp-guide__step">
+              <span class="en-pdp-guide__badge" aria-hidden="true">
+                <span class="en-pdp-guide__num">{{ en_guide_num }}</span>
+                {%- if en_step_icon != 'none' -%}
+                  <span class="en-pdp-guide__icon">
+                    {%- render 'elms-pdp-icon', name: en_step_icon -%}
+                  </span>
+                {%- endif -%}
+              </span>
+              <h3 class="en-pdp-guide__step-title">{{ en_step_title }}</h3>
+              {%- if en_step_text != blank -%}
+                <p class="en-pdp-guide__step-text">{{ en_step_text }}</p>
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%}
+          נטען כתא רביעי בגריד: כשהוא קיים השורה השנייה מתמלאת, וכשהוא ריק
+          השלב השלישי מקבל את כלל הרוחב. הסגנון שלו חי כאן, לא בתוך ה־snippet.
+        {%- endcomment -%}
+        {% render 'elmsnest-pdp-not-fit', product: product %}
+      </div>
+
+      <div class="en-pdp-guide__foot">
+        <div class="en-pdp-guide__facts">
+          {%- if section.settings.fact1_q != blank and section.settings.fact1_a != blank -%}
+            <details class="en-pdp-guide__fact" open>
+              <summary class="en-pdp-guide__summary">
+                {{ section.settings.fact1_q }}
+                <span class="en-pdp-guide__chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9.5 6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="en-pdp-guide__fact-text">{{ section.settings.fact1_a }}</p>
+            </details>
+          {%- endif -%}
+
+          {%- if section.settings.fact2_q != blank and section.settings.fact2_a != blank -%}
+            <details class="en-pdp-guide__fact">
+              <summary class="en-pdp-guide__summary">
+                {{ section.settings.fact2_q }}
+                <span class="en-pdp-guide__chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9.5 6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="en-pdp-guide__fact-text">{{ section.settings.fact2_a }}</p>
+            </details>
+          {%- endif -%}
+
+          {%- if section.settings.fact3_q != blank and section.settings.fact3_a != blank -%}
+            <details class="en-pdp-guide__fact">
+              <summary class="en-pdp-guide__summary">
+                {{ section.settings.fact3_q }}
+                <span class="en-pdp-guide__chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9.5 6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="en-pdp-guide__fact-text">{{ section.settings.fact3_a }}</p>
+              {%- if section.settings.fact3_link != blank -%}
+                <a class="en-pdp-guide__fact-link" href="{{ pages['contact-us'].url | default: routes.root_url }}">{{ section.settings.fact3_link }}</a>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.link_label != blank -%}
+          <aside class="en-pdp-guide__cta">
+            {%- if section.settings.link_icon != 'none' -%}
+              <span class="en-pdp-guide__icon en-pdp-guide__icon--cta" aria-hidden="true">
+                {%- render 'elms-pdp-icon', name: section.settings.link_icon -%}
+              </span>
+            {%- endif -%}
+            <a class="en-pdp-guide__cta-link" href="{{ pages['guide-garden-lighting'].url | default: routes.root_url }}">
+              {{ section.settings.link_label }}
+              <span class="en-pdp-guide__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
+              </span>
+            </a>
+          </aside>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .en-pdp-guide,
+  .en-pdp-guide * { box-sizing: border-box; }
+
+  .en-pdp-guide {
+    direction: rtl;
+    padding-block: clamp(64px, 8vw, 112px);
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  /* --- Grounds. Amber is an accent only: kicker, numerals, hairlines. -- */
+
+  .en-pdp-guide--cream {
+    background: rgb(var(--en-surface-page));
+    color: rgb(var(--en-text-primary));
+    --en-guide-fg: rgb(var(--en-text-primary));
+    --en-guide-soft: rgb(var(--en-text-secondary));
+    --en-guide-kicker: rgb(var(--en-text-muted));
+    --en-guide-accent: rgb(var(--en-amber));
+    --en-guide-rule: rgb(var(--en-border-subtle));
+    --en-guide-card: rgb(var(--en-surface-card));
+    --en-guide-focus: rgb(var(--en-text-primary));
+  }
+
+  .en-pdp-guide--night {
+    background: rgb(var(--en-night));
+    color: rgb(var(--en-ink));
+    --en-guide-fg: rgb(var(--en-ink));
+    --en-guide-soft: rgb(var(--en-ink) / .68);
+    --en-guide-kicker: rgb(var(--en-amber));
+    --en-guide-accent: rgb(var(--en-amber));
+    --en-guide-rule: rgb(var(--en-ink) / .16);
+    --en-guide-card: rgb(var(--en-ink) / .05);
+    --en-guide-focus: rgb(var(--en-ink));
+  }
+
+  .en-pdp-guide__wrap {
+    inline-size: min(1180px, 100%);
+    margin-inline: auto;
+  }
+
+  /* --- Band header. Title:body is 46:16 = 2.9x at 1440px. -------------- */
+
+  /* Line length is measured in em, never ch: ch resolves against the
+     containing block's font-size, not the heading's, so 58ch here clamped the
+     header to 500px of a 1180px container and wrapped the 46px title into a
+     ribbon. em scales with each element's own size, so the limit follows the
+     type — 14em on the title, 32em on the sub. */
+  .en-pdp-guide__header {
+    margin-block-end: clamp(32px, 4vw, 56px);
+  }
+
+  .en-pdp-guide__kicker {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .10em;
+    color: var(--en-guide-kicker);
+  }
+
+  .en-pdp-guide__kicker::after {
+    content: "";
+    display: block;
+    inline-size: 40px;
+    block-size: 2px;
+    margin-block-start: 12px;
+    background: var(--en-guide-accent);
+  }
+
+  /* The theme sets its own h2/h3 colours, which beat plain inheritance from
+     the section root — so every heading states its ground colour explicitly. */
+  .en-pdp-guide__title {
+    margin: 0;
+    max-inline-size: 14em;
+    color: var(--en-guide-fg);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+
+  .en-pdp-guide__sub {
+    margin: 16px 0 0;
+    max-inline-size: 32em;
+    font-size: clamp(16px, 1.3vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--en-guide-soft);
+    text-align: start;
+  }
+
+  /* --- Steps grid: two columns on desktop, the caution panel as the
+         fourth cell. An orphaned last cell takes the row at half width. -- */
+
+  .en-pdp-guide__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  .en-pdp-guide__grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-inline-size: calc(50% - clamp(8px, 1vw, 14px));
+    margin-inline: auto;
+  }
+
+  .en-pdp-guide__step {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: clamp(16px, 1.8vw, 24px);
+    row-gap: 10px;
+    align-content: start;
+    min-inline-size: 0;
+    background: var(--en-guide-card);
+    padding-block: clamp(24px, 2.6vw, 32px);
+    padding-inline: clamp(20px, 2.2vw, 28px);
+  }
+
+  .en-pdp-guide__badge {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .en-pdp-guide__num {
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--en-guide-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .en-pdp-guide__icon {
+    display: inline-flex;
+    inline-size: 44px;
+    block-size: 44px;
+    color: var(--en-guide-soft);
+  }
+
+  .en-pdp-guide__icon svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .en-pdp-guide .elms-icon--flip { transform: scaleX(-1); }
+
+  .en-pdp-guide__step-title {
+    grid-column: 2;
+    margin: 0;
+    color: var(--en-guide-fg);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .en-pdp-guide__step-text {
+    grid-column: 2;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--en-guide-soft);
+    text-align: start;
+  }
+
+  /* --- «למי זה פחות מתאים». Markup comes from snippets/elmsnest-pdp-not-fit,
+         which this section owns the styling for. The amber hairline is the
+         only thing that separates it from a step card. ------------------- */
+
+  .en-pdp-guide__notfit {
+    min-inline-size: 0;
+    background: var(--en-guide-card);
+    border-block-start: 3px solid var(--en-guide-accent);
+    padding-block: clamp(24px, 2.6vw, 32px);
+    padding-inline: clamp(20px, 2.2vw, 28px);
+  }
+
+  .en-pdp-guide__notfit h3 {
+    margin: 0 0 10px;
+    color: var(--en-guide-fg);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .en-pdp-guide__notfit p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--en-guide-soft);
+    text-align: start;
+  }
+
+  /* --- Foot: the accordion beside the guide link, not under it. -------- */
+
+  .en-pdp-guide__foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    gap: clamp(16px, 2vw, 28px);
+    align-items: start;
+    margin-block-start: clamp(32px, 4vw, 56px);
+  }
+
+  .en-pdp-guide__facts {
+    min-inline-size: 0;
+    border-block-start: 1px solid var(--en-guide-rule);
+  }
+
+  .en-pdp-guide__fact {
+    border-block-end: 1px solid var(--en-guide-rule);
+  }
+
+  .en-pdp-guide__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-block-size: 56px;
+    padding-block: 8px;
+    cursor: pointer;
+    list-style: none;
+    color: var(--en-guide-fg);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .en-pdp-guide__summary::-webkit-details-marker { display: none; }
+  .en-pdp-guide__summary::marker { content: ''; }
+
+  .en-pdp-guide__chev {
+    flex: 0 0 auto;
+    display: inline-flex;
+    inline-size: 20px;
+    block-size: 20px;
+    color: var(--en-guide-soft);
+    transition: transform .18s ease;
+  }
+
+  .en-pdp-guide__chev svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .en-pdp-guide__fact[open] .en-pdp-guide__chev { transform: rotate(180deg); }
+
+  .en-pdp-guide__fact-text {
+    margin: 0 0 14px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--en-guide-soft);
+    text-align: start;
+  }
+
+  .en-pdp-guide__fact-link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+    margin-block-end: 10px;
+    color: var(--en-guide-fg);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* A row, not a column: stacked it became a tall cream box with nothing in
+     the middle of it. Side by side the icon reads as the link's marker. */
+  .en-pdp-guide__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    min-inline-size: 0;
+    background: var(--en-guide-card);
+    padding-block: clamp(24px, 2.6vw, 32px);
+    padding-inline: clamp(20px, 2.2vw, 28px);
+  }
+
+  .en-pdp-guide__icon--cta { color: var(--en-guide-accent); }
+
+  .en-pdp-guide__cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-block-size: 44px;
+    color: var(--en-guide-fg);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .en-pdp-guide__arrow {
+    flex: 0 0 auto;
+    display: inline-flex;
+    inline-size: 20px;
+    block-size: 20px;
+    color: var(--en-guide-accent);
+  }
+
+  .en-pdp-guide__arrow svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .en-pdp-guide :is(a, summary):focus-visible {
+    outline: 3px solid var(--en-guide-focus);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .en-pdp-guide__chev { transition: none; }
+  }
+
+  @media (max-width: 860px) {
+    .en-pdp-guide__grid,
+    .en-pdp-guide__foot { grid-template-columns: minmax(0, 1fr); }
+    .en-pdp-guide__grid > :last-child:nth-child(odd) {
+      max-inline-size: 100%;
+      margin-inline: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .en-pdp-guide__step { grid-template-columns: minmax(0, 1fr); }
+    .en-pdp-guide__badge {
+      grid-column: 1;
+      grid-row: auto;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+    .en-pdp-guide__step-title,
+    .en-pdp-guide__step-text { grid-column: 1; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · מדריך התאמה",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "שורת פתיחה קצרה",
+      "info": "מופיעה מעל הכותרת בצבע ההדגשה. השאירו ריק כדי להסתיר.",
+      "default": "לפני שמזמינים"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "בודקים שהמוצר מתאים למקום שלכם"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "שורת משנה",
+      "default": "תאורת חוץ נבחרת לפי מיקום, מטרה, מקור חשמל ואופן התקנה — לא רק לפי התמונה."
+    },
+    {
+      "type": "header",
+      "content": "שלב ראשון"
+    },
+    {
+      "type": "select",
+      "id": "step1_icon",
+      "label": "אייקון",
+      "options": [
+        { "value": "none", "label": "ללא" },
+        { "value": "sun", "label": "שמש ותאורת חוץ" },
+        { "value": "bolt", "label": "חשמל והספק" },
+        { "value": "ruler", "label": "מידות" },
+        { "value": "tool", "label": "התקנה" },
+        { "value": "drop", "label": "עמידות למים" },
+        { "value": "shield", "label": "עמידות" },
+        { "value": "clock", "label": "זמן" },
+        { "value": "check", "label": "בדיקה" },
+        { "value": "chat", "label": "יצירת קשר" },
+        { "value": "truck", "label": "משלוח" },
+        { "value": "return", "label": "החזרה" }
+      ],
+      "default": "sun"
+    },
+    {
+      "type": "text",
+      "id": "step1_title",
+      "label": "כותרת השלב",
+      "info": "השאירו ריק כדי להסתיר את השלב כולו.",
+      "default": "מיקום ושימוש"
+    },
+    {
+      "type": "textarea",
+      "id": "step1_text",
+      "label": "טקסט השלב",
+      "default": "החליטו אם המוצר מיועד לקיר, לשביל, למדרגה, למרפסת או לאזור ישיבה."
+    },
+    {
+      "type": "header",
+      "content": "שלב שני"
+    },
+    {
+      "type": "select",
+      "id": "step2_icon",
+      "label": "אייקון",
+      "options": [
+        { "value": "none", "label": "ללא" },
+        { "value": "sun", "label": "שמש ותאורת חוץ" },
+        { "value": "bolt", "label": "חשמל והספק" },
+        { "value": "ruler", "label": "מידות" },
+        { "value": "tool", "label": "התקנה" },
+        { "value": "drop", "label": "עמידות למים" },
+        { "value": "shield", "label": "עמידות" },
+        { "value": "clock", "label": "זמן" },
+        { "value": "check", "label": "בדיקה" },
+        { "value": "chat", "label": "יצירת קשר" },
+        { "value": "truck", "label": "משלוח" },
+        { "value": "return", "label": "החזרה" }
+      ],
+      "default": "bolt"
+    },
+    {
+      "type": "text",
+      "id": "step2_title",
+      "label": "כותרת השלב",
+      "info": "השאירו ריק כדי להסתיר את השלב כולו.",
+      "default": "מקור חשמל"
+    },
+    {
+      "type": "textarea",
+      "id": "step2_text",
+      "label": "טקסט השלב",
+      "info": "אפשר לעטוף מונח לועזי או מספר ב־<bdi dir=\"ltr\"> כדי שיישאר בכיוון הנכון בתוך משפט בעברית.",
+      "default": "בדקו בעמוד המוצר אם ההפעלה סולארית, באמצעות סוללה, <bdi dir=\"ltr\">USB</bdi> או חיבור לחשמל."
+    },
+    {
+      "type": "header",
+      "content": "שלב שלישי"
+    },
+    {
+      "type": "select",
+      "id": "step3_icon",
+      "label": "אייקון",
+      "options": [
+        { "value": "none", "label": "ללא" },
+        { "value": "sun", "label": "שמש ותאורת חוץ" },
+        { "value": "bolt", "label": "חשמל והספק" },
+        { "value": "ruler", "label": "מידות" },
+        { "value": "tool", "label": "התקנה" },
+        { "value": "drop", "label": "עמידות למים" },
+        { "value": "shield", "label": "עמידות" },
+        { "value": "clock", "label": "זמן" },
+        { "value": "check", "label": "בדיקה" },
+        { "value": "chat", "label": "יצירת קשר" },
+        { "value": "truck", "label": "משלוח" },
+        { "value": "return", "label": "החזרה" }
+      ],
+      "default": "ruler"
+    },
+    {
+      "type": "text",
+      "id": "step3_title",
+      "label": "כותרת השלב",
+      "info": "השאירו ריק כדי להסתיר את השלב כולו.",
+      "default": "מידות והתקנה"
+    },
+    {
+      "type": "textarea",
+      "id": "step3_text",
+      "label": "טקסט השלב",
+      "default": "ודאו שהמידות ואופן ההתקנה מתאימים לשטח. אם פרט חסר, פנו אלינו לפני ההזמנה."
+    },
+    {
+      "type": "header",
+      "content": "קישור למדריך"
+    },
+    {
+      "type": "select",
+      "id": "link_icon",
+      "label": "אייקון",
+      "options": [
+        { "value": "none", "label": "ללא" },
+        { "value": "tool", "label": "התקנה" },
+        { "value": "sun", "label": "שמש ותאורת חוץ" },
+        { "value": "check", "label": "בדיקה" },
+        { "value": "chat", "label": "יצירת קשר" },
+        { "value": "ruler", "label": "מידות" },
+        { "value": "shield", "label": "עמידות" }
+      ],
+      "default": "tool"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "טקסט הקישור",
+      "info": "מוביל לעמוד guide-garden-lighting. השאירו ריק כדי להסתיר את הכרטיס.",
+      "default": "איך בוחרים תאורה לגינה?"
+    },
+    {
+      "type": "header",
+      "content": "שאלות לפני ההזמנה"
+    },
+    {
+      "type": "text",
+      "id": "fact1_q",
+      "label": "שאלה ראשונה",
+      "default": "זמן אספקה"
+    },
+    {
+      "type": "textarea",
+      "id": "fact1_a",
+      "label": "תשובה ראשונה",
+      "info": "אין להמציא נתון. כתבו רק מה שמפורסם במדיניות המשלוחים.",
+      "default": "הזמן הכולל המשוער הוא <bdi dir=\"ltr\">8–17</bdi> ימי עסקים: <bdi dir=\"ltr\">1–3</bdi> ימי טיפול ועוד <bdi dir=\"ltr\">7–14</bdi> ימי משלוח. משלוח לנקודת איסוף — חינם; שליח עד הבית — <bdi dir=\"ltr\">29.90</bdi> ₪."
+    },
+    {
+      "type": "text",
+      "id": "fact2_q",
+      "label": "שאלה שנייה",
+      "default": "מידע טכני"
+    },
+    {
+      "type": "textarea",
+      "id": "fact2_a",
+      "label": "תשובה שנייה",
+      "default": "הסתמכו רק על הפרטים שמופיעים בעמוד המוצר. אל תניחו עמידות למים, עוצמת אור או זמן עבודה אם הנתון אינו מצוין."
+    },
+    {
+      "type": "text",
+      "id": "fact3_q",
+      "label": "שאלה שלישית",
+      "default": "צריכים עזרה לפני הקנייה?"
+    },
+    {
+      "type": "textarea",
+      "id": "fact3_a",
+      "label": "תשובה שלישית",
+      "default": "שלחו לנו את שם המוצר, המקום שבו תרצו להתקין אותו והפרט שחשוב לכם לבדוק."
+    },
+    {
+      "type": "text",
+      "id": "fact3_link",
+      "label": "טקסט הקישור לעמוד יצירת הקשר",
+      "info": "השאירו ריק כדי להסתיר את הקישור.",
+      "default": "לעמוד יצירת הקשר"
+    },
+    {
+      "type": "header",
+      "content": "עיצוב"
+    },
+    {
+      "type": "select",
+      "id": "ground",
+      "label": "רקע המקטע",
+      "info": "אין להציב יותר משתי רצועות בהירות ברצף בעמוד המוצר.",
+      "options": [
+        { "value": "cream", "label": "בהיר" },
+        { "value": "night", "label": "לילי כהה" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · מדריך התאמה"
+    }
+  ]
+}
+{% endschema %}

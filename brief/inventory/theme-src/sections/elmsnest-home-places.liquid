@@ -1,0 +1,240 @@
+{%- comment -%}
+  «איפה צריך אור?» — the choosing table.
+
+  This section exists because of a gap measured on the live page, not because
+  the homepage wanted another block. The brand's whole position is «the narrow
+  specialist who also tells you what does NOT suit you» and the hero opens with
+  «מה מתאים ומה לא» — but the guidance backing that promise sat at 5100px of a
+  6673px page, 76% of the way down. Everything above it was catalogue. A page
+  that promises a guide and delivers a bazaar is the same page the five
+  competitors already run; the only difference was that this catalogue was
+  tidier.
+
+  Nothing here is newly claimed. Every place, every job and every «not for»
+  line is lifted from two pages this store already publishes:
+
+    /pages/guide-garden-lighting  — «01 · איפה צריך אור?», the four places;
+                                    «02 · מה האור צריך לעשות?», the three jobs;
+                                    «03 · איזה מקור חשמל מתאים?», the negatives.
+    /pages/why-solar-lighting     — «עדיף פתרון אחר כאשר», the negatives again.
+
+  That sourcing is the point, not a formality. The first principle on «מי אנחנו»
+  reads «כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה» — a "not for"
+  written fresh for a homepage block would be a claim with nothing under it,
+  and it would be the easiest of all claims to be wrong about. If either guide
+  is ever rewritten, these defaults have to move with it.
+
+  Night ground on purpose. The page runs hero (night) → terms (paper) →
+  catalogue (paper), so the two grounds had stopped alternating and night — the
+  scene the product actually lives in — had fallen to under a third of the page.
+  This section sits between terms and catalogue and puts the alternation back.
+{%- endcomment -%}
+
+<section id="elmsnest-home-places" class="en-places" dir="rtl" aria-labelledby="en-places-title-{{ section.id }}">
+  <div class="en-places__wrap">
+
+    <header class="en-places__intro">
+      <h2 id="en-places-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}
+        <div class="en-places__lede">{{ section.settings.intro }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="en-places__table">
+      {%- for block in section.blocks -%}
+        {%- assign place = block.settings.collection -%}
+        {%- if place != blank and place.products_count > 0 -%}
+          <a class="en-place" href="{{ place.url }}" {{ block.shopify_attributes }}>
+
+            <span class="en-place__name">
+              {%- comment -%}
+                The label is written per block rather than taken from the
+                collection title. A collection is named for what it holds;
+                this column is named for where the buyer is standing, and
+                those are not the same sentence. The link underneath still
+                goes to the collection, and the count below is the real one.
+              {%- endcomment -%}
+              <strong>{{ block.settings.place_label | default: place.title }}</strong>
+              <span class="en-place__count"><bdi dir="ltr">{{ place.products_count }}</bdi> {{ section.settings.count_word }}</span>
+            </span>
+
+            <span class="en-place__job">
+              <span class="en-place__field">{{ section.settings.job_label }}</span>
+              <span class="en-place__value">{{ block.settings.job }}</span>
+            </span>
+
+            {%- comment -%}
+              The negative column. This is the one thing on the homepage a
+              bazaar cannot copy, and it is the reason the section earns its
+              height — so it is a column of equal width to the job, never a
+              footnote under it.
+            {%- endcomment -%}
+            <span class="en-place__not">
+              <span class="en-place__field">{{ section.settings.not_label }}</span>
+              <span class="en-place__value">{{ block.settings.not_for }}</span>
+            </span>
+
+            <span class="en-place__go" aria-hidden="true">←</span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.guide_label != blank -%}
+      <div class="en-places__guide">
+        <a href="{{ section.settings.guide_url | default: pages['guide-garden-lighting'].url }}">
+          {{ section.settings.guide_label }} <span aria-hidden="true">←</span>
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+.en-places,.en-places *{box-sizing:border-box}
+.en-places{
+  --rule:rgb(var(--en-ink)/.30);
+  --rule-soft:rgb(var(--en-ink)/.18);
+  direction:rtl;padding:clamp(52px,6.4vw,80px) 0 clamp(56px,6.6vw,84px);
+  background:rgb(var(--en-night));color:rgb(var(--en-ink));
+  scroll-margin-top:90px
+}
+.en-places__wrap{width:min(1200px,100%);margin-inline:auto;padding-inline:clamp(18px,4vw,40px)}
+
+.en-places__intro{max-width:46rem;margin-bottom:clamp(26px,3.4vw,38px)}
+.en-places__intro h2{
+  margin:0;color:rgb(var(--en-ink))!important;
+  font-size:clamp(32px,4.4vw,52px);line-height:1.08;letter-spacing:normal;
+  text-wrap:balance
+}
+.en-places__lede{margin-top:13px;color:rgb(var(--en-ink)/.78);font-size:clamp(16px,1.7vw,18px);line-height:1.5}
+.en-places__lede p{margin:0;color:inherit!important}
+
+/* A ruled schedule, closed on all four sides, so it reads as one instrument
+   face rather than four cards that happen to be adjacent. Same construction
+   as the hero's place index and the rating plate - this sheet has exactly one
+   way of drawing a table and this is it. */
+.en-places__table{border:1px solid var(--rule);border-block-end:0}
+
+.en-place{
+  display:grid;
+  /* name | job | not-for | arrow. The negative gets the same width as the
+     job because it carries the same weight in the decision - narrowing it
+     would quietly turn the store's one differentiator into a caveat. */
+  grid-template-columns:minmax(0,.82fr) minmax(0,1.5fr) minmax(0,1.5fr) auto;
+  align-items:start;gap:clamp(14px,1.6vw,22px);
+  padding:clamp(15px,1.7vw,20px) clamp(16px,2vw,24px);
+  border-block-end:1px solid var(--rule);
+  color:rgb(var(--en-ink))!important;text-decoration:none;
+  transition:background-color .18s ease
+}
+/* No lift and no shadow - the ground tints and the arrow moves, which is the
+   whole hover vocabulary on this sheet. */
+.en-place:hover{background:rgb(var(--en-ink)/.06)}
+.en-place:focus-visible{outline:3px solid rgb(var(--en-ink));outline-offset:-3px}
+
+.en-place__name{display:flex;flex-direction:column;gap:5px;min-width:0}
+.en-place__name strong{
+  color:rgb(var(--en-ink))!important;
+  font-size:clamp(18px,1.9vw,22px);font-weight:700;line-height:1.2;letter-spacing:normal;
+  text-wrap:balance
+}
+.en-place__count{color:rgb(var(--en-ink)/.60);font-size:13px;font-variant-numeric:tabular-nums}
+
+.en-place__job,.en-place__not{display:flex;flex-direction:column;gap:6px;min-width:0}
+/* The field label, same role as a rating-plate dt: it names the measurement
+   above its value. Hebrew has no case distinction, so the whole eyebrow
+   effect has to come from weight and tracking. */
+.en-place__field{
+  color:rgb(var(--en-ink)/.55);
+  font-size:12px;font-weight:600;line-height:1.2;letter-spacing:.04em
+}
+.en-place__value{color:rgb(var(--en-ink)/.86);font-size:15px;line-height:1.45}
+/* The negative is set on its own ruled ground rather than in a warning
+   colour. There is no red on this sheet, and there should not be: this is
+   not an error state, it is a specification - the condition under which the
+   answer is no. */
+.en-place__not{
+  padding-inline-start:clamp(14px,1.8vw,22px);
+  border-inline-start:1px solid var(--rule-soft)
+}
+.en-place__not .en-place__value{color:rgb(var(--en-ink)/.74)}
+
+.en-place__go{
+  align-self:center;color:rgb(var(--en-ink)/.70);font-size:18px;
+  transition:transform .18s ease,color .18s ease
+}
+.en-place:hover .en-place__go{color:rgb(var(--en-ink));transform:translateX(-3px)}
+
+.en-places__guide{display:flex;margin-top:clamp(24px,3vw,34px)}
+.en-places__guide a{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:52px;padding:12px 28px;border-radius:0;
+  border:1px solid rgb(var(--en-ink)/.58);
+  background:transparent;color:rgb(var(--en-ink))!important;
+  text-decoration:none;font-weight:600;font-size:16px;
+  transition:background-color .18s ease,border-color .18s ease
+}
+.en-places__guide a:hover{border-color:rgb(var(--en-ink));background:rgb(var(--en-ink)/.08)}
+.en-places__guide a:focus-visible{outline:3px solid rgb(var(--en-ink));outline-offset:3px}
+
+/* Four columns to two: the name keeps its own row and the two fields sit
+   side by side under it, so the job/not-for pairing survives the fold. */
+@media(max-width:1050px){
+  .en-place{grid-template-columns:minmax(0,1fr) auto;gap:12px clamp(16px,2.2vw,24px)}
+  /* The place name and its count read as one line here rather than two: at
+     this width the count is a qualifier on the name, not a field of its own. */
+  .en-place__name{grid-column:1;grid-row:1;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+  .en-place__go{grid-column:2;grid-row:1;align-self:start;padding-block-start:2px}
+  .en-place__job{grid-column:1 / -1;grid-row:2}
+  .en-place__not{grid-column:1 / -1;grid-row:3;padding-inline-start:0;padding-block-start:12px;border-inline-start:0;border-block-start:1px solid var(--rule-soft)}
+}
+@media(max-width:749px){
+  .en-places__wrap{padding-inline:16px}
+  .en-place{padding:18px 16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .en-place,.en-place__go,.en-places__guide a{transition:none}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "ElmsNest places",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "איפה צריך אור?" },
+    { "type": "richtext", "id": "intro", "label": "פתיח", "default": "<p>בחרו את האזור הקרוב ביותר לצורך שלכם. לכל מקום — מה שמתאים, ומה שלא.</p>" },
+    { "type": "text", "id": "job_label", "label": "תווית עמודה: תפקיד האור", "default": "מה האור צריך לעשות" },
+    { "type": "text", "id": "not_label", "label": "תווית עמודה: לא מתאים", "default": "לא מתאים כאשר" },
+    { "type": "text", "id": "count_word", "label": "מילת הספירה", "default": "מוצרים" },
+    { "type": "text", "id": "guide_label", "label": "כפתור המדריך", "default": "למדריך המלא לבחירת תאורה" },
+    { "type": "url", "id": "guide_url", "label": "קישור המדריך", "info": "ברירת מחדל: מדריך לבחירת תאורה לגינה" }
+  ],
+  "blocks": [
+    {
+      "type": "place",
+      "name": "מקום",
+      "limit": 4,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "קולקציה" },
+        { "type": "text", "id": "place_label", "label": "שם המקום", "info": "איפה הקונה עומד — לא בהכרח שם הקולקציה" },
+        { "type": "textarea", "id": "job", "label": "מה האור צריך לעשות", "info": "מתוך «02 · מה האור צריך לעשות?» במדריך המפורסם" },
+        { "type": "textarea", "id": "not_for", "label": "לא מתאים כאשר", "info": "חובה לצטט מעמוד מפורסם — «למה תאורה סולארית?» או המדריך. אל תנסחו מחדש." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest places",
+      "blocks": [
+        { "type": "place" },
+        { "type": "place" },
+        { "type": "place" },
+        { "type": "place" }
+      ]
+    }
+  ]
+}
+{% endschema %}

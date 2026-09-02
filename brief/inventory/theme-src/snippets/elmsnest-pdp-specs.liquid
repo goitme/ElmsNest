@@ -1,0 +1,77 @@
+{%- comment -%}
+  ElmsNest PDP מפרט טכני (P5) — the visual heart of the specification-sheet
+  world: a real two-column <table> on the night ground rgb(var(--en-night)),
+  field names in light ink, measured values in amber tabular figures.
+  Amber appears ONLY here, on the night ground (css-variables.liquid rule).
+
+  Rows come from product metafields (namespace custom). A row with no value
+  does not render; if no metafield is filled at all, the whole block drops
+  silently. Values are never invented — the closing line states exactly
+  that. Every value cell is wrapped in <bdi dir="auto"> — first-strong
+  isolation: Latin values (IP65) stay LTR, while Hebrew and mixed
+  number+Hebrew values keep their natural RTL order. A forced dir="ltr"
+  here visually flipped mixed values (caught on live preview 2026-08-15).
+{%- endcomment -%}
+{%- liquid
+  assign en_mf = product.metafields.custom
+  assign en_battery = en_mf.battery | metafield_text
+  assign en_power = en_mf.power_watt | metafield_text
+  assign en_lumens = en_mf.lumens | metafield_text
+  assign en_charge = en_mf.charge_time_hours | metafield_text
+  assign en_light_hours = en_mf.light_hours | metafield_text
+  assign en_sensor_range = en_mf.sensor_range_m | metafield_text
+  assign en_sensor_angle = en_mf.sensor_angle_deg | metafield_text
+  assign en_ip = en_mf.ip_rating | metafield_text
+  assign en_dimensions = en_mf.dimensions | metafield_text
+  assign en_material = en_mf.material | metafield_text
+  assign en_color_temp = en_mf.color_temp | metafield_text
+  assign en_modes = en_mf.light_modes | metafield_text
+
+  assign en_all = '' | append: en_battery | append: en_power | append: en_lumens | append: en_charge | append: en_light_hours | append: en_sensor_range | append: en_sensor_angle | append: en_ip | append: en_dimensions | append: en_material | append: en_color_temp | append: en_modes
+-%}
+{%- if en_all != blank -%}
+<section class="en-specs" dir="rtl" aria-labelledby="en-specs-title-{{ product.id }}">
+  <h2 class="en-specs__title" id="en-specs-title-{{ product.id }}">מפרט טכני</h2>
+  <table class="en-specs__table">
+    <tbody>
+      {%- if en_battery != blank -%}
+      <tr><th scope="row">סוללה</th><td><bdi dir="auto">{{ en_battery }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_power != blank -%}
+      <tr><th scope="row">הספק</th><td><bdi dir="auto">{{ en_power }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_lumens != blank -%}
+      <tr><th scope="row">עוצמת אור</th><td><bdi dir="auto">{{ en_lumens }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_charge != blank -%}
+      <tr><th scope="row">זמן טעינה</th><td><bdi dir="auto">{{ en_charge }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_light_hours != blank -%}
+      <tr><th scope="row">שעות תאורה</th><td><bdi dir="auto">{{ en_light_hours }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_sensor_range != blank -%}
+      <tr><th scope="row">טווח חיישן</th><td><bdi dir="auto">{{ en_sensor_range }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_sensor_angle != blank -%}
+      <tr><th scope="row">זווית חיישן</th><td><bdi dir="auto">{{ en_sensor_angle }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_ip != blank -%}
+      <tr><th scope="row">עמידות למים</th><td><bdi dir="auto">{{ en_ip }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_dimensions != blank -%}
+      <tr><th scope="row">מידות</th><td><bdi dir="auto">{{ en_dimensions }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_material != blank -%}
+      <tr><th scope="row">חומר</th><td><bdi dir="auto">{{ en_material }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_color_temp != blank -%}
+      <tr><th scope="row">גוון אור</th><td><bdi dir="auto">{{ en_color_temp }}</bdi></td></tr>
+      {%- endif -%}
+      {%- if en_modes != blank -%}
+      <tr><th scope="row">מצבי תאורה</th><td><bdi dir="auto">{{ en_modes }}</bdi></td></tr>
+      {%- endif -%}
+    </tbody>
+  </table>
+  <p class="en-specs__note">נתונים שאינם מפורסמים על ידי היצרן אינם מופיעים בעמוד</p>
+</section>
+{%- endif -%}

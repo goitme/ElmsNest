@@ -1,0 +1,269 @@
+{%- comment -%}
+  ElmsNest PDP — נתונים עיקריים (feature grid).
+
+  The six facts a buyer of outdoor lighting actually asks for: waterproof
+  rating, charge time, runtime, colour temperature, sensor range, material.
+
+  Every value is read from that product's own custom metafield, so the grid
+  says something different on each of the 27 products from one shared template.
+  A schema setting could not do this — one template serves the whole catalogue,
+  so a typed value would print identically everywhere.
+
+  Nothing is ever invented: a block whose metafield is empty does not render,
+  and if none of the blocks resolve the whole section disappears. The manual
+  "custom" source exists for facts the store has verified but has not yet moved
+  into a metafield — it ships with an empty default for exactly that reason.
+
+  Latin and numeric values (IP65, 3000K, 6–8) sit inside <bdi dir="auto"> so
+  they keep their own direction inside the Hebrew RTL flow.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_feat_rendered = 0
+  for block in section.blocks
+    assign elms_probe = ''
+    if block.settings.source == 'custom'
+      assign elms_probe = block.settings.value
+    else
+      assign elms_probe = product.metafields.custom[block.settings.source] | metafield_text
+    endif
+    if elms_probe != blank and block.settings.label != blank
+      assign elms_feat_rendered = elms_feat_rendered | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if section.settings.enable and elms_feat_rendered > 0 -%}
+  <section
+    class="elms-pdp elms-feat"
+    dir="rtl"
+    {% if section.settings.heading != blank %}aria-labelledby="elms-feat-title-{{ section.id }}"{% else %}aria-label="נתונים עיקריים"{% endif %}
+    style="--elms-feat-bg: {{ section.settings.bg_color }}; --elms-feat-fg: {{ section.settings.text_color }}; --elms-feat-fg-soft: {{ section.settings.text_color | color_mix: section.settings.bg_color, 68 }}; --elms-feat-line: {{ section.settings.text_color | color_mix: section.settings.bg_color, 20 }}; --elms-feat-pt: {{ section.settings.padding_top }}px; --elms-feat-pb: {{ section.settings.padding_bottom }}px; --elms-feat-pt-mb: {{ section.settings.padding_top | times: 0.7 | round }}px; --elms-feat-pb-mb: {{ section.settings.padding_bottom | times: 0.7 | round }}px;"
+  >
+    <div class="elms-feat__wrap">
+      {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+        <header class="elms-feat__header">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="elms-feat__title" id="elms-feat-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <p class="elms-feat__sub">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      <dl class="elms-feat__grid">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign elms_val = ''
+            if block.settings.source == 'custom'
+              assign elms_val = block.settings.value
+            else
+              assign elms_val = product.metafields.custom[block.settings.source] | metafield_text
+            endif
+          -%}
+          {%- if elms_val != blank and block.settings.label != blank -%}
+            <div class="elms-feat__cell" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != 'none' -%}
+                <span class="elms-feat__icon" aria-hidden="true">
+                  {%- render 'elms-pdp-icon', name: block.settings.icon -%}
+                </span>
+              {%- endif -%}
+              <dt class="elms-feat__label">{{ block.settings.label }}</dt>
+              <dd class="elms-feat__value"><bdi dir="auto">{{ elms_val }}</bdi></dd>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </dl>
+
+      {%- if section.settings.note != blank -%}
+        <p class="elms-feat__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-feat,
+  .elms-feat *{box-sizing:border-box}
+  .elms-feat{direction:rtl;background:var(--elms-feat-bg);color:var(--elms-feat-fg);padding-block-start:var(--elms-feat-pt);padding-block-end:var(--elms-feat-pb);padding-inline:20px}
+  .elms-feat__wrap{inline-size:min(1120px,100%);margin-inline:auto}
+  .elms-feat__header{max-inline-size:70ch;margin-block-end:22px}
+  .elms-feat__title{margin:0;font-size:clamp(22px,2vw,24px);font-weight:600;line-height:1.3}
+  .elms-feat__sub{margin:8px 0 0;font-size:15px;font-weight:400;line-height:1.7;color:var(--elms-feat-fg-soft)}
+  .elms-feat__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;margin:0;padding:0;background:var(--elms-feat-line)}
+  .elms-feat__cell{background:var(--elms-feat-bg);padding-block:20px;padding-inline:18px;min-inline-size:0}
+  .elms-feat__icon{display:inline-flex;inline-size:20px;block-size:20px;margin-block-end:10px;color:var(--elms-feat-fg-soft)}
+  .elms-feat__icon svg{inline-size:100%;block-size:100%;display:block}
+  .elms-feat__label{margin:0;font-size:13px;font-weight:400;line-height:1.5;color:var(--elms-feat-fg-soft)}
+  .elms-feat__value{margin:5px 0 0;font-size:16px;font-weight:600;line-height:1.5;color:var(--elms-feat-fg);font-variant-numeric:tabular-nums}
+  .elms-feat__note{margin:18px 0 0;font-size:13px;font-weight:400;line-height:1.6;color:var(--elms-feat-fg-soft)}
+  @media (max-width:720px){
+    .elms-feat{padding-block-start:var(--elms-feat-pt-mb);padding-block-end:var(--elms-feat-pb-mb);padding-inline:14px}
+    .elms-feat__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .elms-feat__cell{padding-block:16px;padding-inline:14px}
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · נתונים עיקריים",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "הנתונים שחשוב לבדוק"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "שורת משנה"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "הערה בתחתית המקטע",
+      "default": "מוצג רק נתון שהיצרן מפרסם. נתון שאינו מופיע כאן — אינו מובטח."
+    },
+    {
+      "type": "header",
+      "content": "צבעים"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "צבע רקע",
+      "default": "#FFFDF7"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "צבע טקסט",
+      "default": "#2B2118"
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "נתון",
+      "settings": [
+        {
+          "type": "select",
+          "id": "source",
+          "label": "מקור הנתון",
+          "info": "הערך נלקח משדה המטא של המוצר עצמו. אם השדה ריק — הנתון לא יוצג כלל.",
+          "options": [
+            { "value": "ip_rating", "label": "עמידות למים (ip_rating)" },
+            { "value": "charge_time_hours", "label": "זמן טעינה (charge_time_hours)" },
+            { "value": "light_hours", "label": "שעות תאורה (light_hours)" },
+            { "value": "color_temp", "label": "גוון אור (color_temp)" },
+            { "value": "sensor_range_m", "label": "טווח חיישן (sensor_range_m)" },
+            { "value": "sensor_angle_deg", "label": "זווית חיישן (sensor_angle_deg)" },
+            { "value": "material", "label": "חומר (material)" },
+            { "value": "dimensions", "label": "מידות (dimensions)" },
+            { "value": "power_watt", "label": "הספק (power_watt)" },
+            { "value": "lumens", "label": "עוצמת אור (lumens)" },
+            { "value": "battery", "label": "סוללה (battery)" },
+            { "value": "light_modes", "label": "מצבי תאורה (light_modes)" },
+            { "value": "custom", "label": "ערך שנכתב כאן ידנית" }
+          ],
+          "default": "ip_rating"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "כותרת הנתון",
+          "default": "עמידות למים"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "ערך ידני",
+          "info": "בשימוש רק כאשר מקור הנתון הוא ״ערך שנכתב כאן ידנית״. אין להמציא נתון — השאירו ריק אם אינכם יודעים."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "אייקון",
+          "options": [
+            { "value": "none", "label": "ללא" },
+            { "value": "drop", "label": "עמידות למים" },
+            { "value": "sun", "label": "טעינה סולארית" },
+            { "value": "clock", "label": "זמן" },
+            { "value": "bolt", "label": "הספק" },
+            { "value": "ruler", "label": "מידות" },
+            { "value": "shield", "label": "עמידות" },
+            { "value": "tool", "label": "חומר והתקנה" }
+          ],
+          "default": "drop"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · נתונים עיקריים",
+      "blocks": [
+        {
+          "type": "fact",
+          "settings": { "source": "ip_rating", "label": "עמידות למים", "icon": "drop" }
+        },
+        {
+          "type": "fact",
+          "settings": { "source": "charge_time_hours", "label": "זמן טעינה", "icon": "sun" }
+        },
+        {
+          "type": "fact",
+          "settings": { "source": "light_hours", "label": "שעות תאורה", "icon": "clock" }
+        },
+        {
+          "type": "fact",
+          "settings": { "source": "color_temp", "label": "גוון אור", "icon": "bolt" }
+        },
+        {
+          "type": "fact",
+          "settings": { "source": "sensor_range_m", "label": "טווח חיישן", "icon": "shield" }
+        },
+        {
+          "type": "fact",
+          "settings": { "source": "material", "label": "חומר", "icon": "tool" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

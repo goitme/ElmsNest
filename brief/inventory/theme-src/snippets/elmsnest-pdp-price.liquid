@@ -1,0 +1,111 @@
+{%- comment -%}
+  ElmsNest PDP price (P9) — replaces blocks/_product-price.liquid on the
+  product.elmsnest template only. Rendered through a `_liquid` block:
+    {% render 'elmsnest-pdp-price', product: product %}
+
+  Copies the DOM contract of snippets/price.liquid (hdt-price /
+  hdt-compare-at-price / hdt-unit-price custom elements + .hdt-money spans)
+  so the theme JS (global.min.js, class Price extends VariantChangeBase)
+  keeps updating amounts on variant:change.
+
+  Changes vs. Kalles price.liquid:
+  - sr-only label is «מחיר» by default; «מחיר מבצע» ONLY when
+    compare_at_price > price for the selected variant (BV3).
+  - The `form` attribute cannot be built in Liquid here (the `liquid`
+    setting type has no access to the `section` object, and the form id is
+    'product-form-' + section.id + product.id). A small inline script wires
+    the attribute at DOMContentLoaded and re-inserts the elements so their
+    connectedCallback re-resolves the form. Without JS the correct initial
+    price still renders; it just won't live-update.
+{%- endcomment -%}
+{%- liquid
+  assign un_no_pick = true
+  if settings.pick_mode == 'no' and product.variants.size > 1
+    assign selected_variant = product.selected_variant
+    unless selected_variant
+      assign un_no_pick = false
+    endunless
+  elsif settings.pick_mode == 'first' and settings.hide_sold_out == false
+    assign selected_variant = product.selected_variant | default: product.variants.first
+  else
+    assign selected_variant = product.selected_or_first_available_variant
+  endif
+
+  assign compare_at_price = selected_variant.compare_at_price
+  assign price = selected_variant.price | default: 1999
+  if settings.currency_code_enabled
+    assign money_price = price | money_with_currency
+    assign money_compare_at_price = compare_at_price | money_with_currency
+  else
+    assign money_price = price | money
+    assign money_compare_at_price = compare_at_price | money
+  endif
+  if compare_at_price > price
+    assign on_sale = true
+  else
+    assign on_sale = false
+  endif
+-%}
+<div class="hdt-product-info__item hdt-product__price hdt-flex hdt-flex-wrap" id="en-pdp-price-{{ product.id }}">
+  <div class="hdt-price-wrapp">
+    <div class="hdt-price__container">
+      <div class="hdt-price__sale hdt-price__list">
+        <hdt-compare-at-price class="hdt-compare-at-price"{% if compare_at_price == nil or on_sale == false or un_no_pick == false %} hidden{% endif %}>
+          <span class="sr-only sr-only--inline">{{ 'products.product.price.regular_price' | t }}</span>
+          <span class="hdt-money">{{ money_compare_at_price }}</span>
+        </hdt-compare-at-price>
+        <hdt-price class="hdt-price{% if on_sale %} hdt-price-on-sale{% endif %}">
+          <span class="sr-only sr-only--inline">{% if on_sale %}{{ 'products.product.price.sale_price' | t }}{% else %}מחיר{% endif %}</span>
+          <span class="hdt-money"{% unless un_no_pick %} no-select-money{% endunless %}>{{ money_price }}</span>
+        </hdt-price>
+      </div>
+      <hdt-unit-price class="hdt-unit-price"{% if selected_variant.unit_price_measurement == nil %} hidden{% endif %}>
+        <span class="sr-only">{{ 'products.product.price.unit_price' | t }}</span>
+        <span class="hdt-hdt-price-item hdt-price-item--last">
+          <span class="hdt-money">{{- selected_variant.unit_price | money -}}</span>
+          <span aria-hidden="true">/</span>
+          <span class="sr-only">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+          <span>
+            {%- if selected_variant.unit_price_measurement.reference_value != 1 -%}
+              {{- selected_variant.unit_price_measurement.reference_value -}}
+            {%- endif -%}
+            {{ selected_variant.unit_price_measurement.reference_unit }}
+          </span>
+        </span>
+      </hdt-unit-price>
+    </div>
+  </div>
+</div>
+{%- if product.has_only_default_variant == false -%}
+<script>
+  (function () {
+    var root = document.getElementById('en-pdp-price-{{ product.id }}');
+    if (!root) return;
+    function wire() {
+      var scope = root.closest('.shopify-section') || document;
+      var form = scope.querySelector('form.hdt-main-product-form');
+      /* form.id is shadowed by the <input name="id"> control inside product
+         forms — it returns that element, not the id string. getAttribute is
+         the only safe read here (caught on live preview 2026-08-15). */
+      var fid = form ? form.getAttribute('id') : null;
+      if (!form || !fid) return;
+      var els = root.querySelectorAll('hdt-price, hdt-compare-at-price, hdt-unit-price');
+      Array.prototype.forEach.call(els, function (el) {
+        if (el.getAttribute('form') === fid) return;
+        el.setAttribute('form', fid);
+        /* Re-insert so a possibly already-upgraded custom element re-runs
+           connectedCallback and binds its variant:change listener to the form. */
+        var parent = el.parentNode;
+        var next = el.nextSibling;
+        parent.removeChild(el);
+        parent.insertBefore(el, next);
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wire);
+    } else {
+      wire();
+    }
+  })();
+</script>
+{%- endif -%}

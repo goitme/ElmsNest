@@ -1,0 +1,165 @@
+{%- comment -%}
+  The terms strip.
+
+  This is where the sheet states its conditions, so it is written as a
+  conditions row and not as three feature cards: no circles, no glyph icons,
+  no shadow, no card. Every figure here must match the published policy pages
+  exactly — the strip previously promised 7–14 days while the shipping policy
+  said 8–17, on a store whose stated first principle is clarity before
+  promises. The numbers are settings so a policy change can be made here
+  without touching Liquid.
+{%- endcomment -%}
+
+<section class="en-terms" dir="rtl" aria-label="תנאי הקנייה">
+  <div class="en-terms__wrap">
+
+    <div class="en-terms__row">
+      <div class="en-terms__cell">
+        <span class="en-terms__label">{{ section.settings.term_1_label | default: 'משלוח' }}</span>
+        <span class="en-terms__value">{{ section.settings.term_1_value | default: 'חינם לנקודת איסוף' }}</span>
+        <span class="en-terms__note">{{ section.settings.term_1_note | default: '29.90 ₪ עד הבית' }}</span>
+      </div>
+
+      <div class="en-terms__cell">
+        <span class="en-terms__label">{{ section.settings.term_2_label | default: 'זמן אספקה' }}</span>
+        <span class="en-terms__value">{{ section.settings.term_2_value | default: '8–17 ימי עסקים' }}</span>
+        <span class="en-terms__note">{{ section.settings.term_2_note | default: '1–3 ימי טיפול ועוד 7–14 ימי משלוח · מוצרים עשויים להישלח ממחסנים מחוץ לישראל' }}</span>
+      </div>
+
+      {%- comment -%}
+        The service cell has two truthful states. With a WhatsApp number set
+        in theme settings it names the live channel; without one it stays on
+        the email promise. It never claims a channel that does not exist.
+      {%- endcomment -%}
+      {%- assign en_wa = settings.whatsapp_number | default: '' | strip | remove: ' ' | remove: '-' | remove: '+' | remove: '(' | remove: ')' -%}
+      <div class="en-terms__cell">
+        <span class="en-terms__label">{{ section.settings.term_3_label | default: 'לפני ההזמנה' }}</span>
+        {%- if en_wa != blank -%}
+          <span class="en-terms__value"><a class="en-terms__link" href="https://wa.me/{{ en_wa }}" target="_blank" rel="noopener">{{ section.settings.term_3_value_wa | default: 'שאלו אותנו בוואטסאפ' }}</a></span>
+          <span class="en-terms__note">{{ section.settings.term_3_note_wa | default: 'שלחו תמונה של המקום — נבדוק התאמה לפני שתזמינו' }}</span>
+        {%- else -%}
+          {%- comment -%}
+            The fallback state promised "write to us" and gave no way to write:
+            the whole strip carried exactly one link. A stated channel must be
+            reachable from where it is stated, so the value carries the contact
+            link here exactly as it carries the wa.me link above.
+          {%- endcomment -%}
+          <span class="en-terms__value"><a class="en-terms__link" href="/pages/contact-us">{{ section.settings.term_3_value | default: 'נבדוק התאמה למקום' }}</a></span>
+          <span class="en-terms__note">{{ section.settings.term_3_note | default: 'שלחו תמונה של המקום וקישור למוצר — ואם לא מתאים, נגיד מראש' }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}
+        The cancellation cell states the statutory right only — 14 days from
+        receipt under חוק הגנת הצרכן, exactly as the published refund policy
+        words it. No אחריות claim appears anywhere on this strip.
+
+        Israeli consumer law (distance selling) requires the site's HOME PAGE to
+        carry a link through which a cancellation notice can actually be SENT —
+        not a link to the policy that describes how. The policy link stays for
+        the terms; the send link is what satisfies the requirement, so it is
+        named for the act and not for the document.
+      {%- endcomment -%}
+      <div class="en-terms__cell">
+        <span class="en-terms__label">{{ section.settings.term_4_label | default: 'ביטול עסקה' }}</span>
+        <span class="en-terms__value">{{ section.settings.term_4_value | default: 'עד 14 ימים מקבלת המוצר' }}</span>
+        <span class="en-terms__note">{{ section.settings.term_4_note | default: 'לפי חוק הגנת הצרכן · דמי ביטול עד 5% או 100 ₪, הנמוך מביניהם' }} · <a class="en-terms__note-link" href="{{ section.settings.term_4_cancel_url | default: '/pages/contact-us' }}">{{ section.settings.term_4_cancel_label | default: 'שליחת הודעת ביטול' }}</a> · <a class="en-terms__note-link" href="/policies/refund-policy">לתקנון המלא</a></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% stylesheet %}
+.en-terms,.en-terms *{box-sizing:border-box}
+.en-terms{
+  --terms-rule:rgb(var(--en-text-primary)/.16);
+  direction:rtl;background:rgb(var(--en-surface-page));color:rgb(var(--en-text-primary))
+}
+.en-terms__wrap{width:min(1200px,100%);margin-inline:auto;padding:0 clamp(18px,4vw,40px)}
+
+/* One ruled band across the page. Rules, not boxes: a spec sheet separates
+   fields with lines, and a card here would re-introduce the floating
+   three-tile pattern this section was rewritten to remove. */
+.en-terms__row{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  border-block:1px solid var(--terms-rule)
+}
+.en-terms__cell{
+  display:flex;flex-direction:column;gap:3px;
+  padding:22px clamp(16px,2.4vw,28px);
+  border-inline-start:1px solid var(--terms-rule)
+}
+.en-terms__cell:first-child{border-inline-start:0}
+
+.en-terms__label{
+  color:rgb(var(--en-text-secondary));
+  font-size:12px;font-weight:600;line-height:1.2;letter-spacing:.04em
+}
+.en-terms__value{
+  color:rgb(var(--en-text-primary));
+  font-size:clamp(17px,1.5vw,19px);font-weight:700;line-height:1.3;
+  /* Written for figures, but these values read as Hebrew sentences
+     ("חינם לנקודת איסוף"), so the tightening landed on the script that least
+     tolerates it. Tabular figures stay; the tracking goes. */
+  font-variant-numeric:tabular-nums;letter-spacing:normal
+}
+.en-terms__note{
+  color:rgb(var(--en-text-secondary));
+  font-size:14px;line-height:1.5;font-variant-numeric:tabular-nums
+}
+.en-terms__link{
+  color:inherit!important;text-decoration:underline;text-underline-offset:4px;
+  text-decoration-color:rgb(var(--en-text-primary)/.4)
+}
+.en-terms__link:hover{text-decoration-color:rgb(var(--en-text-primary))}
+.en-terms__note-link{
+  color:rgb(var(--en-text-secondary))!important;text-decoration:underline;text-underline-offset:3px
+}
+.en-terms__note-link:hover{color:rgb(var(--en-text-primary))!important}
+.en-terms a:focus-visible{outline:3px solid rgb(var(--en-text-primary));outline-offset:2px}
+
+@media(max-width:1050px){
+  .en-terms__row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .en-terms__cell:nth-child(odd){border-inline-start:0}
+  .en-terms__cell:nth-child(n+3){border-block-start:1px solid var(--terms-rule)}
+}
+@media(max-width:640px){
+  .en-terms__row{grid-template-columns:1fr}
+  .en-terms__cell{border-inline-start:0;border-block-start:1px solid var(--terms-rule);padding:18px 0}
+  .en-terms__cell:first-child{border-block-start:0}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "ElmsNest terms strip",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "משלוח" },
+    { "type": "text", "id": "term_1_label", "label": "כותרת", "default": "משלוח" },
+    { "type": "text", "id": "term_1_value", "label": "ערך", "default": "חינם לנקודת איסוף" },
+    { "type": "text", "id": "term_1_note", "label": "הערה", "default": "29.90 ₪ עד הבית" },
+
+    { "type": "header", "content": "זמן אספקה" },
+    { "type": "text", "id": "term_2_label", "label": "כותרת", "default": "זמן אספקה" },
+    { "type": "text", "id": "term_2_value", "label": "ערך", "default": "8–17 ימי עסקים" },
+    { "type": "text", "id": "term_2_note", "label": "הערה", "default": "1–3 ימי טיפול ועוד 7–14 ימי משלוח" },
+
+    { "type": "header", "content": "לפני ההזמנה" },
+    { "type": "text", "id": "term_3_label", "label": "כותרת", "default": "לפני ההזמנה" },
+    { "type": "text", "id": "term_3_value", "label": "ערך (בלי וואטסאפ)", "default": "נבדוק התאמה למקום" },
+    { "type": "text", "id": "term_3_note", "label": "הערה (בלי וואטסאפ)", "default": "כתבו לנו ונחזור אליכם" },
+    { "type": "text", "id": "term_3_value_wa", "label": "ערך (עם וואטסאפ)", "default": "שאלו אותנו בוואטסאפ", "info": "מוצג רק כשמספר וואטסאפ מוגדר בהגדרות הערכה (ElmsNest)" },
+    { "type": "text", "id": "term_3_note_wa", "label": "הערה (עם וואטסאפ)", "default": "שלחו תמונה של המקום — נבדוק התאמה לפני שתזמינו" },
+
+    { "type": "header", "content": "ביטול עסקה" },
+    { "type": "text", "id": "term_4_label", "label": "כותרת", "default": "ביטול עסקה" },
+    { "type": "text", "id": "term_4_value", "label": "ערך", "default": "עד 14 ימים מקבלת המוצר" },
+    { "type": "text", "id": "term_4_note", "label": "הערה", "default": "לפי חוק הגנת הצרכן" },
+    { "type": "text", "id": "term_4_cancel_label", "label": "טקסט קישור שליחת ביטול", "default": "שליחת הודעת ביטול", "info": "חובה חוקית: בדף הבית חייב להופיע קישור שדרכו ניתן לשלוח הודעת ביטול עסקה" },
+    { "type": "url", "id": "term_4_cancel_url", "label": "יעד קישור שליחת ביטול", "info": "ברירת מחדל: /pages/contact-us" }
+  ],
+  "presets": [{ "name": "ElmsNest terms strip" }]
+}
+{% endschema %}

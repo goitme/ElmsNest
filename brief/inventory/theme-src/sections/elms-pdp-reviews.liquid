@@ -1,0 +1,245 @@
+{%- comment -%}
+  ElmsNest PDP — חוות דעת.
+
+  The store has no sales yet, so this section ships EMPTY: no seeded review, no
+  default star count, no "based on N reviews" line. It renders nothing at all
+  until either the merchant types a real review into a block or a reviews app
+  drops an @app block in. Inventing social proof is the one thing a new store
+  cannot undo.
+
+  A rating, when present, is never stars alone: the numeric value is printed
+  next to them and repeated for assistive tech, so it survives greyscale and a
+  screen reader.
+
+  Dates are plain text, not a date filter: the merchant transcribes what the
+  customer wrote, and the theme does not restate it as a verified timestamp.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_review_count = 0
+  assign elms_app_count = 0
+  for block in section.blocks
+    case block.type
+      when 'review'
+        if block.settings.body != blank
+          assign elms_review_count = elms_review_count | plus: 1
+        endif
+      when '@app'
+        assign elms_app_count = elms_app_count | plus: 1
+    endcase
+  endfor
+  assign elms_reviews_total = elms_review_count | plus: elms_app_count
+-%}
+
+{%- if section.settings.enable and elms_reviews_total > 0 -%}
+  <section
+    class="elms-pdp elms-reviews"
+    dir="rtl"
+    {% if section.settings.heading != blank %}aria-labelledby="elms-reviews-title-{{ section.id }}"{% else %}aria-label="חוות דעת"{% endif %}
+    style="--elms-reviews-bg: {{ section.settings.bg_color }}; --elms-reviews-fg: {{ section.settings.text_color }}; --elms-reviews-fg-soft: {{ section.settings.text_color | color_mix: section.settings.bg_color, 70 }}; --elms-reviews-line: {{ section.settings.text_color | color_mix: section.settings.bg_color, 20 }}; --elms-reviews-pt: {{ section.settings.padding_top }}px; --elms-reviews-pb: {{ section.settings.padding_bottom }}px; --elms-reviews-pt-mb: {{ section.settings.padding_top | times: 0.7 | round }}px; --elms-reviews-pb-mb: {{ section.settings.padding_bottom | times: 0.7 | round }}px;"
+  >
+    <div class="elms-reviews__wrap">
+      {%- if section.settings.heading != blank -%}
+        <header class="elms-reviews__header">
+          <h2 class="elms-reviews__title" id="elms-reviews-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+        </header>
+      {%- endif -%}
+
+      {%- if elms_review_count > 0 -%}
+        <ul class="elms-reviews__list" role="list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'review' and block.settings.body != blank -%}
+              <li class="elms-reviews__item" {{ block.shopify_attributes }}>
+                {%- if block.settings.rating != 'none' -%}
+                  {%- assign elms_rating = block.settings.rating | plus: 0 -%}
+                  <span class="elms-reviews__rating">
+                    <span class="elms-reviews__stars" aria-hidden="true">
+                      {%- for i in (1..5) -%}
+                        <span class="elms-reviews__star{% if i > elms_rating %} is-empty{% endif %}">
+                          {%- render 'elms-pdp-icon', name: 'star' -%}
+                        </span>
+                      {%- endfor -%}
+                    </span>
+                    <span class="elms-reviews__rating-text">
+                      <bdi dir="ltr">{{ elms_rating }}</bdi> מתוך <bdi dir="ltr">5</bdi>
+                    </span>
+                  </span>
+                {%- endif -%}
+
+                <blockquote class="elms-reviews__quote">{{ block.settings.body }}</blockquote>
+
+                {%- if block.settings.author != blank or block.settings.meta != blank -%}
+                  <p class="elms-reviews__byline">
+                    {%- if block.settings.author != blank -%}
+                      <span class="elms-reviews__author">{{ block.settings.author }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.meta != blank -%}
+                      <span class="elms-reviews__meta">{{ block.settings.meta }}</span>
+                    {%- endif -%}
+                  </p>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if elms_app_count > 0 -%}
+        <div class="elms-reviews__app">
+          {%- for block in section.blocks -%}
+            {%- if block.type == '@app' -%}
+              {%- render block -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.note != blank -%}
+        <p class="elms-reviews__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-reviews,
+  .elms-reviews *{box-sizing:border-box}
+  .elms-reviews{direction:rtl;background:var(--elms-reviews-bg);color:var(--elms-reviews-fg);padding-block-start:var(--elms-reviews-pt);padding-block-end:var(--elms-reviews-pb);padding-inline:20px}
+  .elms-reviews__wrap{inline-size:min(1120px,100%);margin-inline:auto}
+  .elms-reviews__header{max-inline-size:70ch;margin-block-end:22px}
+  .elms-reviews__title{margin:0;font-size:clamp(22px,2vw,24px);font-weight:600;line-height:1.3}
+  .elms-reviews__list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:0;padding:0;list-style:none}
+  .elms-reviews__item{border:1px solid var(--elms-reviews-line);padding-block:20px;padding-inline:20px;min-inline-size:0}
+  .elms-reviews__rating{display:flex;align-items:center;gap:8px;margin-block-end:10px}
+  .elms-reviews__stars{display:inline-flex;gap:2px}
+  .elms-reviews__star{display:inline-flex;inline-size:15px;block-size:15px;color:rgb(var(--en-amber))}
+  .elms-reviews__star.is-empty{opacity:.28}
+  .elms-reviews__star svg{inline-size:100%;block-size:100%;display:block}
+  .elms-reviews__rating-text{font-size:13px;font-weight:400;color:var(--elms-reviews-fg-soft);font-variant-numeric:tabular-nums}
+  .elms-reviews__quote{margin:0;font-size:15px;font-weight:400;line-height:1.75;color:var(--elms-reviews-fg)}
+  .elms-reviews__byline{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;font-size:13px;line-height:1.6;color:var(--elms-reviews-fg-soft)}
+  .elms-reviews__author{font-weight:600;color:var(--elms-reviews-fg)}
+  .elms-reviews__app{margin-block-start:16px}
+  .elms-reviews__note{margin:16px 0 0;font-size:13px;font-weight:400;line-height:1.6;color:var(--elms-reviews-fg-soft)}
+  @media (max-width:720px){
+    .elms-reviews{padding-block-start:var(--elms-reviews-pt-mb);padding-block-end:var(--elms-reviews-pb-mb);padding-inline:14px}
+    .elms-reviews__list{grid-template-columns:1fr;gap:12px}
+    .elms-reviews__item{padding-block:16px;padding-inline:16px}
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · חוות דעת",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "מה לקוחות כתבו"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "הערה בתחתית המקטע"
+    },
+    {
+      "type": "header",
+      "content": "צבעים"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "צבע רקע",
+      "default": "#F7F0E6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "צבע טקסט",
+      "default": "#2B2118"
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "review",
+      "name": "חוות דעת",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "יש להזין רק חוות דעת אמיתית שנמסרה על ידי לקוח. אין להמציא דירוג, שם או תוכן."
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "תוכן חוות הדעת"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "שם הכותב"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "פרט נוסף",
+          "info": "לדוגמה: תאריך, יישוב, או הדגם שנרכש."
+        },
+        {
+          "type": "select",
+          "id": "rating",
+          "label": "דירוג",
+          "options": [
+            { "value": "none", "label": "ללא דירוג" },
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" },
+            { "value": "5", "label": "5" }
+          ],
+          "default": "none"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · חוות דעת"
+    }
+  ]
+}
+{% endschema %}

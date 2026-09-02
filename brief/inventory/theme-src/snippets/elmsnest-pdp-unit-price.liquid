@@ -1,0 +1,65 @@
+{%- comment -%}
+  ElmsNest PDP per-unit price line (P4) — renders only for products that
+  have an option literally named «כמות». Sits directly under the variant
+  picker on the product.elmsnest template.
+
+  Every variant's line is pre-rendered server-side (money formatting stays
+  in Liquid); a small script toggles the visible line on the theme's own
+  `variant:change` event (dispatched on the product form by
+  hdt-variant-picker in global.min.js). No «במקום», no strikethrough —
+  per-unit maths only, from published variant prices.
+
+  Per-unit value uses integer division on cents: exact for the current
+  catalog (1/2 יח׳); a non-divisible price would floor by at most one agora.
+  Lines for quantity 1 (or unparsable quantity values) render empty.
+{%- endcomment -%}
+{%- liquid
+  assign en_qty_index = -1
+  for en_opt in product.options_with_values
+    if en_opt.name == 'כמות'
+      assign en_qty_index = forloop.index0
+    endif
+  endfor
+-%}
+{%- if en_qty_index > -1 -%}
+  {%- assign en_selected = product.selected_or_first_available_variant -%}
+  <div class="en-unit-price" id="en-unit-price-{{ product.id }}" dir="rtl">
+    {%- for en_variant in product.variants -%}
+      {%- liquid
+        assign en_qty_value = en_variant.options[en_qty_index]
+        assign en_qty_num = en_qty_value | split: ' ' | first | plus: 0
+      -%}
+      <span class="en-unit-price__line" data-en-variant="{{ en_variant.id }}"{% unless en_variant.id == en_selected.id %} hidden{% endunless %}>
+        {%- if en_qty_num > 1 -%}
+          {%- assign en_per_unit = en_variant.price | divided_by: en_qty_num -%}
+          <bdi dir="ltr">{{ en_variant.price | money }}</bdi> · <bdi dir="ltr">{{ en_per_unit | money }}</bdi> ליחידה
+        {%- endif -%}
+      </span>
+    {%- endfor -%}
+  </div>
+  <script>
+    (function () {
+      var root = document.getElementById('en-unit-price-{{ product.id }}');
+      if (!root) return;
+      function wire() {
+        var scope = root.closest('.shopify-section') || document;
+        var form = scope.querySelector('form.hdt-main-product-form');
+        if (!form) return;
+        form.addEventListener('variant:change', function (e) {
+          var v = e.detail && e.detail.variant;
+          var lines = root.querySelectorAll('[data-en-variant]');
+          Array.prototype.forEach.call(lines, function (el) { el.hidden = true; });
+          if (v && v.id) {
+            var line = root.querySelector('[data-en-variant="' + v.id + '"]');
+            if (line) line.hidden = false;
+          }
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wire);
+      } else {
+        wire();
+      }
+    })();
+  </script>
+{%- endif -%}

@@ -1,0 +1,67 @@
+{%- comment -%}
+  elmsnest-product-schema.liquid (K1 / SE1 — council run 2026-08-15)
+
+  Replaces {{ product | structured_data }} in snippets/structured-data.liquid.
+  Mirrors Shopify's structured_data ProductGroup output 1:1 (verified against
+  the live rendered JSON-LD on 2026-08-15): same @id ("/products/<handle>#product"),
+  same hasVariant loop with the same fields (image / name / offers.availability /
+  offers.price / offers.priceCurrency / offers.url / sku), same top-level fields
+  (brand, category, description, name, productGroupID, url).
+
+  Adds on top:
+  - additionalProperty: PropertyValue list from product.metafields.custom.*
+    (only fields that have a value — blank fields are skipped)
+  - offers.shippingDetails: pickup point 0 ILS + home courier 29.90 ILS,
+    handling 1-3 days, transit 7-14 days, destination IL (licensed values only)
+  - offers.hasMerchantReturnPolicy: 14 days, IL, finite return window
+
+  Deliberately contains NO aggregateRating and NO review (zero sales — legal
+  decision, owner 2026-08-14). Do not add them.
+
+  Every dynamic value is passed through the json filter for escaping.
+
+  Accepts:
+  - product: {Object} product object
+
+  Usage:
+  {% render 'elmsnest-product-schema', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign en_spec_keys = 'sensor_range_m|sensor_angle_deg|ip_rating|light_modes|color_temp|battery|power_watt|lumens|charge_time_hours|light_hours|dimensions|material' | split: '|'
+  assign en_spec_labels = 'טווח חיישן|זווית חיישן|עמידות למים|מצבי תאורה|גוון אור|סוללה|הספק|עוצמת אור|זמן טעינה|שעות תאורה|מידות|חומר' | split: '|'
+  assign en_category = product.category.name | default: product.type
+-%}
+{%- capture en_additional_property -%}
+  {%- assign en_prop_sep = '' -%}
+  {%- for en_key in en_spec_keys -%}
+    {%- assign en_mf_value = product.metafields.custom[en_key].value -%}
+    {%- if en_mf_value != blank -%}
+      {{- en_prop_sep -}}{"@type":"PropertyValue","name":{{ en_spec_labels[forloop.index0] | json }},"value":{{ en_mf_value | json }}}
+      {%- assign en_prop_sep = ',' -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- capture en_shipping_details -%}
+[{"@type":"OfferShippingDetails","name":{{ 'משלוח לנקודת איסוף בישראל' | json }},"shippingRate":{"@type":"MonetaryAmount","value":"0.00","currency":"ILS"},"shippingDestination":{"@type":"DefinedRegion","addressCountry":"IL"},"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":1,"maxValue":3,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":7,"maxValue":14,"unitCode":"DAY"}}},{"@type":"OfferShippingDetails","name":{{ 'שליח עד הבית בישראל' | json }},"shippingRate":{"@type":"MonetaryAmount","value":"29.90","currency":"ILS"},"shippingDestination":{"@type":"DefinedRegion","addressCountry":"IL"},"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":1,"maxValue":3,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":7,"maxValue":14,"unitCode":"DAY"}}}]
+{%- endcapture -%}
+{%- capture en_return_policy -%}
+{"@type":"MerchantReturnPolicy","applicableCountry":"IL","returnPolicyCategory":"https://schema.org/MerchantReturnFiniteReturnWindow","merchantReturnDays":14}
+{%- endcapture -%}
+{%- capture en_variants -%}
+  {%- for variant in product.variants -%}
+    {%- unless forloop.first -%},{%- endunless -%}
+    {%- assign en_v_image = variant.featured_image | default: product.featured_image -%}
+    {%- assign en_v_image_url = '' -%}
+    {%- if en_v_image != blank -%}
+      {%- assign en_v_image_url = en_v_image | image_url: width: 1920 -%}
+      {%- unless en_v_image_url contains 'https:' -%}
+        {%- assign en_v_image_url = en_v_image_url | prepend: 'https:' -%}
+      {%- endunless -%}
+    {%- endif -%}
+    {%- capture en_v_path -%}{{ product.url }}?variant={{ variant.id }}{%- endcapture -%}
+    {%- capture en_v_name -%}{{ product.title }}{% unless variant.title == 'Default Title' %} - {{ variant.title }}{% endunless %}{%- endcapture -%}
+    {%- assign en_v_price = variant.price | money_without_currency | remove: ',' -%}
+    {"@id":{{ en_v_path | append: '#variant' | json }},"@type":"Product",{% if en_v_image_url != blank %}"image":{{ en_v_image_url | json }},{% endif %}"name":{{ en_v_name | json }},"offers":{"@id":{{ en_v_path | append: '#offer' | json }},"@type":"Offer","availability":{% if variant.available %}"http://schema.org/InStock"{% else %}"http://schema.org/OutOfStock"{% endif %},"price":{{ en_v_price | json }},"priceCurrency":{{ cart.currency.iso_code | json }},"url":{{ shop.url | append: en_v_path | json }},"shippingDetails":{{ en_shipping_details }},"hasMerchantReturnPolicy":{{ en_return_policy }}},"sku":{{ variant.sku | json }}}
+  {%- endfor -%}
+{%- endcapture -%}
+{"@context":"http://schema.org/","@id":{{ product.url | append: '#product' | json }},"@type":"ProductGroup","brand":{"@type":"Brand","name":{{ product.vendor | json }}},{% if en_category != blank %}"category":{{ en_category | json }},{% endif %}"description":{{ product.description | strip_html | json }},{% if en_additional_property != blank %}"additionalProperty":[{{ en_additional_property }}],{% endif %}"hasVariant":[{{ en_variants }}],"name":{{ product.title | json }},"productGroupID":{{ product.id | append: '' | json }},"url":{{ shop.url | append: product.url | json }}}

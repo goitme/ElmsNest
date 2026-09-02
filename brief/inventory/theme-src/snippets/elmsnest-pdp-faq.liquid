@@ -1,0 +1,66 @@
+{%- comment -%}
+  ElmsNest PDP FAQ (P8) — visible <details> accordion + FAQPage JSON-LD,
+  both built from product.metafields.custom.faq.
+
+  Primary format (designed for): metafield of type `json` holding a list of
+  objects: [{"q": "...", "a": "..."}, ...]. Items missing q or a are
+  skipped. A json value that is not such a list yields zero items and the
+  block drops silently — no parse can break the page.
+
+  Fallback (safe parse) for a multi-line text metafield: one item per line
+  in the form «שאלה | תשובה» (pipe-separated). Lines without a pipe are
+  skipped silently.
+
+  JSON-LD renders only when at least one valid item exists.
+{%- endcomment -%}
+{%- liquid
+  assign en_faq_mf = product.metafields.custom.faq
+  assign en_faq_html = ''
+  assign en_faq_ld = ''
+  assign en_faq_count = 0
+-%}
+{%- if en_faq_mf != blank -%}
+  {%- if en_faq_mf.type == 'json' -%}
+    {%- for en_item in en_faq_mf.value -%}
+      {%- if en_item.q != blank and en_item.a != blank -%}
+        {%- capture en_row -%}
+          <details class="en-faq__item"><summary class="en-faq__summary"><h3 class="en-faq__q">{{ en_item.q | escape }}</h3></summary><div class="en-faq__a"><p>{{ en_item.a | escape | newline_to_br }}</p></div></details>
+        {%- endcapture -%}
+        {%- assign en_faq_html = en_faq_html | append: en_row -%}
+        {%- capture en_entry -%}{"@type":"Question","name":{{ en_item.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ en_item.a | json }}}}{%- endcapture -%}
+        {%- if en_faq_count > 0 -%}{%- assign en_faq_ld = en_faq_ld | append: ',' -%}{%- endif -%}
+        {%- assign en_faq_ld = en_faq_ld | append: en_entry -%}
+        {%- assign en_faq_count = en_faq_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- assign en_faq_text = en_faq_mf | metafield_text -%}
+    {%- if en_faq_text != blank -%}
+      {%- assign en_faq_lines = en_faq_text | strip | newline_to_br | split: '<br />' -%}
+      {%- for en_line in en_faq_lines -%}
+        {%- assign en_parts = en_line | split: '|' -%}
+        {%- if en_parts.size >= 2 -%}
+          {%- assign en_q = en_parts[0] | strip -%}
+          {%- assign en_a = en_line | remove_first: en_parts[0] | remove_first: '|' | strip -%}
+          {%- if en_q != blank and en_a != blank -%}
+            {%- capture en_row -%}
+              <details class="en-faq__item"><summary class="en-faq__summary"><h3 class="en-faq__q">{{ en_q | escape }}</h3></summary><div class="en-faq__a"><p>{{ en_a | escape }}</p></div></details>
+            {%- endcapture -%}
+            {%- assign en_faq_html = en_faq_html | append: en_row -%}
+            {%- capture en_entry -%}{"@type":"Question","name":{{ en_q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ en_a | json }}}}{%- endcapture -%}
+            {%- if en_faq_count > 0 -%}{%- assign en_faq_ld = en_faq_ld | append: ',' -%}{%- endif -%}
+            {%- assign en_faq_ld = en_faq_ld | append: en_entry -%}
+            {%- assign en_faq_count = en_faq_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if en_faq_count > 0 -%}
+<section class="en-faq" dir="rtl" aria-labelledby="en-faq-title-{{ product.id }}">
+  <h2 class="en-faq__title" id="en-faq-title-{{ product.id }}">שאלות ותשובות</h2>
+  {{ en_faq_html }}
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ en_faq_ld }}]}</script>
+{%- endif -%}

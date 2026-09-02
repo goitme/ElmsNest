@@ -1,0 +1,14 @@
+{%- comment -%}
+  ElmsNest PDP facts line (P2) — sits between the price and the variant
+  picker on the product.elmsnest template. Text is the licensed literal
+  wording (brief 2026-08-15). Quiet, typographic, thin rules only.
+
+  This snippet also loads assets/elmsnest-pdp.css for the whole template —
+  it is the one unconditional ElmsNest block that will never be swapped out,
+  so the stylesheet has a single stable owner.
+{%- endcomment -%}
+{{ 'elmsnest-pdp.css' | asset_url | stylesheet_tag }}
+<div class="en-facts" dir="rtl">
+  <p class="en-facts__line">המחיר כולל מס. משלוח לנקודת איסוף חינם; שליח עד הבית בתוספת <bdi dir="ltr">29.90</bdi> ₪.</p>
+  <p class="en-facts__line">אספקה משוערת: <bdi dir="ltr">8–17</bdi> ימי עסקים. <a class="en-facts__link" href="/policies/shipping-policy">למדיניות המשלוחים המלאה</a></p>
+</div>

@@ -1,0 +1,20 @@
+<section class="en-cart-guide" dir="rtl" aria-labelledby="en-cart-guide-title-{{ section.id }}">
+  <div class="en-cart-guide__wrap">
+    <h2 id="en-cart-guide-title-{{ section.id }}">לפני שממשיכים לתשלום</h2>
+    <div class="en-cart-guide__grid">
+      <article><strong>זמן אספקה</strong><span><bdi dir="ltr">8–17</bdi> ימי עסקים בסך הכול: <bdi dir="ltr">1–3</bdi> ימי טיפול ועוד <bdi dir="ltr">7–14</bdi> ימי משלוח.</span></article>
+      <article><strong>אפשרויות משלוח</strong><span>האפשרויות והעלות יוצגו בתשלום לפי הכתובת והזמינות.</span></article>
+      <article><strong>בודקים את הפרטים</strong><span>ודאו שהמוצר, הכמות והגרסה שבחרתם נכונים לפני המעבר לתשלום.</span></article>
+    </div>
+    <p>חסר לכם פרט חשוב על מוצר? <a href="{{ pages['contact-us'].url | default: routes.root_url }}">פנו אלינו לפני ההזמנה</a>.</p>
+  </div>
+</section>
+
+{% stylesheet %}
+  .en-cart-guide,.en-cart-guide *{box-sizing:border-box}.en-cart-guide{direction:rtl;padding:0 20px 60px;background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}.en-cart-guide__wrap{width:min(1120px,100%);margin:auto;padding:28px;border:1px solid rgb(var(--en-border-subtle));border-radius:var(--en-radius-md);background:rgb(var(--en-surface-page))}.en-cart-guide h2{margin:0 0 20px;font-size:clamp(25px,4vw,34px)}.en-cart-guide__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.en-cart-guide article{padding:18px;border:1px solid rgb(var(--en-border-subtle));border-radius:var(--en-radius-sm);background:rgb(var(--en-surface-card))}.en-cart-guide strong,.en-cart-guide span{display:block}.en-cart-guide strong{margin-bottom:6px;font-size:17px}.en-cart-guide span,.en-cart-guide p{color:rgb(var(--en-text-secondary));line-height:1.65}.en-cart-guide p{margin:18px 0 0}.en-cart-guide a{display:inline-flex;align-items:center;min-height:44px;color:rgb(var(--en-text-primary));font-weight:600;text-underline-offset:4px}.en-cart-guide a:focus-visible{outline:3px solid rgb(var(--en-focus-light));outline-offset:4px;box-shadow:0 0 0 2px rgb(var(--en-focus-dark))}@media(max-width:720px){.en-cart-guide{padding:0 14px 44px}.en-cart-guide__wrap{padding:20px}.en-cart-guide__grid{grid-template-columns:1fr}}
+  body .hdt-main-cart__button-checkout{min-height:48px!important}body .hdt-quantity__button{min-width:44px!important;min-height:44px!important}body .hdt-newsletter__submit{min-height:44px!important}
+{% endstylesheet %}
+
+{% schema %}
+{"name":"ElmsNest cart guide","tag":"section","settings":[],"presets":[{"name":"ElmsNest cart guide"}]}
+{% endschema %}

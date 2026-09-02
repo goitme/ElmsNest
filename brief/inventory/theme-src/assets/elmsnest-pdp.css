@@ -1,0 +1,236 @@
+/* ==========================================================================
+   ElmsNest PDP — styles for the product.elmsnest template only.
+   Loaded exclusively by snippets/elmsnest-pdp-facts.liquid, which renders
+   only on that template, so the file itself is the scope: nothing here can
+   leak into other templates. All flow-relative properties are logical
+   (inline-start/end, block-start/end) — the storefront is RTL Hebrew.
+
+   Type ladder (P10) — 6 sizes, weights 400/600 only (700 reserved):
+     h1            clamp(26px, 3vw, 38px) / 600   (the ceiling)
+     price         clamp(26px, 2vw, 28px) / 600
+     section title clamp(22px, 2vw, 24px) / 600
+     item title    16px / 600
+     body          15px / 400
+     small note    13px / 400
+
+   Amber (--en-amber) appears exclusively inside .en-specs on the night
+   ground — never on buttons, hovers or links (brand rule).
+   ========================================================================== */
+
+/* --- Type ladder ------------------------------------------------------- */
+
+#block-product_title_ehRqkq .hdt-h_custom {
+  --heading-fs: clamp(26px, 3vw, 38px);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.hdt-product__price .hdt-price .hdt-money {
+  font-size: clamp(26px, 2vw, 28px);
+  font-weight: 600;
+}
+.hdt-product__price .hdt-compare-at-price .hdt-money {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.en-specs__title,
+.en-faq__title {
+  font-size: clamp(22px, 2vw, 24px);
+  font-weight: 600;
+}
+
+/* --- Column rhythm: tighten the decision area (RK ceiling, P1 order) ---- */
+/* Base rule: .hdt-product-info__list > :not(:last-child) gets 2rem. */
+
+.hdt-product-info__list > #block-product_title_ehRqkq { margin-block-end: 10px; }
+.hdt-product-info__list > #block-liquid_en_direct_answer { margin-block-end: 14px; }
+.hdt-product-info__list > #block-liquid_en_price { margin-block-end: 12px; }
+.hdt-product-info__list > #block-liquid_en_facts { margin-block-end: 22px; }
+.hdt-product-info__list > #block-product_variant_picker_XNdArY { margin-block-end: 10px; }
+.hdt-product-info__list > #block-liquid_en_unit_price { margin-block-end: 22px; }
+.hdt-product-info__list > #block-product_buy_button_aPmAbD { margin-block-end: 14px; }
+.hdt-product-info__list > #block-liquid_en_trust { margin-block-end: 30px; }
+.hdt-product-info__list > #block-liquid_en_specs { margin-block-end: 30px; }
+
+/* Metafield-driven blocks that rendered nothing: remove the empty wrapper
+   so no stray margins stack up. (Graceful no-op where :has is missing.) */
+.hdt-product-info__list > [id^="block-liquid_en_"]:not(:has(*)) {
+  display: none;
+}
+
+/* --- P6 direct answer --------------------------------------------------- */
+
+.en-direct-answer {
+  margin: 0;
+  color: rgb(var(--en-text-secondary));
+  font-size: 16px;
+  line-height: 1.65;
+  max-inline-size: 62ch;
+}
+
+/* --- P2 facts line — quiet spec-sheet note, thin rules only ------------- */
+
+.en-facts {
+  border-block-start: 1px solid rgb(var(--en-border-subtle));
+  border-block-end: 1px solid rgb(var(--en-border-subtle));
+  padding-block: 12px;
+}
+.en-facts__line {
+  margin: 0;
+  color: rgb(var(--en-text-secondary));
+  font-size: 15px;
+  line-height: 1.7;
+}
+.en-facts__line + .en-facts__line {
+  margin-block-start: 4px;
+}
+.en-facts__link {
+  color: rgb(var(--en-text-primary));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- P4 per-unit price line --------------------------------------------- */
+
+.en-unit-price__line {
+  display: block;
+  color: rgb(var(--en-text-secondary));
+  font-size: 15px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- P3 trust block ------------------------------------------------------ */
+
+.en-trust__line {
+  margin: 0;
+  color: rgb(var(--en-text-secondary));
+  font-size: 15px;
+  line-height: 1.7;
+}
+.en-trust__line + .en-trust__line {
+  margin-block-start: 4px;
+}
+.en-trust__link {
+  color: rgb(var(--en-text-primary));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- P5 מפרט טכני — the night ground ----------------------------------- */
+
+.en-specs {
+  background: rgb(var(--en-night));
+  color: rgb(var(--en-ink));
+  padding-block: 24px;
+  padding-inline: 22px;
+}
+.en-specs__title {
+  margin: 0 0 16px;
+  color: rgb(var(--en-ink));
+}
+.en-specs__table {
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+.en-specs__table tr {
+  border-block-end: 1px solid rgb(var(--en-ink) / 0.14);
+}
+.en-specs__table tr:last-child {
+  border-block-end: 0;
+}
+.en-specs__table th,
+.en-specs__table td {
+  padding-block: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  vertical-align: top;
+}
+.en-specs__table th {
+  color: rgb(var(--en-ink));
+  font-weight: 400;
+  text-align: start;
+  padding-inline-end: 16px;
+}
+.en-specs__table td {
+  /* The only amber on the page: measured values on the night ground. */
+  color: rgb(var(--en-amber));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+.en-specs__note {
+  margin: 14px 0 0;
+  color: rgb(var(--en-ink) / 0.65);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* --- P8 FAQ accordion ---------------------------------------------------- */
+
+.en-faq__title {
+  margin: 0 0 6px;
+  color: rgb(var(--en-text-primary));
+}
+.en-faq__item {
+  border-block-end: 1px solid rgb(var(--en-border-subtle));
+}
+.en-faq__summary {
+  min-block-size: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding-block: 6px;
+}
+.en-faq__q {
+  display: inline;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: rgb(var(--en-text-primary));
+}
+.en-faq__a {
+  padding-block-end: 14px;
+}
+.en-faq__a p {
+  margin: 0;
+  color: rgb(var(--en-text-secondary));
+  font-size: 15px;
+  line-height: 1.7;
+}
+.en-faq__summary:focus-visible {
+  outline: 3px solid rgb(var(--en-focus-light));
+  outline-offset: 4px;
+}
+
+/* --- P11 sticky ATC thumbnail: sharp corners, not a circle -------------- */
+
+.hdt-sticky-atc__img,
+.hdt-sticky-atc__img.hdt-radius-full,
+.hdt-sticky-atc__img img {
+  border-radius: 0;
+}
+
+/* --- P13 אזל מהמלאי — the button stays, clearly disabled ---------------- */
+
+.hdt-product-form__submit:disabled,
+.hdt-product-form__submit[disabled],
+.hdt-sticky-atc__submit:disabled,
+.hdt-sticky-atc__submit[disabled] {
+  background: rgb(var(--en-button-disabled-bg));
+  color: rgb(var(--en-button-disabled-text));
+  border: 1px solid rgb(var(--en-button-disabled-border));
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* --- P4/DS5 follow-up: the sticky ATC renders its own quantity stepper
+   regardless of show_quantity_selector, reopening the double-quantity trap
+   next to variant titles like "2 יח׳". Quantity stays editable in the cart. */
+
+.hdt-sticky-atc__qty-selector {
+  display: none;
+}

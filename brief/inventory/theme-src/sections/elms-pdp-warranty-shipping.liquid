@@ -1,0 +1,542 @@
+{%- comment -%}
+  ElmsNest PDP — משלוח, אחריות והחזרות (v2).
+
+  v1 היה ארבעה ריבועים קטנים עם מסגרת דקה וטקסט 13px — פס מידע, לא מקטע.
+  v2 הוא בנד מלא: כותרת בקנה מידה של המקטעים האחרים, ומתחתיה כרטיסים על
+  רקע --en-surface-card עם מסגרת אחת ו־padding אמיתי, כשכל כרטיס נפתח
+  באייקון של 44px. גם בלי אף פסקה הבנד עדיין מתקשר: ארבעה אייקונים
+  וארבע כותרות של 20px.
+
+  דיני הגנת הצרכן: אף התחייבות כאן אינה נכתבת על ידי הערכה — כל טקסט
+  הוא הגדרה שהסוחר ממלא. כרטיס האחריות נשלח עם גוף ריק בכוונה: החנות
+  אינה מפרסמת אחריות, וברירת מחדל כאן הייתה יוצרת התחייבות בשקט.
+  כרטיס בלי גוף טקסט נעלם לגמרי — לא נשארת ממנו כותרת יתומה.
+
+  קישורים מצביעים על עמודים אמיתיים לפי handle ונופלים חזרה לעמוד הבית,
+  כך שעמוד חסר לעולם לא מייצר קישור מת.
+
+  כל תכונת CSS תלוית־כיוון היא לוגית — החנות בעברית RTL.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_panel_count = 0
+  for block in section.blocks
+    if block.settings.body != blank
+      assign elms_panel_count = elms_panel_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if section.settings.enable and elms_panel_count > 0 -%}
+  <section
+    class="elms-pdp elms-policy elms-policy--{{ section.settings.ground }}"
+    dir="rtl"
+    {% if section.settings.heading != blank %}
+      aria-labelledby="elms-policy-title-{{ section.id }}"
+    {% else %}
+      aria-label="משלוח, אחריות והחזרות"
+    {% endif %}
+    style="--elms-policy-cols: {{ section.settings.columns }}; --elms-policy-pt: {{ section.settings.padding_top }}px; --elms-policy-pb: {{ section.settings.padding_bottom }}px; --elms-policy-custom-bg: {{ section.settings.bg_color }}; --elms-policy-custom-fg: {{ section.settings.text_color }}; --elms-policy-custom-soft: {{ section.settings.text_color | color_mix: section.settings.bg_color, 70 }}; --elms-policy-custom-line: {{ section.settings.text_color | color_mix: section.settings.bg_color, 22 }}; --elms-policy-custom-card: {{ section.settings.bg_color | color_mix: section.settings.text_color, 96 }};"
+  >
+    <div class="elms-policy__wrap">
+      {%- if section.settings.kicker != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+        <header class="elms-policy__header">
+          {%- if section.settings.kicker != blank -%}
+            <p class="elms-policy__kicker">{{ section.settings.kicker }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="elms-policy__title" id="elms-policy-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <p class="elms-policy__sub">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      <div class="elms-policy__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.body != blank -%}
+            <article class="elms-policy__panel" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != 'none' -%}
+                <span class="elms-policy__icon" aria-hidden="true">
+                  {%- render 'elms-pdp-icon', name: block.settings.icon -%}
+                </span>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h3 class="elms-policy__panel-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              <div class="elms-policy__body">{{ block.settings.body }}</div>
+              {%- if block.settings.link_text != blank and block.settings.link_page != blank -%}
+                {%- assign elms_policy_url = pages[block.settings.link_page].url | default: routes.root_url -%}
+                <a class="elms-policy__link" href="{{ elms_policy_url }}">{{ block.settings.link_text }}</a>
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.note != blank -%}
+        <p class="elms-policy__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-policy,
+  .elms-policy * { box-sizing: border-box; }
+
+  /* הריווח של הסוחר נספר מעל רצפת הקצב של הבנד: ערך שמור נמוך יותר
+     לא מכווץ את המקטע חזרה לפס דק. */
+  .elms-policy {
+    direction: rtl;
+    padding-block-start: max(var(--elms-policy-pt), clamp(64px, 8vw, 112px));
+    padding-block-end: max(var(--elms-policy-pb), clamp(64px, 8vw, 112px));
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  /* --- Grounds. Amber is an accent only: kicker rule and icon hairline. -- */
+
+  .elms-policy--cream {
+    background: rgb(var(--en-surface-page));
+    color: rgb(var(--en-text-primary));
+    --elms-policy-fg: rgb(var(--en-text-primary));
+    --elms-policy-kicker: rgb(var(--en-text-muted));
+    --elms-policy-soft: rgb(var(--en-text-secondary));
+    --elms-policy-rule: rgb(var(--en-border-subtle));
+    --elms-policy-card: rgb(var(--en-surface-card));
+    --elms-policy-card-line: rgb(var(--en-border-subtle));
+    --elms-policy-mark: rgb(var(--en-text-primary));
+    --elms-policy-accent: rgb(var(--en-amber));
+    --elms-policy-focus: rgb(var(--en-focus-light));
+  }
+
+  .elms-policy--night {
+    background: rgb(var(--en-night));
+    color: rgb(var(--en-ink));
+    --elms-policy-fg: rgb(var(--en-ink));
+    --elms-policy-kicker: rgb(var(--en-amber));
+    --elms-policy-soft: rgb(var(--en-ink) / .68);
+    --elms-policy-rule: rgb(var(--en-ink) / .16);
+    --elms-policy-card: rgb(var(--en-ink) / .05);
+    --elms-policy-card-line: rgb(var(--en-ink) / .16);
+    --elms-policy-mark: rgb(var(--en-ink));
+    --elms-policy-accent: rgb(var(--en-amber));
+    --elms-policy-focus: rgb(var(--en-focus-dark));
+  }
+
+  /* מצב מותאם אישית — הצבעים שהסוחר כבר שמר בהגדרות bg_color / text_color. */
+  .elms-policy--custom {
+    background: var(--elms-policy-custom-bg);
+    color: var(--elms-policy-custom-fg);
+    --elms-policy-fg: var(--elms-policy-custom-fg);
+    --elms-policy-kicker: var(--elms-policy-custom-soft);
+    --elms-policy-soft: var(--elms-policy-custom-soft);
+    --elms-policy-rule: var(--elms-policy-custom-line);
+    --elms-policy-card: var(--elms-policy-custom-card);
+    --elms-policy-card-line: var(--elms-policy-custom-line);
+    --elms-policy-mark: var(--elms-policy-custom-fg);
+    --elms-policy-accent: rgb(var(--en-amber));
+    --elms-policy-focus: var(--elms-policy-custom-fg);
+  }
+
+  .elms-policy__wrap {
+    inline-size: min(1180px, 100%);
+    margin-inline: auto;
+  }
+
+  /* --- Header: kicker / title / sub. Ratio title:body is 46:16 = 2.9x. - */
+
+  /* Measure is set in em on each element, never in ch on the wrapper: ch
+     resolves against this container's 16px font, which clamped the header to
+     ~500px on a 1180px wrap and wrapped the 46px title into a ribbon. em
+     scales with each element's own size, so the limit follows the type. */
+  .elms-policy__header {
+    margin-block-end: clamp(32px, 4vw, 56px);
+  }
+
+  .elms-policy__kicker {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .10em;
+    color: var(--elms-policy-kicker);
+  }
+
+  .elms-policy__kicker::after {
+    content: "";
+    display: block;
+    inline-size: 40px;
+    block-size: 2px;
+    margin-block-start: 12px;
+    background: var(--elms-policy-kicker);
+  }
+
+  /* The theme sets its own h2 colour, which beats plain inheritance from the
+     section root — so the title states its ground colour explicitly. */
+  .elms-policy__title {
+    margin: 0;
+    max-inline-size: 14em;
+    color: var(--elms-policy-fg);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+
+  .elms-policy__sub {
+    margin: 16px 0 0;
+    max-inline-size: 32em;
+    font-size: clamp(16px, 1.3vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-policy-soft);
+    text-align: start;
+  }
+
+  /* --- Grid of panels. Comparable, bounded content — so here a border
+         is the right call rather than decoration. ---------------------- */
+
+  .elms-policy__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--elms-policy-cols), minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  .elms-policy__panel {
+    display: flex;
+    flex-direction: column;
+    min-inline-size: 0;
+    background: var(--elms-policy-card);
+    border: 1px solid var(--elms-policy-card-line);
+    padding-block: clamp(20px, 2.5vw, 32px);
+    padding-inline: clamp(20px, 2.5vw, 32px);
+  }
+
+  /* 44px glyph plus an amber hairline: the panel still reads with every
+     paragraph hidden. */
+  .elms-policy__icon {
+    display: block;
+    margin-block-end: 18px;
+    color: var(--elms-policy-mark);
+  }
+
+  .elms-policy__icon svg {
+    display: block;
+    inline-size: 44px;
+    block-size: 44px;
+    stroke-width: 1.25;
+  }
+
+  .elms-policy__icon::after {
+    content: "";
+    display: block;
+    inline-size: 28px;
+    block-size: 2px;
+    margin-block-start: 16px;
+    background: var(--elms-policy-accent);
+  }
+
+  /* The section root is always dir="rtl", so the one direction-implying
+     glyph in the set is mirrored unconditionally. */
+  .elms-policy .elms-icon--flip { transform: scaleX(-1); }
+
+  /* The theme also colours h3, so the panel title states its colour too. */
+  .elms-policy__panel-title {
+    margin: 0 0 10px;
+    color: var(--elms-policy-fg);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: start;
+  }
+
+  .elms-policy__body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--elms-policy-soft);
+    text-align: start;
+  }
+
+  .elms-policy__body p { margin: 0 0 10px; }
+  .elms-policy__body p:last-child { margin-block-end: 0; }
+
+  .elms-policy__body ul,
+  .elms-policy__body ol {
+    margin: 0;
+    padding-inline-start: 1.2em;
+  }
+
+  .elms-policy__body a {
+    color: var(--elms-policy-fg);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* margin-block-start: auto keeps the links on one baseline across panels
+     of unequal text length. */
+  .elms-policy__link {
+    display: inline-flex;
+    align-items: center;
+    align-self: start;
+    margin-block-start: auto;
+    padding-block-start: 18px;
+    min-block-size: 44px;
+    color: var(--elms-policy-fg);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .elms-policy__link:focus-visible {
+    outline: 3px solid var(--elms-policy-focus);
+    outline-offset: 3px;
+  }
+
+  .elms-policy__note {
+    margin-block-start: clamp(28px, 3vw, 40px);
+    margin-block-end: 0;
+    padding-block-start: 18px;
+    border-block-start: 1px solid var(--elms-policy-rule);
+    max-inline-size: 40em;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-policy-soft);
+    text-align: start;
+  }
+
+  @media (max-width: 1080px) {
+    .elms-policy__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 720px) {
+    .elms-policy {
+      padding-block-start: max(calc(var(--elms-policy-pt) * .7), 56px);
+      padding-block-end: max(calc(var(--elms-policy-pb) * .7), 56px);
+    }
+    .elms-policy__grid { grid-template-columns: 1fr; }
+    .elms-policy__icon svg { inline-size: 40px; block-size: 40px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · משלוח וביטול",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "שורת פתיחה קצרה",
+      "info": "מופיעה מעל הכותרת. השאירו ריק כדי להסתיר.",
+      "default": "לפני שמזמינים"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "משלוח, ביטול והחזרות"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "שורת משנה",
+      "info": "כל מה שנכתב כאן מחייב את החנות. אין לכתוב התחייבות שאינה נכונה בפועל.",
+      "default": "כל הפרטים לפני שמזמינים — בלי הפתעות אחרי התשלום."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "הערה בתחתית המקטע",
+      "info": "ברירת המחדל ריקה בכוונה. כל מה שתכתבו כאן מחייב את החנות משפטית."
+    },
+    {
+      "type": "header",
+      "content": "עיצוב"
+    },
+    {
+      "type": "select",
+      "id": "ground",
+      "label": "רקע המקטע",
+      "info": "‏«מותאם אישית» הוא המצב היחיד שמשתמש בצבעים שבהמשך.",
+      "options": [
+        { "value": "cream", "label": "בהיר" },
+        { "value": "night", "label": "לילי כהה" },
+        { "value": "custom", "label": "מותאם אישית" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "מספר עמודות במסך רחב",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "צבעים למצב מותאם אישית"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "צבע רקע",
+      "info": "פעיל רק כאשר רקע המקטע הוא «מותאם אישית».",
+      "default": "#F7F0E6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "צבע טקסט",
+      "info": "פעיל רק כאשר רקע המקטע הוא «מותאם אישית».",
+      "default": "#2B2118"
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "info": "לעיצוב יש ריווח מינימלי משלו — ערך נמוך ממנו לא יקטין את המקטע.",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "info": "לעיצוב יש ריווח מינימלי משלו — ערך נמוך ממנו לא יקטין את המקטע.",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "כרטיס מידע",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "אייקון",
+          "options": [
+            { "value": "none", "label": "ללא" },
+            { "value": "truck", "label": "משלוח" },
+            { "value": "clock", "label": "זמנים" },
+            { "value": "return", "label": "ביטול והחזרה" },
+            { "value": "shield", "label": "אחריות" },
+            { "value": "chat", "label": "יצירת קשר" },
+            { "value": "tool", "label": "התקנה" },
+            { "value": "check", "label": "אישור" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "כותרת הכרטיס"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "תוכן הכרטיס",
+          "info": "התחייבות משפטית — נסחו רק מה שהחנות עומדת בו בפועל. כרטיס בלי תוכן לא מוצג כלל."
+        },
+        {
+          "type": "text",
+          "id": "link_page",
+          "label": "handle של עמוד מקושר",
+          "info": "לדוגמה: shipping-delivery. השאירו ריק כדי להסתיר את הקישור."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "טקסט הקישור"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · משלוח וביטול",
+      "blocks": [
+        {
+          "type": "panel",
+          "settings": {
+            "icon": "clock",
+            "title": "זמן אספקה",
+            "body": "<p>הזמן הכולל המשוער הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח.</p>",
+            "link_page": "processing-time",
+            "link_text": "לפרטי זמני הטיפול"
+          }
+        },
+        {
+          "type": "panel",
+          "settings": {
+            "icon": "truck",
+            "title": "דמי משלוח",
+            "body": "<p>משלוח לנקודת איסוף בישראל — חינם. שליח עד הבית — 29.90 ₪.</p>",
+            "link_page": "shipping-delivery",
+            "link_text": "למדיניות המשלוחים"
+          }
+        },
+        {
+          "type": "panel",
+          "settings": {
+            "icon": "return",
+            "title": "ביטול עסקה",
+            "body": "<p>ניתן למסור הודעת ביטול עד 14 ימים ממועד קבלת המוצר, בהתאם לחוק הגנת הצרכן ולמדיניות הביטולים וההחזרים.</p>",
+            "link_page": "",
+            "link_text": ""
+          }
+        },
+        {
+          "type": "panel",
+          "settings": {
+            "icon": "shield",
+            "title": "אחריות",
+            "body": "",
+            "link_page": "",
+            "link_text": ""
+          }
+        },
+        {
+          "type": "panel",
+          "settings": {
+            "icon": "chat",
+            "title": "שאלה לפני ההזמנה",
+            "body": "<p>שלחו לנו את שם המוצר, המקום שבו תרצו להתקין אותו והפרט שחשוב לכם לבדוק.</p>",
+            "link_page": "contact-us",
+            "link_text": "לעמוד יצירת הקשר"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

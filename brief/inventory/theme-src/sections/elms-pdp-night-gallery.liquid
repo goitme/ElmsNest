@@ -1,0 +1,426 @@
+{%- comment -%}
+  ElmsNest PDP — מקטע התצוגה (v2).
+
+  v1 של המקטע הזה חיכה לתמונות שהסוחר יעלה דרך image_picker, ולכן לא הוצג כלל
+  באף עמוד מוצר. v2 מושך כברירת מחדל את התמונות של המוצר עצמו (product.media),
+  כך שהמקטע עובד על כל 26 המוצרים בלי שום עבודה ידנית. הסוחר עדיין יכול לעבור
+  למצב ידני ולבחור תמונות משלו.
+
+  התמונות של ElmsNest הן אינפוגרפיקות חמות על רקע בז׳. על רקע בהיר הן נעלמות,
+  ולכן ברירת המחדל כאן היא הרקע הלילי — שם הן נקראות כלוחות מוארים.
+
+  כל תכונת CSS תלוית־כיוון היא לוגית — החנות בעברית RTL.
+{%- endcomment -%}
+
+{%- liquid
+  assign elms_use_manual = false
+
+  if section.settings.source == 'manual'
+    assign elms_use_manual = true
+  endif
+
+  assign elms_manual_count = 0
+  for block in section.blocks
+    if block.settings.image != blank
+      assign elms_manual_count = elms_manual_count | plus: 1
+    endif
+  endfor
+
+  assign elms_auto_media = product.media | where: 'media_type', 'image'
+  assign elms_auto_count = elms_auto_media.size | minus: section.settings.skip_first
+
+  assign elms_render = false
+  if elms_use_manual and elms_manual_count > 0
+    assign elms_render = true
+  endif
+  if elms_use_manual == false and elms_auto_count > 0
+    assign elms_render = true
+  endif
+-%}
+
+{%- if section.settings.enable and elms_render -%}
+  <section
+    class="elms-pdp elms-night elms-night--{{ section.settings.ground }}"
+    dir="rtl"
+    {% if section.settings.heading != blank %}
+      aria-labelledby="elms-night-title-{{ section.id }}"
+    {% else %}
+      aria-label="תצוגת המוצר"
+    {% endif %}
+    style="--elms-night-cols: {{ section.settings.columns }}; --elms-night-pt: {{ section.settings.padding_top }}px; --elms-night-pb: {{ section.settings.padding_bottom }}px;"
+  >
+    <div class="elms-night__wrap">
+      {%- if section.settings.kicker != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+        <header class="elms-night__header">
+          {%- if section.settings.kicker != blank -%}
+            <p class="elms-night__kicker">{{ section.settings.kicker }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="elms-night__title" id="elms-night-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <p class="elms-night__sub">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      <div class="elms-night__grid">
+        {%- if elms_use_manual -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.settings.image != blank -%}
+              <figure class="elms-night__cell" {{ block.shopify_attributes }}>
+                <div class="elms-night__frame">
+                  {%- assign elms_alt = block.settings.image.alt | default: block.settings.caption | default: product.title -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1400
+                    | image_tag:
+                      loading: 'lazy',
+                      decoding: 'async',
+                      class: 'elms-night__img',
+                      widths: '400, 600, 800, 1000, 1200, 1400',
+                      sizes: '(max-width: 760px) 92vw, min(560px, 46vw)',
+                      alt: elms_alt
+                  }}
+                </div>
+                {%- if block.settings.caption != blank -%}
+                  <figcaption class="elms-night__caption">{{ block.settings.caption }}</figcaption>
+                {%- endif -%}
+              </figure>
+            {%- endif -%}
+          {%- endfor -%}
+
+        {%- else -%}
+
+          {%- for media in elms_auto_media offset: section.settings.skip_first limit: section.settings.max_images -%}
+            <figure class="elms-night__cell">
+              <div class="elms-night__frame">
+                {%- assign elms_alt = media.alt | default: product.title -%}
+                {{
+                  media.preview_image
+                  | image_url: width: 1400
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    class: 'elms-night__img',
+                    widths: '400, 600, 800, 1000, 1200, 1400',
+                    sizes: '(max-width: 760px) 92vw, min(560px, 46vw)',
+                    alt: elms_alt
+                }}
+              </div>
+            </figure>
+          {%- endfor -%}
+
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.note != blank -%}
+        <p class="elms-night__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .elms-night,
+  .elms-night * { box-sizing: border-box; }
+
+  .elms-night {
+    direction: rtl;
+    padding-block-start: var(--elms-night-pt);
+    padding-block-end: var(--elms-night-pb);
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  /* --- Grounds. Amber is an accent only: kicker and hairlines. --------- */
+
+  .elms-night--night {
+    background: rgb(var(--en-night));
+    color: rgb(var(--en-ink));
+    --elms-night-fg: rgb(var(--en-ink));
+    --elms-night-kicker: rgb(var(--en-amber));
+    --elms-night-soft: rgb(var(--en-ink) / .68);
+    --elms-night-rule: rgb(var(--en-ink) / .16);
+    --elms-night-frame: rgb(var(--en-ink) / .10);
+  }
+
+  .elms-night--cream {
+    background: rgb(var(--en-surface-page));
+    color: rgb(var(--en-text-primary));
+    --elms-night-fg: rgb(var(--en-text-primary));
+    --elms-night-kicker: rgb(var(--en-text-muted));
+    --elms-night-soft: rgb(var(--en-text-secondary));
+    --elms-night-rule: rgb(var(--en-border-subtle));
+    --elms-night-frame: rgb(var(--en-border-subtle));
+  }
+
+  .elms-night__wrap {
+    inline-size: min(1180px, 100%);
+    margin-inline: auto;
+  }
+
+  /* --- Header: kicker / title / sub. Ratio title:body is 46:16 = 2.9x. - */
+
+  /* Measure line length in `em`, not `ch`: `ch` resolves against the header's
+     own 16px font, which clamped this block to ~400px on a 1440px viewport and
+     wrapped the 46px title into a narrow ribbon. `em` scales with each
+     element's own size, so the limit follows the type. */
+  .elms-night__header {
+    margin-block-end: clamp(32px, 4vw, 56px);
+  }
+
+  .elms-night__kicker {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .10em;
+    color: var(--elms-night-kicker);
+  }
+
+  .elms-night__kicker::after {
+    content: "";
+    display: block;
+    inline-size: 40px;
+    block-size: 2px;
+    margin-block-start: 12px;
+    background: var(--elms-night-kicker);
+  }
+
+  /* The theme sets its own h2 colour, which beats plain inheritance from the
+     section root — so the title states its ground colour explicitly. */
+  .elms-night__title {
+    margin: 0;
+    color: var(--elms-night-fg);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -.01em;
+    max-inline-size: 14em;
+    text-wrap: balance;
+  }
+
+  .elms-night__sub {
+    margin: 16px 0 0;
+    font-size: clamp(16px, 1.3vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-night-soft);
+    max-inline-size: 32em;
+    text-align: start;
+  }
+
+  /* --- Grid. Square sources, so cover crops nothing. ------------------- */
+
+  .elms-night__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--elms-night-cols), minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  .elms-night__cell {
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  /* An odd final image would sit orphaned against the inline start edge.
+     Give it the full row and centre it at half width instead. */
+  .elms-night__cell:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-inline-size: calc(50% - clamp(8px, 1vw, 14px));
+    margin-inline: auto;
+  }
+
+  .elms-night__frame {
+    position: relative;
+    overflow: hidden;
+    background: rgb(var(--en-surface-card));
+    border: 1px solid var(--elms-night-frame);
+  }
+
+  .elms-night__img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .elms-night__caption {
+    margin: 12px 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-night-soft);
+  }
+
+  .elms-night__note {
+    margin-block-start: clamp(28px, 3vw, 40px);
+    padding-block-start: 18px;
+    border-block-start: 1px solid var(--elms-night-rule);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--elms-night-soft);
+  }
+
+  @media (max-width: 760px) {
+    .elms-night {
+      padding-block-start: calc(var(--elms-night-pt) * .62);
+      padding-block-end: calc(var(--elms-night-pb) * .62);
+    }
+    .elms-night__grid { grid-template-columns: 1fr; }
+    .elms-night__cell:last-child:nth-child(odd) {
+      max-inline-size: 100%;
+      margin-inline: 0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP · תצוגת המוצר",
+  "tag": "section",
+  "class": "elms-pdp-section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "הצגת המקטע",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "שורת פתיחה קצרה",
+      "info": "מופיעה מעל הכותרת בצבע ההדגשה. השאירו ריק כדי להסתיר.",
+      "default": "מקרוב"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת המקטע",
+      "default": "ככה זה נראה בפועל"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "שורת משנה",
+      "default": "כל מה שחשוב לדעת על המוצר — התקנה, עוצמת האור והפעולה האוטומטית עם החשכה."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "הערה בתחתית המקטע",
+      "default": "התמונות להמחשה. התוצאה בפועל משתנה לפי גובה ההתקנה, זווית הפאנל ומזג האוויר."
+    },
+    {
+      "type": "header",
+      "content": "מקור התמונות"
+    },
+    {
+      "type": "select",
+      "id": "source",
+      "label": "מאיפה נלקחות התמונות",
+      "info": "אוטומטי מושך את תמונות המוצר עצמו, כך שהמקטע עובד על כל מוצר בלי עבודה ידנית.",
+      "options": [
+        { "value": "auto", "label": "אוטומטי — מתמונות המוצר" },
+        { "value": "manual", "label": "ידני — לפי הבלוקים למטה" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "skip_first",
+      "label": "דילוג על התמונות הראשונות",
+      "info": "התמונה הראשונה כבר מוצגת בגלריה שבראש העמוד.",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "max_images",
+      "label": "מספר תמונות מרבי",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "עיצוב"
+    },
+    {
+      "type": "select",
+      "id": "ground",
+      "label": "רקע המקטע",
+      "options": [
+        { "value": "night", "label": "לילי כהה" },
+        { "value": "cream", "label": "בהיר" }
+      ],
+      "default": "night"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "מספר עמודות במסך רחב",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "ריווח"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "ריווח עליון",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "ריווח תחתון",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "תמונה",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "תמונה"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "כיתוב מתחת לתמונה"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP · תצוגת המוצר"
+    }
+  ]
+}
+{% endschema %}

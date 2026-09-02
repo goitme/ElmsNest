@@ -1,0 +1,457 @@
+{%- comment -%}
+  The catalogue.
+
+  Previously this section showed the four collections as large photo cards and
+  then a flat grid of twelve products underneath — which restated the hero's
+  own list of collections and left the grid unorganised. Here the collections
+  are the catalogue's chapters instead: each one is a ruled divider carrying
+  its photograph and its real product count, followed by its own products. The
+  hero indexes the places; this section is the parts list.
+
+  The eyebrow above the heading is gone, and the per-block eyebrow with it.
+{%- endcomment -%}
+
+<section id="elmsnest-home-shop" class="en-sheet" dir="rtl" aria-labelledby="en-sheet-title-{{ section.id }}">
+  <div class="en-sheet__wrap">
+
+    <header class="en-sheet__intro">
+      <h2 id="en-sheet-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}<div class="en-sheet__lede">{{ section.settings.intro }}</div>{%- endif -%}
+    </header>
+
+    <div id="elmsnest-home-products" class="en-sheet__chapters">
+      {%- for block in section.blocks -%}
+        {%- assign chapter = block.settings.collection -%}
+        {%- if chapter != blank and chapter.products_count > 0 -%}
+          {%- assign chapter_image = chapter.image | default: chapter.products.first.featured_image -%}
+
+          <section class="en-chapter" aria-labelledby="en-chapter-{{ block.id }}" {{ block.shopify_attributes }}>
+            {%- comment -%}
+              A 1200x175 band cut from a 960x1200 portrait keeps about one
+              seventh of the frame, so where that seventh is taken from decides
+              whether the band shows a lit lamp or a strip of out-of-focus
+              hedge. Measured off the four collection images: the string lights
+              sit at 26% of frame height, the pathway lamp at 34%, the wall lamp
+              at 46% and the spotlight at 62% - one shared value cannot serve
+              them, which is why this is a per-chapter setting rather than a
+              constant. Default 40 is the midpoint, so an unset chapter degrades
+              to today's behaviour rather than to something worse.
+            {%- endcomment -%}
+            {%- assign band_focal = block.settings.focal | default: 40 -%}
+            <a class="en-chapter__band" href="{{ chapter.url }}" style="--band-focal:{{ band_focal }}%">
+              {%- if chapter_image != blank -%}
+                {{ chapter_image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '600,900,1200,1600', sizes: '(max-width: 749px) 100vw, 1200px', alt: '' }}
+              {%- endif -%}
+              <span class="en-chapter__shade" aria-hidden="true"></span>
+              <span class="en-chapter__copy">
+                <strong id="en-chapter-{{ block.id }}">{{ chapter.title }}</strong>
+                {%- if block.settings.description != blank -%}<span class="en-chapter__desc">{{ block.settings.description }}</span>{%- endif -%}
+              </span>
+              <span class="en-chapter__meta">
+                <span class="en-chapter__count"><bdi dir="ltr">{{ chapter.products_count }}</bdi> מוצרים</span>
+                <span class="en-chapter__go">לקולקציה <span aria-hidden="true">←</span></span>
+              </span>
+            </a>
+
+            <div class="en-chapter__grid">
+              {%- for product in chapter.products limit: 3 -%}
+                {%- comment -%}
+                  The card line metafield holds a verbatim fragment of the
+                  product's own published details — a spec line, or the
+                  indoor-only qualifier a card must not hide under an
+                  outdoor heading. Never inferred, always quoted.
+                {%- endcomment -%}
+                {%- render 'elmsnest-home-product-card', product: product, category_label: product.metafields.custom.home_card_line.value -%}
+              {%- endfor -%}
+              {%- if chapter.products_count > 3 -%}
+                {%- comment -%}
+                  On mobile the grid is a horizontal scroller and two thirds
+                  of the catalogue sat invisible behind it with no cue. This
+                  tail cell gives the swipe a declared destination; on
+                  desktop the chapter band already carries the count.
+                {%- endcomment -%}
+                <a class="en-cell en-cell--more" href="{{ chapter.url }}">
+                  <span><bdi dir="ltr">{{ chapter.products_count }}</bdi> מוצרים בקולקציה</span>
+                  <span class="en-cell__arrow" aria-hidden="true">←</span>
+                </a>
+              {%- endif -%}
+            </div>
+          </section>
+
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%}
+      Same destination as the closing spread's primary button, so it takes the
+      closing spread's name and loses the filled weight: inside the buying
+      section "לרכישה" stays the only loud action.
+    {%- endcomment -%}
+    <div class="en-sheet__all">
+      <a href="{{ routes.all_products_collection_url }}">לכל המוצרים <span aria-hidden="true">←</span></a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (() => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const images = document.querySelectorAll('#elmsnest-home-shop [data-en-secondary-image][data-src]');
+    const loadImage = (image) => {
+      if (image.dataset.srcset) image.srcset = image.dataset.srcset;
+      image.src = image.dataset.src;
+      image.removeAttribute('data-src');
+      image.removeAttribute('data-srcset');
+    };
+    if (!('IntersectionObserver' in window)) {
+      images.forEach(loadImage);
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        loadImage(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '300px 0px' });
+    images.forEach((image) => observer.observe(image));
+  })();
+
+  /* Lights each chapter band as it enters the viewport.
+
+     Separate from the block above on purpose: that one returns early on
+     touch devices, and this runs everywhere.
+
+     The dimming is applied by CSS gated behind .en-motion-ready, and this
+     script is what adds that class. So the failure mode is the correct one:
+     no JS, no observer support, or reduced-motion -> the class is never
+     added, the dim rule never matches, and every band renders exactly as it
+     does today. Nothing can leave a band stuck dark. */
+  (() => {
+    const sheet = document.querySelector('#elmsnest-home-shop');
+    if (!sheet) return;
+    const bands = sheet.querySelectorAll('.en-chapter__band');
+    if (!bands.length) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    sheet.classList.add('en-motion-ready');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-lit');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.25 });
+    bands.forEach((band) => observer.observe(band));
+  })();
+</script>
+
+{% stylesheet %}
+.en-sheet,.en-sheet *{box-sizing:border-box}
+.en-sheet{
+  --rule:rgb(var(--en-text-primary)/.16);
+  --rule-strong:rgb(var(--en-text-primary)/.30);
+  direction:rtl;padding:clamp(56px,7vw,88px) 0 clamp(60px,7vw,92px);
+  background:rgb(var(--en-surface-page));color:rgb(var(--en-text-primary));
+  scroll-margin-top:90px
+}
+.en-sheet__wrap{width:min(1200px,100%);margin-inline:auto;padding-inline:clamp(18px,4vw,40px)}
+
+.en-sheet__intro{max-width:46rem;margin-bottom:clamp(30px,4vw,44px)}
+.en-sheet__intro h2{
+  margin:0;color:rgb(var(--en-text-primary))!important;
+  font-size:clamp(32px,4.4vw,52px);line-height:1.08;letter-spacing:normal;
+  text-wrap:balance
+}
+.en-sheet__lede{margin-top:14px;color:rgb(var(--en-text-secondary));font-size:clamp(16px,1.7vw,18px);line-height:1.5}
+.en-sheet__lede p{margin:0;color:inherit!important}
+
+.en-sheet__chapters{scroll-margin-top:100px}
+.en-chapter+.en-chapter{margin-top:clamp(40px,5vw,64px)}
+
+/* The chapter divider. A short night band, not a tall hero card: it names the
+   chapter and states how many parts are in it, then gets out of the way. */
+.en-chapter__band{
+  position:relative;isolation:isolate;display:flex;align-items:flex-end;
+  justify-content:space-between;flex-wrap:wrap;gap:14px;
+  min-height:clamp(150px,16vw,200px);padding:20px clamp(18px,2.4vw,28px);
+  overflow:hidden;border:1px solid var(--rule-strong);border-radius:0;
+  background:rgb(var(--en-night));color:rgb(var(--en-ink))!important;text-decoration:none
+}
+/* The band keeps roughly a seventh of a 960x1200 collection photograph, so
+   where that seventh is taken from decides whether it shows a lit lamp or a
+   strip of out-of-focus hedge. Focal heights read off the four assets:
+   string lights 26%, pathway lamp 34%, wall lamp 46%, spotlight 62%.
+   The value arrives as --band-focal on the anchor; 50% is the old behaviour
+   and is what an unset chapter falls back to. */
+.en-chapter__band>img{
+  position:absolute;inset:0;z-index:-3;width:100%;height:100%;object-fit:cover;
+  object-position:50% var(--band-focal,50%);
+  filter:brightness(.88) saturate(.95)
+}
+/* Dark enough under the copy to keep it legible, light enough elsewhere that
+   the photograph is actually seen — the previous pass buried it and the band
+   read as a plain dark bar. */
+.en-chapter__shade{
+  position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(to left,rgb(var(--en-night)/.88) 0%,rgb(var(--en-night)/.54) 46%,rgb(var(--en-night)/.18) 100%),
+    linear-gradient(to top,rgb(var(--en-night)/.52) 0%,transparent 62%)
+}
+.en-chapter__copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.en-chapter__copy strong{
+  color:rgb(var(--en-ink))!important;
+  font-size:clamp(22px,2.4vw,30px);line-height:1.15;letter-spacing:normal
+}
+.en-chapter__desc{color:rgb(var(--en-ink)/.78);font-size:15px;line-height:1.5;max-width:38rem}
+.en-chapter__meta{display:flex;align-items:baseline;gap:18px;flex:0 0 auto}
+.en-chapter__count{color:rgb(var(--en-ink)/.72);font-size:14px;font-variant-numeric:tabular-nums}
+.en-chapter__go{
+  color:rgb(var(--en-ink))!important;font-size:15px;font-weight:600;
+  border-block-end:1px solid rgb(var(--en-ink)/.62);padding-block-end:2px
+}
+.en-chapter__band:hover .en-chapter__go{border-block-end-color:rgb(var(--en-ink))}
+
+.en-chapter__grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border-inline-start:1px solid var(--rule)
+}
+
+/* Catalogue cells: rules between them, none around the outside except the one
+   the grid supplies, so the block reads as one table rather than three tiles. */
+.en-cell{
+  display:flex;flex-direction:column;min-width:0;
+  border-inline-end:1px solid var(--rule);border-block-end:1px solid var(--rule);
+  background:rgb(var(--en-surface-card))
+}
+.en-cell__media{
+  position:relative;display:block;aspect-ratio:1/1;overflow:hidden;
+  background:rgb(var(--en-surface-page));border-block-end:1px solid var(--rule)
+}
+.en-cell__media img,.en-cell__placeholder{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  /* Twelve photographs from four suppliers span a colour-temperature range of
+     74 points (red-minus-blue, -1.1 to 72.8). A light desaturation will not
+     make them one set, but it narrows the gap enough that the eye stops
+     reading the grid as four different shoots stitched together. */
+  filter:saturate(.95);
+  transition:opacity .3s ease
+}
+
+/* ── Containment ─────────────────────────────────────────────────────────
+   Measured across the twelve live cells before this rule existed: edge
+   luminance ran from 34.7 to 248.8 - a spread of 214 out of 255. The
+   brightest cell's edge sat at 248.8 against a 252 cell ground, so it
+   dissolved into the sheet and the cell lost its own boundary, while the
+   darkest read as a black rectangle punched into the table. Same grid, same
+   rules, and the group still would not read as one table.
+
+   The fix is the printed-catalogue one: give every photograph the same
+   frame. Difference between cells then reads as different content rather
+   than as an inconsistent surface.
+
+   The vignette is a gradient, not a shadow - DESIGN.md bans box-shadow, and
+   shading by gradient is the sanctioned method on this sheet. It also
+   corrects asymmetrically, which is exactly what the measurement asks for:
+   it pulls a 248 edge down hard and barely touches a 35 one. */
+.en-cell__media::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  border:1px solid rgb(var(--en-text-primary)/.13);
+  background:radial-gradient(farthest-side at 50% 46%,transparent 34%,rgb(var(--en-text-primary)/.28) 100%)
+}
+.en-cell__secondary-image{opacity:0}
+.en-cell__flags{position:absolute;z-index:2;inset:12px 12px auto auto;display:flex;flex-wrap:wrap;gap:6px}
+.en-cell__flags b{padding:5px 10px;border-radius:0;font-size:12px;font-weight:600;line-height:1.2}
+.en-cell__flag--sale{background:rgb(var(--en-text-primary));color:rgb(var(--en-surface-page))!important}
+.en-cell__flag--out{
+  background:rgb(var(--en-surface-card));color:rgb(var(--en-text-primary))!important;
+  border:1px solid rgb(var(--en-text-primary))
+}
+
+.en-cell__body{display:flex;flex-direction:column;flex:1 1 auto;gap:8px;padding:16px clamp(14px,1.6vw,18px)}
+.en-cell__category{margin:0;color:rgb(var(--en-text-secondary))!important;font-size:13px;font-weight:600}
+.en-cell h3{margin:0;color:rgb(var(--en-text-primary))!important;font-size:16px;line-height:1.5;font-weight:600}
+.en-cell h3 a{color:rgb(var(--en-text-primary))!important;text-decoration:none}
+.en-cell h3 a:hover{text-decoration:underline;text-underline-offset:4px}
+.en-cell__price{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:4px}
+/* The price was set at 19px, the same size as the title above it, so the one
+   number a buyer scans a grid for had no more weight than the sentence
+   describing it. 22px is the smallest step that separates them without
+   turning the cell into a price tag. */
+.en-cell__price strong{
+  color:rgb(var(--en-text-primary))!important;
+  font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+  line-height:1.05
+}
+/* The range, where one exists. A bare "from 219.90" on a product whose real
+   ceiling is 529.90 is a number the buyer discovers has moved after they
+   click, which is the cheapest possible way to lose the trust this store's
+   first principle is built on. Showing both ends states the actual span and
+   signals that larger sets exist - the whole range lives inside one <bdi> so
+   the bidi algorithm cannot reorder it around the dash. */
+.en-cell__span{
+  display:inline-flex;align-items:baseline;gap:2px;
+  font-variant-numeric:tabular-nums;direction:ltr
+}
+.en-cell__to{color:rgb(var(--en-text-secondary));font-size:14px;font-weight:600}
+.en-cell__price s{color:rgb(var(--en-text-muted));font-size:13px;font-variant-numeric:tabular-nums}
+
+/* The action reads as the last ruled row of the cell, not a filled pill. */
+.en-cell__action{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  min-height:48px;padding:12px clamp(14px,1.6vw,18px);
+  border-block-start:1px solid var(--rule);
+  color:rgb(var(--en-text-primary))!important;text-decoration:none;
+  font-size:15px;font-weight:600;
+  transition:background-color .18s ease,color .18s ease
+}
+/* Pointer directly on the row: it is already filled by the cell-hover rule
+   above, so this only has to hold that state, not invent a second one. */
+.en-cell__action:hover{background:rgb(var(--en-text-primary)/.06)}
+.en-cell__arrow{transition:transform .18s ease}
+.en-cell__action:hover .en-cell__arrow{transform:translateX(-3px)}
+
+.en-sheet__all{display:flex;margin-top:clamp(34px,4vw,48px)}
+.en-sheet__all a{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:52px;padding:12px 28px;border-radius:0;
+  border:1px solid rgb(var(--en-text-primary)/.42);
+  background:transparent;color:rgb(var(--en-text-primary))!important;
+  text-decoration:none;font-weight:600;font-size:16px;
+  transition:background-color .18s ease,border-color .18s ease
+}
+.en-sheet__all a:hover{border-color:rgb(var(--en-text-primary));background:rgb(var(--en-text-primary)/.06)}
+.en-sheet a:focus-visible{outline:3px solid rgb(var(--en-text-primary));outline-offset:3px}
+
+.en-cell--more{display:none}
+
+/* ── Chapter bands light as you reach them ───────────────────────────────
+   Each band is a night scene, and a night scene that is already fully lit
+   before you arrive has nothing to show you. Held back a little and then
+   released, the band performs the product's function once, quietly, at the
+   moment the eye lands on it.
+
+   The dim is gated behind .en-motion-ready, a class only the observer adds.
+   Without JS, without IntersectionObserver, or under reduced-motion the
+   class never appears, this rule never matches, and the bands render at
+   full brightness exactly as they do today. A band cannot get stuck dark.
+
+   Both layers are pseudo-elements on a band that already carries
+   isolation:isolate, so z-index:-1 keeps them above the shade (-2) and the
+   photograph (-3) but below the copy. */
+.en-motion-ready .en-chapter__band::after{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:rgb(var(--en-night));opacity:.58;
+  transition:opacity 1.05s cubic-bezier(.33,.72,.32,1)
+}
+.en-motion-ready .en-chapter__band.is-lit::after{opacity:0}
+
+/* Amber again spent only on emitted light: the warm pool a fixture throws
+   onto the surface it is mounted over. Positioned toward the lower-left of
+   the frame, where the collection photographs put their lit ground, and
+   screened so it adds light rather than tinting the photograph.
+   Physical percentages, tied to the images and not to reading direction. */
+.en-motion-ready .en-chapter__band::before{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  mix-blend-mode:screen;opacity:0;
+  background:radial-gradient(42% 62% at 30% 58%,rgb(var(--en-amber)/.30) 0%,transparent 70%);
+  transition:opacity 1.25s ease-out .22s
+}
+.en-motion-ready .en-chapter__band.is-lit::before{opacity:1}
+
+@media(hover:hover){
+  .en-cell:hover .en-cell__primary-image{opacity:0}
+  .en-cell:hover .en-cell__secondary-image{opacity:1}
+
+  /* ── The cell answers the pointer ──────────────────────────────────────
+     The second photograph already swapped in on hover, but a straight
+     cross-fade between two supplier images reads as a glitch rather than as
+     a demonstration. Adding the same warm pool the bands use turns the swap
+     into one statement - the lamp came on - and ties the cell to the rest
+     of the sheet's vocabulary.
+
+     Kept low (.26) because these photographs carry four different supplier
+     backgrounds, several of them pale; screen on a pale ground lifts it
+     quickly and the frame must stay silent around the product. */
+  .en-cell__media::after{
+    content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+    mix-blend-mode:screen;opacity:0;
+    background:radial-gradient(58% 44% at 50% 64%,rgb(var(--en-amber)/.26) 0%,transparent 72%);
+    transition:opacity .42s ease
+  }
+  .en-cell:hover .en-cell__media::after{opacity:1}
+
+  /* The purchase row fills on hover of the WHOLE cell, not just of itself.
+     A visitor reading a cell has already committed attention to it; making
+     them find and land on the last row before it looks clickable spends
+     that attention on nothing. Filled ink on page-coloured text at zero
+     radius is button-primary-paper from DESIGN.md exactly - this promotes
+     the row to the component it already had the measurements of, and adds
+     no new shape, no shadow, and no lift. */
+  .en-cell:hover .en-cell__action{
+    background:rgb(var(--en-text-primary));
+    color:rgb(var(--en-surface-page))!important
+  }
+  .en-cell:hover .en-cell__arrow{transform:translateX(-3px)}
+  /* Strengthened rules read as the cell coming forward without it moving. */
+  .en-cell:hover{border-inline-end-color:var(--rule-strong);border-block-end-color:var(--rule-strong)}
+}
+
+@media(max-width:1050px){
+  .en-chapter__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:749px){
+  .en-sheet__wrap{padding-inline:16px}
+  .en-chapter__band{align-items:flex-start;flex-direction:column;justify-content:flex-end}
+  .en-chapter__meta{gap:14px}
+  .en-chapter__grid{
+    display:grid;grid-auto-flow:column;grid-auto-columns:76vw;grid-template-columns:none;
+    overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+    border-inline-start:0;border-block-start:1px solid var(--rule);
+    margin-inline:-16px;padding-inline:16px
+  }
+  .en-chapter__grid::-webkit-scrollbar{display:none}
+  .en-cell{scroll-snap-align:start;border-inline-start:1px solid var(--rule)}
+  .en-cell--more{
+    display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;
+    color:rgb(var(--en-text-primary))!important;text-decoration:none;
+    font-size:15px;font-weight:600
+  }
+  .en-sheet__all a{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .en-cell__media img,.en-cell__action,.en-cell__arrow{transition:none}
+  /* The observer already refuses to run under reduced-motion, so the bands
+     are never dimmed in the first place; these two are the belt to that
+     braces, covering a preference switched on after the class was added. */
+  .en-motion-ready .en-chapter__band::after{opacity:0;transition:none}
+  .en-motion-ready .en-chapter__band::before{transition:none}
+  .en-cell__media::after{transition:none}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "ElmsNest catalogue",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "תאורה לכל פינה מחוץ לבית" },
+    { "type": "richtext", "id": "intro", "label": "פתיח", "default": "<p>עברו ישר לקולקציה שמתאימה לקיר, לשביל או לאווירה שאתם רוצים ליצור.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "פרק בקטלוג",
+      "limit": 4,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "קולקציה" },
+        { "type": "range", "id": "focal", "label": "מוקד התמונה בבאנר", "info": "גובה נקודת המוקד באחוזים · 26 גרילנדות · 34 שביל · 46 קיר · 62 ספוטים", "min": 0, "max": 100, "step": 2, "unit": "%", "default": 40 },
+        { "type": "textarea", "id": "description", "label": "תיאור", "default": "בחרו לפי המקום והשימוש." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ElmsNest catalogue", "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }] }]
+}
+{% endschema %}
