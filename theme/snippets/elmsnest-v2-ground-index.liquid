@@ -1,0 +1,25 @@
+{%- comment -%}
+  ElmsNest v2 — the INDEX ground only (WINNING-SPEC §3.1): the dusk-to-night gradient on the homepage
+  document. Rendered by sections/elmsnest-v2-hero.liquid (line 7) — nothing else. The page-agnostic
+  tokens/type/lamps live in elmsnest-v2-core (layout/theme.liquid). No Liquid below.
+{%- endcomment -%}
+<style id="env2-ground-index">
+/* ---------- page ground (§3.1): ONE sky gradient on the index document ----------
+   Kalles paints body with its cream scheme and wraps content in painted containers;
+   on the index template only, the body becomes the sky and the wrappers go clear. */
+:root:has(body.template-index),:root:has(body.hdt-page-type-index){background:#020306}
+body.template-index,body.hdt-page-type-index{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,#4a6a9c 0%,#1f3357 14%,#0f1a2f 34%,#070b15 58%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+body.template-index #wrapper,body.template-index .main-content,body.template-index main,body.template-index #MainContent,
+body.template-index .hdt-main-content,body.template-index .hdt-page-content,body.template-index .shopify-section,
+body.hdt-page-type-index #wrapper,body.hdt-page-type-index .main-content,body.hdt-page-type-index main,body.hdt-page-type-index #MainContent,
+body.hdt-page-type-index .hdt-main-content,body.hdt-page-type-index .hdt-page-content,body.hdt-page-type-index .shopify-section{background:transparent}
+/* the transparent Kalles header sits over the first section; nothing here fights it —
+   the hero simply starts at the top of #MainContent with no gap above it */
+body.template-index #MainContent>.shopify-section:first-child .env2-section,
+body.hdt-page-type-index #MainContent>.shopify-section:first-child .env2-section{margin-top:0}
+</style>

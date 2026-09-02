@@ -1,0 +1,19 @@
+{%- comment -%}
+  ElmsNest v2 — the ONE place that builds the "send a photo of the place" URL (owner decision 2026-09-02:
+  no WhatsApp number exists yet; the email path is the fallback). Inputs: none. Output: the URL as text —
+  capture it:  {%- capture photo_url -%}{%- render 'elmsnest-v2-photo-url' -%}{%- endcapture -%}
+  settings.whatsapp_number set  -> https://wa.me/<digits>?text=<prefilled Hebrew line>
+  settings.whatsapp_number blank -> mailto:info@elmsnest.com?subject=...&body=...  (spaces as %20, not +)
+  Callers must never print the word "בוואטסאפ" unless the result contains "wa.me".
+{%- endcomment -%}
+{%- liquid
+  assign env2_wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
+  if env2_wa != blank
+    assign env2_wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
+    echo 'https://wa.me/' | append: env2_wa | append: '?text=' | append: env2_wa_text
+  else
+    assign env2_subject = 'בדיקת התאמה — תמונה של המקום' | url_encode | replace: '+', '%20'
+    assign env2_body = 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר. המוצר ששוקלים: ' | url_encode | replace: '+', '%20'
+    echo 'mailto:info@elmsnest.com?subject=' | append: env2_subject | append: '&body=' | append: env2_body
+  endif
+-%}

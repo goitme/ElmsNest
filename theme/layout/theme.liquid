@@ -158,6 +158,8 @@
     {%- liquid
       render 'social-meta-tags'
       render 'css-variables', is_rtl: is_rtl
+      render 'elmsnest-v2-fonts'
+      render 'elmsnest-v2-core'
       unless request.page_type == 'index'
         render 'product-styles'
       endunless

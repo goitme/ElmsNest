@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.name_group.system",
+  "type": "custom.system",
+  "sections": {
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "blocks": {
+        "subtotal_hPmjgN": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "tax_rkEdFK": {
+          "type": "tax",
+          "settings": {
+            "url": ""
+          }
+        },
+        "agree_y3A6EM": {
+          "type": "agree",
+          "disabled": true,
+          "settings": {
+            "content": "אני מסכים/ה לתנאי השימוש ולמדיניות הפרטיות"
+          }
+        },
+        "btn_cart_74AGUK": {
+          "type": "btn_cart",
+          "settings": {
+            "style_class": "",
+            "icon": "none",
+            "icon_position": "before",
+            "icon_height": 16,
+            "icon_spacing": 5
+          }
+        },
+        "btn_checkout_bcnmpT": {
+          "type": "btn_checkout",
+          "settings": {
+            "style_class": "hdt-btn-accent",
+            "icon": "none",
+            "icon_position": "before",
+            "icon_height": 16,
+            "icon_spacing": 5
+          }
+        },
+        "img_trust_zatTgB": {
+          "type": "img_trust",
+          "disabled": true,
+          "settings": {
+            "wimg": 350,
+            "svg": "visa,paypal,master,american_express,amazon",
+            "height": 25
+          }
+        }
+      },
+      "block_order": [
+        "subtotal_hPmjgN",
+        "tax_rkEdFK",
+        "agree_y3A6EM",
+        "btn_cart_74AGUK",
+        "btn_checkout_bcnmpT",
+        "img_trust_zatTgB"
+      ],
+      "custom_css": [
+        ".hdt-mini-cart__title:hover,.hdt-minicart-recommendations__item--title:hover {color: rgb(var(--hdt-btn-bg));}"
+      ],
+      "settings": {
+        "colors_by_section": true,
+        "color_scheme": "scheme-env2-night",
+        "show_free_shipping_bar": false,
+        "show_cart_note": false,
+        "show_gift_wrap": false,
+        "show_shipping_estimator": false,
+        "show_cart_discount": false,
+        "discount_error_message": "יש להזין קוד הנחה תקין",
+        "show_cart_complementary": false,
+        "heading": "אולי יתאים לכם גם",
+        "product_list": [],
+        "replaces_products_selected": true,
+        "limit": 5
+      }
+    },
+    "cookies_8EMjkp": {
+      "type": "cookies",
+      "disabled": true,
+      "name": "t:sections.cookies.name",
+      "settings": {
+        "colors_by_section": false,
+        "color_scheme": "",
+        "show": "2",
+        "text": "We use cookies to improve your experience on our website. By browsing this website, you agree to our use of cookies.",
+        "accept": "Accept",
+        "decline": "Decline",
+        "more": "More info",
+        "links": ""
+      }
+    },
+    "back_top_RQdR9c": {
+      "type": "back_top",
+      "name": "t:sections.back_to_top.name",
+      "settings": {
+        "enable_hidden_mobile": false,
+        "enable_progress_bar": true,
+        "border_cl": "#d2cbc1",
+        "border_cl_active": "#2b2118"
+      }
+    }
+  },
+  "order": [
+    "cart-drawer",
+    "cookies_8EMjkp",
+    "back_top_RQdR9c"
+  ]
+}

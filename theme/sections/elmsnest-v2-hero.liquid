@@ -1,10 +1,11 @@
 {%- comment -%}
   ElmsNest v2 — 4.1 hero: the last minute of daylight (WINNING-SPEC §4.1).
-  Renders the shared fonts + base ONCE for the page (this section only).
+  Renders the INDEX ground (dusk gradient) once; fonts + core are global (layout/theme.liquid).
   Screen 1: the idea (dusk), the brand line, and a real product with ₪ + add-to-cart.
   The Kalles header is transparent over the top 70px; the hero clears it with padding.
 {%- endcomment -%}
-{% render 'elmsnest-v2-fonts' %}{% render 'elmsnest-v2-base' %}
+{% render 'elmsnest-v2-ground-index' %}
+{%- capture photo_url -%}{%- render 'elmsnest-v2-photo-url' -%}{%- endcapture -%}
 {%- liquid
   assign product = section.settings.product
   assign bg_i = section.settings.bg_image_index | default: 1 | minus: 1
@@ -67,16 +68,13 @@
     assign hero_m_srcset = wurl | append: ' 1000w'
   endif
 
-  assign wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
   assign wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
-  assign wa_href = '/pages/contact-us'
+  assign wa_href = photo_url | strip
   if section.settings.whatsapp_url != blank
     assign wa_href = section.settings.whatsapp_url
     unless wa_href contains '?'
       assign wa_href = wa_href | append: '?text=' | append: wa_text
     endunless
-  elsif wa != blank
-    assign wa_href = 'https://wa.me/' | append: wa | append: '?text=' | append: wa_text
   endif
 -%}
 <section id="env2-hero" data-env2-hero class="env2-section env2-hero" dir="rtl" style="scroll-margin-top:90px" aria-labelledby="env2-hero-h1">

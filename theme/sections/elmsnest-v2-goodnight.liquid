@@ -14,15 +14,12 @@
   still renders lit without it (see the JS tail).
   Bidi: digit-leading tokens of the strip ("8–17", "14") are wrapped in <bdi> at render time.
 {%- endcomment -%}
+{%- capture photo_url -%}{%- render 'elmsnest-v2-photo-url' -%}{%- endcapture -%}
 {%- liquid
-  assign wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
   assign wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
+  assign wa_href = photo_url | strip
   if section.settings.whatsapp_url != blank and section.settings.whatsapp_url != 'https://wa.me/'
     assign wa_href = section.settings.whatsapp_url | append: '?text=' | append: wa_text
-  elsif wa != blank
-    assign wa_href = 'https://wa.me/' | append: wa | append: '?text=' | append: wa_text
-  else
-    assign wa_href = '/pages/contact-us'
   endif
 
   assign garden = section.settings.image

@@ -7,16 +7,14 @@
   Shared plumbing (fonts/base/price/buy snippets) is rendered by elmsnest-v2-hero; this section
   only assumes it and degrades to "everything lit" without it.
 {%- endcomment -%}
+{%- capture photo_url -%}{%- render 'elmsnest-v2-photo-url' -%}{%- endcapture -%}
 {%- liquid
   assign split = section.settings.default_split | default: 62
   assign v0 = 100 | minus: split
-  assign wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
   assign wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
-  assign wa_href = '/pages/contact-us'
+  assign wa_href = photo_url | strip
   if section.settings.whatsapp_url != blank and section.settings.whatsapp_url != 'https://wa.me/'
     assign wa_href = section.settings.whatsapp_url | append: '?text=' | append: wa_text
-  elsif wa != blank
-    assign wa_href = 'https://wa.me/' | append: wa | append: '?text=' | append: wa_text
   endif
   assign sid = section.id | replace: '_', '-' | downcase
 -%}
@@ -146,7 +144,7 @@
               {{ section.settings.whatsapp_label }}
             </a>
           {%- endif -%}
-        {%- elsif section.settings.whatsapp_label != blank or settings.whatsapp_number != blank -%}
+        {%- elsif section.settings.whatsapp_label != blank -%}
           <a class="env2-link env2-switch__wa" href="{{ wa_href }}">לשליחת תמונה</a>
         {%- endif -%}
       </div>

@@ -9,14 +9,9 @@
   wrapped in <bdi> at render time, so ranges never flip to "3–1" inside the Hebrew sentence
   (the dusk mockup had that defect) and the merchant can keep typing plain text.
 {%- endcomment -%}
+{%- capture photo_url -%}{%- render 'elmsnest-v2-photo-url' -%}{%- endcapture -%}
 {%- liquid
-  assign wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
-  assign wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
-  if wa != blank
-    assign wa_url = 'https://wa.me/' | append: wa | append: '?text=' | append: wa_text
-  else
-    assign wa_url = '/pages/contact-us'
-  endif
+  assign wa_url = photo_url | strip
   assign digits = '0123456789'
   assign line_blocks = section.blocks | where: 'type', 'line'
   assign link_blocks = section.blocks | where: 'type', 'link'
