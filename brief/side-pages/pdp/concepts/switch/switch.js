@@ -122,8 +122,69 @@ window.SW = (function () {
     };
   }
 
+
+  /* ---------- the drawn path: bollards standing along a receding line ---------- */
+  function makePath(svg, o) {
+    o = Object.assign({ max: 8, line: null }, o || {});
+    var id = svg.id || ('p' + Math.random().toString(36).slice(2, 7));
+    var defs = el('defs');
+    var g1 = el('radialGradient', { id: id + '-pool', cx: '50%', cy: '50%', r: '50%' });
+    g1.appendChild(el('stop', { offset: '0', 'stop-color': '#ffd394', 'stop-opacity': '.75' }));
+    g1.appendChild(el('stop', { offset: '.5', 'stop-color': '#ffd394', 'stop-opacity': '.22' }));
+    g1.appendChild(el('stop', { offset: '1', 'stop-color': '#ffd394', 'stop-opacity': '0' }));
+    var g2 = el('linearGradient', { id: id + '-cone', x1: '0', y1: '0', x2: '0', y2: '1' });
+    g2.appendChild(el('stop', { offset: '0', 'stop-color': '#ffd394', 'stop-opacity': '.5' }));
+    g2.appendChild(el('stop', { offset: '1', 'stop-color': '#ffd394', 'stop-opacity': '0' }));
+    var g3 = el('radialGradient', { id: id + '-glow', cx: '50%', cy: '50%', r: '50%' });
+    g3.appendChild(el('stop', { offset: '0', 'stop-color': '#fff1d6', 'stop-opacity': '.9' }));
+    g3.appendChild(el('stop', { offset: '.4', 'stop-color': '#ffd394', 'stop-opacity': '.35' }));
+    g3.appendChild(el('stop', { offset: '1', 'stop-color': '#ffd394', 'stop-opacity': '0' }));
+    defs.appendChild(g1); defs.appendChild(g2); defs.appendChild(g3);
+    var ground = el('path', { 'class': 'ground' }), gb = el('g');
+    svg.appendChild(defs); svg.appendChild(ground); svg.appendChild(gb);
+    var items = [], n = 0;
+    function layout() {
+      var W = svg.clientWidth, H = svg.clientHeight; if (!W || !H) return;
+      var L = o.line(W, H, W < 720);
+      ground.setAttribute('d', 'M' + L.x0 + ' ' + L.y0 + ' L' + L.x1 + ' ' + L.y1);
+      gb.innerHTML = ''; items = [];
+      for (var i = o.max - 1; i >= 0; i--) {
+        var t = i / (o.max - 1) * 0.94, s = 1 - 0.7 * t;
+        var x = L.x0 + (L.x1 - L.x0) * t, y = L.y0 + (L.y1 - L.y0) * t, h = L.h * s, w = Math.max(5, L.h * 0.13 * s);
+        var b = el('g', { 'class': 'b', transform: 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')' });
+        b.appendChild(el('ellipse', { 'class': 'halo', cx: 0, cy: 0, rx: (h * .8).toFixed(1), ry: (h * .17).toFixed(1), fill: 'url(#' + id + '-pool)' }));
+        b.appendChild(el('polygon', { 'class': 'halo', points: (-w * .5) + ',' + (-h * .7) + ' ' + (w * .5) + ',' + (-h * .7) + ' ' + (h * .5) + ',0 ' + (-h * .5) + ',0', fill: 'url(#' + id + '-cone)' }));
+        b.appendChild(el('rect', { 'class': 'post', x: -w / 2, y: -h * .7, width: w, height: h * .7 }));
+        b.appendChild(el('circle', { 'class': 'halo', cx: 0, cy: -h * .85, r: (h * .5).toFixed(1), fill: 'url(#' + id + '-glow)' }));
+        b.appendChild(el('rect', { 'class': 'core', x: -w / 2, y: -h, width: w, height: h * .3, fill: '#fff1d6' }));
+        b.appendChild(el('rect', { 'class': 'cap', x: -w / 2 - 1, y: -h - 2.5, width: w + 2, height: 2.5 }));
+        gb.appendChild(b); items[i] = b;
+      }
+      applyN(false, 0);
+    }
+    function applyN(anim, from) {
+      items.forEach(function (b, i) {
+        var on = i < n, dl = 0;
+        if (anim && !rm && on && i >= from) dl = (i - from) * 140;
+        b.style.setProperty('--dl', dl + 'ms');
+        b.classList.toggle('on', on);
+      });
+    }
+    var t;
+    window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(layout, 160); });
+    layout();
+    return {
+      set: function (count, anim) { var from = n; n = Math.max(0, Math.min(o.max, count)); applyN(anim !== false, from < n ? from : 0); },
+      dark: function (on) {
+        if (on) { if (rm) { svg.classList.add('dark'); return; } svg.classList.add('try'); setTimeout(function () { svg.classList.add('dark'); svg.classList.remove('try'); }, 900); }
+        else { svg.classList.remove('dark', 'try'); }
+      },
+      relayout: layout, count: function () { return n; }
+    };
+  }
+
   /* ---------- the price counts up ---------- */
-  function fmt(v) { return v.toFixed(2); }
+  function fmt(v) { return v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
   function countTo(node, to, dur) {
     var from = parseFloat(node.dataset.v != null ? node.dataset.v : to);
     node.dataset.v = to;
@@ -179,5 +240,5 @@ window.SW = (function () {
 
   window.addEventListener('scroll', function () { requestAnimationFrame(sweep); }, { passive: true });
 
-  return { rm: rm, el: el, NS: NS, observeLamps: observeLamps, light: light, sweep: sweep, makeString: makeString, countTo: countTo, fmt: fmt, stickyBar: stickyBar, mockForms: mockForms, anchors: anchors };
+  return { rm: rm, el: el, NS: NS, observeLamps: observeLamps, light: light, sweep: sweep, makeString: makeString, makePath: makePath, countTo: countTo, fmt: fmt, stickyBar: stickyBar, mockForms: mockForms, anchors: anchors };
 })();
