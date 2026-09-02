@@ -12,11 +12,10 @@
 </style>
 <style id="env2-switch-bundle">
 /* ---- from sections/elmsnest-v2-switch.liquid {% stylesheet %} — loaded in <head> BEFORE the base, as Shopify bundles it ---- */
-
 /* ---------- §4.4 switch: one photo, one line, four places ----------
    note: this bundle loads in <head> BEFORE the base inline style, so anything that overrides a base
    helper (.env2-h, .env2-lead, [data-lamp] .env2-ph …) needs higher specificity, not later source order */
-.env2-switch{padding-block:100px 90px}
+.env2-switch{padding-block:64px 90px}
 .env2-switch *,.env2-switch *::before,.env2-switch *::after{box-sizing:border-box}
 .env2-switch__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:0 clamp(32px,5vw,96px);align-items:center;min-height:calc(100svh - 190px)}
 
@@ -29,12 +28,12 @@
 /* "לא." — a lamp in the headline: outline only, then it switches on (G5).
    Default (no JS, reduced motion) = lit; html.env2-js dims it until .is-on. */
 .env2-switch__no{display:inline-block;color:var(--env2-glow);-webkit-text-stroke:0 transparent;text-shadow:0 0 40px rgba(255,211,148,.45);transition:color .4s,text-shadow .6s,-webkit-text-stroke-color .4s}
-.env2-js .env2-switch__no:not(.is-on){color:transparent;-webkit-text-stroke:1px rgba(255,211,148,.45);text-shadow:none}
+.env2-js .env2-switch__no:not(.is-on){color:transparent;-webkit-text-stroke:1.5px rgba(255,211,148,.8);text-shadow:none}
 .env2-js .env2-switch__no.is-on{animation:env2-lamp-on .55s linear 1}
 
 /* the place index: four rows on hairlines, not four chips */
 .env2-switch__index{display:grid;border-top:1px solid var(--env2-hair);border-bottom:1px solid var(--env2-hair)}
-.env2-switch__tab{display:grid;grid-template-columns:34px minmax(0,1fr) 10px;align-items:center;gap:14px;width:100%;margin:0;padding:15px 0;border:0;border-top:1px solid var(--env2-hair);background:none;cursor:pointer;text-align:start;color:var(--env2-ink-2);opacity:.55;font:inherit;transition:opacity .3s,color .3s}
+.env2-switch__tab{display:grid;grid-template-columns:34px minmax(0,1fr) 10px;align-items:center;gap:14px;width:100%;margin:0;padding:15px 0;border:0;border-top:1px solid var(--env2-hair);background:none;cursor:pointer;text-align:start;color:var(--env2-ink-2);opacity:.78;font:inherit;transition:opacity .3s,color .3s}
 .env2-switch__tab:first-child{border-top:0}
 .env2-switch__tab:hover,.env2-switch__tab:focus-visible{opacity:.85}
 .env2-switch__tab.is-active{opacity:1;color:var(--env2-gold)}
@@ -73,6 +72,10 @@
 .env2-switch__stage[data-lamp] .env2-switch__ph{position:absolute;inset:0;overflow:hidden;background:#05070c}
 .env2-switch__stage[data-lamp] .env2-switch__ph img{transform:none}
 .env2-switch__stage[data-lamp] .env2-switch__ph::after{inset:-10%;background:radial-gradient(55% 55% at 50% 50%,rgba(255,211,148,.30),rgba(255,211,148,0) 70%)}
+/* per-place mirror (schema checkbox): flips the photo so the lamp sits on the lit start side; (0,4,1) beats the transform:none above */
+.env2-switch__stage .env2-switch__place.is-mirrored .env2-switch__layer img{transform:scaleX(-1)}
+/* inactive places are hidden (display:none + aria-hidden) 520 ms after the crossfade; Kalles has no [hidden] reset we can rely on */
+.env2-switch__place[hidden]{display:none}
 /* the warm halo: grows in with the lamp, flickers once when the line crosses into the dark zone (G4) */
 .env2-switch__glow{position:absolute;inset:-12%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(42% 46% at 50% 56%,rgba(255,196,110,.45),rgba(255,196,110,0) 72%);opacity:var(--lit,1);transition:opacity 1.6s .2s;z-index:1}
 .env2-switch__stage.is-dark .env2-switch__glow{animation:env2-flick .24s steps(1,end) 1}
@@ -84,10 +87,10 @@
 .env2-switch__cap--lit{right:0;width:max(min(48%,calc(100% - var(--v))),40%);text-align:end;padding-inline-start:26px}
 .env2-switch__cap--dark{left:0;width:max(min(48%,var(--v)),40%);text-align:start;padding-inline-end:26px}
 .env2-switch__k{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;line-height:1.3}
-.env2-switch__cap--lit .env2-switch__k{color:var(--env2-gold)}
+.env2-switch__cap--lit .env2-switch__k{color:var(--env2-gold);font-size:12px;text-shadow:0 1px 10px rgba(0,0,0,.85)}
 .env2-switch__cap--dark .env2-switch__k{color:var(--env2-mute)}
 .env2-switch__p{margin:0;font-family:var(--env2-serif);font-weight:500;font-size:24px;line-height:1.2;color:var(--env2-ink);text-wrap:pretty;text-shadow:0 1px 18px rgba(0,0,0,.5)}
-.env2-switch__cap--dark .env2-switch__p{font-size:20px;color:var(--env2-ink-2)}
+.env2-switch__cap--dark .env2-switch__p{font-size:20px;color:var(--env2-ink)}
 
 /* the line, the knob, the range that covers the stage */
 .env2-switch__range{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none;background:none;touch-action:pan-y}
@@ -109,7 +112,9 @@
 
 /* below both columns: quote at start, guide + photo check at end */
 .env2-switch__foot{grid-column:1/-1;margin-top:64px;padding-top:40px;border-top:1px solid var(--env2-hair);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:end}
-.env2-switch__quote{margin:0}
+/* Kalles styles a bare <blockquote> as a cream panel (background2, 30/60px padding, a 50px open-quote); none of that here */
+.env2-switch .env2-switch__quote{margin:0;padding:0;border:0;background:none;quotes:none}
+.env2-switch .env2-switch__quote::before,.env2-switch .env2-switch__quote::after{content:none;display:none}
 .env2-switch__q{margin:0;font-family:var(--env2-serif);font-weight:400;font-size:clamp(22px,2.4vw,32px);line-height:1.25;max-width:26ch;color:var(--env2-ink);text-wrap:pretty}
 .env2-switch__cite{display:block;margin-top:14px;font-family:var(--env2-sans);font-style:normal;font-size:13px;letter-spacing:.06em;color:var(--env2-mute)}
 .env2-switch__more{display:grid;gap:18px;justify-items:start}
@@ -137,17 +142,19 @@
   .env2-switch__cap{padding:14px 16px 16px;gap:5px}
   .env2-switch__cap--lit{padding-inline-start:18px}
   .env2-switch__cap--dark{padding-inline-end:18px}
-  .env2-switch__k{font-size:10px}
+  .env2-switch__k{font-size:11px}
+  .env2-switch__cap--dark .env2-switch__k{color:var(--env2-ink-2)}
   .env2-switch__p{font-size:15px;line-height:1.25}
-  .env2-switch__cap--dark .env2-switch__p{font-size:13.5px}
+  .env2-switch__cap--dark .env2-switch__p{font-size:15px;color:var(--env2-ink)}
   .env2-switch__knob{width:40px;height:40px}
-  .env2-switch__hint{font-size:11px}
-  .env2-switch__under{margin-top:12px}
-  .env2-switch__toggle{justify-content:center;padding-top:20px}
+  .env2-switch__hint{font-size:12px}
+  /* under the stage: the helper and the active collection link as a 44px pill (the quick toggle is desktop-only — G3) */
+  .env2-switch__under{margin-top:12px;flex-wrap:wrap;gap:12px 20px}
+  .env2-switch__plink.env2-link{font-size:14px;color:var(--env2-ink);min-height:44px;padding:13px 18px;border:0;box-shadow:inset 0 0 0 1px var(--env2-hair-btn);border-radius:999px}
+  .env2-switch__toggle{display:none}
   .env2-switch__foot{margin-top:44px;padding-top:32px;grid-template-columns:1fr;gap:28px}
   .env2-switch__q{font-size:22px}
 }
-
 </style>
 <!-- from snippets/elmsnest-v2-base.liquid, verbatim (Liquid comment stripped) -->
 <script>document.documentElement.classList.add('env2-js');</script>
@@ -353,14 +360,14 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
 <div class="fake-hdr"><b>ElmsNest</b><span>דף הבית · קולקציות · מדריך · מי אנחנו</span></div>
 <div id="wrapper"><main id="MainContent">
 <div class="shopify-section">
-<section id="env2-switch" data-env2-switch class="env2-section env2-switch" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.3" data-split="62">
+<section id="env2-switch" data-env2-switch class="env2-section env2-switch" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.3" data-split="62" aria-labelledby="env2-switch-h2">
   <div class="env2-stars" aria-hidden="true"></div>
   <div class="env2-wrap env2-switch__wrap">
 
     <div class="env2-switch__a">
       <div class="env2-switch__head">
         <p class="env2-eyebrow">02 · לפני שקונים</p>
-        <h2 class="env2-h env2-switch__h2" data-env2-switch-h2>אנחנו נגיד לכם גם מתי <span class="env2-no env2-switch__no">לא.</span></h2>
+        <h2 class="env2-h env2-switch__h2" id="env2-switch-h2" data-env2-switch-h2>אנחנו נגיד לכם גם מתי <span class="env2-no env2-switch__no">לא.</span></h2>
         <p class="env2-lead env2-switch__lead">לכל מקום יש מנורה שמתאימה לו, ומצב שבו היא לא תעבוד. גררו את הקו — וראו מתי האור נשאר כבוי.</p>
       </div>
 
@@ -389,7 +396,7 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
     <div class="env2-switch__b">
       <div class="env2-switch__stage" data-env2-switch-stage data-lamp style="--v:38%">
 
-        <div class="env2-switch__place is-active" id="env2-switch-place-x-1" role="tabpanel" aria-labelledby="env2-switch-tab-x-1" data-env2-switch-place="0" style="--env2-switch-op:45% 50%">
+        <div class="env2-switch__place is-active is-mirrored" id="env2-switch-place-x-1" role="tabpanel" aria-labelledby="env2-switch-tab-x-1" aria-hidden="false" data-env2-switch-place="0" style="--env2-switch-op:45% 50%">
           <figure class="env2-switch__layer env2-switch__layer--dark">
             <img src="../assets/img/stainless-steel-solar-path-light-ip65-1.jpg" loading="lazy" alt="">
             <figcaption class="env2-switch__cap env2-switch__cap--dark"><span class="env2-switch__k">לא מתאים כש־</span><p class="env2-switch__p">המקום כמעט אינו מקבל אור יום</p></figcaption>
@@ -400,7 +407,7 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
           </figure>
         </div>
 
-        <div class="env2-switch__place" id="env2-switch-place-x-2" role="tabpanel" aria-labelledby="env2-switch-tab-x-2" data-env2-switch-place="1" style="--env2-switch-op:50% 50%">
+        <div class="env2-switch__place" id="env2-switch-place-x-2" role="tabpanel" aria-labelledby="env2-switch-tab-x-2" aria-hidden="true" hidden data-env2-switch-place="1" style="--env2-switch-op:50% 50%">
           <figure class="env2-switch__layer env2-switch__layer--dark">
             <img src="../assets/img/modern-led-wall-light-6w-up-down-0.jpg" loading="lazy" alt="">
             <figcaption class="env2-switch__cap env2-switch__cap--dark"><span class="env2-switch__k">לא מתאים כש־</span><p class="env2-switch__p">נדרש אור חזק וקבוע לאורך כל הלילה</p></figcaption>
@@ -411,7 +418,7 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
           </figure>
         </div>
 
-        <div class="env2-switch__place" id="env2-switch-place-x-3" role="tabpanel" aria-labelledby="env2-switch-tab-x-3" data-env2-switch-place="2" style="--env2-switch-op:50% 50%">
+        <div class="env2-switch__place" id="env2-switch-place-x-3" role="tabpanel" aria-labelledby="env2-switch-tab-x-3" aria-hidden="true" hidden data-env2-switch-place="2" style="--env2-switch-op:50% 50%">
           <figure class="env2-switch__layer env2-switch__layer--dark">
             <img src="../assets/img/solar-crystal-ball-string-lights-2.jpg" loading="lazy" alt="">
             <figcaption class="env2-switch__cap env2-switch__cap--dark"><span class="env2-switch__k">לא מתאים כש־</span><p class="env2-switch__p">צריך אור חזק — זו אינה מטרתה</p></figcaption>
@@ -422,7 +429,7 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
           </figure>
         </div>
 
-        <div class="env2-switch__place" id="env2-switch-place-x-4" role="tabpanel" aria-labelledby="env2-switch-tab-x-4" data-env2-switch-place="3" style="--env2-switch-op:50% 20%">
+        <div class="env2-switch__place" id="env2-switch-place-x-4" role="tabpanel" aria-labelledby="env2-switch-tab-x-4" aria-hidden="true" hidden data-env2-switch-place="3" style="--env2-switch-op:50% 20%">
           <figure class="env2-switch__layer env2-switch__layer--dark">
             <img src="../assets/img/solar-firefly-garden-lights-2.jpg" loading="lazy" alt="">
             <figcaption class="env2-switch__cap env2-switch__cap--dark"><span class="env2-switch__k">לא מתאים כש־</span><p class="env2-switch__p">נדרשת התקנה מיוחדת או חיבור קבוע</p></figcaption>
@@ -433,14 +440,14 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
           </figure>
         </div>
 
-        <input class="env2-switch__range" type="range" min="0" max="100" step="1" value="38" dir="ltr" aria-label="מיקום קו האור" aria-valuetext="62% מואר">
+        <input class="env2-switch__range" type="range" min="0" max="100" step="1" value="38" dir="ltr" aria-label="מיקום קו האור" aria-valuetext="62% מואר" aria-describedby="env2-switch-helper-x">
         <span class="env2-switch__bar" aria-hidden="true"></span>
         <span class="env2-switch__knob" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m9 6-5 6 5 6M15 6l5 6-5 6"/></svg></span>
         <span class="env2-switch__hint" aria-live="polite" data-text="לא נדלק. זו הנקודה."></span>
       </div>
 
       <div class="env2-switch__under">
-        <p class="env2-switch__helper">גררו את הקו · או בחרו מקום</p>
+        <p class="env2-switch__helper" id="env2-switch-helper-x">גררו את הקו · או בחרו מקום</p>
         <a class="env2-link env2-switch__plink is-active" href="/collections/תאורת-שביל-סולארית" data-env2-switch-link="0">לכל המוצרים לשביל ←</a>
         <a class="env2-link env2-switch__plink" href="/collections/solar-wall-lights" data-env2-switch-link="1" hidden>לכל המוצרים לקיר ←</a>
         <a class="env2-link env2-switch__plink" href="/collections/גרילנדות-ותאורה-דקורטיבית" data-env2-switch-link="2" hidden>לכל המוצרים למרפסת ←</a>
@@ -450,16 +457,12 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
 
     <div class="env2-switch__foot">
       <blockquote class="env2-switch__quote">
-        <p class="env2-switch__q">«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»</p>
-        <cite class="env2-switch__cite">מתוך «מי אנחנו», elmsnest.com</cite>
+        <p class="env2-switch__q">"כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה."</p>
+        <cite class="env2-switch__cite">מתוך "מי אנחנו"</cite>
       </blockquote>
       <div class="env2-switch__more">
         <a class="env2-link env2-switch__guide" href="/pages/guide-garden-lighting">למדריך המלא לבחירת תאורה לגינה ←</a>
-        <p class="env2-switch__photo">לא בטוחים איזה מקום זה? שלחו תמונה — נבדוק התאמה לפני שתזמינו.</p>
-        <a class="env2-link env2-switch__wa" href="/pages/contact-us">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.3-3.8A8 8 0 1 1 8.2 19L4 20z"/><path d="M9.5 9c.2 1.8 2 3.6 3.9 4l1.1-1.1-1.7-.8-.6.6c-.6-.3-1.2-.9-1.5-1.5l.6-.6-.8-1.7L9.5 9z" fill="currentColor" stroke="none"/></svg>
-          לשליחת תמונה בוואטסאפ
-        </a>
+        <a class="env2-link env2-switch__wa" href="/pages/contact-us">לשליחת תמונה</a>
       </div>
     </div>
 
@@ -470,7 +473,6 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
 </main></div>
 <script>
 /* ---- from sections/elmsnest-v2-switch.liquid {% javascript %} ---- */
-
 /* §4.4 switch: the draggable line, the four places, the quick toggle, the "לא." that switches on.
    Pointer, touch and keyboard all go through the one <input type=range> that covers the stage. */
 (function(){
@@ -520,9 +522,38 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
       if (onBtn) { onBtn.classList.toggle('is-active', v <= 4); onBtn.setAttribute('aria-pressed', v <= 4 ? 'true' : 'false'); }
       if (offBtn) { offBtn.classList.toggle('is-active', v >= 96); offBtn.setAttribute('aria-pressed', v >= 96 ? 'true' : 'false'); }
     }
+    /* touch / pen: the stage keeps touch-action:pan-y, but the native range grabs every finger the moment it lands.
+       Decide once per gesture after 6 px: vertical = the page scrolls and the line stays where it was; horizontal = the
+       line follows; a tap sets. Mouse and keyboard are untouched by this guard. */
+    var g = null;
     if (range) {
-      range.addEventListener('input', function(){ setV(range.value, false); });
-      range.addEventListener('change', function(){ setV(range.value, false); });
+      range.addEventListener('pointerdown', function(e){
+        if (e.pointerType === 'mouse') return;
+        g = { x: e.clientX, y: e.clientY, v: +range.value, mode: 0 };
+      });
+      range.addEventListener('pointermove', function(e){
+        if (!g || g.mode !== 0) return;
+        var dx = Math.abs(e.clientX - g.x), dy = Math.abs(e.clientY - g.y);
+        if (dx < 6 && dy < 6) return;
+        if (dy > dx) { g.mode = 2; range.value = g.v; setV(g.v, false); }
+        else { g.mode = 1; setV(range.value, false); }
+      });
+      var endGesture = function(e){
+        if (!g) return;
+        if (g.mode === 2 || e.type === 'pointercancel') { range.value = g.v; setV(g.v, false); }
+        else if (g.mode === 0) setV(range.value, false);
+        g = null;
+      };
+      range.addEventListener('pointerup', endGesture);
+      range.addEventListener('pointercancel', endGesture);
+      range.addEventListener('input', function(){
+        if (g && g.mode !== 1) return;
+        setV(range.value, false);
+      });
+      range.addEventListener('change', function(){
+        if (g) return;
+        setV(range.value, false);
+      });
       range.addEventListener('keydown', function(e){
         var v = +range.value, k = e.key, d = 0;
         if (k === 'ArrowRight' || k === 'ArrowUp') d = 2;
@@ -548,7 +579,18 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
         t.setAttribute('tabindex', on ? '0' : '-1');
         if (on && focus) t.focus();
       });
-      places.forEach(function(p, j){ p.classList.toggle('is-active', j === i); });
+      places.forEach(function(p, j){
+        var on = j === i;
+        p.setAttribute('aria-hidden', on ? 'false' : 'true');
+        if (on) {
+          p.hidden = false;
+          /* un-hide first, then fade in on the next frame so the .5 s crossfade actually runs */
+          requestAnimationFrame(function(){ p.classList.add('is-active'); });
+        } else {
+          p.classList.remove('is-active');
+          setTimeout(function(){ if (!p.classList.contains('is-active')) p.hidden = true; }, 520);
+        }
+      });
       links.forEach(function(a){
         var on = a.getAttribute('data-env2-switch-link') === String(i);
         a.classList.toggle('is-active', on);
@@ -608,7 +650,6 @@ body.template-index{background-image:linear-gradient(180deg,#132139 0%,#0f1a2f 4
   else boot(document);
   document.addEventListener('shopify:section:load', function(e){ boot(e.target || document); });
 })();
-
 </script>
 </body>
 </html>

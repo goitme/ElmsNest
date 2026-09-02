@@ -20,7 +20,7 @@
   endif
   assign sid = section.id | replace: '_', '-' | downcase
 -%}
-<section id="env2-switch" data-env2-switch class="env2-section env2-switch" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.3" data-split="{{ split }}">
+<section id="env2-switch" data-env2-switch class="env2-section env2-switch" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.3" data-split="{{ split }}" aria-labelledby="env2-switch-h2">
   <div class="env2-stars" aria-hidden="true"></div>
   <div class="env2-wrap env2-switch__wrap">
 
@@ -30,7 +30,7 @@
         {%- if section.settings.eyebrow != blank -%}
           <p class="env2-eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
-        <h2 class="env2-h env2-switch__h2" data-env2-switch-h2>{{ section.settings.heading_before }} <span class="env2-no env2-switch__no">{{ section.settings.heading_no }}</span></h2>
+        <h2 class="env2-h env2-switch__h2" id="env2-switch-h2" data-env2-switch-h2>{{ section.settings.heading_before }} <span class="env2-no env2-switch__no">{{ section.settings.heading_no }}</span></h2>
         {%- if section.settings.lead != blank -%}
           <p class="env2-lead env2-switch__lead">{{ section.settings.lead }}</p>
         {%- endif -%}
@@ -74,7 +74,7 @@
               assign alt = alt | append: ' · ' | append: product.title
             endif
           -%}
-          <div class="env2-switch__place{% if forloop.first %} is-active{% endif %}" id="env2-switch-place-{{ sid }}-{{ forloop.index }}" role="tabpanel" aria-labelledby="env2-switch-tab-{{ sid }}-{{ forloop.index }}" data-env2-switch-place="{{ forloop.index0 }}" style="--env2-switch-op:{{ op }}">
+          <div class="env2-switch__place{% if forloop.first %} is-active{% endif %}{% if block.settings.mirror %} is-mirrored{% endif %}" id="env2-switch-place-{{ sid }}-{{ forloop.index }}" role="tabpanel" aria-labelledby="env2-switch-tab-{{ sid }}-{{ forloop.index }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"{% unless forloop.first %} hidden{% endunless %} data-env2-switch-place="{{ forloop.index0 }}" style="--env2-switch-op:{{ op }}">
             {%- comment -%} dark layer: the whole photo at 9 % — the lamp that refuses to light {%- endcomment -%}
             <figure class="env2-switch__layer env2-switch__layer--dark">
               {%- if img != blank -%}
@@ -103,7 +103,7 @@
           </div>
         {%- endfor -%}
 
-        <input class="env2-switch__range" type="range" min="0" max="100" step="1" value="{{ v0 }}" dir="ltr" aria-label="מיקום קו האור" aria-valuetext="{{ split }}% מואר">
+        <input class="env2-switch__range" type="range" min="0" max="100" step="1" value="{{ v0 }}" dir="ltr" aria-label="מיקום קו האור" aria-valuetext="{{ split }}% מואר" aria-describedby="env2-switch-helper-{{ sid }}">
         <span class="env2-switch__bar" aria-hidden="true"></span>
         <span class="env2-switch__knob" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m9 6-5 6 5 6M15 6l5 6-5 6"/></svg></span>
         <span class="env2-switch__hint" aria-live="polite" data-text="{{ section.settings.hint_dark | escape }}"></span>
@@ -111,7 +111,7 @@
 
       <div class="env2-switch__under">
         {%- if section.settings.helper != blank -%}
-          <p class="env2-switch__helper">{{ section.settings.helper }}</p>
+          <p class="env2-switch__helper" id="env2-switch-helper-{{ sid }}">{{ section.settings.helper }}</p>
         {%- endif -%}
         {%- for block in section.blocks -%}
           {%- if block.settings.collection != blank -%}
@@ -138,11 +138,16 @@
         {%- if section.settings.photo_line != blank -%}
           <p class="env2-switch__photo">{{ section.settings.photo_line }}</p>
         {%- endif -%}
-        {%- if section.settings.whatsapp_label != blank -%}
-          <a class="env2-link env2-switch__wa" href="{{ wa_href }}"{% if wa_href contains 'wa.me' %} target="_blank" rel="noopener"{% endif %}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.3-3.8A8 8 0 1 1 8.2 19L4 20z"/><path d="M9.5 9c.2 1.8 2 3.6 3.9 4l1.1-1.1-1.7-.8-.6.6c-.6-.3-1.2-.9-1.5-1.5l.6-.6-.8-1.7L9.5 9z" fill="currentColor" stroke="none"/></svg>
-            {{ section.settings.whatsapp_label }}
-          </a>
+        {%- comment -%} the glyph and the word "וואטסאפ" only when the link really goes to wa.me; otherwise a plain contact link {%- endcomment -%}
+        {%- if wa_href contains 'wa.me' -%}
+          {%- if section.settings.whatsapp_label != blank -%}
+            <a class="env2-link env2-switch__wa" href="{{ wa_href }}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.3-3.8A8 8 0 1 1 8.2 19L4 20z"/><path d="M9.5 9c.2 1.8 2 3.6 3.9 4l1.1-1.1-1.7-.8-.6.6c-.6-.3-1.2-.9-1.5-1.5l.6-.6-.8-1.7L9.5 9z" fill="currentColor" stroke="none"/></svg>
+              {{ section.settings.whatsapp_label }}
+            </a>
+          {%- endif -%}
+        {%- else -%}
+          <a class="env2-link env2-switch__wa" href="{{ wa_href }}">לשליחת תמונה</a>
         {%- endif -%}
       </div>
     </div>
@@ -154,7 +159,7 @@
 /* ---------- §4.4 switch: one photo, one line, four places ----------
    note: this bundle loads in <head> BEFORE the base inline style, so anything that overrides a base
    helper (.env2-h, .env2-lead, [data-lamp] .env2-ph …) needs higher specificity, not later source order */
-.env2-switch{padding-block:100px 90px}
+.env2-switch{padding-block:64px 90px}
 .env2-switch *,.env2-switch *::before,.env2-switch *::after{box-sizing:border-box}
 .env2-switch__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:0 clamp(32px,5vw,96px);align-items:center;min-height:calc(100svh - 190px)}
 
@@ -167,12 +172,12 @@
 /* "לא." — a lamp in the headline: outline only, then it switches on (G5).
    Default (no JS, reduced motion) = lit; html.env2-js dims it until .is-on. */
 .env2-switch__no{display:inline-block;color:var(--env2-glow);-webkit-text-stroke:0 transparent;text-shadow:0 0 40px rgba(255,211,148,.45);transition:color .4s,text-shadow .6s,-webkit-text-stroke-color .4s}
-.env2-js .env2-switch__no:not(.is-on){color:transparent;-webkit-text-stroke:1px rgba(255,211,148,.45);text-shadow:none}
+.env2-js .env2-switch__no:not(.is-on){color:transparent;-webkit-text-stroke:1.5px rgba(255,211,148,.8);text-shadow:none}
 .env2-js .env2-switch__no.is-on{animation:env2-lamp-on .55s linear 1}
 
 /* the place index: four rows on hairlines, not four chips */
 .env2-switch__index{display:grid;border-top:1px solid var(--env2-hair);border-bottom:1px solid var(--env2-hair)}
-.env2-switch__tab{display:grid;grid-template-columns:34px minmax(0,1fr) 10px;align-items:center;gap:14px;width:100%;margin:0;padding:15px 0;border:0;border-top:1px solid var(--env2-hair);background:none;cursor:pointer;text-align:start;color:var(--env2-ink-2);opacity:.55;font:inherit;transition:opacity .3s,color .3s}
+.env2-switch__tab{display:grid;grid-template-columns:34px minmax(0,1fr) 10px;align-items:center;gap:14px;width:100%;margin:0;padding:15px 0;border:0;border-top:1px solid var(--env2-hair);background:none;cursor:pointer;text-align:start;color:var(--env2-ink-2);opacity:.78;font:inherit;transition:opacity .3s,color .3s}
 .env2-switch__tab:first-child{border-top:0}
 .env2-switch__tab:hover,.env2-switch__tab:focus-visible{opacity:.85}
 .env2-switch__tab.is-active{opacity:1;color:var(--env2-gold)}
@@ -211,6 +216,10 @@
 .env2-switch__stage[data-lamp] .env2-switch__ph{position:absolute;inset:0;overflow:hidden;background:#05070c}
 .env2-switch__stage[data-lamp] .env2-switch__ph img{transform:none}
 .env2-switch__stage[data-lamp] .env2-switch__ph::after{inset:-10%;background:radial-gradient(55% 55% at 50% 50%,rgba(255,211,148,.30),rgba(255,211,148,0) 70%)}
+/* per-place mirror (schema checkbox): flips the photo so the lamp sits on the lit start side; (0,4,1) beats the transform:none above */
+.env2-switch__stage .env2-switch__place.is-mirrored .env2-switch__layer img{transform:scaleX(-1)}
+/* inactive places are hidden (display:none + aria-hidden) 520 ms after the crossfade; Kalles has no [hidden] reset we can rely on */
+.env2-switch__place[hidden]{display:none}
 /* the warm halo: grows in with the lamp, flickers once when the line crosses into the dark zone (G4) */
 .env2-switch__glow{position:absolute;inset:-12%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(42% 46% at 50% 56%,rgba(255,196,110,.45),rgba(255,196,110,0) 72%);opacity:var(--lit,1);transition:opacity 1.6s .2s;z-index:1}
 .env2-switch__stage.is-dark .env2-switch__glow{animation:env2-flick .24s steps(1,end) 1}
@@ -222,10 +231,10 @@
 .env2-switch__cap--lit{right:0;width:max(min(48%,calc(100% - var(--v))),40%);text-align:end;padding-inline-start:26px}
 .env2-switch__cap--dark{left:0;width:max(min(48%,var(--v)),40%);text-align:start;padding-inline-end:26px}
 .env2-switch__k{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;line-height:1.3}
-.env2-switch__cap--lit .env2-switch__k{color:var(--env2-gold)}
+.env2-switch__cap--lit .env2-switch__k{color:var(--env2-gold);font-size:12px;text-shadow:0 1px 10px rgba(0,0,0,.85)}
 .env2-switch__cap--dark .env2-switch__k{color:var(--env2-mute)}
 .env2-switch__p{margin:0;font-family:var(--env2-serif);font-weight:500;font-size:24px;line-height:1.2;color:var(--env2-ink);text-wrap:pretty;text-shadow:0 1px 18px rgba(0,0,0,.5)}
-.env2-switch__cap--dark .env2-switch__p{font-size:20px;color:var(--env2-ink-2)}
+.env2-switch__cap--dark .env2-switch__p{font-size:20px;color:var(--env2-ink)}
 
 /* the line, the knob, the range that covers the stage */
 .env2-switch__range{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none;background:none;touch-action:pan-y}
@@ -277,13 +286,16 @@
   .env2-switch__cap{padding:14px 16px 16px;gap:5px}
   .env2-switch__cap--lit{padding-inline-start:18px}
   .env2-switch__cap--dark{padding-inline-end:18px}
-  .env2-switch__k{font-size:10px}
+  .env2-switch__k{font-size:11px}
+  .env2-switch__cap--dark .env2-switch__k{color:var(--env2-ink-2)}
   .env2-switch__p{font-size:15px;line-height:1.25}
-  .env2-switch__cap--dark .env2-switch__p{font-size:13.5px}
+  .env2-switch__cap--dark .env2-switch__p{font-size:15px;color:var(--env2-ink)}
   .env2-switch__knob{width:40px;height:40px}
-  .env2-switch__hint{font-size:11px}
-  .env2-switch__under{margin-top:12px}
-  .env2-switch__toggle{justify-content:center;padding-top:20px}
+  .env2-switch__hint{font-size:12px}
+  /* under the stage: the helper and the active collection link as a 44px pill (the quick toggle is desktop-only — G3) */
+  .env2-switch__under{margin-top:12px;flex-wrap:wrap;gap:12px 20px}
+  .env2-switch__plink.env2-link{font-size:14px;color:var(--env2-ink);min-height:44px;padding:13px 18px;border:0;box-shadow:inset 0 0 0 1px var(--env2-hair-btn);border-radius:999px}
+  .env2-switch__toggle{display:none}
   .env2-switch__foot{margin-top:44px;padding-top:32px;grid-template-columns:1fr;gap:28px}
   .env2-switch__q{font-size:22px}
 }
@@ -339,9 +351,38 @@
       if (onBtn) { onBtn.classList.toggle('is-active', v <= 4); onBtn.setAttribute('aria-pressed', v <= 4 ? 'true' : 'false'); }
       if (offBtn) { offBtn.classList.toggle('is-active', v >= 96); offBtn.setAttribute('aria-pressed', v >= 96 ? 'true' : 'false'); }
     }
+    /* touch / pen: the stage keeps touch-action:pan-y, but the native range grabs every finger the moment it lands.
+       Decide once per gesture after 6 px: vertical = the page scrolls and the line stays where it was; horizontal = the
+       line follows; a tap sets. Mouse and keyboard are untouched by this guard. */
+    var g = null;
     if (range) {
-      range.addEventListener('input', function(){ setV(range.value, false); });
-      range.addEventListener('change', function(){ setV(range.value, false); });
+      range.addEventListener('pointerdown', function(e){
+        if (e.pointerType === 'mouse') return;
+        g = { x: e.clientX, y: e.clientY, v: +range.value, mode: 0 };
+      });
+      range.addEventListener('pointermove', function(e){
+        if (!g || g.mode !== 0) return;
+        var dx = Math.abs(e.clientX - g.x), dy = Math.abs(e.clientY - g.y);
+        if (dx < 6 && dy < 6) return;
+        if (dy > dx) { g.mode = 2; range.value = g.v; setV(g.v, false); }
+        else { g.mode = 1; setV(range.value, false); }
+      });
+      var endGesture = function(e){
+        if (!g) return;
+        if (g.mode === 2 || e.type === 'pointercancel') { range.value = g.v; setV(g.v, false); }
+        else if (g.mode === 0) setV(range.value, false);
+        g = null;
+      };
+      range.addEventListener('pointerup', endGesture);
+      range.addEventListener('pointercancel', endGesture);
+      range.addEventListener('input', function(){
+        if (g && g.mode !== 1) return;
+        setV(range.value, false);
+      });
+      range.addEventListener('change', function(){
+        if (g) return;
+        setV(range.value, false);
+      });
       range.addEventListener('keydown', function(e){
         var v = +range.value, k = e.key, d = 0;
         if (k === 'ArrowRight' || k === 'ArrowUp') d = 2;
@@ -367,7 +408,18 @@
         t.setAttribute('tabindex', on ? '0' : '-1');
         if (on && focus) t.focus();
       });
-      places.forEach(function(p, j){ p.classList.toggle('is-active', j === i); });
+      places.forEach(function(p, j){
+        var on = j === i;
+        p.setAttribute('aria-hidden', on ? 'false' : 'true');
+        if (on) {
+          p.hidden = false;
+          /* un-hide first, then fade in on the next frame so the .5 s crossfade actually runs */
+          requestAnimationFrame(function(){ p.classList.add('is-active'); });
+        } else {
+          p.classList.remove('is-active');
+          setTimeout(function(){ if (!p.classList.contains('is-active')) p.hidden = true; }, 520);
+        }
+      });
       links.forEach(function(a){
         var on = a.getAttribute('data-env2-switch-link') === String(i);
         a.classList.toggle('is-active', on);
@@ -444,8 +496,8 @@
     { "type": "range", "id": "default_split", "label": "כמה אחוז מהתמונה מואר בהתחלה", "min": 20, "max": 80, "step": 1, "unit": "%", "default": 62 },
     { "type": "text", "id": "toggle_on_label", "label": "מתג מהיר — דולק", "default": "דולק" },
     { "type": "text", "id": "toggle_off_label", "label": "מתג מהיר — כבוי", "default": "כבוי" },
-    { "type": "textarea", "id": "quote", "label": "ציטוט (מתוך «מי אנחנו»)", "default": "«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»" },
-    { "type": "text", "id": "quote_cite", "label": "מקור הציטוט", "default": "מתוך «מי אנחנו», elmsnest.com" },
+    { "type": "textarea", "id": "quote", "label": "ציטוט (מתוך \"מי אנחנו\")", "default": "\"כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.\"" },
+    { "type": "text", "id": "quote_cite", "label": "מקור הציטוט", "default": "מתוך \"מי אנחנו\"" },
     { "type": "text", "id": "guide_label", "label": "קישור למדריך — טקסט", "default": "למדריך המלא לבחירת תאורה לגינה ←" },
     { "type": "url", "id": "guide_link", "label": "קישור למדריך — כתובת" },
     { "type": "textarea", "id": "photo_line", "label": "שורת בדיקת התאמה בתמונה", "default": "לא בטוחים איזה מקום זה? שלחו תמונה — נבדוק התאמה לפני שתזמינו." },
@@ -467,6 +519,7 @@
         { "type": "range", "id": "image_index", "label": "איזו תמונה של המוצר (מיקום בגלריה)", "min": 1, "max": 4, "step": 1, "default": 2 },
         { "type": "image_picker", "id": "image", "label": "תמונה אחרת (במקום תמונת המוצר)" },
         { "type": "text", "id": "object_position", "label": "מיקום החיתוך בתמונה (object-position)", "default": "50% 50%", "info": "למשל 50% 20% כדי להצמיד לחלק העליון." },
+        { "type": "checkbox", "id": "mirror", "label": "להפוך את התמונה (ימין↔שמאל)", "default": false, "info": "כשהמנורה בתמונה יושבת בצד החשוך — ההיפוך מעביר אותה לצד המואר." },
         { "type": "collection", "id": "collection", "label": "קולקציה (קישור מתחת לבמה)" }
       ]
     }
@@ -475,7 +528,7 @@
     {
       "name": "ElmsNest v2 — גם מתי לא",
       "blocks": [
-        { "type": "place", "settings": { "title": "שביל, מדרגות ומעברים", "title_short": "שביל", "suits": "לראות את הדרך", "not_suits": "המקום כמעט אינו מקבל אור יום", "product": "stainless-steel-solar-path-light-ip65", "image_index": 2, "object_position": "45% 50%", "collection": "תאורת-שביל-סולארית" } },
+        { "type": "place", "settings": { "title": "שביל, מדרגות ומעברים", "title_short": "שביל", "suits": "לראות את הדרך", "not_suits": "המקום כמעט אינו מקבל אור יום", "product": "stainless-steel-solar-path-light-ip65", "image_index": 2, "object_position": "45% 50%", "mirror": true, "collection": "תאורת-שביל-סולארית" } },
         { "type": "place", "settings": { "title": "כניסה, קיר וחזית", "title_short": "קיר", "suits": "להאיר נקודה מסוימת", "not_suits": "נדרש אור חזק וקבוע לאורך כל הלילה", "product": "modern-led-wall-light-6w-up-down", "image_index": 1, "object_position": "50% 50%", "collection": "solar-wall-lights" } },
         { "type": "place", "settings": { "title": "מרפסת ופינת ישיבה", "title_short": "מרפסת", "suits": "ליצור אווירה", "not_suits": "צריך אור חזק — זו אינה מטרתה", "product": "solar-crystal-ball-string-lights", "image_index": 3, "object_position": "50% 50%", "collection": "גרילנדות-ותאורה-דקורטיבית" } },
         { "type": "place", "settings": { "title": "הדגשת אזור בגינה", "title_short": "גינה", "suits": "הארה ממוקדת של עץ או ערוגה", "not_suits": "נדרשת התקנה מיוחדת או חיבור קבוע", "product": "solar-firefly-garden-lights", "image_index": 3, "object_position": "50% 20%", "collection": "ספוטים-ופרוז-קטורים-סולאריים" } }

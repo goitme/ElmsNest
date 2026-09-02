@@ -12,15 +12,20 @@
     assign fill = section.settings.fill_collection.featured_image
   endif
   assign word = section.settings.word | default: 'אווירה'
-  assign all_products = collections.all.products
   assign all_count = collections.all.products_count
-  assign price_mins = all_products | map: 'price_min' | sort
-  assign price_maxs = all_products | map: 'price_max' | sort
-  assign reach_min = price_mins | first
-  assign reach_max = price_maxs | last
   assign reach_link = section.settings.reach_link | default: '/collections/all'
 -%}
-<section id="env2-atmosphere" data-env2-atmosphere class="env2-section env2-atm" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45">
+{%- comment -%} the ₪ range scans every product (paginate lifts the 50-product default of collections.all.products) {%- endcomment -%}
+{%- paginate collections.all.products by 250 -%}
+  {%- liquid
+    assign all_products = collections.all.products
+    assign price_mins = all_products | map: 'price_min' | sort
+    assign price_maxs = all_products | map: 'price_max' | sort
+    assign reach_min = price_mins | first
+    assign reach_max = price_maxs | last
+  -%}
+{%- endpaginate -%}
+<section id="env2-atmosphere" data-env2-atmosphere class="env2-section env2-atm" dir="rtl" aria-labelledby="env2-atmosphere-h2" style="scroll-margin-top:90px;--env2-stars:.45">
   <div class="env2-stars" aria-hidden="true"></div>
 
   <div class="env2-wrap env2-atm__head">
@@ -34,7 +39,7 @@
 
   <div class="env2-atm__stage">
     {%- comment -%} the word: photo-filled, a lamp (its glow and brightness follow --lit) {%- endcomment -%}
-    <h2 class="env2-atm__word{% if fill == blank %} env2-atm__word--nofill{% endif %}" data-lamp{% if fill != blank %} style="background-image:url('{{ fill | image_url: width: 1600 }}')"{% endif %}>{{ word }}</h2>
+    <h2 id="env2-atmosphere-h2" class="env2-atm__word{% if fill == blank %} env2-atm__word--nofill{% endif %}" data-lamp{% if fill != blank %} style="background-image:url('{{ fill | image_url: width: 1600 }}')"{% endif %}>{{ word }}</h2>
 
     {%- comment -%} the string: a quadratic catenary (sag 120 desktop / 60 mobile), bulbs as HTML dots so
         they stay round when the SVG stretches; the three drop-lines are computed from each block's x {%- endcomment -%}
@@ -94,7 +99,7 @@
           assign hx = block.settings.x | default: 50
           assign har = block.settings.aspect | default: '1/1.1'
         -%}
-        <article class="env2-atm__hang" data-lamp style="--env2-atm-w:{{ hw }}px;--env2-atm-hang:{{ hh }}px;--env2-atm-x:{{ hx }}%;--env2-atm-ar:{{ har }};--env2-atm-op:{{ op }}" {{ block.shopify_attributes }}>
+        <article class="env2-atm__hang{% if block.settings.tone_down %} env2-atm__hang--dim{% endif %}" data-lamp style="--env2-atm-w:{{ hw }}px;--env2-atm-hang:{{ hh }}px;--env2-atm-x:{{ hx }}%;--env2-atm-ar:{{ har }};--env2-atm-op:{{ op }}" {{ block.shopify_attributes }}>
           <div class="env2-atm__fig">
             <div class="env2-ph env2-atm__ph{% if op contains '100%' %} env2-atm__ph--deep{% endif %}">
               {%- if img != blank -%}
@@ -109,7 +114,7 @@
             {%- if product != blank -%}
               <h3 class="env2-atm__t"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
               <span class="env2-atm__price">{% render 'elmsnest-v2-price', product: product %}</span>
-              <span class="env2-atm__buy">{% render 'elmsnest-v2-buy', product: product, label: block.settings.button_label, small: true %}</span>
+              <span class="env2-atm__buy">{% render 'elmsnest-v2-buy', product: product, label: block.settings.button_label, small: true, link: true %}</span>
             {%- else -%}
               <h3 class="env2-atm__t">בחרו מוצר בבלוק הזה</h3>
             {%- endif -%}
@@ -117,6 +122,7 @@
         </article>
       {%- endfor -%}
     </div>
+    <p class="env2-atm__helper" aria-hidden="true">גללו ←</p>
   </div>
 
   {%- comment -%} reach line: real count, real ₪ range (computed from collections.all), link to all {%- endcomment -%}
@@ -124,7 +130,7 @@
     <p class="env2-atm__reach-line">
       <span class="env2-atm__n"><bdi>{{ all_count }}</bdi></span> מוצרים
       {%- if reach_min and reach_max %} <span class="env2-atm__dot">·</span> <span class="env2-atm__n"><bdi>{{ reach_min | money_without_currency }}–{{ reach_max | money_without_currency }}</bdi></span> ₪{% endif %}
-      <span class="env2-atm__dot">·</span>
+      <span class="env2-atm__dot env2-atm__dot--link">·</span>
       <a class="env2-link env2-atm__all" href="{{ reach_link }}">{{ section.settings.reach_label | default: 'לכל המוצרים, לפי מקום' }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
     </p>
   </div>
@@ -138,7 +144,7 @@
 
 /* head: eyebrow at the start, sub at the end, bottoms aligned; the word follows full-bleed */
 .env2-atm__head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px 40px}
-.env2-atm__sub{margin:0;max-width:36ch;font-size:16px;line-height:1.55;color:var(--env2-ink-2);text-align:end}
+.env2-atm__sub{margin:0;max-width:36ch;font-size:16px;line-height:1.55;color:var(--env2-ink-2)}
 
 /* the word: FRL 900, photo-filled, a lamp — dim + no glow until reached (switch line 218, restyled) */
 .env2-atm__stage{position:relative}
@@ -161,7 +167,7 @@
 .env2-atm__bulb::before{content:"";position:absolute;bottom:100%;left:50%;width:1px;height:8px;margin-left:-.5px;background:rgba(244,238,227,.45)}
 .env2-atm__bulb::after{content:"";position:absolute;inset:0;border-radius:50%;
   background:radial-gradient(circle at 40% 35%,#fff6dd,var(--env2-glow) 55%,var(--env2-ember));
-  box-shadow:0 0 6px 1px rgba(255,211,148,.95),0 0 22px 7px rgba(247,162,74,.38),0 0 60px 18px rgba(247,162,74,.14);
+  box-shadow:0 0 6px 1px rgba(255,211,148,.95),0 0 18px 6px rgba(247,162,74,.35);mix-blend-mode:screen;
   opacity:var(--lit,1);transition:opacity .4s calc(var(--env2-atm-bi,0)*80ms)}
 .env2-atm__bulb--m{display:none}
 
@@ -172,6 +178,10 @@
 .env2-atm__fig{position:relative;isolation:isolate}
 .env2-atm__ph{aspect-ratio:var(--env2-atm-ar,1/1.1)}
 .env2-atm__ph img{object-position:var(--env2-atm-op,50% 50%)}
+/* tone_down: a bright (indoor) product photo held a step darker — and with half the warm halo — so it sits on the
+   night sky no brighter than the others (lit: brightness .55, the base's .8 still reads as a cream rectangle) */
+.env2-atm__hang.env2-atm__hang--dim .env2-atm__ph img{filter:brightness(calc(.15 + .4*var(--lit,1))) saturate(calc(.4 + .5*var(--lit,1)))}
+.env2-atm__hang.env2-atm__hang--dim .env2-atm__ph::after{opacity:calc(.5*var(--lit,1))}
 /* bottom-anchored crops (object-position … 100%) zoom in from the bottom so a badge in the top third of a
    square source is gone at 4/3 (the rope light's IP65 tag ends at 28 % — 4/3 alone crops 25 %) */
 .env2-atm__hang .env2-atm__fig .env2-atm__ph--deep img{transform:scale(1.14);transform-origin:50% 100%}
@@ -186,6 +196,8 @@
 .env2-atm__t a:hover,.env2-atm__t a:focus-visible{color:var(--env2-glow)}
 .env2-atm__price .env2-price.env2-price{--env2-price-size:19px}
 .env2-atm__buy{display:inline-block;margin-top:2px}
+.env2-atm__buy .env2-link{font-size:13.5px}
+.env2-atm__helper{display:none}
 
 /* reach line: hairline above, end-aligned; the numbers in the serif glow */
 .env2-atm__reach{margin-top:40px;padding-top:22px;border-top:1px solid var(--env2-hair);display:flex;justify-content:flex-end}
@@ -203,12 +215,16 @@
   .env2-atm__string{height:120px;margin-top:calc(-.06*clamp(96px,24vw,340px))}
   .env2-atm__svg--d,.env2-atm__bulb--d{display:none}
   .env2-atm__svg--m,.env2-atm__bulb--m{display:block}
-  .env2-atm__band{height:auto;margin-top:8px;display:flex;align-items:flex-end;gap:18px;padding:20px var(--env2-gut) 36px;
-    overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--env2-gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .env2-atm__band{height:auto;margin-top:-30px;display:flex;align-items:flex-end;gap:18px;padding:44px var(--env2-gut) 36px;padding-inline-end:56px;
+    overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--env2-gut);scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 48px,#000 100%);mask-image:linear-gradient(90deg,transparent 0,#000 48px,#000 100%)}
   .env2-atm__band::-webkit-scrollbar{display:none}
-  .env2-atm__band::after{content:"";position:absolute;inset-inline:-10vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,211,148,.45) 30%,rgba(255,211,148,.45) 70%,transparent)}
-  .env2-atm__hang{position:static;flex:0 0 var(--env2-atm-mw,200px);width:var(--env2-atm-mw,200px);margin:0;scroll-snap-align:start}
-  .env2-atm__hang::before{display:none}
+  .env2-atm__hang{position:relative;top:auto;inset-inline-start:auto;flex:0 0 var(--env2-atm-mw,200px);width:var(--env2-atm-mw,200px);margin:0;scroll-snap-align:start}
+  /* the drop-line runs from each card top to the band's top edge (its scroll box clips the rest), so every card
+     reaches the string whatever its height — cards are bottom-aligned */
+  .env2-atm__hang::before{display:block;top:auto;bottom:100%;height:240px;inset-inline-start:50%}
+  .env2-atm__helper{display:block;margin:-24px var(--env2-gut) 0;font-size:12px;letter-spacing:.04em;color:var(--env2-mute)}
+  .env2-atm__dot--link{display:none}
   .env2-atm__hang:nth-child(1){--env2-atm-mw:230px}
   .env2-atm__hang:nth-child(2){--env2-atm-mw:200px}
   .env2-atm__hang:nth-child(3){--env2-atm-mw:170px}
@@ -276,6 +292,7 @@
       "settings": [
         { "type": "product", "id": "product", "label": "מוצר" },
         { "type": "range", "id": "image_index", "label": "איזו תמונה של המוצר (מיקום בגלריה)", "min": 1, "max": 4, "step": 1, "default": 1 },
+        { "type": "checkbox", "id": "tone_down", "label": "להכהות מעט (לתמונות בהירות)", "default": false },
         { "type": "text", "id": "button_label", "label": "טקסט כפתור (רק למוצר עם כמה וריאנטים)", "default": "לבחירת אורך" },
         { "type": "range", "id": "width", "label": "רוחב התמונה", "min": 160, "max": 320, "step": 10, "unit": "px", "default": 240 },
         { "type": "range", "id": "hang", "label": "אורך החוט (כמה נמוך המוצר תלוי)", "min": 0, "max": 160, "step": 10, "unit": "px", "default": 0 },
@@ -296,7 +313,7 @@
       "blocks": [
         { "type": "product", "settings": { "product": "solar-rope-string-lights", "image_index": 3, "button_label": "לבחירת אורך", "width": 240, "hang": 60, "x": 15, "aspect": "4/3", "object_position": "50% 100%" } },
         { "type": "product", "settings": { "product": "solar-crystal-ball-string-lights", "image_index": 1, "button_label": "לבחירת אורך", "width": 300, "hang": 0, "x": 50, "aspect": "1/1.1", "object_position": "50% 50%" } },
-        { "type": "product", "settings": { "product": "lighted-birch-branches-20-led", "image_index": 2, "button_label": "לבחירה", "width": 200, "hang": 120, "x": 82, "aspect": "1/1.4", "object_position": "50% 50%" } }
+        { "type": "product", "settings": { "product": "lighted-birch-branches-20-led", "image_index": 1, "tone_down": true, "button_label": "לבחירה", "width": 200, "hang": 120, "x": 82, "aspect": "1/1.4", "object_position": "50% 50%" } }
       ]
     }
   ]

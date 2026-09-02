@@ -17,10 +17,13 @@ const { chromium } = require('/tmp/claude-0/-home-user-ElmsNest/594be2b1-bb4b-50
     await p.goto(url, { waitUntil: 'load', timeout: 60000 });
     await p.evaluate(async () => {
       document.querySelectorAll('img[loading="lazy"]').forEach(i => i.loading = 'eager');
-      for (let y = 0; y < document.body.scrollHeight; y += 400) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 70)); }
-      window.scrollTo(0, 0);
+      // The theme sets html{scroll-behavior:smooth}; a smooth walk never lands on most offsets, so the
+      // IntersectionObserver / sweep in elmsnest-v2-base misses lamps. Force instant jumps for the walk.
+      document.documentElement.style.scrollBehavior = 'auto';
+      for (let y = 0; y < document.body.scrollHeight; y += 400) { window.scrollTo({ top: y, behavior: 'instant' }); await new Promise(r => setTimeout(r, 70)); }
+      window.scrollTo({ top: 0, behavior: 'instant' });
     });
-    await p.waitForTimeout(1800);
+    await p.waitForTimeout(2800); // lamp filter transitions run 1.6-2.4 s; let every lamp finish lighting
     await p.screenshot({ path: `${outPrefix}-${name}.png`, fullPage: true });
     // also a first-screen crop, since above-the-fold is what a visitor judges
     await p.screenshot({ path: `${outPrefix}-${name}-fold.png`, fullPage: false });

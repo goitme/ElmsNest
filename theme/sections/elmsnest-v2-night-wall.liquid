@@ -30,7 +30,7 @@
   endif
   assign alt = product.title | default: section.settings.heading_line1 | escape
 -%}
-<section id="env2-wall" data-env2-night-wall class="env2-section env2-wall" dir="rtl" style="scroll-margin-top:90px">
+<section id="env2-wall" data-env2-night-wall class="env2-section env2-wall" dir="rtl" style="scroll-margin-top:90px" aria-labelledby="env2-wall-h2">
 
   {%- comment -%} the background is the lamp: dim until reached, then the wall light comes on {%- endcomment -%}
   <div class="env2-wall__bg" data-lamp aria-hidden="true">
@@ -50,7 +50,7 @@
         <p class="env2-eyebrow env2-wall__eyebrow">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
 
-      <h2 class="env2-h env2-wall__h2">
+      <h2 class="env2-h env2-wall__h2" id="env2-wall-h2">
         {{- section.settings.heading_line1 -}}
         {%- if section.settings.heading_line2 != blank -%}
           <br><em class="env2-wall__glow">{{ section.settings.heading_line2 }}</em>
@@ -114,7 +114,7 @@
 .env2-wall .env2-wall__bg[data-lamp] .env2-wall__ph{position:absolute;inset:0;background:#05070c}
 /* the photo box runs wider than the viewport and is anchored at the start edge, so the lamp
    (centre of a square photo) lands in the END half instead of under the text column */
-.env2-wall .env2-wall__bg[data-lamp] .env2-wall__ph img{position:absolute;top:0;inset-inline-start:0;width:118%;max-width:none;height:100%;object-fit:cover;object-position:var(--env2-wall-op,30% 50%)}
+.env2-wall .env2-wall__bg[data-lamp] .env2-wall__ph img{position:absolute;top:0;inset-inline-start:0;width:118%;max-width:none;height:100%;object-fit:cover;object-position:var(--env2-wall-op,30% 50%);filter:brightness(calc(.17 + .61*var(--lit,1))) contrast(1.15) saturate(calc(.4 + .5*var(--lit,1)))}
 .env2-wall__placeholder{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.25}
 /* warm halo where the lamp actually is (end half), not in the middle of the frame */
 .env2-wall__bg[data-lamp] .env2-wall__ph::after{inset:-10%;background:radial-gradient(38% 46% at 34% 50%,rgba(255,211,148,.40),rgba(255,211,148,0) 70%)}
@@ -123,15 +123,18 @@
    top blends into sky-2 (the switch section), bottom into sky-3 (atmosphere) */
 .env2-wall__veil{position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
+    radial-gradient(42% 40% at 8% 10%,rgba(7,11,21,.45),rgba(7,11,21,0) 70%),
     linear-gradient(90deg,rgba(7,11,21,0) 26%,rgba(7,11,21,.62) 56%,rgba(7,11,21,.94) 100%),
     linear-gradient(0deg,var(--env2-sky-3) 0,transparent 30%),
     linear-gradient(180deg,var(--env2-sky-2) 0,transparent 25%)}
 
 /* text at the inline start (right in RTL); the end column is left to the lamp */
-.env2-wall__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);padding-block:120px;min-width:0}
+.env2-wall__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);padding-block:120px;min-width:0}
 .env2-wall__txt{display:grid;gap:22px;align-content:center;min-width:0;text-shadow:0 2px 28px rgba(2,3,6,.55)}
 .env2-wall__h2.env2-h{font-size:clamp(46px,7.2vw,118px);line-height:.95}
 .env2-wall__h2 .env2-wall__glow{font-style:normal;color:var(--env2-glow)}
+/* desktop only: the gold line never breaks into a third line (at 320 nowrap would overflow) */
+@media (min-width:901px){.env2-wall__h2 .env2-wall__glow{white-space:nowrap}}
 
 .env2-wall__prod{margin:16px 0 0;padding-top:22px;border-top:1px solid rgba(244,238,227,.18);display:grid;gap:8px;max-width:440px}
 .env2-wall__t{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:19px;line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:pretty}
@@ -139,7 +142,7 @@
 .env2-wall__t a:hover,.env2-wall__t a:focus-visible{color:var(--env2-glow)}
 .env2-wall__spec{margin:0;font-size:13px;line-height:1.5;color:var(--env2-mute);display:flex;flex-wrap:wrap;column-gap:14px;row-gap:2px}
 .env2-wall__opt{white-space:nowrap}
-.env2-wall__opt+.env2-wall__opt::before{content:"·";margin-inline-end:14px;color:var(--env2-mute)}
+.env2-wall__opt:not(:last-child)::after{content:"·";margin-inline-start:14px;color:var(--env2-mute)}
 .env2-wall__row{display:flex;align-items:center;gap:22px;margin-top:10px;flex-wrap:wrap}
 .env2-wall__price{display:inline-block}
 .env2-wall__price .env2-price.env2-price{--env2-price-size:34px}
@@ -158,11 +161,11 @@
 /* ---------- mobile: photo on top (62vh), text below over the fade ---------- */
 @media (max-width:900px){
   .env2-wall{min-height:auto;display:block}
-  .env2-wall__bg{inset:0 0 auto 0;height:62vh;height:62svh}
+  .env2-wall__bg{inset:0 0 auto 0;height:62vh;height:62svh;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
   .env2-wall .env2-wall__bg[data-lamp] .env2-wall__ph img{width:100%;object-position:var(--env2-wall-op-m,45% 50%)}
   .env2-wall__bg[data-lamp] .env2-wall__ph::after{background:radial-gradient(50% 50% at 50% 48%,rgba(255,211,148,.40),rgba(255,211,148,0) 70%)}
   .env2-wall__veil{background:
-    linear-gradient(0deg,var(--env2-sky-3) 0,rgba(7,11,21,.92) 48%,rgba(7,11,21,.15) 75%,transparent 100%),
+    linear-gradient(0deg,var(--env2-sky-3) 0,rgba(7,11,21,.92) 34%,rgba(7,11,21,.55) 50%,rgba(7,11,21,.15) 70%,transparent 100%),
     linear-gradient(180deg,var(--env2-sky-2) 0,transparent 20%)}
   .env2-wall__wrap{grid-template-columns:minmax(0,1fr);gap:0;padding-block:52vh 60px;padding-block:52svh 60px}
   .env2-wall__txt{gap:18px}
@@ -171,6 +174,7 @@
   .env2-wall__t{font-size:16px}
   .env2-wall__price .env2-price.env2-price{--env2-price-size:30px}
   .env2-wall__row{gap:16px}
+  .env2-wall__also{font-size:14px;padding-block:8px}
 }
 {% endstylesheet %}
 

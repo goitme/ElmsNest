@@ -8,7 +8,7 @@
         "bg_image_index_mobile": 1,
         "card_image_index": 4,
         "card_kicker": "המנורה שבתמונה · שביל",
-        "card_title_override": "מנורת שביל סולארית מנירוסטה, תאורה אוטומטית IP65",
+        "card_title_override": "",
         "note_title": "השעה הכחולה",
         "note_text": "הדקות שבין השקיעה ללילה. הדף הזה מחשיך איתן, וכל מנורה נדלקת כשמגיעים אליה.",
         "eyebrow": "תאורת חוץ, לפי המקום",
@@ -87,7 +87,8 @@
             "title_short": "שביל",
             "subtitle": "שביל, עמוד וגינה",
             "aspect": "5/4",
-            "lift": 0
+            "lift": 0,
+            "object_position": "50% 50%"
           }
         },
         "place_wall": {
@@ -97,7 +98,8 @@
             "title_short": "קיר",
             "subtitle": "תאורת קיר",
             "aspect": "3/4.6",
-            "lift": 60
+            "lift": 60,
+            "object_position": "0% 50%"
           }
         },
         "place_garden": {
@@ -107,7 +109,8 @@
             "title_short": "גינה",
             "subtitle": "ספוטים, פרוז׳קטורים וניידים",
             "aspect": "4/3.2",
-            "lift": 24
+            "lift": 24,
+            "object_position": "50% 50%"
           }
         },
         "place_terrace": {
@@ -117,7 +120,8 @@
             "title_short": "מרפסת",
             "subtitle": "גרילנדות ותאורה דקורטיבית",
             "aspect": "3/4.1",
-            "lift": 100
+            "lift": 100,
+            "object_position": "50% 50%"
           }
         }
       },
@@ -142,6 +146,7 @@
             "product": "stainless-steel-solar-path-light-ip65",
             "image_index": 2,
             "object_position": "45% 50%",
+            "mirror": true,
             "collection": "תאורת-שביל-סולארית"
           }
         },
@@ -198,13 +203,13 @@
         "default_split": 62,
         "toggle_on_label": "דולק",
         "toggle_off_label": "כבוי",
-        "quote": "«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»",
-        "quote_cite": "מתוך «מי אנחנו», elmsnest.com",
+        "quote": "\"כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.\"",
+        "quote_cite": "מתוך \"מי אנחנו\"",
         "guide_label": "למדריך המלא לבחירת תאורה לגינה ←",
         "guide_link": "/pages/guide-garden-lighting",
-        "photo_line": "לא בטוחים איזה מקום זה? שלחו תמונה — נבדוק התאמה לפני שתזמינו.",
-        "whatsapp_label": "לשליחת תמונה בוואטסאפ",
-        "whatsapp_url": "https://wa.me/"
+        "photo_line": "",
+        "whatsapp_label": "",
+        "whatsapp_url": ""
       }
     },
     "env2_night_wall": {
@@ -218,7 +223,7 @@
         "heading_line1": "הלילה כבר כאן.",
         "heading_line2": "קיר אחד מספיק.",
         "kicker": "קיר · LED",
-        "title_override": "מנורת קיר LED עמידה למים IP65, אור למעלה ולמטה",
+        "title_override": "",
         "button_label": "לבחירת הספק",
         "companion_product": "magnetic-rechargeable-touch-wall-light",
         "companion_prefix": "גם לקיר:"
@@ -257,7 +262,8 @@
           "type": "product",
           "settings": {
             "product": "lighted-birch-branches-20-led",
-            "image_index": 2,
+            "image_index": 1,
+            "tone_down": true,
             "button_label": "לבחירה",
             "width": 200,
             "hang": 120,
@@ -274,7 +280,7 @@
         "fill_collection": "גרילנדות-ותאורה-דקורטיבית",
         "sub": "גרילנדות ותאורה דקורטיבית: אור חם בגובה העיניים — כדי לשבת, לא כדי לקרוא.",
         "reach_label": "לכל המוצרים, לפי מקום",
-        "reach_link": "/collections/all"
+        "reach_link": "#env2-places"
       }
     },
     "env2_terms": {
@@ -318,7 +324,7 @@
           "settings": {
             "number": "1",
             "unit": "תמונה",
-            "title": "שלחו תמונה של המקום בוואטסאפ.",
+            "title": "שלחו תמונה של המקום.",
             "text": "נבדוק התאמה לפני שתזמינו — ואם המוצר לא מתאים, נגיד.",
             "link_label": "לשליחת תמונה",
             "link_url": ""
@@ -375,12 +381,12 @@
         "collection": "גרילנדות-ותאורה-דקורטיבית",
         "line": "שלחו תמונה של המקום — נבדוק התאמה לפני ההזמנה.",
         "whatsapp_label": "וואטסאפ",
-        "whatsapp_url": "https://wa.me/",
+        "whatsapp_url": "",
         "big_word": "לילה טוב",
         "strip_text": "משלוח חינם לנקודת איסוף · 8–17 ימי עסקים · ביטול תוך 14 יום לפי חוק הגנת הצרכן · לתנאים המלאים ←",
         "strip_link": "#env2-terms",
-        "instagram_url": "https://www.instagram.com/elmsnest/",
-        "tiktok_url": "https://www.tiktok.com/@elmsnest"
+        "instagram_url": "",
+        "tiktok_url": ""
       }
     }
   },

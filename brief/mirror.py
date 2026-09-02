@@ -40,6 +40,6 @@ for u,name in list(mapping.items()):
             css=css.replace(fu,fn)
         open(out+"/"+name,"w",encoding='utf-8').write(css)
 for u,name in sorted(mapping.items(),key=lambda kv:-len(kv[0])):
-    html=html.replace('"'+u+'"','"'+name+'"').replace('('+u+')','('+name+')').replace(u+' ',name+' ')
+    html=html.replace('"'+u+'"','"'+name+'"').replace('('+u+')','('+name+')').replace("('"+u+"')","('"+name+"')").replace(u+' ',name+' ')
 open(out+"/index.html","w",encoding="utf-8").write(html)
 print(f"mirrored {len(mapping)}/{len(sel)} assets → {out}/index.html ({len(html)//1024} KB)")

@@ -1,12 +1,18 @@
 {%- comment -%}
   ElmsNest v2 — buy control (WINNING-SPEC §3.5).
   Usage: {% render 'elmsnest-v2-buy', product: product, label: 'לבחירת גוון' %}
+         {% render 'elmsnest-v2-buy', product: product, label: 'לבחירת אורך', link: true %}
          {% render 'elmsnest-v2-buy', product: product, add_label: 'הוספה לסל', small: true %}
   One available variant → no-JS-safe POST form to routes.cart_add_url with hidden id + quantity=1
                           and a .env2-btn submit ("הוספה לסל" unless add_label is given).
   Anything else (several variants, or sold out) → <a class="env2-btn env2-btn--ghost" href="product.url">
                           with label | default: 'לבחירת דגם' (sold out: 'לעמוד המוצר').
   small: true adds .env2-btn--sm (hero card). Renders nothing when product is blank.
+  link: true → the multi-variant / sold-out case renders a quiet text link instead of the ghost pill:
+                          <a class="env2-link env2-buy__link" href="product.url">label <span aria-hidden="true">←</span></a>
+                          (atmosphere hanging trio: no pill under the product). The single-variant form is unchanged.
+  The base JS (elmsnest-v2-base) submits form[data-env2-buy] via cart/add.js and opens the Kalles cart drawer
+  when it exists; without it (no JS, no drawer, request failed) the form POSTs natively.
 {%- endcomment -%}
 {%- if product != blank -%}
   {%- liquid
@@ -29,8 +35,16 @@
       <button type="submit" name="add" class="{{ env2_btn_class }}">{{ add_label | default: 'הוספה לסל' }}</button>
     </form>
   {%- elsif product.available -%}
-    <a class="{{ env2_btn_class }} env2-btn--ghost" href="{{ product.url }}">{{ label | default: 'לבחירת דגם' }}</a>
+    {%- if link -%}
+      <a class="env2-link env2-buy__link" href="{{ product.url }}">{{ label | default: 'לבחירת דגם' }} <span aria-hidden="true">←</span></a>
+    {%- else -%}
+      <a class="{{ env2_btn_class }} env2-btn--ghost" href="{{ product.url }}">{{ label | default: 'לבחירת דגם' }}</a>
+    {%- endif -%}
   {%- else -%}
-    <a class="{{ env2_btn_class }} env2-btn--ghost" href="{{ product.url }}">{{ label | default: 'לעמוד המוצר' }}</a>
+    {%- if link -%}
+      <a class="env2-link env2-buy__link" href="{{ product.url }}">{{ label | default: 'לעמוד המוצר' }} <span aria-hidden="true">←</span></a>
+    {%- else -%}
+      <a class="{{ env2_btn_class }} env2-btn--ghost" href="{{ product.url }}">{{ label | default: 'לעמוד המוצר' }}</a>
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}

@@ -4,7 +4,7 @@
   Prints <span class="env2-price"><bdi>…</bdi> ₪</span> — number first, then the sign (§3.2).
   Rule: single price → "169.90 ₪"
         narrow range (max <= min * 1.25) → "219.90–252.90 ₪"
-        wide range → "מ־89.90 ₪"
+        wide range → "מ־89.90 ₪" (the מ־ prefix is <span class="env2-price__from">: smaller, Heebo, ink-2 — styled by the base)
   Size it from the section: .env2-<section>__price .env2-price{--env2-price-size:30px}
   Renders nothing when product is blank.
 {%- endcomment -%}
@@ -17,6 +17,6 @@
   {%- elsif env2_max <= env2_cap -%}
     <span class="env2-price"><bdi>{{ env2_min | money_without_currency }}–{{ env2_max | money_without_currency }}</bdi> ₪</span>
   {%- else -%}
-    <span class="env2-price">מ־<bdi>{{ env2_min | money_without_currency }}</bdi> ₪</span>
+    <span class="env2-price"><span class="env2-price__from">מ־</span><bdi>{{ env2_min | money_without_currency }}</bdi> ₪</span>
   {%- endif -%}
 {%- endif -%}

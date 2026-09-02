@@ -217,6 +217,7 @@ body{margin:0;background:#f7f0e6;color:#2b2118;font-family:Arial}
 .env2-hero__img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:brightness(max(.45, calc(1 - 2.2*var(--env2-p,0)))) saturate(1.05);transition:filter .2s linear;will-change:filter}
 /* the scrim dissolves with the photo (same mask) so the hero ends on the page sky, never on a seam */
 .env2-hero__scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 60%,rgba(0,0,0,.55) 84%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 60%,rgba(0,0,0,.55) 84%,transparent 100%);background:
+  radial-gradient(42% 33% at 16% 24%,rgba(8,13,26,.8),rgba(8,13,26,.55) 36%,rgba(8,13,26,0) 72%),
   linear-gradient(180deg,rgba(20,32,60,.55) 0,rgba(20,32,60,0) 28%),
   linear-gradient(0deg,var(--env2-sky-1) 0,rgba(31,51,87,.6) 22%,rgba(31,51,87,0) 55%),
   linear-gradient(90deg,rgba(10,16,30,0) 40%,rgba(10,16,30,.55) 100%),
@@ -235,7 +236,7 @@ body{margin:0;background:#f7f0e6;color:#2b2118;font-family:Arial}
 .env2-hero__thumb{width:100%;height:100%}
 .env2-hero__card-body{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
 .env2-hero__kicker{display:block}
-.env2-hero__title{font-family:var(--env2-sans);font-weight:400;font-size:15px;line-height:1.35;margin:6px 0 10px;color:var(--env2-ink);unicode-bidi:isolate;letter-spacing:0;text-transform:none}
+.env2-hero__title{font-family:var(--env2-sans);font-weight:400;font-size:15px;line-height:1.35;margin:6px 0 10px;color:var(--env2-ink);unicode-bidi:isolate;letter-spacing:0;text-transform:none;text-wrap:pretty}
 .env2-hero__title a{color:inherit}
 .env2-hero__price{margin-bottom:10px}
 .env2-hero__price .env2-price{--env2-price-size:26px;display:block}
@@ -243,7 +244,7 @@ body{margin:0;background:#f7f0e6;color:#2b2118;font-family:Arial}
 .env2-hero__card--empty{display:block;color:var(--env2-ink-2);font-size:13px}
 .env2-hero__empty{margin:0}
 /* the sun goes down — fixed hairline rail, desktop only */
-.env2-hero__sun{position:fixed;inset-inline-end:22px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;align-items:center;gap:12px;font-family:var(--env2-sans);font-size:10.5px;font-weight:400;letter-spacing:.14em;color:var(--env2-ink-2);pointer-events:none}
+.env2-hero__sun{position:fixed;inset-inline-end:14px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;align-items:center;gap:12px;font-family:var(--env2-sans);font-size:10px;font-weight:400;letter-spacing:.14em;color:var(--env2-ink-2);pointer-events:none}
 .env2-hero__rail{position:relative;display:block;width:1px;height:150px;background:linear-gradient(var(--env2-sky-0),var(--env2-glow) 50%,#000);opacity:.8}
 .env2-hero__dot{position:absolute;inset-inline-start:-4px;top:calc(var(--env2-p,0)*100% - 4px);width:9px;height:9px;border-radius:50%;background:var(--env2-glow);box-shadow:0 0 12px 3px rgba(255,211,148,.6);transition:top .15s linear}
 @media (max-width:900px){
@@ -253,13 +254,13 @@ body{margin:0;background:#f7f0e6;color:#2b2118;font-family:Arial}
     linear-gradient(180deg,rgba(20,32,60,.5) 0,rgba(20,32,60,0) 25%),
     linear-gradient(0deg,var(--env2-sky-1) 0,rgba(31,51,87,.85) 26%,rgba(31,51,87,0) 60%),
     radial-gradient(90% 55% at 70% 45%,rgba(8,13,26,.45),rgba(8,13,26,0) 70%)}
-  .env2-hero__wrap{grid-template-columns:1fr;gap:24px;padding-block:96px 84px}
-  .env2-hero__note{position:static;max-width:34ch;margin:0 0 14px;border:0;padding:0;font-size:12px}
-  .env2-hero__note-title{display:inline;font-size:13.5px;margin-inline-end:4px}
-  .env2-hero__note-title::after{content:" — "}
-  .env2-hero__h1{font-size:clamp(54px,15.5vw,72px);margin:10px 0 16px}
+  .env2-hero__wrap{grid-template-columns:1fr;gap:18px;padding-block:80px 48px}
+  .env2-hero__note{display:none}
+  .env2-hero__h1{font-size:clamp(54px,15.5vw,72px);margin:8px 0 12px}
   .env2-hero__lead{font-size:16px}
-  .env2-hero__ctas{margin-top:22px;gap:10px}
+  .env2-hero__ctas{margin-top:16px;gap:10px}
+  /* R27/F18: scrim tint so the ghost label stays legible over the white bollard */
+  .env2-hero__ctas .env2-btn--ghost{background:rgba(5,8,14,.35);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
   .env2-hero__card{justify-self:stretch;width:100%;grid-template-columns:minmax(0,1fr) 104px;padding:12px;gap:14px}
   .env2-hero__ph{order:2}
   .env2-hero__card-body{order:1}
@@ -307,7 +308,7 @@ body{margin:0;background:#f7f0e6;color:#2b2118;font-family:Arial}
       </a>
       <div class="env2-hero__card-body">
         <span class="env2-kicker env2-hero__kicker">המנורה שבתמונה · שביל</span>
-        <h2 class="env2-hero__title"><a href="/products/stainless-steel-solar-path-light-ip65">מנורת שביל סולארית מנירוסטה, תאורה אוטומטית IP65</a></h2>
+        <h3 class="env2-hero__title"><a href="/products/stainless-steel-solar-path-light-ip65">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65</a></h3>
         <div class="env2-hero__price"><span class="env2-price"><bdi>169.90</bdi> ₪</span></div>
         <div class="env2-hero__buy"><form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-buy" data-env2-buy><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" name="id" value="1"><input type="hidden" name="quantity" value="1"><button type="submit" name="add" class="env2-btn env2-btn--sm">הוספה לסל</button></form></div>
       </div>

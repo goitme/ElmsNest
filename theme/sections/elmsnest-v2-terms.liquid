@@ -57,6 +57,7 @@
                 assign line_text = line_text | append: ' ' | append: tok
               endif
             endfor
+            assign line_text = line_text | replace: '</bdi> ₪', '</bdi>&nbsp;₪' | replace: '</bdi> %', '</bdi>&nbsp;%'
           -%}
           {%- assign link_href = block.settings.link_url | default: wa_url -%}
           <li class="env2-terms__line" {{ block.shopify_attributes }}>
@@ -96,19 +97,19 @@
 /* ---------- §4.7 terms: a night ledger — rows on hairlines, numeral at the start, text at the end ----------
    note: this bundle loads in <head> BEFORE the base inline style; anything that overrides a base
    helper (.env2-h …) needs higher specificity, not later source order. */
-.env2-terms{padding-block:120px 100px}
+.env2-terms{padding-block:110px 90px}
 .env2-terms__wrap{position:relative;z-index:1}
 
 /* head: eyebrow + h2 at the start, one-line intro at the end, bottoms aligned */
 .env2-terms__head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;gap:24px 40px;margin-bottom:40px}
 .env2-terms__title{min-width:0}
 .env2-terms__eyebrow{margin-bottom:22px}
-.env2-terms__h2.env2-h{font-size:clamp(40px,5.6vw,84px);max-width:11ch}
-.env2-terms__intro{justify-self:end;text-align:end;max-width:40ch;margin:0 0 .35em;font-family:var(--env2-sans);font-weight:300;font-size:15.5px;line-height:1.55;color:var(--env2-ink-2)}
+.env2-terms__h2.env2-h{font-size:clamp(40px,5.6vw,84px);max-width:15ch}
+.env2-terms__intro{justify-self:end;max-width:40ch;margin:0 0 .35em;font-family:var(--env2-sans);font-weight:300;font-size:15.5px;line-height:1.55;color:var(--env2-ink-2)}
 
 /* the ledger: a list with no list styling; every row a hairline, the last one closed below */
 .env2-terms__ledger{list-style:none;margin:0;padding:0;display:grid}
-.env2-terms__line{display:grid;grid-template-columns:minmax(200px,.5fr) minmax(0,1fr);gap:32px;align-items:baseline;margin:0;padding:30px 0;border-top:1px solid var(--env2-hair)}
+.env2-terms__line{display:grid;grid-template-columns:minmax(200px,.5fr) minmax(0,1fr);gap:32px;align-items:baseline;margin:0;padding:24px 0;border-top:1px solid var(--env2-hair)}
 .env2-terms__line:last-child{border-bottom:1px solid var(--env2-hair)}
 
 /* the numeral: glow serif at 100 px, tabular, unit at .32em in ink-2 right after it */
@@ -139,7 +140,9 @@
   .env2-terms__line{grid-template-columns:1fr;gap:12px;padding:24px 0}
   .env2-terms__n{font-size:58px}
   .env2-terms__b{font-size:17px}
-  .env2-terms__foot{gap:10px 18px}
+  .env2-terms__foot{gap:10px 18px;font-size:13.5px}
+  .env2-terms__foot-a{padding-block:9px}
+  .env2-terms__a{padding-block:8px}
 }
 {% endstylesheet %}
 

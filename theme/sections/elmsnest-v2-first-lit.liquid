@@ -5,14 +5,14 @@
   Shared plumbing (fonts/base/price/buy snippets) is rendered by elmsnest-v2-hero; this
   section only assumes it and degrades to "everything lit" without it.
 {%- endcomment -%}
-<section id="env2-first" data-env2-first-lit class="env2-section env2-first" dir="rtl" style="scroll-margin-top:90px">
+<section id="env2-first" data-env2-first-lit class="env2-section env2-first" dir="rtl" style="scroll-margin-top:90px" aria-labelledby="env2-first-h2">
   <div class="env2-wrap">
     <div class="env2-first__head">
       <div class="env2-first__title">
         {%- if section.settings.eyebrow != blank -%}
           <p class="env2-eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
-        <h2 class="env2-h env2-first__h2">{{ section.settings.heading }}</h2>
+        <h2 class="env2-h env2-first__h2" id="env2-first-h2">{{ section.settings.heading }}</h2>
       </div>
       {%- if section.settings.intro != blank -%}
         <p class="env2-first__intro">{{ section.settings.intro }}</p>
@@ -53,7 +53,7 @@
                 <h3 class="env2-first__t env2-first__t--big"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
                 <div class="env2-first__row">
                   <span class="env2-first__price env2-first__price--big">{% render 'elmsnest-v2-price', product: product %}</span>
-                  <span class="env2-first__buy">{% render 'elmsnest-v2-buy', product: product, label: block.settings.button_label %}</span>
+                  <span class="env2-first__buy">{% render 'elmsnest-v2-buy', product: product, label: block.settings.button_label, small: true %}</span>
                 </div>
                 {%- if block.settings.variant_note != blank -%}
                   <span class="env2-first__var">{{ block.settings.variant_note }}</span>
@@ -137,7 +137,7 @@
 .env2-first__price--big{display:inline-block}
 .env2-first__price--big .env2-price.env2-price{--env2-price-size:30px}
 .env2-first__buy{display:inline-block}
-.env2-first__var{display:block;font-size:12.5px;line-height:1.4;color:var(--env2-mute)}
+.env2-first__var{display:block;font-size:12.5px;line-height:1.4;color:var(--env2-ink-2)}
 .env2-first__cap .env2-first__var{margin-top:-2px}
 
 /* the stack: three staggered items, thumbs on the sky, text set beside them */

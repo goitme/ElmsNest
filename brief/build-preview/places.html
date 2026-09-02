@@ -16,16 +16,19 @@
 /* ---------- §4.3 places: a staircase of four night scenes, numerals inside the photos ----------
    note: this bundle loads in <head> BEFORE the base inline style, so anything overriding a base
    helper (.env2-h, [data-lamp] .env2-ph …) needs higher specificity, not later source order. */
-.env2-places{padding-block:120px 100px;overflow:clip}
+.env2-places{padding-block:120px 64px;overflow:clip}
 .env2-places__head{position:relative;z-index:1;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:40px;margin-bottom:56px}
 .env2-places__h2.env2-h{font-size:clamp(40px,5.6vw,84px);max-width:14ch}
-.env2-places__intro{justify-self:end;text-align:end;max-width:40ch;margin:0;font-size:16px;line-height:1.55;color:var(--env2-ink-2)}
+.env2-places__intro{justify-self:end;max-width:40ch;margin:0;font-size:16px;line-height:1.55;color:var(--env2-ink-2)}
 
 /* the strip: wider than the page container; four columns of different widths, bottom-aligned,
    each step lifted by its own amount (0 / 60 / 24 / 100 by default) — a staircase, not a row */
 .env2-places__strip{position:relative;z-index:1;width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto;display:grid;grid-template-columns:1.55fr .95fr 1.3fr .85fr;gap:14px;align-items:end}
 .env2-places__place{position:relative;display:block;min-width:0;margin:0 0 var(--env2-places-lift,0px);color:inherit;text-decoration:none}
 .env2-places__ph{display:block;aspect-ratio:var(--env2-places-ar,3/4)}
+/* crop control per block (index.json: 0% 50% for the landscape wall scene); an admin focal point,
+   written inline by image_tag, still wins over this rule */
+.env2-places__place .env2-places__ph img{object-position:var(--env2-places-op,50% 50%)}
 .env2-places__placeholder{display:block;width:100%;height:100%;opacity:.35}
 
 /* the numeral: INSIDE the photo's top-start corner (never overhangs the viewport), outline only
@@ -41,8 +44,11 @@
 .env2-places__count{flex:none;font-family:var(--env2-sans);font-size:12.5px;letter-spacing:.04em;white-space:nowrap;color:rgba(201,196,184,.78)}
 .env2-places__place:hover .env2-places__t,.env2-places__place:focus-visible .env2-places__t{color:var(--env2-glow)}
 
-.env2-places__after{position:relative;z-index:1;margin-top:56px;display:flex;justify-content:center}
+.env2-places__after{position:relative;z-index:1;margin-top:40px;display:flex;justify-content:center}
 .env2-places__all svg{width:14px;height:14px;flex:none}
+
+/* the mobile text index: hidden on desktop (the staircase is the index there) */
+.env2-places__idx{display:none}
 
 /* ---------- mobile: a horizontal snap scroller, nothing overhangs the viewport edge (dusk 331–343) ---------- */
 @media (max-width:900px){
@@ -52,18 +58,22 @@
   .env2-places__strip{display:flex;width:auto;margin-inline:0;padding-inline:var(--env2-gut);padding-bottom:4px;gap:16px;align-items:flex-end;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:var(--env2-gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .env2-places__strip::-webkit-scrollbar{display:none}
   .env2-places__strip::after{content:"";flex:0 0 1px;margin-inline-start:-16px}
-  .env2-places__place{flex:0 0 auto;scroll-snap-align:start;width:76vw;margin-bottom:var(--env2-places-lift-m,0px)}
+  .env2-places__place{flex:0 0 auto;scroll-snap-align:start;width:62vw;margin-bottom:var(--env2-places-lift-m,0px)}
   .env2-places__place:nth-child(1) .env2-places__ph{aspect-ratio:4/5}
-  .env2-places__place:nth-child(2){width:60vw}
+  .env2-places__place:nth-child(2){width:50vw}
   .env2-places__place:nth-child(2) .env2-places__ph{aspect-ratio:3/4.4}
-  .env2-places__place:nth-child(3){width:80vw}
+  .env2-places__place:nth-child(3){width:64vw}
   .env2-places__place:nth-child(3) .env2-places__ph{aspect-ratio:4/3.6}
-  .env2-places__place:nth-child(4){width:62vw}
+  .env2-places__place:nth-child(4){width:52vw}
   .env2-places__place:nth-child(4) .env2-places__ph{aspect-ratio:3/4}
   .env2-places__num{font-size:88px}
   .env2-places__t{font-size:24px}
   .env2-places__sub{font-size:12.5px}
-  .env2-places__after{margin-top:32px;justify-content:flex-start}
+  .env2-places__idx{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:0 18px;padding:10px var(--env2-gut) 0;font-family:var(--env2-sans);font-size:14px;line-height:24px;color:var(--env2-ink-2)}
+  .env2-places__idx a{display:inline-block;padding-block:10px;color:inherit;text-decoration:none;transition:color .3s}
+  .env2-places__idx a:hover,.env2-places__idx a:focus-visible{color:var(--env2-glow)}
+  .env2-places__idx-n{font-size:11px;letter-spacing:.16em;color:var(--env2-gold);margin-inline-end:4px}
+  .env2-places__after{margin-top:20px;justify-content:flex-start}
 }
 
 </style>
@@ -272,14 +282,14 @@ body.template-index{background-image:linear-gradient(180deg,#1c2f52 0%,#13223f 4
 <div class="fake-hdr"><b>ElmsNest</b><span>דף הבית · קולקציות · מדריך · מי אנחנו</span></div>
 <div id="wrapper"><main id="MainContent">
 <div class="shopify-section">
-<section id="env2-places" data-env2-places class="env2-section env2-places" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.18">
+<section id="env2-places" data-env2-places class="env2-section env2-places" dir="rtl" aria-labelledby="env2-places-h2" style="scroll-margin-top:90px;--env2-stars:.18">
   <div class="env2-stars" aria-hidden="true"></div>
   <div class="env2-wrap env2-places__head">
-    <h2 class="env2-h env2-places__h2">ארבעה מקומות. קטגוריה אחת.</h2>
+    <h2 id="env2-places-h2" class="env2-h env2-places__h2">ארבעה מקומות. קטגוריה אחת.</h2>
     <p class="env2-places__intro">אנחנו לא חנות תאורה. אנחנו חנות תאורת חוץ — ומתאימים כל מוצר למקום שבו הוא יעמוד.</p>
   </div>
   <div class="env2-places__strip">
-    <a class="env2-places__place" href="/collections/תאורת-שביל-סולארית" data-lamp style="--env2-places-ar:5/4;--env2-places-lift:0px;--env2-places-lift-m:0px">
+    <a class="env2-places__place" href="/collections/תאורת-שביל-סולארית" data-lamp style="--env2-places-ar:5/4;--env2-places-lift:0px;--env2-places-lift-m:0px;--env2-places-op:50% 50%">
       <span class="env2-ph env2-places__ph">
         <span class="env2-places__num" aria-hidden="true">1</span>
         <img src="../assets/img/collection-path.jpg" alt="פנס שביל דולק לצד מדרגות אבן בגינה" loading="lazy" width="800" height="1000">
@@ -289,17 +299,17 @@ body.template-index{background-image:linear-gradient(180deg,#1c2f52 0%,#13223f 4
         <span class="env2-places__count"><bdi>8</bdi> מוצרים</span>
       </span>
     </a>
-    <a class="env2-places__place" href="/collections/solar-wall-lights" data-lamp style="--env2-places-ar:3/4.6;--env2-places-lift:60px;--env2-places-lift-m:36px">
+    <a class="env2-places__place" href="/collections/solar-wall-lights" data-lamp style="--env2-places-ar:3/4.6;--env2-places-lift:60px;--env2-places-lift-m:36px;--env2-places-op:0% 50%">
       <span class="env2-ph env2-places__ph">
         <span class="env2-places__num" aria-hidden="true">2</span>
-        <img src="../assets/img/collection-wall.jpg" alt="מנורת קיר מאירה למעלה ולמטה על חזית בית" loading="lazy" width="1000" height="560" style="object-position:32% 50%">
+        <img src="../assets/img/collection-wall.jpg" alt="מנורת קיר מאירה למעלה ולמטה על חזית בית" loading="lazy" width="1000" height="560">
       </span>
       <span class="env2-places__cap">
         <span class="env2-places__txt"><b class="env2-places__t">קיר</b><small class="env2-places__sub">תאורת קיר</small></span>
         <span class="env2-places__count"><bdi>6</bdi> מוצרים</span>
       </span>
     </a>
-    <a class="env2-places__place" href="/collections/ספוטים-ופרוז-קטורים-סולאריים" data-lamp style="--env2-places-ar:4/3.2;--env2-places-lift:24px;--env2-places-lift-m:14px">
+    <a class="env2-places__place" href="/collections/ספוטים-ופרוז-קטורים-סולאריים" data-lamp style="--env2-places-ar:4/3.2;--env2-places-lift:24px;--env2-places-lift-m:14px;--env2-places-op:50% 50%">
       <span class="env2-ph env2-places__ph">
         <span class="env2-places__num" aria-hidden="true">3</span>
         <img src="../assets/img/collection-spot.jpg" alt="ספוט סולארי מאיר עץ ושיחים בגינה" loading="lazy" width="800" height="1000">
@@ -309,7 +319,7 @@ body.template-index{background-image:linear-gradient(180deg,#1c2f52 0%,#13223f 4
         <span class="env2-places__count"><bdi>6</bdi> מוצרים</span>
       </span>
     </a>
-    <a class="env2-places__place" href="/collections/גרילנדות-ותאורה-דקורטיבית" data-lamp style="--env2-places-ar:3/4.1;--env2-places-lift:100px;--env2-places-lift-m:60px">
+    <a class="env2-places__place" href="/collections/גרילנדות-ותאורה-דקורטיבית" data-lamp style="--env2-places-ar:3/4.1;--env2-places-lift:100px;--env2-places-lift-m:60px;--env2-places-op:50% 50%">
       <span class="env2-ph env2-places__ph">
         <span class="env2-places__num" aria-hidden="true">4</span>
         <img src="../assets/img/collection-decor.jpg" alt="גרילנדה מעל פינת ישיבה במרפסת בלילה" loading="lazy" width="800" height="1000">
@@ -320,6 +330,12 @@ body.template-index{background-image:linear-gradient(180deg,#1c2f52 0%,#13223f 4
       </span>
     </a>
   </div>
+  <nav class="env2-places__idx" aria-label="ארבעת המקומות">
+    <a href="/collections/תאורת-שביל-סולארית"><bdi class="env2-places__idx-n">01</bdi> שביל</a>
+    <a href="/collections/solar-wall-lights"><bdi class="env2-places__idx-n">02</bdi> קיר</a>
+    <a href="/collections/ספוטים-ופרוז-קטורים-סולאריים"><bdi class="env2-places__idx-n">03</bdi> גינה</a>
+    <a href="/collections/גרילנדות-ותאורה-דקורטיבית"><bdi class="env2-places__idx-n">04</bdi> מרפסת</a>
+  </nav>
   <div class="env2-wrap env2-places__after">
     <a class="env2-link env2-places__all" href="/collections/all">לכל <bdi>27</bdi> המוצרים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
   </div>

@@ -52,7 +52,7 @@
 .env2-first__price--big{display:inline-block}
 .env2-first__price--big .env2-price.env2-price{--env2-price-size:30px}
 .env2-first__buy{display:inline-block}
-.env2-first__var{display:block;font-size:12.5px;line-height:1.4;color:var(--env2-mute)}
+.env2-first__var{display:block;font-size:12.5px;line-height:1.4;color:var(--env2-ink-2)}
 .env2-first__cap .env2-first__var{margin-top:-2px}
 
 /* the stack: three staggered items, thumbs on the sky, text set beside them */
@@ -160,7 +160,7 @@ body.hdt-page-type-index #MainContent>.shopify-section:first-child .env2-section
 .env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
 .env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
 .env2-link svg{width:14px;height:14px;flex:none}
-@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:13px;padding:10px 15px}}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
 
 /* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
 .env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
@@ -295,12 +295,12 @@ body.template-index{background-image:linear-gradient(180deg,#2f4a78 0%,#1f3357 4
 <div class="fake-hdr"><b>ElmsNest</b><span>דף הבית · קולקציות · מדריך · מי אנחנו</span></div>
 <div id="wrapper"><main id="MainContent">
 <div class="shopify-section">
-<section id="env2-first" data-env2-first-lit class="env2-section env2-first" dir="rtl" style="scroll-margin-top:90px">
+<section id="env2-first" data-env2-first-lit class="env2-section env2-first" dir="rtl" style="scroll-margin-top:90px" aria-labelledby="env2-first-h2">
   <div class="env2-wrap">
     <div class="env2-first__head">
       <div class="env2-first__title">
         <p class="env2-eyebrow">01 · נדלקים עכשיו</p>
-        <h2 class="env2-h env2-first__h2">מה שנדלק ראשון</h2>
+        <h2 class="env2-h env2-first__h2" id="env2-first-h2">מה שנדלק ראשון</h2>
       </div>
       <p class="env2-first__intro">ארבעה מוצרים מארבעת המקומות. כל אחד נדלק כשהוא נכנס למסך — כמו בגינה, כשמתחיל להחשיך.</p>
     </div>
@@ -315,7 +315,7 @@ body.template-index{background-image:linear-gradient(180deg,#2f4a78 0%,#1f3357 4
           <h3 class="env2-first__t env2-first__t--big"><a href="/products/outdoor-bidirectional-led-wall-light-ip65">מנורת קיר LED חיצונית דו־כיוונית IP65</a></h3>
           <div class="env2-first__row">
             <span class="env2-first__price env2-first__price--big"><span class="env2-price"><bdi>159.90–162.90</bdi> ₪</span></span>
-            <span class="env2-first__buy"><a class="env2-btn env2-btn--ghost" href="/products/outdoor-bidirectional-led-wall-light-ip65">לבחירת גוון</a></span>
+            <span class="env2-first__buy"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/outdoor-bidirectional-led-wall-light-ip65">לבחירת גוון</a></span>
           </div>
         </figcaption>
       </figure>
