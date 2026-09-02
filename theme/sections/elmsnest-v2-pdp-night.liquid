@@ -1,0 +1,433 @@
+{%- comment -%}
+  ElmsNest v2 PDP — §4.3 "the night gallery"  ·  #env2-pdp-night  ·  spine answer #3.
+
+  What it actually looks like at night, at TWO DISTANCES, with a scale cue — and the product's own
+  light is the only light in both frames. Two staggered figures, never a grid (do-not §6.20: eight
+  sections, eight compositions).
+
+  ------------------------------------------------------------------ where every word comes from
+  head      : eyebrow + a two-part headline. The headline's tail is authored brand copy keyed to the
+              product's PLACE (the four approved pairs, BRIEF §3), except that a decorative product
+              whose OWN TITLE names the ball gets §4.3's line, "מקרוב, הכדור הוא האור." The noun is
+              the product's, not ours; nothing is typed onto a product that does not carry it.
+  lead      : parsed VERBATIM out of the product's own description — the first body paragraph that
+              follows a standalone heading and says what the light does in the place. Any paragraph
+              that names a power source is REJECTED (custom.power_source is empty on 26 of 27
+              products, and §3.7 says an empty power source means the page says nothing about power:
+              no "חיבור לחשמל", no panel, no charge time). Nothing is invented; blank if nothing fits.
+  captions  : the close-up caption is one word ("מקרוב"). The wide caption is the product's place
+              (approved wording) plus a SCALE CUE built from the variant ledger model — "מ־5 ועד 22
+              מטר" for A, "6W או 12W" for C. When the model has no range (B, one variant) no number
+              is printed and no scale is claimed.
+  note      : "התמונות להמחשה." — the honesty line, always.
+
+  ------------------------------------------------------------------ images (§3.5, never index 0 of the never-use list)
+  Both slots go through elmsnest-v2-pdp-image, which prints a 0-based index and can never hand back a
+  slide with baked-in marketing text. A merchant image_picker (or a block's) wins over both. When the
+  two slots resolve to the SAME picture the section asks the resolver for the next clean index, and if
+  the product has only one usable photograph it renders ONE figure rather than the same frame twice.
+
+  ------------------------------------------------------------------ motion / no JS / reduced motion
+  §3.3: "night — the two photographs, staggered, on arrival." Both figures are data-lamp="manual", so
+  the core's shared observer leaves them to this section and its JS lights them 220 ms apart from ONE
+  IntersectionObserver on the wide figure. With JS off nothing dims in the first place (the core only
+  dims lamps under html.env2-js) — both photographs are lit, every caption, the scale cue and the note
+  are in the DOM, and the section has no control, link or form to lose. Under reduced motion the core
+  lights every lamp, manual included, with no transition. The section ends with the CONTRACT's
+  env2.observe(el) / fallback line so a lamp added here later cannot be orphaned.
+
+  Plumbing: elmsnest-v2-core (from layout/theme.liquid) supplies the tokens, fonts, .env2-* helpers,
+  [data-lamp] and window.env2. elmsnest-v2-pdp-image resolves both slots; elmsnest-v2-pdp-variants is
+  captured (rows mode — the JSON emit belongs to the stage, once per page) only to read its range.
+{%- endcomment -%}
+{%- liquid
+  assign env2_p = product
+  assign env2_ok = false
+  if env2_p != blank
+    assign env2_ok = true
+  endif
+-%}
+{%- if env2_ok -%}
+{%- comment -%} ---------- 1. the two photographs (§3.5 resolver — never a literal index) ---------- {%- endcomment -%}
+{%- capture env2_bi -%}{%- render 'elmsnest-v2-pdp-image', product: env2_p, slot: 'big', index: section.settings.big_image_index -%}{%- endcapture -%}
+{%- capture env2_si -%}{%- render 'elmsnest-v2-pdp-image', product: env2_p, slot: 'small', index: section.settings.small_image_index -%}{%- endcapture -%}
+{%- liquid
+  assign env2_bi = env2_bi | plus: 0
+  assign env2_si = env2_si | plus: 0
+  assign env2_nimg = env2_p.images.size | plus: 0
+-%}
+{%- if env2_si == env2_bi and env2_nimg > 1 -%}
+  {%- assign env2_step = env2_si | plus: 2 -%}
+  {%- capture env2_si -%}{%- render 'elmsnest-v2-pdp-image', product: env2_p, slot: 'small', index: env2_step -%}{%- endcapture -%}
+  {%- assign env2_si = env2_si | plus: 0 -%}
+{%- endif -%}
+{%- comment -%} ---------- 2. the ledger model, for the scale cue only (CONTRACT-PDP §3) ---------- {%- endcomment -%}
+{%- capture env2_model -%}{%- render 'elmsnest-v2-pdp-variants', product: env2_p -%}{%- endcapture -%}
+{%- liquid
+  assign env2_blk_big = section.blocks[0]
+  assign env2_blk_small = section.blocks[1]
+
+  # the pictures. picker (block, then section) -> resolved index -> featured image (CONTRACT-PDP §2:
+  # dropping the last default renders an empty <img> on a product with no images)
+  assign env2_pick_big = env2_blk_big.settings.image | default: section.settings.big_image | default: ''
+  assign env2_pick_small = env2_blk_small.settings.image | default: section.settings.small_image | default: ''
+  assign env2_big = env2_pick_big | default: env2_p.images[env2_bi] | default: env2_p.featured_image
+  assign env2_small = env2_pick_small | default: env2_p.images[env2_si] | default: env2_p.featured_image
+  # one figure, never the same frame twice: a picked image always counts, a resolved one only when the
+  # two slots really landed on different photographs
+  assign env2_has_small = false
+  if env2_pick_small != blank
+    assign env2_has_small = true
+  elsif env2_si != env2_bi and env2_small != blank
+    assign env2_has_small = true
+  endif
+  assign env2_altb = env2_big.alt | default: env2_p.title
+  assign env2_alts = env2_small.alt | default: env2_p.title
+
+  # aspects: merchant text, so refuse anything that is not "<number>/<number>"
+  assign env2_arb = env2_blk_big.settings.aspect | default: section.settings.big_aspect | default: '4/3' | strip
+  assign env2_ars = env2_blk_small.settings.aspect | default: section.settings.small_aspect | default: '1/1.15' | strip
+  unless env2_arb contains '/'
+    assign env2_arb = '4/3'
+  endunless
+  unless env2_ars contains '/'
+    assign env2_ars = '1/1.15'
+  endunless
+  if env2_arb contains ';' or env2_arb contains '(' or env2_arb contains '<'
+    assign env2_arb = '4/3'
+  endif
+  if env2_ars contains ';' or env2_ars contains '(' or env2_ars contains '<'
+    assign env2_ars = '1/1.15'
+  endif
+
+  # ---------------------------------------------------------------- the place (BRIEF §3, four pairs)
+  assign env2_type = env2_p.type | default: ''
+  assign env2_place = ''
+  assign env2_h2b = 'ומרחוק.'
+  if env2_type == 'תאורת שביל, עמוד וגינה'
+    assign env2_place = 'לאורך השביל, במדרגות ובמעברים.'
+    assign env2_h2b = 'ולאורך כל הדרך.'
+  elsif env2_type == 'תאורת קיר'
+    assign env2_place = 'בכניסה, על הקיר ובחזית.'
+    assign env2_h2b = 'ועל הקיר כולו.'
+  elsif env2_type == 'גרילנדות ותאורה דקורטיבית'
+    assign env2_place = 'במרפסת ובפינת הישיבה.'
+    assign env2_h2b = 'הנורה היא האור.'
+  elsif env2_type == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+    assign env2_place = 'בגינה, על עץ או ערוגה.'
+    assign env2_h2b = 'ובתוך הגינה.'
+  endif
+  # §4.3's own line, and only where the product's OWN title carries the noun
+  if env2_type == 'גרילנדות ותאורה דקורטיבית' and env2_p.title contains 'כדור'
+    assign env2_h2b = 'הכדור הוא האור.'
+  endif
+  assign env2_h2a = section.settings.heading | default: 'מקרוב,'
+  assign env2_h2b = section.settings.heading_glow | default: env2_h2b
+
+  # ---------------------------------------------------------------- the lead, quoted from the product
+  assign env2_lead = section.settings.lead | default: '' | strip
+  if env2_lead == '' and section.settings.lead_source != 'none'
+    assign env2_raw = env2_p.description | replace: '</p>', '~~' | replace: '</div>', '~~' | replace: '</h1>', '~~' | replace: '</h2>', '~~' | replace: '</h3>', '~~' | replace: '</h4>', '~~' | replace: '</h5>', '~~' | replace: '</li>', '~~' | replace: '</td>', '~~' | replace: '<br>', '~~' | replace: '<br/>', '~~' | replace: '<br />', '~~' | strip_html
+    assign env2_blocks = env2_raw | split: '~~'
+    assign env2_head_before = false
+    for env2_b in env2_blocks
+      assign env2_t = env2_b | strip
+      if env2_t == ''
+        continue
+      endif
+      if env2_t contains 'פרטים שכדאי לדעת'
+        break
+      endif
+      assign env2_body_ok = false
+      if env2_head_before and env2_t.size > 55 and env2_t contains '.'
+        assign env2_body_ok = true
+      endif
+      if env2_body_ok
+        assign env2_bad = false
+        if env2_t contains 'חשמל' or env2_t contains 'סולאר' or env2_t contains 'נטען' or env2_t contains 'שמש' or env2_t contains 'טעינ' or env2_t contains 'פאנל' or env2_t contains ' · '
+          assign env2_bad = true
+        endif
+        unless env2_bad
+          assign env2_lead = env2_t
+          break
+        endunless
+      endif
+      assign env2_head_before = false
+      unless env2_t contains '.'
+        if env2_t.size < 110
+          assign env2_head_before = true
+        endif
+      endunless
+    endfor
+    if env2_lead.size > 300
+      assign env2_sent = env2_lead | split: '.'
+      assign env2_cut = ''
+      assign env2_kept = 0
+      for env2_s in env2_sent
+        assign env2_st = env2_s | strip
+        if env2_st == ''
+          continue
+        endif
+        assign env2_cut = env2_cut | append: env2_st | append: '. '
+        assign env2_kept = env2_kept | plus: 1
+        if env2_kept >= 2
+          break
+        endif
+      endfor
+      assign env2_lead = env2_cut | strip
+    endif
+  endif
+
+  # ---------------------------------------------------------------- the scale cue, from the model
+  assign env2_kind = ''
+  assign env2_rmin = ''
+  assign env2_rmax = ''
+  assign env2_unitword = ''
+  if section.settings.show_scale and env2_model != blank
+    assign env2_recs = env2_model | split: '~~R~~'
+    assign env2_m = env2_recs[0] | split: '~~F~~'
+    assign env2_mode = env2_m[1]
+    assign env2_unit = env2_m[15] | strip
+    assign env2_axvals = env2_m[18] | plus: 0
+    if env2_mode == 'variants' and env2_axvals > 1
+      assign env2_seen = false
+      assign env2_nmin = 0.0
+      assign env2_nmax = 0.0
+      for env2_rec in env2_recs offset: 1
+        assign env2_r = env2_rec | split: '~~F~~'
+        assign env2_n = env2_r[6] | strip
+        if env2_n == ''
+          continue
+        endif
+        assign env2_nf = env2_n | plus: 0.0
+        if env2_seen == false
+          assign env2_seen = true
+          assign env2_nmin = env2_nf
+          assign env2_nmax = env2_nf
+          assign env2_rmin = env2_n
+          assign env2_rmax = env2_n
+          if env2_unit == ''
+            assign env2_unit = env2_r[7] | strip
+          endif
+        else
+          if env2_nf < env2_nmin
+            assign env2_nmin = env2_nf
+            assign env2_rmin = env2_n
+          endif
+          if env2_nf > env2_nmax
+            assign env2_nmax = env2_nf
+            assign env2_rmax = env2_n
+          endif
+        endif
+      endfor
+      if env2_seen and env2_rmin != env2_rmax
+        if env2_unit == 'מ׳' or env2_unit == 'מטר' or env2_unit == 'מ' or env2_unit == 'מ׳׳'
+          assign env2_kind = 'len'
+          assign env2_unitword = 'מטר'
+        elsif env2_unit == 'W'
+          assign env2_kind = 'watt'
+          if env2_axvals == 2
+            assign env2_kind = 'watt2'
+          endif
+        elsif env2_unit != ''
+          assign env2_kind = 'count'
+          assign env2_unitword = env2_unit
+        endif
+      endif
+    endif
+  endif
+
+  # ---------------------------------------------------------------- captions
+  assign env2_capb = env2_blk_big.settings.caption | default: section.settings.caption_big | default: env2_place | strip
+  assign env2_caps = env2_blk_small.settings.caption | default: section.settings.caption_small | default: 'מקרוב' | strip
+  assign env2_scalenote = section.settings.scale_note | default: '' | strip
+  assign env2_has_cap_big = false
+  if env2_capb != '' or env2_kind != ''
+    assign env2_has_cap_big = true
+  endif
+-%}
+{%- if env2_big != blank -%}
+<section id="env2-pdp-night" data-env2-pdp-night class="env2-section env2-pdp-night" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0" aria-labelledby="env2-pdp-night-h2">
+  <div class="env2-wrap env2-pdp-night__wrap">
+    <div class="env2-pdp-night__body">
+
+      <div class="env2-pdp-night__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="env2-eyebrow env2-pdp-night__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="env2-h env2-pdp-night__h2" id="env2-pdp-night-h2">{{ env2_h2a }}{%- if env2_h2b != blank %} <em>{{ env2_h2b }}</em>{% endif -%}</h2>
+        {%- if env2_lead != blank -%}
+          <p class="env2-lead env2-pdp-night__lead">{{ env2_lead }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- assign block = section.blocks[0] -%}
+      <figure class="env2-pdp-night__fig env2-pdp-night__fig--big" data-lamp="manual" data-env2-pdp-night-fig="big" style="--env2-pdp-night-ar:{{ env2_arb | escape }}" {{ block.shopify_attributes }}>
+        <span class="env2-ph env2-pdp-night__ph">
+          {{ env2_big | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600,900,1200,1600,2000', sizes: '(max-width:900px) 100vw, min(58vw,720px)', alt: env2_altb, class: 'env2-pdp-night__img' }}
+        </span>
+        {%- if env2_has_cap_big -%}
+          <figcaption class="env2-pdp-night__cap env2-pdp-night__cap--big">
+            {%- if env2_capb != blank -%}<span class="env2-pdp-night__capplace">{{ env2_capb }}</span> {% endif -%}
+            {%- if env2_kind == 'len' -%}
+              <span class="env2-pdp-night__scale">מ־<bdi>{{ env2_rmin }}</bdi> ועד <bdi>{{ env2_rmax }}</bdi> {{ env2_unitword }}{% if env2_scalenote != blank %} — {{ env2_scalenote }}{% endif %}</span>
+            {%- elsif env2_kind == 'count' -%}
+              <span class="env2-pdp-night__scale">מ־<bdi>{{ env2_rmin }}</bdi> ועד <bdi>{{ env2_rmax }}</bdi> {{ env2_unitword }}{% if env2_scalenote != blank %} — {{ env2_scalenote }}{% endif %}</span>
+            {%- elsif env2_kind == 'watt2' -%}
+              <span class="env2-pdp-night__scale"><bdi>{{ env2_rmin }}W</bdi> או <bdi>{{ env2_rmax }}W</bdi> — לפי העוצמה שבחרתם.</span>
+            {%- elsif env2_kind == 'watt' -%}
+              <span class="env2-pdp-night__scale">מ־<bdi>{{ env2_rmin }}W</bdi> ועד <bdi>{{ env2_rmax }}W</bdi> — לפי העוצמה שבחרתם.</span>
+            {%- endif -%}
+          </figcaption>
+        {%- endif -%}
+      </figure>
+
+      {%- if env2_has_small and env2_small != blank -%}
+        {%- assign block = section.blocks[1] -%}
+        <figure class="env2-pdp-night__fig env2-pdp-night__fig--small" data-lamp="manual" data-env2-pdp-night-fig="small" style="--env2-pdp-night-ar:{{ env2_ars | escape }}" {{ block.shopify_attributes }}>
+          <span class="env2-ph env2-pdp-night__ph">
+            {{ env2_small | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '420,600,900,1200', sizes: '(max-width:900px) 70vw, min(38vw,480px)', alt: env2_alts, class: 'env2-pdp-night__img' }}
+          </span>
+          {%- if env2_caps != blank -%}
+            <figcaption class="env2-pdp-night__cap env2-pdp-night__cap--small">{{ env2_caps }}</figcaption>
+          {%- endif -%}
+        </figure>
+      {%- endif -%}
+
+    </div>
+
+    {%- if section.settings.note != blank -%}
+      <p class="env2-pdp-night__note">{{ section.settings.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+/* ElmsNest v2 PDP §4.3 — the night gallery. Two staggered figures, never a grid; the wide frame runs
+   to the viewport's end edge; the close-up overlaps it from the start side. No background is painted
+   here (§3.1: the ground is the body's), no radius, logical properties only. */
+.env2-pdp-night{padding-block:clamp(72px,11vw,110px) clamp(64px,10vw,100px)}
+.env2-pdp-night__body{display:grid;grid-template-columns:minmax(0,1fr) min(58%,720px);grid-template-areas:"head big" "small big";align-items:start;
+  margin-inline-end:calc(-1 * max(var(--env2-gut),(100vw - var(--env2-w)) / 2))}
+.env2-pdp-night__head{grid-area:head;padding-inline-end:clamp(24px,3vw,56px)}
+.env2-pdp-night__eyebrow{margin:0 0 clamp(18px,2vw,28px)}
+/* two lines, the second in glow (§3.2) — the break is structural, never a balanced guess */
+.env2-pdp-night__h2{font-size:clamp(34px,4.9vw,72px);text-wrap:pretty}
+.env2-pdp-night__h2 em{display:block}
+.env2-pdp-night__lead{margin-block-start:clamp(16px,1.7vw,24px)}
+.env2-pdp-night__fig{margin:0;position:relative}
+.env2-pdp-night__fig--big{grid-area:big;align-self:start;z-index:1}
+.env2-pdp-night__fig--small{grid-area:small;inline-size:min(88%,480px);margin-inline-start:auto;margin-inline-end:-8%;
+  margin-block-start:clamp(28px,5vw,84px);z-index:2}
+.env2-pdp-night__ph{display:block;aspect-ratio:var(--env2-pdp-night-ar,4/3);border-radius:0}
+.env2-pdp-night__img{border-radius:0}
+/* the close-up lights 220 ms after the wide frame (§3.3) — a delay on the core's own filter curve */
+.env2-pdp-night__fig--small .env2-ph img{transition-delay:.22s}
+.env2-pdp-night__fig--small .env2-ph::after{transition-delay:.42s}
+.env2-pdp-night__cap{margin:0;padding-block-start:14px;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.5;color:var(--env2-ink-2);text-wrap:pretty}
+/* the wide caption starts clear of the close-up that overlaps this column */
+.env2-pdp-night__cap--big{padding-inline:clamp(48px,7vw,96px) clamp(16px,3vw,40px);max-inline-size:56ch}
+.env2-pdp-night__capplace{color:var(--env2-ink)}
+.env2-pdp-night__scale{color:var(--env2-ink-2)}
+.env2-pdp-night__scale bdi{font-variant-numeric:tabular-nums;color:var(--env2-glow)}
+.env2-pdp-night__note{margin:clamp(28px,4vw,52px) 0 0;font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.5;color:var(--env2-mute)}
+@media (max-width:900px){
+  /* one column, in reading order: head, the wide frame edge to edge, then the close-up inset */
+  .env2-pdp-night{padding-block:clamp(56px,12vw,84px) clamp(48px,10vw,72px)}
+  .env2-pdp-night__body{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "big" "small";
+    margin-inline:calc(-1 * var(--env2-gut))}
+  .env2-pdp-night__head{padding-inline:var(--env2-gut);max-inline-size:none;margin-block-end:clamp(26px,7vw,38px)}
+  .env2-pdp-night__fig--big{inline-size:100%}
+  .env2-pdp-night__fig--small{inline-size:70%;margin-inline-start:var(--env2-gut);margin-inline-end:0;margin-block-start:clamp(18px,5vw,26px)}
+  .env2-pdp-night__cap{font-size:13px;padding-block-start:12px}
+  .env2-pdp-night__cap--big{padding-inline:var(--env2-gut);max-inline-size:none}
+  .env2-pdp-night__note{padding-inline:var(--env2-gut)}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* The section owns its two lamps: they are data-lamp="manual", so the core's shared observer skips
+   them (except under reduced motion, where it lights everything at once) and this file lights them
+   220 ms apart from ONE observer on the wide frame — "the two photographs, staggered, on arrival".
+   With this file absent, or JS off, nothing ever dims: the core only dims under html.env2-js.
+   Ends with the CONTRACT's env2.observe(el) / fallback line. */
+document.querySelectorAll('[data-env2-pdp-night]').forEach(function (el) {
+  var figs = el.querySelectorAll('[data-lamp]');
+  var lit = false;
+  function light(f) {
+    if (window.env2 && env2.light) { env2.light(f); } else { f.classList.add('lit'); }
+  }
+  function lightAll(stagger) {
+    if (lit) { return; }
+    lit = true;
+    for (var i = 0; i < figs.length; i++) {
+      if (!stagger || i === 0) { light(figs[i]); }
+      else { (function (f) { window.setTimeout(function () { light(f); }, 220); })(figs[i]); }
+    }
+  }
+  if (figs.length) {
+    var rm = window.env2 ? env2.rm : false;
+    if (rm || !('IntersectionObserver' in window)) {
+      lightAll(false);
+    } else {
+      var trigger = el.querySelector('[data-env2-pdp-night-fig="big"]') || el;
+      var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) { io.disconnect(); lightAll(true); return; }
+        }
+      }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+      io.observe(trigger);
+    }
+  }
+  window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — בלילה",
+  "tag": "section",
+  "class": "env2-pdp-night-section hdt-section",
+  "max_blocks": 2,
+  "settings": [
+    { "type": "header", "content": "הכותרת" },
+    { "type": "text", "id": "eyebrow", "label": "תווית", "default": "03 · בלילה" },
+    { "type": "text", "id": "heading", "label": "כותרת — החלק הראשון", "default": "מקרוב," },
+    { "type": "text", "id": "heading_glow", "label": "כותרת — ההמשך (בזוהר)", "info": "ריק = לפי המקום של המוצר: «ולאורך כל הדרך.» / «ועל הקיר כולו.» / «הנורה היא האור.» ובמוצר שכותרתו נושאת כדור — «הכדור הוא האור.»" },
+    { "type": "textarea", "id": "lead", "label": "פסקת פתיחה (ריק = מתוך תיאור המוצר)", "info": "ריק → הפסקה הראשונה בתיאור המוצר שמתארת את האור במקום, מילה במילה. פסקה שמזכירה מקור אנרגיה נדחית — כל עוד custom.power_source ריק העמוד לא אומר דבר על חשמל או על סולארי." },
+    { "type": "select", "id": "lead_source", "label": "מקור פסקת הפתיחה", "options": [ { "value": "description", "label": "מתיאור המוצר (מומלץ)" }, { "value": "none", "label": "לא להציג" } ], "default": "description" },
+    { "type": "header", "content": "התמונה הרחבה" },
+    { "type": "paragraph", "content": "התמונה נבחרת לפי המוצר דרך elmsnest-v2-pdp-image, כך שלעולם לא תיבחר תמונה שכתוב עליה טקסט שיווקי." },
+    { "type": "range", "id": "big_image_index", "label": "מספר התמונה במוצר (0 = ברירת המחדל לפי המוצר)", "min": 0, "max": 6, "step": 1, "default": 0 },
+    { "type": "image_picker", "id": "big_image", "label": "תמונה — החלפה ידנית" },
+    { "type": "text", "id": "big_aspect", "label": "יחס גובה־רוחב", "default": "4/3" },
+    { "type": "text", "id": "caption_big", "label": "כיתוב (ריק = המקום של המוצר)" },
+    { "type": "header", "content": "תמונת המקרוב" },
+    { "type": "range", "id": "small_image_index", "label": "מספר התמונה במוצר (0 = ברירת המחדל לפי המוצר)", "min": 0, "max": 6, "step": 1, "default": 0 },
+    { "type": "image_picker", "id": "small_image", "label": "תמונה — החלפה ידנית" },
+    { "type": "text", "id": "small_aspect", "label": "יחס גובה־רוחב", "default": "1/1.15" },
+    { "type": "text", "id": "caption_small", "label": "כיתוב", "default": "מקרוב" },
+    { "type": "header", "content": "רמז לקנה המידה" },
+    { "type": "paragraph", "content": "הטווח נלקח מהווריאציות של המוצר עצמו. במוצר עם ווריאציה אחת לא נכתב שום מספר." },
+    { "type": "checkbox", "id": "show_scale", "label": "להציג את הטווח", "default": true },
+    { "type": "text", "id": "scale_note", "label": "סוף המשפט (אורך או כמות)", "default": "לפי גודל האזור שמדדתם." },
+    { "type": "text", "id": "note", "label": "שורת ההבהרה", "default": "התמונות להמחשה." }
+  ],
+  "blocks": [
+    {
+      "type": "figure",
+      "name": "תמונה",
+      "limit": 2,
+      "settings": [
+        { "type": "paragraph", "content": "בלוק ראשון = התמונה הרחבה. בלוק שני = תמונת המקרוב. כל שדה שנשאר ריק נלקח מהגדרות המדור." },
+        { "type": "image_picker", "id": "image", "label": "תמונה" },
+        { "type": "text", "id": "aspect", "label": "יחס גובה־רוחב" },
+        { "type": "text", "id": "caption", "label": "כיתוב" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "ElmsNest v2 — בלילה" } ]
+}
+{% endschema %}

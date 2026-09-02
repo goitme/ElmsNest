@@ -1,0 +1,115 @@
+{%- comment -%}
+  ElmsNest v2 PDP — the §3.5 image-index RESOLVER. One place decides which product image a slot gets,
+  and it can never hand back a slide with baked-in marketing text (WINNING-SPEC §3.6 never-use list +
+  PDP BRIEF §6 per-product bans).
+
+  Usage — the snippet PRINTS one integer: the 0-based index into product.images. Capture it, then take
+  the image object (and let a merchant image_picker override win, exactly as §3.5 writes it):
+
+      {%- capture env2_i -%}{%- render 'elmsnest-v2-pdp-image', product: product, slot: 'hero', index: section.settings.hero_image_index -%}{%- endcapture -%}
+      {%- assign env2_i = env2_i | plus: 0 -%}
+      {%- assign hero = section.settings.hero_image | default: product.images[env2_i] | default: product.featured_image -%}
+
+  Inputs
+    product : required. Anything else prints 0.
+    slot    : hero | context | close | card | wall-pair | big | small | thumb   (default 'hero')
+    index   : the section's 1-based range setting (1 = admin position 1 = product.images[0]).
+              0 / blank / nil  -> the per-product ledger default for the slot.
+    fallback: optional 0-based index used when the ledger has nothing for this handle.
+
+  Guarantees
+    1. The printed index is always inside 0 … product.images.size-1 (0 when there are no images).
+    2. It is never a banned index for that handle. If the requested one is banned, the resolver steps
+       to the next allowed index (wrapping from 0), silently — no log, the right picture.
+    3. An image_picker override is the merchant's own file and is NOT filtered: it is applied by the
+       caller, after this snippet.
+{%- endcomment -%}
+{%- liquid
+  assign env2_n = 0
+  if product != blank
+    assign env2_n = product.images.size
+  endif
+-%}
+{%- if env2_n == 0 -%}0{%- else -%}
+{%- liquid
+  assign env2_slot = slot | default: 'hero'
+
+  comment
+    Per-product slot ledger (§3.5 "Defaults that ship"). 0-based; admin position = value + 1.
+    Format: |<handle>:,<slot>=<i>,…,|   — the commas make every key ",slot=" so no key is a prefix of another.
+  endcomment
+  assign env2_led = '|solar-crystal-ball-string-lights:,hero=2,context=2,close=0,card=0,big=2,small=0,thumb=0,wall-pair=2,|stainless-steel-solar-path-light-ip65:,hero=0,context=3,close=3,card=0,big=3,small=1,thumb=3,wall-pair=3,|waterproof-led-wall-light-ip65-6w-12w:,hero=1,context=3,close=3,card=1,big=3,small=2,thumb=1,wall-pair=3,|'
+
+  comment
+    Banned indices. The 15 handles of brief/WINNING-SPEC.md §3.6 (index 0 carries baked-in text; for
+    dual-head-garden-light-10w-ip65 it is images 1–3 that carry it and index 0 that is clean), plus the
+    three archetypes' per-image bans from the PDP BRIEF §6 ledger:
+      A solar-crystal-ball-string-lights   1 = "22 מטר / 200 LED" slide, 3 = installation infographic
+      B stainless-steel-solar-path-light   2 = dimensions slide
+      C waterproof-led-wall-light-6w-12w   0 = slogan slide
+  endcomment
+  assign env2_deny = '|retro-solar-path-lights-set=,0,|warm-solar-step-deck-lights=,0,|waterproof-solar-deck-step-lights=,0,|solar-garden-lantern-9-led=,0,|solar-garden-spotlight-52-led=,0,|solar-security-light-100-led=,0,|modern-solar-path-lights-set=,0,|solar-floodlight-ip67-remote-timer=,0,|decorative-led-net-lights=,0,|led-globe-string-lights=,0,|modern-led-bollard-light-5w-ip65=,0,|rechargeable-telescopic-camping-lantern=,0,|swaying-solar-path-lights-ip65=,0,|magnetic-rechargeable-touch-wall-light=,0,|dual-head-garden-light-10w-ip65=,1,2,3,|solar-crystal-ball-string-lights=,1,3,|stainless-steel-solar-path-light-ip65=,2,|waterproof-led-wall-light-ip65-6w-12w=,0,|'
+
+  # 1. the wanted index: the section setting (1-based) wins, else the ledger, else the fallback
+  assign env2_i = -1
+  assign env2_want = index | default: 0 | plus: 0
+  if env2_want > 0
+    assign env2_i = env2_want | minus: 1
+  endif
+  if env2_i < 0
+    assign env2_lkey = '|' | append: product.handle | append: ':'
+    assign env2_lrow = env2_led | split: env2_lkey
+    if env2_lrow.size > 1
+      assign env2_lrow = env2_lrow[1] | split: '|' | first
+      assign env2_skey = ',' | append: env2_slot | append: '='
+      assign env2_hit = env2_lrow | split: env2_skey
+      if env2_hit.size > 1
+        assign env2_i = env2_hit[1] | split: ',' | first | plus: 0
+      endif
+    endif
+  endif
+  assign env2_fb = fallback | default: -1 | plus: 0
+  if env2_i < 0 and env2_fb >= 0
+    assign env2_i = env2_fb
+  endif
+  if env2_i < 0
+    # catalogue defaults for every other product: a context slot wants a scene, a close slot the next frame
+    assign env2_i = 0
+    if env2_slot == 'close' or env2_slot == 'small' or env2_slot == 'wall-pair'
+      assign env2_i = 1
+    endif
+  endif
+  if env2_i >= env2_n
+    assign env2_i = 0
+  endif
+
+  # 2. the never-use guard: step to the first allowed index, wrapping
+  assign env2_bad = ''
+  assign env2_dhit = env2_deny | split: '|'
+  for env2_row in env2_dhit
+    assign env2_pair = env2_row | split: '='
+    if env2_pair.size > 1 and env2_pair[0] == product.handle
+      assign env2_bad = env2_pair[1]
+    endif
+  endfor
+  if env2_bad != ''
+    assign env2_probe = ',' | append: env2_i | append: ','
+    if env2_bad contains env2_probe
+      assign env2_found = -1
+      for env2_step in (1..12)
+        if env2_found < 0
+          assign env2_try = env2_i | plus: env2_step | modulo: env2_n
+          assign env2_probe2 = ',' | append: env2_try | append: ','
+          unless env2_bad contains env2_probe2
+            assign env2_found = env2_try
+          endunless
+        endif
+      endfor
+      if env2_found >= 0
+        assign env2_i = env2_found
+      endif
+    endif
+  endif
+  echo env2_i
+-%}
+{%- endif -%}

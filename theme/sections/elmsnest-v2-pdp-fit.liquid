@@ -1,0 +1,560 @@
+{%- comment -%}
+  ElmsNest v2 PDP — §4.2 "the not-for device"  ·  #env2-pdp-fit  ·  spine answer #2.
+
+  The approved pair rendered as a physical switch: flipping it puts the product's own light OUT.
+  Then graft B — the buyer's second question ("כמה שמש המקום מקבל ביום?") — which disqualifies her
+  before she pays. Solar products only (§3.7).
+
+  ------------------------------------------------------------------ the two modes, and why
+  MODE 1 "switch"  — custom.not_fit_for holds one of the FOUR approved negatives (BRIEF §3).
+                     Two halves + a knob; choosing the negative half flickers the light out for
+                     240 ms and then leaves it dark, and the refusal line prints.
+  MODE 2 "choose"  — that metafield is EMPTY. This is EVERY product today (metafields.json is a
+                     proposal that has not been written to Shopify). The section then renders the
+                     SUITS half plus the product's own choosing sentences, parsed verbatim out of
+                     its description, and NO negative at all — WINNING-SPEC §3.7 + §4.2 (C), do-not
+                     §6.8 "never write a new negative". There is no fifth negative anywhere.
+
+  Belts, because this is the honesty section:
+   · the negative may only ever be one of the four approved strings — a section setting that is not
+     one of them is IGNORED, not printed (§4.2 "never a fifth negative");
+   · the solar clause "המקום כמעט אינו מקבל אור יום" is dropped unless power_source == 'סולארי'
+     (BRIEF §3: the solar clause applies to solar products only);
+   · graft B renders only when power_source == 'סולארי'. Empty power_source → the page says NOTHING
+     about power (§3.7 — that is product C today, and 26 of 27 products).
+
+  ------------------------------------------------------------------ no JS / reduced motion
+  The switch is TWO NATIVE RADIOS plus CSS `:checked ~` — so it works with JavaScript disabled: the
+  light really goes out, the refusal really prints, the solar question really answers. JS only adds
+  the knob as a click target and a polite live region for screen readers. Reduced motion: the core's
+  blanket rule kills the flicker; both states stay legible and every word is present in the DOM.
+  Nothing in this section uses [data-lamp] — §3.3: "fit: nothing lights". The contract's observe()
+  line is still called so a future lamp inside the section cannot be orphaned.
+
+  Plumbing: elmsnest-v2-core (rendered from layout/theme.liquid) supplies the tokens, the fonts,
+  .env2-* helpers and window.env2. elmsnest-v2-pdp-photo-cta owns the one mailto/wa.me branch.
+{%- endcomment -%}
+{%- if product != blank -%}
+{%- liquid
+  assign sid = section.id | replace: '_', '-' | downcase
+
+  # ---------------------------------------------------------------- the place, from the four approved pairs
+  assign ptype = product.type | default: ''
+  assign suits_auto = ''
+  assign question_auto = 'זה יתאים למקום שלי?'
+  if ptype == 'תאורת שביל, עמוד וגינה'
+    assign suits_auto = 'לראות את הדרך'
+    assign question_auto = 'זה יתאים לשביל שלי?'
+  elsif ptype == 'תאורת קיר'
+    assign suits_auto = 'להאיר נקודה מסוימת'
+    assign question_auto = 'זה יתאים לקיר שלי?'
+  elsif ptype == 'גרילנדות ותאורה דקורטיבית'
+    assign suits_auto = 'ליצור אווירה'
+    assign question_auto = 'זה יתאים למרפסת שלי?'
+  elsif ptype == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+    assign suits_auto = 'להאיר עץ או ערוגה'
+    assign question_auto = 'זה יתאים לגינה שלי?'
+  endif
+
+  # the four approved halves, delimited so a `contains` test is an EXACT match and not a substring
+  assign ok_suits = '~לראות את הדרך~להאיר נקודה מסוימת~ליצור אווירה~להאיר עץ או ערוגה~'
+  assign solar_clause = 'המקום כמעט אינו מקבל אור יום'
+  assign ok_neg = '~המקום כמעט אינו מקבל אור יום~נדרש אור חזק וקבוע לאורך כל הלילה~צריך אור חזק — זו אינה מטרתה~נדרשת התקנה מיוחדת או חיבור קבוע~'
+
+  assign suits = section.settings.suits_text | default: '' | strip
+  if suits != ''
+    assign probe = '~' | append: suits | append: '~'
+    unless ok_suits contains probe
+      assign suits = ''
+    endunless
+  endif
+  if suits == ''
+    assign suits = suits_auto
+  endif
+
+  # ---------------------------------------------------------------- power source: three states (§3.7)
+  assign pwr = product.metafields.custom.power_source | default: '' | strip
+  assign is_solar = false
+  if pwr == 'סולארי'
+    assign is_solar = true
+  endif
+
+  # ---------------------------------------------------------------- the negative: metafield only, verbatim
+  assign neg = section.settings.notfit_text | default: '' | strip
+  if neg == ''
+    assign neg = product.metafields.custom.not_fit_for | default: '' | strip
+  endif
+  if neg != ''
+    assign probe = '~' | append: neg | append: '~'
+    unless ok_neg contains probe
+      assign neg = ''
+    endunless
+  endif
+  if neg == solar_clause and is_solar == false
+    assign neg = ''
+  endif
+  assign has_neg = false
+  if neg != '' and suits != ''
+    assign has_neg = true
+  endif
+
+  # ---------------------------------------------------------------- graft B (§3.7 solar branch only)
+  assign show_sun = false
+  if section.settings.show_solar_question and is_solar and section.settings.solar_question != blank
+    assign show_sun = true
+  endif
+
+  # ---------------------------------------------------------------- head copy
+  assign eyebrow = section.settings.eyebrow
+  assign lead = section.settings.lead
+  unless has_neg
+    assign eyebrow = section.settings.eyebrow_choose
+    assign lead = section.settings.lead_choose
+  endunless
+  assign question = section.settings.question | default: '' | strip
+  if question == ''
+    assign question = question_auto
+  endif
+
+  # ---------------------------------------------------------------- the product's own choosing words
+  # Block boundaries first (strip_html glues <h3>A</h3><p>B</p> into "AB"), then the last block before
+  # "פרטים שכדאי לדעת" is the advice paragraph and the one before it is its heading. Nothing is typed.
+  assign c_head = ''
+  assign c_one = ''
+  assign c_two = ''
+  if section.settings.choose_source == 'advice' and has_neg == false
+    assign raw = product.description | replace: '</p>', '~~' | replace: '</div>', '~~' | replace: '</h1>', '~~' | replace: '</h2>', '~~' | replace: '</h3>', '~~' | replace: '</h4>', '~~' | replace: '</h5>', '~~' | replace: '</li>', '~~' | replace: '</td>', '~~' | replace: '<br>', '~~' | replace: '<br/>', '~~' | replace: '<br />', '~~' | strip_html
+    assign blocks = raw | split: '~~'
+    assign prev1 = ''
+    assign prev2 = ''
+    assign prev3 = ''
+    assign found = false
+    for b in blocks
+      assign t = b | strip
+      if t == ''
+        continue
+      endif
+      if t contains 'פרטים שכדאי לדעת'
+        assign found = true
+        break
+      endif
+      assign prev3 = prev2
+      assign prev2 = prev1
+      assign prev1 = t
+    endfor
+    unless found
+      assign prev1 = prev2
+      assign prev2 = prev3
+      assign prev3 = ''
+    endunless
+    # a paragraph is usable only if it is prose the shop wrote about CHOOSING. A spec run
+    # ("מקור מתח: סולארי · מתח עבודה: 5V · …") is not, and a sentence that names the power source
+    # may not appear here at all while custom.power_source is empty (§3.7). Reject, step back once.
+    assign para = ''
+    assign head_try = ''
+    for pass in (1..2)
+      if pass == 1
+        assign cand = prev1
+        assign head_try = prev2
+      else
+        assign cand = prev2
+        assign head_try = prev3
+      endif
+      assign okp = true
+      if cand.size < 25
+        assign okp = false
+      endif
+      unless cand contains '.'
+        assign okp = false
+      endunless
+      if cand contains ' · ' or cand contains 'סולארי' or cand contains 'חשמל'
+        assign okp = false
+      endif
+      if okp and para == ''
+        assign para = cand
+        break
+      endif
+    endfor
+    if para != ''
+      assign c_head = head_try
+      assign sentences = para | split: '.'
+      for s in sentences reversed
+        assign t = s | strip
+        if t.size < 25
+          continue
+        endif
+        if t contains 'סולארי' or t contains 'חשמל'
+          continue
+        endif
+        if c_two == ''
+          assign c_two = t | append: '.'
+        elsif c_one == ''
+          assign c_one = t | append: '.'
+          break
+        endif
+      endfor
+    endif
+  endif
+  if c_head.size > 90 or c_head contains ' · ' or c_head contains 'סולארי' or c_head contains 'חשמל'
+    assign c_head = ''
+  endif
+  # the drawn light takes the shape of the product's own kind: a hung garland for decor and spot
+  # products, a straight lit line for a path or a wall. Never a photograph, so nothing is claimed.
+  assign shape = section.settings.string_shape | default: 'auto'
+  if shape == 'auto'
+    assign shape = 'hang'
+    if ptype == 'תאורת שביל, עמוד וגינה' or ptype == 'תאורת קיר'
+      assign shape = 'row'
+    endif
+  endif
+
+  assign has_choice = false
+  if c_two != '' or section.blocks.size > 0
+    assign has_choice = true
+  endif
+  if section.settings.choose_source == 'none'
+    assign has_choice = false
+  endif
+  if section.settings.choose_source == 'blocks' and section.blocks.size == 0
+    assign has_choice = false
+  endif
+  if has_neg
+    assign has_choice = false
+  endif
+-%}
+<section id="env2-pdp-fit" data-env2-pdp-fit class="env2-section env2-pdp-fit" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.22" aria-labelledby="env2-pdp-fit-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-fit__wrap">
+
+    <div class="env2-pdp-fit__head">
+      {%- if eyebrow != blank -%}<p class="env2-eyebrow env2-pdp-fit__eyebrow">{{ eyebrow }}</p>{%- endif -%}
+      <h2 class="env2-h env2-pdp-fit__h2" id="env2-pdp-fit-h2">&#171;{{ question }}&#187;</h2>
+      {%- if lead != blank -%}<p class="env2-lead env2-pdp-fit__lead">{{ lead }}</p>{%- endif -%}
+    </div>
+
+    {%- comment -%} the switch: native radios FIRST so the light, the refusal and the answer are pure CSS {%- endcomment -%}
+    <div class="env2-pdp-fit__stage" data-env2-pdp-fit-stage>
+
+      {%- if has_neg -%}
+        <input class="env2-pdp-fit__r env2-pdp-fit__r--on" type="radio" name="env2-pdp-fit-{{ sid }}" id="env2-pdp-fit-on-{{ sid }}" value="on" checked data-env2-pdp-fit-r="on">
+        <input class="env2-pdp-fit__r env2-pdp-fit__r--off" type="radio" name="env2-pdp-fit-{{ sid }}" id="env2-pdp-fit-off-{{ sid }}" value="off" data-env2-pdp-fit-r="off">
+      {%- endif -%}
+      {%- if show_sun -%}
+        <input class="env2-pdp-fit__r env2-pdp-fit__r--sunyes" type="radio" name="env2-pdp-fit-sun-{{ sid }}" id="env2-pdp-fit-sunyes-{{ sid }}" value="yes" data-env2-pdp-fit-r="sun-yes">
+        <input class="env2-pdp-fit__r env2-pdp-fit__r--sunno" type="radio" name="env2-pdp-fit-sun-{{ sid }}" id="env2-pdp-fit-sunno-{{ sid }}" value="no" data-env2-pdp-fit-r="sun-no">
+      {%- endif -%}
+
+      {%- if has_neg -%}
+        <div class="env2-pdp-fit__toggle">
+          <label class="env2-pdp-fit__half env2-pdp-fit__half--yes" for="env2-pdp-fit-on-{{ sid }}">
+            <span class="env2-pdp-fit__tag">{{ section.settings.suits_label }}</span>
+            <b class="env2-pdp-fit__word">{{ suits }}</b>
+          </label>
+          <span class="env2-pdp-fit__knob" data-env2-pdp-fit-knob aria-hidden="true"><i></i></span>
+          <label class="env2-pdp-fit__half env2-pdp-fit__half--no" for="env2-pdp-fit-off-{{ sid }}">
+            <span class="env2-pdp-fit__tag">{{ section.settings.notfit_label }}</span>
+            <b class="env2-pdp-fit__word">{{ neg }}</b>
+          </label>
+        </div>
+      {%- elsif suits != blank -%}
+        <p class="env2-pdp-fit__only">
+          <span class="env2-pdp-fit__tag">{{ section.settings.suits_label }}</span>
+          <b class="env2-pdp-fit__word">{{ suits }}</b>
+        </p>
+      {%- endif -%}
+
+      {%- if section.settings.show_string -%}
+        {%- comment -%} the light itself: a cord and its bulbs, drawn, so no photograph is ever claimed {%- endcomment -%}
+        {%- liquid
+          assign cord_d = 'M0 10 Q12.5 150 25 10 Q37.5 150 50 10 Q62.5 150 75 10 Q87.5 150 100 10'
+          assign ys_list = '30.4,56.7,74.2,82.9,82.9,74.2,56.7,30.4'
+          if shape == 'row'
+            assign cord_d = 'M0 54 L100 54'
+            assign ys_list = '54,54,54,54,54,54,54,54'
+          endif
+        -%}
+        <div class="env2-pdp-fit__band env2-pdp-fit__band--{{ shape }}" aria-hidden="true">
+          <svg class="env2-pdp-fit__cord" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path d="{{ cord_d }}" vector-effect="non-scaling-stroke"/></svg>
+          {%- assign ys = ys_list | split: ',' -%}
+          {%- assign xs = '1.5625,4.6875,7.8125,10.9375,14.0625,17.1875,20.3125,23.4375' | split: ',' -%}
+          {%- for i in (0..31) -%}
+            {%- liquid
+              assign arc = i | divided_by: 8
+              assign pos = arc | times: 8
+              assign pos = i | minus: pos
+              assign bx = xs[pos] | plus: 0.0
+              assign bx = arc | times: 25 | plus: bx
+            -%}
+            <i class="env2-pdp-fit__b" style="--x:{{ bx }}%;--y:{{ ys[pos] }}%;--i:{{ i }}"></i>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if has_neg -%}
+        <p class="env2-pdp-fit__refusal" data-env2-pdp-fit-refusal aria-hidden="true">{{ section.settings.refusal_line }}</p>
+        {%- if section.settings.redirect_html != blank -%}
+          <div class="env2-pdp-fit__redirect">{{ section.settings.redirect_html }}</div>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if show_sun -%}
+        <div class="env2-pdp-fit__sun">
+          <p class="env2-pdp-fit__sunq">{{ section.settings.solar_question }}</p>
+          <div class="env2-pdp-fit__sunanswers">
+            <label class="env2-pdp-fit__sunopt env2-pdp-fit__sunopt--yes" for="env2-pdp-fit-sunyes-{{ sid }}">{{ section.settings.solar_yes }}</label>
+            <label class="env2-pdp-fit__sunopt env2-pdp-fit__sunopt--no" for="env2-pdp-fit-sunno-{{ sid }}">{{ section.settings.solar_no }}</label>
+            {%- if section.settings.solar_answer != blank -%}
+              <p class="env2-pdp-fit__sunanswer" data-env2-pdp-fit-answer aria-hidden="true">{{ section.settings.solar_answer }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      <p class="env2-pdp-fit__live env2-pdp-fit__sr" role="status" aria-live="polite" data-env2-pdp-fit-live></p>
+    </div>
+
+    {%- if has_choice -%}
+      <div class="env2-pdp-fit__choose">
+        {%- assign choose_head = section.settings.choose_label | default: '' | strip -%}
+        {%- if choose_head == '' -%}{%- assign choose_head = c_head -%}{%- endif -%}
+        {%- if choose_head != blank -%}<h3 class="env2-h env2-pdp-fit__ch">{{ choose_head }}</h3>{%- endif -%}
+        <ol class="env2-pdp-fit__list">
+          {%- if section.settings.choose_source == 'blocks' -%}
+            {%- for block in section.blocks -%}
+              <li class="env2-pdp-fit__item" {{ block.shopify_attributes }}>
+                <span class="env2-kicker env2-pdp-fit__n"><bdi>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</bdi></span>
+                {%- if block.settings.label != blank -%}<span class="env2-pdp-fit__ilabel">{{ block.settings.label }}</span>{%- endif -%}
+                <p class="env2-pdp-fit__itext">{{ block.settings.text }}</p>
+              </li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- if c_one != blank -%}
+              <li class="env2-pdp-fit__item">
+                <span class="env2-kicker env2-pdp-fit__n"><bdi>01</bdi></span>
+                <p class="env2-pdp-fit__itext">{{ c_one }}</p>
+              </li>
+            {%- endif -%}
+            <li class="env2-pdp-fit__item">
+              <span class="env2-kicker env2-pdp-fit__n"><bdi>{% if c_one != blank %}02{% else %}01{% endif %}</bdi></span>
+              <p class="env2-pdp-fit__itext">{{ c_two }}</p>
+            </li>
+          {%- endif -%}
+        </ol>
+        {%- if section.settings.choose_note != blank and section.settings.choose_source != 'blocks' -%}
+          <p class="env2-pdp-fit__source">{{ section.settings.choose_note }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <p class="env2-pdp-fit__foot">
+      {%- if section.settings.foot_lead != blank -%}<span class="env2-pdp-fit__footlead">{{ section.settings.foot_lead }}</span>{%- endif -%}
+      {% render 'elmsnest-v2-pdp-photo-cta', product: product, style: 'link', label: section.settings.photo_link_label, subject: section.settings.mailto_subject, class: 'env2-pdp-fit__photo' %}
+    </p>
+
+  </div>
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+/* §4.2 — the not-for device. Every selector .env2-pdp-fit__…, logical properties only, radius 0
+   except the knob pill and the round bulbs. No Liquid in here: per-instance values arrive as
+   inline custom properties (--x / --y / --i on each bulb). */
+.env2-pdp-fit{padding-block:clamp(72px,9vw,110px) clamp(60px,7vw,90px)}
+.env2-pdp-fit__wrap{position:relative;z-index:1}
+
+/* ---------- head ---------- */
+.env2-pdp-fit__head{display:grid;justify-items:center;gap:16px;max-width:780px;margin-inline:auto;text-align:center}
+.env2-pdp-fit__h2{font-size:clamp(36px,5.8vw,86px)}
+.env2-pdp-fit__lead{max-width:46ch;text-align:center}
+
+/* ---------- the switch ---------- */
+.env2-pdp-fit__stage{position:relative;margin-block-start:clamp(36px,5vw,64px)}
+.env2-pdp-fit__r{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
+.env2-pdp-fit__toggle{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(16px,4vw,60px);width:min(1100px,100%);margin-inline:auto}
+.env2-pdp-fit__half{display:grid;gap:10px;padding-block:12px;min-height:44px;align-content:center;justify-items:end;text-align:end;cursor:pointer;color:var(--env2-ink-2);transition:color .4s}
+.env2-pdp-fit__half--no{justify-items:start;text-align:start}
+.env2-pdp-fit__half:hover{color:var(--env2-ink)}
+.env2-pdp-fit__tag{font-family:var(--env2-sans);font-size:11.5px;font-weight:500;letter-spacing:.16em;line-height:1.3;color:var(--env2-mute);transition:color .4s}
+.env2-pdp-fit__word{font-family:var(--env2-serif);font-weight:700;font-size:clamp(24px,3.2vw,46px);line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.env2-pdp-fit__r--on:checked~.env2-pdp-fit__toggle .env2-pdp-fit__half--yes,
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__toggle .env2-pdp-fit__half--no{color:var(--env2-ink)}
+.env2-pdp-fit__r--on:checked~.env2-pdp-fit__toggle .env2-pdp-fit__half--yes .env2-pdp-fit__tag,
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__toggle .env2-pdp-fit__half--no .env2-pdp-fit__tag{color:var(--env2-gold)}
+.env2-pdp-fit__r:focus-visible~.env2-pdp-fit__toggle .env2-pdp-fit__half{outline:0}
+.env2-pdp-fit__r--on:focus-visible~.env2-pdp-fit__toggle .env2-pdp-fit__half--yes,
+.env2-pdp-fit__r--off:focus-visible~.env2-pdp-fit__toggle .env2-pdp-fit__half--no{outline:2px solid var(--env2-glow);outline-offset:6px}
+.env2-pdp-fit__knob{position:relative;flex:none;width:96px;height:48px;border-radius:999px;background:rgba(5,8,14,.5);box-shadow:inset 0 0 0 1px var(--env2-hair-btn);pointer-events:none}
+.env2-pdp-fit__knob i{position:absolute;inset-block-start:5px;inset-inline-start:5px;width:38px;height:38px;border-radius:50%;background:var(--env2-glow);box-shadow:0 0 18px 4px rgba(255,211,148,.5);transition:transform .35s cubic-bezier(.2,.8,.2,1),background .4s,box-shadow .4s}
+.env2-js .env2-pdp-fit__knob{pointer-events:auto;cursor:pointer}
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__toggle .env2-pdp-fit__knob i,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__toggle .env2-pdp-fit__knob i{transform:translateX(-48px);background:#2a2f3b;box-shadow:none}
+
+/* mode 2 — no approved negative for this product: the suits half alone, printed, never a control */
+.env2-pdp-fit__only{display:grid;justify-items:center;gap:10px;text-align:center;margin:0;color:var(--env2-ink)}
+.env2-pdp-fit__only .env2-pdp-fit__tag{color:var(--env2-gold)}
+
+/* ---------- the light: a drawn cord and its bulbs (never a photograph, never a claim) ---------- */
+.env2-pdp-fit__band{position:relative;width:100vw;margin-inline:calc(50% - 50vw);height:clamp(120px,15vw,200px);margin-block-start:clamp(28px,4vw,44px);isolation:isolate}
+.env2-pdp-fit__band::after{content:"";position:absolute;inset:-34% -6% -44%;pointer-events:none;background:radial-gradient(46% 54% at 50% 46%,rgba(255,211,148,.22),rgba(255,211,148,0) 70%);opacity:1;transition:opacity .7s .1s;z-index:-1}
+.env2-pdp-fit__band--row{height:clamp(96px,11vw,140px)}
+.env2-pdp-fit__cord{position:absolute;inset:0;width:100%;height:100%;display:block;fill:none;stroke:rgba(244,238,227,.3);stroke-width:1.2;transition:stroke .6s}
+.env2-pdp-fit__b{--d:calc(var(--i,0) * 14ms);position:absolute;inset-inline-start:var(--x);inset-block-start:var(--y);width:9px;height:9px;margin-inline-start:-4.5px;margin-block-start:-4.5px;border-radius:50%;background:var(--env2-glow);box-shadow:0 0 3px 1px rgba(255,241,214,.85),0 0 14px 5px rgba(255,211,148,.4);transition:background .45s var(--d,0s),box-shadow .45s var(--d,0s)}
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__band .env2-pdp-fit__b,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__band .env2-pdp-fit__b{--d:0s;background:#252a35;box-shadow:none;animation:env2-pdp-fit-out .24s steps(1,end) both}
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__band::after,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__band::after{opacity:0;transition-delay:.2s}
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__band .env2-pdp-fit__cord,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__band .env2-pdp-fit__cord{stroke:rgba(244,238,227,.14)}
+@keyframes env2-pdp-fit-out{0%{opacity:1}18%{opacity:.15}38%{opacity:.85}62%{opacity:.1}82%{opacity:.4}100%{opacity:1}}
+
+/* ---------- the refusal, and where the sale goes instead ---------- */
+.env2-pdp-fit__refusal{margin:0;padding-block-start:clamp(18px,2.4vw,26px);min-height:1.6em;text-align:center;font-family:var(--env2-sans);font-size:15px;line-height:1.5;color:var(--env2-ink-2);opacity:0;transition:opacity .45s .3s}
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__refusal,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__refusal{opacity:1}
+.env2-pdp-fit__redirect{margin-block-start:10px;text-align:center;font-size:16px;line-height:1.55;color:var(--env2-ink-2);max-width:60ch;margin-inline:auto}
+.env2-pdp-fit__redirect p{margin:0}
+.env2-pdp-fit__redirect a{color:var(--env2-glow);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:2px;transition:border-color .3s}
+.env2-pdp-fit__redirect a:hover{border-color:var(--env2-glow)}
+
+/* ---------- graft B — the second question (solar only) ---------- */
+.env2-pdp-fit__sun{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:clamp(20px,4vw,64px);width:min(1100px,100%);margin-inline:auto;margin-block-start:clamp(56px,8vw,96px);border-top:1px solid var(--env2-hair);padding-block-start:clamp(26px,3vw,40px)}
+.env2-pdp-fit__sunq{margin:0;font-family:var(--env2-serif);font-weight:400;font-size:clamp(22px,2.4vw,32px);line-height:1.25;color:var(--env2-ink);text-wrap:balance}
+.env2-pdp-fit__sunanswers{display:grid;gap:0}
+.env2-pdp-fit__sunopt{display:flex;align-items:center;min-height:48px;padding-block:12px;border-top:1px solid var(--env2-hair);font-family:var(--env2-sans);font-size:16px;font-weight:300;color:var(--env2-ink-2);cursor:pointer;transition:color .3s}
+.env2-pdp-fit__sunopt:first-child{border-top:0}
+.env2-pdp-fit__sunopt::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;margin-inline-end:12px;background:transparent;box-shadow:inset 0 0 0 1px rgba(244,238,227,.5);transition:background .35s,box-shadow .35s}
+.env2-pdp-fit__sunopt:hover{color:var(--env2-ink)}
+.env2-pdp-fit__r--sunyes:checked~.env2-pdp-fit__sun .env2-pdp-fit__sunopt--yes,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__sun .env2-pdp-fit__sunopt--no{color:var(--env2-ink)}
+.env2-pdp-fit__r--sunyes:checked~.env2-pdp-fit__sun .env2-pdp-fit__sunopt--yes::before{background:var(--env2-glow);box-shadow:0 0 14px 3px rgba(255,211,148,.6)}
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__sun .env2-pdp-fit__sunopt--no::before{background:#2a2f3b;box-shadow:inset 0 0 0 1px rgba(244,238,227,.35)}
+.env2-pdp-fit__r--sunyes:focus-visible~.env2-pdp-fit__sun .env2-pdp-fit__sunopt--yes,
+.env2-pdp-fit__r--sunno:focus-visible~.env2-pdp-fit__sun .env2-pdp-fit__sunopt--no{outline:2px solid var(--env2-glow);outline-offset:2px}
+.env2-pdp-fit__sunanswer{margin:0;padding-block:14px 0;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-width:44ch;opacity:0;transition:opacity .5s}
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__sun .env2-pdp-fit__sunanswer,
+.env2-pdp-fit__r--sunyes:checked~.env2-pdp-fit__sun .env2-pdp-fit__sunanswer{opacity:1}
+
+/* ---------- mode 2 — the product's own choosing sentences ---------- */
+.env2-pdp-fit__choose{width:min(1100px,100%);margin-inline:auto;margin-block-start:clamp(56px,8vw,96px)}
+.env2-pdp-fit__ch{font-size:clamp(22px,2.6vw,34px);max-width:24ch;margin-block-end:clamp(20px,2.4vw,30px)}
+.env2-pdp-fit__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(24px,5vw,72px)}
+.env2-pdp-fit__item{display:grid;gap:8px;align-content:start;border-top:1px solid var(--env2-hair);padding-block:18px 4px}
+.env2-pdp-fit__n{color:var(--env2-gold);font-size:11.5px}
+.env2-pdp-fit__ilabel{font-family:var(--env2-sans);font-size:13px;color:var(--env2-mute)}
+.env2-pdp-fit__itext{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:17px;line-height:1.55;color:var(--env2-ink-2);max-width:42ch}
+.env2-pdp-fit__source{margin:0;padding-block-start:20px;font-size:13px;color:var(--env2-mute)}
+
+/* ---------- the small step ---------- */
+.env2-pdp-fit__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin:0;margin-block-start:clamp(44px,6vw,72px);text-align:center}
+.env2-pdp-fit__footlead{font-family:var(--env2-sans);font-size:15px;color:var(--env2-ink-2)}
+.env2-pdp-fit__sr{position:absolute;width:1px;height:1px;margin:0;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ---------- mobile recomposition (not a collapsed grid) ---------- */
+@media (max-width:900px){
+  .env2-pdp-fit__toggle{grid-template-columns:minmax(0,1fr);justify-items:center;gap:18px}
+  .env2-pdp-fit__half,.env2-pdp-fit__half--no{justify-items:center;text-align:center}
+  .env2-pdp-fit__knob{order:0}
+  .env2-pdp-fit__band{height:clamp(112px,30vw,160px)}
+  .env2-pdp-fit__band--row{height:clamp(92px,22vw,120px)}
+  .env2-pdp-fit__b:nth-child(2n){display:none}
+  .env2-pdp-fit__sun{grid-template-columns:minmax(0,1fr);gap:18px}
+  .env2-pdp-fit__list{grid-template-columns:minmax(0,1fr)}
+  .env2-pdp-fit__itext{max-width:none}
+  .env2-pdp-fit__refusal{font-size:14.5px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* The device itself is CSS + native radios, so it works with this file absent. JS adds exactly three
+   things: the knob as a click target, a polite live region (a :checked reveal is not announced), and
+   a data-state hook other sections can read. Ends with the CONTRACT's env2.observe fallback line. */
+document.querySelectorAll('[data-env2-pdp-fit]').forEach(function (el) {
+  var stage = el.querySelector('[data-env2-pdp-fit-stage]');
+  if (stage) {
+    var live = stage.querySelector('[data-env2-pdp-fit-live]');
+    var onR = stage.querySelector('[data-env2-pdp-fit-r="on"]');
+    var offR = stage.querySelector('[data-env2-pdp-fit-r="off"]');
+    var sunNo = stage.querySelector('[data-env2-pdp-fit-r="sun-no"]');
+    var sunYes = stage.querySelector('[data-env2-pdp-fit-r="sun-yes"]');
+    var refusal = stage.querySelector('[data-env2-pdp-fit-refusal]');
+    var answer = stage.querySelector('[data-env2-pdp-fit-answer]');
+    var knob = stage.querySelector('[data-env2-pdp-fit-knob]');
+    var txt = function (node) { return node ? (node.textContent || '').replace(/\s+/g, ' ').trim() : ''; };
+    var sync = function (announce) {
+      var dark = !!((offR && offR.checked) || (sunNo && sunNo.checked));
+      el.setAttribute('data-env2-fit-state', dark ? 'off' : 'on');
+      if (!live || !announce) { return; }
+      var say = '';
+      if (dark && refusal) { say = txt(refusal); }
+      if (answer && ((sunNo && sunNo.checked) || (sunYes && sunYes.checked))) {
+        say = say ? say + ' ' + txt(answer) : txt(answer);
+      }
+      if (txt(live) !== say) { live.textContent = say; }
+    };
+    stage.addEventListener('change', function () { sync(true); });
+    if (knob && onR && offR) {
+      knob.addEventListener('click', function () {
+        var next = offR.checked ? onR : offR;
+        next.checked = true;
+        sync(true);
+      });
+    }
+    sync(false);
+  }
+  window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — מתי כן ולא",
+  "tag": "section",
+  "class": "env2-pdp-fit-section hdt-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "header", "content": "הכותרת" },
+    { "type": "text", "id": "eyebrow", "label": "תווית — כשיש ניסוח 'לא מתאים' מאושר", "default": "02 · מתי כן, ומתי לא" },
+    { "type": "text", "id": "eyebrow_choose", "label": "תווית — כשאין ניסוח 'לא מתאים'", "default": "02 · איך בוחרים נכון" },
+    { "type": "text", "id": "question", "label": "השאלה (ריק = לפי המקום של המוצר)", "info": "נכתבת בגרשיים «…» אוטומטית. ריק → «זה יתאים לשביל/לקיר/למרפסת/לגינה שלי?» לפי סוג המוצר." },
+    { "type": "textarea", "id": "lead", "label": "פסקת פתיחה — עם המתג", "default": "לכל מקום יש מטרה שהתאורה ממלאת — ומצב שבו היא לא. העבירו את המתג ותראו." },
+    { "type": "textarea", "id": "lead_choose", "label": "פסקת פתיחה — בלי המתג", "default": "לכל מקום יש מטרה שהתאורה ממלאת. מה שכתוב כאן על הבחירה מגיע מתיאור המוצר עצמו." },
+    { "type": "header", "content": "המתג — הצמד המאושר" },
+    { "type": "paragraph", "content": "רק ארבעת הצמדים המאושרים. טקסט שאינו אחד מהם לא ייכתב בעמוד. ה'לא מתאים' נלקח מ־custom.not_fit_for של המוצר; כשהוא ריק — לא נכתב שום 'לא מתאים', והמדור מציג את משפטי הבחירה מתיאור המוצר." },
+    { "type": "text", "id": "suits_label", "label": "תווית הצד המתאים", "default": "מתאים כדי" },
+    { "type": "text", "id": "suits_text", "label": "מתאים כדי… (ריק = לפי המקום)", "info": "מותר רק: לראות את הדרך · להאיר נקודה מסוימת · ליצור אווירה · להאיר עץ או ערוגה" },
+    { "type": "text", "id": "notfit_label", "label": "תווית הצד הלא מתאים", "default": "לא מתאים כש־" },
+    { "type": "text", "id": "notfit_text", "label": "לא מתאים כש… (ריק = מתוך המטה־פילד)", "info": "מותר רק אחד מארבעת הניסוחים המאושרים, מילה במילה. חל על כל המוצרים בתבנית — עדיף להשאיר ריק ולמלא את custom.not_fit_for לכל מוצר." },
+    { "type": "text", "id": "refusal_line", "label": "המשפט שנדלק כשהאור כבה", "default": "לא נדלק. זו הנקודה." },
+    { "type": "richtext", "id": "redirect_html", "label": "לאן כן (קישור אחד)", "info": "מוצג רק כשיש 'לא מתאים' מאושר. לדוגמה: לאור חזק על קיר או בכניסה יש אצלנו מקום אחר — תאורת קיר." },
+    { "type": "checkbox", "id": "show_string", "label": "להציג את שורת האור", "default": true },
+    { "type": "select", "id": "string_shape", "label": "צורת האור", "options": [ { "value": "auto", "label": "לפי המקום של המוצר" }, { "value": "hang", "label": "שרשרת תלויה" }, { "value": "row", "label": "שורת נקודות אור" } ], "default": "auto" },
+    { "type": "header", "content": "השאלה השנייה — סולארי בלבד" },
+    { "type": "paragraph", "content": "מוצגת רק כאשר custom.power_source של המוצר הוא 'סולארי'. כשהשדה ריק — העמוד לא אומר דבר על מקור החשמל." },
+    { "type": "checkbox", "id": "show_solar_question", "label": "להציג את שאלת השמש", "default": true },
+    { "type": "text", "id": "solar_question", "label": "השאלה", "default": "כמה שמש המקום מקבל ביום?" },
+    { "type": "text", "id": "solar_yes", "label": "תשובה — יש שמש", "default": "שמש במשך היום" },
+    { "type": "text", "id": "solar_no", "label": "תשובה — אין שמש", "default": "כמעט אינו מקבל אור יום" },
+    { "type": "textarea", "id": "solar_answer", "label": "מה שנכתב אחרי התשובה", "default": "הפאנל נטען מהשמש והתאורה נדלקת עם החשכה. אם המקום כמעט אינו מקבל אור יום — זה לא המוצר." },
+    { "type": "header", "content": "משפטי הבחירה של המוצר" },
+    { "type": "select", "id": "choose_source", "label": "מקור", "options": [ { "value": "advice", "label": "מתיאור המוצר (מומלץ)" }, { "value": "blocks", "label": "מהבלוקים למטה" }, { "value": "none", "label": "לא להציג" } ], "default": "advice", "info": "מוצג רק כשאין ל'מוצר' ניסוח 'לא מתאים' מאושר." },
+    { "type": "text", "id": "choose_label", "label": "כותרת (ריק = הכותרת מתיאור המוצר)" },
+    { "type": "text", "id": "choose_note", "label": "שורת המקור", "default": "מתוך תיאור המוצר" },
+    { "type": "header", "content": "הצעד הקטן" },
+    { "type": "text", "id": "foot_lead", "label": "פתיח", "default": "לא בטוחים?" },
+    { "type": "text", "id": "photo_link_label", "label": "תווית הקישור (ריק = ברירת המחדל)" },
+    { "type": "text", "id": "mailto_subject", "label": "נושא המייל (ריק = ברירת המחדל)" }
+  ],
+  "blocks": [
+    {
+      "type": "choice",
+      "name": "משפט בחירה",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "label", "label": "תווית" },
+        { "type": "textarea", "id": "text", "label": "המשפט", "info": "מילה במילה מתיאור המוצר. לא לכתוב עובדה חדשה." }
+      ]
+    }
+  ],
+  "presets": [ { "name": "ElmsNest v2 — מתי כן ולא" } ]
+}
+{% endschema %}

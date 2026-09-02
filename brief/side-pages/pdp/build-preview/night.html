@@ -1,0 +1,354 @@
+<!doctype html><html lang="he" dir="rtl" class="env2-js"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest PDP — elmsnest-v2-pdp-night</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<style>
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1), every template ----------
+   Kalles paints body with its scheme and wraps content in painted containers; here the document
+   is night on every page type and the wrappers go clear. The index keeps its own dusk gradient
+   (snippets/elmsnest-v2-ground-index, rendered by the hero); every other template gets the
+   side-page ground: sky-2 -> sky-3 -> sky-4, ending in #020306 before the footer. */
+html{background:#020306}
+body[class*="hdt-page-type-"]{background-color:#020306;color:#f4eee3}
+body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+#wrapper,.main-content,main,#MainContent,.hdt-main-content,.hdt-page-content,.shopify-section{background:transparent}
+/* Kalles back-to-top: a white square bottom-right (old palette) — hidden everywhere (§7.11) */
+.hdt-back-to-top,back-to-top{display:none!important}
+/* Kalles footer group: same sans as the page, quiet links (underline on hover only).
+   The link rules must reach (0,2,2): the footer links sit inside .hdt-text-warry.hdt-rte, and Kalles'
+   .hdt-rte a:not(.hdt-btn){text-decoration:underline} is (0,2,1), so the plain unscoped selector (0,1,1)
+   lost to it and every footer link came back underlined (fix pass R0-01). The index-scoped rule this
+   replaced was body.hdt-page-type-index .shopify-section-group-footer-group a = (0,2,2) and did win. */
+.shopify-section-group-footer-group{font-family:var(--env2-sans)}
+body .shopify-section-group-footer-group a:not(.hdt-btn){text-decoration:none}
+body .shopify-section-group-footer-group a:not(.hdt-btn):hover,body .shopify-section-group-footer-group a:not(.hdt-btn):focus-visible{text-decoration:underline}
+/* Kalles chrome type: header menu, drawers, popovers, facets and the old sections use Heebo.
+   css-variables sets --f_family_1..3 on :root from the Shopify font (assistant_n4); this comes after it. */
+:root{--f_family_1:var(--env2-sans);--f_family_2:var(--env2-sans);--f_family_3:var(--env2-sans)}
+/* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
+   sale badges never render (settings hidden_badges + this belt) */
+option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
+.hdt-badge__wrapp{display:none!important}
+/* Kalles form fields: the theme paints a field with rgb(var(--color-input-primary)) and writes it with
+   --color-input-secondary. Both the :root fallback (css-variables l.185-186) and the night scheme's
+   input pair still carry cream-era values, so every form rendered a light slab with 2.7:1 text on the
+   night ground (contact form, account/login/register, the cart discount field). Night field, ink text.
+   --en-input-bg is the last #fffdf7 in the token set (the header search field) — retargeted with it. */
+:root{--en-input-bg:17 29 51}
+:root,[color-scheme]{--color-input-primary:var(--en-surface-elevated);--color-input-secondary:var(--en-color-light)}
+/* Kalles accent buttons hard-code white labels (.hdt-btn-accent{--hdt-btn-color:255 255 255}); under the
+   night scheme their fill is --env2-glow, so the label needs the dark ink (§D): 1.4:1 -> 13:1. */
+.hdt-btn-accent{--hdt-btn-color:var(--en-text-inverse)}
+/* Kalles swatch/tooltip bubble: css-variables pairs --color-tooltip-background with
+   --color-tooltip-text, and §D moved BOTH ends of that pair to near-black (--en-color-dark 2 3 6 /
+   --en-text-inverse 2 3 6) — the bubble is ink-on-ink. Night bubble, ink label (hover only). */
+:root{--color-tooltip-background:var(--en-surface-elevated);--color-tooltip-text:var(--en-color-light)}
+
+/* ---------- fix pass, round 0 second pass (V-1 · V-2 · V-4 · V-6) ---------- */
+/* V-1: the header search panel is <hdt-predictive-search color-scheme="scheme-1"> — the attribute is written
+   in a Kalles core section we do not own, so settings.color_scheme_dialog never reaches it, and scheme-1 is
+   the cream scheme (#f7f0e6 background, #fffdf7 background2, #2b2118 foreground): the three hexes this round
+   forbids, on the drawer behind the magnifier on every template. scheme-1 is remapped onto the night pair.
+   Exactly one element per page carries it (the search panel, closed) — the homepage included — so nothing
+   else can move. The input pair is deliberately NOT listed here: the :root,[color-scheme] rule above owns it
+   at the same specificity and must keep winning. */
+[color-scheme="scheme-1"]{
+  --color-background:2 3 6;--color-background2:7 11 21;--color-foreground:244 238 227;--color-foreground2:201 196 184;
+  --color-accent:255 211 148;--color-secondary:208 182 135;--color-tertiary:155 122 61;
+  --hdt-btn-color:26 18 6;--hdt-btn-bg:255 211 148;--hdt-btn-border-color:255 211 148;
+  --hdt-btn-hover-color:26 18 6;--hdt-btn-hover-bg:var(--en-surface-card);--hdt-btn-hover-border-color:var(--en-surface-card);
+  --hdt-btn-secondary-color:83 73 54;--hdt-btn-secondary-bg:208 182 135;
+  --hdt-btn-tertiary-color:62 49 24;--hdt-btn-tertiary-bg:155 122 61;
+  --hdt-btn-outline-color:244 238 227;--hdt-btn-outline-border-color:244 238 227;
+  --hdt-link-color:244 238 227;--hdt-link-hover-color:255 211 148;
+  --color-line-border:31 30 29;--color-overlay:2 3 6;--payment-terms-background-color:rgb(2 3 6);
+  --color-pr-price:255 211 148;--color-pr-sale-price:255 211 148;--color-pr-text:244 238 227;
+  --color-focus:var(--en-focus-dark);--en-focus-contrast:var(--en-focus-light)
+}
+/* the search drawer's category <select> and its options paint from the UA, not from the scheme (old open item 5) */
+#drawer-search-form select,#drawer-search-form option{background-color:rgb(var(--en-surface-elevated));color:rgb(var(--en-color-light))}
+/* V-4: <dialog id="modal-contactFormAsk"> has no background rule of its own, so it falls back to the UA's
+   white canvas while its wrapper's night scheme paints the ink — heading 1.15:1, field labels 1.74:1. */
+#modal-contactFormAsk{background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}
+/* V-6: --en-warning-text (96 64 0) was built for the cream page; §D moved the ground to #020306 and did not
+   list it, so .hdt-no-result-product — the only copy on the no-results page — reads 2.19:1. The amber the
+   design system already uses gives 11.9:1 on #020306. The two other consumers (.toast.warning border,
+   .toast-icon.warning fill, which pairs it with --en-text-inverse) stay legible. */
+:root{--en-warning-text:255 211 148}
+/* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
+   hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
+.hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-price__from{font-family:var(--env2-sans);font-weight:400;font-size:.62em;color:var(--env2-ink-2);margin-inline-end:.15em;letter-spacing:0}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<style>
+/* ---------- page ground (PDP §3.1): the PDP is already night — sky-2 → sky-4, no dusk ----------
+   Screen 1 is a photo ground painted by the stage section; the document below it is this one
+   gradient, never a per-section background. */
+html body.hdt-page-type-product{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#0f1a2f 20%,#070b15 56%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-product #wrapper,
+html body.hdt-page-type-product .main-content,
+html body.hdt-page-type-product main,
+html body.hdt-page-type-product #MainContent,
+html body.hdt-page-type-product .hdt-main-content,
+html body.hdt-page-type-product .hdt-page-content,
+html body.hdt-page-type-product .shopify-section{background:transparent}
+/* The header is transparent over the stage: the stage is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it. */
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal scroll at 360px — the stage and the night gallery are full-bleed (§6.18). */
+html body.hdt-page-type-product{overflow-x:hidden}
+/* The sticky mobile buy bar (§4.9) reserves its own height at the end of the document so it can never
+   cover the footer. --env2-pdp-bar-h is declared here (one place) and read by elmsnest-v2-pdp-buybar. */
+@media (max-width:900px){
+  html body.hdt-page-type-product{--env2-pdp-bar-h:78px;padding-block-end:var(--env2-pdp-bar-h)}
+}
+</style>
+<style>
+/* ElmsNest v2 PDP §4.3 — the night gallery. Two staggered figures, never a grid; the wide frame runs
+   to the viewport's end edge; the close-up overlaps it from the start side. No background is painted
+   here (§3.1: the ground is the body's), no radius, logical properties only. */
+.env2-pdp-night{padding-block:clamp(72px,11vw,110px) clamp(64px,10vw,100px)}
+.env2-pdp-night__body{display:grid;grid-template-columns:minmax(0,1fr) min(58%,720px);grid-template-areas:"head big" "small big";align-items:start;
+  margin-inline-end:calc(-1 * max(var(--env2-gut),(100vw - var(--env2-w)) / 2))}
+.env2-pdp-night__head{grid-area:head;padding-inline-end:clamp(24px,3vw,56px)}
+.env2-pdp-night__eyebrow{margin:0 0 clamp(18px,2vw,28px)}
+/* two lines, the second in glow (§3.2) — the break is structural, never a balanced guess */
+.env2-pdp-night__h2{font-size:clamp(34px,4.9vw,72px);text-wrap:pretty}
+.env2-pdp-night__h2 em{display:block}
+.env2-pdp-night__lead{margin-block-start:clamp(16px,1.7vw,24px)}
+.env2-pdp-night__fig{margin:0;position:relative}
+.env2-pdp-night__fig--big{grid-area:big;align-self:start;z-index:1}
+.env2-pdp-night__fig--small{grid-area:small;inline-size:min(88%,480px);margin-inline-start:auto;margin-inline-end:-8%;
+  margin-block-start:clamp(28px,5vw,84px);z-index:2}
+.env2-pdp-night__ph{display:block;aspect-ratio:var(--env2-pdp-night-ar,4/3);border-radius:0}
+.env2-pdp-night__img{border-radius:0}
+/* the close-up lights 220 ms after the wide frame (§3.3) — a delay on the core's own filter curve */
+.env2-pdp-night__fig--small .env2-ph img{transition-delay:.22s}
+.env2-pdp-night__fig--small .env2-ph::after{transition-delay:.42s}
+.env2-pdp-night__cap{margin:0;padding-block-start:14px;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.5;color:var(--env2-ink-2);text-wrap:pretty}
+/* the wide caption starts clear of the close-up that overlaps this column */
+.env2-pdp-night__cap--big{padding-inline:clamp(48px,7vw,96px) clamp(16px,3vw,40px);max-inline-size:56ch}
+.env2-pdp-night__capplace{color:var(--env2-ink)}
+.env2-pdp-night__scale{color:var(--env2-ink-2)}
+.env2-pdp-night__scale bdi{font-variant-numeric:tabular-nums;color:var(--env2-glow)}
+.env2-pdp-night__note{margin:clamp(28px,4vw,52px) 0 0;font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.5;color:var(--env2-mute)}
+@media (max-width:900px){
+  /* one column, in reading order: head, the wide frame edge to edge, then the close-up inset */
+  .env2-pdp-night{padding-block:clamp(56px,12vw,84px) clamp(48px,10vw,72px)}
+  .env2-pdp-night__body{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "big" "small";
+    margin-inline:calc(-1 * var(--env2-gut))}
+  .env2-pdp-night__head{padding-inline:var(--env2-gut);max-inline-size:none;margin-block-end:clamp(26px,7vw,38px)}
+  .env2-pdp-night__fig--big{inline-size:100%}
+  .env2-pdp-night__fig--small{inline-size:70%;margin-inline-start:var(--env2-gut);margin-inline-end:0;margin-block-start:clamp(18px,5vw,26px)}
+  .env2-pdp-night__cap{font-size:13px;padding-block-start:12px}
+  .env2-pdp-night__cap--big{padding-inline:var(--env2-gut);max-inline-size:none}
+  .env2-pdp-night__note{padding-inline:var(--env2-gut)}
+}
+</style>
+<style>
+body{margin:0}
+.np-label{width:min(1240px,100% - 2*var(--env2-gut));margin:0 auto;padding-block:52px 0;font:13px/1.6 var(--env2-sans);color:var(--env2-mute);border-top:1px dashed rgba(244,238,227,.18)}
+.np-label b{display:block;font-weight:500;font-size:13.5px;letter-spacing:.06em;color:var(--env2-gold)}
+</style></head>
+<body class="hdt-page-type-product template-product">
+<p class="np-label"><b>A · solar-crystal-ball-string-lights — the section as it ships</b> Wide frame = images[2] (the string on the wooden trellis), close-up = images[0], both through the §3.5 resolver: 1 and 3 are banned on this handle. Headline tail from the product title&#x27;s own noun. Lead parsed verbatim from the description. Scale cue built from the 24-variant ledger model.</p>
+<section id="env2-pdp-night" data-env2-pdp-night class="env2-section env2-pdp-night" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0" aria-labelledby="env2-pdp-night-h2">
+  <div class="env2-wrap env2-pdp-night__wrap">
+    <div class="env2-pdp-night__body">
+
+      <div class="env2-pdp-night__head"><p class="env2-eyebrow env2-pdp-night__eyebrow">03 · בלילה</p><h2 class="env2-h env2-pdp-night__h2" id="env2-pdp-night-h2">מקרוב, <em>הכדור הוא האור.</em></h2><p class="env2-lead env2-pdp-night__lead">כדורי הקריסטל מוסיפים עומק וברק סביב שולחן, שביל, פרגולה או רקע צילום. האור משתקף בתוך כל כדור ומעניק לחלל תחושה עשירה וחגיגית יותר.</p></div><figure class="env2-pdp-night__fig env2-pdp-night__fig--big" data-lamp="manual" data-env2-pdp-night-fig="big" style="--env2-pdp-night-ar:4/3" >
+        <span class="env2-ph env2-pdp-night__ph">
+          <img src="../../../assets/img/solar-crystal-ball-string-lights-2.jpg" srcset="../../../assets/img/solar-crystal-ball-string-lights-2.jpg 600w, ../../../assets/img/solar-crystal-ball-string-lights-2.jpg 900w, ../../../assets/img/solar-crystal-ball-string-lights-2.jpg 1200w, ../../../assets/img/solar-crystal-ball-string-lights-2.jpg 1600w, ../../../assets/img/solar-crystal-ball-string-lights-2.jpg 2000w" sizes="(max-width:900px) 100vw, min(58vw,720px)" alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות" loading="eager" class="env2-pdp-night__img" width="1200" height="1200">
+        </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--big"><span class="env2-pdp-night__capplace">במרפסת ובפינת הישיבה.</span> <span class="env2-pdp-night__scale">מ־<bdi>5</bdi> ועד <bdi>22</bdi> מטר — לפי גודל האזור שמדדתם.</span></figcaption></figure><figure class="env2-pdp-night__fig env2-pdp-night__fig--small" data-lamp="manual" data-env2-pdp-night-fig="small" style="--env2-pdp-night-ar:1/1.15" >
+          <span class="env2-ph env2-pdp-night__ph">
+            <img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg" srcset="../../../assets/img/solar-crystal-ball-string-lights-0.jpg 420w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 600w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 900w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1200w" sizes="(max-width:900px) 70vw, min(38vw,480px)" alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות" loading="lazy" class="env2-pdp-night__img" width="1200" height="1200">
+          </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--small">מקרוב</figcaption></figure></div><p class="env2-pdp-night__note">התמונות להמחשה.</p></div>
+</section>
+<p class="np-label"><b>B · stainless-steel-solar-path-light-ip65 — 1 variant</b> The model says mode=single, so NO number is printed and no scale is claimed. Wide = images[3], close-up = images[1]; index 2 (the dimensions slide) is banned. Nothing about power anywhere.</p>
+<section id="env2-pdp-night" data-env2-pdp-night class="env2-section env2-pdp-night" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0" aria-labelledby="env2-pdp-night-h2">
+  <div class="env2-wrap env2-pdp-night__wrap">
+    <div class="env2-pdp-night__body">
+
+      <div class="env2-pdp-night__head"><p class="env2-eyebrow env2-pdp-night__eyebrow">03 · בלילה</p><h2 class="env2-h env2-pdp-night__h2" id="env2-pdp-night-h2">מקרוב, <em>ולאורך כל הדרך.</em></h2><p class="env2-lead env2-pdp-night__lead">דמיינו שורת נקודות אור שמובילה מהשער אל הדלת, מקיפה ערוגה או מגדירה את קצה השביל. גם בלי לשנות את הגינה, התאורה יוצרת עומק ומעניקה לחוץ הבית מראה מטופח יותר.</p></div><figure class="env2-pdp-night__fig env2-pdp-night__fig--big" data-lamp="manual" data-env2-pdp-night-fig="big" style="--env2-pdp-night-ar:4/3" >
+        <span class="env2-ph env2-pdp-night__ph">
+          <img src="../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg" srcset="../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg 600w, ../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg 900w, ../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg 1200w, ../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg 1600w, ../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg 2000w" sizes="(max-width:900px) 100vw, min(58vw,720px)" alt="מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65" loading="eager" class="env2-pdp-night__img" width="1200" height="1200">
+        </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--big"><span class="env2-pdp-night__capplace">לאורך השביל, במדרגות ובמעברים.</span> </figcaption></figure><figure class="env2-pdp-night__fig env2-pdp-night__fig--small" data-lamp="manual" data-env2-pdp-night-fig="small" style="--env2-pdp-night-ar:1/1.15" >
+          <span class="env2-ph env2-pdp-night__ph">
+            <img src="../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg" srcset="../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg 420w, ../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg 600w, ../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg 900w, ../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg 1200w" sizes="(max-width:900px) 70vw, min(38vw,480px)" alt="מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65" loading="lazy" class="env2-pdp-night__img" width="1200" height="1200">
+          </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--small">מקרוב</figcaption></figure></div><p class="env2-pdp-night__note">התמונות להמחשה.</p></div>
+</section>
+<p class="np-label"><b>C · waterproof-led-wall-light-ip65-6w-12w — MAINS, power_source unstated</b> Two price-bearing axes; the scale cue becomes the wattage pair. Wide = images[3], close-up = images[2]; index 0 (the slogan slide) is banned. No solar sentence, no mains sentence — §3.7.</p>
+<section id="env2-pdp-night" data-env2-pdp-night class="env2-section env2-pdp-night" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0" aria-labelledby="env2-pdp-night-h2">
+  <div class="env2-wrap env2-pdp-night__wrap">
+    <div class="env2-pdp-night__body">
+
+      <div class="env2-pdp-night__head"><p class="env2-eyebrow env2-pdp-night__eyebrow">03 · בלילה</p><h2 class="env2-h env2-pdp-night__h2" id="env2-pdp-night-h2">מקרוב, <em>ועל הקיר כולו.</em></h2><p class="env2-lead env2-pdp-night__lead">מנורת הקיר מאלומיניום מפזרת אור כלפי מעלה ומטה, מדגישה את הטקסטורה של הקיר ויוצרת מראה אדריכלי נקי. היא מתאימה לכניסה, למרפסת, למדרגות וגם לחללים פנימיים.</p></div><figure class="env2-pdp-night__fig env2-pdp-night__fig--big" data-lamp="manual" data-env2-pdp-night-fig="big" style="--env2-pdp-night-ar:4/3" >
+        <span class="env2-ph env2-pdp-night__ph">
+          <img src="../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg" srcset="../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg 600w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg 900w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg 1200w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg 1600w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg 2000w" sizes="(max-width:900px) 100vw, min(58vw,720px)" alt="מנורת קיר LED עמידה למים IP65 – ‏6W/12W" loading="eager" class="env2-pdp-night__img" width="1200" height="1200">
+        </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--big"><span class="env2-pdp-night__capplace">בכניסה, על הקיר ובחזית.</span> <span class="env2-pdp-night__scale"><bdi>6W</bdi> או <bdi>12W</bdi> — לפי העוצמה שבחרתם.</span></figcaption></figure><figure class="env2-pdp-night__fig env2-pdp-night__fig--small" data-lamp="manual" data-env2-pdp-night-fig="small" style="--env2-pdp-night-ar:1/1.15" >
+          <span class="env2-ph env2-pdp-night__ph">
+            <img src="../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-2.jpg" srcset="../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-2.jpg 420w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-2.jpg 600w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-2.jpg 900w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-2.jpg 1200w" sizes="(max-width:900px) 70vw, min(38vw,480px)" alt="מנורת קיר LED עמידה למים IP65 – ‏6W/12W" loading="lazy" class="env2-pdp-night__img" width="1200" height="1200">
+          </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--small">מקרוב</figcaption></figure></div><p class="env2-pdp-night__note">התמונות להמחשה.</p></div>
+</section>
+<p class="np-label"><b>EDGE · the same product with a single usable photograph</b> Both slots resolve to the same picture, so the section renders ONE figure instead of the same frame twice.</p>
+<section id="env2-pdp-night" data-env2-pdp-night class="env2-section env2-pdp-night" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0" aria-labelledby="env2-pdp-night-h2">
+  <div class="env2-wrap env2-pdp-night__wrap">
+    <div class="env2-pdp-night__body">
+
+      <div class="env2-pdp-night__head"><p class="env2-eyebrow env2-pdp-night__eyebrow">03 · בלילה</p><h2 class="env2-h env2-pdp-night__h2" id="env2-pdp-night-h2">מקרוב, <em>הכדור הוא האור.</em></h2><p class="env2-lead env2-pdp-night__lead">כדורי הקריסטל מוסיפים עומק וברק סביב שולחן, שביל, פרגולה או רקע צילום. האור משתקף בתוך כל כדור ומעניק לחלל תחושה עשירה וחגיגית יותר.</p></div><figure class="env2-pdp-night__fig env2-pdp-night__fig--big" data-lamp="manual" data-env2-pdp-night-fig="big" style="--env2-pdp-night-ar:4/3" >
+        <span class="env2-ph env2-pdp-night__ph">
+          <img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg" srcset="../../../assets/img/solar-crystal-ball-string-lights-0.jpg 600w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 900w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1200w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1600w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 2000w" sizes="(max-width:900px) 100vw, min(58vw,720px)" alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות" loading="eager" class="env2-pdp-night__img" width="1200" height="1200">
+        </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--big"><span class="env2-pdp-night__capplace">במרפסת ובפינת הישיבה.</span> <span class="env2-pdp-night__scale">מ־<bdi>5</bdi> ועד <bdi>22</bdi> מטר — לפי גודל האזור שמדדתם.</span></figcaption></figure></div><p class="env2-pdp-night__note">התמונות להמחשה.</p></div>
+</section>
+<p class="np-label"><b>EDGE · decorative-led-net-lights — a §3.6 never-use handle, and no lead in the description</b> index 0 carries baked-in text and is stepped over by the resolver. Whatever the description does not give, the section does without.</p>
+<section id="env2-pdp-night" data-env2-pdp-night class="env2-section env2-pdp-night" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0" aria-labelledby="env2-pdp-night-h2">
+  <div class="env2-wrap env2-pdp-night__wrap">
+    <div class="env2-pdp-night__body">
+
+      <div class="env2-pdp-night__head"><p class="env2-eyebrow env2-pdp-night__eyebrow">03 · בלילה</p><h2 class="env2-h env2-pdp-night__h2" id="env2-pdp-night-h2">מקרוב, <em>הנורה היא האור.</em></h2><p class="env2-lead env2-pdp-night__lead">פורסים את הרשת על גדר, קיר או פרגולה ומקבלים מאות נקודות אור מסודרות בלי לתלות כל שרשרת בנפרד. זהו הפתרון המהיר ליצירת רקע מרשים למסיבה, חתונה, אירוח או ערב מיוחד בגינה.</p></div><figure class="env2-pdp-night__fig env2-pdp-night__fig--big" data-lamp="manual" data-env2-pdp-night-fig="big" style="--env2-pdp-night-ar:4/3" >
+        <span class="env2-ph env2-pdp-night__ph">
+          <img src="../../../assets/img/decorative-led-net-lights-1.jpg" srcset="../../../assets/img/decorative-led-net-lights-1.jpg 600w, ../../../assets/img/decorative-led-net-lights-1.jpg 900w, ../../../assets/img/decorative-led-net-lights-1.jpg 1200w, ../../../assets/img/decorative-led-net-lights-1.jpg 1600w, ../../../assets/img/decorative-led-net-lights-1.jpg 2000w" sizes="(max-width:900px) 100vw, min(58vw,720px)" alt="רשת תאורת LED דקורטיבית לחוץ ולגינה – 1.5 עד 12 מטר" loading="eager" class="env2-pdp-night__img" width="1200" height="1200">
+        </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--big"><span class="env2-pdp-night__capplace">במרפסת ובפינת הישיבה.</span> <span class="env2-pdp-night__scale">מ־<bdi>1.5</bdi> ועד <bdi>12</bdi> ×1.5 — לפי גודל האזור שמדדתם.</span></figcaption></figure><figure class="env2-pdp-night__fig env2-pdp-night__fig--small" data-lamp="manual" data-env2-pdp-night-fig="small" style="--env2-pdp-night-ar:1/1.15" >
+          <span class="env2-ph env2-pdp-night__ph">
+            <img src="../../../assets/img/decorative-led-net-lights-2.jpg" srcset="../../../assets/img/decorative-led-net-lights-2.jpg 420w, ../../../assets/img/decorative-led-net-lights-2.jpg 600w, ../../../assets/img/decorative-led-net-lights-2.jpg 900w, ../../../assets/img/decorative-led-net-lights-2.jpg 1200w" sizes="(max-width:900px) 70vw, min(38vw,480px)" alt="רשת תאורת LED דקורטיבית לחוץ ולגינה – 1.5 עד 12 מטר" loading="lazy" class="env2-pdp-night__img" width="1200" height="1200">
+          </span><figcaption class="env2-pdp-night__cap env2-pdp-night__cap--small">מקרוב</figcaption></figure></div><p class="env2-pdp-night__note">התמונות להמחשה.</p></div>
+</section>
+<script>
+/* The section owns its two lamps: they are data-lamp="manual", so the core's shared observer skips
+   them (except under reduced motion, where it lights everything at once) and this file lights them
+   220 ms apart from ONE observer on the wide frame — "the two photographs, staggered, on arrival".
+   With this file absent, or JS off, nothing ever dims: the core only dims under html.env2-js.
+   Ends with the CONTRACT's env2.observe(el) / fallback line. */
+document.querySelectorAll('[data-env2-pdp-night]').forEach(function (el) {
+  var figs = el.querySelectorAll('[data-lamp]');
+  var lit = false;
+  function light(f) {
+    if (window.env2 && env2.light) { env2.light(f); } else { f.classList.add('lit'); }
+  }
+  function lightAll(stagger) {
+    if (lit) { return; }
+    lit = true;
+    for (var i = 0; i < figs.length; i++) {
+      if (!stagger || i === 0) { light(figs[i]); }
+      else { (function (f) { window.setTimeout(function () { light(f); }, 220); })(figs[i]); }
+    }
+  }
+  if (figs.length) {
+    var rm = window.env2 ? env2.rm : false;
+    if (rm || !('IntersectionObserver' in window)) {
+      lightAll(false);
+    } else {
+      var trigger = el.querySelector('[data-env2-pdp-night-fig="big"]') || el;
+      var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) { io.disconnect(); lightAll(true); return; }
+        }
+      }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+      io.observe(trigger);
+    }
+  }
+  window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+});
+</script>
+</body></html>

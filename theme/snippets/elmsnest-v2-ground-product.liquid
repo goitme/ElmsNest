@@ -1,0 +1,47 @@
+{%- comment -%}
+  ElmsNest v2 — the PRODUCT ground only (PDP WINNING-SPEC §3.1): the short night sky on the product
+  document, plus the wrappers that Kalles paints going clear so the stage can run full-bleed under the
+  transparent header. Mirrors snippets/elmsnest-v2-ground-index.liquid, which does the same job for the
+  homepage. Rendered by sections/elmsnest-v2-pdp-stage.liquid ONLY (once per page), exactly as the hero
+  renders elmsnest-v2-ground-index. The page-agnostic tokens/type/lamps/buttons live in
+  snippets/elmsnest-v2-core.liquid (rendered from layout/theme.liquid on every page) — nothing here
+  redefines a token and nothing here is per-instance, so there is no Liquid below.
+
+  Specificity note (load-bearing): elmsnest-v2-core sets the generic side-page ground with
+  `body[class*="hdt-page-type-"]:not(.hdt-page-type-index)` = (0,2,1). A plain
+  `body.hdt-page-type-product` is (0,1,1) and would LOSE, so every rule here is written
+  `html body.hdt-page-type-product…` = (0,2,2). Everything is scoped to that class, so no other
+  template can be touched.
+{%- endcomment -%}
+<style id="env2-ground-product">
+/* ---------- page ground (PDP §3.1): the PDP is already night — sky-2 → sky-4, no dusk ----------
+   Screen 1 is a photo ground painted by the stage section; the document below it is this one
+   gradient, never a per-section background. */
+html body.hdt-page-type-product{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#0f1a2f 20%,#070b15 56%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-product #wrapper,
+html body.hdt-page-type-product .main-content,
+html body.hdt-page-type-product main,
+html body.hdt-page-type-product #MainContent,
+html body.hdt-page-type-product .hdt-main-content,
+html body.hdt-page-type-product .hdt-page-content,
+html body.hdt-page-type-product .shopify-section{background:transparent}
+/* The header is transparent over the stage: the stage is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it. */
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal scroll at 360px — the stage and the night gallery are full-bleed (§6.18). */
+html body.hdt-page-type-product{overflow-x:hidden}
+/* The sticky mobile buy bar (§4.9) reserves its own height at the end of the document so it can never
+   cover the footer. --env2-pdp-bar-h is declared here (one place) and read by elmsnest-v2-pdp-buybar. */
+@media (max-width:900px){
+  html body.hdt-page-type-product{--env2-pdp-bar-h:78px;padding-block-end:var(--env2-pdp-bar-h)}
+}
+</style>

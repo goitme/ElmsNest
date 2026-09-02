@@ -1,0 +1,83 @@
+{%- comment -%}
+  ElmsNest v2 PDP — the "send a photo of the place" CALL TO ACTION (PDP WINNING-SPEC §4.7 "the mailto
+  rule", BRIEF §3 "No WhatsApp number exists yet", OWNER-NOTES 2026-09-02 answer 1).
+
+  ONE place holds both branches, so the day settings.whatsapp_number is filled every CTA on the page
+  changes together and no section is edited:
+    settings.whatsapp_number EMPTY (today) -> mailto:info@elmsnest.com with a prefilled subject + body,
+                                             label "לשלוח תמונה של המקום". The string "בוואטסאפ" can
+                                             not appear: it is stripped from any label a caller passes.
+    settings.whatsapp_number SET           -> https://wa.me/<digits>?text=… and the label may carry
+                                             "בוואטסאפ" (the default label does).
+  The URL itself is built by snippets/elmsnest-v2-photo-url.liquid — the shared builder every other
+  template already uses — so there is exactly one wa.me/mailto branch in the theme.
+
+  ------------------------------------------------------------------ usage
+    {% render 'elmsnest-v2-pdp-photo-cta', product: product %}
+    {% render 'elmsnest-v2-pdp-photo-cta', product: product, style: 'ghost',
+              label: section.settings.photo_cta_label, subject: section.settings.mailto_subject %}
+
+  ------------------------------------------------------------------ inputs
+    product : optional. Only used to name the product inside the prefilled mail body.
+    label   : optional. Default 'לשלוח תמונה של המקום' (+ ' בוואטסאפ' only when a number exists).
+    style   : 'link' (default) -> <a class="env2-link">…  with the ← arrow
+              'ghost'          -> <a class="env2-btn env2-btn--ghost">…
+              'plain'          -> <a class="env2-pdp-photo">… (inherits the surrounding type)
+              'btn' is deliberately NOT offered: a filled .env2-btn ANCHOR renders ink-on-glow at
+              1.21:1 until the core fix lands (PDP WINNING-SPEC §8.3 / core REPORT §9.1).
+    subject : optional mailto subject   (default 'בדיקת התאמה — תמונה של המקום')
+    body    : optional mailto body      (default 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר. המוצר ששוקלים: '
+                                         + product.title when a product is given)
+    text    : optional wa.me prefilled text
+    class   : extra class names for the anchor (e.g. 'env2-pdp-stage__photo')
+    hide_arrow : true to drop the ← on the link style
+
+  ------------------------------------------------------------------ output
+    exactly one <a> with data-env2-photo-cta and the classes above. Nothing else, no wrapper.
+{%- endcomment -%}
+{%- liquid
+  assign env2_wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
+  assign env2_body = body | default: ''
+  if env2_body == ''
+    assign env2_body = 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר. המוצר ששוקלים: '
+    if product != blank
+      assign env2_body = env2_body | append: product.title
+    endif
+  endif
+  assign env2_subject = subject | default: 'בדיקת התאמה — תמונה של המקום'
+  assign env2_text = text | default: 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.'
+-%}
+{%- capture env2_href -%}{%- render 'elmsnest-v2-photo-url', subject: env2_subject, body: env2_body, text: env2_text -%}{%- endcapture -%}
+{%- liquid
+  assign env2_href = env2_href | strip
+  assign env2_style = style | default: 'link'
+  if env2_style == 'btn'
+    assign env2_style = 'ghost'
+  endif
+  assign env2_label = label | default: ''
+  if env2_label == ''
+    assign env2_label = 'לשלוח תמונה של המקום'
+    if env2_wa != blank
+      assign env2_label = env2_label | append: ' בוואטסאפ'
+    endif
+  endif
+  # belt: no label may claim a WhatsApp channel that does not exist (BRIEF §11, do-not list §6.9)
+  unless env2_wa != blank
+    assign env2_label = env2_label | remove: ' בוואטסאפ' | remove: 'בוואטסאפ' | strip
+  endunless
+  assign env2_cls = 'env2-pdp-photo'
+  if env2_style == 'link'
+    assign env2_cls = 'env2-link env2-pdp-photo'
+  elsif env2_style == 'ghost'
+    assign env2_cls = 'env2-btn env2-btn--ghost env2-pdp-photo'
+  endif
+  assign env2_extra = class | default: ''
+  if env2_extra != ''
+    assign env2_cls = env2_cls | append: ' ' | append: env2_extra
+  endif
+  assign env2_arrow = true
+  if hide_arrow == true or env2_style != 'link'
+    assign env2_arrow = false
+  endif
+-%}
+<a class="{{ env2_cls }}" href="{{ env2_href }}" data-env2-photo-cta{% if env2_wa != blank %} target="_blank" rel="noopener"{% endif %}>{{ env2_label }}{% if env2_arrow %} <span aria-hidden="true">&#8592;</span>{% endif %}</a>

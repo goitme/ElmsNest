@@ -1,0 +1,130 @@
+{%- comment -%}
+  ElmsNest v2 — the PRODUCT CARD (PDP WINNING-SPEC §4.8 "The card spec (binding)"). Standalone and
+  reusable: the PDP related module renders it today and the collection template reuses it in round 2.
+
+  ------------------------------------------------------------------ usage
+    {% render 'elmsnest-v2-pdp-card', css: true %}                        once per page, before the cards
+    {% render 'elmsnest-v2-pdp-card', product: p, width: 300, aspect: '1/1.05', image_index: block.settings.card_image_index, action_label: 'לבחירת אורך' %}
+
+  ------------------------------------------------------------------ inputs
+    product      : required. Blank -> the snippet prints the stylesheet instead (same as css: true).
+    css          : true -> print ONLY the <style> block and no markup. Call it once; calling it again
+                   is harmless (identical rules, same id) but wasteful.
+    width        : card width in px (§4.8 staggers 300 / 210 / 260 — never equal cells). Default 280.
+    aspect       : figure aspect-ratio (§4.8 staggers 1/1.05 · 1/1.4 · 1/.9). Default '1/1.15'.
+    image_index  : 1-based image index (the block's card_image_index). Blank -> the 'card' slot of
+                   elmsnest-v2-pdp-image, which can never return a slide with baked-in text.
+    image        : image_picker override; wins over everything.
+    kicker       : the place kicker line. Blank -> derived from product.type through the FOUR APPROVED
+                   pairs only (BRIEF §3). An unknown type prints NO kicker — the card never invents a
+                   place or a promise.
+    action_label : the multi-variant link label ('לבחירת אורך' / 'לבחירת דגם' / 'לבחירת גוון').
+    add_label    : the single-variant button label. Default 'הוספה לסל'.
+    lamp         : 'off' to skip [data-lamp] (a card inside an already-lit figure).
+    class        : extra classes on the <article>.
+
+  ------------------------------------------------------------------ what it prints
+    <article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:…;--env2-pdp-card-ar:…">
+      <a  class="env2-pdp-card__media">  <span class="env2-pool">  <span class="env2-ph env2-pdp-card__ph"> <img>
+      <p  class="env2-kicker env2-pdp-card__kicker">        place · approved suits phrase   (or absent)
+      <h3 class="env2-pdp-card__title"><a>                  Heebo 400 — NEVER the serif (§6.12)
+      <div class="env2-pdp-card__row">  {price}  {buy}      elmsnest-v2-price + elmsnest-v2-buy
+    Price rule is elmsnest-v2-price, unchanged: single -> '169.90 ₪'; max <= min*1.25 ->
+    '219.90–252.90 ₪'; else -> 'מ־89.90 ₪'. Buy is elmsnest-v2-buy: one available variant -> a real
+    POST form with a <button>; anything else -> a ghost link to the product.
+
+  ------------------------------------------------------------------ forbidden on this card (§4.8, BRIEF §11)
+    badges · sale flags · strikethrough / compare-at · stars · review counts · "N נמכרו" · swatch dots ·
+    quick-add icons · hover-swap second image · countdowns · rounded corners (radius 0 except the pill).
+    None of them is rendered here and none may be added by a caller.
+{%- endcomment -%}
+{%- liquid
+  assign env2_css_only = false
+  if css == true or product == blank
+    assign env2_css_only = true
+  endif
+-%}
+{%- unless env2_css_only -%}
+{%- liquid
+  assign env2_w = width | default: 280
+  assign env2_ar = aspect | default: '1/1.15'
+  assign env2_extra = class | default: ''
+
+  # the place kicker: the four approved pairs, keyed by the product type that maps 1:1 to the four
+  # collections. Anything else prints nothing — never a new place, never a new promise.
+  assign env2_kicker = kicker | default: ''
+  if env2_kicker == ''
+    assign env2_t = product.type | default: ''
+    if env2_t == 'תאורת שביל, עמוד וגינה'
+      assign env2_kicker = 'שביל, מדרגות ומעברים · מתאים כדי לראות את הדרך'
+    elsif env2_t == 'תאורת קיר'
+      assign env2_kicker = 'כניסה, קיר וחזית · מתאים כדי להאיר נקודה מסוימת'
+    elsif env2_t == 'גרילנדות ותאורה דקורטיבית'
+      assign env2_kicker = 'מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה'
+    elsif env2_t == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+      assign env2_kicker = 'הדגשת אזור בגינה · מתאים כדי להאיר עץ או ערוגה'
+    endif
+  endif
+-%}
+{%- capture env2_ci -%}{%- render 'elmsnest-v2-pdp-image', product: product, slot: 'card', index: image_index -%}{%- endcapture -%}
+{%- liquid
+  assign env2_ci = env2_ci | plus: 0
+  assign env2_img = image | default: product.images[env2_ci] | default: product.featured_image
+  # intrinsic height from the aspect string, so the card reserves the right box and never shifts
+  assign env2_arp = env2_ar | split: '/'
+  assign env2_arw = env2_arp[0] | default: 1 | plus: 0.0
+  assign env2_arh = env2_arp[1] | default: 1 | plus: 0.0
+  if env2_arw <= 0
+    assign env2_arw = 1.0
+  endif
+  assign env2_h = env2_w | times: env2_arh | divided_by: env2_arw | round
+-%}
+<article class="env2-pdp-card{% if env2_extra != '' %} {{ env2_extra }}{% endif %}"{% unless lamp == 'off' %} data-lamp{% endunless %} style="--env2-pdp-card-w:{{ env2_w }}px;--env2-pdp-card-ar:{{ env2_ar }}">
+  <a class="env2-pdp-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph">
+      {%- if env2_img != blank -%}
+        <img src="{{ env2_img | image_url: width: 720 }}"
+             srcset="{{ env2_img | image_url: width: 420 }} 420w, {{ env2_img | image_url: width: 720 }} 720w, {{ env2_img | image_url: width: 1040 }} 1040w"
+             sizes="(max-width:900px) 62vw, {{ env2_w }}px"
+             width="{{ env2_w }}" height="{{ env2_h }}" loading="lazy" decoding="async"
+             alt="{{ product.featured_image.alt | default: product.title | escape }}">
+      {%- endif -%}
+    </span>
+  </a>
+  {%- if env2_kicker != '' -%}<p class="env2-kicker env2-pdp-card__kicker">{{ env2_kicker }}</p>{%- endif -%}
+  <h3 class="env2-pdp-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price">{% render 'elmsnest-v2-price', product: product %}</span>
+    <span class="env2-pdp-card__action">{% render 'elmsnest-v2-buy', product: product, label: action_label, add_label: add_label, small: true %}</span>
+  </div>
+</article>
+{%- endunless -%}
+{%- if env2_css_only -%}
+<style id="env2-pdp-card-css">
+.env2-pdp-card{position:relative;display:flex;flex-direction:column;gap:12px;margin:0;padding:0;
+  inline-size:var(--env2-pdp-card-w,280px);max-inline-size:100%;border-radius:0;background:transparent}
+.env2-pdp-card__media{position:relative;display:block;inline-size:100%;border-radius:0}
+.env2-pdp-card__ph{display:block;position:relative;inline-size:100%;aspect-ratio:var(--env2-pdp-card-ar,1/1.15);
+  overflow:hidden;border-radius:0;background:#05070c;isolation:isolate}
+.env2-pdp-card__ph img{inline-size:100%;block-size:100%;object-fit:cover;display:block}
+.env2-pdp-card__kicker{margin:0;font-size:11.5px;line-height:1.35;text-wrap:balance}
+.env2-pdp-card__title{margin:0;font-family:var(--env2-sans);font-weight:400;
+  font-size:var(--env2-pdp-card-title,15px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:balance}
+.env2-pdp-card__title a{color:inherit;text-decoration:none;transition:color .3s}
+.env2-pdp-card__title a:hover,.env2-pdp-card__title a:focus-visible{color:var(--env2-glow)}
+.env2-pdp-card__row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-block-start:2px}
+.env2-pdp-card__price .env2-price{--env2-price-size:21px}
+/* §8.3 belt: .env2-section a{color:inherit} outranks .env2-btn{color:…}, so an ANCHOR styled as the
+   filled pill would render ink-on-glow at 1.21:1. elmsnest-v2-buy only ever emits a ghost anchor, but
+   these two rules make both cases explicit and correct whatever a caller passes. */
+.env2-pdp-card__action .env2-btn{color:var(--env2-btn-ink)}
+.env2-pdp-card__action .env2-btn--ghost{color:var(--env2-ink)}
+.env2-pdp-card__action .env2-buy{display:inline-block}
+@media (max-width:900px){
+  .env2-pdp-card{inline-size:min(var(--env2-pdp-card-w,280px),62vw);gap:10px}
+  .env2-pdp-card__price .env2-price{--env2-price-size:19px}
+  .env2-pdp-card__title{font-size:var(--env2-pdp-card-title-mb,15px)}
+}
+</style>
+{%- endif -%}

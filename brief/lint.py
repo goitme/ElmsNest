@@ -1,16 +1,29 @@
 #!/usr/bin/env python3
 """Lint ElmsNest v2 theme files. Usage: python3 brief/lint.py [theme_dir]
-Checks every sections/elmsnest-v2-*.liquid + snippets/elmsnest-v2-*.liquid, every templates/*.json +
-templates/customers/*.json + sections/*-group.json under theme_dir (settings <-> schema per section type,
-using the verbatim Kalles dumps in brief/inventory/theme-src/sections/ for non-env2 sections), and that
-no file anywhere under theme_dir contains the sequence of three double quotes (GraphQL block string)."""
+Checks every sections/elmsnest-v2-*.liquid + snippets/elmsnest-v2-*.liquid (which includes the PDP set,
+sections/elmsnest-v2-pdp-* and snippets/elmsnest-v2-pdp-*, globbed explicitly below), every
+templates/*.json + templates/customers/*.json + sections/*-group.json under theme_dir (settings <->
+schema per section type, using the verbatim Kalles dumps in brief/inventory/theme-src/sections/ for
+non-env2 sections), that templates/product.elmsnest.json matches the PDP section schemas (WINNING-SPEC
+§8.1: the PDP template file is product.elmsnest.json, NOT product.json), and that no file anywhere under
+theme_dir contains the sequence of three double quotes (GraphQL block string).
+
+The PDP-only rules (applied to elmsnest-v2-pdp-* files only, so nothing already shipped can regress):
+no "בוואטסאפ" outside the photo-cta snippet while settings.whatsapp_number is empty (BRIEF §3, do-not
+§6.9) · no compare-at / sale UI (§6.5) · no <bdi> split across a slash pair (§6.17) · logical CSS
+properties only (an RTL app flips physical ones) · no raw product.images[0] (the never-use ledger lives
+in elmsnest-v2-pdp-image, §3.5) · radius 0 except pills (§6.14)."""
 import re,json,glob,os,sys
 root=sys.argv[1] if len(sys.argv)>1 else '/home/user/ElmsNest/theme'
 bad=0
 def err(f,msg):
     global bad; bad+=1; print(f"  !! {f}: {msg}")
 schemas={}
-for f in sorted(glob.glob(root+'/sections/elmsnest-v2-*.liquid')+glob.glob(root+'/snippets/elmsnest-v2-*.liquid')):
+env2_files=sorted(set(
+    glob.glob(root+'/sections/elmsnest-v2-*.liquid')+glob.glob(root+'/snippets/elmsnest-v2-*.liquid')+
+    glob.glob(root+'/sections/elmsnest-v2-pdp-*.liquid')+glob.glob(root+'/snippets/elmsnest-v2-pdp-*.liquid')))
+pdp_sections=sorted(os.path.basename(f)[:-7] for f in glob.glob(root+'/sections/elmsnest-v2-pdp-*.liquid'))
+for f in env2_files:
     s=open(f,encoding='utf-8').read(); name=os.path.basename(f)
     if '"""' in s: err(name,'contains """ (breaks GraphQL block string upload)')
     for tag in ('if','unless','for','case','capture','comment','schema','stylesheet','javascript','style','form','paginate'):
@@ -38,6 +51,29 @@ for f in sorted(glob.glob(root+'/sections/elmsnest-v2-*.liquid')+glob.glob(root+
             if leak: err(name,f'unprefixed selectors in stylesheet: {sorted(set(leak))[:6]}')
         if re.search(r'\{\{\s*block\.',s) and 'block.shopify_attributes' not in s: err(name,'blocks used but no block.shopify_attributes')
         if re.search(r'#2b2118|#f7f0e6',s,re.I): print(f"  .. {name}: contains v1 brown/cream hex — check it is not a surface")
+# ---- PDP-only rules (elmsnest-v2-pdp-*): applied nowhere else, so the shipped homepage cannot regress ----
+PHYS=re.compile(r'(?<![-\w])(margin|padding|border)-(left|right)\s*:|(?<![-\w])(left|right)\s*:\s*[-0-9a-z]|text-align\s*:\s*(left|right)')
+PDPSET=('elmsnest-v2-pdp-','elmsnest-v2-ground-product')
+for f in [x for x in env2_files if os.path.basename(x).startswith(PDPSET)]:
+    s=open(f,encoding='utf-8').read(); name=os.path.basename(f)
+    body=re.sub(r'\{%-?\s*comment\s*-?%\}.*?\{%-?\s*endcomment\s*-?%\}','',s,flags=re.S)
+    if 'בוואטסאפ' in body and name!='elmsnest-v2-pdp-photo-cta.liquid':
+        err(name,'contains "בוואטסאפ" — settings.whatsapp_number is empty; the only file allowed to name that channel is elmsnest-v2-pdp-photo-cta.liquid (BRIEF §3)')
+    for token in ('compare_at_price','compare_at','hidden_badges','on_sale','מבצע'):
+        if token in body: err(name,f'sale UI token "{token}" — there are no sales: no badge, no strikethrough, no compare-at (§6.5)')
+    if re.search(r'</bdi>\s*/\s*<bdi>',body): err(name,'<bdi> split across a slash pair — use ONE <bdi>6W/12W</bdi> (§6.17)')
+    for blk in re.findall(r'\{%-?\s*stylesheet\s*-?%\}(.*?)\{%-?\s*endstylesheet',body,re.S)+re.findall(r'<style[^>]*>(.*?)</style>',body,re.S):
+        css=re.sub(r'/\*.*?\*/','',blk,flags=re.S)
+        m=PHYS.search(css)
+        if m: err(name,f'physical CSS property "{m.group(0).strip()}" — logical properties only, an RTL app flips physical ones (§3.3)')
+        for r in set(re.findall(r'border-radius\s*:\s*([^;}]+)',css)):
+            if r.strip() not in ('0','0px','999px','50%','inherit','var(--env2-radius,0)'):
+                err(name,f'border-radius:{r.strip()} — radius 0 everywhere except pills (999px) (§6.14)')
+    if re.search(r'product\.images\[\s*0\s*\]',body):
+        err(name,'raw product.images[0] — resolve every slot through elmsnest-v2-pdp-image so a never-use index 0 can never render (§3.5)')
+    small=[x for x in re.findall(r'font-size\s*:\s*([0-9.]+)px',body) if float(x)<11.5]
+    if small: print(f"  .. {name}: font-size below 11.5px {sorted(set(small))} — captions have a 13px floor, labels 11.5px (§3.2)")
+
 # ---- no file under theme/ may contain the GraphQL block-string terminator ----
 for f in sorted(glob.glob(root+'/**/*',recursive=True)):
     if os.path.isfile(f) and '"""' in open(f,encoding='utf-8',errors='replace').read():
@@ -81,7 +117,33 @@ def check_template(path):
                 if k not in bok: err(name,f'{sid}.{bid}.settings.{k} not in block {bt} schema')
         if sec.get('blocks') and not set(sec.get('block_order',[]))<=set(sec['blocks']): err(name,f'{sid} block_order names a block that does not exist')   # static (content_for) blocks are absent from block_order by design
     if set(d.get('order',[]))!=set(secs): err(name,'order/sections mismatch')
+PDP_ORDER=["pdp_stage","pdp_fit","pdp_night","pdp_ledger","pdp_facts","pdp_terms","pdp_ask","pdp_related"]
+def check_pdp_template():
+    path=os.path.join(root,'templates','product.elmsnest.json')
+    if not os.path.exists(path):
+        err('templates/product.elmsnest.json','missing — the PDP template file is product.elmsnest.json, never product.json (WINNING-SPEC §8.1)'); return
+    if os.path.exists(os.path.join(root,'templates','product.json')):
+        err('templates/product.json','must not exist — all 27 products carry templateSuffix "elmsnest" and templateSuffix is shared with the LIVE theme (§8.1)')
+    try: d=json.loads(strip_header(open(path,encoding='utf-8').read()))
+    except Exception: return          # check_template already reported the JSON error
+    secs=d.get('sections',{}); order=d.get('order',[])
+    used=[t for t in (v.get('type') for v in secs.values()) if t and t.startswith('elmsnest-v2-pdp-')]
+    for t in used:
+        if not os.path.exists(os.path.join(root,'sections',t+'.liquid')):
+            err('templates/product.elmsnest.json',f'section type {t} has no sections/{t}.liquid — Shopify rejects the template on upsert')
+    if len(pdp_sections)>=8:          # the build has landed: the template must be the §5 list, in order
+        if order!=PDP_ORDER:
+            err('templates/product.elmsnest.json',f'order is {order} — WINNING-SPEC §5 wants {PDP_ORDER}')
+        for sid,want in zip(PDP_ORDER,['elmsnest-v2-pdp-'+x.split('_',1)[1] for x in PDP_ORDER]):
+            if secs.get(sid,{}).get('type')!=want:
+                err('templates/product.elmsnest.json',f'section "{sid}" should be type {want}')
+    elif used:
+        print(f'  .. templates/product.elmsnest.json: {len(pdp_sections)}/8 PDP sections built — order/type check deferred')
+    else:
+        print('  .. templates/product.elmsnest.json: still the v1 template (no elmsnest-v2-pdp-* section) — nothing to check yet')
+
 for tj in sorted(glob.glob(root+'/templates/*.json')+glob.glob(root+'/templates/customers/*.json')+glob.glob(root+'/sections/*-group.json')):
     check_template(tj)
+check_pdp_template()
 print('LINT', 'FAIL' if bad else 'OK', f'({bad} issues)')
 sys.exit(1 if bad else 0)

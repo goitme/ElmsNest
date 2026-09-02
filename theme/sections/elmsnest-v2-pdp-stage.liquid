@@ -1,0 +1,949 @@
+{%- comment -%}
+  ElmsNest v2 PDP — 4.1 THE STAGE: screen 1 + the whole buy decision (PDP WINNING-SPEC §4.1).
+  The only section that renders the PDP ground (§5 / §8.2) and the only one that emits the variants
+  JSON tag (CONTRACT-PDP §3.5) and the sticky buy bar (§4.9). Fonts + core are global, from
+  layout/theme.liquid — nothing global is rendered here (§8.2).
+
+  What has to fit inside 1440x900 AND 390x844 (the §4.1 non-negotiables):
+    the lamp lit in its place at night · the place word + the approved "מתאים כדי" phrase ·
+    the product title (Heebo) · a RESOLVED price (never only "מ־") · the honest range ·
+    a real הוספה לסל · the negative link · the four numbers in one line (graft F) ·
+    the small step (photo check) · and a preview of the ledger (the rail).
+
+  Everything the page states about the product comes from the product object, the ledger model
+  (elmsnest-v2-pdp-variants) or the four approved place pairs of BRIEF §3. Nothing is typed:
+  every custom.* metafield is EMPTY at render time, so this section never says anything about
+  power, and never renders a negative of its own — it links to §4.2, which owns that decision.
+
+  No JS:
+    the photograph is lit (--lit defaults to 1), the price, mirror, range line and terms are
+    server-rendered, the add-to-cart form POSTs to routes.cart_add_url, the quiet axis is a real
+    <select name="id"> / radio group associated with the form, the sticky bar is visible (it is
+    only translated away under html.env2-js) and every rail stop is an anchor to #env2-pdp-ledger,
+    where §4.4 gives every row its own form. The drawn string/halo/path is the only thing that
+    does not render — it is decoration on top of a photograph that already shows the lit product.
+{%- endcomment -%}
+{% render 'elmsnest-v2-ground-product' %}
+{%- liquid
+  assign env2_p = product
+  # `nil | plus: 0` is 0 in every Liquid engine; `nil > 0` is an error in some, and Liquid's `and`
+  # evaluates right to left, so the count is taken first and compared as a number.
+  assign env2_nv = env2_p.variants.size | plus: 0
+  assign env2_ok = false
+  if env2_nv > 0
+    assign env2_ok = true
+  endif
+-%}
+{%- if env2_ok -%}
+{%- comment -%} ---------- 1. the ledger model, built once (CONTRACT-PDP §3) ---------- {%- endcomment -%}
+{%- assign env2_axis = section.settings.price_axis_option | default: 'auto' -%}
+{%- if env2_axis == 'auto' -%}{%- assign env2_axis = '' -%}{%- endif -%}
+{%- capture env2_model -%}{%- render 'elmsnest-v2-pdp-variants', product: env2_p, axis: env2_axis -%}{%- endcapture -%}
+{%- liquid
+  assign env2_recs = env2_model | split: '~~R~~'
+  assign m = env2_recs[0] | split: '~~F~~'
+  assign env2_mode = m[1]
+  assign env2_ax = m[2] | plus: 0
+  assign env2_ax2 = m[3] | plus: 0
+  assign env2_axname = m[4]
+  assign env2_ax2name = m[5]
+  assign env2_nrows = m[9] | plus: 0
+  assign env2_defrow = m[10] | plus: 0
+  assign env2_pmin = m[12]
+  assign env2_pmax = m[13]
+  assign env2_varies = m[14]
+
+  assign env2_ri = env2_defrow | plus: 1
+  assign r0 = env2_recs[env2_ri] | split: '~~F~~'
+  assign env2_sel = env2_p.selected_or_first_available_variant | default: env2_p.variants.first
+  assign env2_selid = env2_sel.id
+  assign env2_selid_s = env2_sel.id | append: ''
+  assign env2_selprice = env2_sel.price
+  assign env2_quietvars = r0[17] | split: ';'
+  assign env2_qn = env2_quietvars.size
+  assign env2_qlabel = ''
+  for env2_o in env2_p.options_with_values
+    unless forloop.index == env2_ax or forloop.index == env2_ax2 or env2_o.name == 'Title'
+      if env2_qlabel == ''
+        assign env2_qlabel = env2_o.name
+      else
+        assign env2_qlabel = env2_qlabel | append: ' · ' | append: env2_o.name
+      endif
+    endunless
+  endfor
+  if env2_qlabel == ''
+    assign env2_qn = 0
+  endif
+  assign env2_rowlabel = r0[5]
+  if env2_rowlabel == 'Default Title'
+    assign env2_rowlabel = ''
+  endif
+
+  # the selection mirror: the row, then every option that is not a price axis
+  assign env2_qsel = ''
+  for env2_o in env2_p.options_with_values
+    assign env2_oi = forloop.index
+    unless env2_oi == env2_ax or env2_oi == env2_ax2
+      assign env2_ov = env2_sel.options[forloop.index0]
+      if env2_qsel == ''
+        assign env2_qsel = env2_ov
+      else
+        assign env2_qsel = env2_qsel | append: ' · ' | append: env2_ov
+      endif
+    endunless
+  endfor
+  if env2_mode == 'single'
+    assign env2_mirror = section.settings.quantity_label_one | default: 'יחידה אחת'
+    if env2_rowlabel != blank and env2_rowlabel != env2_mirror
+      assign env2_mirror = env2_mirror | append: ' · ' | append: env2_rowlabel
+    endif
+  else
+    assign env2_mirror = env2_rowlabel
+    if env2_qsel != blank
+      if env2_mirror == blank
+        assign env2_mirror = env2_qsel
+      else
+        assign env2_mirror = env2_mirror | append: ' · ' | append: env2_qsel
+      endif
+    endif
+  endif
+
+  # every option with exactly one value is a printed FACT, never a control (§3.6 / BRIEF §11)
+  assign env2_facts = ''
+  for env2_o in env2_p.options_with_values
+    if env2_o.values.size == 1 and env2_o.name != 'Title' and env2_o.values[0] != 'Default Title'
+      assign env2_one = env2_o.name | append: ': ' | append: env2_o.values[0]
+      if env2_facts == ''
+        assign env2_facts = env2_one
+      else
+        assign env2_facts = env2_facts | append: ' · ' | append: env2_one
+      endif
+    endif
+  endfor
+
+  # the four approved place pairs (BRIEF §3), keyed on product.type — an unknown type gets NO place
+  assign env2_pairs = '|תאורת שביל, עמוד וגינה=שביל, מדרגות ומעברים§לראות את הדרך|תאורת קיר=כניסה, קיר וחזית§להאיר נקודה מסוימת|גרילנדות ותאורה דקורטיבית=מרפסת ופינת ישיבה§ליצור אווירה|ספוטים, פרוז׳קטורים ותאורה ניידת=הדגשת אזור בגינה§להאיר עץ או ערוגה|'
+  assign env2_place = ''
+  assign env2_phrase = ''
+  assign env2_pkey = '|' | append: env2_p.type | append: '='
+  assign env2_phit = env2_pairs | split: env2_pkey
+  if env2_phit.size > 1
+    assign env2_ppair = env2_phit[1] | split: '|' | first | split: '§'
+    assign env2_place = env2_ppair[0]
+    assign env2_phrase = env2_ppair[1]
+  endif
+
+  assign env2_h1a = section.settings.heading_line1 | default: ''
+  assign env2_h1b = section.settings.heading_line2 | default: ''
+  assign env2_authored = true
+  if env2_h1a == blank and env2_h1b == blank
+    assign env2_authored = false
+    if env2_phrase != blank
+      assign env2_h1a = 'מתאים כדי'
+      assign env2_h1b = env2_phrase | append: '.'
+    endif
+  endif
+  assign env2_kicker = section.settings.kicker | default: ''
+  if env2_kicker == blank and env2_place != blank
+    if env2_authored and env2_phrase != blank
+      assign env2_kicker = env2_place | append: ' · מתאים כדי ' | append: env2_phrase
+    else
+      assign env2_kicker = env2_place
+    endif
+  endif
+
+  # the range line — derived from the model, never typed
+  assign env2_range = section.settings.range_note | default: ''
+  assign env2_quietnote = section.settings.quiet_axis_note | default: ''
+  if env2_quietnote == blank and env2_qn > 1
+    assign env2_quietnote = 'אותו מחיר לכל ' | append: env2_qlabel
+  endif
+
+  # the rail
+  assign env2_show_rail = section.settings.show_rail
+  assign env2_raillabel = section.settings.rail_label | default: ''
+  if env2_raillabel == blank
+    if env2_mode == 'single'
+      assign env2_raillabel = 'כמה יחידות?'
+    else
+      assign env2_raillabel = env2_axname
+      if env2_ax2name != blank
+        assign env2_raillabel = env2_raillabel | append: ' · ' | append: env2_ax2name
+      endif
+    endif
+  endif
+  assign env2_railnote = section.settings.rail_note | default: ''
+  assign env2_qsteps = section.settings.quantity_steps | default: '1,2,3,4,6,8' | split: ','
+  assign env2_unitone = section.settings.quantity_unit_one | default: 'יחידה'
+  assign env2_unitmany = section.settings.quantity_unit | default: 'יחידות'
+  assign env2_qlabelone = section.settings.quantity_label_one | default: 'יחידה אחת'
+  if env2_mode == 'single'
+    assign env2_nstops = env2_qsteps.size
+  else
+    assign env2_nstops = env2_nrows
+  endif
+  if env2_nstops < 2
+    assign env2_show_rail = false
+  endif
+
+  # latin units go inside the SAME <bdi> as their number (§3.2: never a split pair)
+  assign env2_latin = '|W|w|K|k|V|A|LED|USB|'
+
+  # the hero photograph — every slot goes through the §3.5 resolver, never a literal index
+  assign env2_devx = section.settings.device_x | default: '50%'
+  assign env2_devy = section.settings.device_y | default: '38%'
+  assign env2_device = section.settings.stage_device | default: 'string'
+-%}
+{%- capture env2_hi -%}{%- render 'elmsnest-v2-pdp-image', product: env2_p, slot: 'hero', index: section.settings.hero_image_index -%}{%- endcapture -%}
+{%- liquid
+  assign env2_hi = env2_hi | plus: 0
+  assign env2_hero = section.settings.hero_image | default: env2_p.images[env2_hi] | default: env2_p.featured_image
+  assign env2_heromob = section.settings.hero_image_mobile | default: env2_hero
+  assign env2_alt = env2_hero.alt | default: env2_p.title | escape
+-%}
+<section id="env2-pdp-stage" data-env2-pdp-stage class="env2-section env2-pdp-stage" dir="rtl" style="scroll-margin-top:90px;--env2-pdp-obj:{{ section.settings.object_position_desktop | default: '50% 45%' }};--env2-pdp-obj-m:{{ section.settings.object_position_mobile | default: '50% 50%' }};--env2-pdp-dx:{{ env2_devx }};--env2-pdp-dy:{{ env2_devy }}" aria-labelledby="env2-pdp-stage-h1">
+  {%- if env2_hero != blank -%}
+  <div class="env2-pdp-stage__bg" data-lamp>
+    <div class="env2-ph env2-pdp-stage__ph">
+      <picture>
+        <source media="(max-width:900px)" srcset="{{ env2_heromob | image_url: width: 1000 }} 1000w, {{ env2_heromob | image_url: width: 1400 }} 1400w" sizes="100vw">
+        {{ env2_hero | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '900,1400,1800,2400', sizes: '100vw', alt: env2_alt, class: 'env2-pdp-stage__img' }}
+      </picture>
+    </div>
+  </div>
+  {%- endif -%}
+  <div class="env2-pdp-stage__veil" aria-hidden="true"></div>
+  {%- if env2_device == 'halo' -%}
+  <div class="env2-pdp-stage__glow" data-env2-stage-glow aria-hidden="true"></div>
+  {%- elsif env2_device != 'none' -%}
+  <svg class="env2-pdp-stage__device" data-env2-stage-device data-kind="{{ env2_device }}" aria-hidden="true" focusable="false"></svg>
+  {%- endif -%}
+
+  <div class="env2-wrap env2-pdp-stage__body">
+    <div class="env2-pdp-stage__txt">
+      {%- if env2_kicker != blank -%}
+      <p class="env2-kicker env2-pdp-stage__kicker">{{ env2_kicker }}</p>
+      {%- endif -%}
+      {%- if env2_h1a != blank or env2_h1b != blank -%}
+      <h1 id="env2-pdp-stage-h1" class="env2-h env2-pdp-stage__h1">{{ env2_h1a }}{% if env2_h1b != blank %}<br><em>{{ env2_h1b }}</em>{% endif %}</h1>
+      {%- endif -%}
+      <p class="env2-pdp-stage__title">{{ env2_p.title }}</p>
+      {%- if env2_facts != blank -%}
+      <p class="env2-pdp-stage__fact">{{ env2_facts }}</p>
+      {%- endif -%}
+
+      {%- comment -%} the quiet axis (§3.6): 1 value = a printed fact above, 2–3 = a hairline radio line,
+        4+ = a hairline select. It carries name="id", so it works with no JS at all. {%- endcomment -%}
+      {%- if env2_qn > 3 -%}
+      <div class="env2-pdp-stage__axis">
+        <label class="env2-kicker env2-pdp-stage__axis-label" for="env2-pdp-stage-quiet">{{ env2_qlabel }}</label>
+        <select id="env2-pdp-stage-quiet" class="env2-pdp-stage__select" name="id" form="env2-pdp-stage-form" data-env2-stage-quiet>
+          {%- for q in env2_quietvars -%}
+            {%- assign qf = q | split: '^' -%}
+            <option value="{{ qf[0] }}"{% if qf[0] == env2_selid_s %} selected{% endif %}{% if qf[3] != '1' %} disabled{% endif %}>{{ qf[1] | escape }}</option>
+          {%- endfor -%}
+        </select>
+        {%- if env2_quietnote != blank -%}<p class="env2-pdp-stage__axis-note">{{ env2_quietnote }}</p>{%- endif -%}
+      </div>
+      {%- elsif env2_qn > 1 -%}
+      <div class="env2-pdp-stage__axis">
+        <span class="env2-kicker env2-pdp-stage__axis-label" id="env2-pdp-stage-quiet-label">{{ env2_qlabel }}</span>
+        <div class="env2-pdp-stage__radios" role="group" aria-labelledby="env2-pdp-stage-quiet-label" data-env2-stage-radios>
+          {%- for q in env2_quietvars -%}
+            {%- assign qf = q | split: '^' -%}
+            <label class="env2-pdp-stage__radio"><input type="radio" name="id" value="{{ qf[0] }}" form="env2-pdp-stage-form"{% if qf[0] == env2_selid_s %} checked{% endif %}{% if qf[3] != '1' %} disabled{% endif %} data-env2-stage-quiet><span>{{ qf[1] | escape }}</span></label>
+          {%- endfor -%}
+        </div>
+        {%- if env2_quietnote != blank -%}<p class="env2-pdp-stage__axis-note">{{ env2_quietnote }}</p>{%- endif -%}
+      </div>
+      {%- endif -%}
+    </div>
+
+    <div class="env2-pdp-stage__buy" data-env2-pdp-buyline>
+      <div class="env2-pdp-stage__price-row">
+        <span class="env2-price env2-pdp-stage__price" aria-live="polite"><bdi data-env2-stage-price>{{ env2_selprice | money_without_currency }}</bdi> &#8362;</span>
+        <span class="env2-pdp-stage__mirror" data-env2-stage-mirror data-one="{{ env2_qlabelone | escape }}" data-many="{{ env2_unitmany | escape }}" data-row="{{ env2_rowlabel | escape }}">{{ env2_mirror }}</span>
+      </div>
+      {%- if env2_range != blank -%}
+      <p class="env2-pdp-stage__range">{{ env2_range }}</p>
+      {%- elsif env2_varies == '1' -%}
+      <p class="env2-pdp-stage__range">מ־<bdi>{{ env2_pmin }}</bdi> עד <bdi>{{ env2_pmax }}</bdi> &#8362;, לפי {{ env2_axname }}{% if env2_ax2name != blank %} ו{{ env2_ax2name }}{% endif %}.{% if env2_qn > 1 %} {{ env2_qlabel }} אינו משנה את המחיר.{% endif %}</p>
+      {%- endif -%}
+
+      <div class="env2-pdp-stage__cta">
+        <form id="env2-pdp-stage-form" method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8" class="env2-pdp-stage__form" data-env2-buy data-env2-pdp-form>
+          <input type="hidden" name="form_type" value="product">
+          <input type="hidden" name="utf8" value="&#10003;">
+          {%- if env2_qn < 2 -%}<input type="hidden" name="id" value="{{ env2_selid }}" data-env2-stage-id>{%- endif -%}
+          <input type="hidden" name="quantity" value="1" data-env2-stage-qty>
+          <button type="submit" name="add" class="env2-btn env2-pdp-stage__atc">{{ section.settings.add_label | default: 'הוספה לסל' }}</button>
+        </form>
+        {%- if section.settings.fit_link_label != blank -%}
+        <a class="env2-link env2-pdp-stage__fit" href="#env2-pdp-fit">{{ section.settings.fit_link_label }} <span aria-hidden="true">&#8592;</span></a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.terms_strip != blank -%}
+      <p class="env2-pdp-stage__terms">{{ section.settings.terms_strip }}{% if section.settings.terms_link_label != blank %} <a class="env2-link env2-pdp-stage__terms-link" href="#env2-pdp-terms">{{ section.settings.terms_link_label }}</a>{% endif %}</p>
+      {%- endif -%}
+
+      <p class="env2-pdp-stage__small">{% if section.settings.photo_intro != blank %}<span>{{ section.settings.photo_intro }}</span>{% endif %}{% render 'elmsnest-v2-pdp-photo-cta', product: env2_p, label: section.settings.photo_cta_label, subject: section.settings.mailto_subject, class: 'env2-pdp-stage__photo' %}</p>
+    </div>
+  </div>
+
+  {%- if env2_show_rail -%}
+  <div class="env2-wrap env2-pdp-stage__rail">
+    <p class="env2-pdp-stage__rail-label"><span>{{ env2_raillabel }}</span>{% if env2_railnote != blank %}<small>{{ env2_railnote }}</small>{% endif %}</p>
+    <div class="env2-pdp-stage__track" data-env2-stage-track>
+      <i class="env2-pdp-stage__fill" data-env2-stage-fill aria-hidden="true"></i>
+      {%- if env2_mode == 'single' -%}
+        {%- for env2_q in env2_qsteps -%}
+          {%- assign qn = env2_q | strip | plus: 0 -%}
+          {%- if qn > 0 -%}
+            {%- assign qtot = env2_selprice | times: qn | money_without_currency -%}
+            {%- if qn == 1 -%}{%- assign qcap = env2_unitone -%}{%- else -%}{%- assign qcap = env2_unitmany -%}{%- endif -%}
+            <a class="env2-pdp-stage__stop{% if forloop.first %} env2-pdp-stage__stop--on{% endif %}" href="#env2-pdp-ledger" data-env2-stage-stop data-i="{{ forloop.index0 }}" data-qty="{{ qn }}"{% if forloop.first %} aria-current="true"{% endif %} aria-label="{{ qn }} {{ qcap }}, {{ qtot }} ש״ח">
+              <b class="env2-pdp-stage__n"><bdi>{{ qn }}</bdi></b>
+              <span class="env2-pdp-stage__cap">{{ qcap }}</span>
+              <i class="env2-pdp-stage__sp"><bdi>{{ qtot }}</bdi> &#8362;</i>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for env2_rec in env2_recs offset: 1 -%}
+          {%- assign r = env2_rec | split: '~~F~~' -%}
+          {%- liquid
+            assign rn = r[6]
+            assign ru = r[7]
+            assign rcap = ''
+            if r[8] != blank
+              assign rcap = r[8] | append: ' ' | append: r[9]
+            elsif r[4] != blank
+              assign rcap = r[4]
+            endif
+            # a latin unit shares the numeral's <bdi> so the pair can never be reordered by RTL
+            # ("6W", "72 LED"); a Hebrew unit stays a separate <small> ("5" + "מ׳").
+            assign rlatin = false
+            assign rprobe = '|' | append: ru | append: '|'
+            if ru != blank and env2_latin contains rprobe
+              assign rlatin = true
+            endif
+            assign rnum = rn
+            if rlatin
+              if ru.size > 1
+                assign rnum = rn | append: ' ' | append: ru
+              else
+                assign rnum = rn | append: ru
+              endif
+            endif
+            assign rnote = ''
+            assign rattr = ''
+          -%}
+          {%- comment -%} an optional authored caption for this step, keyed by the option value (§4.4 graft A) {%- endcomment -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.value != blank and block.settings.value == r[3] -%}
+              {%- assign rnote = block.settings.note -%}
+              {%- capture rattr -%}{{ block.shopify_attributes }}{%- endcapture -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <a class="env2-pdp-stage__stop{% if forloop.index0 == env2_defrow %} env2-pdp-stage__stop--on{% endif %}" href="#env2-pdp-ledger" data-env2-stage-stop data-i="{{ forloop.index0 }}"{% if forloop.index0 == env2_defrow %} aria-current="true"{% endif %} aria-label="{{ r[5] | escape }}, {{ r[10] }} ש״ח" {{ rattr }}>
+            {%- if rn != blank -%}
+              <b class="env2-pdp-stage__n">{% if rlatin %}<bdi>{{ rnum }}</bdi>{% else %}<bdi>{{ rn }}</bdi>{% if ru != blank %}<small>{{ ru }}</small>{% endif %}{% endif %}</b>
+            {%- else -%}
+              <b class="env2-pdp-stage__n env2-pdp-stage__n--text">{{ r[3] | escape }}</b>
+            {%- endif -%}
+            {%- if rcap != blank -%}<span class="env2-pdp-stage__cap">{{ rcap | escape }}</span>{%- endif -%}
+            {%- if rnote != blank -%}<span class="env2-pdp-stage__use">{{ rnote }}</span>{%- endif -%}
+            <i class="env2-pdp-stage__sp"><bdi>{{ r[10] }}</bdi> &#8362;</i>
+          </a>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+  {% render 'elmsnest-v2-pdp-variants', product: env2_p, axis: env2_axis, emit: 'json' %}
+</section>
+{%- if section.settings.show_buybar -%}
+{% render 'elmsnest-v2-pdp-buybar', product: env2_p, mirror: env2_mirror, thumb_index: section.settings.thumb_image_index, label: section.settings.add_label %}
+{%- endif -%}
+{%- elsif request.design_mode -%}
+<section id="env2-pdp-stage" data-env2-pdp-stage class="env2-section env2-pdp-stage env2-pdp-stage--empty" dir="rtl" style="scroll-margin-top:90px">
+  <div class="env2-wrap"><p class="env2-pdp-stage__empty">הסקשן הזה בנוי לתבנית של עמוד מוצר. הוא יציג את התמונה, המחיר, בורר האפשרויות והכפתור של המוצר שהעמוד מציג.</p></div>
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+/* ===== PDP 4.1 — the stage: the photograph, the buy box and the rail, inside both folds ===== */
+.env2-pdp-stage{position:relative;min-height:100vh;min-height:100svh;display:grid;grid-template-rows:1fr auto;grid-template-columns:minmax(0,1fr);isolation:isolate;overflow:clip;margin:0}
+.env2-pdp-stage--empty{min-height:0;padding-block:120px}
+.env2-pdp-stage__empty{margin:0;color:var(--env2-ink-2);font-size:14px}
+.env2-pdp-stage__bg{position:absolute;inset:0;z-index:-2}
+.env2-pdp-stage__bg picture{display:contents}
+.env2-pdp-stage__bg[data-lamp] .env2-pdp-stage__ph{position:absolute;inset:0;background:#05070c;border-radius:0}
+/* the stage photograph is the page's ground, not a card: it stays darker than a normal lamp so the
+   type over it keeps its contrast. The core's generic lamp halo is switched off here. */
+.env2-pdp-stage__bg[data-lamp] .env2-pdp-stage__ph img{width:100%;height:100%;object-fit:cover;object-position:var(--env2-pdp-obj,50% 45%);filter:brightness(calc(.13 + .39*var(--lit,1))) saturate(.85);transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:none}
+.env2-pdp-stage__bg[data-lamp] .env2-pdp-stage__ph::after{display:none}
+.env2-pdp-stage__veil{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(78% 56% at 100% 58%,rgba(4,7,14,.52),rgba(4,7,14,0) 74%),linear-gradient(0deg,var(--env2-sky-2) 0,rgba(15,26,47,.9) 13%,rgba(15,26,47,.66) 26%,rgba(15,26,47,.34) 44%,rgba(15,26,47,0) 74%),linear-gradient(180deg,rgba(2,3,6,.62),rgba(2,3,6,0) 24%)}
+
+/* the device drawn on the photograph: a string of bulbs (A), a receding path (B), a halo (C) */
+.env2-pdp-stage__device{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
+.env2-pdp-stage__cord{fill:none;stroke:rgba(244,238,227,.28);stroke-width:1.2;transition:stroke-dasharray 1.1s cubic-bezier(.2,.7,.2,1)}
+.env2-pdp-stage__bulb{opacity:0;transition:opacity .55s var(--dl,0s)}
+.env2-pdp-stage__bulb--on{opacity:1}
+.env2-pdp-stage__bulb .env2-pdp-stage__halo{opacity:0;transition:opacity .55s var(--dl,0s)}
+.env2-pdp-stage__bulb .env2-pdp-stage__core{opacity:0;transition:opacity .55s var(--dl,0s)}
+.env2-pdp-stage__bulb--on .env2-pdp-stage__halo{opacity:1}
+.env2-pdp-stage__bulb--on .env2-pdp-stage__core{opacity:1}
+.env2-pdp-stage__post{fill:rgba(232,236,244,.55)}
+.env2-pdp-stage__ground{fill:none;stroke:rgba(244,238,227,.10);stroke-width:1}
+.env2-pdp-stage__glow{position:absolute;z-index:0;pointer-events:none;inset-block-start:var(--env2-pdp-dy,38%);inset-inline-start:var(--env2-pdp-dx,50%);width:min(58vw,660px);aspect-ratio:1;transform:translate(50%,-50%) scale(var(--env2-pdp-gs,1));background:radial-gradient(closest-side,var(--env2-pdp-gc,rgba(255,211,148,.62)) 0,rgba(255,211,148,0) 72%);opacity:calc(.9*var(--lit,1));mix-blend-mode:screen;filter:blur(4px);transition:transform .5s cubic-bezier(.2,.8,.2,1),background .5s,opacity 1.4s}
+
+/* ---------- the body: text at the start side, price + button in ONE column at the end side ---------- */
+.env2-pdp-stage__body{position:relative;z-index:1;align-self:end;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);align-items:end;gap:40px 56px;padding-block:min(30vh,300px) 4px}
+.env2-pdp-stage__txt{min-width:0}
+.env2-pdp-stage__kicker{display:block;margin:0;text-shadow:0 1px 14px rgba(0,0,0,.55)}
+.env2-pdp-stage__h1{font-size:clamp(38px,5.8vw,84px);max-width:15ch;margin:14px 0 16px;text-shadow:0 2px 40px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.35)}
+.env2-pdp-stage__title{margin:0;max-width:42ch;font-family:var(--env2-sans);font-weight:400;font-size:clamp(16px,1.3vw,19px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:pretty;text-shadow:0 1px 12px rgba(0,0,0,.55)}
+.env2-pdp-stage__fact{margin:8px 0 0;max-width:42ch;font-size:14px;line-height:1.5;color:var(--env2-ink-2);text-shadow:0 1px 12px rgba(0,0,0,.55)}
+.env2-pdp-stage__axis{margin-block-start:18px;display:grid;gap:6px;justify-items:start}
+.env2-pdp-stage__axis-label{display:block;margin:0}
+.env2-pdp-stage__select{appearance:none;-webkit-appearance:none;min-width:min(260px,72vw);min-height:44px;border:0;border-block-end:1px solid var(--env2-hair-btn);border-radius:0;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-size:15px;font-weight:400;line-height:1.3;padding-block:8px;padding-inline:2px 26px;cursor:pointer}
+.env2-pdp-stage__select option{background:#0f1a2f;color:#f4eee3}
+.env2-pdp-stage__axis-note{margin:0;font-size:13px;line-height:1.5;color:var(--env2-ink-2)}
+.env2-pdp-stage__radios{display:flex;flex-wrap:wrap;align-items:center;gap:0 20px}
+.env2-pdp-stage__radio{position:relative;display:inline-flex;align-items:center;min-height:44px;padding-block:10px;color:var(--env2-ink-2);font-size:15px;cursor:pointer;transition:color .3s}
+.env2-pdp-stage__radio input{position:absolute;opacity:0;width:1px;height:1px}
+.env2-pdp-stage__radio span{border-block-end:1px solid transparent;padding-block-end:3px;transition:border-color .3s,color .3s}
+.env2-pdp-stage__radio input:checked+span{color:var(--env2-ink);border-block-end-color:var(--env2-glow);text-shadow:0 0 18px rgba(255,211,148,.45)}
+.env2-pdp-stage__radio:hover{color:var(--env2-ink)}
+
+/* ---------- the buy column: price and button 12px apart, never split across the screen ---------- */
+.env2-pdp-stage__buy{display:grid;gap:12px;justify-items:start;min-width:min(340px,100%);max-width:min(460px,100%)}
+.env2-pdp-stage__price-row{display:grid;gap:4px}
+.env2-pdp-stage__price{--env2-price-size:46px;text-shadow:0 2px 26px rgba(0,0,0,.5)}
+.env2-pdp-stage__mirror{font-family:var(--env2-sans);font-size:13.5px;line-height:1.4;color:var(--env2-ink-2);unicode-bidi:isolate}
+.env2-pdp-stage__range{margin:0;font-size:13.5px;line-height:1.5;color:var(--env2-ink-2);max-width:46ch}
+.env2-pdp-stage__cta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.env2-pdp-stage__form{margin:0;padding:0}
+/* §8.3: .env2-section a{color:inherit} beats .env2-btn, so a filled pill is only safe as a <button>.
+   This one is a submit button AND states its ink, so the contrast cannot regress either way. */
+.env2-pdp-stage__atc{color:var(--env2-btn-ink);min-height:52px;padding-inline:34px;font-size:15px}
+.env2-pdp-stage__fit{font-size:14px}
+.env2-pdp-stage__terms{margin:0;font-size:13px;line-height:1.6;color:var(--env2-ink-2);max-width:52ch}
+.env2-pdp-stage__terms-link{font-size:13px;vertical-align:baseline}
+.env2-pdp-stage__small{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;line-height:1.5;color:var(--env2-ink-2)}
+.env2-pdp-stage__small .env2-pdp-stage__photo{font-size:13px}
+
+/* ---------- the rail: every price visible before choosing, on one hairline ---------- */
+.env2-pdp-stage__rail{position:relative;z-index:1;min-width:0;padding-block:24px 30px}
+.env2-pdp-stage__rail-label{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;margin:0 0 14px;font-family:var(--env2-sans);font-size:11.5px;font-weight:500;letter-spacing:.16em;line-height:1.4;color:var(--env2-gold)}
+.env2-pdp-stage__rail-label small{font-size:13px;font-weight:300;letter-spacing:0;color:var(--env2-ink-2)}
+.env2-pdp-stage__track{position:relative;display:flex;justify-content:space-between;border-block-start:1px solid rgba(244,238,227,.22)}
+.env2-pdp-stage__fill{position:absolute;inset-block-start:-1px;inset-inline-start:0;height:1px;width:var(--env2-pdp-fill,0px);background:var(--env2-glow);box-shadow:0 0 12px 1px rgba(255,211,148,.55);transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.env2-pdp-stage__stop{position:relative;display:grid;justify-items:center;align-content:start;gap:3px;padding:20px 8px 10px;min-width:58px;min-height:44px;color:var(--env2-ink-2);text-decoration:none;transition:color .3s}
+.env2-pdp-stage__stop::before{content:"";position:absolute;inset-block-start:-5px;width:9px;height:9px;border-radius:50%;background:var(--env2-sky-2);box-shadow:inset 0 0 0 1px rgba(244,238,227,.5);transition:background .4s,box-shadow .4s}
+.env2-pdp-stage__stop--on::before{background:var(--env2-glow);box-shadow:0 0 14px 3px rgba(255,211,148,.65)}
+.env2-pdp-stage__n{font-family:var(--env2-serif);font-weight:500;font-size:32px;line-height:1;color:var(--env2-ink-2);font-variant-numeric:tabular-nums;transition:color .3s}
+.env2-pdp-stage__n small{font-size:14px;font-weight:400;color:var(--env2-ink-2);margin-inline-start:.18em}
+.env2-pdp-stage__n--text{font-family:var(--env2-sans);font-size:15px;font-weight:400;line-height:1.3;text-align:center}
+.env2-pdp-stage__stop--on .env2-pdp-stage__n{color:var(--env2-ink)}
+.env2-pdp-stage__cap{font-size:13px;line-height:1.35;color:var(--env2-ink-2);text-align:center;text-wrap:balance}
+.env2-pdp-stage__use{font-size:13px;line-height:1.35;color:var(--env2-ink-2);text-align:center;max-width:14ch}
+.env2-pdp-stage__sp{font-style:normal;font-family:var(--env2-serif);font-weight:500;font-size:14.5px;line-height:1.2;color:var(--env2-glow);font-variant-numeric:tabular-nums;white-space:nowrap;opacity:.78;transition:opacity .3s}
+.env2-pdp-stage__stop--on .env2-pdp-stage__sp{opacity:1}
+.env2-pdp-stage__stop:hover .env2-pdp-stage__n{color:var(--env2-ink)}
+
+@media (max-width:900px){
+  .env2-pdp-stage__bg[data-lamp] .env2-pdp-stage__ph img{object-position:var(--env2-pdp-obj-m,50% 50%)}
+  .env2-pdp-stage__veil{background:linear-gradient(0deg,var(--env2-sky-2) 0,rgba(15,26,47,.92) 15%,rgba(15,26,47,.72) 30%,rgba(15,26,47,.4) 48%,rgba(15,26,47,.12) 68%,rgba(15,26,47,0) 86%),linear-gradient(180deg,rgba(2,3,6,.74),rgba(2,3,6,.34) 22%,rgba(2,3,6,0) 46%)}
+  .env2-pdp-stage__body{grid-template-columns:1fr;gap:18px;padding-block:88px 2px}
+  .env2-pdp-stage__txt{max-width:none}
+  .env2-pdp-stage__h1{font-size:clamp(32px,9.8vw,40px);margin:10px 0 12px}
+  .env2-pdp-stage__axis{margin-block-start:14px}
+  .env2-pdp-stage__buy{min-width:0;width:100%;gap:10px}
+  .env2-pdp-stage__price{--env2-price-size:38px}
+  .env2-pdp-stage__cta{width:100%;gap:12px}
+  .env2-pdp-stage__form{width:100%}
+  .env2-pdp-stage__atc{width:100%}
+  .env2-pdp-stage__terms{max-width:none}
+  .env2-pdp-stage__rail{padding-block:18px 22px}
+  /* with JS the sticky bar is hidden while the stage is on screen; without JS it is always visible,
+     so the stage gives back exactly its height and the rail's prices stay inside the fold. */
+  html:not(.env2-js) .env2-pdp-stage{min-height:calc(100vh - var(--env2-pdp-bar-h,78px));min-height:calc(100svh - var(--env2-pdp-bar-h,78px))}
+  .env2-pdp-stage__track{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to left,#000 84%,transparent 100%);mask-image:linear-gradient(to left,#000 84%,transparent 100%)}
+  .env2-pdp-stage__track::-webkit-scrollbar{display:none}
+  .env2-pdp-stage__stop{min-width:92px;scroll-snap-align:center}
+  .env2-pdp-stage__n{font-size:26px}
+  .env2-pdp-stage__n small{font-size:13px}
+  .env2-pdp-stage__sp{font-size:14px}
+}
+/* short phones (375x667, 360x780): the whole buy decision still has to sit inside one screen, so the
+   display sizes step down rather than the rail dropping below the fold. */
+@media (max-width:900px) and (max-height:820px){
+  .env2-pdp-stage__body{padding-block:70px 0;gap:14px}
+  .env2-pdp-stage__h1{font-size:clamp(27px,8.2vw,34px);margin:8px 0 10px}
+  .env2-pdp-stage__axis{margin-block-start:10px}
+  .env2-pdp-stage__buy{gap:8px}
+  .env2-pdp-stage__price{--env2-price-size:34px}
+  .env2-pdp-stage__rail{padding-block:14px 16px}
+  .env2-pdp-stage__rail-label{margin:0 0 10px}
+  .env2-pdp-stage__stop{padding:16px 8px 8px}
+  .env2-pdp-stage__n{font-size:23px}
+}
+@media (max-width:900px) and (max-height:720px){
+  .env2-pdp-stage__body{padding-block:54px 0;gap:10px}
+  .env2-pdp-stage__h1{font-size:clamp(25px,7.4vw,29px);margin:6px 0 8px}
+  .env2-pdp-stage__buy{gap:6px}
+  .env2-pdp-stage__price{--env2-price-size:30px}
+  .env2-pdp-stage__rail{padding-block:10px 12px}
+  .env2-pdp-stage__stop{padding:14px 8px 6px}
+  .env2-pdp-stage__n{font-size:21px}
+}
+@media (prefers-reduced-motion:reduce){
+  .env2-pdp-stage__cord,.env2-pdp-stage__glow,.env2-pdp-stage__fill{transition:none}
+}
+{% endstylesheet %}
+
+{% javascript %}
+(function () {
+  var stages = document.querySelectorAll('[data-env2-pdp-stage]');
+  if (!stages.length) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var rm = (window.env2 && window.env2.rm) ||
+    (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) || false;
+  var TINTS = { gold: '#ffd394', blue: '#5b9dff', white: '#e9f0ff', red: '#ff7a6b', green: '#7dffa0' };
+  var CORES = { gold: '#fff1d6', blue: '#dbe9ff', white: '#ffffff', red: '#ffd6d4', green: '#dcffe4' };
+  var BYVALUE = { 'צהוב': 'gold', 'צהוב חם': 'gold', 'לבן': 'white', 'כחול': 'blue', 'צבעוני': 'multi' };
+  var MULTI = ['red', 'green', 'blue', 'gold'];
+
+  function sv(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  function money(v) { return v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function tintOf(label) {
+    if (!label) return 'gold';
+    var keys = Object.keys(BYVALUE);
+    for (var i = 0; i < keys.length; i++) { if (label.indexOf(keys[i]) > -1) return BYVALUE[keys[i]]; }
+    return 'gold';
+  }
+
+  function countTo(node, to) {
+    var from = parseFloat(node.getAttribute('data-v'));
+    if (isNaN(from)) from = to;
+    node.setAttribute('data-v', to);
+    if (rm || from === to || !window.requestAnimationFrame) { node.textContent = money(to); return; }
+    var t0 = 0;
+    requestAnimationFrame(function step(t) {
+      if (!t0) t0 = t;
+      var k = Math.min(1, (t - t0) / 380), e = 1 - Math.pow(1 - k, 3);
+      node.textContent = money(from + (to - from) * e);
+      if (k < 1) requestAnimationFrame(step);
+    });
+  }
+
+  /* ---------- the drawn string: bulbs hung along a cord across the photograph ---------- */
+  function makeString(svg) {
+    var uid = 's' + Math.random().toString(36).slice(2, 7);
+    var defs = sv('defs'), cord = sv('path', { 'class': 'env2-pdp-stage__cord' }), gb = sv('g');
+    Object.keys(TINTS).forEach(function (k) {
+      var g = sv('radialGradient', { id: uid + '-' + k, cx: '50%', cy: '50%', r: '50%' });
+      g.appendChild(sv('stop', { offset: '0', 'stop-color': TINTS[k], 'stop-opacity': '.8' }));
+      g.appendChild(sv('stop', { offset: '.45', 'stop-color': TINTS[k], 'stop-opacity': '.28' }));
+      g.appendChild(sv('stop', { offset: '1', 'stop-color': TINTS[k], 'stop-opacity': '0' }));
+      defs.appendChild(g);
+    });
+    svg.appendChild(defs); svg.appendChild(cord); svg.appendChild(gb);
+    var meas = sv('path'), bulbs = [], n = 0, tint = 'gold', total = 0, sp = 26, max = 200;
+    function layout() {
+      var W = svg.clientWidth, H = svg.clientHeight;
+      if (!W || !H) return;
+      var mob = W < 720;
+      sp = mob ? 15 : 26;
+      var sag = mob ? 24 : 62, gap = mob ? 34 : 92;
+      var copy = svg.parentNode.querySelector('.env2-pdp-stage__body');
+      var lid = copy ? (copy.getBoundingClientRect().top - svg.getBoundingClientRect().top) : H * 0.56;
+      var top = H * 0.10, bottom = Math.max(top + 40, Math.min(H * 0.56, lid - 18));
+      var S = Math.max(170, Math.min(460, W / 3.2));
+      var x = W, y = top, dir = -1, d = 'M' + x + ' ' + y, need = (max + 1) * sp;
+      for (var row = 0; row < 26; row++) {
+        var cols = Math.ceil(W / S);
+        for (var c = 0; c < cols; c++) {
+          var x1 = dir < 0 ? Math.max(0, x - S) : Math.min(W, x + S), xm = (x + x1) / 2;
+          d += ' Q' + xm.toFixed(1) + ' ' + (y + sag) + ' ' + x1.toFixed(1) + ' ' + y;
+          x = x1;
+        }
+        meas.setAttribute('d', d);
+        if (meas.getTotalLength() >= need || y + gap > bottom) break;
+        y += gap; d += ' L' + x + ' ' + y; dir = -dir;
+      }
+      cord.setAttribute('d', d);
+      total = meas.getTotalLength();
+      while (gb.firstChild) gb.removeChild(gb.firstChild);
+      bulbs = [];
+      var hr = mob ? 10 : 16, cr = mob ? 2.7 : 4.2, drop = mob ? 5 : 8;
+      for (var i = 0; i < max; i++) {
+        var L = Math.min(total - 1, sp * (i + 0.6)), pt = meas.getPointAtLength(L);
+        var b = sv('g', { 'class': 'env2-pdp-stage__bulb', transform: 'translate(' + pt.x.toFixed(1) + ' ' + (pt.y + drop).toFixed(1) + ')' });
+        b.appendChild(sv('circle', { 'class': 'env2-pdp-stage__halo', r: hr }));
+        b.appendChild(sv('circle', { 'class': 'env2-pdp-stage__core', r: cr }));
+        gb.appendChild(b); bulbs.push(b);
+      }
+      paint(); apply(false, 0);
+    }
+    function paint() {
+      bulbs.forEach(function (b, i) {
+        var k = tint === 'multi' ? MULTI[i % 4] : tint;
+        b.firstChild.setAttribute('fill', 'url(#' + uid + '-' + k + ')');
+        b.lastChild.setAttribute('fill', CORES[k]);
+      });
+    }
+    function apply(anim, from) {
+      var grow = Math.max(1, n - from), step = Math.min(40, 1100 / grow);
+      bulbs.forEach(function (b, i) {
+        var on = i < n, dl = (anim && !rm && on && i >= from) ? Math.round((i - from) * step) : 0;
+        b.style.setProperty('--dl', dl + 'ms');
+        if (on) b.classList.add('env2-pdp-stage__bulb--on'); else b.classList.remove('env2-pdp-stage__bulb--on');
+      });
+      cord.style.strokeDasharray = Math.min(total, sp * (n + 0.6)).toFixed(1) + ' ' + (total + 10).toFixed(1);
+    }
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(layout, 160); });
+    layout();
+    return {
+      set: function (c, anim) { var f = n; n = Math.max(0, Math.min(max, c || 0)); apply(anim !== false, f < n ? f : 0); },
+      tint: function (k) { tint = k; paint(); }
+    };
+  }
+
+  /* ---------- the drawn path: bollards standing along a receding line (product B) ---------- */
+  function makePath(svg) {
+    var uid = 'p' + Math.random().toString(36).slice(2, 7);
+    var defs = sv('defs');
+    [['pool', ['#ffd394', '.75', '.22']], ['glow', ['#fff1d6', '.9', '.32']]].forEach(function (p) {
+      var g = sv('radialGradient', { id: uid + '-' + p[0], cx: '50%', cy: '50%', r: '50%' });
+      g.appendChild(sv('stop', { offset: '0', 'stop-color': p[1][0], 'stop-opacity': p[1][1] }));
+      g.appendChild(sv('stop', { offset: '.5', 'stop-color': '#ffd394', 'stop-opacity': p[1][2] }));
+      g.appendChild(sv('stop', { offset: '1', 'stop-color': '#ffd394', 'stop-opacity': '0' }));
+      defs.appendChild(g);
+    });
+    var ground = sv('path', { 'class': 'env2-pdp-stage__ground' }), gb = sv('g');
+    svg.appendChild(defs); svg.appendChild(ground); svg.appendChild(gb);
+    var items = [], n = 0, max = 8;
+    function layout() {
+      var W = svg.clientWidth, H = svg.clientHeight;
+      if (!W || !H) return;
+      var mob = W < 720;
+      var copy = svg.parentNode.querySelector('.env2-pdp-stage__body');
+      var lid = copy ? (copy.getBoundingClientRect().top - svg.getBoundingClientRect().top) : H * 0.62;
+      var y0 = Math.min(H * 0.62, Math.max(H * 0.22, lid - 26));
+      var y1 = Math.max(H * 0.08, y0 - Math.max(60, H * 0.26));
+      var x0 = W * (mob ? 0.60 : 0.50), x1 = W * 0.05;
+      var h = (y0 - y1) * 0.72;
+      ground.setAttribute('d', 'M' + x0 + ' ' + y0 + ' L' + x1 + ' ' + y1);
+      while (gb.firstChild) gb.removeChild(gb.firstChild);
+      items = [];
+      for (var i = max - 1; i >= 0; i--) {
+        var t = i / (max - 1) * 0.94, s = 1 - 0.66 * t;
+        var x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t, hh = h * s, w = Math.max(4, h * 0.13 * s);
+        var b = sv('g', { 'class': 'env2-pdp-stage__bulb', transform: 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')' });
+        b.appendChild(sv('ellipse', { 'class': 'env2-pdp-stage__halo', cx: 0, cy: 0, rx: (hh * 0.8).toFixed(1), ry: (hh * 0.17).toFixed(1), fill: 'url(#' + uid + '-pool)' }));
+        b.appendChild(sv('rect', { 'class': 'env2-pdp-stage__post', x: -w / 2, y: -hh * 0.72, width: w, height: hh * 0.72 }));
+        b.appendChild(sv('circle', { 'class': 'env2-pdp-stage__halo', cx: 0, cy: -hh * 0.85, r: (hh * 0.45).toFixed(1), fill: 'url(#' + uid + '-glow)' }));
+        b.appendChild(sv('rect', { 'class': 'env2-pdp-stage__core', x: -w / 2, y: -hh, width: w, height: hh * 0.3, fill: '#fff1d6' }));
+        gb.appendChild(b); items[i] = b;
+      }
+      apply(false, 0);
+    }
+    function apply(anim, from) {
+      items.forEach(function (b, i) {
+        var on = i < n, dl = (anim && !rm && on && i >= from) ? (i - from) * 60 : 0;
+        b.style.setProperty('--dl', dl + 'ms');
+        if (on) b.classList.add('env2-pdp-stage__bulb--on'); else b.classList.remove('env2-pdp-stage__bulb--on');
+      });
+    }
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(layout, 160); });
+    layout();
+    return { set: function (c, anim) { var f = n; n = Math.max(0, Math.min(max, c || 0)); apply(anim !== false, f < n ? f : 0); }, tint: function () {} };
+  }
+
+  function makeGlow(node) {
+    return {
+      set: function (watts) {
+        var s = Math.max(0.6, Math.min(1.5, 0.62 + (watts || 6) / 22));
+        node.style.setProperty('--env2-pdp-gs', s.toFixed(3));
+      },
+      tint: function (cool) {
+        node.style.setProperty('--env2-pdp-gc', cool ? 'rgba(207,224,255,.6)' : 'rgba(255,211,148,.62)');
+      }
+    };
+  }
+
+  function init(el) {
+    var tag = document.getElementById('env2-pdp-variants'), model = null;
+    try { if (tag) model = JSON.parse(tag.textContent); } catch (e) { model = null; }
+
+    var priceEl = el.querySelector('[data-env2-stage-price]');
+    var mirrorEl = el.querySelector('[data-env2-stage-mirror]');
+    var qtyEl = el.querySelector('[data-env2-stage-qty]');
+    var idEl = el.querySelector('[data-env2-stage-id]');
+    var selectEl = el.querySelector('select[data-env2-stage-quiet]');
+    var radios = [].slice.call(el.querySelectorAll('input[type="radio"][data-env2-stage-quiet]'));
+    var stops = [].slice.call(el.querySelectorAll('[data-env2-stage-stop]'));
+    var track = el.querySelector('[data-env2-stage-track]');
+    var fill = el.querySelector('[data-env2-stage-fill]');
+    var buyline = el.querySelector('[data-env2-pdp-buyline]');
+    var deviceSvg = el.querySelector('[data-env2-stage-device]');
+    var glowNode = el.querySelector('[data-env2-stage-glow]');
+    var bar = document.querySelector('[data-env2-pdp-bar]');
+    var barId = bar && bar.querySelector('[data-env2-bar-id]');
+    var barQty = bar && bar.querySelector('[data-env2-bar-qty]');
+    var barPrice = bar && bar.querySelector('[data-env2-bar-price]');
+    var barMirror = bar && bar.querySelector('[data-env2-bar-mirror]');
+    var barImg = bar && bar.querySelector('[data-env2-bar-img]');
+
+    var device = null;
+    if (glowNode) device = makeGlow(glowNode);
+    else if (deviceSvg) device = deviceSvg.getAttribute('data-kind') === 'path' ? makePath(deviceSvg) : makeString(deviceSvg);
+
+    var single = !model || model.mode === 'single';
+    var row = model ? (model.defaultRow || 0) : 0;
+    var qty = 1;
+
+    function currentRow() { return model && model.rows ? model.rows[row] : null; }
+    /* Shopify names a product's only option "Title"/"Default Title"; that placeholder is never copy. */
+    function clean(v) { return (!v || v === 'Default Title') ? '' : v; }
+    function quietLabel() {
+      if (selectEl && selectEl.selectedIndex > -1) return selectEl.options[selectEl.selectedIndex].text;
+      for (var i = 0; i < radios.length; i++) { if (radios[i].checked) return radios[i].parentNode.textContent.trim(); }
+      var r = currentRow();
+      return (r && r.variants && r.variants.length === 1) ? r.variants[0].label : '';
+    }
+    function currentId() {
+      if (selectEl) return selectEl.value;
+      for (var i = 0; i < radios.length; i++) { if (radios[i].checked) return radios[i].value; }
+      if (idEl) return idEl.value;
+      var r = currentRow();
+      return r ? String(r.id) : '';
+    }
+    function currentCents() {
+      var r = currentRow();
+      var base = r ? r.price : 0;
+      if (!base && priceEl) base = Math.round(parseFloat(priceEl.textContent.replace(/,/g, '')) * 100);
+      return base * (single ? qty : 1);
+    }
+
+    function paintDevice(anim) {
+      if (!device) return;
+      var r = currentRow();
+      if (glowNode) {
+        var w = r && r.n1 ? parseFloat(r.n1) : 6;
+        device.set(w);
+        device.tint(!!(r && ((r.b || '') + (r.key || '')).indexOf('6000') > -1));
+        return;
+      }
+      if (deviceSvg.getAttribute('data-kind') === 'path') { device.set(single ? qty : (r && r.n1 ? parseFloat(r.n1) : 1), anim); return; }
+      var count = 20;
+      if (r) count = parseFloat(r.n2 || r.n1 || 20) || 20;
+      device.tint(tintOf(quietLabel()));
+      device.set(count, anim);
+    }
+
+    /* the fill runs from the track's START edge to the chosen stop. Inside an RTL scroll container
+       Chrome gives overflowing children a NEGATIVE offsetLeft, so the content edges are measured from
+       the stops themselves — scrollWidth/scrollLeft are not usable here. */
+    function paintFill() {
+      if (!fill || !track) return;
+      var on = el.querySelector('.env2-pdp-stage__stop--on');
+      if (!on || !stops.length) { fill.style.setProperty('--env2-pdp-fill', '0px'); return; }
+      var lo = Infinity, hi = -Infinity;
+      stops.forEach(function (s) { lo = Math.min(lo, s.offsetLeft); hi = Math.max(hi, s.offsetLeft + s.offsetWidth); });
+      var rtl = (window.getComputedStyle(track).direction === 'rtl');
+      var mid = on.offsetLeft + on.offsetWidth / 2;
+      var w = rtl ? (hi - mid) : (mid - lo);
+      fill.style.setProperty('--env2-pdp-fill', Math.max(0, Math.round(w)) + 'px');
+    }
+
+    function paintBar(mirrorText, cents) {
+      if (!bar) return;
+      if (barId) barId.value = currentId();
+      if (barQty) barQty.value = String(single ? qty : 1);
+      if (barPrice) barPrice.innerHTML = '<bdi>' + money(cents / 100) + '</bdi> ₪';
+      if (barMirror) barMirror.textContent = mirrorText;
+      var r = currentRow();
+      if (barImg && r && r.image) barImg.setAttribute('src', r.image);
+    }
+
+    function syncUrl() {
+      if (!window.history || !history.replaceState) return;
+      var id = currentId();
+      if (!id) return;
+      try {
+        var u = new URL(window.location.href);
+        u.searchParams.set('variant', id);
+        history.replaceState(null, '', u.pathname + u.search + u.hash);
+      } catch (e) { /* older browser: leave the URL alone */ }
+    }
+
+    function apply(anim) {
+      var r = currentRow(), cents = currentCents();
+      var mirror = '';
+      if (single) {
+        var one = (mirrorEl && mirrorEl.getAttribute('data-one')) || '';
+        var many = (mirrorEl && mirrorEl.getAttribute('data-many')) || '';
+        var rowLabel = (mirrorEl && mirrorEl.getAttribute('data-row')) || '';
+        mirror = (qty === 1 && one) ? one : (qty + (many ? ' ' + many : ''));
+        if (rowLabel && rowLabel !== mirror) mirror += ' · ' + rowLabel;
+      } else {
+        mirror = r ? clean(r.label) : '';
+        var q = clean(quietLabel());
+        if (q) mirror = mirror ? (mirror + ' · ' + q) : q;
+      }
+      if (idEl) idEl.value = currentId();
+      if (qtyEl) qtyEl.value = String(single ? qty : 1);
+      if (priceEl) countTo(priceEl, cents / 100);
+      if (mirrorEl) mirrorEl.textContent = mirror;
+      paintBar(mirror, cents);
+      paintFill();
+      paintDevice(anim !== false);
+      syncUrl();
+    }
+
+    function pickStop(i, stop) {
+      stops.forEach(function (s) { s.classList.remove('env2-pdp-stage__stop--on'); s.removeAttribute('aria-current'); });
+      stop.classList.add('env2-pdp-stage__stop--on');
+      stop.setAttribute('aria-current', 'true');
+      if (single) { qty = parseInt(stop.getAttribute('data-qty'), 10) || 1; }
+      else {
+        row = i;
+        var r = currentRow();
+        if (r && r.variants && r.variants.length) {
+          if (selectEl) {
+            var keep = selectEl.selectedIndex > -1 ? selectEl.options[selectEl.selectedIndex].text : '';
+            selectEl.innerHTML = '';
+            r.variants.forEach(function (v) {
+              var o = document.createElement('option');
+              o.value = v.id; o.textContent = v.label; o.disabled = !v.available;
+              if (v.label === keep) o.selected = true;
+              selectEl.appendChild(o);
+            });
+          } else if (radios.length) {
+            radios.forEach(function (input, k) { if (r.variants[k]) { input.value = r.variants[k].id; input.disabled = !r.variants[k].available; } });
+          }
+        }
+      }
+      apply(true);
+    }
+
+    stops.forEach(function (stop, i) {
+      if (!model) return;
+      stop.addEventListener('click', function (ev) {
+        ev.preventDefault(); ev.stopPropagation();
+        pickStop(parseInt(stop.getAttribute('data-i'), 10) || i, stop);
+      });
+    });
+    if (selectEl) selectEl.addEventListener('change', function () { apply(true); });
+    radios.forEach(function (input) { input.addEventListener('change', function () { apply(true); }); });
+
+    /* the sticky bar: shown once the stage's buy line is above the viewport, hidden again while the
+       ledger is on screen so there is never a second add-to-cart competing with the row forms. */
+    if (bar && buyline) {
+      var ledger = document.getElementById('env2-pdp-ledger'), ticking = false;
+      var check = function () {
+        if (ticking) return; ticking = true;
+        requestAnimationFrame(function () {
+          var show = buyline.getBoundingClientRect().bottom < 0;
+          if (show && ledger) {
+            var lr = ledger.getBoundingClientRect();
+            if (lr.top < (window.innerHeight || 0) && lr.bottom > 0) show = false;
+          }
+          if (show) bar.classList.add('env2-pdp-bar--show'); else bar.classList.remove('env2-pdp-bar--show');
+          bar.setAttribute('aria-hidden', String(!show));
+          ticking = false;
+        });
+      };
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+      window.addEventListener('load', check);
+      check();
+    }
+
+    if (priceEl) priceEl.setAttribute('data-v', priceEl.textContent.replace(/,/g, ''));
+    paintFill();
+    paintDevice(true);
+    window.addEventListener('resize', paintFill);
+    window.addEventListener('load', function () { paintFill(); paintDevice(true); });
+  }
+
+  document.querySelectorAll('[data-env2-pdp-stage]').forEach(function (el) {
+    init(el);
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — במה",
+  "tag": "section",
+  "class": "env2-pdp-stage-section section-allow-transparent hdt-section",
+  "settings": [
+    { "type": "header", "content": "המקום והכותרת" },
+    { "type": "text", "id": "kicker", "label": "שורת מקום (ריק = לפי סוג המוצר, מתוך ארבעת הזוגות המאושרים)" },
+    { "type": "text", "id": "heading_line1", "label": "כותרת — שורה ראשונה" },
+    { "type": "text", "id": "heading_line2", "label": "כותרת — שורה שנייה (זוהרת)" },
+    { "type": "header", "content": "התמונה של הבמה" },
+    { "type": "range", "id": "hero_image_index", "label": "מספר התמונה במוצר (0 = ברירת המחדל לפי המוצר)", "min": 0, "max": 6, "step": 1, "default": 0 },
+    { "type": "image_picker", "id": "hero_image", "label": "תמונה — החלפה ידנית (דסקטופ)" },
+    { "type": "image_picker", "id": "hero_image_mobile", "label": "תמונה — החלפה ידנית (מובייל)" },
+    { "type": "text", "id": "object_position_desktop", "label": "מיקוד התמונה — דסקטופ", "default": "50% 45%" },
+    { "type": "text", "id": "object_position_mobile", "label": "מיקוד התמונה — מובייל", "default": "50% 50%" },
+    { "type": "header", "content": "מה נדלק על התמונה" },
+    { "type": "select", "id": "stage_device", "label": "התאורה שמצוירת על התמונה", "options": [ { "value": "string", "label": "שרשרת נורות" }, { "value": "path", "label": "שורת מנורות בשביל" }, { "value": "halo", "label": "הילה על הקיר" }, { "value": "none", "label": "בלי ציור" } ], "default": "string" },
+    { "type": "text", "id": "device_x", "label": "מיקום ההילה — רוחב", "default": "50%" },
+    { "type": "text", "id": "device_y", "label": "מיקום ההילה — גובה", "default": "38%" },
+    { "type": "header", "content": "אפשרויות ומחיר" },
+    { "type": "select", "id": "price_axis_option", "label": "האפשרות שקובעת את המחיר", "options": [ { "value": "auto", "label": "זיהוי אוטומטי" }, { "value": "option1", "label": "אפשרות 1" }, { "value": "option2", "label": "אפשרות 2" }, { "value": "option3", "label": "אפשרות 3" } ], "default": "auto" },
+    { "type": "text", "id": "quiet_axis_note", "label": "הערה מתחת לבורר (ריק = נוסחת ברירת מחדל לפי שם האפשרות)" },
+    { "type": "textarea", "id": "range_note", "label": "שורת הטווח (ריק = מחושבת מהמחירים של המוצר)" },
+    { "type": "header", "content": "המסילה" },
+    { "type": "checkbox", "id": "show_rail", "label": "להציג את מסילת המחירים", "default": true },
+    { "type": "text", "id": "rail_label", "label": "כותרת המסילה (ריק = שם האפשרות)" },
+    { "type": "text", "id": "rail_note", "label": "הערה בקצה כותרת המסילה" },
+    { "type": "text", "id": "quantity_steps", "label": "כמויות במסילה (מוצר עם וריאנט אחד)", "default": "1,2,3,4,6,8" },
+    { "type": "text", "id": "quantity_unit_one", "label": "יחידת כמות — יחיד", "default": "יחידה" },
+    { "type": "text", "id": "quantity_unit", "label": "יחידת כמות — רבים", "default": "יחידות" },
+    { "type": "text", "id": "quantity_label_one", "label": "תיאור הבחירה כשמדובר ביחידה אחת", "default": "יחידה אחת" },
+    { "type": "header", "content": "קופסת הקנייה" },
+    { "type": "text", "id": "add_label", "label": "כפתור ראשי", "default": "הוספה לסל" },
+    { "type": "text", "id": "fit_link_label", "label": "קישור למי זה לא מתאים (ריק = בלי קישור)", "default": "למי זה לא מתאים" },
+    { "type": "textarea", "id": "terms_strip", "label": "שורת התנאים שמתחת לכפתור", "default": "משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר." },
+    { "type": "text", "id": "terms_link_label", "label": "קישור לכל המספרים", "default": "כל המספרים" },
+    { "type": "text", "id": "photo_intro", "label": "הצעד הקטן — פתיח", "default": "לפני שמזמינים אפשר" },
+    { "type": "text", "id": "photo_cta_label", "label": "הצעד הקטן — טקסט הקישור (ריק = ברירת המחדל של החנות)" },
+    { "type": "text", "id": "mailto_subject", "label": "נושא המייל לבדיקת התאמה" },
+    { "type": "header", "content": "הסרגל הדביק במובייל" },
+    { "type": "checkbox", "id": "show_buybar", "label": "להציג סרגל קנייה דביק במובייל", "default": true },
+    { "type": "range", "id": "thumb_image_index", "label": "תמונה בסרגל — מספר תמונה במוצר (0 = ברירת מחדל)", "min": 0, "max": 6, "step": 1, "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "stop_note",
+      "name": "הערה לשלב במסילה",
+      "settings": [
+        { "type": "text", "id": "value", "label": "ערך האפשרות (למשל: 5 מ׳ / 20 נורות)" },
+        { "type": "text", "id": "note", "label": "הערה קצרה — מצוטטת מתיאור המוצר בלבד" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — במה",
+      "settings": {
+        "stage_device": "string",
+        "price_axis_option": "auto",
+        "show_rail": true,
+        "show_buybar": true
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,447 @@
+{%- comment -%}
+  ElmsNest v2 PDP — the VARIANT LEDGER MODEL (WINNING-SPEC §3.6 option-axis rule + §4.4 ledger).
+  Built ONCE from product.variants, in Liquid, and printed in two shapes:
+
+    A. a delimited text model the no-JS markup is built from   (emit: 'rows', the default)
+    B. one <script type="application/json"> tag for the JS     (emit: 'json')
+
+  ------------------------------------------------------------------ call signatures
+    {%- capture env2_model -%}
+      {%- render 'elmsnest-v2-pdp-variants', product: product, axis: section.settings.price_axis_option -%}
+    {%- endcapture -%}
+    {%- assign env2_recs = env2_model | split: '~~R~~' -%}
+    {%- assign env2_meta = env2_recs[0] | split: '~~F~~' -%}
+    {%- for env2_rec in env2_recs offset: 1 -%}
+      {%- assign r = env2_rec | split: '~~F~~' -%}   …r[10] is the price, r[15] the variant id…
+    {%- endfor -%}
+
+    {%- render 'elmsnest-v2-pdp-variants', product: product, emit: 'json' -%}   (prints the script tag)
+
+  ------------------------------------------------------------------ inputs
+    product : required. Blank / no variants -> prints nothing at all.
+    axis    : which option carries the price. 'option1' | 'option2' | 'option3' | 1 | 2 | 3.
+              Blank / 0 -> DETECTED (see below). This is the section's price_axis_option setting.
+    axis2   : a second price-bearing option (product C: עוצמה × גוון אור). Blank -> detected.
+    emit    : 'rows' (default) | 'json'
+    json_id : id of the script tag in json mode (default 'env2-pdp-variants')
+
+  ------------------------------------------------------------------ axis detection (§3.6)
+    1. If one option's value fully determines the price (every variant sharing that value has the same
+       price) and it has more than one value, that option is the price axis. (A: אורך ומספר נורות.)
+    2. Otherwise the first PAIR of options that together determine the price becomes the axis + axis2.
+       (C: עוצמה × גוון אור -> four rows 219.90 / 222.90 / 249.90 / 252.90.)
+    3. Otherwise (one price for the whole product) the option with the most values is the row axis.
+    Every option that is not axis/axis2 is a "quiet" axis: it never changes the price, it is rendered
+    as a <select name="id"> inside the row form (§4.4) and as a hairline radio line or a select in the
+    stage (§3.6), and when it has ONE value it is not rendered as a control at all — meta[8] says how
+    many values it has so the section can obey "no one-value picker".
+    product.variants.size == 1  ->  meta[1] = 'single': there is no picker; the ledger is a QUANTITY
+    ledger (§4.4 product B) posting quantity=N against meta[11].
+
+  ------------------------------------------------------------------ the number parse
+    The row's leading option value is parsed for up to two numbers and their units, so the ledger can
+    print "5 מ׳ · 20 נורות · 89.90 ₪ · ≈ 17.98 ₪ למטר" with nothing typed:
+        "5 מ׳ / 20 נורות" -> n1 5 · u1 מ׳ · n2 20 · u2 נורות
+        "2 יחידות"        -> n1 2 · u1 יחידות
+        "6W"              -> n1 6 · u1 W
+    per_unit is computed ONLY for a length or a count unit (מ׳ / מטר / יח׳ / יחידות / יחידה) — a
+    price per watt is meaningless, so C's rows carry no per-unit figure. It is price ÷ n1 rounded to
+    the agora (never a 1-decimal figure, §4.4).
+
+  ------------------------------------------------------------------ record layout   (fields ~~F~~, records ~~R~~)
+    meta = records[0]
+      0  'meta'
+      1  mode                 'variants' | 'single'
+      2  axis                 1-based option position carrying the price
+      3  axis2                1-based, or 0
+      4  axis_name            e.g. 'אורך ומספר נורות'
+      5  axis2_name           '' when none
+      6  quiet_axis           1-based position of the first non-price option, 0 when none
+      7  quiet_name           e.g. 'צבע תאורה'
+      8  quiet_values         how many values that quiet axis has  (1 -> never render a picker)
+      9  rows                 number of row records that follow
+      10 default_row          0-based index of the row holding selected_or_first_available_variant
+      11 default_variant_id
+      12 price_min            '89.90'
+      13 price_max            '179.90'
+      14 price_varies         '1' | '0'
+      15 unit                 u1 of the first row ('מ׳' | 'יח׳' | 'W' | '')
+      16 count_unit           u2 of the first row ('נורות' | '')
+      17 per_unit_label       '₪ למטר' | '₪ ליחידה' | ''
+      18 axis_values          how many values the price axis has (1 -> the ledger has a single row)
+      19 'e'                  terminator — a trailing EMPTY field is dropped by split, so every record
+                              ends with a literal 'e' and no real field is ever the last one
+    row records (one per price step, in the option's own value order)
+      0  'row'
+      1  i                    0-based
+      2  key                  the row's value(s), ' / ' joined  ("6W / אור חם 3000K")
+      3  key_a                the axis value                    ("6W")
+      4  key_b                the axis2 value, '' when none     ("אור חם 3000K")
+      5  label                = key (kept separate so a section may relabel without losing the key)
+      6  n1                   '5'   ''
+      7  u1                   'מ׳'  ''
+      8  n2                   '20'  ''
+      9  u2                   'נורות' ''
+      10 price                '89.90'     (the row's lowest price; a row never spans two prices)
+      11 price_cents          '8990'
+      12 per_unit             '17.98' or ''
+      13 per_unit_label       '₪ למטר' | '₪ ליחידה' | ''
+      14 available            '1' | '0'
+      15 variant_id           the first AVAILABLE variant of the row (else the first)
+      16 variant_count
+      17 quiet                'id^label^price_cents^avail;id^label^price_cents^avail'  (';' separated,
+                              no trailing separator) — the row's <select name="id"> options, in variant order
+      18 image                variant image url (1200) or '' — C has one on 5 of 8 variants (§3.5)
+      19 'e'                  terminator (see meta[19])
+    Nothing here is escaped: escape at the point of use ({{ r[2] | escape }}), exactly as the rest of
+    the theme does. The JSON emit escapes with the json filter.
+{%- endcomment -%}
+{%- liquid
+  assign env2_ok = false
+  if product != blank and product.variants.size > 0
+    assign env2_ok = true
+  endif
+-%}
+{%- if env2_ok -%}
+{%- liquid
+  assign FS = '~~F~~'
+  assign RS = '~~R~~'
+  assign nopt = product.options_with_values.size
+
+  # 0. explicit axis parameters ('option2' and 2 both work)
+  assign ax = axis | default: 0 | remove: 'option' | plus: 0
+  assign ax2 = axis2 | default: 0 | remove: 'option' | plus: 0
+  if ax > nopt
+    assign ax = 0
+  endif
+  if ax2 > nopt or ax2 == ax
+    assign ax2 = 0
+  endif
+
+  # 1. how many distinct prices does this product have at all
+  assign pset = '|'
+  for v in product.variants
+    assign pk = '|' | append: v.price | append: '|'
+    unless pset contains pk
+      assign pset = pset | append: v.price | append: '|'
+    endunless
+  endfor
+  assign nprice = pset | split: '|' | size | minus: 1
+
+  # 2. does ONE option determine the price
+  if ax == 0 and nprice > 1
+    for opt in product.options_with_values
+      assign oi = forloop.index
+      assign oi0 = forloop.index0
+      if ax == 0 and opt.values.size > 1
+        assign map = '|'
+        assign consistent = true
+        for v in product.variants
+          assign val = v.options[oi0] | replace: '|', '¦' | replace: '=', '≡'
+          assign kk = '|' | append: val | append: '='
+          assign parts = map | split: kk
+          if parts.size > 1
+            assign prev = parts[1] | split: '|' | first
+            assign cur = v.price | append: ''
+            unless prev == cur
+              assign consistent = false
+            endunless
+          else
+            assign map = map | append: val | append: '=' | append: v.price | append: '|'
+          endif
+        endfor
+        if consistent
+          assign ax = oi
+        endif
+      endif
+    endfor
+  endif
+
+  # 3. otherwise, does a PAIR of options determine it (product C)
+  if ax == 0 and nprice > 1 and nopt > 1
+    for oa in product.options_with_values
+      assign ia = forloop.index
+      assign ia0 = forloop.index0
+      for ob in product.options_with_values
+        assign ib = forloop.index
+        assign ib0 = forloop.index0
+        if ax == 0 and ib > ia
+          assign map = '|'
+          assign consistent = true
+          for v in product.variants
+            assign val = v.options[ia0] | append: '§' | append: v.options[ib0] | replace: '|', '¦' | replace: '=', '≡'
+            assign kk = '|' | append: val | append: '='
+            assign parts = map | split: kk
+            if parts.size > 1
+              assign prev = parts[1] | split: '|' | first
+              assign cur = v.price | append: ''
+              unless prev == cur
+                assign consistent = false
+              endunless
+            else
+              assign map = map | append: val | append: '=' | append: v.price | append: '|'
+            endif
+          endfor
+          if consistent
+            assign ax = ia
+            assign ax2 = ib
+          endif
+        endif
+      endfor
+    endfor
+  endif
+
+  # 4. one price for the whole product (or nothing detected): the widest option is the row axis
+  if ax == 0
+    assign widest = 0
+    for opt in product.options_with_values
+      if opt.values.size > widest
+        assign widest = opt.values.size
+        assign ax = forloop.index
+      endif
+    endfor
+  endif
+  if ax == 0
+    assign ax = 1
+  endif
+
+  assign ax0 = ax | minus: 1
+  assign optA = product.options_with_values[ax0]
+  assign ax20 = 0
+  if ax2 > 0
+    assign ax20 = ax2 | minus: 1
+    assign optB = product.options_with_values[ax20]
+  endif
+
+  # 5. the quiet axis: the first option that does not carry the price
+  assign qax = 0
+  assign qname = ''
+  assign qvals = 0
+  for opt in product.options_with_values
+    if qax == 0 and forloop.index != ax and forloop.index != ax2
+      assign qax = forloop.index
+      assign qname = opt.name
+      assign qvals = opt.values.size
+    endif
+  endfor
+
+  # 6. the row keys, in the option's own value order, only those that exist as variants
+  assign keys = ''
+  for va in optA.values
+    if ax2 > 0
+      for vb in optB.values
+        assign combo = va | append: '§' | append: vb
+        assign present = false
+        for v in product.variants
+          assign c2 = v.options[ax0] | append: '§' | append: v.options[ax20]
+          if c2 == combo
+            assign present = true
+          endif
+        endfor
+        if present
+          assign keys = keys | append: combo | append: '¤'
+        endif
+      endfor
+    else
+      assign present = false
+      for v in product.variants
+        if v.options[ax0] == va
+          assign present = true
+        endif
+      endfor
+      if present
+        assign keys = keys | append: va | append: '¤'
+      endif
+    endif
+  endfor
+  assign rowkeys = keys | split: '¤'
+  # Ruby's split drops a trailing empty field and python's does not — count and skip explicitly so the
+  # model is identical on both engines.
+  assign nrows = 0
+  for rk in rowkeys
+    unless rk == blank
+      assign nrows = nrows | plus: 1
+    endunless
+  endfor
+
+  # 7. the rows
+  assign sel = product.selected_or_first_available_variant | default: product.variants.first
+  if ax2 > 0
+    assign selkey = sel.options[ax0] | append: '§' | append: sel.options[ax20]
+  else
+    assign selkey = sel.options[ax0]
+  endif
+  assign defrow = 0
+  assign meta_unit = ''
+  assign meta_cunit = ''
+  assign meta_perlabel = ''
+  assign body = ''
+
+  assign ri = -1
+  for rk in rowkeys
+    if rk == blank
+      continue
+    endif
+    assign ri = ri | plus: 1
+    if rk == selkey
+      assign defrow = ri
+    endif
+    assign kparts = rk | split: '§'
+    assign key_a = kparts[0]
+    assign key_b = ''
+    if kparts.size > 1
+      assign key_b = kparts[1]
+    endif
+    assign label = kparts | join: ' / '
+
+    # 7a. aggregate the variants of this row
+    assign rprice = 0
+    assign rid = 0
+    assign ravail = false
+    assign rn = 0
+    assign quiet = ''
+    assign rimg = ''
+    for v in product.variants
+      if ax2 > 0
+        assign c2 = v.options[ax0] | append: '§' | append: v.options[ax20]
+      else
+        assign c2 = v.options[ax0]
+      endif
+      if c2 == rk
+        assign rn = rn | plus: 1
+        if rprice == 0 or v.price < rprice
+          assign rprice = v.price
+        endif
+        if rid == 0
+          assign rid = v.id
+        endif
+        if v.available and ravail == false
+          assign ravail = true
+          assign rid = v.id
+        endif
+        assign ql = ''
+        for ov in v.options
+          assign ovi = forloop.index
+          unless ovi == ax or ovi == ax2
+            if ql == ''
+              assign ql = ov
+            else
+              assign ql = ql | append: ' · ' | append: ov
+            endif
+          endunless
+        endfor
+        assign qa = '0'
+        if v.available
+          assign qa = '1'
+        endif
+        if quiet != ''
+          assign quiet = quiet | append: ';'
+        endif
+        assign quiet = quiet | append: v.id | append: '^' | append: ql | append: '^' | append: v.price | append: '^' | append: qa
+        if rimg == '' and v.image != blank
+          assign rimg = v.image | image_url: width: 1200
+        endif
+      endif
+    endfor
+
+    # 7b. parse up to two numbers + units out of the axis value
+    assign n1 = ''
+    assign u1 = ''
+    assign n2 = ''
+    assign u2 = ''
+    assign toks = key_a | split: ' '
+    for t in toks
+      assign numpart = ''
+      assign rest = ''
+      assign stopped = false
+      assign chars = t | split: ''
+      for ch in chars
+        if stopped
+          assign rest = rest | append: ch
+        else
+          if '0123456789.' contains ch
+            assign numpart = numpart | append: ch
+          else
+            assign stopped = true
+            assign rest = rest | append: ch
+          endif
+        endif
+      endfor
+      if numpart != ''
+        if n1 == ''
+          assign n1 = numpart
+          assign u1 = rest
+        elsif n2 == ''
+          assign n2 = numpart
+          assign u2 = rest
+        endif
+      else
+        if n1 != '' and u1 == '' and n2 == '' and rest != '/' and rest != '·' and rest != '-'
+          assign u1 = rest
+        elsif n2 != '' and u2 == '' and rest != '/' and rest != '·' and rest != '-'
+          assign u2 = rest
+        endif
+      endif
+    endfor
+
+    # 7c. per-unit price, only for a length or a count
+    assign per = ''
+    assign perlabel = ''
+    if n1 != ''
+      assign nnum = n1 | plus: 0.0
+      if nnum > 0
+        if u1 == 'מ׳' or u1 == 'מ' or u1 == 'מטר' or u1 == 'מטרים'
+          assign per = rprice | divided_by: nnum | round | money_without_currency
+          assign perlabel = '₪ למטר'
+        elsif u1 == 'יח׳' or u1 == 'יח' or u1 == 'יחידה' or u1 == 'יחידות'
+          assign per = rprice | divided_by: nnum | round | money_without_currency
+          assign perlabel = '₪ ליחידה'
+        endif
+      endif
+    endif
+    if ri == 0
+      assign meta_unit = u1
+      assign meta_cunit = u2
+      assign meta_perlabel = perlabel
+    endif
+
+    assign av = '0'
+    if ravail
+      assign av = '1'
+    endif
+    assign rprice_txt = rprice | money_without_currency
+    assign rec = 'row' | append: FS | append: ri | append: FS | append: label | append: FS | append: key_a | append: FS | append: key_b | append: FS | append: label | append: FS | append: n1 | append: FS | append: u1 | append: FS | append: n2 | append: FS | append: u2 | append: FS
+    assign rec = rec | append: rprice_txt | append: FS | append: rprice | append: FS | append: per | append: FS | append: perlabel | append: FS | append: av | append: FS | append: rid | append: FS | append: rn | append: FS | append: quiet | append: FS | append: rimg | append: FS | append: 'e'
+    assign body = body | append: RS | append: rec
+  endfor
+
+  # 8. the meta record
+  assign mode = 'variants'
+  if product.variants.size == 1
+    assign mode = 'single'
+  endif
+  assign varies = '0'
+  if product.price_varies
+    assign varies = '1'
+  endif
+  assign ax2name = ''
+  if ax2 > 0
+    assign ax2name = optB.name
+  endif
+  assign pmin_txt = product.price_min | money_without_currency
+  assign pmax_txt = product.price_max | money_without_currency
+  assign meta = 'meta' | append: FS | append: mode | append: FS | append: ax | append: FS | append: ax2 | append: FS | append: optA.name | append: FS | append: ax2name | append: FS | append: qax | append: FS | append: qname | append: FS | append: qvals | append: FS | append: nrows | append: FS | append: defrow | append: FS | append: sel.id | append: FS
+  assign meta = meta | append: pmin_txt | append: FS | append: pmax_txt | append: FS | append: varies | append: FS | append: meta_unit | append: FS | append: meta_cunit | append: FS | append: meta_perlabel | append: FS | append: optA.values.size | append: FS | append: 'e'
+  assign env2_model = meta | append: body
+-%}
+{%- assign env2_emit = emit | default: 'rows' -%}
+{%- if env2_emit == 'json' -%}
+{%- liquid
+  assign recs = env2_model | split: RS
+  assign m = recs[0] | split: FS
+-%}
+<script type="application/json" id="{{ json_id | default: 'env2-pdp-variants' }}" data-env2-pdp-variants>{ "mode": {{ m[1] | json }}, "axis": {{ m[2] | plus: 0 }}, "axis2": {{ m[3] | plus: 0 }}, "axisName": {{ m[4] | json }}, "axis2Name": {{ m[5] | json }}, "quietAxis": {{ m[6] | plus: 0 }}, "quietName": {{ m[7] | json }}, "quietValues": {{ m[8] | plus: 0 }}, "rowCount": {{ m[9] | plus: 0 }}, "defaultRow": {{ m[10] | plus: 0 }}, "defaultId": {{ m[11] | plus: 0 }}, "priceMin": {{ m[12] | json }}, "priceMax": {{ m[13] | json }}, "priceVaries": {% if m[14] == '1' %}true{% else %}false{% endif %}, "unit": {{ m[15] | json }}, "countUnit": {{ m[16] | json }}, "perUnitLabel": {{ m[17] | json }}, "axisValues": {{ m[18] | plus: 0 }}, "rows": [{% for rec in recs offset: 1 %}{%- assign r = rec | split: FS -%}{% unless forloop.first %}, {% endunless %}{ "i": {{ r[1] | plus: 0 }}, "key": {{ r[2] | json }}, "a": {{ r[3] | json }}, "b": {{ r[4] | json }}, "label": {{ r[5] | json }}, "n1": {{ r[6] | json }}, "u1": {{ r[7] | json }}, "n2": {{ r[8] | json }}, "u2": {{ r[9] | json }}, "priceText": {{ r[10] | json }}, "price": {{ r[11] | plus: 0 }}, "perUnit": {{ r[12] | json }}, "perUnitLabel": {{ r[13] | json }}, "available": {% if r[14] == '1' %}true{% else %}false{% endif %}, "id": {{ r[15] | plus: 0 }}, "variantCount": {{ r[16] | plus: 0 }}, "image": {{ r[18] | json }}, "variants": [{% assign qs = r[17] | split: ';' %}{% for q in qs %}{%- assign qf = q | split: '^' -%}{% unless forloop.first %}, {% endunless %}{ "id": {{ qf[0] | plus: 0 }}, "label": {{ qf[1] | json }}, "price": {{ qf[2] | plus: 0 }}, "available": {% if qf[3] == '1' %}true{% else %}false{% endif %} }{% endfor %}] }{% endfor %}] }</script>
+{%- else -%}
+{{- env2_model -}}
+{%- endif -%}
+{%- endif -%}

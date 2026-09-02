@@ -1,0 +1,474 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest PDP — plumbing proof</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<style>
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1), every template ----------
+   Kalles paints body with its scheme and wraps content in painted containers; here the document
+   is night on every page type and the wrappers go clear. The index keeps its own dusk gradient
+   (snippets/elmsnest-v2-ground-index, rendered by the hero); every other template gets the
+   side-page ground: sky-2 -> sky-3 -> sky-4, ending in #020306 before the footer. */
+html{background:#020306}
+body[class*="hdt-page-type-"]{background-color:#020306;color:#f4eee3}
+body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+#wrapper,.main-content,main,#MainContent,.hdt-main-content,.hdt-page-content,.shopify-section{background:transparent}
+/* Kalles back-to-top: a white square bottom-right (old palette) — hidden everywhere (§7.11) */
+.hdt-back-to-top,back-to-top{display:none!important}
+/* Kalles footer group: same sans as the page, quiet links (underline on hover only).
+   The link rules must reach (0,2,2): the footer links sit inside .hdt-text-warry.hdt-rte, and Kalles'
+   .hdt-rte a:not(.hdt-btn){text-decoration:underline} is (0,2,1), so the plain unscoped selector (0,1,1)
+   lost to it and every footer link came back underlined (fix pass R0-01). The index-scoped rule this
+   replaced was body.hdt-page-type-index .shopify-section-group-footer-group a = (0,2,2) and did win. */
+.shopify-section-group-footer-group{font-family:var(--env2-sans)}
+body .shopify-section-group-footer-group a:not(.hdt-btn){text-decoration:none}
+body .shopify-section-group-footer-group a:not(.hdt-btn):hover,body .shopify-section-group-footer-group a:not(.hdt-btn):focus-visible{text-decoration:underline}
+/* Kalles chrome type: header menu, drawers, popovers, facets and the old sections use Heebo.
+   css-variables sets --f_family_1..3 on :root from the Shopify font (assistant_n4); this comes after it. */
+:root{--f_family_1:var(--env2-sans);--f_family_2:var(--env2-sans);--f_family_3:var(--env2-sans)}
+/* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
+   sale badges never render (settings hidden_badges + this belt) */
+option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
+.hdt-badge__wrapp{display:none!important}
+/* Kalles form fields: the theme paints a field with rgb(var(--color-input-primary)) and writes it with
+   --color-input-secondary. Both the :root fallback (css-variables l.185-186) and the night scheme's
+   input pair still carry cream-era values, so every form rendered a light slab with 2.7:1 text on the
+   night ground (contact form, account/login/register, the cart discount field). Night field, ink text.
+   --en-input-bg is the last #fffdf7 in the token set (the header search field) — retargeted with it. */
+:root{--en-input-bg:17 29 51}
+:root,[color-scheme]{--color-input-primary:var(--en-surface-elevated);--color-input-secondary:var(--en-color-light)}
+/* Kalles accent buttons hard-code white labels (.hdt-btn-accent{--hdt-btn-color:255 255 255}); under the
+   night scheme their fill is --env2-glow, so the label needs the dark ink (§D): 1.4:1 -> 13:1. */
+.hdt-btn-accent{--hdt-btn-color:var(--en-text-inverse)}
+/* Kalles swatch/tooltip bubble: css-variables pairs --color-tooltip-background with
+   --color-tooltip-text, and §D moved BOTH ends of that pair to near-black (--en-color-dark 2 3 6 /
+   --en-text-inverse 2 3 6) — the bubble is ink-on-ink. Night bubble, ink label (hover only). */
+:root{--color-tooltip-background:var(--en-surface-elevated);--color-tooltip-text:var(--en-color-light)}
+
+/* ---------- fix pass, round 0 second pass (V-1 · V-2 · V-4 · V-6) ---------- */
+/* V-1: the header search panel is <hdt-predictive-search color-scheme="scheme-1"> — the attribute is written
+   in a Kalles core section we do not own, so settings.color_scheme_dialog never reaches it, and scheme-1 is
+   the cream scheme (#f7f0e6 background, #fffdf7 background2, #2b2118 foreground): the three hexes this round
+   forbids, on the drawer behind the magnifier on every template. scheme-1 is remapped onto the night pair.
+   Exactly one element per page carries it (the search panel, closed) — the homepage included — so nothing
+   else can move. The input pair is deliberately NOT listed here: the :root,[color-scheme] rule above owns it
+   at the same specificity and must keep winning. */
+[color-scheme="scheme-1"]{
+  --color-background:2 3 6;--color-background2:7 11 21;--color-foreground:244 238 227;--color-foreground2:201 196 184;
+  --color-accent:255 211 148;--color-secondary:208 182 135;--color-tertiary:155 122 61;
+  --hdt-btn-color:26 18 6;--hdt-btn-bg:255 211 148;--hdt-btn-border-color:255 211 148;
+  --hdt-btn-hover-color:26 18 6;--hdt-btn-hover-bg:var(--en-surface-card);--hdt-btn-hover-border-color:var(--en-surface-card);
+  --hdt-btn-secondary-color:83 73 54;--hdt-btn-secondary-bg:208 182 135;
+  --hdt-btn-tertiary-color:62 49 24;--hdt-btn-tertiary-bg:155 122 61;
+  --hdt-btn-outline-color:244 238 227;--hdt-btn-outline-border-color:244 238 227;
+  --hdt-link-color:244 238 227;--hdt-link-hover-color:255 211 148;
+  --color-line-border:31 30 29;--color-overlay:2 3 6;--payment-terms-background-color:rgb(2 3 6);
+  --color-pr-price:255 211 148;--color-pr-sale-price:255 211 148;--color-pr-text:244 238 227;
+  --color-focus:var(--en-focus-dark);--en-focus-contrast:var(--en-focus-light)
+}
+/* the search drawer's category <select> and its options paint from the UA, not from the scheme (old open item 5) */
+#drawer-search-form select,#drawer-search-form option{background-color:rgb(var(--en-surface-elevated));color:rgb(var(--en-color-light))}
+/* V-4: <dialog id="modal-contactFormAsk"> has no background rule of its own, so it falls back to the UA's
+   white canvas while its wrapper's night scheme paints the ink — heading 1.15:1, field labels 1.74:1. */
+#modal-contactFormAsk{background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}
+/* V-6: --en-warning-text (96 64 0) was built for the cream page; §D moved the ground to #020306 and did not
+   list it, so .hdt-no-result-product — the only copy on the no-results page — reads 2.19:1. The amber the
+   design system already uses gives 11.9:1 on #020306. The two other consumers (.toast.warning border,
+   .toast-icon.warning fill, which pairs it with --en-text-inverse) stay legible. */
+:root{--en-warning-text:255 211 148}
+/* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
+   hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
+.hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-price__from{font-family:var(--env2-sans);font-weight:400;font-size:.62em;color:var(--env2-ink-2);margin-inline-end:.15em;letter-spacing:0}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<style>
+/* ---------- page ground (PDP §3.1): the PDP is already night — sky-2 → sky-4, no dusk ----------
+   Screen 1 is a photo ground painted by the stage section; the document below it is this one
+   gradient, never a per-section background. */
+html body.hdt-page-type-product{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#0f1a2f 20%,#070b15 56%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-product #wrapper,
+html body.hdt-page-type-product .main-content,
+html body.hdt-page-type-product main,
+html body.hdt-page-type-product #MainContent,
+html body.hdt-page-type-product .hdt-main-content,
+html body.hdt-page-type-product .hdt-page-content,
+html body.hdt-page-type-product .shopify-section{background:transparent}
+/* The header is transparent over the stage: the stage is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it. */
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal scroll at 360px — the stage and the night gallery are full-bleed (§6.18). */
+html body.hdt-page-type-product{overflow-x:hidden}
+/* The sticky mobile buy bar (§4.9) reserves its own height at the end of the document so it can never
+   cover the footer. --env2-pdp-bar-h is declared here (one place) and read by elmsnest-v2-pdp-buybar. */
+@media (max-width:900px){
+  html body.hdt-page-type-product{--env2-pdp-bar-h:78px;padding-block-end:var(--env2-pdp-bar-h)}
+}
+</style>
+<style id="env2-pdp-card-css">
+.env2-pdp-card{position:relative;display:flex;flex-direction:column;gap:12px;margin:0;padding:0;
+  inline-size:var(--env2-pdp-card-w,280px);max-inline-size:100%;border-radius:0;background:transparent}
+.env2-pdp-card__media{position:relative;display:block;inline-size:100%;border-radius:0}
+.env2-pdp-card__ph{display:block;position:relative;inline-size:100%;aspect-ratio:var(--env2-pdp-card-ar,1/1.15);
+  overflow:hidden;border-radius:0;background:#05070c;isolation:isolate}
+.env2-pdp-card__ph img{inline-size:100%;block-size:100%;object-fit:cover;display:block}
+.env2-pdp-card__kicker{margin:0;font-size:11.5px;line-height:1.35;text-wrap:balance}
+.env2-pdp-card__title{margin:0;font-family:var(--env2-sans);font-weight:400;
+  font-size:var(--env2-pdp-card-title,15px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:balance}
+.env2-pdp-card__title a{color:inherit;text-decoration:none;transition:color .3s}
+.env2-pdp-card__title a:hover,.env2-pdp-card__title a:focus-visible{color:var(--env2-glow)}
+.env2-pdp-card__row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-block-start:2px}
+.env2-pdp-card__price .env2-price{--env2-price-size:21px}
+/* §8.3 belt: .env2-section a{color:inherit} outranks .env2-btn{color:…}, so an ANCHOR styled as the
+   filled pill would render ink-on-glow at 1.21:1. elmsnest-v2-buy only ever emits a ghost anchor, but
+   these two rules make both cases explicit and correct whatever a caller passes. */
+.env2-pdp-card__action .env2-btn{color:var(--env2-btn-ink)}
+.env2-pdp-card__action .env2-btn--ghost{color:var(--env2-ink)}
+.env2-pdp-card__action .env2-buy{display:inline-block}
+@media (max-width:900px){
+  .env2-pdp-card{inline-size:min(var(--env2-pdp-card-w,280px),62vw);gap:10px}
+  .env2-pdp-card__price .env2-price{--env2-price-size:19px}
+  .env2-pdp-card__title{font-size:var(--env2-pdp-card-title-mb,15px)}
+}
+</style>
+<style>
+body{margin:0;font-family:var(--env2-sans);color:var(--env2-ink)}
+.plumb{width:min(1240px,100% - 2*var(--env2-gut));margin-inline:auto;padding-block:56px 120px}
+.plumb-h1{font-family:var(--env2-serif);font-weight:700;font-size:clamp(34px,4.4vw,62px);line-height:.98;margin:0 0 10px}
+.plumb-h2{font-family:var(--env2-serif);font-weight:700;font-size:clamp(24px,2.6vw,36px);line-height:1;margin:64px 0 6px;color:var(--env2-glow)}
+.plumb-h3{font-family:var(--env2-sans);font-weight:500;font-size:15px;letter-spacing:.06em;margin:26px 0 4px;color:var(--env2-gold)}
+.plumb-note{font-size:13px;color:var(--env2-ink-2);margin:0 0 12px}
+.plumb-t{border-collapse:collapse;font-size:13px;margin-block-end:14px;max-width:100%}
+.plumb-t th,.plumb-t td{border-top:1px solid var(--env2-hair);padding:6px 12px;text-align:start;vertical-align:top}
+.plumb-t th{color:var(--env2-ink-2);font-weight:400;white-space:nowrap}
+.plumb-rows{width:100%}
+.plumb-rows thead th{color:var(--env2-gold);font-size:11.5px;letter-spacing:.12em}
+.plumb-scroll{overflow-x:auto}
+.plumb-cards{display:flex;align-items:flex-end;gap:clamp(20px,3.4vw,56px);flex-wrap:wrap;margin-block:18px 8px}
+.plumb-barbox{position:relative;margin-block:14px;border:1px dashed var(--env2-hair)}
+.plumb-barbox .env2-pdp-bar{position:relative;display:block;transform:none}
+.plumb-ctas{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-block:14px}
+</style></head>
+<body class="hdt-page-type-product template-product">
+<main class="env2-section plumb" dir="rtl">
+  <h1 class="plumb-h1">שרברבות — הוכחה אופליין</h1>
+  <p class="plumb-note">Rendered from theme/snippets/elmsnest-v2-pdp-{image,variants,card,buybar,photo-cta}.liquid and
+  elmsnest-v2-{ground-product,core,price,buy}.liquid by python-liquid, with the local image pack. No hand-written markup below this line.</p>
+
+  <h2 class="plumb-h2">1 · elmsnest-v2-pdp-card</h2>
+  <p class="plumb-note">§4.8 · staggered 300 / 210 / 260 px at 1/1.05 · 1/1.4 · 1/.9 — never equal cells. Place kicker from the four approved pairs, title in Heebo, price by the elmsnest-v2-price rule, single variant → a real add-to-cart form (B), multi → a ghost link (A, C). No badge, no swatch, no star, no quick-add.</p>
+  <div class="plumb-cards"><article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:300px;--env2-pdp-card-ar:1/1.05">
+  <a class="env2-pdp-card__media" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg"
+             srcset="../../../assets/img/solar-crystal-ball-string-lights-0.jpg 420w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 720w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1040w"
+             sizes="(max-width:900px) 62vw, 300px"
+             width="300" height="315" loading="lazy" decoding="async"
+             alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות"></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה</p><h3 class="env2-pdp-card__title"><a href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</a></h3>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/solar-crystal-ball-string-lights">לבחירת אורך</a></span>
+  </div>
+</article><article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:210px;--env2-pdp-card-ar:1/1.4">
+  <a class="env2-pdp-card__media" href="/products/stainless-steel-solar-path-light-ip65" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><img src="../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg"
+             srcset="../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg 420w, ../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg 720w, ../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg 1040w"
+             sizes="(max-width:900px) 62vw, 210px"
+             width="210" height="294" loading="lazy" decoding="async"
+             alt="מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">שביל, מדרגות ומעברים · מתאים כדי לראות את הדרך</p><h3 class="env2-pdp-card__title"><a href="/products/stainless-steel-solar-path-light-ip65">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65</a></h3>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><bdi>169.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-buy" data-env2-buy>
+      <input type="hidden" name="form_type" value="product">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="id" value="48632265310382">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" name="add" class="env2-btn env2-btn--sm">הוספה לסל</button>
+    </form></span>
+  </div>
+</article><article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:260px;--env2-pdp-card-ar:1/.9">
+  <a class="env2-pdp-card__media" href="/products/waterproof-led-wall-light-ip65-6w-12w" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><img src="../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-1.jpg"
+             srcset="../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-1.jpg 420w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-1.jpg 720w, ../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-1.jpg 1040w"
+             sizes="(max-width:900px) 62vw, 260px"
+             width="260" height="234" loading="lazy" decoding="async"
+             alt="מנורת קיר LED עמידה למים IP65 – ‏6W/12W"></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">כניסה, קיר וחזית · מתאים כדי להאיר נקודה מסוימת</p><h3 class="env2-pdp-card__title"><a href="/products/waterproof-led-wall-light-ip65-6w-12w">מנורת קיר LED עמידה למים IP65 – ‏6W/12W</a></h3>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><bdi>219.90–252.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/waterproof-led-wall-light-ip65-6w-12w">לבחירת גוון</a></span>
+  </div>
+</article></div>
+
+  <h2 class="plumb-h2">2 · elmsnest-v2-pdp-buybar</h2>
+  <p class="plumb-note">§4.9 · 46px thumb · title 14px · mirror 13px · price 22px · pill. Fixed and hidden above 900px; shown here in a static box so the desktop capture carries it too. The live fixed copy is at the bottom of this page on ≤900px.</p>
+  <div class="plumb-barbox"><div class="env2-pdp-bar" data-env2-pdp-bar dir="rtl">
+  <form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-pdp-bar__form" data-env2-buy>
+    <input type="hidden" name="form_type" value="product">
+    <input type="hidden" name="utf8" value="&#10003;">
+    <input type="hidden" name="id" value="48880938221742" data-env2-bar-id>
+    <input type="hidden" name="quantity" value="1" data-env2-bar-qty>
+    <a class="env2-pdp-bar__thumb" href="#env2-pdp-stage" tabindex="-1" aria-hidden="true"><img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg" width="46" height="46" alt="" loading="lazy" decoding="async" data-env2-bar-img></a>
+    <span class="env2-pdp-bar__text">
+      <span class="env2-pdp-bar__title">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</span>
+      <span class="env2-pdp-bar__mirror" data-env2-bar-mirror>5 מ׳ / 20 נורות · צהוב</span>
+    </span>
+    <span class="env2-price env2-pdp-bar__price" data-env2-bar-price><bdi>89.90</bdi> &#8362;</span>
+    <button type="submit" name="add" class="env2-btn env2-btn--sm env2-pdp-bar__btn">הוספה לסל</button>
+  </form>
+</div>
+</div>
+  <div class="plumb-barbox"><div class="env2-pdp-bar" data-env2-pdp-bar dir="rtl">
+  <form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-pdp-bar__form" data-env2-buy>
+    <input type="hidden" name="form_type" value="product">
+    <input type="hidden" name="utf8" value="&#10003;">
+    <input type="hidden" name="id" value="48675431612590" data-env2-bar-id>
+    <input type="hidden" name="quantity" value="1" data-env2-bar-qty>
+    <a class="env2-pdp-bar__thumb" href="#env2-pdp-stage" tabindex="-1" aria-hidden="true"><img src="../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-1.jpg" width="46" height="46" alt="" loading="lazy" decoding="async" data-env2-bar-img></a>
+    <span class="env2-pdp-bar__text">
+      <span class="env2-pdp-bar__title">מנורת קיר LED עמידה למים IP65 – ‏6W/12W</span>
+      <span class="env2-pdp-bar__mirror" data-env2-bar-mirror>לבן · 6W · אור חם 3000K</span>
+    </span>
+    <span class="env2-price env2-pdp-bar__price" data-env2-bar-price><bdi>219.90</bdi> &#8362;</span>
+    <button type="submit" name="add" class="env2-btn env2-btn--sm env2-pdp-bar__btn">הוספה לסל</button>
+  </form>
+</div>
+</div>
+
+  <h2 class="plumb-h2">3 · elmsnest-v2-pdp-photo-cta</h2>
+  <p class="plumb-note">settings.whatsapp_number empty → mailto, label "לשלוח תמונה של המקום", never "בוואטסאפ". Third one is the same snippet with a number filled.</p>
+  <div class="plumb-ctas"><a class="env2-link env2-pdp-photo" href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D&body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D%20%D7%A9%D7%A8%D7%95%D7%A6%D7%99%D7%9D%20%D7%9C%D7%94%D7%90%D7%99%D7%A8.%20%D7%94%D7%9E%D7%95%D7%A6%D7%A8%20%D7%A9%D7%A9%D7%95%D7%A7%D7%9C%D7%99%D7%9D%3A%20%D7%92%D7%A8%D7%99%D7%9C%D7%A0%D7%93%D7%AA%20%D7%9B%D7%93%D7%95%D7%A8%D7%99%20%D7%A7%D7%A8%D7%99%D7%A1%D7%98%D7%9C%20%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA%20%E2%80%93%2020%20%D7%A2%D7%93%20200%20%D7%A0%D7%95%D7%A8%D7%95%D7%AA" data-env2-photo-cta>לשלוח תמונה של המקום <span aria-hidden="true">&#8592;</span></a>
+<a class="env2-btn env2-btn--ghost env2-pdp-photo" href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D&body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D%20%D7%A9%D7%A8%D7%95%D7%A6%D7%99%D7%9D%20%D7%9C%D7%94%D7%90%D7%99%D7%A8.%20%D7%94%D7%9E%D7%95%D7%A6%D7%A8%20%D7%A9%D7%A9%D7%95%D7%A7%D7%9C%D7%99%D7%9D%3A%20%D7%92%D7%A8%D7%99%D7%9C%D7%A0%D7%93%D7%AA%20%D7%9B%D7%93%D7%95%D7%A8%D7%99%20%D7%A7%D7%A8%D7%99%D7%A1%D7%98%D7%9C%20%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA%20%E2%80%93%2020%20%D7%A2%D7%93%20200%20%D7%A0%D7%95%D7%A8%D7%95%D7%AA" data-env2-photo-cta>לשלוח תמונה של המקום</a>
+</div>
+  <div class="plumb-ctas"><a class="env2-link env2-pdp-photo" href="https://wa.me/972540000000?text=%D7%A9%D7%9C%D7%95%D7%9D%2C+%D7%90%D7%A9%D7%9E%D7%97+%D7%9C%D7%91%D7%93%D7%95%D7%A7+%D7%94%D7%AA%D7%90%D7%9E%D7%94+%E2%80%94+%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA+%D7%AA%D7%9E%D7%95%D7%A0%D7%94+%D7%A9%D7%9C+%D7%94%D7%9E%D7%A7%D7%95%D7%9D." data-env2-photo-cta target="_blank" rel="noopener">לשלוח תמונה של המקום בוואטסאפ <span aria-hidden="true">&#8592;</span></a>
+ <span class="plumb-note">← the wa.me branch (number filled)</span></div>
+
+  <h2 class="plumb-h2">4 · elmsnest-v2-pdp-image — the resolver</h2>
+  <p class="plumb-note">§3.5 + §3.6 never-use ledger. The resolver never returns a banned index: the setting is honoured when it is clean and stepped forward when it is not.</p>
+  <div class="plumb-scroll"><table class="plumb-t plumb-rows"><thead><tr><th>handle</th><th>banned</th><th>slot</th><th>index setting</th><th>→ images[i]</th></tr></thead><tbody><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>hero</td><td>—</td><td><b>2</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>context</td><td>—</td><td><b>2</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>close</td><td>—</td><td><b>0</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>card</td><td>—</td><td><b>0</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>wall-pair</td><td>—</td><td><b>2</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>big</td><td>—</td><td><b>2</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>small</td><td>—</td><td><b>0</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>thumb</td><td>—</td><td><b>0</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>hero</td><td>1</td><td><b>0</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>hero</td><td>2</td><td><b>2</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>hero</td><td>3</td><td><b>2</b></td></tr><tr><td>solar-crystal-ball-string-lights</td><td>1, 3</td><td>hero</td><td>4</td><td><b>0</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>hero</td><td>—</td><td><b>0</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>context</td><td>—</td><td><b>3</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>close</td><td>—</td><td><b>3</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>card</td><td>—</td><td><b>0</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>wall-pair</td><td>—</td><td><b>3</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>big</td><td>—</td><td><b>3</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>small</td><td>—</td><td><b>1</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>thumb</td><td>—</td><td><b>3</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>hero</td><td>1</td><td><b>0</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>hero</td><td>2</td><td><b>1</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>hero</td><td>3</td><td><b>3</b></td></tr><tr><td>stainless-steel-solar-path-light-ip65</td><td>2</td><td>hero</td><td>4</td><td><b>3</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>hero</td><td>—</td><td><b>1</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>context</td><td>—</td><td><b>3</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>close</td><td>—</td><td><b>3</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>card</td><td>—</td><td><b>1</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>wall-pair</td><td>—</td><td><b>3</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>big</td><td>—</td><td><b>3</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>small</td><td>—</td><td><b>2</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>thumb</td><td>—</td><td><b>1</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>hero</td><td>1</td><td><b>1</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>hero</td><td>2</td><td><b>1</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>hero</td><td>3</td><td><b>2</b></td></tr><tr><td>waterproof-led-wall-light-ip65-6w-12w</td><td>0</td><td>hero</td><td>4</td><td><b>3</b></td></tr><tr><td>decorative-led-net-lights</td><td>0</td><td>card</td><td>—</td><td><b>1</b></td></tr><tr><td>decorative-led-net-lights</td><td>0</td><td>close</td><td>—</td><td><b>1</b></td></tr><tr><td>dual-head-garden-light-10w-ip65</td><td>1, 2, 3</td><td>card</td><td>—</td><td><b>0</b></td></tr><tr><td>dual-head-garden-light-10w-ip65</td><td>1, 2, 3</td><td>close</td><td>—</td><td><b>0</b></td></tr><tr><td>solar-edison-string-lights</td><td>none</td><td>card</td><td>—</td><td><b>0</b></td></tr><tr><td>solar-edison-string-lights</td><td>none</td><td>close</td><td>—</td><td><b>1</b></td></tr></tbody></table></div>
+
+  <h2 class="plumb-h2">5 · elmsnest-v2-pdp-variants — the ledger model</h2>
+  <p class="plumb-note">One pass over product.variants. A: one price axis (6 lengths × 4 colours, colour quiet). B: single variant → quantity ledger. C: TWO price axes (עוצמה × גוון אור) → 4 rows, body colour quiet.</p>
+  <div class="plumb-scroll"><div class="plumb-block"><h3 class="plumb-h3">A — crystal balls · 24 variants</h3>
+<p class="plumb-note">solar-crystal-ball-string-lights · 24 variants · 6 rows</p>
+<table class="plumb-t"><tbody>
+<tr><th>meta.mode</th><td>variants</td></tr>
+<tr><th>meta.axis</th><td>1</td></tr>
+<tr><th>meta.axis2</th><td>0</td></tr>
+<tr><th>meta.axis_name</th><td>אורך ומספר נורות</td></tr>
+<tr><th>meta.axis2_name</th><td><i>—</i></td></tr>
+<tr><th>meta.quiet_axis</th><td>2</td></tr>
+<tr><th>meta.quiet_name</th><td>צבע תאורה</td></tr>
+<tr><th>meta.quiet_values</th><td>4</td></tr>
+<tr><th>meta.rows</th><td>6</td></tr>
+<tr><th>meta.default_row</th><td>0</td></tr>
+<tr><th>meta.default_variant_id</th><td>48880938221742</td></tr>
+<tr><th>meta.price_min</th><td>89.90</td></tr>
+<tr><th>meta.price_max</th><td>179.90</td></tr>
+<tr><th>meta.price_varies</th><td>1</td></tr>
+<tr><th>meta.unit</th><td>מ׳</td></tr>
+<tr><th>meta.count_unit</th><td>נורות</td></tr>
+<tr><th>meta.per_unit_label</th><td>₪ למטר</td></tr>
+<tr><th>meta.axis_values</th><td>6</td></tr>
+</tbody></table>
+<table class="plumb-t plumb-rows"><thead><tr><th>i</th><th>key_a</th><th>key_b</th><th>n1</th><th>u1</th><th>n2</th><th>u2</th><th>price</th><th>per_unit</th><th>per_unit_label</th><th>avail</th><th>variant_id</th><th>#</th><th>quiet</th></tr></thead><tbody>
+<tr><td>0</td><td>5 מ׳ / 20 נורות</td><td><i>—</i></td><td>5</td><td>מ׳</td><td>20</td><td>נורות</td><td>89.90 ₪</td><td>17.98</td><td>₪ למטר</td><td>1</td><td>48880938221742</td><td>4</td><td>צהוב · כחול · צבעוני · לבן</td></tr>
+<tr><td>1</td><td>6.5 מ׳ / 30 נורות</td><td><i>—</i></td><td>6.5</td><td>מ׳</td><td>30</td><td>נורות</td><td>89.90 ₪</td><td>13.83</td><td>₪ למטר</td><td>1</td><td>48880938352814</td><td>4</td><td>צהוב · כחול · צבעוני · לבן</td></tr>
+<tr><td>2</td><td>9.5 מ׳ / 50 נורות</td><td><i>—</i></td><td>9.5</td><td>מ׳</td><td>50</td><td>נורות</td><td>99.90 ₪</td><td>10.52</td><td>₪ למטר</td><td>1</td><td>48880938483886</td><td>4</td><td>צהוב · כחול · צבעוני · לבן</td></tr>
+<tr><td>3</td><td>11 מ׳ / 60 נורות</td><td><i>—</i></td><td>11</td><td>מ׳</td><td>60</td><td>נורות</td><td>109.90 ₪</td><td>9.99</td><td>₪ למטר</td><td>1</td><td>48880938614958</td><td>4</td><td>צהוב · כחול · צבעוני · לבן</td></tr>
+<tr><td>4</td><td>13 מ׳ / 100 נורות</td><td><i>—</i></td><td>13</td><td>מ׳</td><td>100</td><td>נורות</td><td>129.90 ₪</td><td>9.99</td><td>₪ למטר</td><td>1</td><td>48880938746030</td><td>4</td><td>צהוב · כחול · צבעוני · לבן</td></tr>
+<tr><td>5</td><td>22 מ׳ / 200 נורות</td><td><i>—</i></td><td>22</td><td>מ׳</td><td>200</td><td>נורות</td><td>179.90 ₪</td><td>8.18</td><td>₪ למטר</td><td>1</td><td>48880938877102</td><td>4</td><td>צהוב · כחול · צבעוני · לבן</td></tr>
+</tbody></table></div><div class="plumb-block"><h3 class="plumb-h3">B — path light · 1 variant</h3>
+<p class="plumb-note">stainless-steel-solar-path-light-ip65 · 1 variants · 1 rows</p>
+<table class="plumb-t"><tbody>
+<tr><th>meta.mode</th><td>single</td></tr>
+<tr><th>meta.axis</th><td>1</td></tr>
+<tr><th>meta.axis2</th><td>0</td></tr>
+<tr><th>meta.axis_name</th><td>צבע אור</td></tr>
+<tr><th>meta.axis2_name</th><td><i>—</i></td></tr>
+<tr><th>meta.quiet_axis</th><td>0</td></tr>
+<tr><th>meta.quiet_name</th><td><i>—</i></td></tr>
+<tr><th>meta.quiet_values</th><td>0</td></tr>
+<tr><th>meta.rows</th><td>1</td></tr>
+<tr><th>meta.default_row</th><td>0</td></tr>
+<tr><th>meta.default_variant_id</th><td>48632265310382</td></tr>
+<tr><th>meta.price_min</th><td>169.90</td></tr>
+<tr><th>meta.price_max</th><td>169.90</td></tr>
+<tr><th>meta.price_varies</th><td>0</td></tr>
+<tr><th>meta.unit</th><td><i>—</i></td></tr>
+<tr><th>meta.count_unit</th><td><i>—</i></td></tr>
+<tr><th>meta.per_unit_label</th><td><i>—</i></td></tr>
+<tr><th>meta.axis_values</th><td>1</td></tr>
+</tbody></table>
+<table class="plumb-t plumb-rows"><thead><tr><th>i</th><th>key_a</th><th>key_b</th><th>n1</th><th>u1</th><th>n2</th><th>u2</th><th>price</th><th>per_unit</th><th>per_unit_label</th><th>avail</th><th>variant_id</th><th>#</th><th>quiet</th></tr></thead><tbody>
+<tr><td>0</td><td>צהוב חם</td><td><i>—</i></td><td><i>—</i></td><td><i>—</i></td><td><i>—</i></td><td><i>—</i></td><td>169.90 ₪</td><td><i>—</i></td><td><i>—</i></td><td>1</td><td>48632265310382</td><td>1</td><td>—</td></tr>
+</tbody></table></div><div class="plumb-block"><h3 class="plumb-h3">C — wall light · 8 variants</h3>
+<p class="plumb-note">waterproof-led-wall-light-ip65-6w-12w · 8 variants · 4 rows</p>
+<table class="plumb-t"><tbody>
+<tr><th>meta.mode</th><td>variants</td></tr>
+<tr><th>meta.axis</th><td>2</td></tr>
+<tr><th>meta.axis2</th><td>3</td></tr>
+<tr><th>meta.axis_name</th><td>עוצמה</td></tr>
+<tr><th>meta.axis2_name</th><td>גוון אור</td></tr>
+<tr><th>meta.quiet_axis</th><td>1</td></tr>
+<tr><th>meta.quiet_name</th><td>צבע גוף</td></tr>
+<tr><th>meta.quiet_values</th><td>2</td></tr>
+<tr><th>meta.rows</th><td>4</td></tr>
+<tr><th>meta.default_row</th><td>0</td></tr>
+<tr><th>meta.default_variant_id</th><td>48675431612590</td></tr>
+<tr><th>meta.price_min</th><td>219.90</td></tr>
+<tr><th>meta.price_max</th><td>252.90</td></tr>
+<tr><th>meta.price_varies</th><td>1</td></tr>
+<tr><th>meta.unit</th><td>W</td></tr>
+<tr><th>meta.count_unit</th><td><i>—</i></td></tr>
+<tr><th>meta.per_unit_label</th><td><i>—</i></td></tr>
+<tr><th>meta.axis_values</th><td>2</td></tr>
+</tbody></table>
+<table class="plumb-t plumb-rows"><thead><tr><th>i</th><th>key_a</th><th>key_b</th><th>n1</th><th>u1</th><th>n2</th><th>u2</th><th>price</th><th>per_unit</th><th>per_unit_label</th><th>avail</th><th>variant_id</th><th>#</th><th>quiet</th></tr></thead><tbody>
+<tr><td>0</td><td>6W</td><td>אור חם 3000K</td><td>6</td><td>W</td><td><i>—</i></td><td><i>—</i></td><td>219.90 ₪</td><td><i>—</i></td><td><i>—</i></td><td>1</td><td>48675431612590</td><td>2</td><td>לבן · שחור</td></tr>
+<tr><td>1</td><td>6W</td><td>אור קר 6000K</td><td>6</td><td>W</td><td><i>—</i></td><td><i>—</i></td><td>222.90 ₪</td><td><i>—</i></td><td><i>—</i></td><td>1</td><td>48675431645358</td><td>2</td><td>לבן · שחור</td></tr>
+<tr><td>2</td><td>12W</td><td>אור חם 3000K</td><td>12</td><td>W</td><td><i>—</i></td><td><i>—</i></td><td>249.90 ₪</td><td><i>—</i></td><td><i>—</i></td><td>1</td><td>48675431743662</td><td>2</td><td>לבן · שחור</td></tr>
+<tr><td>3</td><td>12W</td><td>אור קר 6000K</td><td>12</td><td>W</td><td><i>—</i></td><td><i>—</i></td><td>252.90 ₪</td><td><i>—</i></td><td><i>—</i></td><td>1</td><td>48675431776430</td><td>2</td><td>לבן · שחור</td></tr>
+</tbody></table></div></div>
+</main>
+<div class="env2-pdp-bar" data-env2-pdp-bar dir="rtl">
+  <form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-pdp-bar__form" data-env2-buy>
+    <input type="hidden" name="form_type" value="product">
+    <input type="hidden" name="utf8" value="&#10003;">
+    <input type="hidden" name="id" value="48880938221742" data-env2-bar-id>
+    <input type="hidden" name="quantity" value="1" data-env2-bar-qty>
+    <a class="env2-pdp-bar__thumb" href="#env2-pdp-stage" tabindex="-1" aria-hidden="true"><img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg" width="46" height="46" alt="" loading="lazy" decoding="async" data-env2-bar-img></a>
+    <span class="env2-pdp-bar__text">
+      <span class="env2-pdp-bar__title">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</span>
+      <span class="env2-pdp-bar__mirror" data-env2-bar-mirror>5 מ׳ / 20 נורות · צהוב</span>
+    </span>
+    <span class="env2-price env2-pdp-bar__price" data-env2-bar-price><bdi>89.90</bdi> &#8362;</span>
+    <button type="submit" name="add" class="env2-btn env2-btn--sm env2-pdp-bar__btn">הוספה לסל</button>
+  </form>
+</div>
+<style id="env2-pdp-bar-css">
+.env2-pdp-bar{position:fixed;inset-inline:0;bottom:0;z-index:60;display:none;direction:rtl;
+  background:var(--env2-scrim,rgba(5,8,14,.55));background-color:rgba(4,6,11,.84);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-top:1px solid var(--env2-hair,rgba(244,238,227,.12));border-radius:0;
+  padding:9px var(--env2-gut,20px) calc(9px + env(safe-area-inset-bottom));
+  transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+@media (max-width:900px){.env2-pdp-bar{display:block}}
+.env2-js .env2-pdp-bar{transform:translateY(105%)}
+.env2-js .env2-pdp-bar.env2-pdp-bar--show{transform:translateY(0)}
+.env2-pdp-bar__form{display:flex;align-items:center;gap:10px;margin:0;padding:0}
+.env2-pdp-bar__thumb{flex:none;display:block;width:46px;height:46px;border-radius:0;overflow:hidden;background:#05070c}
+.env2-pdp-bar__thumb img{width:46px;height:46px;object-fit:cover;display:block}
+.env2-pdp-bar__text{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.env2-pdp-bar__title{font-family:var(--env2-sans);font-weight:400;font-size:14px;line-height:1.2;color:var(--env2-ink);
+  unicode-bidi:isolate;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.env2-pdp-bar__mirror{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.2;color:var(--env2-ink-2);
+  unicode-bidi:isolate;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.env2-pdp-bar__price{flex:none;--env2-price-size:22px}
+.env2-pdp-bar__btn{flex:none;min-height:44px;color:var(--env2-btn-ink)}
+@media (prefers-reduced-motion:reduce){.env2-pdp-bar{transition:none}}
+</style>
+</body></html>

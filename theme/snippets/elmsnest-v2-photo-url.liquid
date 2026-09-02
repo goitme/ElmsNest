@@ -5,15 +5,23 @@
   settings.whatsapp_number set  -> https://wa.me/<digits>?text=<prefilled Hebrew line>
   settings.whatsapp_number blank -> mailto:info@elmsnest.com?subject=...&body=...  (spaces as %20, not +)
   Callers must never print the word "בוואטסאפ" unless the result contains "wa.me".
+  Optional overrides (added for the PDP, 2026-09-02; omitting them reproduces the previous output byte
+  for byte, so every existing caller is unchanged):
+    subject: mailto subject   body: mailto body   text: the wa.me prefilled text
+  The PDP never calls this directly — it calls snippets/elmsnest-v2-pdp-photo-cta.liquid, which renders
+  the whole control (URL + the label that is legal for the current branch).
 {%- endcomment -%}
 {%- liquid
   assign env2_wa = settings.whatsapp_number | default: '' | remove: ' ' | remove: '-' | remove: '+'
+  assign env2_subject_src = subject | default: 'בדיקת התאמה — תמונה של המקום'
+  assign env2_body_src = body | default: 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר. המוצר ששוקלים: '
+  assign env2_text_src = text | default: 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.'
   if env2_wa != blank
-    assign env2_wa_text = 'שלום, אשמח לבדוק התאמה — מצרף/ת תמונה של המקום.' | url_encode
+    assign env2_wa_text = env2_text_src | url_encode
     echo 'https://wa.me/' | append: env2_wa | append: '?text=' | append: env2_wa_text
   else
-    assign env2_subject = 'בדיקת התאמה — תמונה של המקום' | url_encode | replace: '+', '%20'
-    assign env2_body = 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר. המוצר ששוקלים: ' | url_encode | replace: '+', '%20'
+    assign env2_subject = env2_subject_src | url_encode | replace: '+', '%20'
+    assign env2_body = env2_body_src | url_encode | replace: '+', '%20'
     echo 'mailto:info@elmsnest.com?subject=' | append: env2_subject | append: '&body=' | append: env2_body
   endif
 -%}

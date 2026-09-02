@@ -1,0 +1,107 @@
+{%- comment -%}
+  ElmsNest v2 PDP — the STICKY MOBILE BUY BAR (WINNING-SPEC §4.9). Rendered ONCE, by
+  sections/elmsnest-v2-pdp-stage.liquid, at the very end of its markup.
+
+  ------------------------------------------------------------------ usage
+    {% render 'elmsnest-v2-pdp-buybar', product: product, mirror: env2_mirror, thumb_index: section.settings.thumb_image_index %}
+
+  ------------------------------------------------------------------ inputs
+    product      : required. Renders nothing when blank or when the product has no purchasable variant.
+    variant      : optional. Default product.selected_or_first_available_variant.
+    mirror       : optional. The selection mirror line ("5 מ׳ / 20 נורות · צהוב"). Default = the
+                   variant's option values joined with ' · ', minus any option that has one value
+                   (§3.6: a one-value option is a fact, never a control — and never a mirror line).
+    label        : optional add-to-cart label. Default 'הוספה לסל'.
+    thumb_index  : optional 1-based image index; otherwise the 'thumb' slot of elmsnest-v2-pdp-image.
+    thumb_image  : optional image_picker override.
+
+  ------------------------------------------------------------------ what the stage's JS drives
+    root            [data-env2-pdp-bar]        add .env2-pdp-bar--show when the stage buy line has
+                                               left the viewport; remove it while #env2-pdp-ledger or
+                                               the stage buy line is on screen (no double button).
+    hidden input    [data-env2-bar-id]         value = the selected variant id
+    price           [data-env2-bar-price]      innerHTML = '<bdi>…</bdi> ₪'
+    mirror          [data-env2-bar-mirror]     textContent = the selection mirror
+    thumb img       [data-env2-bar-img]        src, only when the selected variant has its own image
+    The form carries data-env2-buy, so the CORE's submit handler already posts it to /cart/add.js and
+    opens the Kalles drawer; without JS it POSTs natively to routes.cart_add_url. Nothing to write.
+
+  ------------------------------------------------------------------ rules obeyed
+    §4.9 46px thumb · title 14px · mirror 13px · price 22px · pill; scrim rgba(5,8,14,.55)+blur is one
+    of only two card surfaces on the page. Full width, so it never collides with the WhatsApp float in
+    the bottom-LEFT corner (do-not §6.15). <= 900px only. The document reserves --env2-pdp-bar-h at its
+    end (declared in elmsnest-v2-ground-product), so the bar can never cover the footer. Radius 0
+    except the pill. Logical properties only. The add-to-cart is a <button> inside a form, never an
+    anchor styled as a filled button (§8.3).
+{%- endcomment -%}
+{%- liquid
+  assign env2_ok = false
+  if product != blank and product.variants.size > 0
+    assign env2_ok = true
+  endif
+-%}
+{%- if env2_ok -%}
+{%- liquid
+  assign env2_v = variant | default: product.selected_or_first_available_variant | default: product.variants.first
+  assign env2_label = label | default: 'הוספה לסל'
+  assign env2_mirror = mirror | default: ''
+  if env2_mirror == ''
+    for env2_o in product.options_with_values
+      if env2_o.values.size > 1
+        assign env2_val = env2_v.options[forloop.index0]
+        if env2_mirror == ''
+          assign env2_mirror = env2_val
+        else
+          assign env2_mirror = env2_mirror | append: ' · ' | append: env2_val
+        endif
+      endif
+    endfor
+  endif
+-%}
+{%- capture env2_ti -%}{%- render 'elmsnest-v2-pdp-image', product: product, slot: 'thumb', index: thumb_index -%}{%- endcapture -%}
+{%- liquid
+  assign env2_ti = env2_ti | plus: 0
+  assign env2_thumb = thumb_image | default: env2_v.image | default: product.images[env2_ti] | default: product.featured_image
+-%}
+<div class="env2-pdp-bar" data-env2-pdp-bar dir="rtl">
+  <form method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8" class="env2-pdp-bar__form" data-env2-buy>
+    <input type="hidden" name="form_type" value="product">
+    <input type="hidden" name="utf8" value="&#10003;">
+    <input type="hidden" name="id" value="{{ env2_v.id }}" data-env2-bar-id>
+    <input type="hidden" name="quantity" value="1" data-env2-bar-qty>
+    <a class="env2-pdp-bar__thumb" href="#env2-pdp-stage" tabindex="-1" aria-hidden="true">
+      {%- if env2_thumb != blank -%}
+        <img src="{{ env2_thumb | image_url: width: 138 }}" width="46" height="46" alt="" loading="lazy" decoding="async" data-env2-bar-img>
+      {%- endif -%}
+    </a>
+    <span class="env2-pdp-bar__text">
+      <span class="env2-pdp-bar__title">{{ product.title }}</span>
+      <span class="env2-pdp-bar__mirror" data-env2-bar-mirror>{{ env2_mirror }}</span>
+    </span>
+    <span class="env2-price env2-pdp-bar__price" data-env2-bar-price><bdi>{{ env2_v.price | money_without_currency }}</bdi> &#8362;</span>
+    <button type="submit" name="add" class="env2-btn env2-btn--sm env2-pdp-bar__btn">{{ env2_label }}</button>
+  </form>
+</div>
+<style id="env2-pdp-bar-css">
+.env2-pdp-bar{position:fixed;inset-inline:0;bottom:0;z-index:60;display:none;direction:rtl;
+  background:var(--env2-scrim,rgba(5,8,14,.55));background-color:rgba(4,6,11,.84);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-top:1px solid var(--env2-hair,rgba(244,238,227,.12));border-radius:0;
+  padding:9px var(--env2-gut,20px) calc(9px + env(safe-area-inset-bottom));
+  transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+@media (max-width:900px){.env2-pdp-bar{display:block}}
+.env2-js .env2-pdp-bar{transform:translateY(105%)}
+.env2-js .env2-pdp-bar.env2-pdp-bar--show{transform:translateY(0)}
+.env2-pdp-bar__form{display:flex;align-items:center;gap:10px;margin:0;padding:0}
+.env2-pdp-bar__thumb{flex:none;display:block;width:46px;height:46px;border-radius:0;overflow:hidden;background:#05070c}
+.env2-pdp-bar__thumb img{width:46px;height:46px;object-fit:cover;display:block}
+.env2-pdp-bar__text{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.env2-pdp-bar__title{font-family:var(--env2-sans);font-weight:400;font-size:14px;line-height:1.2;color:var(--env2-ink);
+  unicode-bidi:isolate;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.env2-pdp-bar__mirror{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.2;color:var(--env2-ink-2);
+  unicode-bidi:isolate;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.env2-pdp-bar__price{flex:none;--env2-price-size:22px}
+.env2-pdp-bar__btn{flex:none;min-height:44px;color:var(--env2-btn-ink)}
+@media (prefers-reduced-motion:reduce){.env2-pdp-bar{transition:none}}
+</style>
+{%- endif -%}
