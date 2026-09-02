@@ -30,52 +30,26 @@ const SECTIONS = [
 ]
 const FILE_SCHEMA = { type: 'object', required: ['files', 'preview', 'lint', 'notes'], properties: { files: { type: 'array', items: { type: 'string' } }, preview: { type: 'array', items: { type: 'string' } }, lint: { type: 'string' }, schemaIds: { type: 'array', items: { type: 'string' } }, notes: { type: 'string' }, risks: { type: 'array', items: { type: 'string' } } } }
 
-phase('Plumbing')
-const plumbing = await agent(`${COMMON}
-
-You are the plumbing engineer for the PDP build. Build ONLY the shared pieces every section depends on, in ${ROOT}/theme/ (repo paths mirror theme paths). Do NOT build any section. Do NOT deploy — the integrator does that.
-Files (all per WINNING-SPEC §5, §3.1, §3.5, §3.6, §3.7, §4.9):
-1. snippets/elmsnest-v2-ground-product.liquid — the PDP ground per §3.1, mirroring how snippets/elmsnest-v2-ground-index.liquid works for the homepage (read that file first). Scoped to body.hdt-page-type-product so it cannot touch other templates.
-2. snippets/elmsnest-v2-pdp-image.liquid — the §3.5 index resolver: input product + a slot name (hero / context / close / card / wall-pair); returns the chosen image object honouring the per-product ledger and the never-use list from ${ROOT}/brief/WINNING-SPEC.md §3.6 (15 products whose index 0 carries baked-in text). Must never return index 0 for those, must fall back safely, and must accept a per-section override setting.
-3. snippets/elmsnest-v2-pdp-variants.liquid — builds the ledger model ONCE from product.variants: for each row, the option value that carries the price axis (§3.6 option-axis rule), its price, its per-unit or per-metre price where the option name states a count or a length (parse the Hebrew option values in products.json: "5 מ׳ / 20 נורות", "2 יחידות", "6W"), availability, variant id, and the secondary axes. Emit it both as Liquid variables for the no-JS markup and as one JSON script tag for the JS enhancement.
-4. snippets/elmsnest-v2-pdp-buybar.liquid — §4.9, the sticky mobile buy bar mirroring the selected row.
-5. snippets/elmsnest-v2-pdp-photo-cta.liquid — mailto today, wa.me when settings.whatsapp_number fills (one place, both branches correct and url-encoded; never the label בוואטסאפ while the number is empty).
-6. snippets/elmsnest-v2-pdp-card.liquid — the product card of §4.8, standalone and reusable (round 2's catalogue card): image via the resolver, place kicker, title in Heebo (never the serif), price by the elmsnest-v2-price rule, single-variant → add-to-cart form, multi → link. No badge, no swatch dots, no quick-add icon, no stars.
-Also: extend ${ROOT}/brief/lint.py so it globs sections/elmsnest-v2-pdp-* and snippets/elmsnest-v2-pdp-* and validates templates/product.elmsnest.json against the new section schemas; keep its existing checks working.
-Prove your work offline: build ${DIR}/build-preview/_plumbing.html that renders the card, the buybar and a ledger model for the three archetypes (crystal 24 variants, path 1 variant, wall 8 variants) with hand-substituted Liquid output and local assets (${ROOT}/brief/assets/img/<handle>-<i>.jpg, ${ROOT}/brief/assets/fonts.css), screenshot it with node ${ROOT}/brief/shot.js, and READ the PNG. Run python3 ${ROOT}/brief/lint.py until it passes.
-Write ${DIR}/build-preview/CONTRACT-PDP.md: for each snippet, its exact call signature, its inputs, what it returns/prints, the class names it emits, and the JSON shape of the variant model — the eight section engineers build against this document, so it must be precise and final.
-Return files, preview paths, lint result, and the risks a section engineer must know.`, { label: 'plumbing', phase: 'Plumbing', schema: FILE_SCHEMA, effort: 'high' })
-if (!plumbing) return { error: 'plumbing failed' }
-log(`plumbing: ${plumbing.files.length} files, lint ${plumbing.lint}`)
-
-phase('Sections')
-const built = await parallel(SECTIONS.map(s => () => agent(`${COMMON}
-
-You are the engineer for ONE PDP section: **sections/elmsnest-v2-pdp-${s.id}.liquid** (WINNING-SPEC §${s.spec} — ${s.title}).
-The plumbing is built and its contract is ${DIR}/build-preview/CONTRACT-PDP.md — READ IT FIRST and build against it; the snippets exist in ${ROOT}/theme/snippets/. Plumbing notes: ${plumbing.notes} ${(plumbing.risks || []).join(' · ')}
-Section-specific: ${s.note}
-Write ${ROOT}/theme/sections/elmsnest-v2-pdp-${s.id}.liquid: markup + {% stylesheet %} (every selector prefixed .env2-pdp-${s.id}__…) + {% javascript %} (init via document.querySelectorAll('[data-env2-pdp-${s.id}]'), and end with the CONTRACT's env2.observe fallback line) + {% schema %} with settings, blocks and ONE preset. Section root: <section id="env2-pdp-${s.id}" data-env2-pdp-${s.id} class="env2-section" dir="rtl" style="scroll-margin-top:90px">. Schema name max 25 chars. Every block root carries {{ block.shopify_attributes }}. Copy is exactly what §${s.spec} specifies (Hebrew); product facts come only from the product object or its description — never typed.
-It must render correctly for all three archetypes: solar-crystal-ball-string-lights (24 variants), stainless-steel-solar-path-light-ip65 (1 variant — no one-value picker anywhere), waterproof-led-wall-light-ip65-6w-12w (8 variants, MAINS: no solar sentence, per §3.7). And it must not break on the other 24 products (guard every image index, every option, every empty metafield).
-Prove it offline before returning: build ${DIR}/build-preview/${s.id}.html — the section's rendered markup for the crystal-ball product (hand-substitute the Liquid you wrote), on the page ground, with local assets and fonts; screenshot at 1440 and 390 with node ${ROOT}/brief/shot.js ${DIR}/build-preview/${s.id}.html ${DIR}/build-preview/${s.id}; READ both PNGs and fix what they show (overflow, clipped text, contrast, mobile tap targets ≥44px) until they are right. Run python3 ${ROOT}/brief/lint.py and fix anything it reports about your file.
-No-JS and reduced-motion: the section must render fully and buyably with JS disabled (lamps lit, prices visible, forms working) — state in your notes exactly what degrades.
-Return: the file, the preview paths, lint result, your schema setting ids, notes, and the risks the integrator must check on the real render.`, { label: `section:${s.id}`, phase: 'Sections', schema: FILE_SCHEMA, effort: 'high' })))
-const sok = built.filter(Boolean)
-log(`sections built: ${sok.length}/8`)
-
+// RESUMED 2026-09-02 after a container restart: Plumbing, Sections and Integrate (deploy) all completed and are
+// on the dev theme (14 snippets/sections + templates/product.elmsnest.json, deployed 20:09-20:36 UTC). The lead
+// re-mirrored and re-shot the three archetypes afterwards. This run starts at the verification of the buy flow,
+// then the adversarial critique, then the fix pass.
 phase('Integrate')
 const INTEG = { type: 'object', required: ['deployed', 'pages', 'issues'], properties: { deployed: { type: 'array', items: { type: 'string' } }, pages: { type: 'array', items: { type: 'object', required: ['key', 'url', 'pngs', 'heightDesktop', 'heightMobile', 'liquidErrors'], properties: { key: { type: 'string' }, url: { type: 'string' }, pngs: { type: 'array', items: { type: 'string' } }, heightDesktop: { type: 'integer' }, heightMobile: { type: 'integer' }, liquidErrors: { type: 'integer' }, foldHasBuy: { type: 'boolean' }, note: { type: 'string' } } } }, buyFlow: { type: 'string' }, issues: { type: 'array', items: { type: 'string' } } } }
 const integ = await agent(`${COMMON}
 
-You are the integrator. The eight sections and the plumbing are written in ${ROOT}/theme/. Section engineer notes: ${JSON.stringify(sok.map(b => ({ files: b.files, schemaIds: b.schemaIds, risks: b.risks })))}
-Do this:
-1. Reconcile: read every section's {% schema %} and write ${ROOT}/theme/templates/product.elmsnest.json — the eight sections in the §5 order with ids pdp_stage … pdp_related and the default settings/blocks each section's spec calls for. **Per §8.1 the file is product.elmsnest.json (all 27 products carry templateSuffix "elmsnest"); do NOT create templates/product.json and do NOT touch any product.** Every setting key you write must exist in that section's schema — run python3 ${ROOT}/brief/lint.py until it passes.
-2. Deploy to the dev theme with themeFilesUpsert, ONE file per call, GraphQL block string, in this order: snippets (ground-product, pdp-image, pdp-variants, pdp-photo-cta, pdp-card, pdp-buybar) → the eight sections → templates/product.elmsnest.json. A userErrors entry means the file was NOT written: fix and retry. Log filename → size.
-3. Verify the real render for all three archetypes: /products/solar-crystal-ball-string-lights (pdp-multi), /products/stainless-steel-solar-path-light-ip65 (pdp-single), /products/waterproof-led-wall-light-ip65-6w-12w (pdp-wall). Mirror each into ${ROOT}/brief/inventory/<key>/ and shoot with shot-http.js. Then READ the PNGs (folds and cropped slices of the full page) and check: 0 'Liquid error' in the mirrored HTML; the buy action inside the 390×844 fold; every section present (grep each anchor id); no horizontal overflow; no cream/brown surface; the wall product carries no solar sentence; the single-variant product shows no one-value picker; heights.
-4. Execute the buy flow on the http-served mirror with Playwright (as brief/side-pages/core did for the drawer): click a ledger row's add-to-cart, confirm the drawer opens or the documented fallback fires, screenshot it to ${DIR}/build-preview/buyflow-{desktop,mobile}.png. Stub /cart/add.js and /cart.js with page.route since the mirror is offline; what you are judging is that our JS reaches the right call and the right event, and that the no-JS form posts to routes.cart_add_url.
-5. Fix anything broken (edit the repo file, redeploy that one file, re-mirror, re-shoot) and record it.
-Return deployed files, the three pages with their measurements, what the buy flow did, and every issue you could not fix.`, { label: 'integrator', phase: 'Integrate', schema: INTEG, effort: 'high' })
-if (!integ) return { plumbing, sections: sok, error: 'integration failed' }
-log(`deployed ${integ.deployed.length} files; pages ${integ.pages.map(p => `${p.key} ${p.heightDesktop}/${p.heightMobile}`).join(' · ')}`)
+You are the integrator, resuming after a container restart. The plumbing, the eight sections and templates/product.elmsnest.json are ALREADY WRITTEN in ${ROOT}/theme/ and ALREADY DEPLOYED to the dev theme (verify with a graphql theme.files query on sections/elmsnest-v2-pdp-*, snippets/elmsnest-v2-pdp-*, snippets/elmsnest-v2-ground-product.liquid, templates/product.elmsnest.json — all 15 files, deployed 2026-09-02 20:09-20:36 UTC — and confirm each live file is byte-identical to its ${ROOT}/theme/ copy; redeploy only a file that differs). python3 ${ROOT}/brief/lint.py already passes. The lead has re-mirrored and re-shot the three archetypes AFTER the deploy:
+- brief/inventory/pdp-multi (solar-crystal-ball-string-lights, 24 variants) — desktop 8393 / mobile 8980 px, 0 Liquid errors, no horizontal overflow
+- brief/inventory/pdp-single (stainless-steel-solar-path-light-ip65, 1 variant) — 8127 / 8695 px, 0 Liquid errors
+- brief/inventory/pdp-wall (waterproof-led-wall-light-ip65-6w-12w, 8 variants, mains) — 8245 / 8626 px, 0 Liquid errors
+Each has http-desktop.png, http-mobile.png, http-desktop-fold.png, http-mobile-fold.png.
+Your job now is step 3 to 5 of the original brief — VERIFY and FIX, not rebuild:
+1. Read the PNGs yourself (folds first, then the full pages cropped into readable slices with PIL) for all three products. Check: the buy action inside the 390x844 fold; every section anchor present (grep env2-pdp-{stage,fit,night,ledger,facts,terms,ask,related} in the mirrored HTML); no cream/brown surface (PIL sample); the wall product carries NO solar sentence anywhere (grep the Hebrew for sun/panel/charge words in its mirrored HTML and read the render); the single-variant product shows no one-value picker; every price and Latin token inside <bdi>; the sticky buy bar present on mobile and not covering the last ledger row.
+2. Execute the buy flow with Playwright on the http-served mirror (python3 -m http.server on brief/inventory/pdp-multi), at 390 and 1440: click a ledger row's add-to-cart, confirm our JS posts to cart/add and dispatches the cart:update event (stub /cart/add.js and /cart.js with page.route since the mirror is offline), and confirm the no-JS path: a context with javaScriptEnabled:false must still show every price and a real <form method="post" action="/cart/add"> per row. Screenshot to ${DIR}/build-preview/buyflow-desktop.png and buyflow-mobile.png.
+3. Fix anything broken: edit the repo file, redeploy that one file, re-mirror and re-shoot that product, re-check.
+Return the deployed file list, the three pages with measurements, what the buy flow did, and every issue you could not fix.`, { label: 'integrator-verify', phase: 'Integrate', schema: INTEG, effort: 'high' })
+if (!integ) return { error: 'verification failed' }
+log(`verified; issues: ${integ.issues.length}`)
 
 phase('Critique')
 const CRIT = { type: 'object', required: ['lens', 'verdict', 'findings'], properties: { lens: { type: 'string' }, verdict: { type: 'string' }, wouldOwnerSayNineties: { type: 'boolean' }, findings: { type: 'array', items: { type: 'object', required: ['id', 'severity', 'where', 'what', 'evidence', 'fix'], properties: { id: { type: 'string' }, severity: { type: 'string', enum: ['blocker', 'major', 'minor', 'nit'] }, where: { type: 'string' }, what: { type: 'string' }, evidence: { type: 'string' }, fix: { type: 'string' } } } } } }
