@@ -39,6 +39,22 @@ for u,name in list(mapping.items()):
             if not os.path.exists(out+"/"+fn): subprocess.run(["curl","-sS","-o",out+"/"+fn,fu])
             css=css.replace(fu,fn)
         open(out+"/"+name,"w",encoding='utf-8').write(css)
+# Kalles importmap: its entries are JSON, not src/href — fetch them too or the module graph dies offline
+import json as _json
+_im=re.search(r'(<script type="importmap">)(.*?)(</script>)',html,re.S)
+if _im:
+    try:
+        _m=_json.loads(_im.group(2)); _n=0
+        for _k,_u in list(_m.get('imports',{}).items()):
+            _full='https:'+_u if _u.startswith('//') else _u
+            if not _full.startswith('http'): continue
+            _name="a/"+hashlib.md5(_full.encode()).hexdigest()+".js"; _p=out+"/"+_name
+            if not os.path.exists(_p):
+                _r=subprocess.run(["curl","-sSL","--max-time","40","-o",_p,_full],capture_output=True)
+                if _r.returncode!=0 or not os.path.exists(_p) or os.path.getsize(_p)==0: continue
+            _m['imports'][_k]=_name; _n+=1
+        html=html[:_im.start(2)]+'\n'+_json.dumps(_m,indent=2)+'\n'+html[_im.end(2):]
+    except Exception as _e: print('importmap:',_e)
 for u,name in sorted(mapping.items(),key=lambda kv:-len(kv[0])):
     html=html.replace('"'+u+'"','"'+name+'"').replace('('+u+')','('+name+')').replace("('"+u+"')","('"+name+"')").replace(u+' ',name+' ')
 open(out+"/index.html","w",encoding="utf-8").write(html)
