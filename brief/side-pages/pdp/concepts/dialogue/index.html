@@ -118,8 +118,9 @@ h1,h2,h3,.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spac
 .hero .bg .ph::after{background:radial-gradient(38% 40% at 62% 46%,rgba(255,211,148,.28),rgba(255,211,148,0) 70%)}
 .hero .veil{position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(15,26,47,.62) 0,rgba(15,26,47,0) 26%),
-  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.75) 18%,rgba(15,26,47,0) 52%),
-  linear-gradient(270deg,rgba(15,26,47,.82) 0,rgba(15,26,47,.55) 38%,rgba(15,26,47,0) 62%)}
+  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.84) 26%,rgba(15,26,47,.30) 58%,rgba(15,26,47,0) 76%),
+  linear-gradient(90deg,rgba(15,26,47,.80) 0,rgba(15,26,47,.52) 30%,rgba(15,26,47,0) 60%),
+  linear-gradient(270deg,rgba(15,26,47,.58) 0,rgba(15,26,47,0) 34%)}
 .hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:end;padding-block:130px 64px}
 .hero .txt{display:grid;gap:22px;align-content:end}
 .hero .q{font-size:clamp(50px,7.4vw,112px)}
@@ -159,9 +160,9 @@ h1,h2,h3,.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spac
 .lamp.off{cursor:pointer}
 .lamp .hint{font-size:11.5px;color:var(--mute);opacity:0;transition:opacity .4s}
 .lamp.off:hover .hint,.lamp.off:focus-within .hint{opacity:1}
-.fit .solar{grid-column:1/-1;margin-top:34px;padding-top:22px;border-top:1px solid var(--hair);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;font-size:15px;color:var(--ink-2)}
+.fit .solar{grid-column:1/-1;margin-top:34px;padding-top:20px;border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr;gap:9px;font-size:15px;line-height:1.5;color:var(--ink-2)}
 .fit .solar b{font-weight:500;color:var(--ink)}
-.fit .solar .k{font-size:11px;letter-spacing:.16em;color:var(--mute);white-space:nowrap}
+.fit .solar .k{font-size:11px;letter-spacing:.16em;font-weight:500;color:var(--gold);white-space:nowrap}
 
 /* ============================================================
    03 · "what does it really look like at night?" — full-bleed
@@ -372,7 +373,7 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
   .hero .bg{position:relative;inset:auto;height:46svh;min-height:330px;z-index:0}
   .hero .bg .ph{width:100%;right:auto;inset:0}
   .hero .bg .ph img{object-position:50% 45%}
-  .hero .veil{inset:0 0 auto 0;height:46svh;min-height:330px;background:linear-gradient(180deg,rgba(15,26,47,.55) 0,rgba(15,26,47,0) 30%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.55) 22%,rgba(15,26,47,0) 55%)}
+  .hero .veil{inset:0 0 auto 0;height:46svh;min-height:330px;background:linear-gradient(180deg,rgba(15,26,47,.58) 0,rgba(15,26,47,0) 30%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.86) 26%,rgba(15,26,47,.40) 48%,rgba(15,26,47,0) 72%)}
   .hero .wrap{grid-template-columns:1fr;gap:14px;padding-block:0 28px;margin-top:-88px;position:relative;z-index:1}
   .hero .place{position:static;border:0;padding:0;max-width:none;font-size:12px;order:0}
   .hero .place b{display:inline;font-size:13.5px;margin-inline-end:6px}
@@ -529,7 +530,18 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
     <defs>
       <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
       <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd394" stop-opacity=".45"/><stop offset="1" stop-color="#ffd394" stop-opacity="0"/></radialGradient>
-      <symbol id="string7" viewBox="0 0 320 150">
+      </defs>
+  </svg>
+  <div class="wrap">
+    <div>
+      <p class="word" data-lamp="manual"><small>המקום</small>מרפסת.</p>
+      <p class="eyebrow" style="margin-top:34px">02 · ההיסוס השני</p>
+      <p class="q">«ואם אני צריך <em>אור חזק</em> במרפסת?»</p>
+      <p class="a"><b>אז לא זו.</b> גרילנדה עושה אווירה, לא תאורת עבודה. אנחנו אומרים את זה כאן, לפני ההזמנה, ולא אחרי — נסו להדליק את הכבויה.</p>
+    </div>
+    <div class="pair">
+      <div class="lamp on" data-lamp>
+        <svg aria-hidden="true" viewBox="0 0 320 150">
         <path d="M6 18 Q160 118 314 18" fill="none" stroke="rgba(244,238,227,.35)" stroke-width="1.5"/>
         <g class="halo2">
           <circle cx="44" cy="46" r="26" fill="url(#halo)"/><circle cx="88" cy="70" r="26" fill="url(#halo)"/><circle cx="132" cy="84" r="26" fill="url(#halo)"/><circle cx="176" cy="88" r="26" fill="url(#halo)"/><circle cx="220" cy="80" r="26" fill="url(#halo)"/><circle cx="264" cy="62" r="26" fill="url(#halo)"/><circle cx="300" cy="36" r="26" fill="url(#halo)"/>
@@ -543,24 +555,26 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
         <g class="bulb" fill="#fff4dd">
           <circle cx="44" cy="44" r="3"/><circle cx="88" cy="68" r="3"/><circle cx="132" cy="82" r="3"/><circle cx="176" cy="86" r="3"/><circle cx="220" cy="78" r="3"/><circle cx="264" cy="60" r="3"/><circle cx="300" cy="34" r="3"/>
         </g>
-      </symbol>
-    </defs>
-  </svg>
-  <div class="wrap">
-    <div>
-      <p class="word" data-lamp="manual"><small>המקום</small>מרפסת.</p>
-      <p class="eyebrow" style="margin-top:34px">02 · ההיסוס השני</p>
-      <p class="q">«ואם אני צריך <em>אור חזק</em> במרפסת?»</p>
-      <p class="a"><b>אז לא זו.</b> גרילנדה עושה אווירה, לא תאורת עבודה. אנחנו אומרים את זה כאן, לפני ההזמנה, ולא אחרי — נסו להדליק את הכבויה.</p>
-    </div>
-    <div class="pair">
-      <div class="lamp on" data-lamp>
-        <svg aria-hidden="true" viewBox="0 0 320 150"><use href="#string7"/></svg>
+      </svg>
         <span class="tag">מתאים כדי</span>
         <p>ליצור אווירה</p>
       </div>
       <div class="lamp off" tabindex="0" role="button" aria-label="לא מתאים כאשר צריך אור חזק — זו אינה מטרתה">
-        <svg aria-hidden="true" viewBox="0 0 320 150"><use href="#string7"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 320 150">
+        <path d="M6 18 Q160 118 314 18" fill="none" stroke="rgba(244,238,227,.35)" stroke-width="1.5"/>
+        <g class="halo2">
+          <circle cx="44" cy="46" r="26" fill="url(#halo)"/><circle cx="88" cy="70" r="26" fill="url(#halo)"/><circle cx="132" cy="84" r="26" fill="url(#halo)"/><circle cx="176" cy="88" r="26" fill="url(#halo)"/><circle cx="220" cy="80" r="26" fill="url(#halo)"/><circle cx="264" cy="62" r="26" fill="url(#halo)"/><circle cx="300" cy="36" r="26" fill="url(#halo)"/>
+        </g>
+        <g fill="none" stroke="rgba(244,238,227,.45)" stroke-width="1.2">
+          <circle cx="44" cy="46" r="9"/><circle cx="88" cy="70" r="9"/><circle cx="132" cy="84" r="9"/><circle cx="176" cy="88" r="9"/><circle cx="220" cy="80" r="9"/><circle cx="264" cy="62" r="9"/><circle cx="300" cy="36" r="9"/>
+        </g>
+        <g class="bulb" fill="#ffd394">
+          <circle cx="44" cy="46" r="8"/><circle cx="88" cy="70" r="8"/><circle cx="132" cy="84" r="8"/><circle cx="176" cy="88" r="8"/><circle cx="220" cy="80" r="8"/><circle cx="264" cy="62" r="8"/><circle cx="300" cy="36" r="8"/>
+        </g>
+        <g class="bulb" fill="#fff4dd">
+          <circle cx="44" cy="44" r="3"/><circle cx="88" cy="68" r="3"/><circle cx="132" cy="82" r="3"/><circle cx="176" cy="86" r="3"/><circle cx="220" cy="78" r="3"/><circle cx="264" cy="60" r="3"/><circle cx="300" cy="34" r="3"/>
+        </g>
+      </svg>
         <span class="tag">לא מתאים כש־</span>
         <p>צריך אור חזק — זו אינה מטרתה</p>
         <span class="hint">לא נדלקת. זו הנקודה.</span>

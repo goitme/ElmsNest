@@ -118,8 +118,9 @@ h1,h2,h3,.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spac
 .hero .bg .ph::after{background:radial-gradient(38% 40% at 62% 46%,rgba(255,211,148,.28),rgba(255,211,148,0) 70%)}
 .hero .veil{position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(15,26,47,.62) 0,rgba(15,26,47,0) 26%),
-  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.75) 18%,rgba(15,26,47,0) 52%),
-  linear-gradient(270deg,rgba(15,26,47,.82) 0,rgba(15,26,47,.55) 38%,rgba(15,26,47,0) 62%)}
+  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.84) 26%,rgba(15,26,47,.30) 58%,rgba(15,26,47,0) 76%),
+  linear-gradient(90deg,rgba(15,26,47,.80) 0,rgba(15,26,47,.52) 30%,rgba(15,26,47,0) 60%),
+  linear-gradient(270deg,rgba(15,26,47,.58) 0,rgba(15,26,47,0) 34%)}
 .hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:end;padding-block:130px 64px}
 .hero .txt{display:grid;gap:22px;align-content:end}
 .hero .q{font-size:clamp(50px,7.4vw,112px)}
@@ -372,7 +373,7 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
   .hero .bg{position:relative;inset:auto;height:46svh;min-height:330px;z-index:0}
   .hero .bg .ph{width:100%;right:auto;inset:0}
   .hero .bg .ph img{object-position:50% 45%}
-  .hero .veil{inset:0 0 auto 0;height:46svh;min-height:330px;background:linear-gradient(180deg,rgba(15,26,47,.55) 0,rgba(15,26,47,0) 30%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.55) 22%,rgba(15,26,47,0) 55%)}
+  .hero .veil{inset:0 0 auto 0;height:46svh;min-height:330px;background:linear-gradient(180deg,rgba(15,26,47,.58) 0,rgba(15,26,47,0) 30%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.86) 26%,rgba(15,26,47,.40) 48%,rgba(15,26,47,0) 72%)}
   .hero .wrap{grid-template-columns:1fr;gap:14px;padding-block:0 28px;margin-top:-88px;position:relative;z-index:1}
   .hero .place{position:static;border:0;padding:0;max-width:none;font-size:12px;order:0}
   .hero .place b{display:inline;font-size:13.5px;margin-inline-end:6px}
@@ -649,19 +650,7 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd394" stop-opacity=".55"/><stop offset="1" stop-color="#ffd394" stop-opacity="0"/></radialGradient>
-      <symbol id="wallcube" viewBox="0 0 240 240">
-        <rect x="0" y="0" width="240" height="240" fill="rgba(244,238,227,.04)"/>
-        <g class="halo2">
-          <ellipse cx="120" cy="62" rx="88" ry="58" fill="url(#halo)"/>
-          <ellipse cx="120" cy="184" rx="96" ry="62" fill="url(#halo)"/>
-        </g>
-        <rect x="80" y="96" width="80" height="56" fill="#141719" stroke="rgba(244,238,227,.25)" stroke-width="1"/>
-        <g class="bulb">
-          <rect x="84" y="94" width="72" height="3" fill="#fff4dd"/>
-          <rect x="84" y="151" width="72" height="3" fill="#fff4dd"/>
-        </g>
-      </symbol>
-    </defs>
+      </defs>
   </svg>
   <div class="wrap">
     <div>
@@ -672,12 +661,34 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
     </div>
     <div class="pair">
       <div class="lamp lamp-c on" data-lamp>
-        <svg aria-hidden="true" viewBox="0 0 240 240"><use href="#wallcube"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 240 240">
+        <rect x="0" y="0" width="240" height="240" fill="rgba(244,238,227,.04)"/>
+        <g class="halo2">
+          <ellipse cx="120" cy="62" rx="88" ry="58" fill="url(#halo)"/>
+          <ellipse cx="120" cy="184" rx="96" ry="62" fill="url(#halo)"/>
+        </g>
+        <rect x="80" y="96" width="80" height="56" fill="#141719" stroke="rgba(244,238,227,.25)" stroke-width="1"/>
+        <g class="bulb">
+          <rect x="84" y="94" width="72" height="3" fill="#fff4dd"/>
+          <rect x="84" y="151" width="72" height="3" fill="#fff4dd"/>
+        </g>
+      </svg>
         <span class="tag">מתאים כדי</span>
         <p>להאיר נקודה מסוימת</p>
       </div>
       <div class="lamp lamp-c off" tabindex="0" role="button" aria-label="לא מתאים כאשר נדרש אור חזק וקבוע לאורך כל הלילה">
-        <svg aria-hidden="true" viewBox="0 0 240 240"><use href="#wallcube"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 240 240">
+        <rect x="0" y="0" width="240" height="240" fill="rgba(244,238,227,.04)"/>
+        <g class="halo2">
+          <ellipse cx="120" cy="62" rx="88" ry="58" fill="url(#halo)"/>
+          <ellipse cx="120" cy="184" rx="96" ry="62" fill="url(#halo)"/>
+        </g>
+        <rect x="80" y="96" width="80" height="56" fill="#141719" stroke="rgba(244,238,227,.25)" stroke-width="1"/>
+        <g class="bulb">
+          <rect x="84" y="94" width="72" height="3" fill="#fff4dd"/>
+          <rect x="84" y="151" width="72" height="3" fill="#fff4dd"/>
+        </g>
+      </svg>
         <span class="tag">לא מתאים כש־</span>
         <p>נדרש אור חזק וקבוע לאורך כל הלילה</p>
         <span class="hint">לא נדלקת. זו הנקודה.</span>

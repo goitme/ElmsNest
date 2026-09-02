@@ -118,8 +118,9 @@ h1,h2,h3,.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spac
 .hero .bg .ph::after{background:radial-gradient(38% 40% at 62% 46%,rgba(255,211,148,.28),rgba(255,211,148,0) 70%)}
 .hero .veil{position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(15,26,47,.62) 0,rgba(15,26,47,0) 26%),
-  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.75) 18%,rgba(15,26,47,0) 52%),
-  linear-gradient(270deg,rgba(15,26,47,.82) 0,rgba(15,26,47,.55) 38%,rgba(15,26,47,0) 62%)}
+  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.84) 26%,rgba(15,26,47,.30) 58%,rgba(15,26,47,0) 76%),
+  linear-gradient(90deg,rgba(15,26,47,.80) 0,rgba(15,26,47,.52) 30%,rgba(15,26,47,0) 60%),
+  linear-gradient(270deg,rgba(15,26,47,.58) 0,rgba(15,26,47,0) 34%)}
 .hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:end;padding-block:130px 64px}
 .hero .txt{display:grid;gap:22px;align-content:end}
 .hero .q{font-size:clamp(50px,7.4vw,112px)}
@@ -372,7 +373,7 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
   .hero .bg{position:relative;inset:auto;height:46svh;min-height:330px;z-index:0}
   .hero .bg .ph{width:100%;right:auto;inset:0}
   .hero .bg .ph img{object-position:50% 45%}
-  .hero .veil{inset:0 0 auto 0;height:46svh;min-height:330px;background:linear-gradient(180deg,rgba(15,26,47,.55) 0,rgba(15,26,47,0) 30%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.55) 22%,rgba(15,26,47,0) 55%)}
+  .hero .veil{inset:0 0 auto 0;height:46svh;min-height:330px;background:linear-gradient(180deg,rgba(15,26,47,.58) 0,rgba(15,26,47,0) 30%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.86) 26%,rgba(15,26,47,.40) 48%,rgba(15,26,47,0) 72%)}
   .hero .wrap{grid-template-columns:1fr;gap:14px;padding-block:0 28px;margin-top:-88px;position:relative;z-index:1}
   .hero .place{position:static;border:0;padding:0;max-width:none;font-size:12px;order:0}
   .hero .place b{display:inline;font-size:13.5px;margin-inline-end:6px}
@@ -623,7 +624,18 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
       <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd394" stop-opacity=".5"/><stop offset="1" stop-color="#ffd394" stop-opacity="0"/></radialGradient>
       <radialGradient id="pool" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd394" stop-opacity=".35"/><stop offset="1" stop-color="#ffd394" stop-opacity="0"/></radialGradient>
       <linearGradient id="steel" x1="0" x2="1"><stop offset="0" stop-color="#2b323b"/><stop offset=".45" stop-color="#6d7680"/><stop offset=".6" stop-color="#4a525b"/><stop offset="1" stop-color="#20262d"/></linearGradient>
-      <symbol id="bollard" viewBox="0 0 160 280">
+      </defs>
+  </svg>
+  <div class="wrap">
+    <div>
+      <p class="word" data-lamp="manual"><small>המקום</small>שביל.</p>
+      <p class="eyebrow" style="margin-top:34px">02 · ההיסוס השני</p>
+      <p class="q">«ואם השביל שלי <em>בצל</em> רוב היום?»</p>
+      <p class="a"><b>אז לא זו.</b> הפאנל נטען מהשמש; שביל שכמעט אינו מקבל אור יום יישאר חשוך בלילה. אנחנו אומרים את זה כאן, לפני ההזמנה — נסו להדליק את הכבויה.</p>
+    </div>
+    <div class="pair">
+      <div class="lamp lamp-b on" data-lamp>
+        <svg aria-hidden="true" viewBox="0 0 160 280">
         <g class="halo2">
           <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
           <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
@@ -635,24 +647,24 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
           <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
           <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
         </g>
-      </symbol>
-    </defs>
-  </svg>
-  <div class="wrap">
-    <div>
-      <p class="word" data-lamp="manual"><small>המקום</small>שביל.</p>
-      <p class="eyebrow" style="margin-top:34px">02 · ההיסוס השני</p>
-      <p class="q">«ואם השביל שלי <em>בצל</em> רוב היום?»</p>
-      <p class="a"><b>אז לא זו.</b> הפאנל נטען מהשמש; שביל שכמעט אינו מקבל אור יום יישאר חשוך בלילה. אנחנו אומרים את זה כאן, לפני ההזמנה — נסו להדליק את הכבויה.</p>
-    </div>
-    <div class="pair">
-      <div class="lamp lamp-b on" data-lamp>
-        <svg aria-hidden="true" viewBox="0 0 160 280"><use href="#bollard"/></svg>
+      </svg>
         <span class="tag">מתאים כדי</span>
         <p>לראות את הדרך</p>
       </div>
       <div class="lamp lamp-b off" tabindex="0" role="button" aria-label="לא מתאים כאשר המקום כמעט אינו מקבל אור יום">
-        <svg aria-hidden="true" viewBox="0 0 160 280"><use href="#bollard"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 160 280">
+        <g class="halo2">
+          <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
+          <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
+        </g>
+        <rect class="body" x="62" y="120" width="36" height="140" />
+        <rect class="diff" x="62" y="42" width="36" height="78"/>
+        <rect class="cap" x="58" y="34" width="44" height="8"/>
+        <g class="bulb">
+          <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
+          <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
+        </g>
+      </svg>
         <span class="tag">לא מתאים כש־</span>
         <p>המקום כמעט אינו מקבל אור יום</p>
         <span class="hint">לא נדלקת. זו הנקודה.</span>
@@ -675,12 +687,84 @@ noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--
     <div class="rowdev" aria-hidden="true">
       <svg viewBox="0 0 1000 300">
         <line class="floorline" x1="0" y1="262" x2="1000" y2="262"/>
-        <g class="u"><use href="#bollard" x="20" y="0" width="160" height="280"/></g>
-        <g class="u"><use href="#bollard" x="184" y="0" width="160" height="280"/></g>
-        <g class="u"><use href="#bollard" x="348" y="0" width="160" height="280"/></g>
-        <g class="u"><use href="#bollard" x="512" y="0" width="160" height="280"/></g>
-        <g class="u"><use href="#bollard" x="676" y="0" width="160" height="280"/></g>
-        <g class="u"><use href="#bollard" x="840" y="0" width="160" height="280"/></g>
+        <g class="u"><g transform="translate(20,0)">
+        <g class="halo2">
+          <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
+          <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
+        </g>
+        <rect class="body" x="62" y="120" width="36" height="140" />
+        <rect class="diff" x="62" y="42" width="36" height="78"/>
+        <rect class="cap" x="58" y="34" width="44" height="8"/>
+        <g class="bulb">
+          <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
+          <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
+        </g>
+      </g></g>
+        <g class="u"><g transform="translate(184,0)">
+        <g class="halo2">
+          <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
+          <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
+        </g>
+        <rect class="body" x="62" y="120" width="36" height="140" />
+        <rect class="diff" x="62" y="42" width="36" height="78"/>
+        <rect class="cap" x="58" y="34" width="44" height="8"/>
+        <g class="bulb">
+          <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
+          <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
+        </g>
+      </g></g>
+        <g class="u"><g transform="translate(348,0)">
+        <g class="halo2">
+          <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
+          <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
+        </g>
+        <rect class="body" x="62" y="120" width="36" height="140" />
+        <rect class="diff" x="62" y="42" width="36" height="78"/>
+        <rect class="cap" x="58" y="34" width="44" height="8"/>
+        <g class="bulb">
+          <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
+          <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
+        </g>
+      </g></g>
+        <g class="u"><g transform="translate(512,0)">
+        <g class="halo2">
+          <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
+          <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
+        </g>
+        <rect class="body" x="62" y="120" width="36" height="140" />
+        <rect class="diff" x="62" y="42" width="36" height="78"/>
+        <rect class="cap" x="58" y="34" width="44" height="8"/>
+        <g class="bulb">
+          <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
+          <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
+        </g>
+      </g></g>
+        <g class="u"><g transform="translate(676,0)">
+        <g class="halo2">
+          <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
+          <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
+        </g>
+        <rect class="body" x="62" y="120" width="36" height="140" />
+        <rect class="diff" x="62" y="42" width="36" height="78"/>
+        <rect class="cap" x="58" y="34" width="44" height="8"/>
+        <g class="bulb">
+          <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
+          <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
+        </g>
+      </g></g>
+        <g class="u"><g transform="translate(840,0)">
+        <g class="halo2">
+          <ellipse cx="80" cy="78" rx="78" ry="66" fill="url(#halo)"/>
+          <ellipse cx="80" cy="262" rx="76" ry="14" fill="url(#pool)"/>
+        </g>
+        <rect class="body" x="62" y="120" width="36" height="140" />
+        <rect class="diff" x="62" y="42" width="36" height="78"/>
+        <rect class="cap" x="58" y="34" width="44" height="8"/>
+        <g class="bulb">
+          <rect x="62" y="42" width="36" height="78" fill="#fff4dd"/>
+          <rect x="66" y="48" width="8" height="66" fill="#fff" opacity=".6"/>
+        </g>
+      </g></g>
       </svg>
     </div>
     <div class="picks" role="group" aria-label="מספר יחידות">

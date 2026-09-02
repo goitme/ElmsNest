@@ -334,6 +334,7 @@ html.js .facts__word:not(.lit) .big{color:transparent}
   .knob i{width:30px;height:30px}
   .sw.off .knob i{transform:translateX(-36px)}
   .sw__stage{height:220px;margin-top:22px}
+  .sw__stage--wall{height:300px}
 
   .gal{padding-block:64px 56px}
   .gal__grid{display:grid;grid-template-columns:1fr;grid-template-rows:auto;width:100%}
@@ -382,7 +383,8 @@ html.js .facts__word:not(.lit) .big{color:transparent}
   .shelf{padding-block:64px 56px}
   .shelf .head{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:32px}
   .shelf .head .h{font-size:clamp(32px,8.6vw,40px)}
-  .floor{overflow-x:auto;scroll-snap-type:x proximity;padding-inline:var(--gut);margin-inline:calc(-1*var(--gut));scrollbar-width:none;padding-bottom:36px}
+  .floor{overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-bottom:36px;overscroll-behavior-inline:contain}
+  .floor::after{inset-inline:0}
   .floor::-webkit-scrollbar{display:none}
   .obj{scroll-snap-align:start}
   .obj:nth-child(1){--ow:230px}.obj:nth-child(2){--ow:170px}.obj:nth-child(3){--ow:210px}
@@ -422,9 +424,12 @@ html:not(.js) .wst .ph img{filter:brightness(.5) saturate(.6)}
 .wst .wash{width:120%;aspect-ratio:1;transform:translate(-50%,-50%) scale(var(--s));background:radial-gradient(50% 50% at 50% 50%,rgba(var(--k),calc(var(--a)*.28)) 0%,rgba(var(--k),0) 60%);filter:blur(10px)}
 .wst.try .hup,.wst.try .hdn,.wst.try .wash{animation:flick .9s steps(1,end) forwards}
 .wst.dark{--on:0}
-.stage--wall .wst{inset-inline-start:auto;inset-inline-end:0;width:58%;--hx:50%;--hy:50%}
-.stage--wall .stage__veil{background:linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.55) 22%,rgba(15,26,47,0) 50%),linear-gradient(270deg,rgba(15,26,47,0) 55%,rgba(15,26,47,.85) 100%)}
-.stage--wall .stage__body{grid-template-columns:minmax(0,1fr);gap:26px;padding-top:min(24vh,220px);justify-items:start;max-width:520px;margin-inline:auto 0}
+.stage--wall .wst{inset-inline-start:auto;inset-inline-end:0;width:55%;--hx:50%;--hy:50%}
+.sw__stage--wall{height:clamp(380px,38vw,540px)}
+.sw__stage--wall .wst .ph img{object-position:50% 46%}
+.stage--wall .stage__veil{z-index:0;background:linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.5) 16%,rgba(15,26,47,0) 42%),linear-gradient(270deg,var(--sky-2) 0,var(--sky-2) 43%,rgba(15,26,47,.85) 50%,rgba(15,26,47,.3) 63%,rgba(15,26,47,0) 78%)}
+.stage--wall .stage__body{grid-template-columns:minmax(0,500px) 1fr;gap:24px 0;padding-top:min(24vh,210px);justify-items:start;align-items:end;margin-inline:auto}
+.stage--wall .stage__txt,.stage--wall .stage__buy{grid-column:1}
 .stage--wall .stage__txt .h{font-size:clamp(44px,5.6vw,80px)}
 .stage--wall .stage__buy{min-width:0;width:100%;grid-template-columns:auto 1fr;align-items:center;gap:8px 22px}
 .stage--wall .stage__terms{grid-column:1/-1}
@@ -447,12 +452,13 @@ html:not(.js) .wst .ph img{filter:brightness(.5) saturate(.6)}
   .rail--qty .stop{min-width:0;padding:16px 0 4px}
   .rail--qty .stop b{font-size:22px}
   .rail--qty .stop i{display:none}
-  .rail--qty .rail__label small{display:block}
+  .rail--qty .rail__label{flex-direction:column;align-items:flex-start;gap:5px}
+  .rail--qty .rail__label small{display:block;line-height:1.4}
   .stage--wall{grid-template-rows:auto 1fr auto}
-  .stage--wall .wst{position:relative;inset:auto;width:100vw;margin-inline:calc(-1*var(--gut));height:46svh;min-height:300px;order:-1;margin-top:0}
-  .stage--wall .stage__veil{background:linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.2) 40%,transparent 60%),linear-gradient(180deg,rgba(2,3,6,.55),transparent 22%)}
-  .stage--wall .stage__body{max-width:none;padding-top:0;margin-top:-56px;gap:10px}
-  .stage--wall .stage__buy{grid-template-columns:1fr auto}
+  .stage--wall .wst{position:relative;inset:auto;width:auto;margin-inline:calc(-1*var(--gut));height:46svh;min-height:300px;order:-1;margin-top:0}
+  .stage--wall .stage__veil{z-index:0;background:linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.2) 40%,transparent 60%),linear-gradient(180deg,rgba(2,3,6,.55),transparent 22%)}
+  .stage--wall .stage__body{grid-template-columns:minmax(0,1fr);padding-top:0;margin-top:-56px;gap:10px;margin-inline:auto}
+  .stage--wall .stage__buy{grid-template-columns:minmax(0,1fr) auto}
   .rails{grid-template-columns:1fr;gap:18px;margin-top:10px;padding-bottom:20px}
   .rails .stop b{font-size:22px}
   .rails .stop i{font-size:13px}
