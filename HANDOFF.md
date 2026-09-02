@@ -123,3 +123,28 @@ regenerate with `node brief/shot.js brief/side-pages/pdp/concepts/<key>/index.ht
 
 **Tooling that must be re-installed in a fresh container:** `npm install playwright@1.54.1` in the scratchpad
 (`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`), `pip install pillow`, then `cd brief/assets && python3 fetch.py`.
+
+### 7.2 State after 2026-09-02 evening (rounds 0 and 1 complete)
+
+**Round 0 — shared core: DONE and independently re-verified.** `brief/side-pages/core/REPORT.md` (+ §10 fix pass).
+All 15 required pages: header glyph contrast 13.7–14.2:1 (was invisible), cream ≤0.032 %, `env2-base` loaded once,
+0 Liquid errors, page ends `#020306`, no horizontal overflow. Homepage byte-identical to the pre-round-0 baseline
+except the header-menu/footer Heebo bands §A.1 mandates. Cart drawer night, verified on a populated drawer.
+Four contrast defects found by the verifiers and fixed (contact-form fields 2.66→14.4:1, search input cream,
+empty-cart CTA 1.4→13.1:1, tooltip 1:1), plus the header search drawer, the mobile card overlay, and the
+"שאל שאלה" modal. Live core md5 `87f570fb1f007d4a0fa5102090377ae9` = the repo file.
+Lead decisions still open: (a) the anchor-button contract bug — `.env2-section a{color:inherit}` outranks
+`.env2-btn{color:…}` so the homepage hero CTA is 1.21:1; pre-existing, one-line fix, needs approval to touch the
+homepage; (b) the four `--en-*-text` notice colours are cream-era on night (search-none warning 2.19:1) — a colour
+decision, not engineering; (c) the seven `templates/customers/*.json` edits are **inert** (Shopify new customer
+accounts: `/account/login` 302s to shopify.com) — keep as dead code or drop from the round.
+
+**Round 1 — PDP concepts: DONE, waiting on the owner.** Five concepts built and shot
+(`brief/side-pages/pdp/concepts/{switch,dialogue,place,ledger,walk}/`), five judges (conversion ×1.5),
+weighted: switch 8.64 · place 8.51 · dialogue 8.41 · ledger 8.34 · walk 7.25. Winner **switch**; ruling
+`brief/side-pages/pdp/RULING.md` (Hebrew, for the owner), build-ready spec `brief/side-pages/pdp/WINNING-SPEC.md`
+(921 lines, 8 sections + the product card + the sticky bar + the `templates/product.json` plan). Owner checkpoint
+page: the generator is `brief/side-pages/pdp/build-ruling-page.py`.
+**Next after the owner approves the concept:** build the eight `elmsnest-v2-pdp-*` sections per the spec, deploy,
+adversarial critique (a critic must execute the buy flow on an http-served mirror), then the owner's verdict.
+Then round 2 (collection) inherits the product card designed inside the PDP.
