@@ -46,7 +46,7 @@
             "footer_about": {
               "type": "text",
               "settings": {
-                "text": "<p>תאורת חוץ בלבד, לפי המקום: שביל, קיר, גינה, מרפסת. אם משהו לא מתאים לכם — נגיד לפני שתזמינו.</p>",
+                "text": "<p>שאלות על מוצר או על התאמה למקום? כתבו לנו: info@elmsnest.com</p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",
@@ -200,7 +200,7 @@
             "links": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/pages/contact-us\">עמוד יצירת קשר</a></p><p><a href=\"https://wa.me/\">וואטסאפ — לשלוח תמונה של המקום</a></p>",
+                "text": "<p><a href=\"/pages/contact-us\">עמוד יצירת קשר</a></p><p><a href=\"/pages/contact-us\">לשליחת תמונה של המקום</a></p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",
@@ -273,7 +273,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p>© ElmsNest 2026 · elmsnest.com · <a href=\"/#env2-terms\">תנאי משלוח וביטול</a></p>",
+                "text": "<p>ElmsNest © 2026 · <a href=\"/#env2-terms\">תנאי משלוח וביטול</a></p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",

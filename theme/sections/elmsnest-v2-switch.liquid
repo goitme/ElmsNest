@@ -146,7 +146,7 @@
               {{ section.settings.whatsapp_label }}
             </a>
           {%- endif -%}
-        {%- else -%}
+        {%- elsif section.settings.whatsapp_label != blank or settings.whatsapp_number != blank -%}
           <a class="env2-link env2-switch__wa" href="{{ wa_href }}">לשליחת תמונה</a>
         {%- endif -%}
       </div>

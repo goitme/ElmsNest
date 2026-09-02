@@ -57,8 +57,8 @@
         "header_space_top_mobile": 0,
         "sticky_type": "on_scroll_up",
         "header_sticky_colors": "scheme-env2-night",
-        "background_opacity_sticky": 0.7,
-        "sticky_glass": true
+        "background_opacity_sticky": 0.9,
+        "sticky_glass": false
       }
     }
   },

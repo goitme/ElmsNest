@@ -169,7 +169,7 @@
     linear-gradient(180deg,var(--env2-sky-2) 0,transparent 20%)}
   .env2-wall__wrap{grid-template-columns:minmax(0,1fr);gap:0;padding-block:52vh 60px;padding-block:52svh 60px}
   .env2-wall__txt{gap:18px}
-  .env2-wall__h2.env2-h{font-size:clamp(48px,14vw,64px)}
+  .env2-wall__h2.env2-h{font-size:clamp(40px,calc(17vw - 12px),64px)} /* 42px at 320, 54px at 390: the wider line is 6.26em, so a 280px column needs <= 44.7px */
   .env2-wall__prod{max-width:none}
   .env2-wall__t{font-size:16px}
   .env2-wall__price .env2-price.env2-price{--env2-price-size:30px}

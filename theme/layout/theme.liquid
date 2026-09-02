@@ -73,9 +73,24 @@
         assign en_hero_mob = en_hero_pr.images[0] | default: en_hero_pr.featured_image
       -%}
       {%- if en_hero_mob != blank -%}
+        {%- comment -%} R26: cap 1000/1400 against the image width exactly like the hero's mobile <source srcset> (else 1000w) {%- endcomment -%}
+        {%- assign en_hero_m_widths = '1000,1400' | split: ',' -%}
+        {%- assign en_hero_m_sep = '' -%}
+        {%- capture en_hero_m_srcset -%}
+          {%- for en_w in en_hero_m_widths -%}
+            {%- assign en_wn = en_w | plus: 0 -%}
+            {%- if en_wn <= en_hero_mob.width -%}
+              {{- en_hero_m_sep -}}{{ en_hero_mob | image_url: width: en_wn }} {{ en_wn }}w
+              {%- assign en_hero_m_sep = ', ' -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if en_hero_m_srcset == blank -%}
+          {%- capture en_hero_m_srcset -%}{{ en_hero_mob | image_url: width: 1000 }} 1000w{%- endcapture -%}
+        {%- endif -%}
         <link rel="preload" as="image" media="(max-width: 900px)" fetchpriority="high"
           href="{{ en_hero_mob | image_url: width: 1000 }}"
-          imagesrcset="{{ en_hero_mob | image_url: width: 1000 }} 1000w, {{ en_hero_mob | image_url: width: 1400 }} 1400w"
+          imagesrcset="{{ en_hero_m_srcset | strip }}"
           imagesizes="100vw">
       {%- endif -%}
       {%- if en_hero_desk != blank -%}
