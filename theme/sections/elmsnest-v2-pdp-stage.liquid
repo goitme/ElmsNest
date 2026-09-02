@@ -192,7 +192,21 @@
   # the hero photograph — every slot goes through the §3.5 resolver, never a literal index
   assign env2_devx = section.settings.device_x | default: '50%'
   assign env2_devy = section.settings.device_y | default: '38%'
-  assign env2_device = section.settings.stage_device | default: 'string'
+  assign env2_device = section.settings.stage_device | default: 'auto'
+  # 'auto' = the device the product's own place asks for: one template serves all 27 products,
+  # so a wall light must never get a string of bulbs drawn across its photograph (§3.5 / §6).
+  if env2_device == 'auto'
+    assign env2_device = 'none'
+    if env2_p.type == 'גרילנדות ותאורה דקורטיבית'
+      assign env2_device = 'string'
+    elsif env2_p.type == 'תאורת שביל, עמוד וגינה'
+      assign env2_device = 'path'
+    elsif env2_p.type == 'תאורת קיר'
+      assign env2_device = 'halo'
+    elsif env2_p.type == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+      assign env2_device = 'halo'
+    endif
+  endif
 -%}
 {%- capture env2_hi -%}{%- render 'elmsnest-v2-pdp-image', product: env2_p, slot: 'hero', index: section.settings.hero_image_index -%}{%- endcapture -%}
 {%- liquid
@@ -897,7 +911,7 @@
     { "type": "text", "id": "object_position_desktop", "label": "מיקוד התמונה — דסקטופ", "default": "50% 45%" },
     { "type": "text", "id": "object_position_mobile", "label": "מיקוד התמונה — מובייל", "default": "50% 50%" },
     { "type": "header", "content": "מה נדלק על התמונה" },
-    { "type": "select", "id": "stage_device", "label": "התאורה שמצוירת על התמונה", "options": [ { "value": "string", "label": "שרשרת נורות" }, { "value": "path", "label": "שורת מנורות בשביל" }, { "value": "halo", "label": "הילה על הקיר" }, { "value": "none", "label": "בלי ציור" } ], "default": "string" },
+    { "type": "select", "id": "stage_device", "label": "התאורה שמצוירת על התמונה", "info": "אוטומטי בוחר לפי סוג המוצר: גרילנדה = שרשרת, שביל = שורת מנורות, קיר וספוט = הילה.", "options": [ { "value": "auto", "label": "אוטומטי — לפי סוג המוצר" }, { "value": "string", "label": "שרשרת נורות" }, { "value": "path", "label": "שורת מנורות בשביל" }, { "value": "halo", "label": "הילה על הקיר" }, { "value": "none", "label": "בלי ציור" } ], "default": "auto" },
     { "type": "text", "id": "device_x", "label": "מיקום ההילה — רוחב", "default": "50%" },
     { "type": "text", "id": "device_y", "label": "מיקום ההילה — גובה", "default": "38%" },
     { "type": "header", "content": "אפשרויות ומחיר" },
@@ -938,7 +952,7 @@
     {
       "name": "ElmsNest v2 — במה",
       "settings": {
-        "stage_device": "string",
+        "stage_device": "auto",
         "price_axis_option": "auto",
         "show_rail": true,
         "show_buybar": true

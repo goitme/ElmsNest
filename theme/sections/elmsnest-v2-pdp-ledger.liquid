@@ -1,0 +1,871 @@
+{%- comment -%}
+  ElmsNest v2 PDP — §4.4 "the variant / price ledger"  ·  #env2-pdp-ledger  ·  spine answer #4.
+
+  The technical heart of the page. Every length / quantity / wattage with its own price BEFORE
+  selecting, the per-metre or per-unit figure beside it, what that row is FOR (graft A), and its own
+  add-to-cart. 24 variants become one decision, and the range is never hidden.
+
+  ------------------------------------------------------------------ where every number comes from
+  rows      : snippets/elmsnest-v2-pdp-variants (CONTRACT-PDP §3). Captured in its default text mode —
+              it PRINTS raw text, so the call is wrapped in a capture or "~~F~~" lands on the page.
+              The JSON emit belongs to the stage, once per page; this section only READS that tag.
+              A -> 6 rows on "אורך ומספר נורות"; C -> the PAIR עוצמה x גוון אור -> 4 rows; B -> one
+              variant, so the model says mode=single and the ledger becomes a QUANTITY ledger posting
+              quantity=N against the single variant id (§4.4 product B, graft C).
+  per-unit  : the model's own field, computed price / metres (or / units) to the AGORA, never 1 dp.
+              It is empty for a wattage axis, because a price per watt is meaningless.
+  lead      : parsed VERBATIM from the product's own description — the advice paragraph that sits
+              immediately before "פרטים שכדאי לדעת" (§5). Nothing is typed. Blank if nothing fits.
+  headline  : two authored brand lines keyed to what the model found: the row count and unit word for
+              the first, and the QUIET option's OWN NAME for the second ("הצבע לא משנה את המחיר.").
+              Both are settings, so a merchant can overwrite either.
+  __use     : graft A. Authored captions live in "row" BLOCKS, keyed by the option value (and
+              optionally by product handle, because templates/product.elmsnest.json is shared by all
+              27 products). A row with no matching block simply carries NO caption — §4.4's rule is
+              "quoted, never invented", so absence is the honest state, not a placeholder.
+  quiet copy: the quiet axis is printed BENEATH the table as a fact (label + values + note), and its
+              describing sentence is quoted from the description when a paragraph there names at least
+              two of the option's own values. It is a CONTROL only inside the no-JS row forms and in
+              the JS buy line; when the axis has ONE value nothing is rendered at all (BRIEF §11).
+
+  ------------------------------------------------------------------ no JS / JS  (the §4.4 inversion)
+  NO JS  : every row visible with its price, the per-unit figure and its caption, and every row
+           BUYABLE — one <form method="post" action="{{ routes.cart_add_url }}"> per row with the
+           quiet axis as a native <select name="id">. Six prices, six forms. The strings are lit
+           (the core only dims [data-lamp] under html.env2-js). Nothing needs a script.
+  WITH JS: html.env2-js hides the per-row forms, the row button becomes the selector, ONE buy line
+           appears under the table with the chosen row's price and a single הוספה לסל (a <button> in
+           a form[data-env2-buy], so the CORE posts it to /cart/add.js and opens the cart drawer —
+           §8.3: never an anchor styled as the filled pill), the stage above is driven by clicking
+           its own matching stop, and ?variant= is kept in sync with history.replaceState.
+           The enhanced state is the REDUCED state.
+  MOTION : §3.3 "ledger — the chosen row's string; the previous row's string dims to cord only". The
+           <ol> is data-lamp="manual"; one IntersectionObserver lights it and the rows fade up 55 ms
+           apart. Reduced motion: the core lights every lamp, manual included, with no transition.
+
+  Plumbing: elmsnest-v2-core (from layout/theme.liquid) supplies the tokens, fonts, .env2-* helpers,
+  [data-lamp], window.env2 and the form[data-env2-buy] handler. No image is rendered here, so the
+  §3.5 resolver is not needed; no background is painted (§3.1, the ground is the body's).
+{%- endcomment -%}
+{%- liquid
+  assign env2_p = product
+  assign env2_ok = false
+  if env2_p != blank and env2_p.variants.size > 0
+    assign env2_ok = true
+  endif
+-%}
+{%- if env2_ok -%}
+{%- capture env2_model -%}{%- render 'elmsnest-v2-pdp-variants', product: env2_p, axis: section.settings.price_axis_option -%}{%- endcapture -%}
+{%- liquid
+  assign FS = '~~F~~'
+  assign RS = '~~R~~'
+  assign env2_recs = env2_model | split: RS
+  assign env2_m = env2_recs[0] | split: FS
+
+  assign env2_mode = env2_m[1] | default: 'variants'
+  assign env2_qax = env2_m[6] | plus: 0
+  assign env2_qname = env2_m[7] | default: ''
+  assign env2_qvals = env2_m[8] | plus: 0
+  assign env2_defrow = env2_m[10] | plus: 0
+  assign env2_defid = env2_m[11]
+  assign env2_unit = env2_m[15] | default: ''
+  assign env2_axvals = env2_m[18] | plus: 0
+  assign env2_latin = '|W|w|K|k|V|A|LED|USB|'
+  # units that may stand apart from the numeral as a small mark; anything else (a dimension tail such
+  # as "x1.5") is joined into the numeral's own <bdi>, or RTL breaks the pair apart.
+  assign env2_hunits = '|מ׳|מ|מטר|מטרים|ס״מ|יח׳|יח|יחידה|יחידות|נורות|'
+
+  # ---------------------------------------------------------------- 1. the row list
+  # Both shapes are printed by ONE loop, so the markup can never drift between them: the quantity
+  # ledger is synthesised into the model's own record layout (CONTRACT-PDP §3.4) and both lists keep
+  # a throw-away first record, so both are read with "offset: 1".
+  assign env2_rowlist = env2_recs
+  assign env2_unitone = section.settings.quantity_unit_one | default: 'יחידה'
+  assign env2_unitmany = section.settings.quantity_unit | default: 'יחידות'
+  if env2_mode == 'single'
+    assign env2_unitprice = env2_p.price_min | plus: 0
+    assign env2_unitprice_txt = env2_unitprice | money_without_currency
+    assign env2_avail = '0'
+    if env2_p.selected_or_first_available_variant != blank
+      assign env2_avail = '1'
+    endif
+    assign env2_qlabel = env2_p.variants.first.title | default: ''
+    if env2_qlabel == 'Default Title' or env2_qlabel == 'Title'
+      assign env2_qlabel = ''
+    endif
+    assign env2_synth = 'skip'
+    assign env2_qi = -1
+    assign env2_steps = section.settings.quantity_steps | default: '1,2,3,4,6,8' | split: ','
+    for env2_s in env2_steps
+      assign env2_qn = env2_s | strip | plus: 0
+      if env2_qn < 1
+        continue
+      endif
+      assign env2_qi = env2_qi | plus: 1
+      assign env2_tot = env2_unitprice | times: env2_qn
+      if env2_qn == 1
+        assign env2_qword = env2_unitone
+      else
+        assign env2_qword = env2_unitmany
+      endif
+      assign env2_per = ''
+      assign env2_perlab = ''
+      if env2_qn > 1
+        assign env2_per = env2_unitprice_txt
+        assign env2_perlab = '&#8362; ל' | append: env2_unitone
+      endif
+      assign env2_quiet = env2_defid | append: '^' | append: env2_qlabel | append: '^' | append: env2_unitprice | append: '^' | append: env2_avail
+      assign env2_rec = 'row' | append: FS | append: env2_qi | append: FS | append: env2_qn | append: FS | append: env2_qn | append: FS | append: env2_qword | append: FS
+      assign env2_rec = env2_rec | append: env2_qn | append: ' ' | append: env2_qword | append: FS | append: env2_qn | append: FS | append: '' | append: FS | append: '' | append: FS | append: '' | append: FS
+      assign env2_rec = env2_rec | append: env2_tot | append: FS | append: env2_tot | append: FS | append: env2_per | append: FS | append: env2_perlab | append: FS | append: env2_avail | append: FS
+      assign env2_rec = env2_rec | append: env2_defid | append: FS | append: 1 | append: FS | append: env2_quiet | append: FS | append: '' | append: FS | append: 'e'
+      assign env2_synth = env2_synth | append: RS | append: env2_rec
+    endfor
+    assign env2_rowlist = env2_synth | split: RS
+  endif
+
+  # the money column of a synthesised record is still in cents; format it at the point of use.
+  assign env2_nprinted = env2_rowlist.size | minus: 1
+  assign env2_show = false
+  if env2_mode == 'single' and env2_nprinted > 0
+    assign env2_show = true
+  elsif env2_mode != 'single' and env2_nprinted > 1
+    assign env2_show = true
+  endif
+
+  # ---------------------------------------------------------------- 2. the to-scale string
+  # width is the row's own first number against the widest one; the drawn bulb density is the row's
+  # own bulb count, thinned so a 200-bulb string stays a string and not a bar.
+  assign env2_maxn = 0
+  for env2_rec in env2_rowlist offset: 1
+    assign r = env2_rec | split: FS
+    if r[6] != blank
+      assign env2_nf = r[6] | plus: 0.0
+      if env2_nf > env2_maxn
+        assign env2_maxn = env2_nf
+      endif
+    endif
+  endfor
+
+  # ---------------------------------------------------------------- 3. the head
+  assign env2_words = '-|-|שני|שלושה|ארבעה|חמישה|שישה|שבעה|שמונה|תשעה|עשרה' | split: '|'
+  assign env2_word = '-'
+  if env2_axvals > 1 and env2_axvals < 11
+    assign env2_word = env2_words[env2_axvals]
+  endif
+  assign env2_type = env2_p.type | default: ''
+  assign env2_h1 = section.settings.heading_line1 | default: '' | strip
+  if env2_h1 == ''
+    if env2_mode == 'single'
+      assign env2_h1 = 'כמה נקודות אור'
+      if env2_type == 'תאורת שביל, עמוד וגינה'
+        assign env2_h1 = env2_h1 | append: ' בדרך הביתה.'
+      elsif env2_type == 'תאורת קיר'
+        assign env2_h1 = env2_h1 | append: ' על הקיר.'
+      elsif env2_type == 'גרילנדות ותאורה דקורטיבית'
+        assign env2_h1 = env2_h1 | append: ' במרפסת.'
+      elsif env2_type == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+        assign env2_h1 = env2_h1 | append: ' בגינה.'
+      else
+        assign env2_h1 = env2_h1 | append: '.'
+      endif
+    elsif env2_m[3] != '0' and env2_m[3] != blank
+      assign env2_h1 = 'כל שילוב והמחיר שלו.'
+    elsif env2_word != '-' and env2_unit != blank and env2_unit != 'W'
+      if env2_unit == 'מ׳' or env2_unit == 'מ' or env2_unit == 'מטר' or env2_unit == 'מטרים'
+        assign env2_h1 = env2_word | append: ' אורכים.'
+      else
+        assign env2_h1 = env2_word | append: ' גדלים.'
+      endif
+    elsif env2_unit == 'W' and env2_word != '-'
+      assign env2_h1 = env2_word | append: ' עוצמות.'
+    else
+      assign env2_h1 = 'כל אפשרות והמחיר שלה.'
+    endif
+  endif
+  assign env2_h2 = section.settings.heading_line2 | default: '' | strip
+  if env2_h2 == '' and env2_qvals > 1
+    if env2_qname contains 'צבע'
+      assign env2_h2 = 'הצבע לא משנה את המחיר.'
+    elsif env2_qname != blank
+      assign env2_h2 = env2_qname | append: ' לא משנה את המחיר.'
+    endif
+  endif
+
+  # ---------------------------------------------------------------- 4. the lead + the quiet sentence
+  # One pass over the description's own block boundaries (strip_html glues <b>A</b><p>B</p> into "AB",
+  # so the closing tags become the separators first). Everything after "פרטים שכדאי לדעת" is the spec
+  # list and belongs to §4.5, not here.
+  assign env2_lead = section.settings.lead | default: '' | strip
+  assign env2_qdesc = section.settings.quiet_axis_desc | default: '' | strip
+  assign env2_needdesc = false
+  if env2_qdesc == '' and env2_qvals > 1 and env2_qax > 0
+    assign env2_needdesc = true
+  endif
+  if env2_lead == '' or env2_needdesc
+    assign env2_qvi = env2_qax | minus: 1
+    assign env2_qopt = env2_p.options_with_values[env2_qvi]
+    assign env2_raw = env2_p.description | replace: '</p>', '~~' | replace: '</div>', '~~' | replace: '</h1>', '~~' | replace: '</h2>', '~~' | replace: '</h3>', '~~' | replace: '</h4>', '~~' | replace: '</h5>', '~~' | replace: '</b>', '~~' | replace: '</strong>', '~~' | replace: '</li>', '~~' | replace: '</td>', '~~' | replace: '<br>', '~~' | replace: '<br/>', '~~' | replace: '<br />', '~~' | strip_html
+    assign env2_blocks = env2_raw | split: '~~'
+    assign env2_prev1 = ''
+    assign env2_prev2 = ''
+    assign env2_found = false
+    for env2_b in env2_blocks
+      assign env2_t = env2_b | strip
+      if env2_t == ''
+        continue
+      endif
+      if env2_t contains 'פרטים שכדאי לדעת'
+        assign env2_found = true
+        break
+      endif
+      # the quiet axis's own describing sentence: prose that names at least two of its values
+      if env2_needdesc and env2_qdesc == '' and env2_t.size > 28
+        assign env2_hits = 0
+        for env2_v in env2_qopt.values
+          if env2_v != blank and env2_t contains env2_v
+            assign env2_hits = env2_hits | plus: 1
+          endif
+        endfor
+        if env2_hits > 1
+          assign env2_qdesc = env2_t
+        endif
+      endif
+      assign env2_prev2 = env2_prev1
+      assign env2_prev1 = env2_t
+    endfor
+    unless env2_found
+      assign env2_prev1 = env2_prev2
+      assign env2_prev2 = ''
+    endunless
+    if env2_lead == ''
+      # the advice paragraph is prose, not a spec run, and it may never name a power source while
+      # custom.power_source is empty (§3.7 — that is product C today).
+      for env2_pass in (1..2)
+        if env2_pass == 1
+          assign env2_cand = env2_prev1
+        else
+          assign env2_cand = env2_prev2
+        endif
+        assign env2_okp = true
+        if env2_cand.size < 25
+          assign env2_okp = false
+        endif
+        unless env2_cand contains '.'
+          assign env2_okp = false
+        endunless
+        if env2_cand contains ' · ' or env2_cand contains 'סולארי' or env2_cand contains 'חשמל'
+          assign env2_okp = false
+        endif
+        if env2_okp and env2_lead == ''
+          assign env2_lead = env2_cand
+          break
+        endif
+      endfor
+    endif
+  endif
+  if env2_qdesc contains 'סולארי' or env2_qdesc contains 'חשמל'
+    assign env2_qdesc = ''
+  endif
+
+  # ---------------------------------------------------------------- 5. the quiet-axis fact line
+  assign env2_qnote = section.settings.quiet_axis_note | default: '' | strip
+  if env2_qnote == '' and env2_qvals > 1
+    if env2_qname contains 'צבע'
+      assign env2_qnote = 'אותו מחיר לכל צבע'
+    else
+      assign env2_qnote = 'אותו מחיר לכל ' | append: env2_qname
+    endif
+  endif
+  assign env2_qlist = ''
+  if env2_qvals > 1 and env2_qax > 0
+    assign env2_qvi = env2_qax | minus: 1
+    assign env2_qlist = env2_p.options_with_values[env2_qvi].values | join: ' · '
+  endif
+
+  assign env2_perlabel_over = section.settings.per_unit_suffix | default: '' | strip
+  assign env2_addlabel = section.settings.add_label | default: 'הוספה לסל'
+-%}
+{%- if env2_show -%}
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-labelledby="env2-pdp-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-ledger__wrap">
+
+    <div class="env2-pdp-ledger__head">
+      <div class="env2-pdp-ledger__headline">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="env2-eyebrow env2-pdp-ledger__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="env2-h env2-pdp-ledger__h2" id="env2-pdp-ledger-h2">{{ env2_h1 }}{%- if env2_h2 != blank %} <em>{{ env2_h2 }}</em>{% endif -%}</h2>
+      </div>
+      {%- if env2_lead != blank -%}
+        <p class="env2-lead env2-pdp-ledger__lead">{{ env2_lead }}</p>
+      {%- endif -%}
+    </div>
+
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="{{ env2_mode }}">
+      {%- for env2_rec in env2_rowlist offset: 1 -%}
+        {%- assign r = env2_rec | split: FS -%}
+        {%- liquid
+          assign rn = r[6]
+          assign ru = r[7]
+          assign rprice = r[10]
+          if env2_mode == 'single'
+            assign rprice = r[10] | plus: 0 | money_without_currency
+          endif
+
+          # a Latin unit shares the numeral's <bdi> so RTL can never reorder the pair ("6W");
+          # a Hebrew unit stays its own <small> ("5" + "מ׳").
+          assign rlatin = false
+          assign rjoin = false
+          assign rprobe = '|' | append: ru | append: '|'
+          if ru != blank and env2_latin contains rprobe
+            assign rlatin = true
+          elsif ru != blank
+            unless env2_hunits contains rprobe
+              assign rjoin = true
+            endunless
+          endif
+          assign rnum = rn
+          if rlatin
+            if ru.size > 1
+              assign rnum = rn | append: ' ' | append: ru
+            else
+              assign rnum = rn | append: ru
+            endif
+          elsif rjoin
+            assign rnum = rn | append: ru
+          endif
+
+          # the second label: the parsed count ("20 נורות"), else the second price axis ("אור חם 3000K").
+          # A LATIN unit shares the number's own <bdi> ("96 LED"), or RTL reorders the pair to "LED 96".
+          assign rcap = ''
+          assign rcaplatin = false
+          if r[8] != blank
+            assign rcap = r[8] | append: ' ' | append: r[9]
+            assign rcapprobe = '|' | append: r[9] | append: '|'
+            if r[9] != blank and env2_latin contains rcapprobe
+              assign rcaplatin = true
+            endif
+          elsif r[4] != blank
+            assign rcap = r[4]
+          endif
+
+          # the to-scale string: width from this row's own number, density from its own bulb count
+          assign rw = 100
+          if env2_maxn > 0 and rn != blank
+            assign rw = rn | times: 100.0 | divided_by: env2_maxn | round
+          endif
+          if rw < 14
+            assign rw = 14
+          endif
+          if rw > 100
+            assign rw = 100
+          endif
+          assign rdots = 0
+          if env2_mode == 'single' and rn != blank
+            assign rdots = rn | plus: 0
+          elsif r[8] != blank
+            assign rdots = r[8] | times: 1.0 | divided_by: 6.0 | round
+            if rdots < 4
+              assign rdots = 4
+            endif
+          else
+            # no bulb count on this axis (a wattage row): one soft pool, not a bulb count
+            assign rdots = 1
+          endif
+          if rdots < 1
+            assign rdots = 1
+          endif
+          if rdots > 26
+            assign rdots = 26
+          endif
+
+          # graft A: the authored caption, keyed by the option value (and optionally by handle,
+          # because templates/product.elmsnest.json is shared by all 27 products)
+          assign ruse = ''
+          assign runit = ru
+          assign rcap_over = ''
+          assign rattr = ''
+          assign rquiet = r[17] | split: ';'
+        -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign bh = block.settings.handle | default: '' | strip
+            assign bv = block.settings.label | default: '' | strip
+            assign bok = false
+            if bv != blank and bv == r[3]
+              assign bok = true
+            elsif bv != blank and bv == r[2]
+              assign bok = true
+            endif
+            if bok and bh != '' and bh != env2_p.handle
+              assign bok = false
+            endif
+            if bok
+              assign ruse = block.settings.use_caption | default: ''
+              if block.settings.unit_label != blank
+                assign runit = block.settings.unit_label
+              endif
+              if block.settings.bulbs_label != blank
+                assign rcap_over = block.settings.bulbs_label
+              endif
+            endif
+          -%}
+          {%- if bok -%}{%- capture rattr -%}{{ block.shopify_attributes }}{%- endcapture -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if rcap_over != blank -%}{%- assign rcap = rcap_over -%}{%- endif -%}
+        {%- unless rlatin -%}{%- assign ru = runit -%}{%- endunless -%}
+        <li class="env2-pdp-ledger__row{% if forloop.index0 == env2_defrow %} env2-pdp-ledger__row--on{% endif %}" data-env2-pdp-ledger-row data-i="{{ forloop.index0 }}" data-label="{{ r[5] | escape }}" data-qty="{% if env2_mode == 'single' %}{{ r[6] }}{% else %}1{% endif %}" data-price="{{ r[11] }}" data-id="{{ r[15] }}" data-quiet="{{ r[17] | escape }}" style="--env2-pdp-ledger-d:{{ forloop.index0 }}" {{ rattr }}>
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="{% if forloop.index0 == env2_defrow %}true{% else %}false{% endif %}" aria-label="{{ r[5] | escape }}, {{ rprice }} ש״ח">
+            <span class="env2-pdp-ledger__n">
+              {%- if rn != blank -%}
+                {%- if rlatin or rjoin -%}<bdi>{{ rnum }}</bdi>{%- else -%}<bdi>{{ rn }}</bdi>{%- if ru != blank -%}<small>{{ ru }}</small>{%- endif -%}{%- endif -%}
+              {%- else -%}
+                <span class="env2-pdp-ledger__n-text">{{ r[3] | escape }}</span>
+              {%- endif -%}
+            </span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:{{ rw }}%;--env2-pdp-ledger-n:{{ rdots }}"></i>
+              {%- if rcap != blank -%}<span class="env2-pdp-ledger__b">{% if rcaplatin %}<bdi>{{ rcap | escape }}</bdi>{% else %}{{ rcap | escape }}{% endif %}</span>{%- endif -%}
+            </span>
+            <span class="env2-pdp-ledger__use">{{ ruse }}</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>{{ rprice }}</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">{%- if r[12] != blank and section.settings.show_per_unit -%}&#8776;&nbsp;<bdi>{{ r[12] }}</bdi> {{ env2_perlabel_over | default: r[13] }}{%- endif -%}</span>
+          </button>
+          <form method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="{% if env2_mode == 'single' %}{{ r[6] }}{% else %}1{% endif %}">
+            {%- if rquiet.size > 1 -%}
+              <select class="env2-pdp-ledger__sel" name="id" aria-label="{{ env2_qname | escape }} — {{ r[5] | escape }}">
+                {%- for q in rquiet -%}
+                  {%- assign qf = q | split: '^' -%}
+                  <option value="{{ qf[0] }}"{% if qf[3] != '1' %} disabled{% endif %}>{{ qf[1] | escape }}</option>
+                {%- endfor -%}
+              </select>
+            {%- else -%}
+              <input type="hidden" name="id" value="{{ r[15] }}">
+            {%- endif -%}
+            <button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit"{% if r[14] != '1' %} disabled{% endif %}>{{ env2_addlabel }}</button>
+          </form>
+        </li>
+      {%- endfor -%}
+    </ol>
+
+    {%- comment -%}
+      The JS-only buy line. Under html.env2-js the six row forms above collapse into this one; with
+      JS off it is display:none and the row forms are the whole path. The submit control is a
+      <button> inside form[data-env2-buy], so the core posts it to /cart/add.js and opens the cart
+      drawer, and §8.3 (an anchor styled as the filled pill measures 1.21:1) cannot bite.
+    {%- endcomment -%}
+    <div class="env2-pdp-ledger__buy" data-env2-pdp-ledger-buy>
+      <span class="env2-pdp-ledger__chosen">
+        <span class="env2-kicker env2-pdp-ledger__chosen-label">{{ section.settings.chosen_label | default: 'הבחירה שלכם' }}</span>
+        <b class="env2-pdp-ledger__chosen-value" data-env2-pdp-ledger-mirror></b>
+      </span>
+      <span class="env2-price env2-pdp-ledger__buyprice" aria-live="polite"><bdi data-env2-pdp-ledger-price>{{ env2_m[12] }}</bdi> &#8362;</span>
+      <form method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__buyform" data-env2-buy>
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="&#x2713;">
+        <input type="hidden" name="id" value="{{ env2_defid }}" data-env2-pdp-ledger-id>
+        <input type="hidden" name="quantity" value="1" data-env2-pdp-ledger-qty>
+        {%- if env2_qvals > 1 -%}
+          <select class="env2-pdp-ledger__sel env2-pdp-ledger__buysel" data-env2-pdp-ledger-quiet aria-label="{{ env2_qname | escape }}"></select>
+        {%- endif -%}
+        <button class="env2-btn env2-btn--sm env2-pdp-ledger__buybtn" type="submit">{{ env2_addlabel }}</button>
+      </form>
+    </div>
+
+    {%- if env2_qlist != blank -%}
+      <div class="env2-pdp-ledger__quiet">
+        <p class="env2-kicker env2-pdp-ledger__qlabel">{{ env2_qname | escape }}</p>
+        <p class="env2-pdp-ledger__qvals">{{ env2_qlist | escape }}{%- if env2_qnote != blank %} <small>{{ env2_qnote }}</small>{% endif -%}</p>
+        {%- if env2_qdesc != blank -%}<p class="env2-pdp-ledger__qdesc">{{ env2_qdesc }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="env2-pdp-ledger__foot">{{ section.settings.footnote }}</p>
+    {%- endif -%}
+    {%- if section.settings.js_note != blank -%}
+      <p class="env2-pdp-ledger__jsnote" data-env2-pdp-ledger-jsnote>{{ section.settings.js_note }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+{%- endif -%}
+{%- elsif request.design_mode -%}
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger env2-pdp-ledger--empty" dir="rtl" style="scroll-margin-top:90px">
+  <div class="env2-wrap"><p class="env2-pdp-ledger__empty">מחירון הווריאנטים מופיע רק בתבנית של מוצר.</p></div>
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+/* ElmsNest v2 PDP §4.4 — the variant / price ledger. Rows on hairlines, never boxes (do-not §6.14 and
+   §6.20: eight sections, eight compositions). No background is painted here — the ground is the
+   body's (§3.1). Logical properties only; radius 0 everywhere except the core's pills. */
+.env2-pdp-ledger{padding-block:clamp(72px,11vw,110px) clamp(64px,10vw,100px)}
+.env2-pdp-ledger__wrap{position:relative;z-index:1}
+.env2-pdp-ledger__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);gap:clamp(18px,3vw,56px);align-items:end;margin-block-end:clamp(30px,4vw,54px)}
+.env2-pdp-ledger__eyebrow{margin:0 0 clamp(16px,2vw,26px)}
+.env2-pdp-ledger__h2{font-size:clamp(34px,4.9vw,72px)}
+.env2-pdp-ledger__h2 em{display:block}
+.env2-pdp-ledger__lead{margin:0;max-inline-size:42ch;padding-block-end:6px}
+
+/* ---------- the rows ---------- */
+.env2-pdp-ledger__rows{list-style:none;margin:0;padding:0}
+.env2-pdp-ledger__row{display:flex;align-items:center;gap:clamp(12px,1.6vw,24px);border-block-start:1px solid var(--env2-hair)}
+.env2-pdp-ledger__row:last-of-type{border-block-end:1px solid var(--env2-hair)}
+.env2-pdp-ledger__pick{flex:1 1 auto;min-inline-size:0;display:grid;
+  grid-template-columns:minmax(88px,max-content) 200px minmax(0,1fr) max-content minmax(96px,max-content);
+  align-items:center;column-gap:clamp(12px,1.6vw,24px);
+  margin:0;padding:18px 0;border:0;border-radius:0;background:transparent;color:inherit;
+  font:inherit;text-align:start;cursor:pointer;appearance:none;-webkit-appearance:none}
+.env2-pdp-ledger__n{font-family:var(--env2-serif);font-weight:500;font-size:clamp(34px,3vw,44px);line-height:1;
+  font-variant-numeric:tabular-nums;color:var(--env2-ink-2);white-space:nowrap;transition:color .4s}
+.env2-pdp-ledger__n small{font-size:max(12.5px,.32em);font-weight:400;margin-inline-start:.18em;letter-spacing:.02em}
+.env2-pdp-ledger__n-text{font-family:var(--env2-sans);font-size:17px;font-weight:400;line-height:1.25;display:block;unicode-bidi:isolate}
+.env2-pdp-ledger__vis{display:grid;gap:7px;min-inline-size:0}
+/* the row's own string: length to scale, bulbs at the row's own density — drawn in CSS, so it is
+   there with JS off and it cannot cost a paint. */
+.env2-pdp-ledger__string{position:relative;display:block;block-size:16px;inline-size:var(--env2-pdp-ledger-w,100%)}
+.env2-pdp-ledger__string::before{content:"";position:absolute;inset-inline:0;inset-block-start:7px;block-size:1px;
+  background:rgba(244,238,227,.2)}
+.env2-pdp-ledger__string::after{content:"";position:absolute;inset-inline:0;inset-block:0;
+  background-image:radial-gradient(circle at 50% 50%,rgba(255,224,178,1) 0,rgba(255,205,132,.62) 26%,rgba(255,196,110,0) 58%);
+  background-size:calc(100% / var(--env2-pdp-ledger-n,10)) 100%;
+  opacity:calc(.24 + .46*var(--lit,1));
+  transition:opacity .55s ease;transition-delay:calc(var(--env2-pdp-ledger-d,0) * 55ms)}
+.env2-pdp-ledger__b{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.3;color:var(--env2-mute);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;unicode-bidi:isolate}
+.env2-pdp-ledger__use{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.45;color:var(--env2-ink-2);
+  text-wrap:pretty;unicode-bidi:isolate}
+.env2-pdp-ledger__price{--env2-price-size:22px;color:var(--env2-ink-2);transition:color .4s,text-shadow .4s}
+.env2-pdp-ledger__pm{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.35;color:var(--env2-mute);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+/* the chosen row: its numeral and price come up to full ink, its string lights, the others stay cord */
+.env2-pdp-ledger__row--on .env2-pdp-ledger__n{color:var(--env2-ink)}
+.env2-pdp-ledger__row--on .env2-pdp-ledger__price{color:var(--env2-glow);text-shadow:0 0 18px rgba(255,211,148,.3)}
+.env2-pdp-ledger__row--on .env2-pdp-ledger__string::after{opacity:calc(.5 + .5*var(--lit,1));
+  filter:drop-shadow(0 0 5px rgba(255,211,148,.45))}
+.env2-pdp-ledger__row--on .env2-pdp-ledger__use{color:var(--env2-ink)}
+.env2-pdp-ledger__pick:hover .env2-pdp-ledger__n{color:var(--env2-ink)}
+
+/* ---------- the per-row form: the no-JS path (§4.4) ---------- */
+.env2-pdp-ledger__form{flex:0 0 auto;inline-size:132px;display:grid;gap:9px;margin:0;padding:0}
+.env2-pdp-ledger__sel{inline-size:100%;max-inline-size:100%;margin:0;border:0;border-block-end:1px solid var(--env2-hair-btn);
+  border-radius:0;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:400;font-size:14px;
+  line-height:1.3;padding:7px 0;min-block-size:44px;appearance:none;-webkit-appearance:none;cursor:pointer}
+.env2-pdp-ledger__sel:focus-visible{outline:2px solid var(--env2-glow);outline-offset:3px}
+.env2-pdp-ledger__sel option{background:#070b15;color:#f4eee3}
+.env2-pdp-ledger__add[disabled]{opacity:.45;cursor:not-allowed}
+.env2-js .env2-pdp-ledger__form{display:none}
+
+/* ---------- the JS-only buy line (the §4.4 inversion: six forms become one) ---------- */
+.env2-pdp-ledger__buy{display:none}
+.env2-js .env2-pdp-ledger__buy{display:flex;flex-wrap:wrap;align-items:center;gap:14px clamp(18px,2.4vw,34px);
+  padding-block:22px;border-block-end:1px solid var(--env2-hair)}
+.env2-pdp-ledger__chosen{display:grid;gap:5px;min-inline-size:0;flex:1 1 220px}
+.env2-pdp-ledger__chosen-label{font-size:11.5px}
+.env2-pdp-ledger__chosen-value{font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate}
+.env2-pdp-ledger__buyprice{--env2-price-size:26px}
+.env2-pdp-ledger__buyform{display:flex;align-items:center;gap:14px;margin:0;padding:0;flex-wrap:wrap}
+.env2-pdp-ledger__buysel{inline-size:auto;min-inline-size:132px}
+.env2-pdp-ledger__buybtn{color:var(--env2-btn-ink)}
+
+/* ---------- the quiet axis, printed as a fact (§3.6: an axis that never changes the price) ---------- */
+.env2-pdp-ledger__quiet{margin-block-start:clamp(24px,3vw,38px);display:grid;gap:7px;max-inline-size:62ch}
+.env2-pdp-ledger__qlabel{margin:0;font-size:11.5px}
+.env2-pdp-ledger__qvals{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.4;color:var(--env2-ink);unicode-bidi:isolate}
+.env2-pdp-ledger__qvals small{font-weight:300;font-size:13px;color:var(--env2-mute);margin-inline-start:.5em}
+.env2-pdp-ledger__qdesc{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.5;color:var(--env2-ink-2)}
+.env2-pdp-ledger__foot{margin:clamp(22px,3vw,34px) 0 0;font-family:var(--env2-sans);font-weight:300;font-size:14px;
+  line-height:1.5;color:var(--env2-ink-2);max-inline-size:60ch}
+.env2-pdp-ledger__jsnote{display:none}
+.env2-js .env2-pdp-ledger__jsnote{display:block;margin:clamp(14px,2vw,20px) 0 0;font-family:var(--env2-sans);font-weight:300;
+  font-size:13px;line-height:1.5;color:var(--env2-mute)}
+.env2-pdp-ledger__empty{font-family:var(--env2-sans);font-size:14px;color:var(--env2-mute);padding-block:40px}
+
+/* ---------- 900px: two lines per row, never a six-column squeeze (§4.4) ---------- */
+@media (max-width:900px){
+  .env2-pdp-ledger{padding-block:clamp(56px,12vw,84px) clamp(48px,10vw,72px)}
+  .env2-pdp-ledger__head{grid-template-columns:minmax(0,1fr);align-items:start;gap:18px}
+  .env2-pdp-ledger__lead{max-inline-size:none;padding-block-end:0}
+  .env2-pdp-ledger__row{display:block;padding-block:20px}
+  .env2-pdp-ledger__pick{inline-size:100%;padding:0;column-gap:12px;row-gap:9px;
+    grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"n vis price" "use use pm"}
+  .env2-pdp-ledger__n{grid-area:n;font-size:34px;align-self:center}
+  .env2-pdp-ledger__vis{grid-area:vis;align-self:center}
+  .env2-pdp-ledger__use{grid-area:use;font-size:14px;align-self:start}
+  .env2-pdp-ledger__price{grid-area:price;--env2-price-size:20px;align-self:center}
+  .env2-pdp-ledger__pm{grid-area:pm;justify-self:end;align-self:start;font-size:13px}
+  .env2-pdp-ledger__form{inline-size:100%;margin-block-start:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+  .env2-pdp-ledger__sel{flex:1 1 130px;inline-size:auto}
+  .env2-pdp-ledger__add{flex:0 0 auto}
+  .env2-js .env2-pdp-ledger__buy{gap:12px 18px;padding-block:20px}
+  .env2-pdp-ledger__buyprice{--env2-price-size:24px}
+  .env2-pdp-ledger__buyform{inline-size:100%}
+  .env2-pdp-ledger__buybtn{flex:1 1 auto;min-block-size:48px}
+}
+@media (max-width:420px){
+  .env2-pdp-ledger__pick{grid-template-columns:auto minmax(0,1fr) auto}
+  .env2-pdp-ledger__n{font-size:30px}
+  .env2-pdp-ledger__b{font-size:13px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* ElmsNest v2 PDP §4.4 — the ledger. Progressive enhancement only: with JS off every row is already
+   visible, priced and buyable through its own form, so this file adds the selector behaviour and
+   nothing the page depends on. Every number it needs is a data-* attribute Liquid already wrote on
+   the row, so the section is self-sufficient — it never parses the stage's JSON tag (rendered once
+   per page, by the stage) and never writes a second one. */
+(function () {
+  function money(n) {
+    var s = (Math.round(n * 100) / 100).toFixed(2).split('.');
+    return s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + s[1];
+  }
+  /* "id^label^cents^avail;id^label^cents^avail" — the row's own quiet variants (CONTRACT-PDP §3.4) */
+  function parseQuiet(txt) {
+    var out = [], list = (txt || '').split(';');
+    for (var i = 0; i < list.length; i++) {
+      if (!list[i]) { continue; }
+      var f = list[i].split('^');
+      out.push({ id: f[0], label: f[1] || '', price: parseInt(f[2], 10) || 0, available: f[3] === '1' });
+    }
+    return out;
+  }
+
+  function init(el) {
+    var rows = [].slice.call(el.querySelectorAll('[data-env2-pdp-ledger-row]'));
+    if (!rows.length) { return; }
+    var list = el.querySelector('[data-env2-pdp-ledger-rows]');
+    var idEl = el.querySelector('[data-env2-pdp-ledger-id]');
+    var qtyEl = el.querySelector('[data-env2-pdp-ledger-qty]');
+    var priceEl = el.querySelector('[data-env2-pdp-ledger-price]');
+    var mirrorEl = el.querySelector('[data-env2-pdp-ledger-mirror]');
+    var quietEl = el.querySelector('[data-env2-pdp-ledger-quiet]');
+    var single = !!(list && list.getAttribute('data-mode') === 'single');
+    var stage = document.querySelector('[data-env2-pdp-stage]');
+    var cur = 0;
+
+    /* the note promises the stage lights up; if this page has no stage, the promise is not true */
+    var note = el.querySelector('[data-env2-pdp-ledger-jsnote]');
+    if (note && !stage) { note.hidden = true; }
+
+    var data = rows.map(function (row) {
+      return {
+        label: row.getAttribute('data-label') || '',
+        qty: parseInt(row.getAttribute('data-qty'), 10) || 1,
+        price: parseInt(row.getAttribute('data-price'), 10) || 0,
+        id: row.getAttribute('data-id') || '',
+        variants: parseQuiet(row.getAttribute('data-quiet'))
+      };
+    });
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].className.indexOf('env2-pdp-ledger__row--on') > -1) { cur = i; }
+    }
+
+    function clean(v) { return (!v || v === 'Default Title' || v === 'Title') ? '' : v; }
+
+    /* the quiet axis lives on the stage when there is one; the ledger mirrors it, and a change made
+       here is pushed back, so the two can never disagree about the colour that reaches the cart. */
+    function stageQuiet() {
+      if (!stage) { return null; }
+      return stage.querySelector('select[data-env2-stage-quiet]') ||
+             stage.querySelector('input[type="radio"][data-env2-stage-quiet]:checked');
+    }
+    function quietText() {
+      if (quietEl && quietEl.selectedIndex > -1) { return quietEl.options[quietEl.selectedIndex].text; }
+      var sq = stageQuiet();
+      if (sq && sq.tagName === 'SELECT' && sq.selectedIndex > -1) { return sq.options[sq.selectedIndex].text; }
+      if (sq && sq.tagName === 'INPUT') { return (sq.parentNode.textContent || '').trim(); }
+      return '';
+    }
+    function fillQuiet(d) {
+      if (!quietEl) { return; }
+      var keep = quietText();
+      quietEl.innerHTML = '';
+      for (var i = 0; i < d.variants.length; i++) {
+        var o = document.createElement('option');
+        o.value = d.variants[i].id; o.textContent = d.variants[i].label; o.disabled = !d.variants[i].available;
+        if (d.variants[i].label === keep) { o.selected = true; }
+        quietEl.appendChild(o);
+      }
+    }
+    function chosen(d) {
+      if (quietEl && quietEl.value) {
+        for (var i = 0; i < d.variants.length; i++) { if (String(d.variants[i].id) === String(quietEl.value)) { return d.variants[i]; } }
+      }
+      for (var k = 0; k < d.variants.length; k++) { if (d.variants[k].available) { return d.variants[k]; } }
+      return d.variants[0] || null;
+    }
+
+    function syncUrl(id) {
+      if (!id || !window.history || !history.replaceState) { return; }
+      try {
+        var u = new URL(window.location.href);
+        u.searchParams.set('variant', id);
+        history.replaceState(null, '', u.pathname + u.search + u.hash);
+      } catch (e) { /* older browser: leave the URL alone */ }
+    }
+
+    /* the stage owns the price count-up, the drawn string and the sticky bar; the ledger drives it by
+       activating the stage's own matching stop, so a variant change has exactly one code path. */
+    function driveStage(i, qty) {
+      if (!stage) { return; }
+      var stops = [].slice.call(stage.querySelectorAll('[data-env2-stage-stop]')), s = null;
+      for (var k = 0; k < stops.length; k++) {
+        if (single) { if (String(stops[k].getAttribute('data-qty')) === String(qty)) { s = stops[k]; } }
+        else if (String(stops[k].getAttribute('data-i')) === String(i)) { s = stops[k]; }
+      }
+      if (s) { s.click(); }
+    }
+
+    function paint(i, fromUser) {
+      cur = i;
+      for (var k = 0; k < rows.length; k++) {
+        var on = k === i;
+        rows[k].classList.toggle('env2-pdp-ledger__row--on', on);
+        var b = rows[k].querySelector('[data-env2-pdp-ledger-pick]');
+        if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+      }
+      var d = data[i];
+      if (!single) { fillQuiet(d); }
+      var v = chosen(d);
+      var id = (v && v.id) || d.id;
+      var cents = single ? d.price : ((v && v.price) || d.price);
+      if (idEl) { idEl.value = id; }
+      if (qtyEl) { qtyEl.value = String(d.qty); }
+      if (priceEl && cents) { priceEl.textContent = money(cents / 100); }
+      if (mirrorEl) {
+        var txt = d.label;
+        var q = clean(single ? '' : quietText());
+        if (q) { txt = txt ? (txt + ' · ' + q) : q; }
+        mirrorEl.textContent = txt;
+      }
+      if (fromUser) { driveStage(i, d.qty); syncUrl(id); }
+    }
+
+    rows.forEach(function (row, i) {
+      var btn = row.querySelector('[data-env2-pdp-ledger-pick]');
+      if (btn) { btn.addEventListener('click', function () { paint(i, true); }); }
+      /* the whole row is a target, but never at the cost of the row's own form controls */
+      row.addEventListener('click', function (ev) {
+        if (ev.target && ev.target.closest && ev.target.closest('form,select,button,a')) { return; }
+        paint(i, true);
+      });
+    });
+    if (quietEl) {
+      quietEl.addEventListener('change', function () {
+        var want = quietEl.selectedIndex > -1 ? quietEl.options[quietEl.selectedIndex].text : '';
+        var sq = stageQuiet();
+        if (sq && sq.tagName === 'SELECT' && want) {
+          for (var k = 0; k < sq.options.length; k++) {
+            if (sq.options[k].text === want) { sq.selectedIndex = k; break; }
+          }
+          try { sq.dispatchEvent(new Event('change', { bubbles: true })); } catch (e) { /* old Event(): nothing to sync */ }
+        }
+        paint(cur, false);
+        syncUrl(quietEl.value);
+      });
+    }
+
+    /* an incoming ?variant= (a shared link, a Meta catalogue deep link) opens on its own row */
+    var start = cur;
+    try {
+      var want = new URL(window.location.href).searchParams.get('variant');
+      if (want && !single) {
+        for (var a = 0; a < data.length; a++) {
+          for (var b2 = 0; b2 < data[a].variants.length; b2++) {
+            if (String(data[a].variants[b2].id) === String(want)) { start = a; }
+          }
+        }
+      }
+    } catch (e) { /* no URL support: keep the server's default row */ }
+    paint(start, false);
+
+    /* §3.3: the rows light on arrival, 55 ms apart (the delay is a CSS custom property on each row) */
+    if (list) {
+      var lit = false;
+      var lightAll = function () {
+        if (lit) { return; }
+        lit = true;
+        if (window.env2 && env2.light) { env2.light(list); } else { list.classList.add('lit'); }
+      };
+      var rm = window.env2 ? env2.rm : false;
+      if (rm || !('IntersectionObserver' in window)) { lightAll(); }
+      else {
+        var io = new IntersectionObserver(function (entries) {
+          for (var n = 0; n < entries.length; n++) {
+            if (entries[n].isIntersecting) { io.disconnect(); lightAll(); return; }
+          }
+        }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+        io.observe(list);
+      }
+    }
+  }
+
+  document.querySelectorAll('[data-env2-pdp-ledger]').forEach(function (el) {
+    init(el);
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — מחירון",
+  "tag": "section",
+  "class": "env2-pdp-ledger-section section-allow-transparent hdt-section",
+  "settings": [
+    { "type": "header", "content": "הכותרת" },
+    { "type": "text", "id": "eyebrow", "label": "שורת מספר", "default": "04 · מה מקבלים" },
+    { "type": "text", "id": "heading_line1", "label": "כותרת — שורה ראשונה (ריק = נגזרת ממספר האפשרויות של המוצר)" },
+    { "type": "text", "id": "heading_line2", "label": "כותרת — שורה שנייה, זוהרת (ריק = נגזרת מהאפשרות שאינה משנה מחיר)" },
+    { "type": "textarea", "id": "lead", "label": "פסקת פתיחה (ריק = פסקת ההמלצה מתוך תיאור המוצר)" },
+    { "type": "header", "content": "השורות" },
+    { "type": "select", "id": "price_axis_option", "label": "האפשרות שקובעת את המחיר", "options": [ { "value": "auto", "label": "זיהוי אוטומטי" }, { "value": "option1", "label": "אפשרות 1" }, { "value": "option2", "label": "אפשרות 2" }, { "value": "option3", "label": "אפשרות 3" } ], "default": "auto" },
+    { "type": "checkbox", "id": "show_per_unit", "label": "להציג מחיר למטר / ליחידה", "default": true },
+    { "type": "text", "id": "per_unit_suffix", "label": "טקסט אחרי המחיר ליחידה (ריק = לפי היחידה של המוצר)" },
+    { "type": "text", "id": "add_label", "label": "כפתור הוספה לסל", "default": "הוספה לסל" },
+    { "type": "text", "id": "chosen_label", "label": "תווית שורת הבחירה", "default": "הבחירה שלכם" },
+    { "type": "header", "content": "מוצר עם וריאנט אחד — מחירון כמויות" },
+    { "type": "text", "id": "quantity_steps", "label": "כמויות בשורות", "default": "1,2,3,4,6,8" },
+    { "type": "text", "id": "quantity_unit_one", "label": "יחידת כמות — יחיד", "default": "יחידה" },
+    { "type": "text", "id": "quantity_unit", "label": "יחידת כמות — רבים", "default": "יחידות" },
+    { "type": "header", "content": "האפשרות שאינה משנה מחיר" },
+    { "type": "text", "id": "quiet_axis_note", "label": "הערה (ריק = נגזרת משם האפשרות)" },
+    { "type": "textarea", "id": "quiet_axis_desc", "label": "משפט מסביר (ריק = מצוטט מתיאור המוצר, אם יש)" },
+    { "type": "header", "content": "מתחת לטבלה" },
+    { "type": "textarea", "id": "footnote", "label": "הערת שוליים (מצוטטת מתיאור המוצר בלבד)" },
+    { "type": "text", "id": "js_note", "label": "שורה שמופיעה רק כשיש JavaScript", "default": "לחיצה על שורה מדליקה אותה בבמה למעלה." }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "הערה לשורה",
+      "settings": [
+        { "type": "text", "id": "label", "label": "ערך האפשרות (למשל: 5 מ׳ / 20 נורות) — או הכמות במוצר עם וריאנט אחד" },
+        { "type": "text", "id": "handle", "label": "מזהה המוצר (ריק = כל מוצר שיש לו הערך הזה)" },
+        { "type": "text", "id": "use_caption", "label": "למה השורה הזאת מתאימה — מצוטט מתיאור המוצר בלבד" },
+        { "type": "text", "id": "unit_label", "label": "יחידה ליד המספר (ריק = מהאפשרות עצמה)" },
+        { "type": "text", "id": "bulbs_label", "label": "תווית משנית (ריק = מהאפשרות עצמה)" }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "ElmsNest v2 — מחירון",
+      "settings": {
+        "eyebrow": "04 · מה מקבלים",
+        "price_axis_option": "auto",
+        "show_per_unit": true,
+        "quantity_steps": "1,2,3,4,6,8"
+      }
+    }
+  ]
+}
+{% endschema %}

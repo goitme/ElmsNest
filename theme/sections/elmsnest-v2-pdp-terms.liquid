@@ -1,0 +1,290 @@
+{%- comment -%}
+  ElmsNest v2 PDP — §4.6 "ארבעה מספרים, לפני שמשלמים."  ·  #env2-pdp-terms  ·  spine answer #6.
+
+  The licensed consumer wording, sold as a virtue (graft H). A compact one-line strip already sits
+  under the add-to-cart in §4.1; THIS is the full ledger — a 2-column hairline ledger, never four
+  boxes across (do-not §6.2, and the v1 trust strip this replaces was exactly that).
+
+  ------------------------------------------------------------------ where every word comes from
+  Nothing here is a product claim, so nothing here reads a product field: the four numbers are the
+  store's consumer terms, licensed wording preserved verbatim from snippets/elmsnest-pdp-facts and
+  -trust (WINNING-SPEC §5 "copy the licensed wording into §4.6 first"), and the headings are graft H
+  (BRIEF §3 "Consumer terms, findable on the PDP"). No new claim is written here, and no number on
+  this page is derived from the product — so this section renders identically, and correctly, on all
+  27 products: it touches no image index, no option, no variant and no metafield. `product` is used
+  for exactly one thing, and only when it exists: the shared photo-CTA snippet names the product
+  inside the prefilled mail body.
+
+  ------------------------------------------------------------------ the photo link (§4.7 mailto rule)
+  settings.whatsapp_number is empty, so the "1 תמונה" row's link is a mailto. This section never
+  builds that URL: it renders snippets/elmsnest-v2-pdp-photo-cta, the one place both branches live,
+  which strips any WhatsApp claim a label might carry. A block that carries its own link_url gets a
+  plain anchor instead; a block with no label at all renders no link.
+
+  ------------------------------------------------------------------ bidi
+  Every digit-leading token of a headline or a sentence ("8–17", "1–3", "7–14", "29.90", "5%",
+  "100") is wrapped in <bdi> at render time, so a range never flips to "3–1" inside the Hebrew
+  sentence and the merchant can keep typing plain text. A slash pair stays inside ONE <bdi>,
+  because the wrapper splits on spaces and never inside a token (§6.17).
+
+  ------------------------------------------------------------------ no JS / reduced motion
+  Everything is server-rendered text: with JavaScript disabled the four numerals are lit (the core
+  sets --lit:1 unless html.env2-js), every sentence is present and the two link kinds are ordinary
+  anchors. JS does exactly one thing — light the four numerals in reading order, 120 ms apart
+  (§3.3) — which is why they are [data-lamp="manual"]: the core's shared observer skips manual
+  lamps, except under reduced motion, where it lights all four at once with no transition.
+
+  Plumbing: elmsnest-v2-core (from layout/theme.liquid) supplies the tokens, fonts, .env2-*
+  helpers and window.env2. This section renders no global and owns no other snippet.
+{%- endcomment -%}
+{%- liquid
+  assign digits = '0123456789'
+  assign line_blocks = section.blocks | where: 'type', 'number'
+-%}
+<section id="env2-pdp-terms" data-env2-pdp-terms class="env2-section env2-pdp-terms" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.55" aria-labelledby="env2-pdp-terms-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-pdp-terms__wrap">
+    <div class="env2-pdp-terms__head">
+      <div class="env2-pdp-terms__title">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="env2-eyebrow env2-pdp-terms__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 id="env2-pdp-terms-h2" class="env2-h env2-pdp-terms__h2">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.deck != blank -%}
+        <p class="env2-pdp-terms__deck">{{ section.settings.deck }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if line_blocks.size > 0 -%}
+      <ol class="env2-pdp-terms__ledger" data-env2-pdp-terms-ledger>
+        {%- for block in line_blocks -%}
+          {%- comment -%}
+            One pass over "headline ~~F~~ sentence": every word that starts with a digit becomes its
+            own <bdi>. Built with append (never literal text) so Shopify's whitespace trimming can
+            not eat the spaces, and split on '~~F~~' (not ' ~~F~~ ') so a blank headline still keeps
+            the two halves aligned.
+          {%- endcomment -%}
+          {%- liquid
+            assign pair_src = block.settings.headline | strip | append: ' ~~F~~ ' | append: block.settings.sub
+            assign pair_out = ''
+            assign words = pair_src | strip | escape | split: ' '
+            for w in words
+              assign c = w | slice: 0, 1
+              if c != blank and digits contains c
+                assign tok = '<bdi>' | append: w | append: '</bdi>'
+              else
+                assign tok = w
+              endif
+              if forloop.first
+                assign pair_out = tok
+              else
+                assign pair_out = pair_out | append: ' ' | append: tok
+              endif
+            endfor
+            assign pair_out = pair_out | replace: '</bdi> ₪', '</bdi>&nbsp;₪' | replace: '</bdi> %', '</bdi>&nbsp;%'
+            assign halves = pair_out | split: '~~F~~'
+            assign headline_html = halves[0] | strip
+            assign sub_html = halves[1] | default: '' | strip
+          -%}
+          <li class="env2-pdp-terms__line" data-lamp="manual" {{ block.shopify_attributes }}>
+            {%- if block.settings.numeral != blank or block.settings.unit != blank -%}
+              <span class="env2-pdp-terms__n">
+                {%- if block.settings.numeral != blank -%}
+                  <bdi class="env2-pdp-terms__num">{{ block.settings.numeral }}</bdi>
+                {%- endif -%}
+                {%- if block.settings.unit != blank -%}
+                  <small class="env2-pdp-terms__unit">{{ block.settings.unit }}</small>
+                {%- endif -%}
+              </span>
+            {%- endif -%}
+            <div class="env2-pdp-terms__t">
+              {%- if headline_html != '' -%}
+                <b class="env2-pdp-terms__b">{{ headline_html }}</b>
+              {%- endif -%}
+              {%- if sub_html != '' -%}
+                <p class="env2-pdp-terms__p">{{ sub_html }}</p>
+              {%- endif -%}
+              {%- if block.settings.link_label != blank -%}
+                <p class="env2-pdp-terms__cta">
+                  {%- if block.settings.link_url != blank -%}
+                    <a class="env2-link env2-pdp-terms__a" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} <span aria-hidden="true">&#8592;</span></a>
+                  {%- else -%}
+                    {%- render 'elmsnest-v2-pdp-photo-cta', product: product, label: block.settings.link_label, class: 'env2-pdp-terms__a' -%}
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    {%- endif -%}
+
+    {%- if section.settings.foot_links != blank -%}
+      <nav class="env2-pdp-terms__foot" aria-label="עמודי מדיניות">{{ section.settings.foot_links }}</nav>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- §4.6 PDP terms: a 2-column hairline ledger — numeral, headline, sentence ----------
+   Never four across (do-not §6.2): two columns on desktop, one on mobile, rows on hairlines,
+   no box and no surface. The section paints no background: the ground is the body gradient from
+   elmsnest-v2-ground-product (§3.1), and the only thing above it is the star layer. */
+.env2-pdp-terms{padding-block:100px 110px}
+.env2-pdp-terms__wrap{position:relative;z-index:1}
+
+/* head: eyebrow + h2 at the start, the deck at the end, bottoms aligned (§4.6 graft H) */
+.env2-pdp-terms__head{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:end;gap:24px 48px;margin-bottom:44px}
+.env2-pdp-terms__title{min-width:0}
+.env2-pdp-terms__eyebrow{margin-bottom:20px}
+.env2-pdp-terms__h2.env2-h{font-size:clamp(34px,4.9vw,72px);max-width:17ch}
+.env2-pdp-terms__deck{justify-self:end;max-width:44ch;margin:0 0 .35em;font-family:var(--env2-sans);font-weight:300;font-size:17px;line-height:1.55;color:var(--env2-ink-2);text-align:end;text-wrap:balance}
+
+/* the ledger: 1fr 1fr, a hairline above every cell, and ONE continuous rule closing the whole
+   ledger — so it stays closed whether there are four numbers, three, or the foot nav is empty */
+.env2-pdp-terms__ledger{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(32px,4vw,64px);row-gap:0;border-bottom:1px solid var(--env2-hair)}
+.env2-pdp-terms__line{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:baseline;margin:0;padding-block:30px;border-top:1px solid var(--env2-hair)}
+
+/* the numeral: FRL 500 tabular glow (§3.2 "terms numeral 72 / 48"), unit at .3em in ink-2.
+   --lit is 0 only while html.env2-js has not lit this line yet; no JS and reduced motion = 1. */
+.env2-pdp-terms__n{display:block;min-width:0;white-space:nowrap;font-family:var(--env2-serif);font-weight:500;font-size:clamp(48px,5vw,72px);line-height:.9;letter-spacing:-.02em;color:var(--env2-glow);font-variant-numeric:tabular-nums;text-shadow:0 0 34px rgba(255,211,148,.22);opacity:calc(.34 + .66*var(--lit,1));transition:opacity 1.1s cubic-bezier(.2,.7,.2,1)}
+.env2-pdp-terms__num{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-pdp-terms__unit{display:inline;font-family:var(--env2-serif);font-weight:400;font-size:.3em;line-height:1;letter-spacing:0;color:var(--env2-ink-2);margin-inline-start:.24em;text-shadow:none}
+
+/* the term: the licensed headline, then the licensed sentence, then the optional link */
+.env2-pdp-terms__t{grid-column:2;display:grid;gap:7px;min-width:0;max-width:44ch}
+.env2-pdp-terms__b{display:block;font-family:var(--env2-sans);font-weight:500;font-size:18px;line-height:1.4;color:var(--env2-ink)}
+.env2-pdp-terms__p{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.6;color:var(--env2-ink-2)}
+.env2-pdp-terms__p bdi,.env2-pdp-terms__b bdi{unicode-bidi:isolate}
+.env2-pdp-terms__cta{margin:5px 0 0;line-height:1}
+.env2-pdp-terms__a{font-size:14px;color:var(--env2-glow);border-bottom:1px solid rgba(255,211,148,.4);padding-bottom:2px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-pdp-terms__a:hover,.env2-pdp-terms__a:focus-visible{color:var(--env2-ink);border-color:var(--env2-ink);text-decoration:none}
+
+/* foot: the policy pages, quiet, hairline-underlined (richtext, one paragraph). 14px — the §3.2
+   floor for an information-bearing line, not the 12.5px the homepage ledger uses for the same nav */
+.env2-pdp-terms__foot{margin-top:24px;font-family:var(--env2-sans);font-weight:400;font-size:14px;line-height:1.7;color:var(--env2-mute)}
+.env2-pdp-terms__foot p{margin:0}
+.env2-pdp-terms__foot a{color:inherit;border-bottom:1px solid rgba(143,149,163,.4);padding-bottom:2px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-pdp-terms__foot a:hover,.env2-pdp-terms__foot a:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+
+/* ---------- mobile: one column, four rows, numeral 48px, 44px tap targets ---------- */
+@media (max-width:900px){
+  .env2-pdp-terms{padding-block:72px 64px}
+  .env2-pdp-terms__head{grid-template-columns:1fr;gap:14px;margin-bottom:26px}
+  .env2-pdp-terms__eyebrow{margin-bottom:14px}
+  .env2-pdp-terms__h2.env2-h{max-width:none}
+  .env2-pdp-terms__deck{justify-self:start;text-align:start;max-width:none;margin-bottom:0;font-size:16px;text-wrap:pretty}
+  .env2-pdp-terms__ledger{grid-template-columns:1fr;column-gap:0}
+  .env2-pdp-terms__line{grid-template-columns:1fr;gap:12px;padding-block:24px}
+  .env2-pdp-terms__n{font-size:48px}
+  .env2-pdp-terms__t{grid-column:auto;max-width:none}
+  .env2-pdp-terms__b{font-size:17px}
+  .env2-pdp-terms__cta{margin-top:2px}
+  .env2-pdp-terms__a{display:inline-flex;align-items:center;min-height:44px}
+  .env2-pdp-terms__foot{line-height:1.5}
+  .env2-pdp-terms__foot a{display:inline-block;padding-block:13px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §4.6 motion: "the four numerals light in reading order, 120 ms apart" (§3.3) — the ONLY thing
+   this file does. The section is complete without it: every word is server-rendered and the core
+   sets --lit:1 whenever html.env2-js is absent or reduced motion is on, so the numerals are lit.
+   The lines are [data-lamp="manual"] so the core's shared observer leaves the stagger to us
+   (it still lights them all at once under reduced motion, which is what §3.3 asks for).
+   Ends with the CONTRACT's env2.observe fallback line. */
+(function () {
+  function init(el) {
+    if (el.__env2PdpTerms) return;
+    el.__env2PdpTerms = true;
+
+    var lines = Array.prototype.slice.call(el.querySelectorAll('[data-lamp="manual"]'));
+    var lightLine = function (l) {
+      if (!l || l.classList.contains('lit')) return;
+      if (window.env2 && window.env2.light) { window.env2.light(l); } else { l.classList.add('lit'); }
+    };
+    var lightAll = function (stagger) {
+      lines.forEach(function (l, i) {
+        if (stagger) { window.setTimeout(function () { lightLine(l); }, i * 120); } else { lightLine(l); }
+      });
+    };
+    var rm = (window.env2 && window.env2.rm) ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    if (!lines.length) {
+      /* nothing to stagger */
+    } else if (rm || !('IntersectionObserver' in window)) {
+      lightAll(false);
+    } else {
+      var target = el.querySelector('[data-env2-pdp-terms-ledger]') || el;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var tall = en.boundingClientRect.top < window.innerHeight * 0.6;
+          if (en.isIntersecting && (en.intersectionRatio >= 0.25 || tall)) {
+            lightAll(true);
+            io.disconnect();
+          }
+        });
+      }, { threshold: [0, 0.25, 0.6], rootMargin: '0px 0px -6%' });
+      io.observe(target);
+    }
+
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-pdp-terms]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-pdp-terms]')) init(scope);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — PDP מספרים",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה קטנה", "default": "06 · אחרי הלחיצה" },
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "ארבעה מספרים, לפני שמשלמים." },
+    { "type": "textarea", "id": "deck", "label": "שורת פתיחה (בצד השני של הכותרת)", "default": "לא אותיות קטנות. אותיות גדולות, במקום גלוי, ליד הכפתור." },
+    { "type": "richtext", "id": "foot_links", "label": "קישורי מדיניות בתחתית", "default": "<p><a href=\"/pages/shipping-delivery\">משלוחים ואספקה</a> · <a href=\"/pages/processing-time\">זמני טיפול</a> · <a href=\"/policies/refund-policy\">מדיניות ביטולים</a> · <a href=\"/pages/help-faq\">שאלות נפוצות</a></p>", "info": "פסקה אחת עם הקישורים לעמודי המדיניות, מופרדים בנקודה." }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "number",
+      "name": "מספר",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "numeral", "label": "המספר הגדול", "default": "14", "info": "לדוגמה: 0 · 8–17 · 14 · 1" },
+        { "type": "text", "id": "unit", "label": "יחידה (מוצגת קטן ליד המספר)", "default": "יום" },
+        { "type": "text", "id": "headline", "label": "השורה המודגשת", "default": "ביטול עסקה לפי חוק הגנת הצרכן." },
+        { "type": "textarea", "id": "sub", "label": "משפט ההסבר", "default": "עד 14 יום מקבלת המוצר. דמי ביטול עד 5% ממחיר העסקה או 100 ₪ — הנמוך מביניהם.", "info": "מספרים וטווחים (למשל 1–3) נשמרים בכיוון הנכון אוטומטית. זהו נוסח משפטי — אין לקצר אותו." },
+        { "type": "text", "id": "link_label", "label": "טקסט קישור (לא חובה)" },
+        { "type": "url", "id": "link_url", "label": "יעד הקישור", "info": "ריק = הקישור לשליחת תמונה של המקום, לפי הגדרות הערכה (מייל היום)." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — PDP מספרים",
+      "blocks": [
+        { "type": "number", "settings": { "numeral": "0", "unit": "₪", "headline": "משלוח לנקודת איסוף — חינם.", "sub": "שליח עד הבית: 29.90 ₪.", "link_label": "" } },
+        { "type": "number", "settings": { "numeral": "8–17", "unit": "", "headline": "ימי עסקים מרגע ההזמנה ועד הדלת.", "sub": "1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל.", "link_label": "" } },
+        { "type": "number", "settings": { "numeral": "14", "unit": "יום", "headline": "ביטול עסקה לפי חוק הגנת הצרכן.", "sub": "עד 14 יום מקבלת המוצר. דמי ביטול עד 5% ממחיר העסקה או 100 ₪ — הנמוך מביניהם.", "link_label": "" } },
+        { "type": "number", "settings": { "numeral": "1", "unit": "תמונה", "headline": "שלחו תמונה של המקום — נבדוק התאמה לפני שתזמינו.", "sub": "ואם המוצר לא מתאים, נגיד את זה.", "link_label": "לשלוח תמונה של המקום" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

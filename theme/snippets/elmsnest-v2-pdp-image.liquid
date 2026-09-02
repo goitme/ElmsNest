@@ -37,8 +37,21 @@
   comment
     Per-product slot ledger (§3.5 "Defaults that ship"). 0-based; admin position = value + 1.
     Format: |<handle>:,<slot>=<i>,…,|   — the commas make every key ",slot=" so no key is a prefix of another.
+
+    Extended 2026-09-02 (additive, by the §4.8 related engineer, proved against the live CDN images):
+    four more handles carry baked-in marketing text at index 0, which is where the "any other product"
+    default for the card/close slots would have landed. Their first text-free frame is recorded here so
+    every section — and round 2's catalogue card — gets a real photograph:
+      modern-led-wall-light-indoor-outdoor  0 = "עיצוב מודרני…" slide, 1/2/3 = specs/labels → 4 is clean
+      solar-firefly-garden-lights           0 = 4-up with a caption, 1 = diagram              → 3 is clean
+      solar-edison-string-lights            0 = "עמיד וחזק", 1 = "מידות ומפרט"                → 3 is clean
+      powerful-solar-garden-light           0/1/3 carry a caption chip, 4/5 are diagrams          → 2 is clean
+    solar-rope-string-lights has NO text-free frame at all: 0/1/3/4 carry a headline, 5 is a diagram,
+    and 2 carries an "עמידות IP65" chip that only a top crop removes; brief/WINNING-SPEC §3.6 uses it
+    with object-position 50% 100%. A card cannot crop, so no row is recorded for it here.
+    No existing row changed; the three archetypes resolve exactly as before.
   endcomment
-  assign env2_led = '|solar-crystal-ball-string-lights:,hero=2,context=2,close=0,card=0,big=2,small=0,thumb=0,wall-pair=2,|stainless-steel-solar-path-light-ip65:,hero=0,context=3,close=3,card=0,big=3,small=1,thumb=3,wall-pair=3,|waterproof-led-wall-light-ip65-6w-12w:,hero=1,context=3,close=3,card=1,big=3,small=2,thumb=1,wall-pair=3,|'
+  assign env2_led = '|solar-crystal-ball-string-lights:,hero=2,context=2,close=0,card=0,big=2,small=0,thumb=0,wall-pair=2,|stainless-steel-solar-path-light-ip65:,hero=0,context=3,close=3,card=0,big=3,small=1,thumb=3,wall-pair=3,|waterproof-led-wall-light-ip65-6w-12w:,hero=1,context=3,close=3,card=1,big=3,small=2,thumb=1,wall-pair=3,|modern-led-wall-light-indoor-outdoor:,card=4,close=4,|solar-firefly-garden-lights:,card=3,close=3,|solar-edison-string-lights:,card=3,close=3,|powerful-solar-garden-light:,card=2,close=2,|'
 
   comment
     Banned indices. The 15 handles of brief/WINNING-SPEC.md §3.6 (index 0 carries baked-in text; for

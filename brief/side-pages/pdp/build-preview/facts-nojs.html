@@ -1,0 +1,613 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest PDP — elmsnest-v2-pdp-facts</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<style>
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1), every template ----------
+   Kalles paints body with its scheme and wraps content in painted containers; here the document
+   is night on every page type and the wrappers go clear. The index keeps its own dusk gradient
+   (snippets/elmsnest-v2-ground-index, rendered by the hero); every other template gets the
+   side-page ground: sky-2 -> sky-3 -> sky-4, ending in #020306 before the footer. */
+html{background:#020306}
+body[class*="hdt-page-type-"]{background-color:#020306;color:#f4eee3}
+body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+#wrapper,.main-content,main,#MainContent,.hdt-main-content,.hdt-page-content,.shopify-section{background:transparent}
+/* Kalles back-to-top: a white square bottom-right (old palette) — hidden everywhere (§7.11) */
+.hdt-back-to-top,back-to-top{display:none!important}
+/* Kalles footer group: same sans as the page, quiet links (underline on hover only).
+   The link rules must reach (0,2,2): the footer links sit inside .hdt-text-warry.hdt-rte, and Kalles'
+   .hdt-rte a:not(.hdt-btn){text-decoration:underline} is (0,2,1), so the plain unscoped selector (0,1,1)
+   lost to it and every footer link came back underlined (fix pass R0-01). The index-scoped rule this
+   replaced was body.hdt-page-type-index .shopify-section-group-footer-group a = (0,2,2) and did win. */
+.shopify-section-group-footer-group{font-family:var(--env2-sans)}
+body .shopify-section-group-footer-group a:not(.hdt-btn){text-decoration:none}
+body .shopify-section-group-footer-group a:not(.hdt-btn):hover,body .shopify-section-group-footer-group a:not(.hdt-btn):focus-visible{text-decoration:underline}
+/* Kalles chrome type: header menu, drawers, popovers, facets and the old sections use Heebo.
+   css-variables sets --f_family_1..3 on :root from the Shopify font (assistant_n4); this comes after it. */
+:root{--f_family_1:var(--env2-sans);--f_family_2:var(--env2-sans);--f_family_3:var(--env2-sans)}
+/* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
+   sale badges never render (settings hidden_badges + this belt) */
+option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
+.hdt-badge__wrapp{display:none!important}
+/* Kalles form fields: the theme paints a field with rgb(var(--color-input-primary)) and writes it with
+   --color-input-secondary. Both the :root fallback (css-variables l.185-186) and the night scheme's
+   input pair still carry cream-era values, so every form rendered a light slab with 2.7:1 text on the
+   night ground (contact form, account/login/register, the cart discount field). Night field, ink text.
+   --en-input-bg is the last #fffdf7 in the token set (the header search field) — retargeted with it. */
+:root{--en-input-bg:17 29 51}
+:root,[color-scheme]{--color-input-primary:var(--en-surface-elevated);--color-input-secondary:var(--en-color-light)}
+/* Kalles accent buttons hard-code white labels (.hdt-btn-accent{--hdt-btn-color:255 255 255}); under the
+   night scheme their fill is --env2-glow, so the label needs the dark ink (§D): 1.4:1 -> 13:1. */
+.hdt-btn-accent{--hdt-btn-color:var(--en-text-inverse)}
+/* Kalles swatch/tooltip bubble: css-variables pairs --color-tooltip-background with
+   --color-tooltip-text, and §D moved BOTH ends of that pair to near-black (--en-color-dark 2 3 6 /
+   --en-text-inverse 2 3 6) — the bubble is ink-on-ink. Night bubble, ink label (hover only). */
+:root{--color-tooltip-background:var(--en-surface-elevated);--color-tooltip-text:var(--en-color-light)}
+
+/* ---------- fix pass, round 0 second pass (V-1 · V-2 · V-4 · V-6) ---------- */
+/* V-1: the header search panel is <hdt-predictive-search color-scheme="scheme-1"> — the attribute is written
+   in a Kalles core section we do not own, so settings.color_scheme_dialog never reaches it, and scheme-1 is
+   the cream scheme (#f7f0e6 background, #fffdf7 background2, #2b2118 foreground): the three hexes this round
+   forbids, on the drawer behind the magnifier on every template. scheme-1 is remapped onto the night pair.
+   Exactly one element per page carries it (the search panel, closed) — the homepage included — so nothing
+   else can move. The input pair is deliberately NOT listed here: the :root,[color-scheme] rule above owns it
+   at the same specificity and must keep winning. */
+[color-scheme="scheme-1"]{
+  --color-background:2 3 6;--color-background2:7 11 21;--color-foreground:244 238 227;--color-foreground2:201 196 184;
+  --color-accent:255 211 148;--color-secondary:208 182 135;--color-tertiary:155 122 61;
+  --hdt-btn-color:26 18 6;--hdt-btn-bg:255 211 148;--hdt-btn-border-color:255 211 148;
+  --hdt-btn-hover-color:26 18 6;--hdt-btn-hover-bg:var(--en-surface-card);--hdt-btn-hover-border-color:var(--en-surface-card);
+  --hdt-btn-secondary-color:83 73 54;--hdt-btn-secondary-bg:208 182 135;
+  --hdt-btn-tertiary-color:62 49 24;--hdt-btn-tertiary-bg:155 122 61;
+  --hdt-btn-outline-color:244 238 227;--hdt-btn-outline-border-color:244 238 227;
+  --hdt-link-color:244 238 227;--hdt-link-hover-color:255 211 148;
+  --color-line-border:31 30 29;--color-overlay:2 3 6;--payment-terms-background-color:rgb(2 3 6);
+  --color-pr-price:255 211 148;--color-pr-sale-price:255 211 148;--color-pr-text:244 238 227;
+  --color-focus:var(--en-focus-dark);--en-focus-contrast:var(--en-focus-light)
+}
+/* the search drawer's category <select> and its options paint from the UA, not from the scheme (old open item 5) */
+#drawer-search-form select,#drawer-search-form option{background-color:rgb(var(--en-surface-elevated));color:rgb(var(--en-color-light))}
+/* V-4: <dialog id="modal-contactFormAsk"> has no background rule of its own, so it falls back to the UA's
+   white canvas while its wrapper's night scheme paints the ink — heading 1.15:1, field labels 1.74:1. */
+#modal-contactFormAsk{background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}
+/* V-6: --en-warning-text (96 64 0) was built for the cream page; §D moved the ground to #020306 and did not
+   list it, so .hdt-no-result-product — the only copy on the no-results page — reads 2.19:1. The amber the
+   design system already uses gives 11.9:1 on #020306. The two other consumers (.toast.warning border,
+   .toast-icon.warning fill, which pairs it with --en-text-inverse) stay legible. */
+:root{--en-warning-text:255 211 148}
+/* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
+   hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
+.hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-price__from{font-family:var(--env2-sans);font-weight:400;font-size:.62em;color:var(--env2-ink-2);margin-inline-end:.15em;letter-spacing:0}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<style>
+/* ---------- page ground (PDP §3.1): the PDP is already night — sky-2 → sky-4, no dusk ----------
+   Screen 1 is a photo ground painted by the stage section; the document below it is this one
+   gradient, never a per-section background. */
+html body.hdt-page-type-product{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#0f1a2f 20%,#070b15 56%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-product #wrapper,
+html body.hdt-page-type-product .main-content,
+html body.hdt-page-type-product main,
+html body.hdt-page-type-product #MainContent,
+html body.hdt-page-type-product .hdt-main-content,
+html body.hdt-page-type-product .hdt-page-content,
+html body.hdt-page-type-product .shopify-section{background:transparent}
+/* The header is transparent over the stage: the stage is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it. */
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal scroll at 360px — the stage and the night gallery are full-bleed (§6.18). */
+html body.hdt-page-type-product{overflow-x:hidden}
+/* The sticky mobile buy bar (§4.9) reserves its own height at the end of the document so it can never
+   cover the footer. --env2-pdp-bar-h is declared here (one place) and read by elmsnest-v2-pdp-buybar. */
+@media (max-width:900px){
+  html body.hdt-page-type-product{--env2-pdp-bar-h:78px;padding-block-end:var(--env2-pdp-bar-h)}
+}
+</style>
+<style>
+/* §4.5 — the facts ledger. Every selector .env2-pdp-facts__…, logical properties only, radius 0.
+   No Liquid in here (CONTRACT §0): the giant numeral's two states are driven by the core's --lit. */
+.env2-pdp-facts{padding-block:clamp(72px,9vw,110px) clamp(64px,8vw,100px)}
+.env2-pdp-facts__wrap{position:relative;z-index:1}
+
+/* ---------- head ---------- */
+.env2-pdp-facts__head{grid-column:1/-1;grid-row:1;align-self:start;display:grid;gap:14px;max-width:44ch}
+.env2-pdp-facts__head--solo{grid-column:1;align-self:center}
+.env2-pdp-facts__h2{font-size:clamp(34px,4.9vw,72px)}
+.env2-pdp-facts__deck{max-width:38ch}
+
+/* ---------- the composition: the ledger at the start side, the numeral at the end side ---------- */
+.env2-pdp-facts__grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(34px,5vw,80px) clamp(30px,5vw,80px);align-items:center}
+.env2-pdp-facts__giantwrap{grid-column:2;grid-row:2;margin:0;display:grid;gap:clamp(14px,1.6vw,22px);justify-items:center;text-align:center}
+.env2-pdp-facts__dl{grid-column:1;grid-row:2;margin:0}
+.env2-pdp-facts__dl--solo{grid-column:2;grid-row:1;max-width:none}
+
+/* the one enormous thing on the screen: outline until it is reached, then glow (§3.3) */
+.env2-pdp-facts__giant{font-family:var(--env2-serif);font-weight:900;font-size:clamp(96px,13vw,230px);line-height:.86;letter-spacing:-.02em;color:rgba(255,211,148,var(--lit,1));-webkit-text-stroke:1px rgba(244,238,227,calc(.45 - .45*var(--lit,1)));text-shadow:0 0 50px rgba(255,211,148,calc(.4*var(--lit,1)));transition:color 1.4s ease,-webkit-text-stroke-color 1.4s ease,text-shadow 1.4s ease}
+.env2-pdp-facts__giant bdi{unicode-bidi:isolate}
+.env2-pdp-facts__giantsub{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-width:34ch}
+
+/* ---------- the ledger: hairlines, no boxes ---------- */
+.env2-pdp-facts__row{display:grid;grid-template-columns:128px minmax(0,1fr);gap:0 clamp(14px,2vw,26px);align-items:baseline;border-top:1px solid var(--env2-hair);padding-block:14px}
+.env2-pdp-facts__row--wide{grid-template-columns:minmax(0,1fr)}
+.env2-pdp-facts__dt{font-family:var(--env2-sans);font-weight:400;font-size:13.5px;line-height:1.5;color:var(--env2-mute)}
+.env2-pdp-facts__dd{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.55;color:var(--env2-ink);max-width:46ch}
+.env2-pdp-facts__dd bdi{unicode-bidi:isolate}
+.env2-pdp-facts__row--unknown{border-top-color:rgba(244,238,227,.45);margin-block-start:10px;padding-block:18px 0}
+.env2-pdp-facts__row--unknown .env2-pdp-facts__dt{color:var(--env2-gold);font-weight:500;letter-spacing:.02em}
+.env2-pdp-facts__row--unknown .env2-pdp-facts__dd{color:var(--env2-ink-2)}
+
+/* ---------- the preserved description, behind a hairline ---------- */
+.env2-pdp-facts__more{margin-block-start:clamp(46px,6vw,80px);border-top:1px solid var(--env2-hair)}
+.env2-pdp-facts__summary{display:flex;align-items:center;gap:10px;min-height:48px;padding-block:14px;font-family:var(--env2-sans);font-weight:400;font-size:14px;line-height:1.5;color:var(--env2-ink-2);cursor:pointer;list-style:none;transition:color .3s}
+.env2-pdp-facts__summary::-webkit-details-marker{display:none}
+.env2-pdp-facts__summary::after{content:"";width:9px;height:9px;border-inline-start:1px solid currentColor;border-block-end:1px solid currentColor;transform:rotate(-45deg);transition:transform .3s;margin-block-end:3px}
+.env2-pdp-facts__summary:hover{color:var(--env2-ink)}
+.env2-pdp-facts__more[open] .env2-pdp-facts__summary::after{transform:rotate(135deg);margin-block-end:-3px}
+.env2-pdp-facts__desc{padding-block:6px 30px;max-width:78ch}
+
+/* the owner's .elms-sales description keeps its words and loses its cream card: every surface,
+   border, radius and face is rewritten from this section's own selectors (two classes = it wins). */
+.env2-pdp-facts__desc .elms-sales,
+.env2-pdp-facts__desc .elms-sales *{background:none;background-color:transparent;border:0;border-radius:0;box-shadow:none;color:inherit;font-family:var(--env2-sans);max-width:none;text-align:start}
+.env2-pdp-facts__desc .elms-sales{display:block;color:var(--env2-ink-2);font-weight:300;font-size:15px;line-height:1.6;padding:0}
+.env2-pdp-facts__desc .elms-sales h2,
+.env2-pdp-facts__desc .elms-sales h3,
+.env2-pdp-facts__desc .elms-sales b,
+.env2-pdp-facts__desc .elms-sales strong{display:block;color:var(--env2-ink);font-weight:500;font-size:16px;line-height:1.4;margin-block:18px 6px;padding:0}
+.env2-pdp-facts__desc .elms-sales p{margin-block:0 10px}
+.env2-pdp-facts__desc .elms-sales ul{display:block;list-style:none;margin:0;padding:0}
+.env2-pdp-facts__desc .elms-sales li::before,
+.env2-pdp-facts__desc .elms-sales li::after{content:none}
+.env2-pdp-facts__desc .elms-sales li{border-top:1px solid var(--env2-hair);padding-block:9px}
+.env2-pdp-facts__desc .elms-sales section,
+.env2-pdp-facts__desc .elms-sales article,
+.env2-pdp-facts__desc .elms-sales header,
+.env2-pdp-facts__desc .elms-sales footer,
+.env2-pdp-facts__desc .elms-sales div{display:block;padding:0;margin:0}
+.env2-pdp-facts__desc .elms-sales article,
+.env2-pdp-facts__desc .elms-sales section{margin-block-end:14px}
+.env2-pdp-facts__desc .elms-sales__kicker,
+.env2-pdp-facts__desc .elms-sales__cta span{display:block;font-size:13px;color:var(--env2-mute)}
+.env2-pdp-facts__desc .elms-sales a{color:var(--env2-glow)}
+
+/* ---------- mobile recomposition: the numeral first, then label-above-value pairs ---------- */
+@media (max-width:900px){
+  .env2-pdp-facts__head,.env2-pdp-facts__head--solo{grid-column:1;grid-row:1;max-width:none;align-self:start}
+  .env2-pdp-facts__grid{grid-template-columns:minmax(0,1fr);gap:clamp(28px,7vw,44px)}
+  .env2-pdp-facts__giantwrap{grid-column:1;grid-row:2;justify-items:start;text-align:start}
+  .env2-pdp-facts__dl,.env2-pdp-facts__dl--solo{grid-column:1;grid-row:3;max-width:none}
+  .env2-pdp-facts__giant{font-size:clamp(88px,26vw,120px)}
+  .env2-pdp-facts__giantsub{max-width:42ch}
+  .env2-pdp-facts__row,.env2-pdp-facts__row--wide{grid-template-columns:minmax(0,1fr);gap:3px;padding-block:13px}
+  .env2-pdp-facts__dd{font-size:15px;max-width:none}
+  .env2-pdp-facts__desc{max-width:none}
+}
+</style>
+<style>
+body{margin:0}
+.fp-label{width:min(1240px,100% - 2*var(--env2-gut));margin:0 auto;padding-block:44px 0;font:13px/1.6 var(--env2-sans);color:var(--env2-mute);border-top:1px dashed rgba(244,238,227,.18)}
+.fp-label b{display:block;font-weight:500;font-size:13.5px;letter-spacing:.06em;color:var(--env2-gold)}
+</style></head>
+<body class="hdt-page-type-product template-product">
+<p class="fp-label"><b>A · solar-crystal-ball-string-lights — HOW IT RENDERS TODAY</b> custom.* is empty on all 27 products, so power_source is unstated: the &quot;טעינה סולארית&quot; bullet is dropped and &quot;מקור החשמל&quot; is not claimed either way. Every other row is a description bullet, verbatim.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>IP65</bdi></span><span class="env2-pdp-facts__giantsub">עמידות IP65 מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</span></p><dl class="env2-pdp-facts__dl"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">אורך</dt><dd class="env2-pdp-facts__dd">5–22 מטר</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">נורות</dt><dd class="env2-pdp-facts__dd">20–200 נורות <bdi>LED</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">מצבי תאורה</dt><dd class="env2-pdp-facts__dd">8 מצבי תאורה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע האור</dt><dd class="env2-pdp-facts__dd">צהוב, כחול, צבעוני או לבן</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">זמן עבודה</dt><dd class="env2-pdp-facts__dd">כ־8–10 שעות עבודה לאחר טעינה מלאה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">עמידות</dt><dd class="env2-pdp-facts__dd"><bdi>IP65</bdi></dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">מידות מדויקות, לומן ואחריות אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div class="elms-sales" dir="rtl">
+<header class="elms-sales__hero"><span class="elms-sales__kicker">נקודות אור רגילות מאירות — כדורי הקריסטל גם מנצנצים</span><h2>ברק עדין שהופך מרפסת, פרגולה או גינה לרקע חגיגי</h2>
+<p class="elms-sales__lead">הכדורים השקופים שוברים את האור ויוצרים נצנוץ עשיר יותר משרשרת LED רגילה. תולים סביב אזור הישיבה, לאורך גדר או בתוך אוהל ומקבלים אווירה בולטת בלי חיבור לחשמל.</p>
+<div class="elms-sales__promise">
+<strong>מראה חגיגי שמתחיל לבד בכל ערב.</strong><span>הפאנל נטען מהשמש, והשרשרת נדלקת עם החשכה במצב התאורה שבחרתם.</span>
+</div></header><div class="elms-sales__body">
+<section class="elms-sales__story"><h3>הפרטים הקטנים הם אלה שנראים הכי טוב בתמונות</h3>
+<p>כדורי הקריסטל מוסיפים עומק וברק סביב שולחן, שביל, פרגולה או רקע צילום. האור משתקף בתוך כל כדור ומעניק לחלל תחושה עשירה וחגיגית יותר.</p></section><section class="elms-sales__benefits"><article><b>שמונה מצבים לאווירות שונות</b><p>בחרו אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע.</p></article><article><b>מאורך קטן ועד קישוט של חלל שלם</b><p>5 עד 22 מטר ו־20 עד 200 נורות מאפשרים להתאים את השרשרת בדיוק לגודל האזור.</p></article><article><b>צבע שמגדיר את האירוע</b><p>צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה.</p></article><article><b>מיועדת להישאר בחוץ</b><p>עמידות IP65 מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</p></article></section><section class="elms-sales__choice"><h3>בחרו אורך שמאפשר להשלים את המסגרת</h3>
+<p>מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.</p></section><section class="elms-sales__specs"><h3>פרטים שכדאי לדעת</h3>
+<ul>
+<li>5–22 מטר</li>
+<li>20–200 נורות LED</li>
+<li>8 מצבי תאורה</li>
+<li>צהוב, כחול, צבעוני או לבן</li>
+<li>טעינה סולארית</li>
+<li>כ־8–10 שעות עבודה לאחר טעינה מלאה</li>
+<li>עמידות IP65</li>
+</ul></section><footer class="elms-sales__cta"><strong>הפכו את החלל מרגיל לחגיגי עוד לפני שהאור הראשון נדלק</strong><span>בחרו אורך וצבע ותנו לכדורי הקריסטל ליצור את הרקע של הערב.</span></footer>
+</div>
+</div><style>.elms-sales,.elms-sales *{box-sizing:border-box;font-family:'Rubik',Arial,sans-serif}.elms-sales{--paper:#FFFDF7;--cream:#F7F0E6;--gold:#D4B78B;--gold-dark:#8A6428;--dark:#2B2118;--muted:#6F665C;direction:rtl;color:var(--dark);background:linear-gradient(180deg,var(--paper),var(--cream));border:1px solid rgba(212,183,139,.38);border-radius:22px;overflow:hidden}.elms-sales__hero{padding:clamp(30px,6vw,62px) clamp(18px,5vw,58px);text-align:center;background:radial-gradient(circle at 82% 0,rgba(212,183,139,.32),transparent 34%)}.elms-sales__kicker{display:inline-block;margin-bottom:14px;padding:7px 14px;border:1px solid rgba(138,100,40,.25);border-radius:999px;color:var(--gold-dark);font-size:12px;font-weight:700}.elms-sales h2{max-width:820px;margin:0 auto 15px;font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.5px}.elms-sales__lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.85}.elms-sales__promise{max-width:760px;margin:24px auto 0;padding:17px 20px;background:#fff;border:1px solid rgba(212,183,139,.48);border-radius:16px;box-shadow:0 12px 32px rgba(43,33,24,.06)}.elms-sales__promise strong{display:block;font-size:18px}.elms-sales__promise span{display:block;margin-top:5px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__body{padding:0 clamp(16px,5vw,58px) clamp(30px,5vw,56px)}.elms-sales__story{max-width:860px;margin:0 auto 22px;padding:24px;background:rgba(255,255,255,.72);border-right:4px solid var(--gold);border-radius:16px}.elms-sales h3{margin:0 0 9px;font-size:22px;line-height:1.35}.elms-sales__story p,.elms-sales__choice p{margin:0;color:var(--muted);font-size:15px;line-height:1.85}.elms-sales__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:960px;margin:0 auto}.elms-sales__benefits article{padding:21px;background:#fff;border:1px solid rgba(212,183,139,.42);border-radius:16px;box-shadow:0 10px 26px rgba(43,33,24,.05)}.elms-sales__benefits b{display:block;margin-bottom:7px;font-size:17px}.elms-sales__benefits p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}.elms-sales__choice{max-width:860px;margin:22px auto 0;padding:23px;border:1px dashed rgba(138,100,40,.42);border-radius:16px}.elms-sales__specs{max-width:860px;margin:15px auto 0;padding:21px;background:rgba(43,33,24,.035);border-radius:16px}.elms-sales__specs h3{font-size:17px}.elms-sales__specs ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none}.elms-sales__specs li{position:relative;padding-right:17px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__specs li:before{content:'•';position:absolute;right:0;color:var(--gold-dark);font-weight:800}.elms-sales__cta{margin-top:16px;padding:22px;text-align:center;background:linear-gradient(135deg,#EAD2A8,var(--gold));border-radius:16px}.elms-sales__cta strong{display:block;font-size:19px;line-height:1.45}.elms-sales__cta span{display:block;margin-top:5px;font-size:13px;line-height:1.6}@media(max-width:700px){.elms-sales{border-radius:16px}.elms-sales__hero{padding:32px 16px}.elms-sales h2{font-size:31px}.elms-sales__body{padding:0 10px 28px}.elms-sales__story{padding:19px}.elms-sales__benefits{grid-template-columns:1fr}.elms-sales__benefits article{padding:18px}.elms-sales__specs ul{grid-template-columns:1fr}}</style></div>
+      </details></div>
+</section>
+<p class="fp-label"><b>A · the same section once custom.power_source is approved and written as &quot;סולארי&quot;</b> Nothing in the file changed. One metafield value did, and the product may now name its own power source.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>IP65</bdi></span><span class="env2-pdp-facts__giantsub">עמידות IP65 מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</span></p><dl class="env2-pdp-facts__dl"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">אורך</dt><dd class="env2-pdp-facts__dd">5–22 מטר</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">נורות</dt><dd class="env2-pdp-facts__dd">20–200 נורות <bdi>LED</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">מצבי תאורה</dt><dd class="env2-pdp-facts__dd">8 מצבי תאורה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע האור</dt><dd class="env2-pdp-facts__dd">צהוב, כחול, צבעוני או לבן</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">טעינה</dt><dd class="env2-pdp-facts__dd">סולארית</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">זמן עבודה</dt><dd class="env2-pdp-facts__dd">כ־8–10 שעות עבודה לאחר טעינה מלאה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">עמידות</dt><dd class="env2-pdp-facts__dd"><bdi>IP65</bdi></dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">מידות מדויקות, לומן ואחריות אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div class="elms-sales" dir="rtl">
+<header class="elms-sales__hero"><span class="elms-sales__kicker">נקודות אור רגילות מאירות — כדורי הקריסטל גם מנצנצים</span><h2>ברק עדין שהופך מרפסת, פרגולה או גינה לרקע חגיגי</h2>
+<p class="elms-sales__lead">הכדורים השקופים שוברים את האור ויוצרים נצנוץ עשיר יותר משרשרת LED רגילה. תולים סביב אזור הישיבה, לאורך גדר או בתוך אוהל ומקבלים אווירה בולטת בלי חיבור לחשמל.</p>
+<div class="elms-sales__promise">
+<strong>מראה חגיגי שמתחיל לבד בכל ערב.</strong><span>הפאנל נטען מהשמש, והשרשרת נדלקת עם החשכה במצב התאורה שבחרתם.</span>
+</div></header><div class="elms-sales__body">
+<section class="elms-sales__story"><h3>הפרטים הקטנים הם אלה שנראים הכי טוב בתמונות</h3>
+<p>כדורי הקריסטל מוסיפים עומק וברק סביב שולחן, שביל, פרגולה או רקע צילום. האור משתקף בתוך כל כדור ומעניק לחלל תחושה עשירה וחגיגית יותר.</p></section><section class="elms-sales__benefits"><article><b>שמונה מצבים לאווירות שונות</b><p>בחרו אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע.</p></article><article><b>מאורך קטן ועד קישוט של חלל שלם</b><p>5 עד 22 מטר ו־20 עד 200 נורות מאפשרים להתאים את השרשרת בדיוק לגודל האזור.</p></article><article><b>צבע שמגדיר את האירוע</b><p>צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה.</p></article><article><b>מיועדת להישאר בחוץ</b><p>עמידות IP65 מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</p></article></section><section class="elms-sales__choice"><h3>בחרו אורך שמאפשר להשלים את המסגרת</h3>
+<p>מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.</p></section><section class="elms-sales__specs"><h3>פרטים שכדאי לדעת</h3>
+<ul>
+<li>5–22 מטר</li>
+<li>20–200 נורות LED</li>
+<li>8 מצבי תאורה</li>
+<li>צהוב, כחול, צבעוני או לבן</li>
+<li>טעינה סולארית</li>
+<li>כ־8–10 שעות עבודה לאחר טעינה מלאה</li>
+<li>עמידות IP65</li>
+</ul></section><footer class="elms-sales__cta"><strong>הפכו את החלל מרגיל לחגיגי עוד לפני שהאור הראשון נדלק</strong><span>בחרו אורך וצבע ותנו לכדורי הקריסטל ליצור את הרקע של הערב.</span></footer>
+</div>
+</div><style>.elms-sales,.elms-sales *{box-sizing:border-box;font-family:'Rubik',Arial,sans-serif}.elms-sales{--paper:#FFFDF7;--cream:#F7F0E6;--gold:#D4B78B;--gold-dark:#8A6428;--dark:#2B2118;--muted:#6F665C;direction:rtl;color:var(--dark);background:linear-gradient(180deg,var(--paper),var(--cream));border:1px solid rgba(212,183,139,.38);border-radius:22px;overflow:hidden}.elms-sales__hero{padding:clamp(30px,6vw,62px) clamp(18px,5vw,58px);text-align:center;background:radial-gradient(circle at 82% 0,rgba(212,183,139,.32),transparent 34%)}.elms-sales__kicker{display:inline-block;margin-bottom:14px;padding:7px 14px;border:1px solid rgba(138,100,40,.25);border-radius:999px;color:var(--gold-dark);font-size:12px;font-weight:700}.elms-sales h2{max-width:820px;margin:0 auto 15px;font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.5px}.elms-sales__lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.85}.elms-sales__promise{max-width:760px;margin:24px auto 0;padding:17px 20px;background:#fff;border:1px solid rgba(212,183,139,.48);border-radius:16px;box-shadow:0 12px 32px rgba(43,33,24,.06)}.elms-sales__promise strong{display:block;font-size:18px}.elms-sales__promise span{display:block;margin-top:5px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__body{padding:0 clamp(16px,5vw,58px) clamp(30px,5vw,56px)}.elms-sales__story{max-width:860px;margin:0 auto 22px;padding:24px;background:rgba(255,255,255,.72);border-right:4px solid var(--gold);border-radius:16px}.elms-sales h3{margin:0 0 9px;font-size:22px;line-height:1.35}.elms-sales__story p,.elms-sales__choice p{margin:0;color:var(--muted);font-size:15px;line-height:1.85}.elms-sales__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:960px;margin:0 auto}.elms-sales__benefits article{padding:21px;background:#fff;border:1px solid rgba(212,183,139,.42);border-radius:16px;box-shadow:0 10px 26px rgba(43,33,24,.05)}.elms-sales__benefits b{display:block;margin-bottom:7px;font-size:17px}.elms-sales__benefits p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}.elms-sales__choice{max-width:860px;margin:22px auto 0;padding:23px;border:1px dashed rgba(138,100,40,.42);border-radius:16px}.elms-sales__specs{max-width:860px;margin:15px auto 0;padding:21px;background:rgba(43,33,24,.035);border-radius:16px}.elms-sales__specs h3{font-size:17px}.elms-sales__specs ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none}.elms-sales__specs li{position:relative;padding-right:17px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__specs li:before{content:'•';position:absolute;right:0;color:var(--gold-dark);font-weight:800}.elms-sales__cta{margin-top:16px;padding:22px;text-align:center;background:linear-gradient(135deg,#EAD2A8,var(--gold));border-radius:16px}.elms-sales__cta strong{display:block;font-size:19px;line-height:1.45}.elms-sales__cta span{display:block;margin-top:5px;font-size:13px;line-height:1.6}@media(max-width:700px){.elms-sales{border-radius:16px}.elms-sales__hero{padding:32px 16px}.elms-sales h2{font-size:31px}.elms-sales__body{padding:0 10px 28px}.elms-sales__story{padding:19px}.elms-sales__benefits{grid-template-columns:1fr}.elms-sales__benefits article{padding:18px}.elms-sales__specs ul{grid-template-columns:1fr}}</style></div>
+      </details></div>
+</section>
+<p class="fp-label"><b>B · stainless-steel-solar-path-light-ip65 — 1 variant</b> Seven bullets, seven rows; the giant is IP65 by the auto rule (giant_source: &quot;hours&quot; would print 8–10 instead). &quot;לפני שימוש ראשון: …&quot; labels itself on its own colon.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>IP65</bdi></span></p><dl class="env2-pdp-facts__dl"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">חומר הגוף</dt><dd class="env2-pdp-facts__dd">גוף נירוסטה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע האור</dt><dd class="env2-pdp-facts__dd">גוון אור צהוב חם</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">טעינה</dt><dd class="env2-pdp-facts__dd">ממוצעת כ־6 שעות</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">זמן עבודה</dt><dd class="env2-pdp-facts__dd">כ־8–10 שעות</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">עמידות</dt><dd class="env2-pdp-facts__dd"><bdi>IP65</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">התקנה</dt><dd class="env2-pdp-facts__dd">נעיצה באדמה בעומק כ־5–10 ס״מ</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">לפני שימוש ראשון</dt><dd class="env2-pdp-facts__dd">מצב <bdi>ON</bdi> וטעינה של לפחות 3 שעות</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">מידות מדויקות, לומן ואחריות אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div class="elms-sales" dir="rtl">
+<header class="elms-sales__hero"><span class="elms-sales__kicker">הדרך הביתה יכולה להרגיש אחרת כבר מהערב הראשון</span><h2>משביל חשוך ולא גמור — לקו אור חם שמוביל את הדרך</h2>
+<p class="elms-sales__lead">מנורת השביל מנירוסטה מוסיפה לגינה תאורה רכה ומראה נקי, בלי כבלים שחוצים את הדשא ובלי צורך להזמין חשמלאי. היא נטענת ביום, נדלקת לבד בלילה ויוצרת תחושת סדר בכל מעבר.</p>
+<div class="elms-sales__promise">
+<strong>אור חם. קו נקי. אפס כבלים.</strong><span>השדרוג הפשוט שגורם לשביל, למדשאה ולכניסה להיראות מתוכננים ולא מקריים.</span>
+</div></header><div class="elms-sales__body">
+<section class="elms-sales__story"><h3>האור הנכון הופך את הדרך לחלק מהעיצוב</h3>
+<p>דמיינו שורת נקודות אור שמובילה מהשער אל הדלת, מקיפה ערוגה או מגדירה את קצה השביל. גם בלי לשנות את הגינה, התאורה יוצרת עומק ומעניקה לחוץ הבית מראה מטופח יותר.</p></section><section class="elms-sales__benefits"><article><b>מראה אלגנטי גם כשהיא כבויה</b><p>גוף הנירוסטה מעניק מראה נקי שמשתלב בגינות מודרניות וקלאסיות.</p></article><article><b>עובדת בלי שתזכרו אותה</b><p>החיישן מדליק את המנורה בחושך ומכבה אותה בבוקר באופן אוטומטי.</p></article><article><b>מתקינים תוך דקות</b><p>מרכיבים את היתד ונועצים באדמה — ללא חפירה, חיווט או חיבור לחשמל.</p></article><article><b>אור שמלווה את הערב</b><p>לאחר טעינה טובה בשמש, התאורה יכולה לפעול כ־8–10 שעות בהתאם לתנאי הסביבה.</p></article></section><section class="elms-sales__choice"><h3>יחידה אחת מאירה נקודה — שורה של יחידות יוצרת אפקט</h3>
+<p>למראה מרשים באמת, מקמו מספר מנורות במרווחים אחידים לאורך שביל, מסביב למדשאה או בכניסה. האחידות היא זו שיוצרת את תחושת היוקרה.</p></section><section class="elms-sales__specs"><h3>פרטים שכדאי לדעת</h3>
+<ul>
+<li>גוף נירוסטה</li>
+<li>גוון אור צהוב חם</li>
+<li>טעינה ממוצעת כ־6 שעות</li>
+<li>זמן עבודה כ־8–10 שעות</li>
+<li>עמידות IP65</li>
+<li>נעיצה באדמה בעומק כ־5–10 ס״מ</li>
+<li>לפני שימוש ראשון: מצב ON וטעינה של לפחות 3 שעות</li>
+</ul></section><footer class="elms-sales__cta"><strong>הפכו את השביל לפרט הראשון שמרשים בערב</strong><span>הוסיפו את הכמות המתאימה לאורך הדרך וצרו כניסה חמה, מסודרת ומזמינה יותר.</span></footer>
+</div>
+</div><style>.elms-sales,.elms-sales *{box-sizing:border-box;font-family:'Rubik',Arial,sans-serif}.elms-sales{--paper:#FFFDF7;--cream:#F7F0E6;--gold:#D4B78B;--gold-dark:#8A6428;--dark:#2B2118;--muted:#6F665C;direction:rtl;color:var(--dark);background:linear-gradient(180deg,var(--paper),var(--cream));border:1px solid rgba(212,183,139,.38);border-radius:22px;overflow:hidden}.elms-sales__hero{padding:clamp(30px,6vw,62px) clamp(18px,5vw,58px);text-align:center;background:radial-gradient(circle at 82% 0,rgba(212,183,139,.32),transparent 34%)}.elms-sales__kicker{display:inline-block;margin-bottom:14px;padding:7px 14px;border:1px solid rgba(138,100,40,.25);border-radius:999px;color:var(--gold-dark);font-size:12px;font-weight:700}.elms-sales h2{max-width:820px;margin:0 auto 15px;font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.5px}.elms-sales__lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.85}.elms-sales__promise{max-width:760px;margin:24px auto 0;padding:17px 20px;background:#fff;border:1px solid rgba(212,183,139,.48);border-radius:16px;box-shadow:0 12px 32px rgba(43,33,24,.06)}.elms-sales__promise strong{display:block;font-size:18px}.elms-sales__promise span{display:block;margin-top:5px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__body{padding:0 clamp(16px,5vw,58px) clamp(30px,5vw,56px)}.elms-sales__story{max-width:860px;margin:0 auto 22px;padding:24px;background:rgba(255,255,255,.72);border-right:4px solid var(--gold);border-radius:16px}.elms-sales h3{margin:0 0 9px;font-size:22px;line-height:1.35}.elms-sales__story p,.elms-sales__choice p{margin:0;color:var(--muted);font-size:15px;line-height:1.85}.elms-sales__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:960px;margin:0 auto}.elms-sales__benefits article{padding:21px;background:#fff;border:1px solid rgba(212,183,139,.42);border-radius:16px;box-shadow:0 10px 26px rgba(43,33,24,.05)}.elms-sales__benefits b{display:block;margin-bottom:7px;font-size:17px}.elms-sales__benefits p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}.elms-sales__choice{max-width:860px;margin:22px auto 0;padding:23px;border:1px dashed rgba(138,100,40,.42);border-radius:16px}.elms-sales__specs{max-width:860px;margin:15px auto 0;padding:21px;background:rgba(43,33,24,.035);border-radius:16px}.elms-sales__specs h3{font-size:17px}.elms-sales__specs ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none}.elms-sales__specs li{position:relative;padding-right:17px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__specs li:before{content:'•';position:absolute;right:0;color:var(--gold-dark);font-weight:800}.elms-sales__cta{margin-top:16px;padding:22px;text-align:center;background:linear-gradient(135deg,#EAD2A8,var(--gold));border-radius:16px}.elms-sales__cta strong{display:block;font-size:19px;line-height:1.45}.elms-sales__cta span{display:block;margin-top:5px;font-size:13px;line-height:1.6}@media(max-width:700px){.elms-sales{border-radius:16px}.elms-sales__hero{padding:32px 16px}.elms-sales h2{font-size:31px}.elms-sales__body{padding:0 10px 28px}.elms-sales__story{padding:19px}.elms-sales__benefits{grid-template-columns:1fr}.elms-sales__benefits article{padding:18px}.elms-sales__specs ul{grid-template-columns:1fr}}</style></div>
+      </details></div>
+</section>
+<p class="fp-label"><b>B · the same section with giant_source = hours (the §4.5 B still)</b> The 8–10 numeral the spec asks for on B, with its sub-line quoted from the bullet it came from.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>8–10</bdi></span><span class="env2-pdp-facts__giantsub">זמן עבודה כ־8–10 שעות</span></p><dl class="env2-pdp-facts__dl"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">חומר הגוף</dt><dd class="env2-pdp-facts__dd">גוף נירוסטה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע האור</dt><dd class="env2-pdp-facts__dd">גוון אור צהוב חם</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">טעינה</dt><dd class="env2-pdp-facts__dd">ממוצעת כ־6 שעות</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">זמן עבודה</dt><dd class="env2-pdp-facts__dd">כ־8–10 שעות</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">עמידות</dt><dd class="env2-pdp-facts__dd"><bdi>IP65</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">התקנה</dt><dd class="env2-pdp-facts__dd">נעיצה באדמה בעומק כ־5–10 ס״מ</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">לפני שימוש ראשון</dt><dd class="env2-pdp-facts__dd">מצב <bdi>ON</bdi> וטעינה של לפחות 3 שעות</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">מידות מדויקות, לומן ואחריות אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div class="elms-sales" dir="rtl">
+<header class="elms-sales__hero"><span class="elms-sales__kicker">הדרך הביתה יכולה להרגיש אחרת כבר מהערב הראשון</span><h2>משביל חשוך ולא גמור — לקו אור חם שמוביל את הדרך</h2>
+<p class="elms-sales__lead">מנורת השביל מנירוסטה מוסיפה לגינה תאורה רכה ומראה נקי, בלי כבלים שחוצים את הדשא ובלי צורך להזמין חשמלאי. היא נטענת ביום, נדלקת לבד בלילה ויוצרת תחושת סדר בכל מעבר.</p>
+<div class="elms-sales__promise">
+<strong>אור חם. קו נקי. אפס כבלים.</strong><span>השדרוג הפשוט שגורם לשביל, למדשאה ולכניסה להיראות מתוכננים ולא מקריים.</span>
+</div></header><div class="elms-sales__body">
+<section class="elms-sales__story"><h3>האור הנכון הופך את הדרך לחלק מהעיצוב</h3>
+<p>דמיינו שורת נקודות אור שמובילה מהשער אל הדלת, מקיפה ערוגה או מגדירה את קצה השביל. גם בלי לשנות את הגינה, התאורה יוצרת עומק ומעניקה לחוץ הבית מראה מטופח יותר.</p></section><section class="elms-sales__benefits"><article><b>מראה אלגנטי גם כשהיא כבויה</b><p>גוף הנירוסטה מעניק מראה נקי שמשתלב בגינות מודרניות וקלאסיות.</p></article><article><b>עובדת בלי שתזכרו אותה</b><p>החיישן מדליק את המנורה בחושך ומכבה אותה בבוקר באופן אוטומטי.</p></article><article><b>מתקינים תוך דקות</b><p>מרכיבים את היתד ונועצים באדמה — ללא חפירה, חיווט או חיבור לחשמל.</p></article><article><b>אור שמלווה את הערב</b><p>לאחר טעינה טובה בשמש, התאורה יכולה לפעול כ־8–10 שעות בהתאם לתנאי הסביבה.</p></article></section><section class="elms-sales__choice"><h3>יחידה אחת מאירה נקודה — שורה של יחידות יוצרת אפקט</h3>
+<p>למראה מרשים באמת, מקמו מספר מנורות במרווחים אחידים לאורך שביל, מסביב למדשאה או בכניסה. האחידות היא זו שיוצרת את תחושת היוקרה.</p></section><section class="elms-sales__specs"><h3>פרטים שכדאי לדעת</h3>
+<ul>
+<li>גוף נירוסטה</li>
+<li>גוון אור צהוב חם</li>
+<li>טעינה ממוצעת כ־6 שעות</li>
+<li>זמן עבודה כ־8–10 שעות</li>
+<li>עמידות IP65</li>
+<li>נעיצה באדמה בעומק כ־5–10 ס״מ</li>
+<li>לפני שימוש ראשון: מצב ON וטעינה של לפחות 3 שעות</li>
+</ul></section><footer class="elms-sales__cta"><strong>הפכו את השביל לפרט הראשון שמרשים בערב</strong><span>הוסיפו את הכמות המתאימה לאורך הדרך וצרו כניסה חמה, מסודרת ומזמינה יותר.</span></footer>
+</div>
+</div><style>.elms-sales,.elms-sales *{box-sizing:border-box;font-family:'Rubik',Arial,sans-serif}.elms-sales{--paper:#FFFDF7;--cream:#F7F0E6;--gold:#D4B78B;--gold-dark:#8A6428;--dark:#2B2118;--muted:#6F665C;direction:rtl;color:var(--dark);background:linear-gradient(180deg,var(--paper),var(--cream));border:1px solid rgba(212,183,139,.38);border-radius:22px;overflow:hidden}.elms-sales__hero{padding:clamp(30px,6vw,62px) clamp(18px,5vw,58px);text-align:center;background:radial-gradient(circle at 82% 0,rgba(212,183,139,.32),transparent 34%)}.elms-sales__kicker{display:inline-block;margin-bottom:14px;padding:7px 14px;border:1px solid rgba(138,100,40,.25);border-radius:999px;color:var(--gold-dark);font-size:12px;font-weight:700}.elms-sales h2{max-width:820px;margin:0 auto 15px;font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.5px}.elms-sales__lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.85}.elms-sales__promise{max-width:760px;margin:24px auto 0;padding:17px 20px;background:#fff;border:1px solid rgba(212,183,139,.48);border-radius:16px;box-shadow:0 12px 32px rgba(43,33,24,.06)}.elms-sales__promise strong{display:block;font-size:18px}.elms-sales__promise span{display:block;margin-top:5px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__body{padding:0 clamp(16px,5vw,58px) clamp(30px,5vw,56px)}.elms-sales__story{max-width:860px;margin:0 auto 22px;padding:24px;background:rgba(255,255,255,.72);border-right:4px solid var(--gold);border-radius:16px}.elms-sales h3{margin:0 0 9px;font-size:22px;line-height:1.35}.elms-sales__story p,.elms-sales__choice p{margin:0;color:var(--muted);font-size:15px;line-height:1.85}.elms-sales__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:960px;margin:0 auto}.elms-sales__benefits article{padding:21px;background:#fff;border:1px solid rgba(212,183,139,.42);border-radius:16px;box-shadow:0 10px 26px rgba(43,33,24,.05)}.elms-sales__benefits b{display:block;margin-bottom:7px;font-size:17px}.elms-sales__benefits p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}.elms-sales__choice{max-width:860px;margin:22px auto 0;padding:23px;border:1px dashed rgba(138,100,40,.42);border-radius:16px}.elms-sales__specs{max-width:860px;margin:15px auto 0;padding:21px;background:rgba(43,33,24,.035);border-radius:16px}.elms-sales__specs h3{font-size:17px}.elms-sales__specs ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none}.elms-sales__specs li{position:relative;padding-right:17px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__specs li:before{content:'•';position:absolute;right:0;color:var(--gold-dark);font-weight:800}.elms-sales__cta{margin-top:16px;padding:22px;text-align:center;background:linear-gradient(135deg,#EAD2A8,var(--gold));border-radius:16px}.elms-sales__cta strong{display:block;font-size:19px;line-height:1.45}.elms-sales__cta span{display:block;margin-top:5px;font-size:13px;line-height:1.6}@media(max-width:700px){.elms-sales{border-radius:16px}.elms-sales__hero{padding:32px 16px}.elms-sales h2{font-size:31px}.elms-sales__body{padding:0 10px 28px}.elms-sales__story{padding:19px}.elms-sales__benefits{grid-template-columns:1fr}.elms-sales__benefits article{padding:18px}.elms-sales__specs ul{grid-template-columns:1fr}}</style></div>
+      </details></div>
+</section>
+<p class="fp-label"><b>C · waterproof-led-wall-light-ip65-6w-12w — MAINS, and unstated</b> No power row and no power sentence anywhere (§3.7); the unknown row therefore names מקור החשמל first, exactly as §4.5 C asks.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>IP65</bdi></span><span class="env2-pdp-facts__giantsub">עמידות IP65 ובחירה בין שתי עוצמות מאפשרות להתאים את המנורה לשטח ולא רק למראה.</span></p><dl class="env2-pdp-facts__dl"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">חומר הגוף</dt><dd class="env2-pdp-facts__dd">גוף אלומיניום</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">עמידות</dt><dd class="env2-pdp-facts__dd"><bdi>IP65</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">עוצמה</dt><dd class="env2-pdp-facts__dd">6W או 12W</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">גוון אור</dt><dd class="env2-pdp-facts__dd">אור חם 3000K או קר 6000K</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע הגוף</dt><dd class="env2-pdp-facts__dd">צבע שחור או לבן</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--wide"><dd class="env2-pdp-facts__dd">תאורה דו־כיוונית</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">מיקום</dt><dd class="env2-pdp-facts__dd">מתאימה לפנים ולחוץ</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">מקור החשמל, מידות מדויקות, לומן ואחריות אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div class="elms-sales" dir="rtl">
+<header class="elms-sales__hero"><span class="elms-sales__kicker">חזית הבית נראית אחרת כשהאור מתוכנן נכון</span><h2>אלומות אור חדות שמעניקות לקיר נוכחות יוקרתית</h2>
+<p class="elms-sales__lead">מנורת הקיר מאלומיניום מפזרת אור כלפי מעלה ומטה, מדגישה את הטקסטורה של הקיר ויוצרת מראה אדריכלי נקי. היא מתאימה לכניסה, למרפסת, למדרגות וגם לחללים פנימיים.</p>
+<div class="elms-sales__promise">
+<strong>תאורה שימושית ביום־יום, אפקט עיצובי בכל ערב.</strong><span>עמידות IP65 ובחירה בין שתי עוצמות מאפשרות להתאים את המנורה לשטח ולא רק למראה.</span>
+</div></header><div class="elms-sales__body">
+<section class="elms-sales__story"><h3>גם קיר פשוט יכול להפוך לנקודת מוקד</h3>
+<p>כשהאור נזרק בשני כיוונים, הקיר מקבל עומק והכניסה לבית נראית מסודרת ומרשימה יותר. זוג מנורות יכול ליצור סימטריה; שורה לאורך מעבר יוצרת קצב אדריכלי ברור.</p></section><section class="elms-sales__benefits"><article><b>מראה יוקרתי בלי להעמיס</b><p>הגוף המינימליסטי נשאר נקי, בעוד האור הוא זה שיוצר את האפקט.</p></article><article><b>מתאימה באמת לחלל החוץ</b><p>עמידות IP65 מאפשרת התקנה באזורים חיצוניים החשופים לתנאי מזג אוויר משתנים.</p></article><article><b>עוצמה שמתאימה לגודל הקיר</b><p>6W לאפקט עדין וממוקד; 12W לנוכחות חזקה יותר על שטח גדול.</p></article><article><b>אתם קובעים את הטון</b><p>3000K יוצר חמימות; 6000K מעניק מראה לבן, חד ומודרני.</p></article></section><section class="elms-sales__choice"><h3>תכננו את התוצאה, לא רק את מספר המנורות</h3>
+<p>בכניסה צרה אפשר להסתפק ביחידה. על חזית רחבה או לאורך מעבר, התקנה סימטרית או רציפה תיצור אפקט שלם ומרשים יותר.</p></section><section class="elms-sales__specs"><h3>פרטים שכדאי לדעת</h3>
+<ul>
+<li>גוף אלומיניום</li>
+<li>עמידות IP65</li>
+<li>עוצמה 6W או 12W</li>
+<li>אור חם 3000K או קר 6000K</li>
+<li>צבע שחור או לבן</li>
+<li>תאורה דו־כיוונית</li>
+<li>מתאימה לפנים ולחוץ</li>
+</ul></section><footer class="elms-sales__cta"><strong>הפכו קיר ריק לחלק המרשים של החזית</strong><span>בחרו עוצמה, צבע וגוון אור וצרו מראה שאי אפשר לפספס אחרי השקיעה.</span></footer>
+</div>
+</div><style>.elms-sales,.elms-sales *{box-sizing:border-box;font-family:'Rubik',Arial,sans-serif}.elms-sales{--paper:#FFFDF7;--cream:#F7F0E6;--gold:#D4B78B;--gold-dark:#8A6428;--dark:#2B2118;--muted:#6F665C;direction:rtl;color:var(--dark);background:linear-gradient(180deg,var(--paper),var(--cream));border:1px solid rgba(212,183,139,.38);border-radius:22px;overflow:hidden}.elms-sales__hero{padding:clamp(30px,6vw,62px) clamp(18px,5vw,58px);text-align:center;background:radial-gradient(circle at 82% 0,rgba(212,183,139,.32),transparent 34%)}.elms-sales__kicker{display:inline-block;margin-bottom:14px;padding:7px 14px;border:1px solid rgba(138,100,40,.25);border-radius:999px;color:var(--gold-dark);font-size:12px;font-weight:700}.elms-sales h2{max-width:820px;margin:0 auto 15px;font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.5px}.elms-sales__lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.85}.elms-sales__promise{max-width:760px;margin:24px auto 0;padding:17px 20px;background:#fff;border:1px solid rgba(212,183,139,.48);border-radius:16px;box-shadow:0 12px 32px rgba(43,33,24,.06)}.elms-sales__promise strong{display:block;font-size:18px}.elms-sales__promise span{display:block;margin-top:5px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__body{padding:0 clamp(16px,5vw,58px) clamp(30px,5vw,56px)}.elms-sales__story{max-width:860px;margin:0 auto 22px;padding:24px;background:rgba(255,255,255,.72);border-right:4px solid var(--gold);border-radius:16px}.elms-sales h3{margin:0 0 9px;font-size:22px;line-height:1.35}.elms-sales__story p,.elms-sales__choice p{margin:0;color:var(--muted);font-size:15px;line-height:1.85}.elms-sales__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:960px;margin:0 auto}.elms-sales__benefits article{padding:21px;background:#fff;border:1px solid rgba(212,183,139,.42);border-radius:16px;box-shadow:0 10px 26px rgba(43,33,24,.05)}.elms-sales__benefits b{display:block;margin-bottom:7px;font-size:17px}.elms-sales__benefits p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}.elms-sales__choice{max-width:860px;margin:22px auto 0;padding:23px;border:1px dashed rgba(138,100,40,.42);border-radius:16px}.elms-sales__specs{max-width:860px;margin:15px auto 0;padding:21px;background:rgba(43,33,24,.035);border-radius:16px}.elms-sales__specs h3{font-size:17px}.elms-sales__specs ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none}.elms-sales__specs li{position:relative;padding-right:17px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__specs li:before{content:'•';position:absolute;right:0;color:var(--gold-dark);font-weight:800}.elms-sales__cta{margin-top:16px;padding:22px;text-align:center;background:linear-gradient(135deg,#EAD2A8,var(--gold));border-radius:16px}.elms-sales__cta strong{display:block;font-size:19px;line-height:1.45}.elms-sales__cta span{display:block;margin-top:5px;font-size:13px;line-height:1.6}@media(max-width:700px){.elms-sales{border-radius:16px}.elms-sales__hero{padding:32px 16px}.elms-sales h2{font-size:31px}.elms-sales__body{padding:0 10px 28px}.elms-sales__story{padding:19px}.elms-sales__benefits{grid-template-columns:1fr}.elms-sales__benefits article{padding:18px}.elms-sales__specs ul{grid-template-columns:1fr}}</style></div>
+      </details></div>
+</section>
+<p class="fp-label"><b>D · dual-head-garden-light-10w-ip65 — a product with NO bullet list</b> Fallback 2: the &quot; · &quot; spec run under &quot;פרטים טכניים&quot; becomes the ledger, each item labelled by its own colon. The two power items (מתח, מקור מתח) are dropped while power_source is empty.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>IP65</bdi></span><span class="env2-pdp-facts__giantsub">דירוג IP65 מספק עמידות מפני אבק, גשם ולחות לשימוש שוטף.</span></p><dl class="env2-pdp-facts__dl"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">הספק</dt><dd class="env2-pdp-facts__dd">10W</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">גוון אור</dt><dd class="env2-pdp-facts__dd">חם</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע גוף</dt><dd class="env2-pdp-facts__dd">שחור</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">מקור אור</dt><dd class="env2-pdp-facts__dd"><bdi>LED</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">גוף</dt><dd class="env2-pdp-facts__dd">אלומיניום</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">סיבוב</dt><dd class="env2-pdp-facts__dd">עד 180°</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">דירוג אטימות</dt><dd class="env2-pdp-facts__dd"><bdi>IP65</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">נורות</dt><dd class="env2-pdp-facts__dd">כלולות</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--wide"><dd class="env2-pdp-facts__dd">תקן CE</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">אחריות יצרן</dt><dd class="env2-pdp-facts__dd">שנתיים</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">מידות מדויקות ולומן אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div dir="rtl" style="font-family:'Rubik',Arial,sans-serif;background:linear-gradient(180deg,#FFFDF7 0%,#F7F0E6 100%);border:1px solid rgba(212,183,139,.45);border-radius:20px;padding:24px;color:#2B2118;line-height:1.8">
+  <div style="display:inline-block;background:rgba(212,183,139,.16);color:#8A6428;border:1px solid rgba(138,100,40,.2);border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700">שני ראשי אור. שליטה אחת.</div>
+  <h2 style="margin:15px 0 10px;font-size:30px;line-height:1.22;font-weight:800">במקום להסתפק בכיוון אחד — מאירים בדיוק את מה שרוצים להדגיש</h2>
+  <p style="margin:0 0 18px;color:#6F665C;font-size:15px">מנורת גינה דו־ראשית עם סיבוב של עד 180°, שנועדה לתת יותר שליטה על פיזור האור בחצר, בשביל, ליד קיר, בצמחייה או בכניסה. שני הראשים מאפשרים ליצור קומפוזיציית אור רחבה ומעניינת יותר מגוף תאורה רגיל.</p>
+  <div style="background:#fff;border:1px solid #eadbc8;border-radius:16px;padding:18px;margin-bottom:14px">
+    <h3 style="margin:0 0 10px;font-size:19px">למה לבחור בדגם דו־ראשי?</h3>
+    <p style="margin:0 0 8px"><strong>מכוונים כל ראש בנפרד:</strong> סיבוב של עד 180° מאפשר להפנות את האור לשני אזורים שונים וליצור כיסוי מדויק יותר.</p>
+    <p style="margin:0 0 8px"><strong>אור חם שמחמיא לחוץ:</strong> 10W LED בגוון חם יוצרים תאורה נעימה שמתאימה במיוחד לגינה ולפינות אירוח.</p>
+    <p style="margin:0 0 8px"><strong>נראית טוב גם כשהיא כבויה:</strong> גוף שחור מאלומיניום ועיצוב מודרני מעניקים מראה מסודר ונקי ביום.</p>
+    <p style="margin:0"><strong>בנויה לחוץ:</strong> דירוג IP65 מספק עמידות מפני אבק, גשם ולחות לשימוש שוטף.</p>
+  </div>
+  <div style="background:#2B2118;color:#FFFDF7;border-radius:16px;padding:18px;margin:14px 0">
+    <strong style="display:block;font-size:18px;margin-bottom:5px">יותר שליטה = תאורה שנראית מתוכננת</strong>
+    <span style="color:#F7F0E6">מכוונים ראש אחד לשביל והשני לצמחייה או לקיר — ומקבלים עומק ותוצאה שמרגישה הרבה יותר אדריכלית.</span>
+  </div>
+  <div style="background:#fff;border:1px solid #eadbc8;border-radius:16px;padding:18px">
+    <h3 style="margin:0 0 10px;font-size:17px;color:#8A6428">פרטים טכניים</h3>
+    <p style="margin:0">הספק: 10W · גוון אור: חם · צבע גוף: שחור · מתח: AC 85–265V · מקור אור: LED · גוף: אלומיניום · סיבוב: עד 180° · דירוג אטימות: IP65 · נורות כלולות · תקן CE · אחריות יצרן: שנתיים.</p>
+  </div>
+  <p style="margin:16px 0 0;font-weight:800;color:#8A6428;text-align:center">בחירה חזקה למי שרוצה לא רק יותר אור — אלא שליטה טובה יותר באיך שהגינה נראית בלילה.</p>
+</div></div>
+      </details></div>
+</section>
+<p class="fp-label"><b>E · led-globe-string-lights — the caveat that must survive the power gate</b> &quot;USB או קופסת סוללות&quot; is a power source and is dropped; &quot;סוללות אינן כלולות&quot; is a disclosure, not a claim, and stays.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head env2-pdp-facts__head--solo"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><dl class="env2-pdp-facts__dl env2-pdp-facts__dl--solo"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">אורך</dt><dd class="env2-pdp-facts__dd">1.5 עד 12 מטר</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">נורות</dt><dd class="env2-pdp-facts__dd">10 עד 100 נורות <bdi>LED</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע האור</dt><dd class="env2-pdp-facts__dd">לבן חם, לבן קר או צבעוני</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">מידות</dt><dd class="env2-pdp-facts__dd">קוטר כדור כ־1 ס״מ</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--wide"><dd class="env2-pdp-facts__dd">סוללות אינן כלולות</dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">לומן ואחריות אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div class="elms-sales" dir="rtl">
+<header class="elms-sales__hero"><span class="elms-sales__kicker">לפעמים כל מה שחסר לפינה הוא אור קטן ונכון</span><h2>כדורי LED עדינים שהופכים כל חלל לחם, חגיגי ומזמין יותר</h2>
+<p class="elms-sales__lead">מלפפים סביב מדף, תולים במרפסת, מכניסים לאוהל או מסדרים על שולחן — והחלל מקבל מיד שכבה של אור ואווירה. בלי גוף תאורה כבד ובלי עיצוב מסובך.</p>
+<div class="elms-sales__promise">
+<strong>אווירה שאפשר לקחת לכל מקום.</strong><span>בחרו USB ליד מקור מתח או קופסת סוללות כשצריך חופש מלא במיקום.</span>
+</div></header><div class="elms-sales__body">
+<section class="elms-sales__story"><h3>הן לא נועדו להאיר חדר שלם — הן נועדו לגרום לו להרגיש אחרת</h3>
+<p>נקודות האור הקטנות יוצרות רקע נעים לתמונות, ערב זוגי, מסיבה, חדר שינה או פינת ישיבה. הן מוסיפות רכות בדיוק במקום שבו תאורה מרכזית מרגישה חזקה מדי.</p></section><section class="elms-sales__benefits"><article><b>מתאימות את עצמן לרעיון שלכם</b><p>חמישה אורכים מאפשרים לקשט פינה קטנה או ליצור קו אור ארוך לאורך קיר ומרפסת.</p></article><article><b>USB או סוללות — אתם בוחרים</b><p>USB לשימוש ממושך ליד מקור מתח; קופסת סוללות למקומות שבהם אין שקע קרוב.</p></article><article><b>שלושה מצבי אווירה</b><p>לבן חם לרכות, לבן קר לנראות נקייה או צבעוני למסיבה ולחדר ילדים.</p></article><article><b>קטנות מספיק כדי להשתלב</b><p>כדורים בקוטר של כ־1 ס״מ מוסיפים אור בלי להעמיס על העיצוב.</p></article></section><section class="elms-sales__choice"><h3>בחרו אורך לפי המקום שבו תרצו לראות את האור</h3>
+<p>1.5–3 מטר מתאימים למדף או שולחן; 6–12 מטר מאפשרים לעטוף מסגרת, קיר, אוהל או אזור ישיבה רחב.</p></section><section class="elms-sales__specs"><h3>פרטים שכדאי לדעת</h3>
+<ul>
+<li>1.5 עד 12 מטר</li>
+<li>10 עד 100 נורות LED</li>
+<li>USB או קופסת סוללות</li>
+<li>לבן חם, לבן קר או צבעוני</li>
+<li>קוטר כדור כ־1 ס״מ</li>
+<li>סוללות אינן כלולות</li>
+</ul></section><footer class="elms-sales__cta"><strong>תנו לפינה הרגילה להפוך למקום שרוצים להישאר בו</strong><span>בחרו אורך, מקור מתח וגוון והוסיפו שכבת אור עדינה שמשנה את האווירה.</span></footer>
+</div>
+</div><style>.elms-sales,.elms-sales *{box-sizing:border-box;font-family:'Rubik',Arial,sans-serif}.elms-sales{--paper:#FFFDF7;--cream:#F7F0E6;--gold:#D4B78B;--gold-dark:#8A6428;--dark:#2B2118;--muted:#6F665C;direction:rtl;color:var(--dark);background:linear-gradient(180deg,var(--paper),var(--cream));border:1px solid rgba(212,183,139,.38);border-radius:22px;overflow:hidden}.elms-sales__hero{padding:clamp(30px,6vw,62px) clamp(18px,5vw,58px);text-align:center;background:radial-gradient(circle at 82% 0,rgba(212,183,139,.32),transparent 34%)}.elms-sales__kicker{display:inline-block;margin-bottom:14px;padding:7px 14px;border:1px solid rgba(138,100,40,.25);border-radius:999px;color:var(--gold-dark);font-size:12px;font-weight:700}.elms-sales h2{max-width:820px;margin:0 auto 15px;font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.5px}.elms-sales__lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.85}.elms-sales__promise{max-width:760px;margin:24px auto 0;padding:17px 20px;background:#fff;border:1px solid rgba(212,183,139,.48);border-radius:16px;box-shadow:0 12px 32px rgba(43,33,24,.06)}.elms-sales__promise strong{display:block;font-size:18px}.elms-sales__promise span{display:block;margin-top:5px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__body{padding:0 clamp(16px,5vw,58px) clamp(30px,5vw,56px)}.elms-sales__story{max-width:860px;margin:0 auto 22px;padding:24px;background:rgba(255,255,255,.72);border-right:4px solid var(--gold);border-radius:16px}.elms-sales h3{margin:0 0 9px;font-size:22px;line-height:1.35}.elms-sales__story p,.elms-sales__choice p{margin:0;color:var(--muted);font-size:15px;line-height:1.85}.elms-sales__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:960px;margin:0 auto}.elms-sales__benefits article{padding:21px;background:#fff;border:1px solid rgba(212,183,139,.42);border-radius:16px;box-shadow:0 10px 26px rgba(43,33,24,.05)}.elms-sales__benefits b{display:block;margin-bottom:7px;font-size:17px}.elms-sales__benefits p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}.elms-sales__choice{max-width:860px;margin:22px auto 0;padding:23px;border:1px dashed rgba(138,100,40,.42);border-radius:16px}.elms-sales__specs{max-width:860px;margin:15px auto 0;padding:21px;background:rgba(43,33,24,.035);border-radius:16px}.elms-sales__specs h3{font-size:17px}.elms-sales__specs ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none}.elms-sales__specs li{position:relative;padding-right:17px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__specs li:before{content:'•';position:absolute;right:0;color:var(--gold-dark);font-weight:800}.elms-sales__cta{margin-top:16px;padding:22px;text-align:center;background:linear-gradient(135deg,#EAD2A8,var(--gold));border-radius:16px}.elms-sales__cta strong{display:block;font-size:19px;line-height:1.45}.elms-sales__cta span{display:block;margin-top:5px;font-size:13px;line-height:1.6}@media(max-width:700px){.elms-sales{border-radius:16px}.elms-sales__hero{padding:32px 16px}.elms-sales h2{font-size:31px}.elms-sales__body{padding:0 10px 28px}.elms-sales__story{padding:19px}.elms-sales__benefits{grid-template-columns:1fr}.elms-sales__benefits article{padding:18px}.elms-sales__specs ul{grid-template-columns:1fr}}</style></div>
+      </details></div>
+</section>
+<p class="fp-label"><b>A · the preserved description, open</b> The owner&#x27;s .elms-sales copy keeps every word and loses its cream card: no background, no border, no 22px radius, no Rubik — headings in Heebo, bullets on hairlines. This is the same &lt;details&gt; the buyer opens.</p>
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid"><div class="env2-pdp-facts__head"><p class="env2-eyebrow env2-pdp-facts__eyebrow">05 · מה שכדאי לדעת</p><h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;ומה יכול להשתבש?&#187;</h2><p class="env2-lead env2-pdp-facts__deck">מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.</p></div><p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>IP65</bdi></span><span class="env2-pdp-facts__giantsub">עמידות IP65 מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</span></p><dl class="env2-pdp-facts__dl"><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">אורך</dt><dd class="env2-pdp-facts__dd">5–22 מטר</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">נורות</dt><dd class="env2-pdp-facts__dd">20–200 נורות <bdi>LED</bdi></dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">מצבי תאורה</dt><dd class="env2-pdp-facts__dd">8 מצבי תאורה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">צבע האור</dt><dd class="env2-pdp-facts__dd">צהוב, כחול, צבעוני או לבן</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">זמן עבודה</dt><dd class="env2-pdp-facts__dd">כ־8–10 שעות עבודה לאחר טעינה מלאה</dd>
+            </div><div class="env2-pdp-facts__row"><dt class="env2-pdp-facts__dt">עמידות</dt><dd class="env2-pdp-facts__dd"><bdi>IP65</bdi></dd>
+            </div><div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">מה שלא כתוב</dt>
+              <dd class="env2-pdp-facts__dd">מידות מדויקות, לומן ואחריות אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.</dd>
+            </div></dl></div><details open class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">כל מה שכתוב על המוצר</summary>
+        <div class="env2-pdp-facts__desc"><div class="elms-sales" dir="rtl">
+<header class="elms-sales__hero"><span class="elms-sales__kicker">נקודות אור רגילות מאירות — כדורי הקריסטל גם מנצנצים</span><h2>ברק עדין שהופך מרפסת, פרגולה או גינה לרקע חגיגי</h2>
+<p class="elms-sales__lead">הכדורים השקופים שוברים את האור ויוצרים נצנוץ עשיר יותר משרשרת LED רגילה. תולים סביב אזור הישיבה, לאורך גדר או בתוך אוהל ומקבלים אווירה בולטת בלי חיבור לחשמל.</p>
+<div class="elms-sales__promise">
+<strong>מראה חגיגי שמתחיל לבד בכל ערב.</strong><span>הפאנל נטען מהשמש, והשרשרת נדלקת עם החשכה במצב התאורה שבחרתם.</span>
+</div></header><div class="elms-sales__body">
+<section class="elms-sales__story"><h3>הפרטים הקטנים הם אלה שנראים הכי טוב בתמונות</h3>
+<p>כדורי הקריסטל מוסיפים עומק וברק סביב שולחן, שביל, פרגולה או רקע צילום. האור משתקף בתוך כל כדור ומעניק לחלל תחושה עשירה וחגיגית יותר.</p></section><section class="elms-sales__benefits"><article><b>שמונה מצבים לאווירות שונות</b><p>בחרו אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע.</p></article><article><b>מאורך קטן ועד קישוט של חלל שלם</b><p>5 עד 22 מטר ו־20 עד 200 נורות מאפשרים להתאים את השרשרת בדיוק לגודל האזור.</p></article><article><b>צבע שמגדיר את האירוע</b><p>צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה.</p></article><article><b>מיועדת להישאר בחוץ</b><p>עמידות IP65 מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</p></article></section><section class="elms-sales__choice"><h3>בחרו אורך שמאפשר להשלים את המסגרת</h3>
+<p>מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.</p></section><section class="elms-sales__specs"><h3>פרטים שכדאי לדעת</h3>
+<ul>
+<li>5–22 מטר</li>
+<li>20–200 נורות LED</li>
+<li>8 מצבי תאורה</li>
+<li>צהוב, כחול, צבעוני או לבן</li>
+<li>טעינה סולארית</li>
+<li>כ־8–10 שעות עבודה לאחר טעינה מלאה</li>
+<li>עמידות IP65</li>
+</ul></section><footer class="elms-sales__cta"><strong>הפכו את החלל מרגיל לחגיגי עוד לפני שהאור הראשון נדלק</strong><span>בחרו אורך וצבע ותנו לכדורי הקריסטל ליצור את הרקע של הערב.</span></footer>
+</div>
+</div><style>.elms-sales,.elms-sales *{box-sizing:border-box;font-family:'Rubik',Arial,sans-serif}.elms-sales{--paper:#FFFDF7;--cream:#F7F0E6;--gold:#D4B78B;--gold-dark:#8A6428;--dark:#2B2118;--muted:#6F665C;direction:rtl;color:var(--dark);background:linear-gradient(180deg,var(--paper),var(--cream));border:1px solid rgba(212,183,139,.38);border-radius:22px;overflow:hidden}.elms-sales__hero{padding:clamp(30px,6vw,62px) clamp(18px,5vw,58px);text-align:center;background:radial-gradient(circle at 82% 0,rgba(212,183,139,.32),transparent 34%)}.elms-sales__kicker{display:inline-block;margin-bottom:14px;padding:7px 14px;border:1px solid rgba(138,100,40,.25);border-radius:999px;color:var(--gold-dark);font-size:12px;font-weight:700}.elms-sales h2{max-width:820px;margin:0 auto 15px;font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.5px}.elms-sales__lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.85}.elms-sales__promise{max-width:760px;margin:24px auto 0;padding:17px 20px;background:#fff;border:1px solid rgba(212,183,139,.48);border-radius:16px;box-shadow:0 12px 32px rgba(43,33,24,.06)}.elms-sales__promise strong{display:block;font-size:18px}.elms-sales__promise span{display:block;margin-top:5px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__body{padding:0 clamp(16px,5vw,58px) clamp(30px,5vw,56px)}.elms-sales__story{max-width:860px;margin:0 auto 22px;padding:24px;background:rgba(255,255,255,.72);border-right:4px solid var(--gold);border-radius:16px}.elms-sales h3{margin:0 0 9px;font-size:22px;line-height:1.35}.elms-sales__story p,.elms-sales__choice p{margin:0;color:var(--muted);font-size:15px;line-height:1.85}.elms-sales__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:960px;margin:0 auto}.elms-sales__benefits article{padding:21px;background:#fff;border:1px solid rgba(212,183,139,.42);border-radius:16px;box-shadow:0 10px 26px rgba(43,33,24,.05)}.elms-sales__benefits b{display:block;margin-bottom:7px;font-size:17px}.elms-sales__benefits p{margin:0;color:var(--muted);font-size:13px;line-height:1.75}.elms-sales__choice{max-width:860px;margin:22px auto 0;padding:23px;border:1px dashed rgba(138,100,40,.42);border-radius:16px}.elms-sales__specs{max-width:860px;margin:15px auto 0;padding:21px;background:rgba(43,33,24,.035);border-radius:16px}.elms-sales__specs h3{font-size:17px}.elms-sales__specs ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none}.elms-sales__specs li{position:relative;padding-right:17px;color:var(--muted);font-size:13px;line-height:1.6}.elms-sales__specs li:before{content:'•';position:absolute;right:0;color:var(--gold-dark);font-weight:800}.elms-sales__cta{margin-top:16px;padding:22px;text-align:center;background:linear-gradient(135deg,#EAD2A8,var(--gold));border-radius:16px}.elms-sales__cta strong{display:block;font-size:19px;line-height:1.45}.elms-sales__cta span{display:block;margin-top:5px;font-size:13px;line-height:1.6}@media(max-width:700px){.elms-sales{border-radius:16px}.elms-sales__hero{padding:32px 16px}.elms-sales h2{font-size:31px}.elms-sales__body{padding:0 10px 28px}.elms-sales__story{padding:19px}.elms-sales__benefits{grid-template-columns:1fr}.elms-sales__benefits article{padding:18px}.elms-sales__specs ul{grid-template-columns:1fr}}</style></div>
+      </details></div>
+</section>
+
+
+</body></html>

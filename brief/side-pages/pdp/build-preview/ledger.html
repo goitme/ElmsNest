@@ -1,0 +1,1091 @@
+<!doctype html><html lang="he" dir="rtl" class="env2-js"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest PDP — elmsnest-v2-pdp-ledger</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<style>
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1), every template ----------
+   Kalles paints body with its scheme and wraps content in painted containers; here the document
+   is night on every page type and the wrappers go clear. The index keeps its own dusk gradient
+   (snippets/elmsnest-v2-ground-index, rendered by the hero); every other template gets the
+   side-page ground: sky-2 -> sky-3 -> sky-4, ending in #020306 before the footer. */
+html{background:#020306}
+body[class*="hdt-page-type-"]{background-color:#020306;color:#f4eee3}
+body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+#wrapper,.main-content,main,#MainContent,.hdt-main-content,.hdt-page-content,.shopify-section{background:transparent}
+/* Kalles back-to-top: a white square bottom-right (old palette) — hidden everywhere (§7.11) */
+.hdt-back-to-top,back-to-top{display:none!important}
+/* Kalles footer group: same sans as the page, quiet links (underline on hover only).
+   The link rules must reach (0,2,2): the footer links sit inside .hdt-text-warry.hdt-rte, and Kalles'
+   .hdt-rte a:not(.hdt-btn){text-decoration:underline} is (0,2,1), so the plain unscoped selector (0,1,1)
+   lost to it and every footer link came back underlined (fix pass R0-01). The index-scoped rule this
+   replaced was body.hdt-page-type-index .shopify-section-group-footer-group a = (0,2,2) and did win. */
+.shopify-section-group-footer-group{font-family:var(--env2-sans)}
+body .shopify-section-group-footer-group a:not(.hdt-btn){text-decoration:none}
+body .shopify-section-group-footer-group a:not(.hdt-btn):hover,body .shopify-section-group-footer-group a:not(.hdt-btn):focus-visible{text-decoration:underline}
+/* Kalles chrome type: header menu, drawers, popovers, facets and the old sections use Heebo.
+   css-variables sets --f_family_1..3 on :root from the Shopify font (assistant_n4); this comes after it. */
+:root{--f_family_1:var(--env2-sans);--f_family_2:var(--env2-sans);--f_family_3:var(--env2-sans)}
+/* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
+   sale badges never render (settings hidden_badges + this belt) */
+option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
+.hdt-badge__wrapp{display:none!important}
+/* Kalles form fields: the theme paints a field with rgb(var(--color-input-primary)) and writes it with
+   --color-input-secondary. Both the :root fallback (css-variables l.185-186) and the night scheme's
+   input pair still carry cream-era values, so every form rendered a light slab with 2.7:1 text on the
+   night ground (contact form, account/login/register, the cart discount field). Night field, ink text.
+   --en-input-bg is the last #fffdf7 in the token set (the header search field) — retargeted with it. */
+:root{--en-input-bg:17 29 51}
+:root,[color-scheme]{--color-input-primary:var(--en-surface-elevated);--color-input-secondary:var(--en-color-light)}
+/* Kalles accent buttons hard-code white labels (.hdt-btn-accent{--hdt-btn-color:255 255 255}); under the
+   night scheme their fill is --env2-glow, so the label needs the dark ink (§D): 1.4:1 -> 13:1. */
+.hdt-btn-accent{--hdt-btn-color:var(--en-text-inverse)}
+/* Kalles swatch/tooltip bubble: css-variables pairs --color-tooltip-background with
+   --color-tooltip-text, and §D moved BOTH ends of that pair to near-black (--en-color-dark 2 3 6 /
+   --en-text-inverse 2 3 6) — the bubble is ink-on-ink. Night bubble, ink label (hover only). */
+:root{--color-tooltip-background:var(--en-surface-elevated);--color-tooltip-text:var(--en-color-light)}
+
+/* ---------- fix pass, round 0 second pass (V-1 · V-2 · V-4 · V-6) ---------- */
+/* V-1: the header search panel is <hdt-predictive-search color-scheme="scheme-1"> — the attribute is written
+   in a Kalles core section we do not own, so settings.color_scheme_dialog never reaches it, and scheme-1 is
+   the cream scheme (#f7f0e6 background, #fffdf7 background2, #2b2118 foreground): the three hexes this round
+   forbids, on the drawer behind the magnifier on every template. scheme-1 is remapped onto the night pair.
+   Exactly one element per page carries it (the search panel, closed) — the homepage included — so nothing
+   else can move. The input pair is deliberately NOT listed here: the :root,[color-scheme] rule above owns it
+   at the same specificity and must keep winning. */
+[color-scheme="scheme-1"]{
+  --color-background:2 3 6;--color-background2:7 11 21;--color-foreground:244 238 227;--color-foreground2:201 196 184;
+  --color-accent:255 211 148;--color-secondary:208 182 135;--color-tertiary:155 122 61;
+  --hdt-btn-color:26 18 6;--hdt-btn-bg:255 211 148;--hdt-btn-border-color:255 211 148;
+  --hdt-btn-hover-color:26 18 6;--hdt-btn-hover-bg:var(--en-surface-card);--hdt-btn-hover-border-color:var(--en-surface-card);
+  --hdt-btn-secondary-color:83 73 54;--hdt-btn-secondary-bg:208 182 135;
+  --hdt-btn-tertiary-color:62 49 24;--hdt-btn-tertiary-bg:155 122 61;
+  --hdt-btn-outline-color:244 238 227;--hdt-btn-outline-border-color:244 238 227;
+  --hdt-link-color:244 238 227;--hdt-link-hover-color:255 211 148;
+  --color-line-border:31 30 29;--color-overlay:2 3 6;--payment-terms-background-color:rgb(2 3 6);
+  --color-pr-price:255 211 148;--color-pr-sale-price:255 211 148;--color-pr-text:244 238 227;
+  --color-focus:var(--en-focus-dark);--en-focus-contrast:var(--en-focus-light)
+}
+/* the search drawer's category <select> and its options paint from the UA, not from the scheme (old open item 5) */
+#drawer-search-form select,#drawer-search-form option{background-color:rgb(var(--en-surface-elevated));color:rgb(var(--en-color-light))}
+/* V-4: <dialog id="modal-contactFormAsk"> has no background rule of its own, so it falls back to the UA's
+   white canvas while its wrapper's night scheme paints the ink — heading 1.15:1, field labels 1.74:1. */
+#modal-contactFormAsk{background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}
+/* V-6: --en-warning-text (96 64 0) was built for the cream page; §D moved the ground to #020306 and did not
+   list it, so .hdt-no-result-product — the only copy on the no-results page — reads 2.19:1. The amber the
+   design system already uses gives 11.9:1 on #020306. The two other consumers (.toast.warning border,
+   .toast-icon.warning fill, which pairs it with --en-text-inverse) stay legible. */
+:root{--en-warning-text:255 211 148}
+/* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
+   hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
+.hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-price__from{font-family:var(--env2-sans);font-weight:400;font-size:.62em;color:var(--env2-ink-2);margin-inline-end:.15em;letter-spacing:0}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<style>
+/* ---------- page ground (PDP §3.1): the PDP is already night — sky-2 → sky-4, no dusk ----------
+   Screen 1 is a photo ground painted by the stage section; the document below it is this one
+   gradient, never a per-section background. */
+html body.hdt-page-type-product{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#0f1a2f 20%,#070b15 56%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-product #wrapper,
+html body.hdt-page-type-product .main-content,
+html body.hdt-page-type-product main,
+html body.hdt-page-type-product #MainContent,
+html body.hdt-page-type-product .hdt-main-content,
+html body.hdt-page-type-product .hdt-page-content,
+html body.hdt-page-type-product .shopify-section{background:transparent}
+/* The header is transparent over the stage: the stage is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it. */
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-product #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-product .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal scroll at 360px — the stage and the night gallery are full-bleed (§6.18). */
+html body.hdt-page-type-product{overflow-x:hidden}
+/* The sticky mobile buy bar (§4.9) reserves its own height at the end of the document so it can never
+   cover the footer. --env2-pdp-bar-h is declared here (one place) and read by elmsnest-v2-pdp-buybar. */
+@media (max-width:900px){
+  html body.hdt-page-type-product{--env2-pdp-bar-h:78px;padding-block-end:var(--env2-pdp-bar-h)}
+}
+</style>
+<style>
+/* ElmsNest v2 PDP §4.4 — the variant / price ledger. Rows on hairlines, never boxes (do-not §6.14 and
+   §6.20: eight sections, eight compositions). No background is painted here — the ground is the
+   body's (§3.1). Logical properties only; radius 0 everywhere except the core's pills. */
+.env2-pdp-ledger{padding-block:clamp(72px,11vw,110px) clamp(64px,10vw,100px)}
+.env2-pdp-ledger__wrap{position:relative;z-index:1}
+.env2-pdp-ledger__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);gap:clamp(18px,3vw,56px);align-items:end;margin-block-end:clamp(30px,4vw,54px)}
+.env2-pdp-ledger__eyebrow{margin:0 0 clamp(16px,2vw,26px)}
+.env2-pdp-ledger__h2{font-size:clamp(34px,4.9vw,72px)}
+.env2-pdp-ledger__h2 em{display:block}
+.env2-pdp-ledger__lead{margin:0;max-inline-size:42ch;padding-block-end:6px}
+
+/* ---------- the rows ---------- */
+.env2-pdp-ledger__rows{list-style:none;margin:0;padding:0}
+.env2-pdp-ledger__row{display:flex;align-items:center;gap:clamp(12px,1.6vw,24px);border-block-start:1px solid var(--env2-hair)}
+.env2-pdp-ledger__row:last-of-type{border-block-end:1px solid var(--env2-hair)}
+.env2-pdp-ledger__pick{flex:1 1 auto;min-inline-size:0;display:grid;
+  grid-template-columns:minmax(88px,max-content) 200px minmax(0,1fr) max-content minmax(96px,max-content);
+  align-items:center;column-gap:clamp(12px,1.6vw,24px);
+  margin:0;padding:18px 0;border:0;border-radius:0;background:transparent;color:inherit;
+  font:inherit;text-align:start;cursor:pointer;appearance:none;-webkit-appearance:none}
+.env2-pdp-ledger__n{font-family:var(--env2-serif);font-weight:500;font-size:clamp(34px,3vw,44px);line-height:1;
+  font-variant-numeric:tabular-nums;color:var(--env2-ink-2);white-space:nowrap;transition:color .4s}
+.env2-pdp-ledger__n small{font-size:max(12.5px,.32em);font-weight:400;margin-inline-start:.18em;letter-spacing:.02em}
+.env2-pdp-ledger__n-text{font-family:var(--env2-sans);font-size:17px;font-weight:400;line-height:1.25;display:block;unicode-bidi:isolate}
+.env2-pdp-ledger__vis{display:grid;gap:7px;min-inline-size:0}
+/* the row's own string: length to scale, bulbs at the row's own density — drawn in CSS, so it is
+   there with JS off and it cannot cost a paint. */
+.env2-pdp-ledger__string{position:relative;display:block;block-size:16px;inline-size:var(--env2-pdp-ledger-w,100%)}
+.env2-pdp-ledger__string::before{content:"";position:absolute;inset-inline:0;inset-block-start:7px;block-size:1px;
+  background:rgba(244,238,227,.2)}
+.env2-pdp-ledger__string::after{content:"";position:absolute;inset-inline:0;inset-block:0;
+  background-image:radial-gradient(circle at 50% 50%,rgba(255,224,178,1) 0,rgba(255,205,132,.62) 26%,rgba(255,196,110,0) 58%);
+  background-size:calc(100% / var(--env2-pdp-ledger-n,10)) 100%;
+  opacity:calc(.24 + .46*var(--lit,1));
+  transition:opacity .55s ease;transition-delay:calc(var(--env2-pdp-ledger-d,0) * 55ms)}
+.env2-pdp-ledger__b{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.3;color:var(--env2-mute);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;unicode-bidi:isolate}
+.env2-pdp-ledger__use{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.45;color:var(--env2-ink-2);
+  text-wrap:pretty;unicode-bidi:isolate}
+.env2-pdp-ledger__price{--env2-price-size:22px;color:var(--env2-ink-2);transition:color .4s,text-shadow .4s}
+.env2-pdp-ledger__pm{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.35;color:var(--env2-mute);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+/* the chosen row: its numeral and price come up to full ink, its string lights, the others stay cord */
+.env2-pdp-ledger__row--on .env2-pdp-ledger__n{color:var(--env2-ink)}
+.env2-pdp-ledger__row--on .env2-pdp-ledger__price{color:var(--env2-glow);text-shadow:0 0 18px rgba(255,211,148,.3)}
+.env2-pdp-ledger__row--on .env2-pdp-ledger__string::after{opacity:calc(.5 + .5*var(--lit,1));
+  filter:drop-shadow(0 0 5px rgba(255,211,148,.45))}
+.env2-pdp-ledger__row--on .env2-pdp-ledger__use{color:var(--env2-ink)}
+.env2-pdp-ledger__pick:hover .env2-pdp-ledger__n{color:var(--env2-ink)}
+
+/* ---------- the per-row form: the no-JS path (§4.4) ---------- */
+.env2-pdp-ledger__form{flex:0 0 auto;inline-size:132px;display:grid;gap:9px;margin:0;padding:0}
+.env2-pdp-ledger__sel{inline-size:100%;max-inline-size:100%;margin:0;border:0;border-block-end:1px solid var(--env2-hair-btn);
+  border-radius:0;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:400;font-size:14px;
+  line-height:1.3;padding:7px 0;min-block-size:44px;appearance:none;-webkit-appearance:none;cursor:pointer}
+.env2-pdp-ledger__sel:focus-visible{outline:2px solid var(--env2-glow);outline-offset:3px}
+.env2-pdp-ledger__sel option{background:#070b15;color:#f4eee3}
+.env2-pdp-ledger__add[disabled]{opacity:.45;cursor:not-allowed}
+.env2-js .env2-pdp-ledger__form{display:none}
+
+/* ---------- the JS-only buy line (the §4.4 inversion: six forms become one) ---------- */
+.env2-pdp-ledger__buy{display:none}
+.env2-js .env2-pdp-ledger__buy{display:flex;flex-wrap:wrap;align-items:center;gap:14px clamp(18px,2.4vw,34px);
+  padding-block:22px;border-block-end:1px solid var(--env2-hair)}
+.env2-pdp-ledger__chosen{display:grid;gap:5px;min-inline-size:0;flex:1 1 220px}
+.env2-pdp-ledger__chosen-label{font-size:11.5px}
+.env2-pdp-ledger__chosen-value{font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate}
+.env2-pdp-ledger__buyprice{--env2-price-size:26px}
+.env2-pdp-ledger__buyform{display:flex;align-items:center;gap:14px;margin:0;padding:0;flex-wrap:wrap}
+.env2-pdp-ledger__buysel{inline-size:auto;min-inline-size:132px}
+.env2-pdp-ledger__buybtn{color:var(--env2-btn-ink)}
+
+/* ---------- the quiet axis, printed as a fact (§3.6: an axis that never changes the price) ---------- */
+.env2-pdp-ledger__quiet{margin-block-start:clamp(24px,3vw,38px);display:grid;gap:7px;max-inline-size:62ch}
+.env2-pdp-ledger__qlabel{margin:0;font-size:11.5px}
+.env2-pdp-ledger__qvals{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.4;color:var(--env2-ink);unicode-bidi:isolate}
+.env2-pdp-ledger__qvals small{font-weight:300;font-size:13px;color:var(--env2-mute);margin-inline-start:.5em}
+.env2-pdp-ledger__qdesc{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.5;color:var(--env2-ink-2)}
+.env2-pdp-ledger__foot{margin:clamp(22px,3vw,34px) 0 0;font-family:var(--env2-sans);font-weight:300;font-size:14px;
+  line-height:1.5;color:var(--env2-ink-2);max-inline-size:60ch}
+.env2-pdp-ledger__jsnote{display:none}
+.env2-js .env2-pdp-ledger__jsnote{display:block;margin:clamp(14px,2vw,20px) 0 0;font-family:var(--env2-sans);font-weight:300;
+  font-size:13px;line-height:1.5;color:var(--env2-mute)}
+.env2-pdp-ledger__empty{font-family:var(--env2-sans);font-size:14px;color:var(--env2-mute);padding-block:40px}
+
+/* ---------- 900px: two lines per row, never a six-column squeeze (§4.4) ---------- */
+@media (max-width:900px){
+  .env2-pdp-ledger{padding-block:clamp(56px,12vw,84px) clamp(48px,10vw,72px)}
+  .env2-pdp-ledger__head{grid-template-columns:minmax(0,1fr);align-items:start;gap:18px}
+  .env2-pdp-ledger__lead{max-inline-size:none;padding-block-end:0}
+  .env2-pdp-ledger__row{display:block;padding-block:20px}
+  .env2-pdp-ledger__pick{inline-size:100%;padding:0;column-gap:12px;row-gap:9px;
+    grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"n vis price" "use use pm"}
+  .env2-pdp-ledger__n{grid-area:n;font-size:34px;align-self:center}
+  .env2-pdp-ledger__vis{grid-area:vis;align-self:center}
+  .env2-pdp-ledger__use{grid-area:use;font-size:14px;align-self:start}
+  .env2-pdp-ledger__price{grid-area:price;--env2-price-size:20px;align-self:center}
+  .env2-pdp-ledger__pm{grid-area:pm;justify-self:end;align-self:start;font-size:13px}
+  .env2-pdp-ledger__form{inline-size:100%;margin-block-start:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+  .env2-pdp-ledger__sel{flex:1 1 130px;inline-size:auto}
+  .env2-pdp-ledger__add{flex:0 0 auto}
+  .env2-js .env2-pdp-ledger__buy{gap:12px 18px;padding-block:20px}
+  .env2-pdp-ledger__buyprice{--env2-price-size:24px}
+  .env2-pdp-ledger__buyform{inline-size:100%}
+  .env2-pdp-ledger__buybtn{flex:1 1 auto;min-block-size:48px}
+}
+@media (max-width:420px){
+  .env2-pdp-ledger__pick{grid-template-columns:auto minmax(0,1fr) auto}
+  .env2-pdp-ledger__n{font-size:30px}
+  .env2-pdp-ledger__b{font-size:13px}
+}
+</style>
+<style>
+body{margin:0}
+.np-label{width:min(1240px,100% - 2*var(--env2-gut));margin:0 auto;padding-block:52px 0;font:13px/1.6 var(--env2-sans);color:var(--env2-mute);border-top:1px dashed rgba(244,238,227,.18)}
+.np-label b{display:block;font-weight:500;font-size:13.5px;letter-spacing:.06em;color:var(--env2-gold)}
+</style></head>
+<body class="hdt-page-type-product template-product">
+<script type="application/json" id="env2-pdp-variants" data-env2-pdp-variants>{ "mode": "variants", "axis": 1, "axis2": 0, "axisName": "אורך ומספר נורות", "axis2Name": "", "quietAxis": 2, "quietName": "צבע תאורה", "quietValues": 4, "rowCount": 6, "defaultRow": 0, "defaultId": 48880938221742, "priceMin": "89.90", "priceMax": "179.90", "priceVaries": true, "unit": "מ׳", "countUnit": "נורות", "perUnitLabel": "₪ למטר", "axisValues": 6, "rows": [{ "i": 0, "key": "5 מ׳ / 20 נורות", "a": "5 מ׳ / 20 נורות", "b": "", "label": "5 מ׳ / 20 נורות", "n1": "5", "u1": "מ׳", "n2": "20", "u2": "נורות", "priceText": "89.90", "price": 8990, "perUnit": "17.98", "perUnitLabel": "₪ למטר", "available": true, "id": 48880938221742, "variantCount": 4, "image": "", "variants": [{ "id": 48880938221742, "label": "צהוב", "price": 8990, "available": true }, { "id": 48880938254510, "label": "כחול", "price": 8990, "available": true }, { "id": 48880938287278, "label": "צבעוני", "price": 8990, "available": true }, { "id": 48880938320046, "label": "לבן", "price": 8990, "available": true }] }, { "i": 1, "key": "6.5 מ׳ / 30 נורות", "a": "6.5 מ׳ / 30 נורות", "b": "", "label": "6.5 מ׳ / 30 נורות", "n1": "6.5", "u1": "מ׳", "n2": "30", "u2": "נורות", "priceText": "89.90", "price": 8990, "perUnit": "13.83", "perUnitLabel": "₪ למטר", "available": true, "id": 48880938352814, "variantCount": 4, "image": "", "variants": [{ "id": 48880938352814, "label": "צהוב", "price": 8990, "available": true }, { "id": 48880938385582, "label": "כחול", "price": 8990, "available": true }, { "id": 48880938418350, "label": "צבעוני", "price": 8990, "available": true }, { "id": 48880938451118, "label": "לבן", "price": 8990, "available": true }] }, { "i": 2, "key": "9.5 מ׳ / 50 נורות", "a": "9.5 מ׳ / 50 נורות", "b": "", "label": "9.5 מ׳ / 50 נורות", "n1": "9.5", "u1": "מ׳", "n2": "50", "u2": "נורות", "priceText": "99.90", "price": 9990, "perUnit": "10.52", "perUnitLabel": "₪ למטר", "available": true, "id": 48880938483886, "variantCount": 4, "image": "", "variants": [{ "id": 48880938483886, "label": "צהוב", "price": 9990, "available": true }, { "id": 48880938516654, "label": "כחול", "price": 9990, "available": true }, { "id": 48880938549422, "label": "צבעוני", "price": 9990, "available": true }, { "id": 48880938582190, "label": "לבן", "price": 9990, "available": true }] }, { "i": 3, "key": "11 מ׳ / 60 נורות", "a": "11 מ׳ / 60 נורות", "b": "", "label": "11 מ׳ / 60 נורות", "n1": "11", "u1": "מ׳", "n2": "60", "u2": "נורות", "priceText": "109.90", "price": 10990, "perUnit": "9.99", "perUnitLabel": "₪ למטר", "available": true, "id": 48880938614958, "variantCount": 4, "image": "", "variants": [{ "id": 48880938614958, "label": "צהוב", "price": 10990, "available": true }, { "id": 48880938647726, "label": "כחול", "price": 10990, "available": true }, { "id": 48880938680494, "label": "צבעוני", "price": 10990, "available": true }, { "id": 48880938713262, "label": "לבן", "price": 10990, "available": true }] }, { "i": 4, "key": "13 מ׳ / 100 נורות", "a": "13 מ׳ / 100 נורות", "b": "", "label": "13 מ׳ / 100 נורות", "n1": "13", "u1": "מ׳", "n2": "100", "u2": "נורות", "priceText": "129.90", "price": 12990, "perUnit": "9.99", "perUnitLabel": "₪ למטר", "available": true, "id": 48880938746030, "variantCount": 4, "image": "", "variants": [{ "id": 48880938746030, "label": "צהוב", "price": 12990, "available": true }, { "id": 48880938778798, "label": "כחול", "price": 12990, "available": true }, { "id": 48880938811566, "label": "צבעוני", "price": 12990, "available": true }, { "id": 48880938844334, "label": "לבן", "price": 12990, "available": true }] }, { "i": 5, "key": "22 מ׳ / 200 נורות", "a": "22 מ׳ / 200 נורות", "b": "", "label": "22 מ׳ / 200 נורות", "n1": "22", "u1": "מ׳", "n2": "200", "u2": "נורות", "priceText": "179.90", "price": 17990, "perUnit": "8.18", "perUnitLabel": "₪ למטר", "available": true, "id": 48880938877102, "variantCount": 4, "image": "", "variants": [{ "id": 48880938877102, "label": "צהוב", "price": 17990, "available": true }, { "id": 48880938909870, "label": "כחול", "price": 17990, "available": true }, { "id": 48880938942638, "label": "צבעוני", "price": 17990, "available": true }, { "id": 48880938975406, "label": "לבן", "price": 17990, "available": true }] }] }</script>
+<p class="np-label"><b>A · solar-crystal-ball-string-lights — 24 variants, the section as it ships</b> Six rows on hairlines, one per length. Every price visible before choosing; per-metre to the agora (17.98 / 13.83 / 10.52 / 9.99 / 9.99 / 8.18); the __use caption from a &quot;row&quot; block, quoted from the description; the string is drawn to scale in CSS so it survives with JS off. Headline and lead derived, not typed.</p>
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-labelledby="env2-pdp-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-ledger__wrap">
+
+    <div class="env2-pdp-ledger__head">
+      <div class="env2-pdp-ledger__headline"><p class="env2-eyebrow env2-pdp-ledger__eyebrow">04 · מה מקבלים</p><h2 class="env2-h env2-pdp-ledger__h2" id="env2-pdp-ledger-h2">שישה אורכים. <em>הצבע לא משנה את המחיר.</em></h2>
+      </div><p class="env2-lead env2-pdp-ledger__lead">מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.</p></div>
+
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="variants"><li class="env2-pdp-ledger__row env2-pdp-ledger__row--on" data-env2-pdp-ledger-row data-i="0" data-label="5 מ׳ / 20 נורות" data-qty="1" data-price="8990" data-id="48880938221742" data-quiet="48880938221742^צהוב^8990^1;48880938254510^כחול^8990^1;48880938287278^צבעוני^8990^1;48880938320046^לבן^8990^1" style="--env2-pdp-ledger-d:0" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="true" aria-label="5 מ׳ / 20 נורות, 89.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>5</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:23%;--env2-pdp-ledger-n:4"></i><span class="env2-pdp-ledger__b">20 נורות</span></span>
+            <span class="env2-pdp-ledger__use">לפינת ישיבה קטנה או לשולחן אחד</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>89.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>17.98</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 5 מ׳ / 20 נורות"><option value="48880938221742">צהוב</option><option value="48880938254510">כחול</option><option value="48880938287278">צבעוני</option><option value="48880938320046">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="1" data-label="6.5 מ׳ / 30 נורות" data-qty="1" data-price="8990" data-id="48880938352814" data-quiet="48880938352814^צהוב^8990^1;48880938385582^כחול^8990^1;48880938418350^צבעוני^8990^1;48880938451118^לבן^8990^1" style="--env2-pdp-ledger-d:1" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="6.5 מ׳ / 30 נורות, 89.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>6.5</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:30%;--env2-pdp-ledger-n:5"></i><span class="env2-pdp-ledger__b">30 נורות</span></span>
+            <span class="env2-pdp-ledger__use">אותו מחיר, מטר וחצי יותר</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>89.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>13.83</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 6.5 מ׳ / 30 נורות"><option value="48880938352814">צהוב</option><option value="48880938385582">כחול</option><option value="48880938418350">צבעוני</option><option value="48880938451118">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="2" data-label="9.5 מ׳ / 50 נורות" data-qty="1" data-price="9990" data-id="48880938483886" data-quiet="48880938483886^צהוב^9990^1;48880938516654^כחול^9990^1;48880938549422^צבעוני^9990^1;48880938582190^לבן^9990^1" style="--env2-pdp-ledger-d:2" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="9.5 מ׳ / 50 נורות, 99.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>9.5</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:43%;--env2-pdp-ledger-n:8"></i><span class="env2-pdp-ledger__b">50 נורות</span></span>
+            <span class="env2-pdp-ledger__use">לאורך גדר או מעקה</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>99.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>10.52</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 9.5 מ׳ / 50 נורות"><option value="48880938483886">צהוב</option><option value="48880938516654">כחול</option><option value="48880938549422">צבעוני</option><option value="48880938582190">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="3" data-label="11 מ׳ / 60 נורות" data-qty="1" data-price="10990" data-id="48880938614958" data-quiet="48880938614958^צהוב^10990^1;48880938647726^כחול^10990^1;48880938680494^צבעוני^10990^1;48880938713262^לבן^10990^1" style="--env2-pdp-ledger-d:3" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="11 מ׳ / 60 נורות, 109.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>11</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:50%;--env2-pdp-ledger-n:10"></i><span class="env2-pdp-ledger__b">60 נורות</span></span>
+            <span class="env2-pdp-ledger__use">מסגרת לפרגולה</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>109.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>9.99</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 11 מ׳ / 60 נורות"><option value="48880938614958">צהוב</option><option value="48880938647726">כחול</option><option value="48880938680494">צבעוני</option><option value="48880938713262">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="4" data-label="13 מ׳ / 100 נורות" data-qty="1" data-price="12990" data-id="48880938746030" data-quiet="48880938746030^צהוב^12990^1;48880938778798^כחול^12990^1;48880938811566^צבעוני^12990^1;48880938844334^לבן^12990^1" style="--env2-pdp-ledger-d:4" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="13 מ׳ / 100 נורות, 129.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>13</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:59%;--env2-pdp-ledger-n:17"></i><span class="env2-pdp-ledger__b">100 נורות</span></span>
+            <span class="env2-pdp-ledger__use">כמעט פי שניים נורות לאותו מרחק</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>129.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>9.99</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 13 מ׳ / 100 נורות"><option value="48880938746030">צהוב</option><option value="48880938778798">כחול</option><option value="48880938811566">צבעוני</option><option value="48880938844334">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="5" data-label="22 מ׳ / 200 נורות" data-qty="1" data-price="17990" data-id="48880938877102" data-quiet="48880938877102^צהוב^17990^1;48880938909870^כחול^17990^1;48880938942638^צבעוני^17990^1;48880938975406^לבן^17990^1" style="--env2-pdp-ledger-d:5" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="22 מ׳ / 200 נורות, 179.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>22</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:100%;--env2-pdp-ledger-n:26"></i><span class="env2-pdp-ledger__b">200 נורות</span></span>
+            <span class="env2-pdp-ledger__use">קישוט של חלל שלם</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>179.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>8.18</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 22 מ׳ / 200 נורות"><option value="48880938877102">צהוב</option><option value="48880938909870">כחול</option><option value="48880938942638">צבעוני</option><option value="48880938975406">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li></ol><div class="env2-pdp-ledger__buy" data-env2-pdp-ledger-buy>
+      <span class="env2-pdp-ledger__chosen">
+        <span class="env2-kicker env2-pdp-ledger__chosen-label">הבחירה שלכם</span>
+        <b class="env2-pdp-ledger__chosen-value" data-env2-pdp-ledger-mirror></b>
+      </span>
+      <span class="env2-price env2-pdp-ledger__buyprice" aria-live="polite"><bdi data-env2-pdp-ledger-price>89.90</bdi> &#8362;</span>
+      <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__buyform" data-env2-buy>
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="&#x2713;">
+        <input type="hidden" name="id" value="48880938221742" data-env2-pdp-ledger-id>
+        <input type="hidden" name="quantity" value="1" data-env2-pdp-ledger-qty><select class="env2-pdp-ledger__sel env2-pdp-ledger__buysel" data-env2-pdp-ledger-quiet aria-label="צבע תאורה"></select><button class="env2-btn env2-btn--sm env2-pdp-ledger__buybtn" type="submit">הוספה לסל</button>
+      </form>
+    </div><div class="env2-pdp-ledger__quiet">
+        <p class="env2-kicker env2-pdp-ledger__qlabel">צבע תאורה</p>
+        <p class="env2-pdp-ledger__qvals">צהוב · כחול · צבעוני · לבן <small>אותו מחיר לכל צבע</small></p><p class="env2-pdp-ledger__qdesc">צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה.</p></div><p class="env2-pdp-ledger__jsnote" data-env2-pdp-ledger-jsnote>לחיצה על שורה מדליקה אותה בבמה למעלה.</p></div>
+</section>
+<p class="np-label"><b>B · stainless-steel-solar-path-light-ip65 — 1 variant, so a QUANTITY ledger (graft C)</b> The model says mode=single: no picker anywhere, the rows are 1 / 2 / 3 / 4 / 6 / 8 with running totals from Liquid and quoted meanings. The single option (צבע אור: צהוב חם) has ONE value, so nothing about it is rendered as a control (BRIEF §11).</p>
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-labelledby="env2-pdp-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-ledger__wrap">
+
+    <div class="env2-pdp-ledger__head">
+      <div class="env2-pdp-ledger__headline"><p class="env2-eyebrow env2-pdp-ledger__eyebrow">04 · מה מקבלים</p><h2 class="env2-h env2-pdp-ledger__h2" id="env2-pdp-ledger-h2">כמה נקודות אור בדרך הביתה.</h2>
+      </div><p class="env2-lead env2-pdp-ledger__lead">למראה מרשים באמת, מקמו מספר מנורות במרווחים אחידים לאורך שביל, מסביב למדשאה או בכניסה. האחידות היא זו שיוצרת את תחושת היוקרה.</p></div>
+
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="single"><li class="env2-pdp-ledger__row env2-pdp-ledger__row--on" data-env2-pdp-ledger-row data-i="0" data-label="1 יחידה" data-qty="1" data-price="16990" data-id="48632265310382" data-quiet="48632265310382^צהוב חם^16990^1" style="--env2-pdp-ledger-d:0" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="true" aria-label="1 יחידה, 169.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>1</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:14%;--env2-pdp-ledger-n:1"></i><span class="env2-pdp-ledger__b">יחידה</span></span>
+            <span class="env2-pdp-ledger__use">יחידה אחת מאירה נקודה</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>169.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><input type="hidden" name="id" value="48632265310382"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="1" data-label="2 יחידות" data-qty="2" data-price="33980" data-id="48632265310382" data-quiet="48632265310382^צהוב חם^16990^1" style="--env2-pdp-ledger-d:1" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="2 יחידות, 339.80 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>2</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:25%;--env2-pdp-ledger-n:2"></i><span class="env2-pdp-ledger__b">יחידות</span></span>
+            <span class="env2-pdp-ledger__use">משני צידי כניסה</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>339.80</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>169.90</bdi> &#8362; ליחידה</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="2"><input type="hidden" name="id" value="48632265310382"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="2" data-label="3 יחידות" data-qty="3" data-price="50970" data-id="48632265310382" data-quiet="48632265310382^צהוב חם^16990^1" style="--env2-pdp-ledger-d:2" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="3 יחידות, 509.70 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>3</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:38%;--env2-pdp-ledger-n:3"></i><span class="env2-pdp-ledger__b">יחידות</span></span>
+            <span class="env2-pdp-ledger__use">שורה קצרה</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>509.70</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>169.90</bdi> &#8362; ליחידה</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="3"><input type="hidden" name="id" value="48632265310382"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="3" data-label="4 יחידות" data-qty="4" data-price="67960" data-id="48632265310382" data-quiet="48632265310382^צהוב חם^16990^1" style="--env2-pdp-ledger-d:3" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="4 יחידות, 679.60 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>4</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:50%;--env2-pdp-ledger-n:4"></i><span class="env2-pdp-ledger__b">יחידות</span></span>
+            <span class="env2-pdp-ledger__use">לאורך שביל</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>679.60</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>169.90</bdi> &#8362; ליחידה</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="4"><input type="hidden" name="id" value="48632265310382"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="4" data-label="6 יחידות" data-qty="6" data-price="101940" data-id="48632265310382" data-quiet="48632265310382^צהוב חם^16990^1" style="--env2-pdp-ledger-d:4" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="6 יחידות, 1,019.40 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>6</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:75%;--env2-pdp-ledger-n:6"></i><span class="env2-pdp-ledger__b">יחידות</span></span>
+            <span class="env2-pdp-ledger__use">מהשער אל הדלת</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>1,019.40</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>169.90</bdi> &#8362; ליחידה</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="6"><input type="hidden" name="id" value="48632265310382"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="5" data-label="8 יחידות" data-qty="8" data-price="135920" data-id="48632265310382" data-quiet="48632265310382^צהוב חם^16990^1" style="--env2-pdp-ledger-d:5" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="8 יחידות, 1,359.20 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>8</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:100%;--env2-pdp-ledger-n:8"></i><span class="env2-pdp-ledger__b">יחידות</span></span>
+            <span class="env2-pdp-ledger__use">מסביב למדשאה</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>1,359.20</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>169.90</bdi> &#8362; ליחידה</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="8"><input type="hidden" name="id" value="48632265310382"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li></ol><div class="env2-pdp-ledger__buy" data-env2-pdp-ledger-buy>
+      <span class="env2-pdp-ledger__chosen">
+        <span class="env2-kicker env2-pdp-ledger__chosen-label">הבחירה שלכם</span>
+        <b class="env2-pdp-ledger__chosen-value" data-env2-pdp-ledger-mirror></b>
+      </span>
+      <span class="env2-price env2-pdp-ledger__buyprice" aria-live="polite"><bdi data-env2-pdp-ledger-price>169.90</bdi> &#8362;</span>
+      <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__buyform" data-env2-buy>
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="&#x2713;">
+        <input type="hidden" name="id" value="48632265310382" data-env2-pdp-ledger-id>
+        <input type="hidden" name="quantity" value="1" data-env2-pdp-ledger-qty><button class="env2-btn env2-btn--sm env2-pdp-ledger__buybtn" type="submit">הוספה לסל</button>
+      </form>
+    </div><p class="env2-pdp-ledger__jsnote" data-env2-pdp-ledger-jsnote>לחיצה על שורה מדליקה אותה בבמה למעלה.</p></div>
+</section>
+<p class="np-label"><b>C · waterproof-led-wall-light-ip65-6w-12w — two price-bearing axes, MAINS</b> עוצמה x גוון אור -&gt; four rows at 219.90 / 222.90 / 249.90 / 252.90. No per-unit column: a price per watt is meaningless. The quiet axis is צבע גוף (2 values) and is a control only inside the row forms. Nothing about power (§3.7).</p>
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-labelledby="env2-pdp-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-ledger__wrap">
+
+    <div class="env2-pdp-ledger__head">
+      <div class="env2-pdp-ledger__headline"><p class="env2-eyebrow env2-pdp-ledger__eyebrow">04 · מה מקבלים</p><h2 class="env2-h env2-pdp-ledger__h2" id="env2-pdp-ledger-h2">כל שילוב והמחיר שלו. <em>הצבע לא משנה את המחיר.</em></h2>
+      </div><p class="env2-lead env2-pdp-ledger__lead">בכניסה צרה אפשר להסתפק ביחידה. על חזית רחבה או לאורך מעבר, התקנה סימטרית או רציפה תיצור אפקט שלם ומרשים יותר.</p></div>
+
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="variants"><li class="env2-pdp-ledger__row env2-pdp-ledger__row--on" data-env2-pdp-ledger-row data-i="0" data-label="6W / אור חם 3000K" data-qty="1" data-price="21990" data-id="48675431612590" data-quiet="48675431612590^לבן^21990^1;48675431678126^שחור^21990^1" style="--env2-pdp-ledger-d:0" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="true" aria-label="6W / אור חם 3000K, 219.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>6W</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:50%;--env2-pdp-ledger-n:1"></i><span class="env2-pdp-ledger__b">אור חם 3000K</span></span>
+            <span class="env2-pdp-ledger__use">אפקט עדין וממוקד</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>219.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע גוף — 6W / אור חם 3000K"><option value="48675431612590">לבן</option><option value="48675431678126">שחור</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="1" data-label="6W / אור קר 6000K" data-qty="1" data-price="22290" data-id="48675431645358" data-quiet="48675431645358^לבן^22290^1;48675431710894^שחור^22290^1" style="--env2-pdp-ledger-d:1" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="6W / אור קר 6000K, 222.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>6W</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:50%;--env2-pdp-ledger-n:1"></i><span class="env2-pdp-ledger__b">אור קר 6000K</span></span>
+            <span class="env2-pdp-ledger__use">עדין, בגוון לבן וחד</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>222.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע גוף — 6W / אור קר 6000K"><option value="48675431645358">לבן</option><option value="48675431710894">שחור</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="2" data-label="12W / אור חם 3000K" data-qty="1" data-price="24990" data-id="48675431743662" data-quiet="48675431743662^לבן^24990^1;48675431809198^שחור^24990^1" style="--env2-pdp-ledger-d:2" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="12W / אור חם 3000K, 249.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>12W</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:100%;--env2-pdp-ledger-n:1"></i><span class="env2-pdp-ledger__b">אור חם 3000K</span></span>
+            <span class="env2-pdp-ledger__use">נוכחות חזקה יותר על שטח גדול</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>249.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע גוף — 12W / אור חם 3000K"><option value="48675431743662">לבן</option><option value="48675431809198">שחור</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="3" data-label="12W / אור קר 6000K" data-qty="1" data-price="25290" data-id="48675431776430" data-quiet="48675431776430^לבן^25290^1;48675431841966^שחור^25290^1" style="--env2-pdp-ledger-d:3" data-shopify-editor-block="x">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="12W / אור קר 6000K, 252.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>12W</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:100%;--env2-pdp-ledger-n:1"></i><span class="env2-pdp-ledger__b">אור קר 6000K</span></span>
+            <span class="env2-pdp-ledger__use">חזק, בגוון לבן וחד</span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>252.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע גוף — 12W / אור קר 6000K"><option value="48675431776430">לבן</option><option value="48675431841966">שחור</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li></ol><div class="env2-pdp-ledger__buy" data-env2-pdp-ledger-buy>
+      <span class="env2-pdp-ledger__chosen">
+        <span class="env2-kicker env2-pdp-ledger__chosen-label">הבחירה שלכם</span>
+        <b class="env2-pdp-ledger__chosen-value" data-env2-pdp-ledger-mirror></b>
+      </span>
+      <span class="env2-price env2-pdp-ledger__buyprice" aria-live="polite"><bdi data-env2-pdp-ledger-price>219.90</bdi> &#8362;</span>
+      <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__buyform" data-env2-buy>
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="&#x2713;">
+        <input type="hidden" name="id" value="48675431612590" data-env2-pdp-ledger-id>
+        <input type="hidden" name="quantity" value="1" data-env2-pdp-ledger-qty><select class="env2-pdp-ledger__sel env2-pdp-ledger__buysel" data-env2-pdp-ledger-quiet aria-label="צבע גוף"></select><button class="env2-btn env2-btn--sm env2-pdp-ledger__buybtn" type="submit">הוספה לסל</button>
+      </form>
+    </div><div class="env2-pdp-ledger__quiet">
+        <p class="env2-kicker env2-pdp-ledger__qlabel">צבע גוף</p>
+        <p class="env2-pdp-ledger__qvals">לבן · שחור <small>אותו מחיר לכל צבע</small></p></div><p class="env2-pdp-ledger__jsnote" data-env2-pdp-ledger-jsnote>לחיצה על שורה מדליקה אותה בבמה למעלה.</p></div>
+</section>
+<p class="np-label"><b>EDGE · A with NO caption blocks — the honest degradation</b> templates/product.elmsnest.json carries no matching block: the __use column is simply empty. §4.4 is &quot;quoted, never invented&quot;, so absence is the correct state, not a placeholder.</p>
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-labelledby="env2-pdp-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-ledger__wrap">
+
+    <div class="env2-pdp-ledger__head">
+      <div class="env2-pdp-ledger__headline"><p class="env2-eyebrow env2-pdp-ledger__eyebrow">04 · מה מקבלים</p><h2 class="env2-h env2-pdp-ledger__h2" id="env2-pdp-ledger-h2">שישה אורכים. <em>הצבע לא משנה את המחיר.</em></h2>
+      </div><p class="env2-lead env2-pdp-ledger__lead">מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.</p></div>
+
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="variants"><li class="env2-pdp-ledger__row env2-pdp-ledger__row--on" data-env2-pdp-ledger-row data-i="0" data-label="5 מ׳ / 20 נורות" data-qty="1" data-price="8990" data-id="48880938221742" data-quiet="48880938221742^צהוב^8990^1;48880938254510^כחול^8990^1;48880938287278^צבעוני^8990^1;48880938320046^לבן^8990^1" style="--env2-pdp-ledger-d:0" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="true" aria-label="5 מ׳ / 20 נורות, 89.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>5</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:23%;--env2-pdp-ledger-n:4"></i><span class="env2-pdp-ledger__b">20 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>89.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>17.98</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 5 מ׳ / 20 נורות"><option value="48880938221742">צהוב</option><option value="48880938254510">כחול</option><option value="48880938287278">צבעוני</option><option value="48880938320046">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="1" data-label="6.5 מ׳ / 30 נורות" data-qty="1" data-price="8990" data-id="48880938352814" data-quiet="48880938352814^צהוב^8990^1;48880938385582^כחול^8990^1;48880938418350^צבעוני^8990^1;48880938451118^לבן^8990^1" style="--env2-pdp-ledger-d:1" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="6.5 מ׳ / 30 נורות, 89.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>6.5</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:30%;--env2-pdp-ledger-n:5"></i><span class="env2-pdp-ledger__b">30 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>89.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>13.83</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 6.5 מ׳ / 30 נורות"><option value="48880938352814">צהוב</option><option value="48880938385582">כחול</option><option value="48880938418350">צבעוני</option><option value="48880938451118">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="2" data-label="9.5 מ׳ / 50 נורות" data-qty="1" data-price="9990" data-id="48880938483886" data-quiet="48880938483886^צהוב^9990^1;48880938516654^כחול^9990^1;48880938549422^צבעוני^9990^1;48880938582190^לבן^9990^1" style="--env2-pdp-ledger-d:2" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="9.5 מ׳ / 50 נורות, 99.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>9.5</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:43%;--env2-pdp-ledger-n:8"></i><span class="env2-pdp-ledger__b">50 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>99.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>10.52</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 9.5 מ׳ / 50 נורות"><option value="48880938483886">צהוב</option><option value="48880938516654">כחול</option><option value="48880938549422">צבעוני</option><option value="48880938582190">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="3" data-label="11 מ׳ / 60 נורות" data-qty="1" data-price="10990" data-id="48880938614958" data-quiet="48880938614958^צהוב^10990^1;48880938647726^כחול^10990^1;48880938680494^צבעוני^10990^1;48880938713262^לבן^10990^1" style="--env2-pdp-ledger-d:3" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="11 מ׳ / 60 נורות, 109.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>11</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:50%;--env2-pdp-ledger-n:10"></i><span class="env2-pdp-ledger__b">60 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>109.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>9.99</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 11 מ׳ / 60 נורות"><option value="48880938614958">צהוב</option><option value="48880938647726">כחול</option><option value="48880938680494">צבעוני</option><option value="48880938713262">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="4" data-label="13 מ׳ / 100 נורות" data-qty="1" data-price="12990" data-id="48880938746030" data-quiet="48880938746030^צהוב^12990^1;48880938778798^כחול^12990^1;48880938811566^צבעוני^12990^1;48880938844334^לבן^12990^1" style="--env2-pdp-ledger-d:4" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="13 מ׳ / 100 נורות, 129.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>13</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:59%;--env2-pdp-ledger-n:17"></i><span class="env2-pdp-ledger__b">100 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>129.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>9.99</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 13 מ׳ / 100 נורות"><option value="48880938746030">צהוב</option><option value="48880938778798">כחול</option><option value="48880938811566">צבעוני</option><option value="48880938844334">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="5" data-label="22 מ׳ / 200 נורות" data-qty="1" data-price="17990" data-id="48880938877102" data-quiet="48880938877102^צהוב^17990^1;48880938909870^כחול^17990^1;48880938942638^צבעוני^17990^1;48880938975406^לבן^17990^1" style="--env2-pdp-ledger-d:5" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="22 מ׳ / 200 נורות, 179.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>22</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:100%;--env2-pdp-ledger-n:26"></i><span class="env2-pdp-ledger__b">200 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>179.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>8.18</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 22 מ׳ / 200 נורות"><option value="48880938877102">צהוב</option><option value="48880938909870">כחול</option><option value="48880938942638">צבעוני</option><option value="48880938975406">לבן</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li></ol><div class="env2-pdp-ledger__buy" data-env2-pdp-ledger-buy>
+      <span class="env2-pdp-ledger__chosen">
+        <span class="env2-kicker env2-pdp-ledger__chosen-label">הבחירה שלכם</span>
+        <b class="env2-pdp-ledger__chosen-value" data-env2-pdp-ledger-mirror></b>
+      </span>
+      <span class="env2-price env2-pdp-ledger__buyprice" aria-live="polite"><bdi data-env2-pdp-ledger-price>89.90</bdi> &#8362;</span>
+      <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__buyform" data-env2-buy>
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="&#x2713;">
+        <input type="hidden" name="id" value="48880938221742" data-env2-pdp-ledger-id>
+        <input type="hidden" name="quantity" value="1" data-env2-pdp-ledger-qty><select class="env2-pdp-ledger__sel env2-pdp-ledger__buysel" data-env2-pdp-ledger-quiet aria-label="צבע תאורה"></select><button class="env2-btn env2-btn--sm env2-pdp-ledger__buybtn" type="submit">הוספה לסל</button>
+      </form>
+    </div><div class="env2-pdp-ledger__quiet">
+        <p class="env2-kicker env2-pdp-ledger__qlabel">צבע תאורה</p>
+        <p class="env2-pdp-ledger__qvals">צהוב · כחול · צבעוני · לבן <small>אותו מחיר לכל צבע</small></p><p class="env2-pdp-ledger__qdesc">צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה.</p></div><p class="env2-pdp-ledger__jsnote" data-env2-pdp-ledger-jsnote>לחיצה על שורה מדליקה אותה בבמה למעלה.</p></div>
+</section>
+<p class="np-label"><b>EDGE · decorative-led-net-lights — a §3.6 never-use handle</b> A different option shape and no matching blocks. Headline, lead, quiet-axis line and per-unit all degrade on their own.</p>
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-labelledby="env2-pdp-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-ledger__wrap">
+
+    <div class="env2-pdp-ledger__head">
+      <div class="env2-pdp-ledger__headline"><p class="env2-eyebrow env2-pdp-ledger__eyebrow">04 · מה מקבלים</p><h2 class="env2-h env2-pdp-ledger__h2" id="env2-pdp-ledger-h2">שישה גדלים. <em>הצבע לא משנה את המחיר.</em></h2>
+      </div><p class="env2-lead env2-pdp-ledger__lead">מדדו את הקיר או הגדר לפני ההזמנה. לרקע מלא בחרו מידה שקרובה ככל האפשר לשטח שאותו רוצים לכסות.</p></div>
+
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="variants"><li class="env2-pdp-ledger__row env2-pdp-ledger__row--on" data-env2-pdp-ledger-row data-i="0" data-label="1.5×1.5 מ׳ / 96 LED" data-qty="1" data-price="10990" data-id="48880930947246" data-quiet="48880930947246^לבן חם^10990^1;48880930980014^כחול^10990^1;48880931012782^RGB צבעוני^10990^1;48880931045550^לבן קר^10990^1;48880931078318^סגול^10990^1" style="--env2-pdp-ledger-d:0" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="true" aria-label="1.5×1.5 מ׳ / 96 LED, 109.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>1.5×1.5</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:14%;--env2-pdp-ledger-n:16"></i><span class="env2-pdp-ledger__b"><bdi>96 LED</bdi></span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>109.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 1.5×1.5 מ׳ / 96 LED"><option value="48880930947246">לבן חם</option><option value="48880930980014">כחול</option><option value="48880931012782">RGB צבעוני</option><option value="48880931045550">לבן קר</option><option value="48880931078318">סגול</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="1" data-label="3×2 מ׳ / 196 LED" data-qty="1" data-price="16990" data-id="48880931111086" data-quiet="48880931111086^לבן חם^16990^1;48880931143854^כחול^16990^1;48880931176622^RGB צבעוני^16990^1;48880931209390^לבן קר^16990^1;48880931242158^סגול^16990^1" style="--env2-pdp-ledger-d:1" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="3×2 מ׳ / 196 LED, 169.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>3×2</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:25%;--env2-pdp-ledger-n:26"></i><span class="env2-pdp-ledger__b"><bdi>196 LED</bdi></span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>169.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 3×2 מ׳ / 196 LED"><option value="48880931111086">לבן חם</option><option value="48880931143854">כחול</option><option value="48880931176622">RGB צבעוני</option><option value="48880931209390">לבן קר</option><option value="48880931242158">סגול</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="2" data-label="6×2 מ׳ / 380 LED" data-qty="1" data-price="26990" data-id="48880931274926" data-quiet="48880931274926^לבן חם^26990^1;48880931307694^כחול^26990^1;48880931340462^RGB צבעוני^26990^1;48880931373230^לבן קר^26990^1;48880931405998^סגול^26990^1" style="--env2-pdp-ledger-d:2" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="6×2 מ׳ / 380 LED, 269.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>6×2</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:50%;--env2-pdp-ledger-n:26"></i><span class="env2-pdp-ledger__b"><bdi>380 LED</bdi></span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>269.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 6×2 מ׳ / 380 LED"><option value="48880931274926">לבן חם</option><option value="48880931307694">כחול</option><option value="48880931340462">RGB צבעוני</option><option value="48880931373230">לבן קר</option><option value="48880931405998">סגול</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="3" data-label="9×2 מ׳ / 580 LED" data-qty="1" data-price="36990" data-id="48880931438766" data-quiet="48880931438766^לבן חם^36990^1;48880931471534^כחול^36990^1;48880931504302^RGB צבעוני^36990^1;48880931537070^לבן קר^36990^1;48880931569838^סגול^36990^1" style="--env2-pdp-ledger-d:3" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="9×2 מ׳ / 580 LED, 369.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>9×2</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:75%;--env2-pdp-ledger-n:26"></i><span class="env2-pdp-ledger__b"><bdi>580 LED</bdi></span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>369.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 9×2 מ׳ / 580 LED"><option value="48880931438766">לבן חם</option><option value="48880931471534">כחול</option><option value="48880931504302">RGB צבעוני</option><option value="48880931537070">לבן קר</option><option value="48880931569838">סגול</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="4" data-label="12×2 מ׳ / 780 LED" data-qty="1" data-price="46990" data-id="48880931602606" data-quiet="48880931602606^לבן חם^46990^1;48880931635374^כחול^46990^1;48880931668142^RGB צבעוני^46990^1;48880931700910^לבן קר^46990^1;48880931733678^סגול^46990^1" style="--env2-pdp-ledger-d:4" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="12×2 מ׳ / 780 LED, 469.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>12×2</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:100%;--env2-pdp-ledger-n:26"></i><span class="env2-pdp-ledger__b"><bdi>780 LED</bdi></span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>469.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 12×2 מ׳ / 780 LED"><option value="48880931602606">לבן חם</option><option value="48880931635374">כחול</option><option value="48880931668142">RGB צבעוני</option><option value="48880931700910">לבן קר</option><option value="48880931733678">סגול</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="5" data-label="6×4 מ׳ / 672 LED" data-qty="1" data-price="33990" data-id="48880931766446" data-quiet="48880931766446^לבן חם^33990^1;48880931799214^כחול^33990^1;48880931831982^RGB צבעוני^33990^1;48880931864750^לבן קר^33990^1;48880931897518^סגול^33990^1" style="--env2-pdp-ledger-d:5" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="6×4 מ׳ / 672 LED, 339.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>6×4</bdi></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:50%;--env2-pdp-ledger-n:26"></i><span class="env2-pdp-ledger__b"><bdi>672 LED</bdi></span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>339.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm"></span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><select class="env2-pdp-ledger__sel" name="id" aria-label="צבע תאורה — 6×4 מ׳ / 672 LED"><option value="48880931766446">לבן חם</option><option value="48880931799214">כחול</option><option value="48880931831982">RGB צבעוני</option><option value="48880931864750">לבן קר</option><option value="48880931897518">סגול</option></select><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li></ol><div class="env2-pdp-ledger__buy" data-env2-pdp-ledger-buy>
+      <span class="env2-pdp-ledger__chosen">
+        <span class="env2-kicker env2-pdp-ledger__chosen-label">הבחירה שלכם</span>
+        <b class="env2-pdp-ledger__chosen-value" data-env2-pdp-ledger-mirror></b>
+      </span>
+      <span class="env2-price env2-pdp-ledger__buyprice" aria-live="polite"><bdi data-env2-pdp-ledger-price>109.90</bdi> &#8362;</span>
+      <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__buyform" data-env2-buy>
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="&#x2713;">
+        <input type="hidden" name="id" value="48880930947246" data-env2-pdp-ledger-id>
+        <input type="hidden" name="quantity" value="1" data-env2-pdp-ledger-qty><select class="env2-pdp-ledger__sel env2-pdp-ledger__buysel" data-env2-pdp-ledger-quiet aria-label="צבע תאורה"></select><button class="env2-btn env2-btn--sm env2-pdp-ledger__buybtn" type="submit">הוספה לסל</button>
+      </form>
+    </div><div class="env2-pdp-ledger__quiet">
+        <p class="env2-kicker env2-pdp-ledger__qlabel">צבע תאורה</p>
+        <p class="env2-pdp-ledger__qvals">לבן חם · כחול · RGB צבעוני · לבן קר · סגול <small>אותו מחיר לכל צבע</small></p><p class="env2-pdp-ledger__qdesc">לבן חם לאירוח אלגנטי, לבן קר למראה נקי, כחול או סגול לאווירה דרמטית ו־RGB למסיבה צבעונית.</p></div><p class="env2-pdp-ledger__jsnote" data-env2-pdp-ledger-jsnote>לחיצה על שורה מדליקה אותה בבמה למעלה.</p></div>
+</section>
+<p class="np-label"><b>EDGE · solar-edison-string-lights</b> A second string product: a different value vocabulary, the same ledger.</p>
+<section id="env2-pdp-ledger" data-env2-pdp-ledger class="env2-section env2-pdp-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-labelledby="env2-pdp-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-ledger__wrap">
+
+    <div class="env2-pdp-ledger__head">
+      <div class="env2-pdp-ledger__headline"><p class="env2-eyebrow env2-pdp-ledger__eyebrow">04 · מה מקבלים</p><h2 class="env2-h env2-pdp-ledger__h2" id="env2-pdp-ledger-h2">שני אורכים.</h2>
+      </div><p class="env2-lead env2-pdp-ledger__lead">השארת ירידה עדינה בין נקודות התלייה מעניקה לגרילנדה מראה טבעי, רך ומזמין יותר.</p></div>
+
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="variants"><li class="env2-pdp-ledger__row env2-pdp-ledger__row--on" data-env2-pdp-ledger-row data-i="0" data-label="5 מ׳ / 10 נורות" data-qty="1" data-price="13990" data-id="48880937369774" data-quiet="48880937369774^^13990^1" style="--env2-pdp-ledger-d:0" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="true" aria-label="5 מ׳ / 10 נורות, 139.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>5</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:62%;--env2-pdp-ledger-n:4"></i><span class="env2-pdp-ledger__b">10 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>139.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>27.98</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><input type="hidden" name="id" value="48880937369774"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li><li class="env2-pdp-ledger__row" data-env2-pdp-ledger-row data-i="1" data-label="8 מ׳ / 20 נורות" data-qty="1" data-price="17990" data-id="48880937402542" data-quiet="48880937402542^^17990^1" style="--env2-pdp-ledger-d:1" >
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="false" aria-label="8 מ׳ / 20 נורות, 179.90 ש״ח">
+            <span class="env2-pdp-ledger__n"><bdi>8</bdi><small>מ׳</small></span>
+            <span class="env2-pdp-ledger__vis" aria-hidden="true">
+              <i class="env2-pdp-ledger__string" style="--env2-pdp-ledger-w:100%;--env2-pdp-ledger-n:4"></i><span class="env2-pdp-ledger__b">20 נורות</span></span>
+            <span class="env2-pdp-ledger__use"></span>
+            <span class="env2-price env2-pdp-ledger__price"><bdi>179.90</bdi> &#8362;</span>
+            <span class="env2-pdp-ledger__pm">&#8776;&nbsp;<bdi>22.49</bdi> ₪ למטר</span>
+          </button>
+          <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="&#x2713;">
+            <input type="hidden" name="quantity" value="1"><input type="hidden" name="id" value="48880937402542"><button class="env2-btn env2-btn--ghost env2-btn--sm env2-pdp-ledger__add" type="submit">הוספה לסל</button>
+          </form>
+        </li></ol><div class="env2-pdp-ledger__buy" data-env2-pdp-ledger-buy>
+      <span class="env2-pdp-ledger__chosen">
+        <span class="env2-kicker env2-pdp-ledger__chosen-label">הבחירה שלכם</span>
+        <b class="env2-pdp-ledger__chosen-value" data-env2-pdp-ledger-mirror></b>
+      </span>
+      <span class="env2-price env2-pdp-ledger__buyprice" aria-live="polite"><bdi data-env2-pdp-ledger-price>139.90</bdi> &#8362;</span>
+      <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__buyform" data-env2-buy>
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="&#x2713;">
+        <input type="hidden" name="id" value="48880937369774" data-env2-pdp-ledger-id>
+        <input type="hidden" name="quantity" value="1" data-env2-pdp-ledger-qty><button class="env2-btn env2-btn--sm env2-pdp-ledger__buybtn" type="submit">הוספה לסל</button>
+      </form>
+    </div><p class="env2-pdp-ledger__jsnote" data-env2-pdp-ledger-jsnote>לחיצה על שורה מדליקה אותה בבמה למעלה.</p></div>
+</section>
+<script>
+/* ElmsNest v2 PDP §4.4 — the ledger. Progressive enhancement only: with JS off every row is already
+   visible, priced and buyable through its own form, so this file adds the selector behaviour and
+   nothing the page depends on. Every number it needs is a data-* attribute Liquid already wrote on
+   the row, so the section is self-sufficient — it never parses the stage's JSON tag (rendered once
+   per page, by the stage) and never writes a second one. */
+(function () {
+  function money(n) {
+    var s = (Math.round(n * 100) / 100).toFixed(2).split('.');
+    return s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + s[1];
+  }
+  /* "id^label^cents^avail;id^label^cents^avail" — the row's own quiet variants (CONTRACT-PDP §3.4) */
+  function parseQuiet(txt) {
+    var out = [], list = (txt || '').split(';');
+    for (var i = 0; i < list.length; i++) {
+      if (!list[i]) { continue; }
+      var f = list[i].split('^');
+      out.push({ id: f[0], label: f[1] || '', price: parseInt(f[2], 10) || 0, available: f[3] === '1' });
+    }
+    return out;
+  }
+
+  function init(el) {
+    var rows = [].slice.call(el.querySelectorAll('[data-env2-pdp-ledger-row]'));
+    if (!rows.length) { return; }
+    var list = el.querySelector('[data-env2-pdp-ledger-rows]');
+    var idEl = el.querySelector('[data-env2-pdp-ledger-id]');
+    var qtyEl = el.querySelector('[data-env2-pdp-ledger-qty]');
+    var priceEl = el.querySelector('[data-env2-pdp-ledger-price]');
+    var mirrorEl = el.querySelector('[data-env2-pdp-ledger-mirror]');
+    var quietEl = el.querySelector('[data-env2-pdp-ledger-quiet]');
+    var single = !!(list && list.getAttribute('data-mode') === 'single');
+    var stage = document.querySelector('[data-env2-pdp-stage]');
+    var cur = 0;
+
+    /* the note promises the stage lights up; if this page has no stage, the promise is not true */
+    var note = el.querySelector('[data-env2-pdp-ledger-jsnote]');
+    if (note && !stage) { note.hidden = true; }
+
+    var data = rows.map(function (row) {
+      return {
+        label: row.getAttribute('data-label') || '',
+        qty: parseInt(row.getAttribute('data-qty'), 10) || 1,
+        price: parseInt(row.getAttribute('data-price'), 10) || 0,
+        id: row.getAttribute('data-id') || '',
+        variants: parseQuiet(row.getAttribute('data-quiet'))
+      };
+    });
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].className.indexOf('env2-pdp-ledger__row--on') > -1) { cur = i; }
+    }
+
+    function clean(v) { return (!v || v === 'Default Title' || v === 'Title') ? '' : v; }
+
+    /* the quiet axis lives on the stage when there is one; the ledger mirrors it, and a change made
+       here is pushed back, so the two can never disagree about the colour that reaches the cart. */
+    function stageQuiet() {
+      if (!stage) { return null; }
+      return stage.querySelector('select[data-env2-stage-quiet]') ||
+             stage.querySelector('input[type="radio"][data-env2-stage-quiet]:checked');
+    }
+    function quietText() {
+      if (quietEl && quietEl.selectedIndex > -1) { return quietEl.options[quietEl.selectedIndex].text; }
+      var sq = stageQuiet();
+      if (sq && sq.tagName === 'SELECT' && sq.selectedIndex > -1) { return sq.options[sq.selectedIndex].text; }
+      if (sq && sq.tagName === 'INPUT') { return (sq.parentNode.textContent || '').trim(); }
+      return '';
+    }
+    function fillQuiet(d) {
+      if (!quietEl) { return; }
+      var keep = quietText();
+      quietEl.innerHTML = '';
+      for (var i = 0; i < d.variants.length; i++) {
+        var o = document.createElement('option');
+        o.value = d.variants[i].id; o.textContent = d.variants[i].label; o.disabled = !d.variants[i].available;
+        if (d.variants[i].label === keep) { o.selected = true; }
+        quietEl.appendChild(o);
+      }
+    }
+    function chosen(d) {
+      if (quietEl && quietEl.value) {
+        for (var i = 0; i < d.variants.length; i++) { if (String(d.variants[i].id) === String(quietEl.value)) { return d.variants[i]; } }
+      }
+      for (var k = 0; k < d.variants.length; k++) { if (d.variants[k].available) { return d.variants[k]; } }
+      return d.variants[0] || null;
+    }
+
+    function syncUrl(id) {
+      if (!id || !window.history || !history.replaceState) { return; }
+      try {
+        var u = new URL(window.location.href);
+        u.searchParams.set('variant', id);
+        history.replaceState(null, '', u.pathname + u.search + u.hash);
+      } catch (e) { /* older browser: leave the URL alone */ }
+    }
+
+    /* the stage owns the price count-up, the drawn string and the sticky bar; the ledger drives it by
+       activating the stage's own matching stop, so a variant change has exactly one code path. */
+    function driveStage(i, qty) {
+      if (!stage) { return; }
+      var stops = [].slice.call(stage.querySelectorAll('[data-env2-stage-stop]')), s = null;
+      for (var k = 0; k < stops.length; k++) {
+        if (single) { if (String(stops[k].getAttribute('data-qty')) === String(qty)) { s = stops[k]; } }
+        else if (String(stops[k].getAttribute('data-i')) === String(i)) { s = stops[k]; }
+      }
+      if (s) { s.click(); }
+    }
+
+    function paint(i, fromUser) {
+      cur = i;
+      for (var k = 0; k < rows.length; k++) {
+        var on = k === i;
+        rows[k].classList.toggle('env2-pdp-ledger__row--on', on);
+        var b = rows[k].querySelector('[data-env2-pdp-ledger-pick]');
+        if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+      }
+      var d = data[i];
+      if (!single) { fillQuiet(d); }
+      var v = chosen(d);
+      var id = (v && v.id) || d.id;
+      var cents = single ? d.price : ((v && v.price) || d.price);
+      if (idEl) { idEl.value = id; }
+      if (qtyEl) { qtyEl.value = String(d.qty); }
+      if (priceEl && cents) { priceEl.textContent = money(cents / 100); }
+      if (mirrorEl) {
+        var txt = d.label;
+        var q = clean(single ? '' : quietText());
+        if (q) { txt = txt ? (txt + ' · ' + q) : q; }
+        mirrorEl.textContent = txt;
+      }
+      if (fromUser) { driveStage(i, d.qty); syncUrl(id); }
+    }
+
+    rows.forEach(function (row, i) {
+      var btn = row.querySelector('[data-env2-pdp-ledger-pick]');
+      if (btn) { btn.addEventListener('click', function () { paint(i, true); }); }
+      /* the whole row is a target, but never at the cost of the row's own form controls */
+      row.addEventListener('click', function (ev) {
+        if (ev.target && ev.target.closest && ev.target.closest('form,select,button,a')) { return; }
+        paint(i, true);
+      });
+    });
+    if (quietEl) {
+      quietEl.addEventListener('change', function () {
+        var want = quietEl.selectedIndex > -1 ? quietEl.options[quietEl.selectedIndex].text : '';
+        var sq = stageQuiet();
+        if (sq && sq.tagName === 'SELECT' && want) {
+          for (var k = 0; k < sq.options.length; k++) {
+            if (sq.options[k].text === want) { sq.selectedIndex = k; break; }
+          }
+          try { sq.dispatchEvent(new Event('change', { bubbles: true })); } catch (e) { /* old Event(): nothing to sync */ }
+        }
+        paint(cur, false);
+        syncUrl(quietEl.value);
+      });
+    }
+
+    /* an incoming ?variant= (a shared link, a Meta catalogue deep link) opens on its own row */
+    var start = cur;
+    try {
+      var want = new URL(window.location.href).searchParams.get('variant');
+      if (want && !single) {
+        for (var a = 0; a < data.length; a++) {
+          for (var b2 = 0; b2 < data[a].variants.length; b2++) {
+            if (String(data[a].variants[b2].id) === String(want)) { start = a; }
+          }
+        }
+      }
+    } catch (e) { /* no URL support: keep the server's default row */ }
+    paint(start, false);
+
+    /* §3.3: the rows light on arrival, 55 ms apart (the delay is a CSS custom property on each row) */
+    if (list) {
+      var lit = false;
+      var lightAll = function () {
+        if (lit) { return; }
+        lit = true;
+        if (window.env2 && env2.light) { env2.light(list); } else { list.classList.add('lit'); }
+      };
+      var rm = window.env2 ? env2.rm : false;
+      if (rm || !('IntersectionObserver' in window)) { lightAll(); }
+      else {
+        var io = new IntersectionObserver(function (entries) {
+          for (var n = 0; n < entries.length; n++) {
+            if (entries[n].isIntersecting) { io.disconnect(); lightAll(); return; }
+          }
+        }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+        io.observe(list);
+      }
+    }
+  }
+
+  document.querySelectorAll('[data-env2-pdp-ledger]').forEach(function (el) {
+    init(el);
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  });
+})();
+</script>
+</body></html>

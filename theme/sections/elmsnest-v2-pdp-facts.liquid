@@ -1,0 +1,640 @@
+{%- comment -%}
+  ElmsNest v2 PDP — §4.5 "what could go wrong"  ·  #env2-pdp-facts  ·  spine answer #5.
+
+  The risk-lowering facts, ONLY from the product's own data, plus an explicit row for what is NOT
+  known. One enormous outlined numeral (IP65 / 8–10) that fills with glow when it is reached, a
+  hairline dl beside it, and the original description preserved behind a hairline <details>.
+
+  ------------------------------------------------------------------ where every word comes from
+  NOTHING on the visible page is typed (BRIEF §3, do-not §6.6). The fallback chain, in order:
+
+    1. the <li> bullets under "פרטים שכדאי לדעת"        — 22 of 27 products
+    2. the " · " spec run under "פרטים טכניים"           — the other 5 (they have no <ul>)
+    3. custom.* spec metafields                          — EMPTY on all 27 today (a proposal)
+    4. nothing: the dl drops, the giant numeral and the "מה שלא כתוב" row still render
+
+  The dt labels are CATEGORY WORDS derived from the bullet's own words (IP65 → "עמידות"), never a
+  new fact; when nothing matches, the row prints with no label and the value spans both columns.
+  A bullet written "כותרת: ערך" splits itself on the colon. Two rows in a row that derive the same
+  label print it once. Latin tokens are wrapped in <bdi> from a fixed ledger (§3.2).
+
+  ------------------------------------------------------------------ the power branch (§3.7)
+  custom.power_source is EMPTY on all 27 products today, so this section says NOTHING about the
+  power source: every bullet that NAMES one ("טעינה סולארית", "חיבור 220V", "USB או קופסת סוללות",
+  "מקור מתח: סולארי") is dropped, and "מקור החשמל" is then listed in the "מה שלא כתוב" row instead.
+  A bullet that discloses what is NOT included ("סוללות אינן כלולות") is kept — it is a caveat, not
+  a power claim. Charge- and run-time bullets are kept: §4.5's own B row list keeps them, and they
+  say nothing about where the current comes from. The moment the owner approves power_source the
+  same bullets print, with no edit to this file.
+
+  The "מה שלא כתוב" sentence is computed from what the product's data does NOT contain — power
+  source, exact dimensions, lumens, warranty — so it can never claim that something is missing when
+  the description states it. On A that computes, word for word, the §4.5 sentence.
+
+  ------------------------------------------------------------------ no JS / reduced motion
+  Everything is server-rendered text: the whole ledger, the giant numeral and the full description
+  (<details> is native) are present and legible with JavaScript disabled. Under html.env2-js the
+  giant starts as an outline (--lit:0) and this section's own observer lights it at 40 % — the core
+  observer deliberately skips [data-lamp="manual"]. Reduced motion: the core forces --lit:1, so the
+  numeral is already filled and nothing transitions. No lamp, no photo, no form in this section.
+
+  Plumbing: elmsnest-v2-core (from layout/theme.liquid) supplies the tokens, fonts, .env2-* helpers
+  and window.env2. This section renders no snippet and owns no global.
+{%- endcomment -%}
+{%- if product != blank -%}
+{%- liquid
+  assign RS = '~~R~~'
+  assign FS = '~~F~~'
+  assign desc = product.description | default: ''
+
+  # ---------------------------------------------------------------- the power branch, three states
+  assign pwr = product.metafields.custom.power_source | default: '' | strip
+  assign gate_power = true
+  if pwr != ''
+    assign gate_power = false
+  endif
+  assign power_tokens = 'סולאר,פאנל,חשמל,סולל,מתח,שמש,USB,220V,AC ,Type,mAh' | split: ','
+  # everything the product's own data says, tags stripped (strip_html drops the description's <style>)
+  assign hay_all = desc | strip_html | append: ' ' | append: product.title
+
+  # ---------------------------------------------------------------- source 1: the description bullets
+  assign items = ''
+  assign chunk = desc
+  assign head_mark = section.settings.bullets_heading | default: 'פרטים שכדאי לדעת'
+  if head_mark != '' and desc contains head_mark
+    assign chunk = desc | split: head_mark | last
+  endif
+  if chunk contains '<li'
+    assign ulchunk = chunk | split: '</ul>' | first
+    assign lis = ulchunk | split: '<li'
+    for li in lis offset: 1
+      assign t = li | prepend: '<li' | strip_html | strip
+      if t != ''
+        assign items = items | append: RS | append: t
+      endif
+    endfor
+  endif
+
+  # ---------------------------------------------------------------- source 2: the " · " spec run
+  assign spec_mark = section.settings.specs_heading | default: 'פרטים טכניים'
+  if items == '' and spec_mark != '' and desc contains spec_mark
+    assign runchunk = desc | split: spec_mark | last | split: '</p>' | first | strip_html | strip
+    if runchunk contains ' · '
+      assign specs = runchunk | split: ' · '
+      for sp in specs
+        assign t = sp | strip
+        if t != ''
+          assign items = items | append: RS | append: t
+        endif
+      endfor
+    endif
+  endif
+
+  # ---------------------------------------------------------------- what the product data DOES hold
+  # Tested against the WHOLE description, not just the bullets: the "מה שלא כתוב" row says what is
+  # absent from the product's data, so it must never call a fact missing that the description states.
+  assign has_power = false
+  for tok in power_tokens
+    if hay_all contains tok
+      assign has_power = true
+      break
+    endif
+  endfor
+  if pwr != ''
+    assign has_power = true
+  endif
+
+  # ---------------------------------------------------------------- the rows
+  assign rows = ''
+  assign row_count = 0
+  assign max_rows = section.settings.max_rows | default: 10
+  assign prev_label = ''
+  assign latin = 'IP68,IP67,IP66,IP65,IP55,IP54,IP44,IP20,LED,USB,PIR,RGB,ABS,mAh,ON' | split: ','
+
+  if section.settings.source != 'blocks'
+    assign list = items | split: RS
+    for raw in list offset: 1
+      if row_count >= max_rows
+        break
+      endif
+      assign t = raw | strip
+      if t == ''
+        continue
+      endif
+
+      # --- the power gate: a bullet that NAMES a power source is silent while power_source is empty
+      if gate_power
+        assign is_power = false
+        unless t contains 'אינן כלולות' or t contains 'לא כלולות'
+          for tok in power_tokens
+            if t contains tok
+              assign is_power = true
+              break
+            endif
+          endfor
+        endunless
+        if is_power
+          continue
+        endif
+      endif
+
+      # --- "כותרת: ערך" labels itself
+      assign lab = ''
+      assign val = t
+      if t contains ': '
+        assign maybe = t | split: ':' | first | strip
+        if maybe.size > 1 and maybe.size < 19
+          assign lab = maybe
+          assign val = t | remove_first: maybe | remove_first: ':' | strip
+        endif
+      endif
+
+      # --- otherwise a category word, derived from the bullet's own words. Never a new fact.
+      # ("עמידות" ends with the letters of "מידות", so the test runs on a copy where it cannot bite)
+      if lab == ''
+        assign tt = t | replace: 'עמידות', '~'
+        assign ipfound = ''
+        for code in latin
+          if code contains 'IP' and t contains code
+            assign ipfound = code
+            break
+          endif
+        endfor
+        if ipfound != ''
+          assign lab = 'עמידות'
+        elsif tt contains 'מצבי עוצמה'
+          assign lab = 'מצבי עוצמה'
+        elsif tt contains 'מצבי' or tt contains 'מצבים'
+          assign lab = 'מצבי תאורה'
+        elsif tt contains 'שעות עבודה' or tt contains 'זמן עבודה' or tt contains 'עבודה כ' or tt contains 'שעות תאורה' or tt contains 'שעות לפי' or tt contains 'שעות בהתאם'
+          assign lab = 'זמן עבודה'
+        elsif tt contains 'טעינה'
+          assign lab = 'טעינה'
+        elsif tt contains 'לומן'
+          assign lab = 'בהירות'
+        elsif tt contains 'חיישן' or tt contains 'PIR' or tt contains 'זיהוי'
+          assign lab = 'חיישן'
+        elsif tt contains 'התקנה' or tt contains 'נעיצה' or tt contains 'הרכבה' or tt contains 'מדבקות' or tt contains 'ברגים'
+          assign lab = 'התקנה'
+        elsif tt contains 'מידות' or tt contains 'ס״מ' or tt contains 'גובה' or tt contains 'קוטר'
+          assign lab = 'מידות'
+        elsif tt contains 'מטר' or tt contains 'מ׳'
+          assign lab = 'אורך'
+        elsif tt contains 'נורות' or tt contains 'נקודות אור'
+          assign lab = 'נורות'
+        elsif tt contains 'נירוסטה' or tt contains 'אלומיניום' or tt contains 'ABS' or tt contains 'גוף' or tt contains 'ענפים'
+          assign lab = 'חומר הגוף'
+        elsif tt contains 'W'
+          assign lab = 'עוצמה'
+        elsif tt contains 'K'
+          assign lab = 'גוון אור'
+        elsif tt contains 'שחור' or tt contains 'חום'
+          assign lab = 'צבע הגוף'
+        elsif tt contains 'צהוב' or tt contains 'כחול' or tt contains 'צבעוני' or tt contains 'לבן' or tt contains 'גוון'
+          assign lab = 'צבע האור'
+        elsif tt contains 'שלט' or tt contains 'טיימר' or tt contains 'מגע' or tt contains 'עמעום'
+          assign lab = 'שליטה'
+        elsif tt contains 'אוטומטי' or tt contains 'הדלקה' or tt contains 'הפעלה'
+          assign lab = 'הפעלה'
+        elsif tt contains 'סיבוב' or tt contains 'הטיה' or tt contains 'מתכוונן' or tt contains 'זווית'
+          assign lab = 'כיוון'
+        elsif tt contains 'יחידות' or tt contains 'סטים' or tt contains 'סט של' or tt contains 'זוג'
+          assign lab = 'כמות'
+        elsif tt contains 'עיצוב'
+          assign lab = 'עיצוב'
+        elsif tt contains 'דגם'
+          assign lab = 'דגם'
+        elsif tt contains 'מתאימה' or tt contains 'מתאים' or tt contains 'לשימוש'
+          assign lab = 'מיקום'
+        endif
+        # the value never repeats its own label — but never leave a dangling "ו…" either
+        if lab != ''
+          assign probe = lab | append: ' '
+          assign headcut = val | slice: 0, probe.size
+          if headcut == probe
+            assign rest = val | remove_first: probe | strip
+            assign restfirst = rest | slice: 0, 1
+            unless rest.size < 2 or restfirst == 'ו' or rest contains lab
+              assign val = rest
+            endunless
+          endif
+        endif
+      endif
+
+      if val == ''
+        continue
+      endif
+      # a ledger value is a fragment, not a sentence: drop a trailing full stop ("שנתיים." → "שנתיים")
+      assign lastch = val | slice: -1, 1
+      if lastch == '.'
+        assign cut = val.size | minus: 1
+        assign val = val | slice: 0, cut
+      endif
+      # the same label twice in a row is printed once (four "אורך" rows are one ledger, not four labels)
+      if lab != '' and lab == prev_label
+        assign shown = ''
+      else
+        assign shown = lab
+      endif
+      assign prev_label = lab
+      assign rows = rows | append: RS | append: shown | append: FS | append: val
+      assign row_count = row_count | plus: 1
+    endfor
+  endif
+
+  # ---------------------------------------------------------------- source 3: the spec metafields
+  if row_count == 0 and section.settings.source != 'blocks'
+    assign mf = product.metafields.custom
+    assign mf_keys = 'ip_rating,light_modes,light_hours,charge_time_hours,color_temp,power_watt,lumens,material,dimensions,sensor_range_m,sensor_angle_deg,battery,power_source' | split: ','
+    assign mf_labels = 'עמידות,מצבי תאורה,זמן עבודה,זמן טעינה,צבע האור,עוצמה,בהירות,חומר הגוף,מידות,טווח חיישן,זווית חיישן,סוללה,מקור אנרגיה' | split: ','
+    for k in mf_keys
+      assign v = mf[k] | default: '' | strip
+      if v == ''
+        continue
+      endif
+      if gate_power and k == 'battery'
+        continue
+      endif
+      assign rows = rows | append: RS | append: mf_labels[forloop.index0] | append: FS | append: v
+      assign row_count = row_count | plus: 1
+    endfor
+  endif
+
+  # ---------------------------------------------------------------- the giant numeral (§4.5)
+  assign giant = section.settings.giant_text | default: '' | strip
+  assign giant_src = section.settings.giant_source | default: 'auto'
+  assign giant_from = ''
+  if giant == '' and giant_src != 'none'
+    if giant_src == 'auto' or giant_src == 'ip'
+      for code in latin
+        if code contains 'IP' and hay_all contains code
+          assign giant = code
+          break
+        endif
+      endfor
+    endif
+    if giant == '' and giant_src != 'ip'
+      assign list2 = items | split: RS
+      for raw in list2 offset: 1
+        assign t = raw | strip
+        if t contains 'שעות'
+          if t contains 'שעות עבודה' or t contains 'זמן עבודה' or t contains 'עבודה כ' or t contains 'שעות תאורה' or t contains 'שעות לפי' or t contains 'שעות בהתאם'
+            if t contains 'כ־'
+              assign hours = t | split: 'כ־'
+              assign hours = hours[1] | split: ' ' | first | strip
+              unless hours == '' or hours.size > 7 or hours contains '+' or hours contains ':'
+                assign giant = hours
+                assign giant_from = t
+                break
+              endunless
+            endif
+          endif
+        endif
+      endfor
+    endif
+  endif
+
+  # its sub-line: a sentence of the product's own, quoted, that carries the same token. Never authored.
+  # (a one- or two-character numeral is too short to identify a sentence — "3" is inside "310 לומן")
+  assign gsub = section.settings.giant_sub | default: '' | strip
+  if gsub == '' and giant.size < 3 and giant_from != ''
+    assign gsub = giant_from
+  endif
+  if gsub == '' and giant.size > 2
+    assign flat = desc | replace: '</p>', '~~' | replace: '</h2>', '~~' | replace: '</h3>', '~~' | replace: '</h4>', '~~' | replace: '</li>', '~~' | replace: '</div>', '~~' | replace: '</span>', '~~' | replace: '</strong>', '~~' | replace: '</b>', '~~' | strip_html
+    assign paras = flat | split: '~~'
+    for para in paras
+      assign t = para | strip
+      if t.size < 40 or t.size > 180
+        continue
+      endif
+      unless t contains giant
+        continue
+      endunless
+      if gate_power
+        assign skip = false
+        for tok in power_tokens
+          if t contains tok
+            assign skip = true
+            break
+          endif
+        endfor
+        if skip
+          continue
+        endif
+      endif
+      assign gsub = t
+      break
+    endfor
+    if gsub == '' and giant_from != ''
+      assign gsub = giant_from
+    endif
+  endif
+
+  # ---------------------------------------------------------------- "מה שלא כתוב" — computed, never claimed
+  assign unknown = section.settings.unknown_row_text | default: '' | strip
+  if unknown == '' and section.settings.show_unknown_row
+    assign miss = ''
+    assign miss_n = 0
+    unless has_power
+      assign miss = miss | append: ',מקור החשמל'
+      assign miss_n = miss_n | plus: 1
+    endunless
+    # ("עמידות" ends with the letters of "מידות"; a stated size is written מידות / × / גובה / קוטר)
+    assign hay_dim = hay_all | replace: 'עמידות', '~'
+    assign has_dim = false
+    if hay_dim contains 'מידות' or hay_dim contains '×' or hay_dim contains 'גובה' or hay_dim contains 'קוטר'
+      assign has_dim = true
+    endif
+    unless has_dim
+      assign miss = miss | append: ',מידות מדויקות'
+      assign miss_n = miss_n | plus: 1
+    endunless
+    unless hay_all contains 'לומן'
+      assign miss = miss | append: ',לומן'
+      assign miss_n = miss_n | plus: 1
+    endunless
+    unless hay_all contains 'אחריות'
+      assign miss = miss | append: ',אחריות'
+      assign miss_n = miss_n | plus: 1
+    endunless
+    if miss_n > 1
+      assign mlist = miss | split: ','
+      assign phrase = ''
+      for m in mlist offset: 1
+        if forloop.last
+          assign phrase = phrase | append: ' ו' | append: m
+        elsif forloop.first
+          assign phrase = m
+        else
+          assign phrase = phrase | append: ', ' | append: m
+        endif
+      endfor
+      assign unknown = phrase | append: ' אינם מופיעים בנתוני המוצר — ולכן אינם מופיעים כאן.'
+    elsif miss_n == 1
+      assign one = miss | remove_first: ','
+      assign unknown = 'אין בנתוני המוצר מידע על ' | append: one | append: ' — ולכן אין עליו מילה כאן.'
+    endif
+  endif
+  unless section.settings.show_unknown_row
+    assign unknown = ''
+  endunless
+
+  # ---------------------------------------------------------------- blocks (merchant additions)
+  assign block_rows = 0
+  for block in section.blocks
+    if block.settings.value != blank
+      assign gate = block.settings.power_gate | default: 'always'
+      assign keep = false
+      if gate == 'always'
+        assign keep = true
+      endif
+      if gate == 'solar' and pwr == 'סולארי'
+        assign keep = true
+      endif
+      if gate == 'mains' and pwr == 'חשמל'
+        assign keep = true
+      endif
+      if keep
+        assign block_rows = block_rows | plus: 1
+      endif
+    endif
+  endfor
+  assign total_rows = row_count | plus: block_rows
+  assign row_list = rows | split: RS
+-%}
+<section id="env2-pdp-facts" data-env2-pdp-facts class="env2-section env2-pdp-facts" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.45" aria-labelledby="env2-pdp-facts-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-pdp-facts__wrap">
+
+    <div class="env2-pdp-facts__grid">
+
+      {%- comment -%} head, numeral and ledger share one grid: with a numeral the head spans both
+        columns; without one it takes the start column and the ledger the end one, so the composition
+        never leaves half the page empty. {%- endcomment -%}
+      <div class="env2-pdp-facts__head{% if giant == blank %} env2-pdp-facts__head--solo{% endif %}">
+        {%- if section.settings.eyebrow != blank -%}<p class="env2-eyebrow env2-pdp-facts__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="env2-h env2-pdp-facts__h2" id="env2-pdp-facts-h2">&#171;&#8288;{{ section.settings.question | default: 'ומה יכול להשתבש?' }}&#8288;&#187;</h2>
+        {%- if section.settings.deck != blank -%}<p class="env2-lead env2-pdp-facts__deck">{{ section.settings.deck }}</p>{%- endif -%}
+      </div>
+
+      {%- if giant != blank -%}
+        <p class="env2-pdp-facts__giantwrap">
+          <span class="env2-pdp-facts__giant" data-lamp="manual" data-env2-pdp-facts-giant><bdi>{{ giant }}</bdi></span>
+          {%- if gsub != blank -%}<span class="env2-pdp-facts__giantsub">{{ gsub }}</span>{%- endif -%}
+        </p>
+      {%- endif -%}
+
+      {%- if total_rows > 0 or unknown != blank -%}
+        <dl class="env2-pdp-facts__dl{% if giant == blank %} env2-pdp-facts__dl--solo{% endif %}">
+
+          {%- for rec in row_list offset: 1 -%}
+            {%- assign f = rec | split: FS -%}
+            {%- if f.size < 2 -%}{%- continue -%}{%- endif -%}
+            {%- capture v -%}{{ f[1] }}{%- endcapture -%}
+            {%- assign v = v | replace: 'IP20', '<bdi>IP20</bdi>' | replace: 'IP44', '<bdi>IP44</bdi>' | replace: 'IP54', '<bdi>IP54</bdi>' | replace: 'IP55', '<bdi>IP55</bdi>' | replace: 'IP65', '<bdi>IP65</bdi>' | replace: 'IP66', '<bdi>IP66</bdi>' | replace: 'IP67', '<bdi>IP67</bdi>' | replace: 'IP68', '<bdi>IP68</bdi>' | replace: 'LED', '<bdi>LED</bdi>' | replace: 'USB', '<bdi>USB</bdi>' | replace: 'PIR', '<bdi>PIR</bdi>' | replace: 'RGB', '<bdi>RGB</bdi>' | replace: 'ABS', '<bdi>ABS</bdi>' | replace: 'mAh', '<bdi>mAh</bdi>' | replace: 'ON ', '<bdi>ON</bdi> ' -%}
+            <div class="env2-pdp-facts__row{% if f[0] == blank %} env2-pdp-facts__row--wide{% endif %}">
+              {%- if f[0] != blank -%}<dt class="env2-pdp-facts__dt">{{ f[0] }}</dt>{%- endif -%}
+              <dd class="env2-pdp-facts__dd">{{ v }}</dd>
+            </div>
+          {%- endfor -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.settings.value == blank -%}{%- continue -%}{%- endif -%}
+            {%- assign gate = block.settings.power_gate | default: 'always' -%}
+            {%- assign show_block = false -%}
+            {%- if gate == 'always' -%}{%- assign show_block = true -%}{%- endif -%}
+            {%- if gate == 'solar' and pwr == 'סולארי' -%}{%- assign show_block = true -%}{%- endif -%}
+            {%- if gate == 'mains' and pwr == 'חשמל' -%}{%- assign show_block = true -%}{%- endif -%}
+            {%- if show_block -%}
+              <div class="env2-pdp-facts__row{% if block.settings.label == blank %} env2-pdp-facts__row--wide{% endif %}" {{ block.shopify_attributes }}>
+                {%- if block.settings.label != blank -%}<dt class="env2-pdp-facts__dt">{{ block.settings.label }}</dt>{%- endif -%}
+                <dd class="env2-pdp-facts__dd">{{ block.settings.value }}</dd>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if unknown != blank -%}
+            <div class="env2-pdp-facts__row env2-pdp-facts__row--unknown">
+              <dt class="env2-pdp-facts__dt">{{ section.settings.unknown_row_label | default: 'מה שלא כתוב' }}</dt>
+              <dd class="env2-pdp-facts__dd">{{ unknown }}</dd>
+            </div>
+          {%- endif -%}
+
+        </dl>
+      {%- endif -%}
+
+    </div>
+
+    {%- if section.settings.show_full_description and product.description != blank -%}
+      <details class="env2-pdp-facts__more">
+        <summary class="env2-pdp-facts__summary">{{ section.settings.more_label | default: 'כל מה שכתוב על המוצר' }}</summary>
+        <div class="env2-pdp-facts__desc">{{ product.description }}</div>
+      </details>
+    {%- endif -%}
+
+  </div>
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+/* §4.5 — the facts ledger. Every selector .env2-pdp-facts__…, logical properties only, radius 0.
+   No Liquid in here (CONTRACT §0): the giant numeral's two states are driven by the core's --lit. */
+.env2-pdp-facts{padding-block:clamp(72px,9vw,110px) clamp(64px,8vw,100px)}
+.env2-pdp-facts__wrap{position:relative;z-index:1}
+
+/* ---------- head ---------- */
+.env2-pdp-facts__head{grid-column:1/-1;grid-row:1;align-self:start;display:grid;gap:14px;max-width:none}
+.env2-pdp-facts__head--solo{grid-column:1;align-self:center}
+/* the measure belongs to each line, not to the column: 44ch on the HEAD resolves against the
+   head's own 16px font (~318px) and squeezed a 70px display heading into three lines with a
+   stranded guillemet. Each line now carries its own measure in its own type size. */
+.env2-pdp-facts__h2{font-size:clamp(34px,4.9vw,72px);max-inline-size:16ch}
+.env2-pdp-facts__deck{max-width:44ch}
+
+/* ---------- the composition: the ledger at the start side, the numeral at the end side ---------- */
+.env2-pdp-facts__grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(34px,5vw,80px) clamp(30px,5vw,80px);align-items:center}
+.env2-pdp-facts__giantwrap{grid-column:2;grid-row:2;margin:0;display:grid;gap:clamp(14px,1.6vw,22px);justify-items:center;text-align:center}
+.env2-pdp-facts__dl{grid-column:1;grid-row:2;margin:0}
+.env2-pdp-facts__dl--solo{grid-column:2;grid-row:1;max-width:none}
+
+/* the one enormous thing on the screen: outline until it is reached, then glow (§3.3) */
+.env2-pdp-facts__giant{font-family:var(--env2-serif);font-weight:900;font-size:clamp(96px,13vw,230px);line-height:.86;letter-spacing:-.02em;color:rgba(255,211,148,var(--lit,1));-webkit-text-stroke:1px rgba(244,238,227,calc(.45 - .45*var(--lit,1)));text-shadow:0 0 50px rgba(255,211,148,calc(.4*var(--lit,1)));transition:color 1.4s ease,-webkit-text-stroke-color 1.4s ease,text-shadow 1.4s ease}
+.env2-pdp-facts__giant bdi{unicode-bidi:isolate}
+.env2-pdp-facts__giantsub{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-width:34ch}
+
+/* ---------- the ledger: hairlines, no boxes ---------- */
+.env2-pdp-facts__row{display:grid;grid-template-columns:128px minmax(0,1fr);gap:0 clamp(14px,2vw,26px);align-items:baseline;border-top:1px solid var(--env2-hair);padding-block:14px}
+.env2-pdp-facts__row--wide{grid-template-columns:minmax(0,1fr)}
+.env2-pdp-facts__dt{font-family:var(--env2-sans);font-weight:400;font-size:13.5px;line-height:1.5;color:var(--env2-mute)}
+.env2-pdp-facts__dd{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.55;color:var(--env2-ink);max-width:46ch}
+.env2-pdp-facts__dd bdi{unicode-bidi:isolate}
+.env2-pdp-facts__row--unknown{border-top-color:rgba(244,238,227,.45);margin-block-start:10px;padding-block:18px 0}
+.env2-pdp-facts__row--unknown .env2-pdp-facts__dt{color:var(--env2-gold);font-weight:500;letter-spacing:.02em}
+.env2-pdp-facts__row--unknown .env2-pdp-facts__dd{color:var(--env2-ink-2)}
+
+/* ---------- the preserved description, behind a hairline ---------- */
+.env2-pdp-facts__more{margin-block-start:clamp(46px,6vw,80px);border-top:1px solid var(--env2-hair)}
+.env2-pdp-facts__summary{display:flex;align-items:center;gap:10px;min-height:48px;padding-block:14px;font-family:var(--env2-sans);font-weight:400;font-size:14px;line-height:1.5;color:var(--env2-ink-2);cursor:pointer;list-style:none;transition:color .3s}
+.env2-pdp-facts__summary::-webkit-details-marker{display:none}
+.env2-pdp-facts__summary::after{content:"";width:9px;height:9px;border-inline-start:1px solid currentColor;border-block-end:1px solid currentColor;transform:rotate(-45deg);transition:transform .3s;margin-block-end:3px}
+.env2-pdp-facts__summary:hover{color:var(--env2-ink)}
+.env2-pdp-facts__more[open] .env2-pdp-facts__summary::after{transform:rotate(135deg);margin-block-end:-3px}
+.env2-pdp-facts__desc{padding-block:6px 30px;max-width:78ch}
+
+/* the owner's .elms-sales description keeps its words and loses its cream card: every surface,
+   border, radius and face is rewritten from this section's own selectors (two classes = it wins). */
+.env2-pdp-facts__desc .elms-sales,
+.env2-pdp-facts__desc .elms-sales *{background:none;background-color:transparent;border:0;border-radius:0;box-shadow:none;color:inherit;font-family:var(--env2-sans);max-width:none;text-align:start}
+.env2-pdp-facts__desc .elms-sales{display:block;color:var(--env2-ink-2);font-weight:300;font-size:15px;line-height:1.6;padding:0}
+.env2-pdp-facts__desc .elms-sales h2,
+.env2-pdp-facts__desc .elms-sales h3,
+.env2-pdp-facts__desc .elms-sales b,
+.env2-pdp-facts__desc .elms-sales strong{display:block;color:var(--env2-ink);font-weight:500;font-size:16px;line-height:1.4;margin-block:18px 6px;padding:0}
+.env2-pdp-facts__desc .elms-sales p{margin-block:0 10px}
+.env2-pdp-facts__desc .elms-sales ul{display:block;list-style:none;margin:0;padding:0}
+.env2-pdp-facts__desc .elms-sales li::before,
+.env2-pdp-facts__desc .elms-sales li::after{content:none}
+.env2-pdp-facts__desc .elms-sales li{border-top:1px solid var(--env2-hair);padding-block:9px}
+.env2-pdp-facts__desc .elms-sales section,
+.env2-pdp-facts__desc .elms-sales article,
+.env2-pdp-facts__desc .elms-sales header,
+.env2-pdp-facts__desc .elms-sales footer,
+.env2-pdp-facts__desc .elms-sales div{display:block;padding:0;margin:0}
+.env2-pdp-facts__desc .elms-sales article,
+.env2-pdp-facts__desc .elms-sales section{margin-block-end:14px}
+.env2-pdp-facts__desc .elms-sales__kicker,
+.env2-pdp-facts__desc .elms-sales__cta span{display:block;font-size:13px;color:var(--env2-mute)}
+.env2-pdp-facts__desc .elms-sales a{color:var(--env2-glow)}
+
+/* ---------- mobile recomposition: the numeral first, then label-above-value pairs ---------- */
+@media (max-width:900px){
+  .env2-pdp-facts__head,.env2-pdp-facts__head--solo{grid-column:1;grid-row:1;max-width:none;align-self:start}
+  .env2-pdp-facts__grid{grid-template-columns:minmax(0,1fr);gap:clamp(28px,7vw,44px)}
+  .env2-pdp-facts__giantwrap{grid-column:1;grid-row:2;justify-items:start;text-align:start}
+  .env2-pdp-facts__dl,.env2-pdp-facts__dl--solo{grid-column:1;grid-row:3;max-width:none}
+  .env2-pdp-facts__giant{font-size:clamp(88px,26vw,120px)}
+  .env2-pdp-facts__giantsub{max-width:42ch}
+  .env2-pdp-facts__h2{max-inline-size:none}
+  .env2-pdp-facts__deck{max-width:none}
+  .env2-pdp-facts__row,.env2-pdp-facts__row--wide{grid-template-columns:minmax(0,1fr);gap:3px;padding-block:13px}
+  .env2-pdp-facts__dd{font-size:15px;max-width:none}
+  .env2-pdp-facts__desc{max-width:none}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* The section is complete without this file: the ledger, the numeral and the description are all
+   server-rendered, and <details> is native. JS does exactly one thing — light the giant numeral at
+   the 40 % threshold §3.3 asks for, which the core's shared observer deliberately skips because the
+   numeral is [data-lamp="manual"]. Ends with the CONTRACT's env2.observe fallback line. */
+document.querySelectorAll('[data-env2-pdp-facts]').forEach(function (el) {
+  var giant = el.querySelector('[data-env2-pdp-facts-giant]');
+  if (giant && !giant.classList.contains('lit')) {
+    var lightIt = function () {
+      if (window.env2) { env2.light(giant); } else { giant.classList.add('lit'); }
+    };
+    if ((window.env2 && env2.rm) || !('IntersectionObserver' in window)) {
+      lightIt();
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var tall = en.boundingClientRect.top < window.innerHeight * 0.55;
+          if (en.isIntersecting && (en.intersectionRatio >= 0.4 || tall)) {
+            lightIt();
+            io.disconnect();
+          }
+        });
+      }, { threshold: [0, 0.4, 0.75] });
+      io.observe(giant);
+    }
+  }
+  window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — עובדות",
+  "tag": "section",
+  "class": "env2-pdp-facts-section hdt-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "header", "content": "הכותרת" },
+    { "type": "text", "id": "eyebrow", "label": "תווית", "default": "05 · מה שכדאי לדעת" },
+    { "type": "text", "id": "question", "label": "השאלה", "default": "ומה יכול להשתבש?", "info": "נכתבת בגרשיים «…» אוטומטית." },
+    { "type": "textarea", "id": "deck", "label": "משפט הפתיחה", "default": "מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב." },
+    { "type": "header", "content": "העובדות" },
+    { "type": "paragraph", "content": "השורות נלקחות מנתוני המוצר עצמו: קודם הבולטים שתחת «פרטים שכדאי לדעת», אחריהם שורת «פרטים טכניים», ואחריהם שדות המטה־פילד. כשאין אף אחד מהם — הטבלה פשוט לא מוצגת. אין לכתוב כאן עובדה שאינה בנתוני המוצר." },
+    { "type": "select", "id": "source", "label": "מקור", "options": [ { "value": "description_bullets", "label": "מתיאור המוצר (מומלץ)" }, { "value": "blocks", "label": "מהבלוקים בלבד" } ], "default": "description_bullets" },
+    { "type": "range", "id": "max_rows", "label": "מקסימום שורות מהתיאור", "min": 3, "max": 14, "step": 1, "default": 10 },
+    { "type": "text", "id": "bullets_heading", "label": "הכותרת שאחריה הבולטים", "default": "פרטים שכדאי לדעת" },
+    { "type": "text", "id": "specs_heading", "label": "הכותרת שאחריה שורת המפרט", "default": "פרטים טכניים" },
+    { "type": "header", "content": "המספר הגדול" },
+    { "type": "select", "id": "giant_source", "label": "מה יוצג בגדול", "options": [ { "value": "auto", "label": "אוטומטי — דירוג האטימות, ואם אין, שעות העבודה" }, { "value": "ip", "label": "דירוג אטימות בלבד" }, { "value": "hours", "label": "שעות עבודה בלבד" }, { "value": "none", "label": "לא להציג" } ], "default": "auto" },
+    { "type": "text", "id": "giant_text", "label": "טקסט קבוע (ריק = אוטומטי)", "info": "חל על כל המוצרים בתבנית — עדיף להשאיר ריק." },
+    { "type": "textarea", "id": "giant_sub", "label": "המשפט שמתחתיו (ריק = משפט מתיאור המוצר)" },
+    { "type": "header", "content": "מה שלא כתוב" },
+    { "type": "paragraph", "content": "השורה הזאת היא העמדה של החנות: מה שאינו מופיע בנתוני המוצר נאמר במפורש. הנוסח מחושב מהנתונים עצמם ולכן לעולם אינו טוען שחסר משהו שכן כתוב בתיאור." },
+    { "type": "checkbox", "id": "show_unknown_row", "label": "להציג את השורה", "default": true },
+    { "type": "text", "id": "unknown_row_label", "label": "תווית השורה", "default": "מה שלא כתוב" },
+    { "type": "textarea", "id": "unknown_row_text", "label": "נוסח קבוע (ריק = מחושב לכל מוצר)" },
+    { "type": "header", "content": "התיאור המלא" },
+    { "type": "checkbox", "id": "show_full_description", "label": "לשמור את תיאור המוצר המקורי", "default": true },
+    { "type": "text", "id": "more_label", "label": "תווית הפתיחה", "default": "כל מה שכתוב על המוצר" }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "שורת עובדה",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "label", "label": "תווית" },
+        { "type": "textarea", "id": "value", "label": "הערך", "info": "מילה במילה מנתוני המוצר. לא לכתוב עובדה חדשה." },
+        { "type": "select", "id": "power_gate", "label": "תלוי במקור החשמל", "options": [ { "value": "always", "label": "תמיד" }, { "value": "solar", "label": "רק כשמוגדר סולארי" }, { "value": "mains", "label": "רק כשמוגדר חשמל" } ], "default": "always" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "ElmsNest v2 — עובדות" } ]
+}
+{% endschema %}

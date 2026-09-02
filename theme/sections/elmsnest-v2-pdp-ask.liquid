@@ -1,0 +1,450 @@
+{%- comment -%}
+  ElmsNest v2 PDP — §4.7 "עוד לא בטוחים? לא צריך להיות."  ·  #env2-pdp-ask  ·  spine answers #7 + #8.
+
+  Two jobs, one screen: the specialist line (why here and not a marketplace) and the two ways to
+  NOT buy yet — send a photo of the place, or start from the smallest thing the product sells.
+  No comparison table, no competitor, no claim (BRIEF §11 / do-not §6.3): the "why here" is a
+  quotation from the store's own «מי אנחנו» page and three facts the page has already kept above.
+
+  ------------------------------------------------------------------ what is authored, what is derived
+  Authored brand copy (settings, editable): the eyebrow, the two heading lines, the lead sentences,
+  the quote and its citation. NOTHING here is a product claim.
+  Derived from the product, never typed:
+    · the small step's own words — the cheapest AVAILABLE row of elmsnest-v2-pdp-variants, printed as
+      its option value + its price ("להתחיל מ־5 מטר — 89.90 ₪" · "להתחיל מיחידה אחת — 169.90 ₪" ·
+      "להתחיל מ־6W — 219.90 ₪"). The row index it selects is the ledger row it names.
+    · the lead's last clause, which follows the same unit: אורך (מ׳) / יחידה (single or a count) /
+      עוצמה (W) / a neutral phrase for anything else, and nothing at all when there is no ledger.
+    · the lead's FIRST sentence, which follows §3.7's three-state honesty rule (below).
+
+  ------------------------------------------------------------------ the §4.2 agreement (§3.7, §8.2)
+  §4.7's lead opens "אמרנו למעלה מתי היא לא מתאימה" — true only when §4.2 actually printed a negative.
+  custom.not_fit_for is EMPTY on all 27 products today, so §4.2 renders its "how to choose" mode and
+  this section must say the same thing. The test here is byte-identical to elmsnest-v2-pdp-fit's:
+  the metafield must match one of the FOUR approved negatives exactly, and the solar clause only
+  counts on a product whose custom.power_source is 'סולארי'. When it does not, the first sentence
+  becomes "אמרנו למעלה איך בוחרים נכון." — the same words §4.2 uses in that state. lead_mode lets an
+  integrator pin it if §4.2 was overridden from its own section settings (which this file cannot read).
+  This section says nothing about power, ever, on any product — so §3.7 cannot be breached here.
+
+  ------------------------------------------------------------------ the two calls to action
+  1. The small step (primary, filled pill). An <a href="#env2-pdp-ledger"> so it works with no JS at
+     all; with JS it clicks that row's own button inside §4.4 (which drives the stage price, string
+     and sticky bar through the one code path that already exists) and scrolls back to the stage.
+     §8.3: a filled .env2-btn ANCHOR loses its ink to .env2-section a{color:inherit} (0,1,1) and
+     renders 1.21:1 — so the colour is set from .env2-pdp-ask a.env2-pdp-ask__start (0,2,1), and the
+     computed colour was checked in the render, not assumed.
+  2. The photo check (ghost). Rendered by snippets/elmsnest-v2-pdp-photo-cta — the ONE place the
+     mailto / wa.me branch lives. settings.whatsapp_number is empty, so it is a mailto and no label
+     can claim a WhatsApp channel; this file builds no URL of its own and names no channel.
+
+  ------------------------------------------------------------------ motion (§3.3)
+  Exactly one thing switches on, and it is not text (do-not §6.19 forbids a text fade-in): the
+  hairline that carries the quote lights from .3 to full when the quote arrives. Every word is
+  server-rendered at full opacity in every state. Reduced motion / no JS: the hairline is lit.
+
+  ------------------------------------------------------------------ no JS
+  The section is complete and buyable without JavaScript: both CTAs are ordinary anchors, the small
+  step scrolls to the ledger where every row carries its own POST form, the lamp is lit, and the
+  quote, the lead and the citation are plain server-rendered text.
+
+  Plumbing: elmsnest-v2-core (rendered from layout/theme.liquid on every page) supplies the tokens,
+  the fonts, the .env2-* helpers, [data-lamp] and window.env2. This section renders no global, no
+  ground and no font link (§8.2), and owns no image slot.
+{%- endcomment -%}
+{%- liquid
+  assign env2_RS = '~~R~~'
+  assign env2_FS = '~~F~~'
+-%}
+{%- capture env2_model -%}{%- if product -%}{%- render 'elmsnest-v2-pdp-variants', product: product -%}{%- endif -%}{%- endcapture -%}
+{%- liquid
+  # ---------------------------------------------------------------- the ledger model (CONTRACT-PDP §3)
+  # It prints RAW TEXT, so the call above is captured. A blank product prints nothing at all, and
+  # every branch below degrades to "no small step" rather than to an empty or invented one.
+  assign env2_recs = env2_model | strip | split: env2_RS
+  assign env2_m = env2_recs[0] | split: env2_FS
+  assign env2_has = false
+  if env2_m[0] == 'meta' and env2_recs.size > 1
+    assign env2_has = true
+  endif
+  assign env2_mode = env2_m[1] | default: 'variants'
+
+  # ---------------------------------------------------------------- the small step: the cheapest row
+  # Rows come in the option's own value order, which is not always the cheapest first, and a sold-out
+  # row is not somewhere to start — so an available row always wins, and price decides among them.
+  assign env2_si = 0
+  assign env2_sprice = ''
+  assign env2_sn = ''
+  assign env2_su = ''
+  assign env2_skey = ''
+  assign env2_best = 0
+  assign env2_found = false
+  assign env2_afound = false
+  if env2_has
+    for env2_rec in env2_recs offset: 1
+      assign r = env2_rec | split: env2_FS
+      assign rc = r[11] | plus: 0
+      assign take = false
+      if r[14] == '1'
+        if env2_afound == false or rc < env2_best
+          assign take = true
+          assign env2_afound = true
+        endif
+      elsif env2_afound == false
+        if env2_found == false or rc < env2_best
+          assign take = true
+        endif
+      endif
+      if take
+        assign env2_found = true
+        assign env2_best = rc
+        assign env2_si = r[1] | plus: 0
+        assign env2_sprice = r[10]
+        assign env2_sn = r[6]
+        assign env2_su = r[7]
+        assign env2_skey = r[3]
+      endif
+    endfor
+  endif
+
+  # The step's WORDS are the row's own option value — its first segment, so "5 מ׳ / 20 נורות"
+  # becomes "5 מ׳" and "6W" stays "6W" — with one typographic expansion, the unit מ׳ written out as
+  # מטר, which is how §4.7 prints it. Nothing is composed out of parts, so a value this build has
+  # never seen ("1.5×1.5 מ׳ / 96 LED", "1 'יח", "אור חם 3000K") still names itself correctly.
+  assign env2_seg = env2_skey | split: ' / ' | first | default: '' | strip
+  assign env2_seg = env2_seg | replace: 'מ׳', 'מטר'
+
+  # which last clause the lead gets — decided by the row's OWN parsed unit, never by a typed guess
+  assign env2_len = '~מ׳~מטר~מטרים~'
+  assign env2_cnt = '~יח׳~יח~יחידה~יחידות~'
+  assign env2_cnt2 = "~'יח~"
+  assign env2_probe = '~' | append: env2_su | append: '~'
+  assign env2_kind = 'plain'
+  if env2_mode == 'single'
+    assign env2_kind = 'single'
+  elsif env2_sn == blank or env2_seg == blank
+    assign env2_kind = 'plain'
+  elsif env2_len contains env2_probe
+    assign env2_kind = 'length'
+  elsif env2_cnt contains env2_probe or env2_cnt2 contains env2_probe
+    assign env2_kind = 'count'
+  elsif env2_su == 'W'
+    assign env2_kind = 'power'
+  else
+    assign env2_kind = 'other'
+  endif
+
+  assign env2_show_step = false
+  if section.settings.show_start_small and env2_has and env2_sprice != blank
+    assign env2_show_step = true
+  endif
+
+  # the step's destination: the ledger row by default, or a URL the merchant pinned
+  assign env2_step_href = '#env2-pdp-ledger'
+  assign env2_by_row = true
+  if section.settings.start_small_target == 'url'
+    assign env2_by_row = false
+    assign env2_step_href = section.settings.start_small_url | default: '' | strip
+    if env2_step_href == ''
+      assign env2_step_href = product.url | default: '#env2-pdp-ledger'
+    endif
+  endif
+
+  # ---------------------------------------------------------------- did §4.2 print a negative? (§3.7)
+  assign env2_ok_neg = '~המקום כמעט אינו מקבל אור יום~נדרש אור חזק וקבוע לאורך כל הלילה~צריך אור חזק — זו אינה מטרתה~נדרשת התקנה מיוחדת או חיבור קבוע~'
+  assign env2_solar_clause = 'המקום כמעט אינו מקבל אור יום'
+  assign env2_pwr = product.metafields.custom.power_source | default: '' | strip
+  assign env2_neg = product.metafields.custom.not_fit_for | default: '' | strip
+  if env2_neg != ''
+    assign env2_probe2 = '~' | append: env2_neg | append: '~'
+    unless env2_ok_neg contains env2_probe2
+      assign env2_neg = ''
+    endunless
+  endif
+  if env2_neg == env2_solar_clause and env2_pwr != 'סולארי'
+    assign env2_neg = ''
+  endif
+  assign env2_has_neg = false
+  if env2_neg != ''
+    assign env2_has_neg = true
+  endif
+  if section.settings.lead_mode == 'notfit'
+    assign env2_has_neg = true
+  elsif section.settings.lead_mode == 'choose'
+    assign env2_has_neg = false
+  endif
+
+  # ---------------------------------------------------------------- the lead, assembled
+  assign env2_lead = section.settings.lead_choose | default: '' | strip
+  if env2_has_neg
+    assign env2_lead = section.settings.lead | default: '' | strip
+  endif
+  assign env2_step_txt = section.settings.lead_step | default: '' | strip
+  if env2_step_txt != ''
+    if env2_show_step
+      if env2_kind == 'length'
+        assign env2_step_txt = env2_step_txt | append: ', או להתחיל מהאורך הקצר.'
+      elsif env2_kind == 'single'
+        assign env2_step_txt = env2_step_txt | append: ', או להתחיל מיחידה אחת.'
+      elsif env2_kind == 'count'
+        # never "מיחידה אחת" here: on a set product the smallest row is 2 or 4 units, not one
+        assign env2_step_txt = env2_step_txt | append: ', או להתחיל מהכמות הקטנה.'
+      elsif env2_kind == 'power'
+        assign env2_step_txt = env2_step_txt | append: ', או להתחיל מהעוצמה הנמוכה.'
+      else
+        # an axis this build cannot characterise (a colour temperature, a model name): the button
+        # below says exactly what it starts from, so the sentence does not invent an adjective
+        assign env2_step_txt = env2_step_txt | append: '.'
+      endif
+    else
+      assign env2_step_txt = env2_step_txt | append: '.'
+    endif
+    if env2_lead == ''
+      assign env2_lead = env2_step_txt
+    else
+      assign env2_lead = env2_lead | append: ' ' | append: env2_step_txt
+    endif
+  endif
+
+  # ---------------------------------------------------------------- the quote(s)
+  assign env2_quotes = section.blocks | where: 'type', 'quote'
+-%}
+{%- comment -%} the step's label: the row's own value + the row's own price, or the merchant's own line {%- endcomment -%}
+{%- capture env2_step_label -%}
+  {%- if section.settings.start_small_label != blank -%}
+    {{- section.settings.start_small_label -}}
+  {%- elsif env2_kind == 'single' -%}
+    להתחיל מיחידה אחת — <bdi>{{ env2_sprice }}</bdi>&nbsp;&#8362;
+  {%- elsif env2_kind == 'plain' -%}
+    להתחיל מ־<bdi>{{ env2_sprice }}</bdi>&nbsp;&#8362;
+  {%- else -%}
+    להתחיל מ־<bdi>{{ env2_seg }}</bdi> — <bdi>{{ env2_sprice }}</bdi>&nbsp;&#8362;
+  {%- endif -%}
+{%- endcapture -%}
+<section id="env2-pdp-ask" data-env2-pdp-ask class="env2-section env2-pdp-ask" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.62" aria-labelledby="env2-pdp-ask-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-pdp-ask__wrap">
+    <div class="env2-pdp-ask__main">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="env2-eyebrow env2-pdp-ask__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading_line1 != blank or section.settings.heading_line2 != blank -%}
+        <h2 id="env2-pdp-ask-h2" class="env2-h env2-pdp-ask__h2">
+          {%- if section.settings.heading_line1 != blank -%}{{ section.settings.heading_line1 }}{%- endif -%}
+          {%- if section.settings.heading_line2 != blank -%}
+            {%- if section.settings.heading_line1 != blank -%}<br>{%- endif -%}
+            <span class="env2-glow env2-pdp-ask__glow">{{ section.settings.heading_line2 }}</span>
+          {%- endif -%}
+        </h2>
+      {%- endif -%}
+
+      {%- if env2_lead != '' -%}
+        <p class="env2-lead env2-pdp-ask__lead">{{ env2_lead }}</p>
+      {%- endif -%}
+
+      <div class="env2-pdp-ask__cta">
+        {%- if env2_show_step -%}
+          <a class="env2-btn env2-pdp-ask__start" href="{{ env2_step_href }}"
+             {% if env2_by_row %}data-env2-ask-start data-i="{{ env2_si }}"{% endif %}>{{ env2_step_label | strip }}</a>
+        {%- endif -%}
+        {%- render 'elmsnest-v2-pdp-photo-cta', product: product, style: 'ghost',
+                   label: section.settings.photo_cta_label, subject: section.settings.mailto_subject,
+                   body: section.settings.mailto_body, class: 'env2-pdp-ask__photo' -%}
+      </div>
+    </div>
+
+    {%- if env2_quotes.size > 0 -%}
+      <div class="env2-pdp-ask__side">
+        {%- for block in env2_quotes -%}
+          {%- liquid
+            assign qtext = block.settings.text | default: '' | strip
+            assign qfirst = qtext | slice: 0, 1
+            unless qfirst == '«'
+              assign qtext = '«' | append: qtext | append: '»'
+            endunless
+          -%}
+          {%- if qtext != '«»' -%}
+            <figure class="env2-pdp-ask__quote" data-lamp {{ block.shopify_attributes }}>
+              <blockquote class="env2-pdp-ask__q">{{ qtext }}</blockquote>
+              {%- if block.settings.cite != blank or block.settings.link_label != blank -%}
+                <figcaption class="env2-pdp-ask__cite">
+                  {%- if block.settings.cite != blank -%}<span class="env2-pdp-ask__from">{{ block.settings.cite }}</span>{%- endif -%}
+                  {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
+                    <a class="env2-link env2-pdp-ask__a" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} <span aria-hidden="true">&#8592;</span></a>
+                  {%- endif -%}
+                </figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- §4.7 PDP ask: the specialist line + the small step ----------
+   Composition nobody else on this page uses (do-not §6.20): a two-column split whose halves are
+   aligned on their BOTTOM edge — the heading, the lead and the two buttons at the start side, the
+   quotation alone at the end side, on one hairline. No surface, no box, no card: the ground is the
+   body gradient from elmsnest-v2-ground-product and the only layer above it is the star field. */
+.env2-pdp-ask{padding-block:100px}
+.env2-pdp-ask__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;gap:clamp(30px,6vw,100px)}
+.env2-pdp-ask__main{min-inline-size:0}
+
+.env2-pdp-ask__eyebrow{margin-block-end:24px}
+.env2-pdp-ask__h2.env2-h{font-size:clamp(34px,4.9vw,72px);max-inline-size:14ch}
+.env2-pdp-ask__glow{display:block}
+.env2-pdp-ask__lead.env2-lead{margin-block-start:22px;font-size:clamp(16px,1.4vw,20px);line-height:1.55;max-inline-size:42ch}
+
+/* the two ways to not-buy-yet, side by side: the small step first, the photo check beside it */
+.env2-pdp-ask__cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-block-start:38px}
+/* §8.3: .env2-section a{color:inherit} is (0,1,1) and beats .env2-btn{color:…} (0,1,0) — an anchor
+   styled as the filled pill would render ink-on-glow at 1.21:1. This selector is (0,2,1), so the
+   button ink wins in every state. Measured in the render: #1a1206 on #ffd394 = 13.4:1. */
+.env2-pdp-ask a.env2-pdp-ask__start,
+.env2-pdp-ask a.env2-pdp-ask__start:hover,
+.env2-pdp-ask a.env2-pdp-ask__start:focus-visible{color:var(--env2-btn-ink)}
+/* border-box and white-space:normal are not decoration: .env2-btn is nowrap, the label is built from
+   the product's own option value, and a long one ("1.5×1.5 מטר", "אור חם 3000K") would otherwise push
+   a full-width mobile button past the viewport. The numbers stay unbreakable inside their own <bdi>. */
+.env2-pdp-ask__start,.env2-pdp-ask__photo{box-sizing:border-box;min-block-size:48px;white-space:normal}
+.env2-pdp-ask__start{padding-inline:26px;text-align:center}
+.env2-pdp-ask__start bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* the quotation: FRL 400 on a hairline that is the one thing in this section that switches on.
+   The words themselves never change opacity — a text fade-in is forbidden (do-not §6.19). */
+.env2-pdp-ask__side{display:grid;gap:34px;min-inline-size:0}
+.env2-pdp-ask__quote{position:relative;margin:0;padding-inline-start:28px}
+.env2-pdp-ask__quote::before{content:"";position:absolute;inset-block:3px 3px;inset-inline-start:0;inline-size:1px;background:linear-gradient(180deg,rgba(233,185,110,.8),rgba(244,238,227,.1));opacity:calc(.3 + .7*var(--lit,1));transition:opacity 1.4s cubic-bezier(.2,.7,.2,1)}
+.env2-pdp-ask__q{margin:0;font-family:var(--env2-serif);font-weight:400;font-size:clamp(22px,2.4vw,32px);line-height:1.25;letter-spacing:-.005em;color:var(--env2-ink);text-wrap:balance}
+.env2-pdp-ask__cite{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-block-start:18px;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.6;color:var(--env2-mute)}
+.env2-pdp-ask__a{font-size:14px}
+
+/* ---------- mobile: one column, the quote last, both buttons full width ---------- */
+@media (max-width:900px){
+  .env2-pdp-ask{padding-block:72px 64px}
+  .env2-pdp-ask__wrap{grid-template-columns:1fr;gap:44px}
+  .env2-pdp-ask__eyebrow{margin-block-end:16px}
+  .env2-pdp-ask__h2.env2-h{max-inline-size:none}
+  .env2-pdp-ask__lead.env2-lead{margin-block-start:18px;max-inline-size:none}
+  .env2-pdp-ask__cta{flex-direction:column;align-items:stretch;gap:12px;margin-block-start:30px}
+  .env2-pdp-ask__start,.env2-pdp-ask__photo{inline-size:100%;min-block-size:52px}
+  .env2-pdp-ask__side{gap:28px}
+  .env2-pdp-ask__quote{padding-inline-start:20px}
+  .env2-pdp-ask__cite{margin-block-start:14px}
+  .env2-pdp-ask__a{display:inline-flex;align-items:center;min-block-size:44px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §4.7's one behaviour: the small step selects the ledger row it names and takes the buyer back to
+   the stage, so "start from the short one" is one tap rather than a scroll and a re-decision.
+   Everything else in this section is server-rendered; with JS off the same anchor still scrolls to
+   #env2-pdp-ledger, where that row carries its own POST form (§4.4), and the lamp is lit.
+   The ledger owns variant state: clicking its row button drives the stage price, the drawn string
+   and the sticky bar through the single code path that already exists — this file duplicates none
+   of it. Ends with the CONTRACT's env2.observe fallback line. */
+(function () {
+  function init(el) {
+    if (el.__env2PdpAsk) { return; }
+    el.__env2PdpAsk = true;
+
+    var step = el.querySelector('[data-env2-ask-start]');
+    if (step) {
+      step.addEventListener('click', function (ev) {
+        var ledger = document.querySelector('[data-env2-pdp-ledger]');
+        var row = null;
+        if (ledger) {
+          var want = step.getAttribute('data-i') || '0';
+          var rows = ledger.querySelectorAll('[data-env2-pdp-ledger-row]');
+          for (var i = 0; i < rows.length; i++) {
+            if (String(rows[i].getAttribute('data-i')) === String(want)) { row = rows[i]; }
+          }
+        }
+        var pick = row ? row.querySelector('[data-env2-pdp-ledger-pick]') : null;
+        var stage = document.getElementById('env2-pdp-stage');
+        var target = stage || ledger;
+        /* no ledger row and no stage on this page: let the browser follow the anchor as written */
+        if (!pick && !target) { return; }
+        /* the core also listens for a[href^="#env2-"] on the document and would scroll to the
+           LEDGER, which is not where this button goes — so the click stops at this element. */
+        if (ev.preventDefault) { ev.preventDefault(); }
+        if (ev.stopPropagation) { ev.stopPropagation(); }
+        if (pick) { pick.click(); }
+        if (target && target.scrollIntoView) {
+          var rm = (window.env2 && window.env2.rm) ||
+            (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+          try {
+            target.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+          } catch (e) { target.scrollIntoView(); }
+        }
+      });
+    }
+
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-pdp-ask]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-pdp-ask]')) { init(scope); }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — PDP למה כאן",
+  "tag": "section",
+  "class": "env2-pdp-ask-section hdt-section",
+  "settings": [
+    { "type": "header", "content": "הכותרת" },
+    { "type": "text", "id": "eyebrow", "label": "שורת מספר", "default": "07 · למה כאן" },
+    { "type": "text", "id": "heading_line1", "label": "כותרת — שורה ראשונה", "default": "עוד לא בטוחים?" },
+    { "type": "text", "id": "heading_line2", "label": "כותרת — שורה שנייה (בזוהר)", "default": "לא צריך להיות." },
+    { "type": "header", "content": "פסקת הפתיחה" },
+    { "type": "paragraph", "content": "המשפט הראשון נבחר לבד: הוא מבטיח «אמרנו למעלה מתי היא לא מתאימה» רק כשבמדור 02 באמת נכתב 'לא מתאים' מאושר (custom.not_fit_for). כשאין — נכתב הנוסח השני. הסיומת («מהאורך הקצר» / «מיחידה אחת» / «מהעוצמה הנמוכה») נגזרת מהמוצר עצמו." },
+    { "type": "textarea", "id": "lead", "label": "פתיחה — כשיש 'לא מתאים' מאושר", "default": "אמרנו למעלה מתי היא לא מתאימה. המפרט בעברית, ומה שלא ידוע — לא כתוב." },
+    { "type": "textarea", "id": "lead_choose", "label": "פתיחה — כשאין 'לא מתאים'", "default": "אמרנו למעלה איך בוחרים נכון. המפרט בעברית, ומה שלא ידוע — לא כתוב." },
+    { "type": "textarea", "id": "lead_step", "label": "המשפט על הצעד הקטן (בלי הסיומת)", "default": "ולפני שמזמינים יש למי לשלוח תמונה", "info": "הסיומת נוספת אוטומטית לפי המוצר. ריק = הפסקה מסתיימת אחרי המשפט הראשון." },
+    { "type": "select", "id": "lead_mode", "label": "איזה משפט ראשון", "options": [ { "value": "auto", "label": "אוטומטי (לפי המוצר)" }, { "value": "notfit", "label": "תמיד 'מתי היא לא מתאימה'" }, { "value": "choose", "label": "תמיד 'איך בוחרים נכון'" } ], "default": "auto", "info": "השאירו אוטומטי. שנו רק אם במדור 02 נכתב 'לא מתאים' מתוך הגדרות המדור ולא מתוך המטה־פילד." },
+    { "type": "header", "content": "הצעד הקטן" },
+    { "type": "checkbox", "id": "show_start_small", "label": "להציג את כפתור 'להתחיל מ…'", "default": true },
+    { "type": "text", "id": "start_small_label", "label": "טקסט הכפתור (ריק = נבנה מהמוצר)", "info": "ריק = השורה הזולה והזמינה ביותר במחירון, עם המחיר שלה. אל תקלידו מחיר — הוא ישתנה בלי שתשימו לב." },
+    { "type": "select", "id": "start_small_target", "label": "לאן הכפתור מוביל", "options": [ { "value": "first_row", "label": "לשורה הזולה במחירון (מומלץ)" }, { "value": "url", "label": "לכתובת שאבחר" } ], "default": "first_row" },
+    { "type": "url", "id": "start_small_url", "label": "כתובת (רק במצב 'לכתובת שאבחר')" },
+    { "type": "header", "content": "שליחת תמונה של המקום" },
+    { "type": "text", "id": "photo_cta_label", "label": "טקסט הכפתור (ריק = «לשלוח תמונה של המקום»)" },
+    { "type": "text", "id": "mailto_subject", "label": "נושא המייל (ריק = ברירת המחדל)" },
+    { "type": "textarea", "id": "mailto_body", "label": "גוף המייל (ריק = ברירת המחדל, כולל שם המוצר)", "info": "היעד נקבע במקום אחד לכל האתר: כל עוד אין מספר טלפון בהגדרות, זהו מייל." }
+  ],
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "ציטוט",
+      "limit": 2,
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "הציטוט", "default": "«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»", "info": "מתוך עמוד «מי אנחנו». הגרשיים «» נוספים אוטומטית אם לא הוקלדו. אין לכתוב כאן טענה על מוצר או על מתחרה." },
+        { "type": "text", "id": "cite", "label": "מקור הציטוט", "default": "מתוך «מי אנחנו»" },
+        { "type": "text", "id": "link_label", "label": "טקסט הקישור", "default": "מי אנחנו" },
+        { "type": "url", "id": "link_url", "label": "יעד הקישור", "info": "ריק = הקישור לא מוצג. בתבנית מוגדר /pages/about-us." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — PDP למה כאן",
+      "blocks": [ { "type": "quote" } ]
+    }
+  ]
+}
+{% endschema %}

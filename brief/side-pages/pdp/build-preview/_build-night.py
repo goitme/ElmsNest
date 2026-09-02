@@ -109,6 +109,9 @@ add('EDGE · decorative-led-net-lights — a §3.6 never-use handle, and no lead
 
 core = open(os.path.join(SNIP, 'elmsnest-v2-core.liquid'), encoding='utf-8').read()
 core_css = re.search(r'<style id="env2-base">(.*?)</style>', core, re.S).group(1)
+# the REAL core JS too, so window.env2 exists and the section's manual lamps are proved on the real
+# observer (the plumbing previews ran without it, which hides a lamp that never lights)
+core_js = '\n'.join(re.findall(r'<script[^>]*>(.*?)</script>', core, re.S))
 ground = re.search(r'<style id="env2-ground-product">(.*?)</style>',
                    open(os.path.join(SNIP, 'elmsnest-v2-ground-product.liquid'), encoding='utf-8').read(), re.S).group(1)
 
@@ -126,8 +129,10 @@ body{margin:0}
 </style></head>
 <body class="hdt-page-type-product template-product">
 %(parts)s
+<script>%(corejs)s</script>
 <script>%(js)s</script>
-</body></html>""" % {'core': core_css, 'ground': ground, 'css': css, 'js': js, 'parts': '\n'.join(parts)}
+</body></html>""" % {'core': core_css, 'ground': ground, 'css': css, 'js': js, 'corejs': core_js,
+                     'parts': '\n'.join(parts)}
 
 out = os.path.join(HERE, 'night.html')
 open(out, 'w', encoding='utf-8').write(doc)
@@ -139,3 +144,10 @@ for name, p in (('A', A), ('B', B), ('C', C)):
     print(name, 'capB :', [re.sub(r'\s+', ' ', x).strip() for x in re.findall(r'cap--big">(.*?)</figcaption>', h, re.S)])
     print(name, 'capS :', re.findall(r'cap--small">(.*?)</figcaption>', h, re.S))
     print(name, 'imgs :', re.findall(r'src="([^"]+)"', h))
+
+# ---- the no-JS twin: same markup, no html.env2-js, no script at all (BRIEF §8 "no JS = everything lit")
+nojs = doc.replace('<html lang="he" dir="rtl" class="env2-js">', '<html lang="he" dir="rtl">')
+nojs = re.sub(r'<script>.*?</script>', '', nojs, flags=re.S)
+out2 = os.path.join(HERE, 'night-nojs.html')
+open(out2, 'w', encoding='utf-8').write(nojs)
+print('wrote', out2, len(nojs), 'bytes')

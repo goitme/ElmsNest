@@ -220,8 +220,14 @@
           endif
         endif
       endfor
+      # a unit is printed only when we can NAME it. A two-dimensional size ("1.5×1.5 מ׳ / 96 LED")
+      # parses to a unit of "×1.5", which means nothing in a sentence — so no number is printed at
+      # all rather than a garbled one. Whitelist, delimited so a test is an exact match.
+      assign env2_len_units = '~מ׳~מטר~מ~מ׳׳~'
+      assign env2_cnt_units = '~יחידות~יחידה~יח׳~יח~נורות~'
+      assign env2_uprobe = '~' | append: env2_unit | append: '~'
       if env2_seen and env2_rmin != env2_rmax
-        if env2_unit == 'מ׳' or env2_unit == 'מטר' or env2_unit == 'מ' or env2_unit == 'מ׳׳'
+        if env2_len_units contains env2_uprobe
           assign env2_kind = 'len'
           assign env2_unitword = 'מטר'
         elsif env2_unit == 'W'
@@ -229,9 +235,13 @@
           if env2_axvals == 2
             assign env2_kind = 'watt2'
           endif
-        elsif env2_unit != ''
+        elsif env2_cnt_units contains env2_uprobe
           assign env2_kind = 'count'
-          assign env2_unitword = env2_unit
+          # the row's own unit is singular on a "1 יחידה" first row; a range is always plural
+          assign env2_unitword = 'יחידות'
+          if env2_unit == 'נורות'
+            assign env2_unitword = 'נורות'
+          endif
         endif
       endif
     endif
@@ -264,7 +274,7 @@
       {%- assign block = section.blocks[0] -%}
       <figure class="env2-pdp-night__fig env2-pdp-night__fig--big" data-lamp="manual" data-env2-pdp-night-fig="big" style="--env2-pdp-night-ar:{{ env2_arb | escape }}" {{ block.shopify_attributes }}>
         <span class="env2-ph env2-pdp-night__ph">
-          {{ env2_big | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600,900,1200,1600,2000', sizes: '(max-width:900px) 100vw, min(58vw,720px)', alt: env2_altb, class: 'env2-pdp-night__img' }}
+          {{ env2_big | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600,900,1200,1600,2000', sizes: '(max-width:900px) 100vw, 720px', alt: env2_altb, class: 'env2-pdp-night__img' }}
         </span>
         {%- if env2_has_cap_big -%}
           <figcaption class="env2-pdp-night__cap env2-pdp-night__cap--big">
@@ -286,7 +296,7 @@
         {%- assign block = section.blocks[1] -%}
         <figure class="env2-pdp-night__fig env2-pdp-night__fig--small" data-lamp="manual" data-env2-pdp-night-fig="small" style="--env2-pdp-night-ar:{{ env2_ars | escape }}" {{ block.shopify_attributes }}>
           <span class="env2-ph env2-pdp-night__ph">
-            {{ env2_small | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '420,600,900,1200', sizes: '(max-width:900px) 70vw, min(38vw,480px)', alt: env2_alts, class: 'env2-pdp-night__img' }}
+            {{ env2_small | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '420,600,900,1200', sizes: '(max-width:900px) 70vw, 480px', alt: env2_alts, class: 'env2-pdp-night__img' }}
           </span>
           {%- if env2_caps != blank -%}
             <figcaption class="env2-pdp-night__cap env2-pdp-night__cap--small">{{ env2_caps }}</figcaption>

@@ -1,0 +1,387 @@
+{%- comment -%}
+  ElmsNest v2 PDP — §4.8 "עוד שלושה שיוצרים אווירה"  ·  #env2-pdp-related  ·  the related module,
+  and the shelf that carries THE product card (snippets/elmsnest-v2-pdp-card.liquid — designed once
+  here, reused as the catalogue card in round 2).
+
+  ------------------------------------------------------------------ what this section is
+  Three products of the SAME PLACE, on one baseline-staggered line above a warm floor rule. Never a
+  grid of equal cells (do-not §6.2, §6.14): the widths and aspects are staggered per block
+  (300 / 210 / 260 at 1/1.05 · 1/1.4 · 1/.9) and there are three of them, never four.
+
+  ------------------------------------------------------------------ where every word comes from
+  Nothing here is typed about a product. The card prints the product's own title, its own price
+  (elmsnest-v2-price) and its own buy control (elmsnest-v2-buy); the section itself writes only the
+  editorial frame, and even that is PLACE-DRIVEN: the eyebrow, the heading and the deck's first
+  clause are derived from product.type, which is 1:1 with the four collections and therefore with
+  the four APPROVED place pairs (BRIEF §3). A product whose type is none of the four prints the
+  quiet generic frame — never an invented place and never an invented promise.
+
+  The deck is graft G (§2), the best sentence written for this brief, and it is the reason this
+  module can exist at all in a store with one test order: it converts the ABSENCE of proof into
+  evidence of the position. No stars, no rating, no "נמכר ביותר", no counts (BRIEF §11, §6.4).
+
+  ------------------------------------------------------------------ the heading counts, honestly
+  "עוד שלושה" is only printed when three cards actually render. Two → "עוד שניים …", one → "עוד אחד
+  למרפסת" (singular, so the Hebrew stays grammatical), none → the whole section prints NOTHING.
+  That is what keeps this section safe on all 27 products: a product with no place collection, or a
+  collection holding only itself, renders an empty string rather than a broken shelf.
+
+  ------------------------------------------------------------------ which products
+  Every block may name its own product. A block that names none is auto-filled, in order, from the
+  place collection (section.settings.collection, or the product's own collection whose title equals
+  product.type — which is how the "מבצעים" collection can never be picked up), skipping this
+  product and anything already shown. Auto-fill can be switched off.
+
+  ------------------------------------------------------------------ images, and the 14 that have none
+  No image index is written here: every card resolves its photo through elmsnest-v2-pdp-image (§3.5).
+  But an index resolver cannot help a product whose photographs are ALL baked-text slides, and the
+  14 handles of brief/WINNING-SPEC.md §3.6 are exactly that — verified against the live CDN on
+  2026-09-02: all six images of decorative-led-net-lights and of led-globe-string-lights, and all
+  seven of retro-solar-path-lights-set, are cream marketing boards with Hebrew headlines, icon rows,
+  a spec table, and in one case a "שלנו מול אחרים" comparison. Cream is banned (do-not §6.1), baked
+  text is banned (§6.16), and a competitor claim is banned (§6.3) — so on this shelf those products
+  are never auto-filled. §3.6 already ruled how they are reached instead: "They are still sold —
+  reach them through the collection links", and this section always prints that link.
+
+  A merchant may still put one on the shelf deliberately, but only together with a card_image of
+  their own; without a photograph the block is skipped and the heading counts down, because there is
+  no honest picture to show. That is the one rule here that overrides a merchant setting.
+
+  ------------------------------------------------------------------ no JS / reduced motion
+  The section is complete without JavaScript: all three cards, their kickers, titles and prices are
+  server-rendered, the single-variant card's ATC is a real POST form to routes.cart_add_url, and the
+  core sets --lit:1 whenever html.env2-js is absent or reduced motion is on — so the photographs are
+  lit. JS does exactly one thing, §3.3's "related — the product photographs light on arrival":
+  hand the cards to the core's shared [data-lamp] observer. The mobile shelf is a native CSS
+  scroll-snap row and needs no script either.
+
+  Plumbing: elmsnest-v2-core (from layout/theme.liquid) supplies the tokens, fonts, .env2-* helpers
+  and window.env2. This section renders no global; it renders elmsnest-v2-pdp-card's stylesheet once
+  (css: true) before the cards, exactly as the CONTRACT requires.
+{%- endcomment -%}
+{%- liquid
+  # ---------------------------------------------------------------- the place (the four approved pairs only)
+  assign env2_type = product.type | default: ''
+  assign env2_place = ''
+  assign env2_short = ''
+  assign env2_verb = ''
+  assign env2_all = ''
+  if env2_type == 'תאורת שביל, עמוד וגינה'
+    assign env2_place = 'שביל, מדרגות ומעברים'
+    assign env2_short = 'לשביל'
+    assign env2_verb = 'שמאירים את הדרך'
+    assign env2_all = 'לכל תאורת השביל, העמוד והגינה'
+  elsif env2_type == 'תאורת קיר'
+    assign env2_place = 'כניסה, קיר וחזית'
+    assign env2_short = 'לכניסה'
+    assign env2_verb = 'שמאירים נקודה מסוימת'
+    assign env2_all = 'לכל תאורת הקיר'
+  elsif env2_type == 'גרילנדות ותאורה דקורטיבית'
+    assign env2_place = 'מרפסת ופינת ישיבה'
+    assign env2_short = 'למרפסת'
+    assign env2_verb = 'שיוצרים אווירה'
+    assign env2_all = 'לכל הגרילנדות והתאורה הדקורטיבית'
+  elsif env2_type == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+    assign env2_place = 'הדגשת אזור בגינה'
+    assign env2_short = 'לגינה'
+    assign env2_verb = 'שמאירים עץ או ערוגה'
+    assign env2_all = 'לכל הספוטים, הפרוז׳קטורים והתאורה הניידת'
+  endif
+  if env2_short == ''
+    assign env2_short = 'מהחנות'
+  endif
+  if env2_verb == ''
+    assign env2_verb = 'מהחנות'
+  endif
+  if env2_all == ''
+    assign env2_all = 'לכל המוצרים'
+  endif
+
+  # ---------------------------------------------------------------- the collection to draw from
+  assign env2_col = section.settings.collection
+  if env2_col == blank and env2_type != ''
+    for env2_c in product.collections
+      if env2_c.title == env2_type
+        assign env2_col = env2_c
+        break
+      endif
+    endfor
+  endif
+  if env2_col == blank
+    for env2_c in product.collections
+      unless env2_c.handle == 'sale' or env2_c.handle == 'frontpage' or env2_c.handle == 'all'
+        assign env2_col = env2_c
+        break
+      endunless
+    endfor
+  endif
+
+  comment
+    Handles with no photograph a CARD can show. One assign, one place. A handle listed here is never
+    auto-filled onto the shelf and is never rendered from its own images; it reaches the buyer through
+    the collection link at the end of the section, exactly as §3.6 rules.
+    First, the 14 of brief/WINNING-SPEC.md §3.6: every frame is a cream marketing board (verified
+    against the live CDN, 2026-09-02 — six of six on decorative-led-net-lights and on
+    led-globe-string-lights, seven of seven on retro-solar-path-lights-set, one of them a
+    comparison board headed "שלנו מול אחרים").
+    Then solar-rope-string-lights: its only near-clean frame (index 2) carries an "עמידות IP65" chip
+    that §3.6 removes with object-position 50% 100%. A card crops from the centre and cannot, so it is
+    excluded HERE only. The homepage still uses that frame with its crop, and round 2's catalogue card
+    should gain an object-position rather than inherit this exclusion.
+  endcomment
+  assign env2_noimg = '|retro-solar-path-lights-set|warm-solar-step-deck-lights|waterproof-solar-deck-step-lights|solar-garden-lantern-9-led|solar-garden-spotlight-52-led|solar-security-light-100-led|modern-solar-path-lights-set|solar-floodlight-ip67-remote-timer|decorative-led-net-lights|led-globe-string-lights|modern-led-bollard-light-5w-ip65|rechargeable-telescopic-camping-lantern|swaying-solar-path-lights-ip65|magnetic-rechargeable-touch-wall-light|solar-rope-string-lights|'
+
+  assign env2_auto = section.settings.auto_fill
+  assign env2_taken = '|'
+  if product != blank
+    assign env2_taken = env2_taken | append: product.handle | append: '|'
+  endif
+  for env2_b in section.blocks
+    if env2_b.settings.product != blank
+      assign env2_taken = env2_taken | append: env2_b.settings.product.handle | append: '|'
+    endif
+  endfor
+  assign env2_n = 0
+  assign env2_varies = false
+-%}
+{%- comment -%} The cards are built first so the heading can count them and never over-promise. {%- endcomment -%}
+{%- capture env2_cards -%}
+  {%- for block in section.blocks -%}
+    {%- assign env2_p = block.settings.product -%}
+    {%- if env2_p == blank and env2_auto and env2_col != blank -%}
+      {%- for env2_cand in env2_col.products limit: 30 -%}
+        {%- assign env2_mark = '|' | append: env2_cand.handle | append: '|' -%}
+        {%- unless env2_taken contains env2_mark or env2_noimg contains env2_mark -%}
+          {%- assign env2_p = env2_cand -%}
+          {%- break -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- comment -%}
+      A product with no usable photograph of its own is only shown when the block carries one.
+      Everything else about the block is honoured; this is the single override, and §3.6 is why.
+    {%- endcomment -%}
+    {%- if env2_p != blank and block.settings.card_image == blank -%}
+      {%- assign env2_mark = '|' | append: env2_p.handle | append: '|' -%}
+      {%- if env2_noimg contains env2_mark -%}
+        {%- assign env2_p = blank -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if env2_p != blank -%}
+      {%- assign env2_taken = env2_taken | append: env2_p.handle | append: '|' -%}
+      {%- assign env2_n = env2_n | plus: 1 -%}
+      {%- if env2_p.price_varies and env2_p.price_min != env2_p.price_max -%}
+        {%- assign env2_varies = true -%}
+      {%- endif -%}
+      <li class="env2-pdp-related__cell" {{ block.shopify_attributes }}>
+        {%- render 'elmsnest-v2-pdp-card',
+              product: env2_p,
+              width: block.settings.card_width,
+              aspect: block.settings.card_aspect,
+              image_index: block.settings.card_image_index,
+              image: block.settings.card_image,
+              action_label: block.settings.card_action_label -%}
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if env2_n > 0 -%}
+{%- liquid
+  # ---------------------------------------------------------------- the frame, counted and place-driven
+  assign env2_eyebrow = section.settings.eyebrow
+  if env2_eyebrow == blank
+    assign env2_eyebrow = '08 · עוד ' | append: env2_short
+  endif
+
+  assign env2_heading = section.settings.heading
+  if env2_heading == blank
+    if env2_n == 1
+      assign env2_heading = 'עוד אחד ' | append: env2_short
+    elsif env2_n == 2
+      assign env2_heading = 'עוד שניים ' | append: env2_verb
+    else
+      assign env2_heading = 'עוד שלושה ' | append: env2_verb
+    endif
+  endif
+
+  comment
+    The deck is graft G, §4.8, and its second sentence is verbatim. Its price clause is not: §4.8
+    writes "מחיר אחד לכל אחד", which is true only while every card shows ONE price. The moment a card
+    prints a range (129.90-159.90) or a floor (מ-109.90) that sentence is contradicted by the row
+    underneath it, and a claim the page itself disproves is exactly what BRIEF §3 forbids. So the
+    clause follows the cards: one price each when that is what they show, otherwise "a price you can
+    see on each" - which is the same promise, and the one the shelf actually keeps.
+  endcomment
+  assign env2_deck = section.settings.deck
+  if env2_deck == blank
+    assign env2_price_clause = 'מחיר אחד לכל אחד.'
+    if env2_varies
+      assign env2_price_clause = 'מחיר גלוי לכל אחד.'
+    endif
+    assign env2_deck = env2_price_clause | append: ' בלי כוכבים ובלי «נמכר ביותר» — אין לנו עדיין מה למדוד.'
+    if env2_place != ''
+      assign env2_deck = 'מאותו מקום — ' | append: env2_place | append: '. ' | append: env2_deck
+    endif
+  endif
+
+  assign env2_link_url = section.settings.link_url | default: env2_col.url
+  assign env2_link_label = section.settings.link_label | default: env2_all
+-%}
+{% render 'elmsnest-v2-pdp-card', css: true %}
+<section id="env2-pdp-related" data-env2-pdp-related class="env2-section env2-pdp-related" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.70" aria-labelledby="env2-pdp-related-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-pdp-related__wrap">
+    <div class="env2-pdp-related__head">
+      <div class="env2-pdp-related__title">
+        {%- if env2_eyebrow != blank -%}
+          <p class="env2-eyebrow env2-pdp-related__eyebrow">{{ env2_eyebrow }}</p>
+        {%- endif -%}
+        <h2 id="env2-pdp-related-h2" class="env2-h env2-pdp-related__h2">{{ env2_heading }}</h2>
+      </div>
+      {%- if env2_deck != blank -%}
+        <p class="env2-pdp-related__deck">{{ env2_deck }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%}
+      The link lives INSIDE the floor, bottom-aligned with the cards. With three cards it settles into
+      the space the shelf leaves at the end side; with one or two — which is what a place collection
+      made mostly of never-use handles can honestly offer — it fills that space instead of leaving a
+      hole, and it is the thing the buyer needs there: the rest of the place, one click away.
+    {%- endcomment -%}
+    <div class="env2-pdp-related__floor">
+      <ul class="env2-pdp-related__row" role="list" data-env2-pdp-related-row>{{ env2_cards }}</ul>
+      {%- if env2_link_url != blank and env2_link_label != blank -%}
+        <p class="env2-pdp-related__after">
+          <a class="env2-link env2-pdp-related__all" href="{{ env2_link_url }}">{{ env2_link_label }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </a>
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+/* ---------- §4.8 the related shelf: head, a staggered line of cards, a warm floor rule ----------
+   The card itself is styled by snippets/elmsnest-v2-pdp-card.liquid (rendered once with css: true
+   above), so nothing here restyles a shared class — this file only composes the shelf. The section
+   paints no background: the ground is the body gradient from elmsnest-v2-ground-product (§3.1). */
+.env2-pdp-related{padding-block:100px 90px}
+.env2-pdp-related__wrap{position:relative;z-index:1}
+
+/* head: eyebrow + h2 at the start, graft G's deck at the end, bottoms aligned */
+.env2-pdp-related__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 40px;margin-bottom:56px}
+.env2-pdp-related__title{min-width:0;flex:1 1 22ch}
+.env2-pdp-related__eyebrow{margin-bottom:18px}
+.env2-pdp-related__h2.env2-h{font-size:clamp(34px,4.8vw,70px);max-width:16ch}
+.env2-pdp-related__deck{flex:0 1 38ch;margin:0 0 .35em;max-width:38ch;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.6;color:var(--env2-ink-2);text-align:end;text-wrap:pretty}
+
+/* the floor: one warm rule the objects stand on, bleeding past the wrap on both sides
+   (.env2-section is overflow-x:clip, so the bleed can never scroll the page). The shelf and the
+   collection link share it, bottom-aligned; the link wraps to its own line when they do not fit. */
+.env2-pdp-related__floor{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;gap:28px clamp(28px,4vw,64px);padding-block-end:40px}
+.env2-pdp-related__floor::after{content:"";position:absolute;inset-inline:-10vw;inset-block-end:0;block-size:1px;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,211,148,.42) 28%,rgba(255,211,148,.42) 72%,transparent)}
+
+/* the line of cards: staggered widths and aspects (never equal cells), bottoms aligned */
+.env2-pdp-related__row{list-style:none;display:flex;align-items:flex-end;gap:clamp(18px,3vw,48px);margin:0;padding:0;min-width:0;flex:0 1 auto}
+.env2-pdp-related__cell{flex:0 0 auto;min-width:0;margin:0;padding:0}
+
+/* the closing link to the whole collection */
+.env2-pdp-related__after{flex:1 0 auto;display:flex;justify-content:flex-end;margin:0;padding-block-end:2px}
+.env2-pdp-related__all{color:var(--env2-ink-2)}
+
+/* ---------- mobile: a scroll-snap shelf, not a squeezed line (§4.8, do-not §6.18) ----------
+   The row scrolls inside itself — the negative inline margin is exactly one gutter, so the page
+   itself never scrolls horizontally at 360px. Card width comes from the card snippet's own
+   min(--env2-pdp-card-w, 62vw), which leaves the next card peeking as the affordance. */
+@media (max-width:900px){
+  .env2-pdp-related{padding-block:72px 64px}
+  .env2-pdp-related__head{display:block;margin-bottom:30px}
+  .env2-pdp-related__eyebrow{margin-bottom:14px}
+  .env2-pdp-related__h2.env2-h{max-width:none}
+  .env2-pdp-related__deck{max-width:none;margin:16px 0 0;text-align:start;font-size:15.5px}
+  .env2-pdp-related__floor{display:block;padding-block-end:26px}
+  .env2-pdp-related__row{gap:20px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;margin-inline:calc(-1 * var(--env2-gut));padding-inline:var(--env2-gut);padding-block-end:4px;scroll-padding-inline-start:var(--env2-gut);-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .env2-pdp-related__row::-webkit-scrollbar{display:none}
+  .env2-pdp-related__cell{scroll-snap-align:start}
+  .env2-pdp-related__after{justify-content:flex-start;margin-block-start:26px;padding-block-end:0}
+  .env2-pdp-related__all{min-height:44px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* §3.3, the related row: "the product photographs light on arrival ([data-lamp])" — and that is the
+   whole job. Every card is server-rendered and buyable without this file; the core sets --lit:1
+   when html.env2-js is absent or reduced motion is on, so no-JS and reduced-motion visitors get a
+   fully lit, fully working shelf. Ends with the CONTRACT's env2.observe fallback line. */
+(function () {
+  function init(el) {
+    if (el.__env2PdpRelated) return;
+    el.__env2PdpRelated = true;
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-pdp-related]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-pdp-related]')) init(scope);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "ElmsNest v2 — PDP קשורים",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה קטנה", "info": "ריק = לפי המקום של המוצר, למשל «08 · עוד למרפסת»." },
+    { "type": "text", "id": "heading", "label": "כותרת", "info": "ריק = לפי המקום ולפי מספר המוצרים שבאמת מוצגים, למשל «עוד שלושה שיוצרים אווירה»." },
+    { "type": "textarea", "id": "deck", "label": "שורת פתיחה (בצד השני של הכותרת)", "info": "ריק = לפי המקום, ולפי המחירים שהכרטיסים באמת מציגים (מחיר אחד לכל אחד / מחיר גלוי לכל אחד), ואחריו: בלי כוכבים ובלי «נמכר ביותר» — אין לנו עדיין מה למדוד." },
+    { "type": "collection", "id": "collection", "label": "קולקציה למילוי אוטומטי", "info": "ריק = הקולקציה של המקום שאליו שייך המוצר." },
+    { "type": "checkbox", "id": "auto_fill", "label": "למלא אוטומטית מוצרים חסרים מהקולקציה", "default": true, "info": "כבו כדי להציג רק את המוצרים שנבחרו ידנית." },
+    { "type": "text", "id": "link_label", "label": "טקסט הקישור לקולקציה", "info": "ריק = לפי המקום, למשל «לכל הגרילנדות והתאורה הדקורטיבית»." },
+    { "type": "url", "id": "link_url", "label": "יעד הקישור", "info": "ריק = עמוד הקולקציה שממנה נלקחו המוצרים." }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "card",
+      "name": "מוצר",
+      "limit": 3,
+      "settings": [
+        { "type": "product", "id": "product", "label": "מוצר", "info": "ריק = מילוי אוטומטי מהקולקציה, ללא המוצר הנוכחי." },
+        { "type": "range", "id": "card_width", "label": "רוחב הכרטיס", "min": 180, "max": 360, "step": 10, "unit": "px", "default": 280, "info": "הרוחבים נבחרים שונים זה מזה בכוונה — לא שלושה תאים זהים." },
+        { "type": "select", "id": "card_aspect", "label": "יחס התמונה", "default": "1/1.15",
+          "options": [
+            { "value": "1/1.05", "label": "כמעט ריבוע (1/1.05)" },
+            { "value": "1/1.15", "label": "לגובה מתון (1/1.15)" },
+            { "value": "1/1.4", "label": "לגובה (1/1.4)" },
+            { "value": "1/.9", "label": "לרוחב מתון (1/.9)" },
+            { "value": "3/2", "label": "לרוחב (3/2)" }
+          ] },
+        { "type": "range", "id": "card_image_index", "label": "מספר התמונה במוצר", "min": 0, "max": 6, "step": 1, "default": 0, "info": "0 = אוטומטי לפי מאגר התמונות (לעולם לא שקופית עם טקסט מודפס)." },
+        { "type": "image_picker", "id": "card_image", "label": "תמונה משלכם (לא חובה)", "info": "גוברת על תמונות המוצר. למוצרים שכל תמונותיהם הן שקופיות עם טקסט — זו הדרך היחידה להציג אותם כאן." },
+        { "type": "text", "id": "card_action_label", "label": "טקסט הכפתור למוצר עם כמה אפשרויות", "info": "לדוגמה: לבחירת אורך · לבחירת דגם · לבחירת גוון. ריק = «לבחירת דגם». מוצר עם אפשרות אחת מקבל «הוספה לסל»." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — PDP קשורים",
+      "blocks": [
+        { "type": "card", "settings": { "card_width": 300, "card_aspect": "1/1.05" } },
+        { "type": "card", "settings": { "card_width": 210, "card_aspect": "1/1.4" } },
+        { "type": "card", "settings": { "card_width": 260, "card_aspect": "1/.9" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
