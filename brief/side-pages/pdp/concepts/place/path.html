@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מנורת שביל סולארית מנירוסטה — ElmsNest</title>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ============================================================
+   המקום קודם — the product page opens on the buyer's place at
+   night; the product is what lights it. Every screen is one of
+   the place's own questions.
+   ============================================================ */
+:root{
+  --sky-0:#4a6a9c;--sky-1:#1f3357;--sky-2:#0f1a2f;--sky-3:#070b15;--sky-4:#020306;
+  --ink:#f4eee3;--ink-2:#c9c4b8;--mute:#8f95a3;
+  --gold:#e9b96e;--glow:#ffd394;--ember:#f7a24a;--btn-ink:#1a1206;
+  --hair:rgba(244,238,227,.12);--scrim:rgba(5,8,14,.55);
+  --serif:'Frank Ruhl Libre','Noto Serif Hebrew','David Libre',Georgia,serif;
+  --sans:'Heebo','Assistant',system-ui,sans-serif;
+  --w:1240px;--gut:clamp(20px,4vw,64px);--p:0;--bar-h:0px;
+  --bulb:#ffd394;--bulb-2:#ffd394;--bulb-3:#ffd394;--bulb-4:#ffd394;--bulb-glow:rgba(255,211,148,.65);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--sky-4)}
+body{
+  font-family:var(--sans);font-weight:300;color:var(--ink);line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+  background:linear-gradient(180deg,var(--sky-2) 0,var(--sky-2) 22%,var(--sky-3) 58%,var(--sky-4) 100%) no-repeat;
+  background-size:100% 100%;
+  padding-bottom:var(--bar-h);
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+bdi{unicode-bidi:isolate}
+fieldset{border:0}
+:focus-visible{outline:2px solid var(--glow);outline-offset:4px}
+.wrap{width:min(var(--w),100% - 2*var(--gut));margin-inline:auto}
+.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--gold);font-weight:500;display:flex;gap:14px;align-items:center}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.8;flex:none}
+.kicker{font-size:11px;letter-spacing:.16em;color:var(--gold);font-weight:500}
+h1,h2,.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+h1 em,h2 em,.h em{font-style:normal;color:var(--glow)}
+.title{font-family:var(--sans);font-weight:400;font-size:17px;line-height:1.35;color:var(--ink)}
+.price{font-family:var(--serif);font-weight:500;font-variant-numeric:tabular-nums;color:var(--glow);white-space:nowrap;font-size:var(--ps,24px)}
+.lead{font-size:clamp(17px,1.4vw,21px);max-width:38ch;color:var(--ink-2);font-weight:300}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;min-height:48px;padding:12px 24px;border-radius:999px;font-weight:500;font-size:15px;background:var(--glow);color:var(--btn-ink);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(244,238,227,.25)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.btn-sm{min-height:44px;padding:10px 18px;font-size:14px}
+.link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--ink-2);border-bottom:1px solid rgba(244,238,227,.25);padding-bottom:3px;transition:color .3s,border-color .3s}
+.link:hover{color:var(--glow);border-color:var(--glow)}
+.link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}
+.quiet{color:var(--mute);font-size:13px}
+
+/* ---------- the lamp device: dim → lit (dusk, verbatim) ---------- */
+.js [data-lamp]{--lit:0}
+.js [data-lamp].lit{--lit:1}
+[data-lamp]{--lit:1}
+.ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+.ph img{width:100%;height:100%;object-fit:cover}
+[data-lamp] .ph img{filter:brightness(calc(.22 + .78*var(--lit))) saturate(calc(.4 + .6*var(--lit)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at var(--hx,50%) var(--hy,45%),rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+
+/* ---------- stars ---------- */
+.stars{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%);
+  background-size:900px 700px;opacity:var(--stars,.25)}
+
+/* ---------- header: a static Kalles-like strip ---------- */
+.hdr{position:absolute;top:0;inset-inline:0;height:70px;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-inline:var(--gut)}
+.hdr .nav{display:flex;gap:30px;font-size:14.5px;color:var(--ink);font-weight:400}
+.hdr .nav{grid-column:1}
+.hdr .logo{justify-self:center;grid-column:2}
+.hdr .icons{grid-column:3}
+.hdr .logo img{width:44px;height:44px;filter:drop-shadow(0 0 10px rgba(233,185,110,.5))}
+.hdr .icons{justify-self:end;display:flex;gap:4px;align-items:center}
+.hdr .icons a,.hdr .icons button{width:40px;height:40px;display:grid;place-items:center;position:relative}
+.hdr .icons svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hdr .icons .n{position:absolute;top:2px;inset-inline-end:2px;width:16px;height:16px;border-radius:50%;background:var(--glow);color:var(--btn-ink);font-size:10px;font-weight:500;display:grid;place-items:center}
+.hdr .burger{display:none}
+
+/* ---------- 1. the place, at night ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;isolation:isolate;overflow:hidden}
+.hero .bg{position:absolute;inset:0;z-index:-2}
+.hero .bg .ph{position:absolute;inset:0}
+.hero .bg .ph img{object-position:50% 30%}
+.hero .bg .ph::after{background:radial-gradient(70% 50% at 45% 30%,rgba(255,211,148,.35),rgba(255,211,148,0) 70%)}
+.hero .veil{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(7,11,21,.55) 0,rgba(7,11,21,0) 26%),
+  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.75) 18%,rgba(15,26,47,0) 58%),
+  linear-gradient(90deg,rgba(15,26,47,0) 45%,rgba(15,26,47,.45) 100%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:end;padding-block:120px 64px}
+.hero .place{display:grid;gap:22px;align-content:end}
+.hero h1{font-size:clamp(54px,8.4vw,128px);color:#fff;text-shadow:0 2px 40px rgba(0,0,0,.4)}
+.hero .place .lead{max-width:40ch}
+.hero .whereline{display:flex;gap:24px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.hero .whereline a{border-bottom:1px solid rgba(244,238,227,.3)}
+/* the buy mirror: a scrim with the lit product */
+.buy{justify-self:end;width:min(100%,460px);display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:end;padding:18px;background:var(--scrim);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1)}
+.buy .ph{aspect-ratio:1/1.15}
+.buy .ph::after{background:radial-gradient(60% 55% at 55% 50%,rgba(255,211,148,.5),rgba(255,211,148,0) 70%)}
+.buy .t{display:grid;gap:8px}
+.buy .title{font-size:16px}
+.buy .sel{font-size:13px;color:var(--ink-2)}
+.buy .price{--ps:30px}
+.buy form{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.buy .range{font-size:12.5px;color:var(--mute)}
+.buy .link{font-size:13px}
+
+/* ---------- 2. two questions about the place ---------- */
+.fit{position:relative;padding-block:120px 100px;overflow:clip}
+.fit .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
+.fit .head{display:grid;gap:18px;margin-bottom:44px}
+.fit h2{font-size:clamp(40px,5.4vw,80px)}
+.fit .head p{color:var(--ink-2);max-width:40ch;font-size:16px}
+.q{display:grid;gap:34px}
+.q legend{font-family:var(--serif);font-weight:500;font-size:clamp(21px,1.9vw,27px);margin-bottom:10px;padding:0}
+.seg{display:flex;border-block:1px solid var(--hair)}
+.seg label{flex:1;position:relative;display:flex;align-items:center;min-height:56px;padding:12px 4px;cursor:pointer;font-size:16px;color:var(--ink-2);transition:color .3s}
+.seg label+label{border-inline-start:1px solid var(--hair);padding-inline-start:18px}
+.seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
+.seg label::after{content:"";position:absolute;inset-inline:0;bottom:-1px;height:2px;background:var(--glow);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.seg label:has(input:checked){color:var(--ink)}
+.seg label:has(input:checked)::after{transform:scaleX(1)}
+.seg label:has(input:focus-visible){outline:2px solid var(--glow);outline-offset:-2px}
+.fit .ask{margin-top:12px}
+/* the lamp that answers */
+.lampv{display:grid;justify-items:center;text-align:center;gap:22px;position:relative}
+.lampv svg{width:min(100%,520px);height:auto;overflow:visible}
+.lampv .glow,.lampv .core{transition:opacity 1.4s cubic-bezier(.2,.7,.2,1)}
+.lampv .glow{opacity:0}.lampv .core{opacity:.2}
+.lampv.on.lit .glow{opacity:1}.lampv.on.lit .core{opacity:1}
+.lampv.off.try .core,.lampv.off.try .glow{animation:flick .9s steps(1,end)}
+@keyframes flick{0%{opacity:.9}12%{opacity:.1}22%{opacity:.75}30%{opacity:.05}45%{opacity:.6}55%{opacity:0}70%{opacity:.3}80%{opacity:0}100%{opacity:0}}
+.verdict{display:grid;gap:8px;max-width:30ch}
+.verdict .tag{font-size:11px;letter-spacing:.16em;font-weight:500;color:var(--gold);transition:color .4s}
+.lampv.off .verdict .tag{color:var(--mute)}
+.verdict p{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.4vw,34px);line-height:1.15;color:var(--ink)}
+.lampv.off .verdict p{color:var(--ink-2)}
+.verdict small{font-size:13px;color:var(--mute)}
+
+/* ---------- 3. the night gallery ---------- */
+.night{position:relative;padding-block:40px 0;overflow:clip}
+.night .big{position:relative;height:min(92vh,880px)}
+.night .big .ph{position:absolute;inset:0}
+.night .big .ph img{object-position:50% 45%}
+.night .big .ph::after{background:radial-gradient(45% 50% at 60% 45%,rgba(255,211,148,.38),rgba(255,211,148,0) 70%)}
+.night .big .veil{position:absolute;inset:0;background:linear-gradient(180deg,var(--sky-2) 0,transparent 22%),linear-gradient(0deg,var(--sky-3) 0,transparent 42%),linear-gradient(90deg,rgba(7,11,21,0) 50%,rgba(7,11,21,.5) 100%);pointer-events:none}
+.night .cap{position:absolute;inset-inline-start:var(--gut);bottom:64px;max-width:520px;display:grid;gap:14px}
+.night .cap .h{font-size:clamp(40px,5.6vw,84px)}
+.night .cap p{font-size:16px;color:var(--ink-2);max-width:36ch}
+.night .inset{position:absolute;inset-inline-end:calc(var(--gut) + 20px);bottom:-70px;width:min(34vw,380px)}
+.night .inset .ph{aspect-ratio:1/1.05}
+.night .inset figcaption{margin-top:12px;font-size:13px;color:var(--ink-2);display:flex;justify-content:space-between;gap:12px}
+.night .inset figcaption span:last-child{color:var(--mute)}
+
+/* ---------- 4. how many metres? — the ledger as a tape of the place ---------- */
+.tape{position:relative;padding-block:170px 80px;overflow:clip}
+.tape .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:40px;align-items:end;margin-bottom:56px}
+.tape h2{font-size:clamp(46px,6.4vw,96px)}
+.tape .head .advice{display:grid;gap:10px;justify-self:end;max-width:40ch;color:var(--ink-2);font-size:16px}
+.tape .head .advice b{font-weight:500;color:var(--ink)}
+.rows{display:grid}
+.row{display:grid;grid-template-columns:190px minmax(0,1fr) 190px;gap:28px;align-items:center;padding-block:20px;border-top:1px solid var(--hair);cursor:pointer;position:relative;transition:background .4s}
+.row:last-of-type{border-bottom:1px solid var(--hair)}
+.row input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
+.row:has(input:focus-visible){outline:2px solid var(--glow);outline-offset:-2px}
+.row .m{font-family:var(--serif);font-weight:500;font-size:clamp(36px,3.6vw,54px);line-height:1;color:var(--ink-2);font-variant-numeric:tabular-nums;letter-spacing:-.02em;transition:color .5s;display:flex;align-items:baseline;gap:.2em;flex-wrap:wrap}
+.row .m small{font-size:.36em;color:var(--ink-2);font-weight:400;letter-spacing:0}
+.row .m em{font-style:normal;font-family:var(--sans);font-weight:300;font-size:13.5px;color:var(--mute);letter-spacing:0;flex-basis:100%;margin-top:6px}
+.row.on .m{color:var(--glow)}
+.row .wire{position:relative;height:30px}
+.row .wire::before{content:"";position:absolute;inset-inline-start:0;top:15px;height:1px;width:var(--len);background:rgba(244,238,227,.28)}
+.row .wire::after{content:"";position:absolute;inset-inline-start:var(--len);top:8px;height:15px;width:1px;background:rgba(244,238,227,.35)}
+.row .bulbs{position:absolute;inset-inline-start:0;top:0;width:var(--len);height:30px;display:flex;justify-content:space-between;align-items:center;padding-inline:3px}
+.row .bulbs i{width:9px;height:9px;border-radius:50%;background:var(--ink);opacity:.2;transition:opacity .6s,box-shadow .6s,background .6s}
+.row.on .bulbs i{opacity:1;background:var(--bulb);box-shadow:0 0 10px 2px var(--bulb-glow)}
+.row.on .bulbs i:nth-child(4n+2){background:var(--bulb-2)}
+.row.on .bulbs i:nth-child(4n+3){background:var(--bulb-3)}
+.row.on .bulbs i:nth-child(4n+4){background:var(--bulb-4)}
+.row .pr{display:grid;justify-items:start;gap:2px}
+.row .pr .price{--ps:30px;color:var(--ink-2);transition:color .5s}
+.row.on .pr .price{color:var(--glow)}
+.row .pr small{font-size:12.5px;color:var(--mute)}
+.rowform{display:none;grid-column:1/-1;gap:10px;align-items:center}
+html:not(.js) .rowform{display:flex}
+.rowform select{background:transparent;border:1px solid rgba(244,238,227,.25);color:var(--ink);padding:10px 12px}
+/* colour — a quiet second axis */
+.colour{margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;font-size:15px;color:var(--ink-2)}
+.colour .lab{color:var(--ink);font-weight:400}
+.colour label{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 2px;cursor:pointer;color:var(--ink-2)}
+.colour input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
+.colour i{width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 0 1px rgba(244,238,227,.25)}
+.colour i.multi{background:conic-gradient(#ffd394 0 25%,#8fc2ff 0 50%,#ff8f8f 0 75%,#9dffb0 0)}
+.colour label::after{content:"";position:absolute;inset-inline:0;bottom:6px;height:1px;background:var(--glow);transform:scaleX(0);transition:transform .3s}
+.colour label:has(input:checked){color:var(--ink)}
+.colour label:has(input:checked)::after{transform:scaleX(1)}
+/* the buy line under the tape */
+.tbuy{margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;padding-top:28px;border-top:1px solid var(--hair)}
+.tbuy .sel{font-size:15px;color:var(--ink-2)}
+.tbuy .sel b{display:block;font-weight:400;color:var(--ink);font-size:20px;margin-top:4px}
+.tbuy .price{--ps:44px;display:block;margin-top:6px}
+.tbuy form{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.tbuy .per{font-size:13px;color:var(--mute);width:100%;text-align:end}
+
+/* ---------- 5. the four numbers — right after the buy line ---------- */
+.nums{position:relative;padding-block:64px 100px}
+.nums .head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:22px}
+.nums h2{font-size:clamp(28px,3vw,40px);font-weight:500}
+.nums .head p{font-size:14px;color:var(--mute)}
+.numline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.numline .n{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-block:20px;border-top:1px solid var(--hair)}
+.numline .n .v{font-family:var(--serif);font-weight:500;font-size:clamp(40px,4vw,60px);line-height:.9;color:var(--glow);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.numline .n .v small{font-size:.34em;color:var(--ink-2);font-weight:400;margin-inline-start:.2em}
+.numline .n b{font-weight:500;font-size:16px;display:block}
+.numline .n p{font-size:14px;color:var(--ink-2)}
+.numline .n a{color:var(--glow);border-bottom:1px solid rgba(255,211,148,.4)}
+
+/* ---------- 6. one night — the facts as the night's clock ---------- */
+.clock{position:relative;padding-block:100px 120px;overflow:clip}
+.clock .wrap{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(32px,5vw,80px);align-items:center}
+.clock .big{display:grid;gap:8px;justify-items:start}
+.clock .big .v{font-family:var(--serif);font-weight:900;font-size:clamp(120px,17vw,270px);line-height:.85;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(244,238,227,.45);transition:color 1.2s,-webkit-text-stroke-color 1.2s,text-shadow 1.2s;font-variant-numeric:tabular-nums}
+.clock .big.lit .v{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 60px rgba(255,211,148,.45)}
+.clock .big .u{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.4vw,34px);color:var(--ink)}
+.clock .big .u small{display:block;font-family:var(--sans);font-weight:300;font-size:14px;color:var(--mute);margin-top:6px}
+.clock h2{font-size:clamp(36px,4.6vw,66px);margin-bottom:28px}
+.facts{list-style:none;display:grid}
+.facts li{display:grid;grid-template-columns:minmax(120px,.42fr) minmax(0,1fr);gap:20px;padding-block:16px;border-top:1px solid var(--hair);font-size:15px;color:var(--ink-2)}
+.facts li:last-child{border-bottom:1px solid var(--hair)}
+.facts li b{font-weight:500;color:var(--ink)}
+.facts li.absent b{color:var(--mute)}
+
+/* ---------- 7. the specialist, and the small step ---------- */
+.word{position:relative;padding-block:100px 120px}
+.word .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,100px);align-items:center}
+.word blockquote{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,36px);line-height:1.22;max-width:24ch;color:var(--ink)}
+.word cite{display:block;font-style:normal;font-size:13px;color:var(--mute);margin-top:14px;letter-spacing:.06em}
+.word .promise{margin-top:28px;font-size:15.5px;color:var(--ink-2);max-width:44ch}
+.word .promise a{color:var(--glow);border-bottom:1px solid rgba(255,211,148,.4)}
+.step{display:grid;gap:22px;padding-inline-start:clamp(0px,3vw,40px);border-inline-start:1px solid var(--hair)}
+.step h2{font-size:clamp(30px,3.4vw,46px)}
+.step .opt{display:grid;gap:8px;padding-block:18px;border-top:1px solid var(--hair)}
+.step .opt:last-child{border-bottom:1px solid var(--hair)}
+.step .opt p{font-size:14.5px;color:var(--ink-2);max-width:40ch}
+.step .opt .row2{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:6px}
+.step .opt .price{--ps:24px}
+
+/* ---------- 8. more for the terrace ---------- */
+.more{position:relative;padding-block:100px 110px;overflow:clip}
+.more .head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:48px}
+.more h2{font-size:clamp(34px,4.4vw,64px)}
+.more .head p{font-size:15px;color:var(--ink-2);max-width:34ch}
+.floor{position:relative;display:flex;align-items:flex-end;gap:clamp(20px,3.4vw,56px);padding-bottom:36px}
+.floor::after{content:"";position:absolute;inset-inline:-10vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,211,148,.4) 30%,rgba(255,211,148,.4) 70%,transparent)}
+.card{flex:0 0 var(--cw,240px);width:var(--cw,240px);display:grid;gap:10px;position:relative}
+.card .ph{aspect-ratio:var(--ar,1/1.1)}
+.card .ph::before{content:"";position:absolute;inset-inline:12%;bottom:-40px;height:42px;background:radial-gradient(50% 100% at 50% 100%,rgba(255,211,148,.5),transparent 70%);opacity:var(--lit);transition:opacity 1.6s .3s;z-index:2;filter:blur(6px)}
+.card:nth-child(1){--cw:330px;--ar:1/.9}
+.card:nth-child(2){--cw:240px;--ar:4/3}
+.card:nth-child(3){--cw:280px;--ar:1/1.05;margin-inline-start:auto}
+.card .kicker{margin-top:6px}
+.card .title{font-size:15px}
+.card .act{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.card .price{--ps:20px}
+.card .act a,.card .act button{font-size:13px;font-weight:500;color:var(--ink-2);border-bottom:1px solid rgba(244,238,227,.3);padding-bottom:2px;min-height:44px;display:inline-flex;align-items:center}
+.card .act a:hover,.card .act button:hover{color:var(--glow);border-color:var(--glow)}
+.more .after{margin-top:40px;display:flex;justify-content:flex-end}
+
+/* ---------- footer: one dark block ---------- */
+.ftr{position:relative;padding-block:72px 32px;background:var(--sky-4);border-top:1px solid var(--hair)}
+.ftr .top{display:grid;grid-template-columns:1.4fr .8fr .8fr 1fr;gap:40px}
+.ftr .brand{display:flex;align-items:center;gap:12px}
+.ftr .brand img{width:52px;height:52px}
+.ftr .brand b{font-family:var(--serif);font-weight:500;font-size:24px}
+.ftr .tag{margin-top:16px;max-width:30ch;color:var(--ink-2);font-size:14.5px}
+.ftr h4{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;color:var(--gold);margin-bottom:14px}
+.ftr ul{list-style:none;display:grid;gap:9px;font-size:14.5px;color:var(--ink-2)}
+.ftr .bottom{margin-top:56px;display:flex;justify-content:space-between;gap:20px;font-size:12.5px;color:var(--mute);flex-wrap:wrap}
+
+/* ---------- the sticky buy bar (mobile) ---------- */
+.bar{position:fixed;inset-inline:0;bottom:0;z-index:60;display:none;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;padding:10px var(--gut);background:rgba(4,6,11,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--hair);transform:translateY(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.bar.show{transform:none}
+.bar .ph{width:52px;aspect-ratio:1}
+.bar .t{display:grid;gap:2px;min-width:0}
+.bar .t .sel{font-size:12.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .price{--ps:22px}
+.bar .btn{min-height:44px;padding:10px 18px;font-size:14px}
+
+/* ---------- motion prefs ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .js [data-lamp]{--lit:1}
+  .lampv.on .glow,.lampv.on .core{opacity:1}
+  .clock .big .v{color:var(--glow);-webkit-text-stroke-color:transparent}
+}
+
+/* ============================================================
+   mobile — recomposed, not collapsed
+   ============================================================ */
+@media (max-width:900px){
+  .hdr{height:64px;grid-template-columns:1fr auto 1fr}
+  .hdr .nav{display:none}
+  .hdr .burger{display:grid}
+  .hdr .logo img{width:38px;height:38px}
+  .hdr .icons{justify-self:end}
+  .hero{min-height:100svh}
+  .hero .bg .ph img{object-position:60% 30%}
+  .hero .veil{background:linear-gradient(180deg,rgba(7,11,21,.5) 0,rgba(7,11,21,0) 22%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.9) 34%,rgba(15,26,47,0) 62%)}
+  .hero .wrap{grid-template-columns:1fr;gap:18px;padding-block:88px 24px}
+  .hero .place{gap:12px}
+  .hero h1{font-size:clamp(50px,14.5vw,66px)}
+  .hero .place .lead{font-size:15.5px;max-width:34ch}
+  .hero .whereline{font-size:12.5px;gap:14px}
+  .buy{justify-self:stretch;width:100%;grid-template-columns:92px 1fr;gap:14px;padding:12px}
+  .buy .ph{aspect-ratio:1/1.2}
+  .buy .title{font-size:14.5px}
+  .buy .price{--ps:26px}
+  .buy .range{display:none}
+  .buy .link{display:none}
+  .buy form .btn{min-height:46px;padding:10px 20px}
+
+  .fit{padding-block:72px 64px}
+  .fit .wrap{grid-template-columns:1fr;gap:40px}
+  .fit .head{margin-bottom:28px;gap:12px}
+  .fit h2{font-size:clamp(40px,11.5vw,52px)}
+  .q{gap:26px}
+  .seg label{font-size:15px;min-height:52px}
+  .lampv svg{width:min(100%,360px)}
+  .verdict p{font-size:24px}
+
+  .night{padding-block:24px 0}
+  .night .big{height:72vh}
+  .night .big .ph img{object-position:55% 45%}
+  .night .cap{bottom:120px;inset-inline-end:var(--gut);max-width:none}
+  .night .cap .h{font-size:clamp(40px,11vw,52px)}
+  .night .cap p{font-size:14.5px}
+  .night .cap{bottom:40px}
+  .night .inset{position:relative;inset:auto;width:54%;margin-block-start:-24px;margin-inline-start:var(--gut)}
+  .night .inset figcaption{font-size:12.5px;flex-direction:column;gap:2px}
+
+  .tape{padding-block:64px 56px}
+  .tape .head{grid-template-columns:1fr;gap:18px;margin-bottom:28px}
+  .tape h2{font-size:clamp(44px,12vw,58px)}
+  .tape .head .advice{justify-self:start;font-size:15px}
+  .row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"m pr" "wire wire";gap:6px 16px;padding-block:14px}
+  .row .m{grid-area:m;font-size:34px}
+  .row .m em{font-size:13px;margin-top:2px}
+  .row .pr{grid-area:pr;justify-items:end}
+  .row .pr .price{--ps:24px}
+  .row .wire{grid-area:wire;height:22px}
+  .row .bulbs{height:22px}
+  .row .bulbs i{width:7px;height:7px}
+  .row .wire::before{top:11px}
+  .row .wire::after{top:5px;height:12px}
+  .colour{margin-top:24px;gap:4px 16px;font-size:14px}
+  .tbuy{grid-template-columns:1fr;gap:16px;margin-top:28px}
+  .tbuy .price{--ps:36px}
+  .tbuy form{justify-content:flex-start}
+  .tbuy .per{text-align:start}
+
+  .nums{padding-block:40px 64px}
+  .nums .head{flex-direction:column;align-items:flex-start;gap:6px}
+  .numline{grid-template-columns:1fr}
+  .numline .n .v{font-size:44px}
+
+  .clock{padding-block:64px 72px}
+  .clock .wrap{grid-template-columns:1fr;gap:28px}
+  .clock .big .v{font-size:clamp(110px,30vw,150px)}
+  .clock h2{font-size:clamp(34px,9vw,44px)}
+  .facts li{grid-template-columns:1fr;gap:4px;font-size:14.5px}
+
+  .word{padding-block:64px 72px}
+  .word .wrap{grid-template-columns:1fr;gap:40px}
+  .step{padding-inline-start:0;border:0}
+  .step h2{font-size:34px}
+
+  .more{padding-block:64px 72px}
+  .more .head{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:28px}
+  .floor{overflow-x:auto;scroll-snap-type:x proximity;padding-inline:var(--gut);margin-inline:calc(-1*var(--gut));scrollbar-width:none;padding-bottom:32px;gap:20px}
+  .floor::-webkit-scrollbar{display:none}
+  .card{scroll-snap-align:start}
+  .card:nth-child(1){--cw:250px}.card:nth-child(2){--cw:170px}.card:nth-child(3){--cw:220px;margin-inline-start:0}
+  .more .after{justify-content:flex-start;margin-top:20px}
+
+  .ftr{padding-block:56px 24px}
+  .ftr .top{grid-template-columns:1fr 1fr;gap:28px 20px}
+  .ftr .top>:first-child,.ftr .top>:last-child{grid-column:1/-1}
+  .ftr .bottom{margin-top:40px}
+
+  .js .bar{display:grid}
+}
+
+/* ---------- path: quantity as coverage, the photo as the lamp ---------- */
+.hero-path .bg .ph img{object-position:50% 55%}
+.hero-path .bg .ph::after{background:radial-gradient(60% 50% at 40% 55%,rgba(255,211,148,.35),rgba(255,211,148,0) 70%)}
+.qty{display:inline-flex;align-items:center;border:1px solid rgba(244,238,227,.25);height:48px}
+.qty button{width:44px;height:100%;font-size:22px;color:var(--ink);line-height:1}
+.qty input{width:54px;height:100%;text-align:center;background:transparent;border:0;border-inline:1px solid rgba(244,238,227,.15);font-family:var(--serif);font-weight:500;font-size:22px;color:var(--glow);-moz-appearance:textfield}
+.qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.buy .qtyform{gap:10px}
+.buy .range b{color:var(--ink);font-weight:400}
+.buy .price small{font-family:var(--sans);font-size:12.5px;color:var(--mute);font-weight:300}
+.pathline{position:relative;height:130px;display:flex;justify-content:space-between;align-items:flex-end;padding-inline:3%}
+.pathline::before{content:"";position:absolute;inset-inline:0;bottom:22px;height:1px;background:linear-gradient(90deg,transparent,rgba(244,238,227,.35) 10%,rgba(244,238,227,.35) 90%,transparent)}
+.pathline i{position:relative;width:12px;height:78px;background:#1a1d26;box-shadow:inset 0 0 0 1px rgba(244,238,227,.28);margin-bottom:22px;transition:opacity .5s}
+.pathline i::before{content:"";position:absolute;top:0;inset-inline:-4px;height:24px;background:#0b0d14;box-shadow:inset 0 0 0 1px rgba(244,238,227,.35)}
+.pathline i::after{content:"";position:absolute;top:4px;inset-inline:-1px;height:16px;background:#fff1d6;opacity:0;box-shadow:0 0 22px 8px rgba(255,211,148,.6);transition:opacity .6s}
+.pathline i.on::after{opacity:1}
+.pathline i:not(.on){opacity:.32}
+.lampp{display:grid;gap:18px;justify-items:center;text-align:center}
+.lampp .ph{width:100%;aspect-ratio:4/3}
+.lampp .ph img{object-position:45% 50%}
+.lampp .ph::after{background:radial-gradient(40% 50% at 30% 42%,rgba(255,211,148,.5),rgba(255,211,148,0) 70%)}
+.js .lampp.off{--lit:0}
+.tbuy .qtyform{align-items:center}
+@media (max-width:900px){
+  .hero-path .bg .ph img{object-position:38% 50%}
+  .pathline{height:100px;padding-inline:1%}
+  .pathline i{width:9px;height:60px}
+  .pathline i::before{height:18px}
+  .pathline i::after{height:12px}
+  .buy .qtyform{gap:8px}
+  .qty{height:46px}.qty button{width:40px}.qty input{width:44px;font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER (static, Kalles-like) ================= -->
+<header class="hdr">
+  <nav class="nav" aria-label="ניווט ראשי">
+    <a href="#">דף הבית</a><a href="#">קולקציות</a><a href="#">מדריך לבחירה</a><a href="#">מי אנחנו</a><a href="#">יצירת קשר</a>
+  </nav>
+  <a class="logo" href="#" aria-label="ElmsNest — דף הבית"><img src="../../../../assets/img/logo.png" alt="" width="44" height="44"></a>
+  <div class="icons">
+    <button type="button" aria-label="חיפוש"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+    <a href="#" aria-label="סל קניות"><svg viewBox="0 0 24 24"><path d="M4 5h2l2.2 10.2a1 1 0 0 0 1 .8h8.4a1 1 0 0 0 1-.8L20 9H7"/><circle cx="10" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg><span class="n">0</span></a>
+    <button type="button" class="burger" aria-label="תפריט"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+  </div>
+</header>
+
+<main>
+<!-- ================= 1. THE PATH, AT NIGHT ================= -->
+<section class="hero hero-path" id="place" aria-labelledby="h1">
+  <div class="bg" data-lamp><div class="ph"><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="שלושה עמודי תאורה סולאריים מנירוסטה לאורך שביל אבן, בערב" fetchpriority="high" width="1000" height="1000"></div></div>
+  <div class="veil"></div>
+  <div class="wrap">
+    <div class="place">
+      <p class="eyebrow">שביל, מדרגות ומעברים · מתאים כדי לראות את הדרך</p>
+      <h1 id="h1">הדרך הביתה,<br><em>מוארת.</em></h1>
+      <p class="lead">תאורה רכה ומראה נקי לשביל, בלי כבלים שחוצים את הדשא ובלי צורך להזמין חשמלאי. נטענת ביום, נדלקת לבד בלילה ויוצרת תחושת סדר בכל מעבר.</p>
+      <p class="whereline"><span>יחידה אחת מאירה נקודה — שורה של יחידות יוצרת אפקט.</span><a href="#fit">השביל שלכם מקבל שמש? ↓</a></p>
+    </div>
+    <article class="buy" data-lamp>
+      <div class="ph"><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg" alt="מנורת שביל סולארית דולקת ליד קיר לבנים ומדרגות" width="400" height="460"></div>
+      <div class="t">
+        <span class="kicker">מה שמדליק את הדרך · סולארי · <bdi>IP65</bdi></span>
+        <h2 class="title">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית <bdi>IP65</bdi></h2>
+        <span class="sel">גוון אור צהוב חם · גוף נירוסטה</span>
+        <span class="price"><bdi>169.90</bdi> ₪ <small class="quiet">ליחידה</small></span>
+        <form method="post" action="/cart/add" id="mainbuy" class="qtyform"><input type="hidden" name="id" value="48632265310382">
+          <span class="qty" role="group" aria-label="כמות יחידות"><button type="button" class="dec" aria-label="פחות יחידה">−</button><input type="number" name="quantity" value="1" min="1" max="20" class="js-qty" aria-label="כמות"><button type="button" class="inc" aria-label="עוד יחידה">+</button></span>
+          <button class="btn" type="submit">הוספה לסל</button>
+        </form>
+        <span class="range">יחידות לאורך הדרך: <b class="js-n">1</b> · סה״כ <bdi class="js-total">169.90</bdi> ₪</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= 2. ONE QUESTION ABOUT THE PATH ================= -->
+<section class="fit" id="fit" style="scroll-margin-top:80px">
+  <div class="stars" style="--stars:.18"></div>
+  <div class="wrap">
+    <div>
+      <div class="head">
+        <p class="eyebrow">01 · לפני שקונים</p>
+        <h2>שאלה אחת<br>על השביל שלכם.</h2>
+        <p>המנורה נטענת מהשמש ביום. זו הסיבה שהיא עובדת בלי חשמלאי — וזו גם הסיבה היחידה שבגללה היא לא תעבוד.</p>
+      </div>
+      <form class="q" id="qform">
+        <fieldset>
+          <legend>כמה שמש השביל מקבל ביום?</legend>
+          <div class="seg">
+            <label><input type="radio" name="sun" value="yes" checked><span>שמש במשך היום</span></label>
+            <label><input type="radio" name="sun" value="no"><span>כמעט אינו מקבל אור יום</span></label>
+          </div>
+        </fieldset>
+        <p class="ask"><a class="link" href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%9E%D7%A7%D7%95%D7%9D%20%E2%80%94%20%D7%9E%D7%A0%D7%95%D7%A8%D7%AA%20%D7%A9%D7%91%D7%99%D7%9C%20%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA%20%D7%9E%D7%A0%D7%99%D7%A8%D7%95%D7%A1%D7%98%D7%94">לא בטוחים? לשלוח תמונה של המקום <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></p>
+      </form>
+    </div>
+    <figure class="lampp on" id="lampp" data-lamp="manual">
+      <div class="ph"><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg" alt="עמוד תאורה סולארי בין שיחים כהים" loading="lazy" width="800" height="800"></div>
+      <figcaption class="verdict" aria-live="polite">
+        <span class="tag js-vtag">מתאים כדי</span>
+        <p class="js-vtext">לראות את הדרך</p>
+        <small class="js-vnote">שביל, מדרגות ומעברים — זה המקום של המוצר הזה.</small>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 3. HOW MANY ALONG THE PATH? ================= -->
+<section class="tape" id="units" style="scroll-margin-top:80px">
+  <div class="stars" style="--stars:.3"></div>
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">02 · הבחירה היחידה</p>
+        <h2>כמה יחידות<br><em>לאורך הדרך?</em></h2>
+      </div>
+      <div class="advice">
+        <b>יחידה אחת מאירה נקודה — שורה של יחידות יוצרת אפקט.</b>
+        <p>למראה מרשים באמת, מקמו מספר מנורות במרווחים אחידים לאורך שביל, מסביב למדשאה או בכניסה. האחידות היא זו שיוצרת את תחושת היוקרה.</p>
+        <p class="quiet">מחיר אחד ליחידה, בלי סטים: מוסיפים את הכמות המתאימה לאורך הדרך.</p>
+      </div>
+    </div>
+    <div class="pathline" id="pathline" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="tbuy">
+      <div>
+        <span class="sel">הבחירה שלכם<b><span class="js-n">1</span> יחידות × <bdi>169.90</bdi> ₪</b></span>
+        <span class="price"><bdi class="js-total">169.90</bdi> ₪</span>
+      </div>
+      <form method="post" action="/cart/add" class="qtyform"><input type="hidden" name="id" value="48632265310382">
+        <span class="qty" role="group" aria-label="כמות יחידות"><button type="button" class="dec" aria-label="פחות יחידה">−</button><input type="number" name="quantity" value="1" min="1" max="20" class="js-qty" aria-label="כמות"><button type="button" class="inc" aria-label="עוד יחידה">+</button></span>
+        <button class="btn" type="submit">הוספה לסל</button>
+        <span class="per">נעיצה באדמה בעומק כ־5–10 ס״מ · ללא חפירה, חיווט או חיבור לחשמל</span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. THE FOUR NUMBERS ================= -->
+<section class="nums" id="terms">
+  <div class="wrap">
+    <div class="head"><h2 class="h">ומה קורה אחרי הלחיצה.</h2><p>ארבעה מספרים, לפני שמשלמים ולא אחרי.</p></div>
+    <div class="numline">
+      <div class="n"><span class="v"><bdi>0</bdi><small>₪</small></span><div><b>משלוח לנקודת איסוף — חינם.</b><p>עד הבית: <bdi>29.90</bdi> ₪.</p></div></div>
+      <div class="n"><span class="v"><bdi>8–17</bdi><small>ימי עסקים</small></span><div><b>מההזמנה עד הדלת.</b><p>1–3 ימי טיפול ועוד 7–14 ימי משלוח; חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל.</p></div></div>
+      <div class="n"><span class="v"><bdi>14</bdi><small>יום</small></span><div><b>ביטול עסקה לפי חוק הגנת הצרכן.</b><p>מקבלת המוצר. דמי ביטול עד 5% או 100 ₪ — הנמוך מביניהם.</p></div></div>
+      <div class="n"><span class="v"><bdi>1</bdi><small>תמונה</small></span><div><b>בודקים התאמה לפני שמזמינים.</b><p>שלחו תמונה של השביל — ואם זה לא מתאים, נגיד. <a href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%9E%D7%A7%D7%95%D7%9D%20%E2%80%94%20%D7%9E%D7%A0%D7%95%D7%A8%D7%AA%20%D7%A9%D7%91%D7%99%D7%9C%20%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA%20%D7%9E%D7%A0%D7%99%D7%A8%D7%95%D7%A1%D7%98%D7%94">לשלוח תמונה של המקום</a></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. ONE NIGHT — the facts ================= -->
+<section class="clock" id="facts">
+  <div class="stars" style="--stars:.45"></div>
+  <div class="wrap">
+    <div class="big" data-lamp="manual" id="hours">
+      <span class="v"><bdi>8–10</bdi></span>
+      <span class="u">שעות עבודה לאחר טעינה טובה בשמש<small>כ־8–10 שעות, בהתאם לתנאי הסביבה — לפי התיאור שאנחנו יכולים לעמוד מאחוריו.</small></span>
+    </div>
+    <div>
+      <p class="eyebrow">03 · מה יכול להשתבש</p>
+      <h2>לילה אחד,<br>מהשקיעה ועד הבוקר.</h2>
+      <ul class="facts">
+        <li><b>לפני הלילה הראשון</b><span>מצב <bdi>ON</bdi> וטעינה של לפחות 3 שעות.</span></li>
+        <li><b>ביום</b><span>טעינה ממוצעת כ־6 שעות.</span></li>
+        <li><b>עם החשכה</b><span>החיישן מדליק את המנורה בחושך ומכבה אותה בבוקר באופן אוטומטי.</span></li>
+        <li><b>גשם ורוח</b><span>עמידות <bdi>IP65</bdi>; גוף נירוסטה, גוון אור צהוב חם.</span></li>
+        <li class="absent"><b>מה שלא כתוב</b><span>גובה המנורה ומרווח מומלץ בין יחידות אינם בתיאור — ולכן לא כאן. שאלו לפני שמזמינים.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER — one dark block ================= -->
+<footer class="ftr" id="contact">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="brand" href="#"><img src="../../../../assets/img/logo.png" alt="" width="52" height="52"><b>ElmsNest</b></a>
+        <p class="tag">תאורת חוץ בלבד, לפי המקום: שביל, קיר, גינה, מרפסת. אם משהו לא מתאים לכם — נגיד לפני שתזמינו.</p>
+      </div>
+      <div><h4>קולקציות</h4><ul><li><a href="#">שביל, עמוד וגינה</a></li><li><a href="#">תאורת קיר</a></li><li><a href="#">ספוטים ופרוז׳קטורים</a></li><li><a href="#">גרילנדות ודקורטיבי</a></li></ul></div>
+      <div><h4>מידע</h4><ul><li><a href="#">מדריך לבחירת תאורה לגינה</a></li><li><a href="#">מי אנחנו</a></li><li><a href="#">משלוחים ואספקה</a></li><li><a href="#">זמני טיפול</a></li><li><a href="#">שאלות נפוצות</a></li></ul></div>
+      <div><h4>יצירת קשר</h4><p style="font-size:14.5px;color:var(--ink-2);margin-bottom:12px">שאלות על מוצר או על התאמה למקום? כתבו לנו:</p><a class="link" href="mailto:info@elmsnest.com">info@elmsnest.com</a></div>
+    </div>
+    <div class="bottom"><p>© ElmsNest 2026 · elmsnest.com</p><p><a href="#terms">תנאי משלוח וביטול</a></p></div>
+  </div>
+</footer>
+
+<!-- ================= STICKY BUY BAR (mobile) ================= -->
+<div class="bar" id="bar" aria-hidden="true">
+  <div class="ph"><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg" alt="" width="52" height="52"></div>
+  <div class="t"><span class="sel"><span class="js-n">1</span> יחידות · צהוב חם</span><span class="price"><bdi class="js-total">169.90</bdi> ₪</span></div>
+  <button class="btn" type="submit" form="mainbuy">הוספה לסל</button>
+</div>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lamps = Array.prototype.slice.call(document.querySelectorAll('[data-lamp]'));
+  var manual = lamps.filter(function(el){ return el.getAttribute('data-lamp') === 'manual'; });
+  var auto = lamps.filter(function(el){ return el.getAttribute('data-lamp') !== 'manual'; });
+  function light(el){ el.classList.add('lit'); }
+  if (rm || !('IntersectionObserver' in window)) { lamps.forEach(light); }
+  else {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { light(e.target); io.unobserve(e.target); } }); }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+    auto.forEach(function(el){ io.observe(el); });
+    var io2 = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { light(e.target); io2.unobserve(e.target); } }); }, { threshold: 0.4 });
+    manual.forEach(function(el){ io2.observe(el); });
+  }
+  function sweep(){ var vh = window.innerHeight; lamps.forEach(function(el){ if (el.classList.contains('lit')) return; var r = el.getBoundingClientRect(); if (r.top < vh * 0.82 && r.bottom > vh * 0.1) light(el); }); }
+
+  /* quantity = coverage of the path; one price, real arithmetic */
+  var UNIT = 169.90, n = 1;
+  function fmt(x){ return x.toFixed(2); }
+  function render(){
+    document.querySelectorAll('.js-qty').forEach(function(i){ i.value = n; });
+    document.querySelectorAll('.js-n').forEach(function(e){ e.textContent = n; });
+    document.querySelectorAll('.js-total').forEach(function(e){ e.textContent = fmt(UNIT * n); });
+    document.querySelectorAll('#pathline i').forEach(function(b, k){ b.classList.toggle('on', k < n); });
+  }
+  document.querySelectorAll('.qtyform').forEach(function(f){
+    f.querySelector('.inc').addEventListener('click', function(){ n = Math.min(20, n + 1); render(); });
+    f.querySelector('.dec').addEventListener('click', function(){ n = Math.max(1, n - 1); render(); });
+    f.querySelector('.js-qty').addEventListener('change', function(e){ n = Math.max(1, Math.min(20, parseInt(e.target.value, 10) || 1)); render(); });
+  });
+  render();
+
+  /* one question: the photo itself is the lamp that answers */
+  var lampp = document.getElementById('lampp'), qf = document.getElementById('qform');
+  var vtag = lampp.querySelector('.js-vtag'), vtext = lampp.querySelector('.js-vtext'), vnote = lampp.querySelector('.js-vnote');
+  qf.addEventListener('change', function(){
+    var ok = qf.sun.value === 'yes';
+    lampp.classList.toggle('on', ok); lampp.classList.toggle('off', !ok);
+    if (ok) { vtag.textContent = 'מתאים כדי'; vtext.textContent = 'לראות את הדרך'; vnote.textContent = 'שביל, מדרגות ומעברים — זה המקום של המוצר הזה.'; }
+    else { vtag.textContent = 'לא מתאים כש־'; vtext.textContent = 'המקום כמעט אינו מקבל אור יום'; vnote.textContent = 'בלי שמש ביום אין אור בלילה. שלחו תמונה — נבדוק, ואם לא, נגיד.'; }
+  });
+
+  var bar = document.getElementById('bar'), heroBtn = document.querySelector('.hero .buy .btn');
+  function setBar(on){ bar.classList.toggle('show', on); bar.setAttribute('aria-hidden', String(!on)); document.documentElement.style.setProperty('--bar-h', on ? bar.offsetHeight + 'px' : '0px'); }
+  if ('IntersectionObserver' in window) { new IntersectionObserver(function(es){ setBar(!es[0].isIntersecting && window.innerWidth <= 900); }, { threshold: 0 }).observe(heroBtn); }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){ if (ticking) return; ticking = true; requestAnimationFrame(function(){ sweep(); ticking = false; }); }, { passive: true });
+  window.addEventListener('resize', sweep); sweep();
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click', function(e){ var h = a.getAttribute('href'); if (h.length < 2) { e.preventDefault(); return; } var t = document.querySelector(h); if (!t) return; e.preventDefault(); t.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' }); }); });
+  document.querySelectorAll('form[action="/cart/add"]').forEach(function(f){ f.addEventListener('submit', function(e){ e.preventDefault(); var btn = f.querySelector('button[type=submit]'); var t = btn.textContent; btn.textContent = 'נוסף לסל'; setTimeout(function(){ btn.textContent = t; }, 1600); }); });
+})();
+</script>
+</body>
+</html>

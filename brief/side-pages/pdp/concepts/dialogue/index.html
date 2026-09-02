@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות | ElmsNest</title>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ============================================================
+   השיחה — the product page as a dialogue with the specialist.
+   Eight beats. The buyer's words in the serif; our answer in Heebo,
+   each answer proven by a device. The buy form is never more than
+   a thumb away. Same sky, same lamps, same buttons as the homepage.
+   ============================================================ */
+:root{
+  --sky-0:#4a6a9c; --sky-1:#1f3357; --sky-2:#0f1a2f; --sky-3:#070b15; --sky-4:#020306;
+  --ink:#f4eee3; --ink-2:#c9c4b8; --mute:#8f95a3;
+  --gold:#e9b96e; --glow:#ffd394; --ember:#f7a24a; --btn-ink:#1a1206;
+  --hair:rgba(244,238,227,.12); --hair-btn:rgba(244,238,227,.25); --hair-num:rgba(244,238,227,.45);
+  --scrim:rgba(5,8,14,.55);
+  --serif:'Frank Ruhl Libre','Noto Serif Hebrew','David Libre',Georgia,serif;
+  --sans:'Heebo','Assistant',system-ui,sans-serif;
+  --w:1240px; --gut:clamp(20px,4vw,64px);
+  --bulb:#ffd394; --bulb-2:#ffd394; --bulb-3:#ffd394; --bulb-4:#ffd394;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--sky-4)}
+body{
+  font-family:var(--sans);font-weight:300;color:var(--ink);line-height:1.55;font-size:15px;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+  background:linear-gradient(180deg,var(--sky-2) 0%,var(--sky-2) 22%,var(--sky-3) 58%,var(--sky-4) 100%) no-repeat;background-size:100% 100%;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+bdi{unicode-bidi:isolate}
+:focus-visible{outline:2px solid var(--glow);outline-offset:4px}
+.wrap{width:min(var(--w),100% - 2*var(--gut));margin-inline:auto}
+.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--gold);font-weight:500;display:flex;gap:14px;align-items:center}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.8;flex:none}
+.kicker{font-size:11.5px;letter-spacing:.16em;color:var(--gold);font-weight:500}
+h1,h2,h3,.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+.serif{font-family:var(--serif)}
+.price{font-family:var(--serif);font-weight:500;font-variant-numeric:tabular-nums;color:var(--glow);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;min-height:48px;padding:12px 24px;border-radius:999px;font-weight:500;font-size:15px;background:var(--glow);color:var(--btn-ink);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--hair-btn)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--ink-2);border-bottom:1px solid var(--hair-btn);padding-bottom:3px;transition:color .3s,border-color .3s}
+.link:hover{color:var(--glow);border-color:var(--glow)}
+.link svg{width:14px;height:14px}
+.hairline{border:0;border-top:1px solid var(--hair)}
+
+/* ---------- the dialogue: the buyer's words, then ours ---------- */
+.q{font-family:var(--serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;color:var(--ink)}
+.q em{font-style:normal;color:var(--glow)}
+.a{font-weight:300;color:var(--ink-2);max-width:44ch;font-size:clamp(16px,1.25vw,19px);line-height:1.5}
+.a b{font-weight:500;color:var(--ink)}
+.a::before{content:"— ";color:var(--gold)}
+.beat{position:relative;scroll-margin-top:90px}
+
+/* ---------- the lamp device: dim → lit ---------- */
+.js [data-lamp]{--lit:0}
+[data-lamp]{--lit:1}
+.js [data-lamp].lit{--lit:1}
+[data-lamp] .ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit))) saturate(calc(.4 + .6*var(--lit)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+
+/* ---------- stars ---------- */
+.stars{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px;opacity:var(--stars,.25)}
+
+/* ---------- header (static Kalles strip; not designed here) ---------- */
+.hdr{position:absolute;top:0;inset-inline:0;z-index:50;height:70px;display:flex;align-items:center}
+.hdr .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+.hdr .nav{display:flex;gap:30px;font-size:14.5px;font-weight:400;color:var(--ink-2);justify-self:start}
+.hdr .nav a:hover{color:var(--ink)}
+.hdr .logo{width:46px;height:46px;filter:drop-shadow(0 0 10px rgba(233,185,110,.45))}
+.hdr .icons{display:flex;gap:4px;justify-self:end;align-items:center}
+.hdr .icons a,.hdr .icons button{width:44px;height:44px;display:grid;place-items:center;position:relative}
+.hdr .icons svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hdr .icons .n{position:absolute;top:4px;inset-inline-end:2px;font-size:10px;font-weight:500;color:var(--btn-ink);background:var(--glow);width:16px;height:16px;border-radius:999px;display:grid;place-items:center}
+.hdr .burger{display:none}
+
+/* ---------- sticky buy (desktop: a slim bar under the header; mobile: bottom bar) ---------- */
+.stick{position:fixed;z-index:45;inset-inline:0;background:var(--scrim);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--hair);transform:translateY(-110%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.stick.show{transform:none}
+.stick .wrap{display:flex;align-items:center;gap:22px;height:64px}
+.stick .t{font-size:14px;font-weight:400;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stick .sel{font-size:13px;color:var(--mute);white-space:nowrap}
+.stick .price{font-size:22px;margin-inline-start:auto}
+.stick .btn{min-height:42px;padding:10px 20px;font-size:14px}
+.stick-top{top:0}
+.stick-bottom{display:none}
+
+/* ============================================================
+   01 · hero — "is this for my balcony?"
+   ============================================================ */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero .bg{position:absolute;inset:0;z-index:-2}
+.hero .bg .ph{position:absolute;top:0;right:0;height:100%;width:130%;background:transparent}
+.hero .bg .ph img{object-position:50% 46%;transform:none}
+.hero .bg .ph::after{background:radial-gradient(38% 40% at 62% 46%,rgba(255,211,148,.28),rgba(255,211,148,0) 70%)}
+.hero .veil{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(15,26,47,.62) 0,rgba(15,26,47,0) 26%),
+  linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.75) 18%,rgba(15,26,47,0) 52%),
+  linear-gradient(270deg,rgba(15,26,47,.82) 0,rgba(15,26,47,.55) 38%,rgba(15,26,47,0) 62%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:end;padding-block:130px 64px}
+.hero .txt{display:grid;gap:22px;align-content:end}
+.hero .q{font-size:clamp(50px,7.4vw,112px)}
+.hero .a{font-size:clamp(17px,1.35vw,20px)}
+.hero .buy{margin-top:8px;padding-top:22px;border-top:1px solid rgba(244,238,227,.18);display:grid;grid-template-columns:1fr;gap:10px;align-items:end;max-width:640px}
+.hero .buy h1{font-family:var(--sans);font-weight:400;font-size:17px;line-height:1.35;letter-spacing:0;color:var(--ink)}
+.hero .buy .pick{font-size:13.5px;color:var(--ink-2);display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
+.hero .buy .pick a{color:var(--glow);border-bottom:1px solid rgba(255,211,148,.4);white-space:nowrap}
+.hero .buy .row{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-top:6px}
+.hero .buy .price{font-size:34px}
+.hero .buy .range{font-size:12.5px;color:var(--mute);display:block;margin-top:2px}
+.hero .place{position:absolute;top:118px;inset-inline-start:0;max-width:300px;font-size:12.5px;line-height:1.6;color:var(--ink-2);padding-inline-start:16px;border-inline-start:1px solid rgba(255,255,255,.25)}
+.hero .place b{display:block;color:var(--ink);font-weight:500;font-family:var(--serif);font-size:15px;letter-spacing:.06em}
+
+/* ============================================================
+   02 · "and if I need strong light?" — the not-for device
+   ============================================================ */
+.fit{padding-block:130px 110px;overflow:clip}
+.fit .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,90px);align-items:start}
+.fit .word{font-family:var(--serif);font-weight:900;font-size:clamp(120px,17vw,300px);line-height:.85;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px var(--hair-num);transition:color 1.4s,-webkit-text-stroke-color 1.4s,text-shadow 1.4s;margin-top:-.08em}
+.fit .word.lit{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 40px rgba(255,211,148,.45)}
+.fit .word small{display:block;font-family:var(--sans);font-weight:300;font-size:14px;letter-spacing:.14em;color:var(--mute);-webkit-text-stroke:0;text-shadow:none;margin-bottom:22px}
+.fit .q{font-size:clamp(34px,3.6vw,54px);margin-top:26px}
+.fit .a{margin-top:18px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,44px);padding-top:8px}
+.lamp{position:relative;display:grid;justify-items:center;text-align:center;gap:12px;align-content:start}
+.lamp svg{width:100%;height:auto;overflow:visible}
+.lamp .bulb,.lamp .halo2{transition:opacity 1.4s cubic-bezier(.2,.7,.2,1)}
+.lamp .bulb{opacity:.07}.lamp .halo2{opacity:0}
+.lamp.on.lit .bulb{opacity:1}.lamp.on.lit .halo2{opacity:1}
+.lamp.off.try .bulb,.lamp.off.try .halo2{animation:flick .9s steps(1,end)}
+@keyframes flick{0%{opacity:.9}12%{opacity:.1}22%{opacity:.75}30%{opacity:.05}45%{opacity:.6}55%{opacity:0}70%{opacity:.3}80%{opacity:0}100%{opacity:0}}
+.lamp .tag{font-size:11px;letter-spacing:.16em;font-weight:500}
+.lamp.on .tag{color:var(--gold)}.lamp.off .tag{color:var(--mute)}
+.lamp p{font-size:16.5px;line-height:1.4;max-width:22ch;color:var(--ink);font-weight:400}
+.lamp.off p{color:var(--ink-2)}
+.lamp.off{cursor:pointer}
+.lamp .hint{font-size:11.5px;color:var(--mute);opacity:0;transition:opacity .4s}
+.lamp.off:hover .hint,.lamp.off:focus-within .hint{opacity:1}
+.fit .solar{grid-column:1/-1;margin-top:34px;padding-top:22px;border-top:1px solid var(--hair);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;font-size:15px;color:var(--ink-2)}
+.fit .solar b{font-weight:500;color:var(--ink)}
+.fit .solar .k{font-size:11px;letter-spacing:.16em;color:var(--mute);white-space:nowrap}
+
+/* ============================================================
+   03 · "what does it really look like at night?" — full-bleed
+   ============================================================ */
+.night{position:relative;padding-block:60px 100px;overflow:clip}
+.night .head{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-bottom:44px}
+.night .q{font-size:clamp(38px,5vw,76px)}
+.night .a{justify-self:end;text-align:end;max-width:36ch}
+.night .a::before{content:""}
+.night .a::after{content:" —";color:var(--gold)}
+.stage{position:relative;display:grid;grid-template-columns:repeat(12,1fr);align-items:end;width:100%}
+.stage .big{grid-column:4/13;position:relative}
+.stage .big .ph{aspect-ratio:16/10}
+.stage .big .ph img{object-position:50% 45%}
+.stage .close{grid-column:1/6;grid-row:1;position:relative;z-index:2;margin-bottom:-60px;margin-inline-end:-40px;width:min(100%,460px)}
+.stage .close .ph{aspect-ratio:1/1}
+.stage figcaption{font-size:13px;color:var(--mute);margin-top:12px;display:flex;justify-content:space-between;gap:14px}
+.stage figcaption b{font-weight:400;color:var(--ink-2)}
+.night .note{margin-top:96px;display:flex;justify-content:flex-end}
+.night .note p{font-size:13px;color:var(--mute);max-width:52ch;text-align:end}
+
+/* ============================================================
+   04 · "what exactly do I get, and what does the long one cost?" — the ledger
+   ============================================================ */
+.ledger{padding-block:110px 100px}
+.ledger .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:40px;align-items:end;margin-bottom:40px}
+.ledger .q{font-size:clamp(40px,5.2vw,78px)}
+.ledger .a{justify-self:end}
+.string{position:relative;padding-block:16px 6px;margin-bottom:10px}
+.string svg{width:100%;height:clamp(64px,9vw,120px);display:block;overflow:visible}
+.string .wire{fill:none;stroke:rgba(244,238,227,.32);stroke-width:1.6;transition:stroke-dashoffset .9s cubic-bezier(.2,.7,.2,1)}
+.string .wire-rest{fill:none;stroke:rgba(244,238,227,.08);stroke-width:1;stroke-dasharray:3 6}
+.string .bulbs circle{transition:opacity .6s}
+.string .scale{display:grid;grid-template-columns:1fr;position:relative;height:36px;margin-top:6px}
+.string .scale::before{content:"";position:absolute;inset-inline:0;top:0;height:1px;background:var(--hair)}
+.string .tick{position:absolute;top:0;font-family:var(--serif);font-weight:500;font-size:14px;color:var(--mute);font-variant-numeric:tabular-nums;padding-top:10px;transform:translateX(50%)}
+.string .tick::before{content:"";position:absolute;top:0;inset-inline-end:50%;width:1px;height:6px;background:var(--hair-num)}
+.string .tick.cur{color:var(--glow)}
+.string .tick.cur::before{background:var(--glow)}
+.rows{display:grid;border-top:1px solid var(--hair)}
+.row{display:grid;grid-template-columns:24px minmax(120px,.7fr) minmax(0,1fr) auto;gap:18px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--hair);cursor:pointer;position:relative;transition:background .3s}
+.row:hover{background:rgba(255,211,148,.04)}
+.row input{position:absolute;opacity:0;width:0;height:0}
+.row .dot{width:10px;height:10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--hair-num);align-self:center;transition:background .3s,box-shadow .3s}
+.row input:checked ~ .dot{background:var(--glow);box-shadow:0 0 14px 3px rgba(255,211,148,.55)}
+.row input:focus-visible ~ .dot{outline:2px solid var(--glow);outline-offset:4px}
+.row .m{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3vw,42px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.row .m small{font-size:.5em;color:var(--ink-2);font-weight:400;margin-inline-start:.25em}
+.row .n{font-size:15.5px;color:var(--ink-2)}
+.row .n b{font-weight:500;color:var(--ink)}
+.row .price{font-size:26px}
+.row input:checked ~ .m{color:var(--glow)}
+.axis{margin-top:34px;display:grid;grid-template-columns:auto 1fr;gap:12px 30px;align-items:baseline}
+.axis .k{font-size:11.5px;letter-spacing:.16em;color:var(--gold);font-weight:500;white-space:nowrap}
+.axis .opts{display:flex;flex-wrap:wrap;gap:8px 28px}
+.axis label{display:inline-flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;font-size:16px;color:var(--ink-2);position:relative}
+.axis input{position:absolute;opacity:0;width:0;height:0}
+.axis .c{width:12px;height:12px;border-radius:999px;background:var(--c);opacity:.35;box-shadow:0 0 0 1px var(--hair-num);transition:opacity .3s,box-shadow .3s}
+.axis input:checked ~ .c{opacity:1;box-shadow:0 0 14px 3px color-mix(in srgb,var(--c) 60%,transparent)}
+.axis input:checked ~ span{color:var(--ink);font-weight:400}
+.axis input:focus-visible ~ .c{outline:2px solid var(--glow);outline-offset:4px}
+.axis .quiet{grid-column:2;font-size:13px;color:var(--mute);margin-top:-4px}
+.ledger .act{margin-top:40px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding-top:28px;border-top:1px solid var(--hair)}
+.ledger .act .sum{display:grid;gap:4px}
+.ledger .act .sum .sel{font-size:15px;color:var(--ink-2)}
+.ledger .act .sum .price{font-size:40px}
+.ledger .act .btn{min-height:56px;padding:14px 34px;font-size:16px}
+.ledger .advice{margin-top:64px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:start;max-width:820px}
+.ledger .advice .k{font-size:11.5px;letter-spacing:.16em;color:var(--gold);font-weight:500;white-space:nowrap;padding-top:8px}
+.ledger .advice blockquote{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2vw,27px);line-height:1.3;color:var(--ink)}
+.ledger .advice cite{display:block;font-style:normal;font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-top:10px;letter-spacing:.06em}
+noscript .ns{display:grid;gap:12px;padding:20px 0;border-bottom:1px solid var(--hair)}
+noscript select{background:var(--sky-3);color:var(--ink);border:1px solid var(--hair-btn);padding:12px;font-size:15px}
+
+/* ============================================================
+   05 · "what could go wrong?" — the risk facts, one enormous number
+   ============================================================ */
+.risk{position:relative;padding-block:100px 110px;overflow:clip}
+.risk .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start}
+.risk .q{font-size:clamp(38px,4.6vw,68px)}
+.risk .big{font-family:var(--serif);font-weight:500;font-size:clamp(120px,15vw,250px);line-height:.85;color:var(--glow);letter-spacing:-.03em;font-variant-numeric:tabular-nums;text-shadow:0 0 60px rgba(255,211,148,.25);margin-top:28px}
+.risk .big small{display:block;font-family:var(--sans);font-weight:300;font-size:16px;letter-spacing:.04em;color:var(--ink-2);margin-top:14px;text-shadow:none}
+.risk .facts{display:grid;gap:0;margin-top:14px}
+.risk .fact{padding:22px 0;border-top:1px solid var(--hair);display:grid;grid-template-columns:minmax(120px,.45fr) minmax(0,1fr);gap:20px;align-items:baseline}
+.risk .fact:last-child{border-bottom:1px solid var(--hair)}
+.risk .fact b{font-family:var(--serif);font-weight:500;font-size:26px;color:var(--ink);line-height:1.1}
+.risk .fact p{font-size:15px;color:var(--ink-2)}
+.risk .unknown{margin-top:26px;font-size:14px;color:var(--mute);max-width:46ch}
+
+/* ============================================================
+   06 · "what happens after I click?" — a vertical rail, not a row
+   ============================================================ */
+.after{position:relative;padding-block:100px 90px}
+.after .head{text-align:center;display:grid;justify-items:center;gap:18px;margin-bottom:64px}
+.after .q{font-size:clamp(38px,5vw,74px)}
+.after .a{text-align:center}
+.rail{position:relative;max-width:900px;margin-inline:auto;display:grid;gap:0}
+.rail::before{content:"";position:absolute;top:0;bottom:0;inset-inline-start:50%;width:1px;background:linear-gradient(180deg,transparent,var(--hair-num) 12%,var(--hair-num) 88%,transparent)}
+.stop{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0;padding-block:26px;position:relative}
+.stop::before{content:"";position:absolute;inset-inline-start:50%;top:50%;width:9px;height:9px;margin-inline-start:-4px;margin-top:-4px;border-radius:999px;background:var(--glow);box-shadow:0 0 12px 3px rgba(255,211,148,.5)}
+.stop .n{font-family:var(--serif);font-weight:500;font-size:clamp(56px,7vw,104px);line-height:.9;color:var(--glow);letter-spacing:-.02em;font-variant-numeric:tabular-nums;padding-inline-end:48px;text-align:end}
+.stop .n small{font-size:.3em;color:var(--ink-2);font-weight:400;margin-inline-start:.25em;letter-spacing:0}
+.stop .t{padding-inline-start:48px;display:grid;gap:6px;max-width:34ch}
+.stop .t b{font-weight:500;font-size:18px;color:var(--ink)}
+.stop .t p{font-size:14.5px;color:var(--ink-2)}
+.stop .t a{color:var(--glow);border-bottom:1px solid rgba(255,211,148,.4)}
+.stop:nth-child(even){direction:ltr}
+.stop:nth-child(even) .n{direction:rtl;text-align:start;padding-inline:48px 0}
+.stop:nth-child(even) .t{direction:rtl;text-align:end;padding-inline:0 48px;justify-self:end}
+.after .again{margin-top:70px;padding-top:26px;border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;max-width:900px;margin-inline:auto}
+.after .again .sel{font-size:14.5px;color:var(--ink-2)}
+.after .again .sel b{font-weight:400;color:var(--ink);display:block;font-size:16px;margin-bottom:2px}
+.after .again .price{font-size:30px}
+.after .again .r{display:flex;align-items:center;gap:22px}
+
+/* ============================================================
+   07 · "why here?" — one quiet line, one link
+   ============================================================ */
+.why{position:relative;padding-block:90px 110px}
+.why .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,90px);align-items:end}
+.why .q{font-size:clamp(30px,3.4vw,50px);color:var(--ink-2)}
+.why .a{max-width:40ch;margin-top:16px}
+.why blockquote{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,44px);line-height:1.2;color:var(--ink);text-wrap:balance}
+.why cite{display:block;font-style:normal;font-family:var(--sans);font-size:13px;color:var(--mute);margin-top:16px;letter-spacing:.06em}
+.why .link{margin-top:28px}
+
+/* ============================================================
+   related — three lit objects on a floor line (the catalogue card)
+   ============================================================ */
+.more{position:relative;padding-block:90px 80px;overflow:clip}
+.more .head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:56px}
+.more h2{font-size:clamp(30px,3.6vw,52px)}
+.more .head p{color:var(--ink-2);max-width:36ch;font-size:15px;text-align:end}
+.floor{position:relative;display:flex;align-items:flex-end;gap:clamp(20px,4vw,64px);padding-bottom:40px}
+.floor::after{content:"";position:absolute;inset-inline:-10vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,211,148,.45) 30%,rgba(255,211,148,.45) 70%,transparent)}
+.card{flex:0 0 var(--cw,240px);width:var(--cw,240px);display:grid;gap:10px;position:relative}
+.card .ph{aspect-ratio:var(--ar,1/1.15);position:relative}
+.card .ph::before{content:"";position:absolute;inset-inline:10%;bottom:-38px;height:40px;background:radial-gradient(50% 100% at 50% 100%,rgba(255,211,148,.55),transparent 70%);opacity:var(--lit);transition:opacity 1.6s .3s;z-index:2;filter:blur(6px)}
+.card:nth-child(1){--cw:330px;--ar:1/1.05}
+.card:nth-child(2){--cw:230px;--ar:4/5}
+.card:nth-child(3){--cw:300px;--ar:16/10}
+.card .k{font-size:11px;letter-spacing:.16em;color:var(--gold);font-weight:500;margin-top:8px}
+.card h3{font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.35;letter-spacing:0}
+.card .r{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:2px}
+.card .price{font-size:22px}
+.card .r a,.card .r button{font-size:13px;padding-bottom:2px;color:var(--ink-2);border-bottom:1px solid rgba(244,238,227,.3);font-weight:500;min-height:0}
+.card .r a:hover,.card .r button:hover{color:var(--glow);border-color:var(--glow)}
+.more .all{margin-top:40px;display:flex;justify-content:flex-end}
+
+/* ============================================================
+   08 · "can I do something smaller?" — the page ends on the smallest step
+   ============================================================ */
+.small{position:relative;padding-block:110px 130px;overflow:clip}
+.small .q{font-size:clamp(30px,3.4vw,50px);color:var(--ink-2)}
+.small .a{margin-top:18px}
+.small .end{margin-top:56px;font-family:var(--serif);font-weight:900;font-size:clamp(54px,9vw,150px);line-height:.9;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px var(--hair-num);transition:color 1.6s,-webkit-text-stroke-color 1.6s,text-shadow 1.6s}
+.small .end.lit{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 50px rgba(255,211,148,.35)}
+.small .ctas{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.small .or{font-size:13px;color:var(--mute);margin-inline:6px}
+.small .fine{margin-top:22px;font-size:13px;color:var(--mute);max-width:56ch}
+
+/* ---------- footer: one dark block (Kalles footer, not designed here) ---------- */
+.ftr{background:var(--sky-4);padding-block:64px 32px;border-top:1px solid var(--hair)}
+.ftr .top{display:grid;grid-template-columns:1.4fr .8fr 1fr 1fr;gap:40px}
+.ftr .logo{width:56px;height:56px;filter:drop-shadow(0 0 10px rgba(233,185,110,.45))}
+.ftr .tag{margin-top:16px;max-width:32ch;color:var(--ink-2);font-size:14.5px}
+.ftr h4{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;color:var(--gold);margin-bottom:14px}
+.ftr ul{list-style:none;display:grid;gap:9px;font-size:14.5px;color:var(--ink-2)}
+.ftr ul a:hover{color:var(--glow)}
+.ftr .bottom{margin-top:56px;display:flex;justify-content:space-between;gap:20px;font-size:12.5px;color:var(--mute);flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--hair)}
+
+/* ---------- motion prefs ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .js [data-lamp]{--lit:1}
+  .lamp.on .bulb,.lamp.on .halo2{opacity:1}
+  .fit .word,.small .end{color:var(--glow);-webkit-text-stroke-color:transparent}
+}
+
+/* ============================================================
+   mobile — a different composition, not a collapsed grid
+   ============================================================ */
+@media (max-width:900px){
+  body{padding-bottom:78px}
+  .hdr{height:64px}
+  .hdr .wrap{grid-template-columns:1fr auto 1fr}
+  .hdr .wrap{grid-template-columns:1fr auto 1fr}
+  .hdr .nav{display:none}
+  .hdr .logo{width:40px;height:40px}
+  .hdr .wrap>a{grid-column:2;grid-row:1}
+  .hdr .icons{grid-column:3;grid-row:1}
+  .hdr .burger{display:grid}
+  .hdr .icons{justify-self:end}
+  .stick-top{display:none}
+  .stick-bottom{display:block;inset-inline:0;bottom:0;top:auto;transform:translateY(110%);border-bottom:0;border-top:1px solid var(--hair)}
+  .stick-bottom.show{transform:none}
+  .stick-bottom .wrap{height:70px;gap:12px}
+  .stick-bottom .t{display:none}
+  .stick-bottom .sel{white-space:normal;line-height:1.25;font-size:12.5px;color:var(--ink-2)}
+  .stick-bottom .price{font-size:20px}
+
+  .hero{min-height:auto;display:block}
+  .hero .bg{position:relative;inset:auto;height:46svh;min-height:330px;z-index:0}
+  .hero .bg .ph{width:100%;right:auto;inset:0}
+  .hero .bg .ph img{object-position:50% 45%}
+  .hero .veil{inset:0 0 auto 0;height:46svh;min-height:330px;background:linear-gradient(180deg,rgba(15,26,47,.55) 0,rgba(15,26,47,0) 30%),linear-gradient(0deg,var(--sky-2) 0,rgba(15,26,47,.55) 22%,rgba(15,26,47,0) 55%)}
+  .hero .wrap{grid-template-columns:1fr;gap:14px;padding-block:0 28px;margin-top:-88px;position:relative;z-index:1}
+  .hero .place{position:static;border:0;padding:0;max-width:none;font-size:12px;order:0}
+  .hero .place b{display:inline;font-size:13.5px;margin-inline-end:6px}
+  .hero .place b::after{content:' — '}
+  .hero .txt{gap:12px}
+  .hero .q{font-size:clamp(44px,12.5vw,56px)}
+  .hero .a{font-size:15.5px;order:5;margin-top:6px}
+  .hero .buy{margin-top:6px;padding-top:16px;grid-template-columns:1fr;gap:10px}
+  .hero .buy h1{font-size:15px}
+  .hero .buy .row{justify-content:space-between}
+  .hero .buy .price{font-size:30px}
+  .hero .buy .btn{flex:1 1 auto}
+
+  .fit{padding-block:64px 60px}
+  .fit .wrap{grid-template-columns:1fr;gap:26px}
+  .fit .word{font-size:clamp(96px,30vw,140px)}
+  .fit .q{font-size:36px;margin-top:14px}
+  .pair{gap:14px}
+  .lamp p{font-size:14.5px}
+  .fit .solar{grid-template-columns:1fr;gap:6px;margin-top:22px}
+
+  .night{padding-block:40px 64px}
+  .night .head{grid-template-columns:1fr;gap:14px;margin-bottom:26px}
+  .night .a{justify-self:start;text-align:start}
+  .night .a::after{content:""}
+  .night .a::before{content:"— "}
+  .stage{display:block;margin-inline:calc(-1*var(--gut))}
+  .stage .big .ph{aspect-ratio:4/5}
+  .stage .close{width:56%;margin:-90px 0 0 auto;margin-inline-end:var(--gut);margin-inline-start:auto}
+  .stage figcaption{padding-inline:var(--gut);font-size:13px;flex-direction:column;gap:2px}
+  .stage .big figcaption{max-width:44%;padding-inline-end:0}
+  .stage .close figcaption{padding-inline:0}
+  .night .note{margin-top:40px;justify-content:flex-start}
+  .night .note p{text-align:start}
+
+  .ledger{padding-block:64px 60px}
+  .ledger .head{grid-template-columns:1fr;gap:14px;margin-bottom:22px}
+  .ledger .a{justify-self:start}
+  .string .tick{font-size:12.5px}
+  .row{grid-template-columns:18px auto 1fr auto;gap:12px;padding:16px 0}
+  .row .m{font-size:26px}
+  .row .n{font-size:13.5px}
+  .row .price{font-size:21px}
+  .axis{grid-template-columns:1fr;gap:6px 0;margin-top:22px}
+  .axis .opts{gap:0 22px}
+  .axis .quiet{grid-column:1}
+  .ledger .act{grid-template-columns:1fr;gap:16px}
+  .ledger .act .btn{width:100%}
+  .ledger .act .sum .price{font-size:34px}
+  .ledger .advice{grid-template-columns:1fr;gap:10px;margin-top:44px}
+
+  .risk{padding-block:64px 64px}
+  .risk .wrap{grid-template-columns:1fr;gap:18px}
+  .risk .big{font-size:clamp(96px,30vw,140px);margin-top:10px}
+  .risk .fact{grid-template-columns:1fr;gap:6px;padding:16px 0}
+  .risk .fact b{font-size:22px}
+
+  .after{padding-block:64px 60px}
+  .after .head{margin-bottom:30px}
+  .rail::before{inset-inline-start:0}
+  .stop,.stop:nth-child(even){grid-template-columns:1fr;direction:rtl;padding-block:18px;padding-inline-start:28px}
+  .stop::before{inset-inline-start:0;margin-inline-start:-4px}
+  .stop .n,.stop:nth-child(even) .n{text-align:start;padding:0;font-size:52px}
+  .stop .t,.stop:nth-child(even) .t{padding:0;text-align:start;justify-self:start;margin-top:8px}
+  .after .again{grid-template-columns:1fr;gap:14px;margin-top:40px}
+  .after .again .r{justify-content:space-between}
+
+  .why{padding-block:56px 64px}
+  .why .wrap{grid-template-columns:1fr;gap:26px}
+
+  .more{padding-block:56px 48px}
+  .more .head{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:30px}
+  .more .head p{text-align:start}
+  .floor{overflow-x:auto;scroll-snap-type:x proximity;padding-inline:var(--gut);margin-inline:calc(-1*var(--gut));scrollbar-width:none;padding-bottom:36px}
+  .floor::-webkit-scrollbar{display:none}
+  .card{scroll-snap-align:start}
+  .card:nth-child(1){--cw:250px}.card:nth-child(2){--cw:190px}.card:nth-child(3){--cw:230px}
+  .more .all{justify-content:flex-start;margin-top:20px}
+
+  .small{padding-block:64px 80px}
+  .small .end{font-size:clamp(48px,14vw,64px);margin-top:34px}
+  .small .ctas .btn{width:100%}
+  .small .or{width:100%;text-align:center;margin:0}
+
+  .ftr .top{grid-template-columns:1fr 1fr;gap:28px 20px}
+  .ftr .top>:first-child{grid-column:1/-1}
+  .ftr .bottom{margin-top:36px}
+}
+@media (min-width:901px){ .hero .a{order:0} }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER (static Kalles strip) ================= -->
+<header class="hdr">
+  <div class="wrap">
+    <nav class="nav" aria-label="ניווט ראשי">
+      <a href="#">דף הבית</a><a href="#">קולקציות</a><a href="#">מדריך לבחירה</a><a href="#">מי אנחנו</a><a href="#">יצירת קשר</a>
+    </nav>
+    <a href="#" aria-label="ElmsNest — דף הבית"><img class="logo" src="../../../../assets/img/logo.png" alt="" width="46" height="46"></a>
+    <div class="icons">
+      <button type="button" aria-label="חיפוש"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+      <a href="#" aria-label="סל קניות"><svg viewBox="0 0 24 24"><path d="M4 5h2l2.2 10.2a1 1 0 0 0 1 .8h8.4a1 1 0 0 0 1-.8L20 9H7"/><circle cx="10" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg><span class="n">0</span></a>
+      <button type="button" class="burger" aria-label="תפריט"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= STICKY BUY — desktop top bar / mobile bottom bar (mirror of the selection) ================= -->
+<div class="stick stick-top" aria-hidden="true">
+  <div class="wrap">
+    <span class="t">גרילנדת כדורי קריסטל סולארית</span>
+    <span class="sel" data-sel>5 מ׳ / 20 נורות · צהוב</span>
+    <span class="price" data-price><bdi>89.90</bdi> ₪</span>
+    <button class="btn" type="submit" form="buy" tabindex="-1">הוספה לסל</button>
+  </div>
+</div>
+<div class="stick stick-bottom">
+  <div class="wrap">
+    <span class="sel" data-sel>5 מ׳ / 20 נורות · צהוב</span>
+    <span class="price" data-price><bdi>89.90</bdi> ₪</span>
+    <button class="btn" type="submit" form="buy">הוספה לסל</button>
+  </div>
+</div>
+
+<main>
+<!-- ================= 01 · HERO — "is this for my balcony?" ================= -->
+<section class="hero beat" id="b1" aria-labelledby="h1">
+  <div class="bg" data-lamp><div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="כדורי קריסטל על שרשרת, דולקים בערב בין עלים" fetchpriority="high" width="1000" height="1000"></div></div>
+  <div class="veil"></div>
+  <div class="wrap">
+    <p class="place"><b>מרפסת ופינת ישיבה</b> מתאים כדי ליצור אווירה. המקום הראשון שמשנה אווירה כשמחשיך — ולכן זו השאלה הראשונה.</p>
+    <div></div>
+    <div class="txt">
+      <p class="eyebrow">01 · השאלה הראשונה</p>
+      <p class="q">«זה יתאים <em>למרפסת שלי?</em>»</p>
+      <p class="a"><b>אם מה שאתם מחפשים הוא אווירה — כן.</b> גרילנדה סולארית של כדורי קריסטל: נטענת מהשמש ביום, נדלקת לבד עם החשכה, ומנצנצת סביב פינת הישיבה, לאורך גדר או מעל השולחן.</p>
+      <div class="buy" data-buyview>
+        <h1 id="h1">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</h1>
+        <p class="pick"><span>נבחר:</span><span data-sel>5 מ׳ / 20 נורות · צהוב</span><a href="#b4">לכל 6 האורכים והמחירים</a></p>
+        <div class="row">
+          <span><span class="price" data-price><bdi>89.90</bdi> ₪</span><span class="range">מ־<bdi>89.90</bdi> עד <bdi>179.90</bdi> ₪, לפי האורך. הצבע לא משנה את המחיר.</span></span>
+          <button class="btn" type="submit" form="buy">הוספה לסל</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 · "and if I need strong light?" — the not-for device ================= -->
+<section class="fit beat" id="b2">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+      <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd394" stop-opacity=".45"/><stop offset="1" stop-color="#ffd394" stop-opacity="0"/></radialGradient>
+      <symbol id="string7" viewBox="0 0 320 150">
+        <path d="M6 18 Q160 118 314 18" fill="none" stroke="rgba(244,238,227,.35)" stroke-width="1.5"/>
+        <g class="halo2">
+          <circle cx="44" cy="46" r="26" fill="url(#halo)"/><circle cx="88" cy="70" r="26" fill="url(#halo)"/><circle cx="132" cy="84" r="26" fill="url(#halo)"/><circle cx="176" cy="88" r="26" fill="url(#halo)"/><circle cx="220" cy="80" r="26" fill="url(#halo)"/><circle cx="264" cy="62" r="26" fill="url(#halo)"/><circle cx="300" cy="36" r="26" fill="url(#halo)"/>
+        </g>
+        <g fill="none" stroke="rgba(244,238,227,.45)" stroke-width="1.2">
+          <circle cx="44" cy="46" r="9"/><circle cx="88" cy="70" r="9"/><circle cx="132" cy="84" r="9"/><circle cx="176" cy="88" r="9"/><circle cx="220" cy="80" r="9"/><circle cx="264" cy="62" r="9"/><circle cx="300" cy="36" r="9"/>
+        </g>
+        <g class="bulb" fill="#ffd394">
+          <circle cx="44" cy="46" r="8"/><circle cx="88" cy="70" r="8"/><circle cx="132" cy="84" r="8"/><circle cx="176" cy="88" r="8"/><circle cx="220" cy="80" r="8"/><circle cx="264" cy="62" r="8"/><circle cx="300" cy="36" r="8"/>
+        </g>
+        <g class="bulb" fill="#fff4dd">
+          <circle cx="44" cy="44" r="3"/><circle cx="88" cy="68" r="3"/><circle cx="132" cy="82" r="3"/><circle cx="176" cy="86" r="3"/><circle cx="220" cy="78" r="3"/><circle cx="264" cy="60" r="3"/><circle cx="300" cy="34" r="3"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+  <div class="wrap">
+    <div>
+      <p class="word" data-lamp="manual"><small>המקום</small>מרפסת.</p>
+      <p class="eyebrow" style="margin-top:34px">02 · ההיסוס השני</p>
+      <p class="q">«ואם אני צריך <em>אור חזק</em> במרפסת?»</p>
+      <p class="a"><b>אז לא זו.</b> גרילנדה עושה אווירה, לא תאורת עבודה. אנחנו אומרים את זה כאן, לפני ההזמנה, ולא אחרי — נסו להדליק את הכבויה.</p>
+    </div>
+    <div class="pair">
+      <div class="lamp on" data-lamp>
+        <svg aria-hidden="true" viewBox="0 0 320 150"><use href="#string7"/></svg>
+        <span class="tag">מתאים כדי</span>
+        <p>ליצור אווירה</p>
+      </div>
+      <div class="lamp off" tabindex="0" role="button" aria-label="לא מתאים כאשר צריך אור חזק — זו אינה מטרתה">
+        <svg aria-hidden="true" viewBox="0 0 320 150"><use href="#string7"/></svg>
+        <span class="tag">לא מתאים כש־</span>
+        <p>צריך אור חזק — זו אינה מטרתה</p>
+        <span class="hint">לא נדלקת. זו הנקודה.</span>
+      </div>
+      <p class="solar"><span class="k">וכי היא סולארית</span><span><b>לא מתאים גם כש־</b>המקום כמעט אינו מקבל אור יום. הפאנל נטען מהשמש — בלי שמש ביום, אין נצנוץ בלילה.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 · "what does it really look like at night?" ================= -->
+<section class="night beat" id="b3">
+  <div class="stars" style="--stars:.18"></div>
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">03 · לראות לפני</p>
+        <p class="q">«ואיך זה נראה <em>בלילה, באמת?</em>»</p>
+      </div>
+      <p class="a"><b>ככה.</b> הכדורים השקופים שוברים את האור ומנצנצים — וברגע שמחשיך, זה כל האור שיש בתמונה.</p>
+    </div>
+    <div class="stage">
+      <figure class="big" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-2.jpg" alt="גרילנדת כדורי קריסטל דולקת על סבכת עץ בלילה" loading="lazy" width="1000" height="1000"></div>
+        <figcaption><b>על סבכת עץ, בין העלים</b><span>הנצנוץ בתוך כל כדור — לא פילטר</span></figcaption>
+      </figure>
+      <figure class="close" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="כדור קריסטל אחד מקרוב, הבועות בתוכו מוארות" loading="lazy" width="1000" height="1000"></div>
+        <figcaption><b>מקרוב</b><span>הכדור, הבועות, החוט השחור</span></figcaption>
+      </figure>
+    </div>
+    <div class="note"><p>התמונות להמחשה. האורך, מספר הנורות והצבע — לפי הבחירה שלכם בשלב הבא.</p></div>
+  </div>
+</section>
+
+<!-- ================= 04 · "what exactly do I get — and what does the long one cost?" — the ledger ================= -->
+<section class="ledger beat" id="b4">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">04 · ההחלטה האחת</p>
+        <p class="q">«מה בדיוק אני מקבל — <em>וכמה עולה הארוכה?</em>»</p>
+      </div>
+      <p class="a"><b>שרשרת אחת עם פאנל סולארי, באורך שתבחרו.</b> שישה אורכים, כל מחיר גלוי לפני שלוחצים. הארוכה ביותר — 22 מטר ו־200 נורות — עולה <bdi>179.90</bdi> ₪. הצבע לא משנה את המחיר.</p>
+    </div>
+
+    <form id="buy" class="buyform" method="post" action="/cart/add" data-buyview>
+      <input type="hidden" name="id" value="48880938221742" data-vid>
+      <input type="hidden" name="quantity" value="1">
+
+      <!-- the string: grows with the chosen length; the bulbs light with the chosen count -->
+      <div class="string" aria-hidden="true">
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" data-string>
+          <path class="wire-rest" d="M1000 18 Q500 150 0 18"/>
+          <path class="wire" d="M1000 18 Q500 150 0 18" data-wire/>
+          <g class="bulbs" data-bulbs></g>
+        </svg>
+        <div class="scale" data-scale></div>
+      </div>
+
+      <div class="rows" role="radiogroup" aria-label="אורך ומספר נורות">
+        <label class="row"><input type="radio" name="len" value="0" data-m="5" data-bulbs="20" data-price="89.90" checked><span class="dot"></span><span class="m"><bdi>5</bdi><small>מ׳</small></span><span class="n"><b>20 נורות</b> · לפינת ישיבה קטנה או לשולחן אחד</span><span class="price"><bdi>89.90</bdi> ₪</span></label>
+        <label class="row"><input type="radio" name="len" value="1" data-m="6.5" data-bulbs="30" data-price="89.90"><span class="dot"></span><span class="m"><bdi>6.5</bdi><small>מ׳</small></span><span class="n"><b>30 נורות</b> · אותו מחיר, מטר וחצי יותר</span><span class="price"><bdi>89.90</bdi> ₪</span></label>
+        <label class="row"><input type="radio" name="len" value="2" data-m="9.5" data-bulbs="50" data-price="99.90"><span class="dot"></span><span class="m"><bdi>9.5</bdi><small>מ׳</small></span><span class="n"><b>50 נורות</b> · לאורך גדר או מעקה</span><span class="price"><bdi>99.90</bdi> ₪</span></label>
+        <label class="row"><input type="radio" name="len" value="3" data-m="11" data-bulbs="60" data-price="109.90"><span class="dot"></span><span class="m"><bdi>11</bdi><small>מ׳</small></span><span class="n"><b>60 נורות</b> · מסגרת לפרגולה</span><span class="price"><bdi>109.90</bdi> ₪</span></label>
+        <label class="row"><input type="radio" name="len" value="4" data-m="13" data-bulbs="100" data-price="129.90"><span class="dot"></span><span class="m"><bdi>13</bdi><small>מ׳</small></span><span class="n"><b>100 נורות</b> · כמעט פי שניים נורות לאותו מרחק</span><span class="price"><bdi>129.90</bdi> ₪</span></label>
+        <label class="row"><input type="radio" name="len" value="5" data-m="22" data-bulbs="200" data-price="179.90"><span class="dot"></span><span class="m"><bdi>22</bdi><small>מ׳</small></span><span class="n"><b>200 נורות</b> · קישוט של חלל שלם</span><span class="price"><bdi>179.90</bdi> ₪</span></label>
+      </div>
+
+      <div class="axis" role="radiogroup" aria-label="צבע תאורה">
+        <span class="k">צבע האור</span>
+        <div class="opts">
+          <label style="--c:#ffd394"><input type="radio" name="col" value="0" checked><span class="c"></span><span>צהוב</span></label>
+          <label style="--c:#8fb8ff"><input type="radio" name="col" value="1"><span class="c"></span><span>כחול</span></label>
+          <label style="--c:#ff8fa3"><input type="radio" name="col" value="2"><span class="c"></span><span>צבעוני</span></label>
+          <label style="--c:#fff4dd"><input type="radio" name="col" value="3"><span class="c"></span><span>לבן</span></label>
+        </div>
+        <span class="quiet">צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה. אותו מחיר לכל צבע.</span>
+      </div>
+
+      <noscript>
+        <div class="ns">
+          <label for="ns-id">בחרו אורך וצבע</label>
+          <select id="ns-id" name="id">
+            <option value="48880938221742">5 מ׳ / 20 נורות / צהוב — 89.90 ₪</option><option value="48880938254510">5 מ׳ / 20 נורות / כחול — 89.90 ₪</option><option value="48880938287278">5 מ׳ / 20 נורות / צבעוני — 89.90 ₪</option><option value="48880938320046">5 מ׳ / 20 נורות / לבן — 89.90 ₪</option>
+            <option value="48880938352814">6.5 מ׳ / 30 נורות / צהוב — 89.90 ₪</option><option value="48880938385582">6.5 מ׳ / 30 נורות / כחול — 89.90 ₪</option><option value="48880938418350">6.5 מ׳ / 30 נורות / צבעוני — 89.90 ₪</option><option value="48880938451118">6.5 מ׳ / 30 נורות / לבן — 89.90 ₪</option>
+            <option value="48880938483886">9.5 מ׳ / 50 נורות / צהוב — 99.90 ₪</option><option value="48880938516654">9.5 מ׳ / 50 נורות / כחול — 99.90 ₪</option><option value="48880938549422">9.5 מ׳ / 50 נורות / צבעוני — 99.90 ₪</option><option value="48880938582190">9.5 מ׳ / 50 נורות / לבן — 99.90 ₪</option>
+            <option value="48880938614958">11 מ׳ / 60 נורות / צהוב — 109.90 ₪</option><option value="48880938647726">11 מ׳ / 60 נורות / כחול — 109.90 ₪</option><option value="48880938680494">11 מ׳ / 60 נורות / צבעוני — 109.90 ₪</option><option value="48880938713262">11 מ׳ / 60 נורות / לבן — 109.90 ₪</option>
+            <option value="48880938746030">13 מ׳ / 100 נורות / צהוב — 129.90 ₪</option><option value="48880938778798">13 מ׳ / 100 נורות / כחול — 129.90 ₪</option><option value="48880938811566">13 מ׳ / 100 נורות / צבעוני — 129.90 ₪</option><option value="48880938844334">13 מ׳ / 100 נורות / לבן — 129.90 ₪</option>
+            <option value="48880938877102">22 מ׳ / 200 נורות / צהוב — 179.90 ₪</option><option value="48880938909870">22 מ׳ / 200 נורות / כחול — 179.90 ₪</option><option value="48880938942638">22 מ׳ / 200 נורות / צבעוני — 179.90 ₪</option><option value="48880938975406">22 מ׳ / 200 נורות / לבן — 179.90 ₪</option>
+          </select>
+        </div>
+      </noscript>
+
+      <div class="act">
+        <div class="sum"><span class="sel" data-sel>5 מ׳ / 20 נורות · צהוב</span><span class="price" data-price><bdi>89.90</bdi> ₪</span></div>
+        <button class="btn" type="submit">הוספה לסל</button>
+      </div>
+    </form>
+
+    <div class="advice">
+      <span class="k">איך בוחרים אורך</span>
+      <blockquote>מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.<cite>מתוך תיאור המוצר</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · "what could go wrong?" ================= -->
+<section class="risk beat" id="b5">
+  <div class="stars" style="--stars:.3"></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">05 · לפני, לא אחרי</p>
+      <p class="q">«ומה יכול <em>להשתבש?</em>»</p>
+      <p class="big"><bdi>8–10</bdi><small>שעות עבודה לאחר טעינה מלאה — בהתאם לתנאי הסביבה</small></p>
+    </div>
+    <div>
+      <p class="a" style="margin-bottom:22px"><b>שלושה דברים שכדאי לדעת עכשיו,</b> ולא כשהיא כבר תלויה:</p>
+      <div class="facts">
+        <div class="fact"><b>טעינה סולארית</b><p>הפאנל נטען מהשמש ביום; השרשרת נדלקת עם החשכה במצב התאורה שבחרתם. יום עם מעט שמש — ערב עם פחות שעות אור.</p></div>
+        <div class="fact"><b>עמידות <bdi>IP65</bdi></b><p>מיועדת להישאר בחוץ — בגינה ובמרפסת, בתנאי מזג אוויר משתנים.</p></div>
+        <div class="fact"><b>8 מצבי תאורה</b><p>אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע. בוחרים פעם אחת; בערב הבא היא נדלקת באותו מצב.</p></div>
+      </div>
+      <p class="unknown">מה שלא כתוב כאן — למשל מידות הכדור או אורך הכבל אל הפאנל — לא מאומת אצלנו, ולכן לא נכתוב אותו כעובדה.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 · "what happens after I click?" — the rail ================= -->
+<section class="after beat" id="b6">
+  <div class="stars" style="--stars:.45"></div>
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">06 · אחרי הלחיצה</p>
+      <p class="q">«ומה קורה <em>אחרי שאני לוחץ?</em>»</p>
+      <p class="a"><b>ארבעה מספרים, בגדול, לפני שמשלמים.</b></p>
+    </div>
+    <div class="rail">
+      <div class="stop">
+        <div class="n"><bdi>0</bdi><small>₪</small></div>
+        <div class="t"><b>משלוח לנקודת איסוף — חינם.</b><p>שליח עד הבית: <bdi>29.90</bdi> ₪. המחיר כולל מס.</p></div>
+      </div>
+      <div class="stop">
+        <div class="n"><bdi>8–17</bdi><small>ימי עסקים</small></div>
+        <div class="t"><b>מרגע ההזמנה עד הדלת.</b><p>1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן זה כתוב כאן, ולא מתגלה אחרי.</p></div>
+      </div>
+      <div class="stop">
+        <div class="n"><bdi>14</bdi><small>יום</small></div>
+        <div class="t"><b>ביטול עסקה לפי חוק הגנת הצרכן.</b><p>עד 14 יום מקבלת המוצר. דמי ביטול עד 5% ממחיר העסקה או <bdi>100</bdi> ₪ — הנמוך מביניהם.</p></div>
+      </div>
+      <div class="stop">
+        <div class="n"><bdi>1</bdi><small>תמונה</small></div>
+        <div class="t"><b>לפני שמזמינים — תמונה של המקום.</b><p>נבדוק התאמה, ואם היא לא מתאימה, נגיד. <a href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%92%D7%A8%D7%99%D7%9C%D7%A0%D7%93%D7%AA%20%D7%9B%D7%93%D7%95%D7%A8%D7%99%20%D7%A7%D7%A8%D7%99%D7%A1%D7%98%D7%9C&amp;body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D.">לשלוח תמונה של המקום</a></p></div>
+      </div>
+    </div>
+    <div class="again" data-buyview>
+      <p class="sel"><b>גרילנדת כדורי קריסטל סולארית</b><span data-sel>5 מ׳ / 20 נורות · צהוב</span> · <a class="link" href="#b4" style="border:0;padding:0;font-size:inherit">לשנות</a></p>
+      <div class="r"><span class="price" data-price><bdi>89.90</bdi> ₪</span><button class="btn" type="submit" form="buy">הוספה לסל</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 · "why here?" ================= -->
+<section class="why beat" id="b7">
+  <div class="stars" style="--stars:.55"></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">07 · שאלה הוגנת</p>
+      <p class="q">«ולמה אצלכם, ולא בחנות ענק באינטרנט?»</p>
+      <p class="a"><b>כי אמרנו לכם למעלה מתי היא לא מתאימה.</b> כי הכל כאן כתוב בעברית — ורק מה שידוע לנו. וכי יש כאן בן אדם לשאול לפני שמזמינים.</p>
+    </div>
+    <div>
+      <blockquote>«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»<cite>מתוך «מי אנחנו», elmsnest.com</cite></blockquote>
+      <a class="link" href="#">מי אנחנו <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RELATED — same place, the catalogue card ================= -->
+<section class="more" id="more">
+  <div class="stars" style="--stars:.55"></div>
+  <div class="wrap">
+    <div class="head">
+      <h2>עוד שלוש למרפסת ולפינת הישיבה</h2>
+      <p>אותו מקום, אותה מטרה — אווירה. מחיר אחד לכל אחת, בלי כוכבים ובלי «נמכר ביותר».</p>
+    </div>
+    <div class="floor">
+      <article class="card" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-edison-string-lights-3.jpg" alt="גרילנדת נורות אדיסון סולארית מעל שולחן בערב" loading="lazy" width="1000" height="1000"></div>
+        <span class="k">מרפסת ופינת ישיבה</span>
+        <h3>גרילנדת נורות אדיסון סולארית – 5 או 8 מטר</h3>
+        <div class="r"><span class="price">מ־<bdi>139.90</bdi> ₪</span><a href="#">לבחירת אורך</a></div>
+      </article>
+      <article class="card" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-firefly-garden-lights-3.jpg" alt="תאורת גחליליות סולארית בין שרכים בלילה" loading="lazy" width="1000" height="1000"></div>
+        <span class="k">מרפסת ופינת ישיבה</span>
+        <h3>תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות</h3>
+        <div class="r"><span class="price"><bdi>99.90</bdi> ₪</span><form method="post" action="/cart/add"><input type="hidden" name="id" value="solar-firefly-garden-lights"><input type="hidden" name="quantity" value="1"><button type="submit">הוספה לסל</button></form></div>
+      </article>
+      <article class="card" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-rope-string-lights-2.jpg" alt="שרשרת חבל סולארית כרוכה על גזע עץ בלילה" loading="lazy" width="1000" height="1000" style="object-position:50% 100%"></div>
+        <span class="k">מרפסת ופינת ישיבה</span>
+        <h3>שרשרת חבל סולארית לחוץ – 50 עד 300 נורות <bdi>LED</bdi></h3>
+        <div class="r"><span class="price">מ־<bdi>89.90</bdi> ₪</span><a href="#">לבחירת אורך</a></div>
+      </article>
+    </div>
+    <div class="all"><a class="link" href="#">לכל הגרילנדות והתאורה הדקורטיבית <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ================= 08 · "can I do something smaller than buying?" ================= -->
+<section class="small beat" id="b8">
+  <div class="stars" style="--stars:.7"></div>
+  <div class="wrap">
+    <p class="eyebrow">08 · הצעד הקטן</p>
+    <p class="q">«ואפשר לעשות משהו קטן יותר מלקנות?»</p>
+    <p class="a"><b>כן.</b> שלחו תמונה של המרפסת — נגיד אם היא מתאימה, ואם לא, נגיד גם את זה. או התחילו ב־5 מטר ב־<bdi>89.90</bdi> ₪, ותוסיפו אורך אחר כך.</p>
+    <p class="end" data-lamp="manual">שלחו תמונה של המקום.</p>
+    <div class="ctas">
+      <a class="btn" href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%92%D7%A8%D7%99%D7%9C%D7%A0%D7%93%D7%AA%20%D7%9B%D7%93%D7%95%D7%A8%D7%99%20%D7%A7%D7%A8%D7%99%D7%A1%D7%98%D7%9C&amp;body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D.">לשלוח תמונה של המקום</a>
+      <span class="or">או</span>
+      <button class="btn btn-ghost" type="button" data-start>להתחיל ב־5 מ׳ / 20 נורות — <bdi>89.90</bdi> ₪</button>
+    </div>
+    <p class="fine">התמונה נשלחת במייל אל info@elmsnest.com — עונים לפני שאתם מזמינים, לא אחרי.</p>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER (one dark block; Kalles footer, not designed here) ================= -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <img class="logo" src="../../../../assets/img/logo.png" alt="ElmsNest" width="56" height="56">
+        <p class="tag">שאלות על מוצר או על התאמה למקום? כתבו לנו: <a href="mailto:info@elmsnest.com" style="color:var(--glow)">info@elmsnest.com</a></p>
+      </div>
+      <div><h4>קולקציות</h4><ul><li><a href="#">שביל, עמוד וגינה</a></li><li><a href="#">תאורת קיר</a></li><li><a href="#">ספוטים ופרוז׳קטורים</a></li><li><a href="#">גרילנדות ודקורטיבי</a></li></ul></div>
+      <div><h4>מידע</h4><ul><li><a href="#">מדריך לבחירת תאורה לגינה</a></li><li><a href="#">מי אנחנו</a></li><li><a href="#">משלוחים ואספקה</a></li><li><a href="#">זמני טיפול</a></li><li><a href="#">מדיניות ביטולים</a></li><li><a href="#">שאלות נפוצות</a></li></ul></div>
+      <div><h4>יצירת קשר</h4><ul><li><a href="#">עמוד יצירת קשר</a></li><li><a href="mailto:info@elmsnest.com">לשליחת תמונה של המקום</a></li></ul></div>
+    </div>
+    <div class="bottom"><span>ElmsNest © 2026</span><a href="#">תנאי משלוח וביטול</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- lamps light on arrival (once; never re-dim) ---------- */
+  var lamps = Array.prototype.slice.call(document.querySelectorAll('[data-lamp]'));
+  var manual = lamps.filter(function(l){ return l.getAttribute('data-lamp') === 'manual'; });
+  var auto = lamps.filter(function(l){ return l.getAttribute('data-lamp') !== 'manual'; });
+  function light(el){ el.classList.add('lit'); }
+  if (rm || !('IntersectionObserver' in window)) {
+    lamps.forEach(light);
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { light(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+    auto.forEach(function(el){ io.observe(el); });
+    var io2 = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { light(e.target); io2.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    manual.forEach(function(el){ io2.observe(el); });
+  }
+  function sweep(){
+    var vh = window.innerHeight;
+    lamps.forEach(function(el){
+      if (el.classList.contains('lit')) return;
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.82 && r.bottom > vh * 0.1) light(el);
+    });
+  }
+
+  /* ---------- the dark lamp: try to switch it on — it flickers and stays dark ---------- */
+  document.querySelectorAll('.lamp.off').forEach(function(el){
+    function tryOn(){ if (rm) return; el.classList.remove('try'); void el.offsetWidth; el.classList.add('try'); }
+    el.addEventListener('click', tryOn);
+    el.addEventListener('mouseenter', tryOn);
+    el.addEventListener('keydown', function(ev){ if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); tryOn(); } });
+  });
+
+  /* ---------- the variant ledger: 6 lengths × 4 colours → one variant id, one price ---------- */
+  var V = [
+    [48880938221742,48880938254510,48880938287278,48880938320046],
+    [48880938352814,48880938385582,48880938418350,48880938451118],
+    [48880938483886,48880938516654,48880938549422,48880938582190],
+    [48880938614958,48880938647726,48880938680494,48880938713262],
+    [48880938746030,48880938778798,48880938811566,48880938844334],
+    [48880938877102,48880938909870,48880938942638,48880938975406]
+  ];
+  var COL = ['צהוב','כחול','צבעוני','לבן'];
+  var COLC = [['#ffd394'],['#8fb8ff'],['#ffd394','#8fb8ff','#ff8fa3','#9dffb0'],['#fff4dd']];
+  var form = document.getElementById('buy');
+  var wire = form.querySelector('[data-wire]');
+  var bulbsG = form.querySelector('[data-bulbs]');
+  var scale = form.querySelector('[data-scale]');
+  var lens = Array.prototype.slice.call(form.querySelectorAll('input[name="len"]'));
+  var cols = Array.prototype.slice.call(form.querySelectorAll('input[name="col"]'));
+  var total = wire.getTotalLength();
+  var MAX = 22;
+  var NS = 'http://www.w3.org/2000/svg';
+
+  /* scale ticks: one per length, at its true position along the string */
+  lens.forEach(function(inp){
+    var m = parseFloat(inp.getAttribute('data-m'));
+    var t = document.createElement('span'); t.className = 'tick'; t.setAttribute('data-m', m);
+    t.style.insetInlineStart = (m / MAX * 100) + '%';
+    t.innerHTML = '<bdi>' + m + '</bdi>';
+    scale.appendChild(t);
+  });
+  var ticks = Array.prototype.slice.call(scale.querySelectorAll('.tick'));
+
+  /* pre-build 200 bulbs along the path; light the first N of the visible fraction */
+  var bulbs = [];
+  for (var i = 0; i < 200; i++) {
+    var g = document.createElementNS(NS, 'g');
+    var h = document.createElementNS(NS, 'circle'); h.setAttribute('r', '8'); h.setAttribute('fill', 'url(#halo)');
+    var c = document.createElementNS(NS, 'circle'); c.setAttribute('r', '2.6');
+    g.appendChild(h); g.appendChild(c); g.style.opacity = '0'; bulbsG.appendChild(g);
+    bulbs.push({ g: g, c: c, h: h });
+  }
+  function place(N, frac, colours){
+    var vis = total * frac;
+    for (var i = 0; i < 200; i++) {
+      var b = bulbs[i];
+      if (i < N) {
+        var p = wire.getPointAtLength(vis * (i + .5) / N);
+        b.g.setAttribute('transform', 'translate(' + p.x.toFixed(1) + ' ' + (p.y + 9).toFixed(1) + ')');
+        b.c.setAttribute('fill', colours[i % colours.length]);
+        b.g.style.opacity = '1';
+      } else { b.g.style.opacity = '0'; }
+    }
+  }
+  function current(){
+    var L = lens.filter(function(i){ return i.checked; })[0] || lens[0];
+    var C = cols.filter(function(i){ return i.checked; })[0] || cols[0];
+    return { li: +L.value, ci: +C.value, m: parseFloat(L.getAttribute('data-m')), n: +L.getAttribute('data-bulbs'), price: L.getAttribute('data-price') };
+  }
+  function render(){
+    var s = current();
+    form.querySelector('[data-vid]').value = V[s.li][s.ci];
+    var frac = s.m / MAX;
+    wire.style.strokeDasharray = total; wire.style.strokeDashoffset = total * (1 - frac);
+    place(s.n, frac, COLC[s.ci]);
+    ticks.forEach(function(t){ t.classList.toggle('cur', parseFloat(t.getAttribute('data-m')) === s.m); });
+    var sel = s.m + ' מ׳ / ' + s.n + ' נורות · ' + COL[s.ci];
+    document.querySelectorAll('[data-sel]').forEach(function(el){ el.textContent = sel; });
+    document.querySelectorAll('[data-price]').forEach(function(el){ el.innerHTML = '<bdi>' + s.price + '</bdi> ₪'; });
+    var bulbCol = COLC[s.ci][0];
+    document.documentElement.style.setProperty('--bulb', bulbCol);
+  }
+  lens.concat(cols).forEach(function(i){ i.addEventListener('change', render); });
+  window.addEventListener('resize', function(){ total = wire.getTotalLength(); render(); });
+  render();
+
+  /* "start with 5 m" — the small step: select the shortest, scroll to the ledger */
+  var start = document.querySelector('[data-start]');
+  if (start) start.addEventListener('click', function(){
+    lens[0].checked = true; cols[0].checked = true; render();
+    document.getElementById('b4').scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  /* ---------- sticky buy: shown whenever no inline buy form is in view ---------- */
+  var sticks = Array.prototype.slice.call(document.querySelectorAll('.stick'));
+  var views = Array.prototype.slice.call(document.querySelectorAll('[data-buyview]'));
+  var inView = {};
+  function updateStick(){
+    var any = views.some(function(v){ return inView[v.id || (v.id = 'bv' + Math.random())]; });
+    var past = window.scrollY > 120;
+    sticks.forEach(function(s){ s.classList.toggle('show', !any && past); });
+  }
+  if ('IntersectionObserver' in window) {
+    var io3 = new IntersectionObserver(function(es){
+      es.forEach(function(e){ inView[e.target.id || (e.target.id = 'bv' + Math.random())] = e.isIntersecting; });
+      updateStick();
+    }, { threshold: 0.15 });
+    views.forEach(function(v){ io3.observe(v); });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){ sweep(); updateStick(); ticking = false; });
+  }, { passive: true });
+  updateStick();
+
+  /* smooth anchors */
+  document.querySelectorAll('a[href^="#b"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.querySelector(a.getAttribute('href'));
+      if (!t) return; e.preventDefault();
+      t.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+
+  /* mockup: forms don't post anywhere */
+  document.querySelectorAll('form').forEach(function(f){ f.addEventListener('submit', function(e){ e.preventDefault(); var btn = e.submitter || f.querySelector('button'); var t = btn.textContent; btn.textContent = 'נוסף לסל'; setTimeout(function(){ btn.textContent = t; }, 1600); }); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות · ElmsNest</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<link rel="stylesheet" href="switch.css">
+</head>
+<body>
+
+<!-- ================= HEADER (static Kalles-like strip) ================= -->
+<header class="hdr">
+  <div class="wrap">
+    <nav class="r" aria-label="ניווט ראשי">
+      <button type="button" class="burger" aria-label="תפריט"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+      <a href="#">דף הבית</a><a href="#">קולקציות</a><a href="#">מדריך לבחירה</a>
+    </nav>
+    <a class="logo" href="#" aria-label="ElmsNest — דף הבית"><img src="../../../../assets/img/logo.png" alt="" width="46" height="46"></a>
+    <nav class="l" aria-label="ניווט משני">
+      <a href="#">מי אנחנו</a><a href="#">יצירת קשר</a>
+      <span class="icons">
+        <button type="button" aria-label="חיפוש"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <a href="#" aria-label="סל קניות"><svg viewBox="0 0 24 24"><path d="M4 5h2l2.2 10.2a1 1 0 0 0 1 .8h8.4a1 1 0 0 0 1-.8L20 9H7"/><circle cx="10" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg></a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ================= 1. THE STAGE — choose a length, the string lights ================= -->
+<section class="stage" id="stage" aria-labelledby="h1">
+  <div class="stage__bg" data-lamp><div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-2.jpg" alt="גרילנדת כדורי קריסטל תלויה על פרגולת עץ בלילה" width="1000" height="1000" fetchpriority="high"></div></div>
+  <div class="stage__veil"></div>
+  <svg class="string" id="string1" aria-hidden="true"></svg>
+
+  <div class="stage__body wrap">
+    <div class="stage__txt">
+      <p class="kicker">מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה</p>
+      <h1 class="h" id="h1">הערב מתחיל<br><em>מהכדור הראשון.</em></h1>
+      <div class="stage__zone" id="zone" aria-hidden="true"></div>
+      <p class="ptitle">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</p>
+      <div class="colour" role="radiogroup" aria-label="צבע תאורה">
+        <span>צבע האור</span>
+        <label style="--dot:#ffd394"><input type="radio" name="colour" value="0" checked><span>צהוב</span></label>
+        <label style="--dot:#5b9dff"><input type="radio" name="colour" value="1"><span>כחול</span></label>
+        <label style="--dot:conic-gradient(#ff7a6b,#7dffa0,#5b9dff,#ffd394,#ff7a6b)"><input type="radio" name="colour" value="2"><span>צבעוני</span></label>
+        <label style="--dot:#e9f0ff"><input type="radio" name="colour" value="3"><span>לבן</span></label>
+      </div>
+    </div>
+    <div class="stage__buy" id="buy-anchor">
+      <div class="stage__price">
+        <span class="price" aria-live="polite"><bdi id="price">89.90</bdi> ₪</span>
+        <span class="stage__sel" id="sel">5 מ׳ · 20 נורות · צהוב</span>
+      </div>
+      <form method="post" action="/cart/add" id="buy">
+        <input type="hidden" name="id" id="vid" value="48880938221742">
+        <input type="hidden" name="quantity" value="1">
+        <button class="btn" type="submit">הוספה לסל</button>
+      </form>
+      <p class="stage__terms">משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום · <a href="#terms">לפני שמזמינים אפשר לשלוח תמונה של המקום</a></p>
+    </div>
+  </div>
+
+  <div class="rail wrap" id="rail">
+    <p class="rail__label"><span>אורך ומספר נורות — המחיר לפי האורך בלבד</span><small>הצבע לא משנה את המחיר</small></p>
+    <div class="rail__track" role="radiogroup" aria-label="אורך ומספר נורות">
+      <i class="rail__fill" id="fill" aria-hidden="true"></i>
+      <button class="stop" role="radio" aria-checked="true" data-i="0"><b><bdi>5</bdi><small>מ׳</small></b><span>20 נורות</span><i><bdi>89.90</bdi> ₪</i></button>
+      <button class="stop" role="radio" aria-checked="false" data-i="1"><b><bdi>6.5</bdi><small>מ׳</small></b><span>30 נורות</span><i><bdi>89.90</bdi> ₪</i></button>
+      <button class="stop" role="radio" aria-checked="false" data-i="2"><b><bdi>9.5</bdi><small>מ׳</small></b><span>50 נורות</span><i><bdi>99.90</bdi> ₪</i></button>
+      <button class="stop" role="radio" aria-checked="false" data-i="3"><b><bdi>11</bdi><small>מ׳</small></b><span>60 נורות</span><i><bdi>109.90</bdi> ₪</i></button>
+      <button class="stop" role="radio" aria-checked="false" data-i="4"><b><bdi>13</bdi><small>מ׳</small></b><span>100 נורות</span><i><bdi>129.90</bdi> ₪</i></button>
+      <button class="stop" role="radio" aria-checked="false" data-i="5"><b><bdi>22</bdi><small>מ׳</small></b><span>200 נורות</span><i><bdi>179.90</bdi> ₪</i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. THE SWITCH — when it is not for you ================= -->
+<section class="sw" id="fit">
+  <div class="stars" style="--stars:.22"></div>
+  <div class="sw__head wrap">
+    <p class="eyebrow">02 · לפני שקונים</p>
+    <h2 class="h">יש מתג אחד<br>שהיא לא מכירה.</h2>
+    <p class="lead">גרילנדה יוצרת אווירה סביב פינת הישיבה. היא לא מאירה מרפסת. העבירו את המתג ותראו.</p>
+  </div>
+  <div class="toggle">
+    <button type="button" role="radio" aria-checked="true" data-mode="on"><span class="tag">מתאים כדי</span><b>ליצור אווירה</b></button>
+    <span class="knob" id="knob" role="switch" aria-checked="true" tabindex="0" aria-label="מתג: אווירה או אור חזק"><i></i></span>
+    <button type="button" role="radio" aria-checked="false" data-mode="off"><span class="tag">לא מתאים כש־</span><b>צריך אור חזק — זו אינה מטרתה</b></button>
+  </div>
+  <div class="sw__stage" data-lamp id="swstage">
+    <svg class="string" id="string2" aria-hidden="true"></svg>
+    <p class="sw__hint">לא נדלק. זו הנקודה.</p>
+  </div>
+  <p class="sw__after">לאור חזק על קיר או בכניסה יש אצלנו מקום אחר — <a class="link" href="#">תאורת קיר</a>. לאווירה, זו.</p>
+</section>
+
+<!-- ================= 3. NIGHT GALLERY ================= -->
+<section class="gal" id="night">
+  <div class="stars" style="--stars:.3"></div>
+  <div class="gal__grid">
+    <figure class="gal__big" data-lamp>
+      <div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="כדור קריסטל אחד מקרוב, מלא בועות אור, ומאחוריו הנורות הבאות בשרשרת" loading="lazy" width="1000" height="1000"></div>
+      <figcaption><span><b>מקרוב.</b> הכדורים השקופים שוברים את האור — הנצנוץ בא מהכדור, לא מהנורה. זה מה שנראה בתמונות.</span></figcaption>
+    </figure>
+    <div class="gal__txt">
+      <p class="eyebrow">03 · בלילה</p>
+      <h2 class="h">מקרוב, הכדור<br>הוא האור.</h2>
+      <p class="lead">תולים סביב אזור הישיבה, לאורך גדר או בתוך אוהל. האור משתקף בתוך כל כדור — ולכן חלל פשוט נראה חגיגי.</p>
+    </div>
+    <figure class="gal__small" data-lamp>
+      <div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-2.jpg" alt="השרשרת על פרגולת עץ, כדור אחד ליד כל עלה" loading="lazy" width="1000" height="1000"></div>
+      <figcaption><span><b>קנה מידה.</b> על פרגולה: כל כדור מול עלה. <bdi>5</bdi> מטר מכסים פינה אחת; <bdi>22</bdi> מטר עוטפים חלל שלם.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 4. THE LEDGER — six strings, six prices ================= -->
+<section class="led" id="lengths">
+  <div class="stars" style="--stars:.34"></div>
+  <div class="wrap">
+    <div class="led__head">
+      <div>
+        <p class="eyebrow">04 · מה מקבלים</p>
+        <h2 class="h">ששה אורכים.<br>הצבע לא משנה את המחיר.</h2>
+      </div>
+      <p class="lead">מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.</p>
+    </div>
+    <ol class="led__rows" id="rows">
+      <li class="row on" data-i="0">
+        <button type="button" class="row__pick" aria-label="5 מטר, 20 נורות, 89.90 ₪"><span class="n"><bdi>5</bdi><small>מ׳</small></span><svg class="mini" data-m="5" data-b="20" aria-hidden="true"></svg><span class="b">20 נורות</span><span class="price"><bdi>89.90</bdi> ₪</span><span class="pm"><bdi>17.98</bdi> ₪ למטר</span></button>
+        <form method="post" action="/cart/add" class="row__form" id="f0"><select name="id" aria-label="צבע תאורה"><option value="48880938221742">צהוב</option><option value="48880938254510">כחול</option><option value="48880938287278">צבעוני</option><option value="48880938320046">לבן</option></select><input type="hidden" name="quantity" value="1"><button class="btn btn-ghost btn-sm" type="submit">הוספה לסל</button></form>
+      </li>
+      <li class="row" data-i="1">
+        <button type="button" class="row__pick" aria-label="6.5 מטר, 30 נורות, 89.90 ₪"><span class="n"><bdi>6.5</bdi><small>מ׳</small></span><svg class="mini" data-m="6.5" data-b="30" aria-hidden="true"></svg><span class="b">30 נורות</span><span class="price"><bdi>89.90</bdi> ₪</span><span class="pm"><bdi>13.83</bdi> ₪ למטר</span></button>
+        <form method="post" action="/cart/add" class="row__form" id="f1"><select name="id" aria-label="צבע תאורה"><option value="48880938352814">צהוב</option><option value="48880938385582">כחול</option><option value="48880938418350">צבעוני</option><option value="48880938451118">לבן</option></select><input type="hidden" name="quantity" value="1"><button class="btn btn-ghost btn-sm" type="submit">הוספה לסל</button></form>
+      </li>
+      <li class="row" data-i="2">
+        <button type="button" class="row__pick" aria-label="9.5 מטר, 50 נורות, 99.90 ₪"><span class="n"><bdi>9.5</bdi><small>מ׳</small></span><svg class="mini" data-m="9.5" data-b="50" aria-hidden="true"></svg><span class="b">50 נורות</span><span class="price"><bdi>99.90</bdi> ₪</span><span class="pm"><bdi>10.52</bdi> ₪ למטר</span></button>
+        <form method="post" action="/cart/add" class="row__form" id="f2"><select name="id" aria-label="צבע תאורה"><option value="48880938483886">צהוב</option><option value="48880938516654">כחול</option><option value="48880938549422">צבעוני</option><option value="48880938582190">לבן</option></select><input type="hidden" name="quantity" value="1"><button class="btn btn-ghost btn-sm" type="submit">הוספה לסל</button></form>
+      </li>
+      <li class="row" data-i="3">
+        <button type="button" class="row__pick" aria-label="11 מטר, 60 נורות, 109.90 ₪"><span class="n"><bdi>11</bdi><small>מ׳</small></span><svg class="mini" data-m="11" data-b="60" aria-hidden="true"></svg><span class="b">60 נורות</span><span class="price"><bdi>109.90</bdi> ₪</span><span class="pm"><bdi>9.99</bdi> ₪ למטר</span></button>
+        <form method="post" action="/cart/add" class="row__form" id="f3"><select name="id" aria-label="צבע תאורה"><option value="48880938614958">צהוב</option><option value="48880938647726">כחול</option><option value="48880938680494">צבעוני</option><option value="48880938713262">לבן</option></select><input type="hidden" name="quantity" value="1"><button class="btn btn-ghost btn-sm" type="submit">הוספה לסל</button></form>
+      </li>
+      <li class="row" data-i="4">
+        <button type="button" class="row__pick" aria-label="13 מטר, 100 נורות, 129.90 ₪"><span class="n"><bdi>13</bdi><small>מ׳</small></span><svg class="mini" data-m="13" data-b="100" aria-hidden="true"></svg><span class="b">100 נורות</span><span class="price"><bdi>129.90</bdi> ₪</span><span class="pm"><bdi>9.99</bdi> ₪ למטר</span></button>
+        <form method="post" action="/cart/add" class="row__form" id="f4"><select name="id" aria-label="צבע תאורה"><option value="48880938746030">צהוב</option><option value="48880938778798">כחול</option><option value="48880938811566">צבעוני</option><option value="48880938844334">לבן</option></select><input type="hidden" name="quantity" value="1"><button class="btn btn-ghost btn-sm" type="submit">הוספה לסל</button></form>
+      </li>
+      <li class="row" data-i="5">
+        <button type="button" class="row__pick" aria-label="22 מטר, 200 נורות, 179.90 ₪"><span class="n"><bdi>22</bdi><small>מ׳</small></span><svg class="mini" data-m="22" data-b="200" aria-hidden="true"></svg><span class="b">200 נורות</span><span class="price"><bdi>179.90</bdi> ₪</span><span class="pm"><bdi>8.18</bdi> ₪ למטר</span></button>
+        <form method="post" action="/cart/add" class="row__form" id="f5"><select name="id" aria-label="צבע תאורה"><option value="48880938877102">צהוב</option><option value="48880938909870">כחול</option><option value="48880938942638">צבעוני</option><option value="48880938975406">לבן</option></select><input type="hidden" name="quantity" value="1"><button class="btn btn-ghost btn-sm" type="submit">הוספה לסל</button></form>
+      </li>
+    </ol>
+    <p class="led__after">לחיצה על שורה מדליקה אותה בבמה למעלה. הצבע שנבחר שם — צהוב, כחול, צבעוני או לבן — הוא הצבע שנוסף לסל.</p>
+  </div>
+</section>
+
+<!-- ================= 5. THE FACTS ================= -->
+<section class="facts" id="facts">
+  <div class="stars" style="--stars:.4"></div>
+  <div class="wrap facts__grid">
+    <div class="facts__word" data-lamp>
+      <span class="big"><bdi>IP65</bdi></span>
+      <span class="sub">מיועדת להישאר בחוץ — בגינה ובמרפסת, בתנאי מזג אוויר משתנים.</span>
+    </div>
+    <div class="facts__list">
+      <p class="eyebrow">05 · מה שכדאי לדעת</p>
+      <h2 class="h">מה שכתוב כאן — נכון.<br>מה שלא ידוע — לא כתוב.</h2>
+      <dl>
+        <div><dt>מקור האנרגיה</dt><dd>טעינה סולארית. הפאנל נטען מהשמש, והשרשרת נדלקת עם החשכה במצב התאורה שבחרתם.<small>ולכן הפאנל צריך מקום שמקבל שמש ביום.</small></dd></div>
+        <div><dt>זמן עבודה</dt><dd>כ־<bdi>8–10</bdi> שעות עבודה לאחר טעינה מלאה.</dd></div>
+        <div><dt>עמידות</dt><dd><bdi>IP65</bdi> — שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</dd></div>
+        <div><dt>מצבי תאורה</dt><dd><bdi>8</bdi> מצבים: אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע.</dd></div>
+        <div><dt>אורך ונורות</dt><dd><bdi>5–22</bdi> מטר, <bdi>20–200</bdi> נורות <bdi>LED</bdi>.</dd></div>
+        <div><dt>צבע האור</dt><dd>צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. FOUR NUMBERS ================= -->
+<section class="terms" id="terms">
+  <div class="stars" style="--stars:.5"></div>
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">06 · אחרי הלחיצה</p>
+        <h2 class="h">ארבעה מספרים לפני שמשלמים</h2>
+      </div>
+      <p>לא אותיות קטנות. אותיות גדולות, במקום גלוי, לפני שמשלמים.</p>
+    </div>
+    <div class="ledger">
+      <div class="line">
+        <div class="n"><bdi>0</bdi><small>₪</small></div>
+        <div class="t"><b>משלוח לנקודת איסוף — חינם.</b><p>שליח עד הבית: <bdi>29.90</bdi> ₪.</p></div>
+      </div>
+      <div class="line">
+        <div class="n"><bdi>8–17</bdi><small>ימי עסקים</small></div>
+        <div class="t"><b>מרגע ההזמנה עד הדלת.</b><p><bdi>1–3</bdi> ימי טיפול ועוד <bdi>7–14</bdi> ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן זה כתוב כאן, לא אחרי.</p></div>
+      </div>
+      <div class="line">
+        <div class="n"><bdi>14</bdi><small>יום</small></div>
+        <div class="t"><b>ביטול עסקה לפי חוק הגנת הצרכן.</b><p>עד <bdi>14</bdi> יום מקבלת המוצר. דמי ביטול עד <bdi>5%</bdi> ממחיר העסקה או <bdi>100</bdi> ₪ — הנמוך מביניהם.</p></div>
+      </div>
+      <div class="line">
+        <div class="n"><bdi>1</bdi><small>תמונה</small></div>
+        <div class="t"><b>שלחו תמונה של המקום — נבדוק התאמה לפני שתזמינו.</b><p>ואם המוצר לא מתאים, נגיד. <a href="mailto:info@elmsnest.com?subject=בדיקת התאמה — גרילנדת כדורי קריסטל סולארית">לשלוח תמונה של המקום</a></p></div>
+      </div>
+    </div>
+    <p class="foot"><a href="#">משלוחים ואספקה</a><a href="#">זמני טיפול</a><a href="#">מדיניות ביטולים</a><a href="#">שאלות נפוצות</a></p>
+  </div>
+</section>
+
+<!-- ================= 7. WHY HERE + THE SMALL STEP ================= -->
+<section class="ask" id="ask">
+  <div class="stars" style="--stars:.55"></div>
+  <div class="wrap ask__grid">
+    <div class="ask__txt">
+      <p class="eyebrow">07 · למה כאן</p>
+      <h2 class="h">עוד לא בטוחים?<br><em>לא צריך להיות.</em></h2>
+      <p class="lead">אמרנו למעלה מתי היא לא מתאימה. המפרט בעברית, ומה שלא ידוע לא כתוב. ולפני שמזמינים — יש למי לשלוח תמונה, או להתחיל מהאורך הקצר.</p>
+      <div class="ctas">
+        <a class="btn btn-ghost" href="mailto:info@elmsnest.com?subject=בדיקת התאמה — גרילנדת כדורי קריסטל סולארית">לשלוח תמונה של המקום</a>
+        <button class="btn" type="button" id="small-step">להתחיל מ־5 מטר — <bdi>89.90</bdi> ₪</button>
+      </div>
+    </div>
+    <div class="ask__q">
+      <blockquote>«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»<cite>מתוך «מי אנחנו», elmsnest.com</cite></blockquote>
+      <p>חנות אחת, קטגוריה אחת: תאורת חוץ לפי המקום. שביל, קיר, גינה, מרפסת — ולכל מקום גם המצב שבו המוצר לא יעבוד.</p>
+      <a class="link" href="#">מי אנחנו <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. RELATED — more for the balcony ================= -->
+<section class="shelf" id="related">
+  <div class="stars" style="--stars:.6"></div>
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">08 · עוד למרפסת</p>
+        <h2 class="h">עוד שלושה שיוצרים אווירה</h2>
+      </div>
+      <p>מאותו מקום — מרפסת ופינת ישיבה. מחיר אחד לכל אחד, בלי כוכבים ובלי «נמכר ביותר».</p>
+    </div>
+    <div class="floor">
+      <article class="obj" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-edison-string-lights-3.jpg" alt="גרילנדת נורות אדיסון סולארית מעל שולחן בלילה" loading="lazy" width="600" height="630"></div>
+        <span class="k">מרפסת · סולארי</span>
+        <h3>גרילנדת נורות אדיסון סולארית – 5 או 8 מטר</h3>
+        <div class="row2"><span class="price">מ־<bdi>139.90</bdi> ₪</span><a href="#">לבחירת אורך</a></div>
+      </article>
+      <article class="obj" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-firefly-garden-lights-3.jpg" alt="תאורת גחליליות סולארית מקרוב בין צמחים" loading="lazy" width="420" height="590"></div>
+        <span class="k">מרפסת · סולארי</span>
+        <h3>תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות</h3>
+        <div class="row2"><span class="price"><bdi>99.90</bdi> ₪</span><form method="post" action="/cart/add" id="f-firefly"><input type="hidden" name="id" value="solar-firefly-garden-lights"><input type="hidden" name="quantity" value="1"><button type="submit">הוספה לסל</button></form></div>
+      </article>
+      <article class="obj" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-rope-string-lights-2.jpg" alt="שרשרת חבל סולארית מלופפת על עץ בלילה" loading="lazy" width="520" height="470" style="object-position:50% 100%"></div>
+        <span class="k">מרפסת · סולארי</span>
+        <h3>שרשרת חבל סולארית לחוץ – 50 עד 300 נורות <bdi>LED</bdi></h3>
+        <div class="row2"><span class="price">מ־<bdi>89.90</bdi> ₪</span><a href="#">לבחירת אורך</a></div>
+      </article>
+    </div>
+    <div class="after"><a class="link" href="#">לכל הגרילנדות והתאורה הדקורטיבית <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER — one dark block ================= -->
+<footer class="ftr" id="contact">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="brand" href="#"><img src="../../../../assets/img/logo.png" alt="" width="52" height="52"><b>ElmsNest</b></a>
+        <p class="tag">תאורת חוץ בלבד, לפי המקום: שביל, קיר, גינה, מרפסת. אם משהו לא מתאים לכם — נגיד לפני שתזמינו.</p>
+      </div>
+      <div>
+        <h4>קולקציות</h4>
+        <ul><li><a href="#">שביל, עמוד וגינה</a></li><li><a href="#">תאורת קיר</a></li><li><a href="#">ספוטים ופרוז׳קטורים</a></li><li><a href="#">גרילנדות ודקורטיבי</a></li></ul>
+      </div>
+      <div>
+        <h4>מידע</h4>
+        <ul><li><a href="#">מדריך לבחירת תאורה לגינה</a></li><li><a href="#">מי אנחנו</a></li><li><a href="#">משלוחים ואספקה</a></li><li><a href="#">זמני טיפול</a></li><li><a href="#">מדיניות ביטולים</a></li><li><a href="#">שאלות נפוצות</a></li></ul>
+      </div>
+      <div>
+        <h4>יצירת קשר</h4>
+        <p style="font-size:15px;color:var(--ink-2);margin-bottom:14px">שאלות על מוצר או על התאמה למקום? כתבו לנו: info@elmsnest.com</p>
+        <a class="mail" href="mailto:info@elmsnest.com?subject=בדיקת התאמה — גרילנדת כדורי קריסטל סולארית">לשלוח תמונה של המקום</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <p>© ElmsNest 2026 · elmsnest.com</p>
+      <p><a href="#">תנאי משלוח וביטול</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= STICKY BUY BAR ================= -->
+<div class="sbar" id="sbar" aria-hidden="true">
+  <div class="wrap">
+    <img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="" width="46" height="46">
+    <div class="t"><b id="sbar-t">5 מ׳ · 20 נורות · צהוב</b>גרילנדת כדורי קריסטל סולארית</div>
+    <span class="price"><bdi id="sbar-p">89.90</bdi> ₪</span>
+    <button class="btn" type="submit" form="buy">הוספה לסל</button>
+  </div>
+</div>
+
+<script src="switch.js"></script>
+<script>
+(function(){
+  var V = [
+    {m:'5',   b:20,  p:89.9,  ids:['48880938221742','48880938254510','48880938287278','48880938320046']},
+    {m:'6.5', b:30,  p:89.9,  ids:['48880938352814','48880938385582','48880938418350','48880938451118']},
+    {m:'9.5', b:50,  p:99.9,  ids:['48880938483886','48880938516654','48880938549422','48880938582190']},
+    {m:'11',  b:60,  p:109.9, ids:['48880938614958','48880938647726','48880938680494','48880938713262']},
+    {m:'13',  b:100, p:129.9, ids:['48880938746030','48880938778798','48880938811566','48880938844334']},
+    {m:'22',  b:200, p:179.9, ids:['48880938877102','48880938909870','48880938942638','48880938975406']}
+  ];
+  var CN = ['צהוב','כחול','צבעוני','לבן'], CK = ['yellow','blue','multi','white'];
+  var L = 0, C = 0, arrived = false;
+  var stage = document.getElementById('stage'), zone = document.getElementById('zone');
+  var svg1 = document.getElementById('string1');
+  var string1 = SW.makeString(svg1, {
+    area: function(W,H){
+      if (W < 720) { var z = zone.getBoundingClientRect(), s = svg1.getBoundingClientRect(); return { top: z.top - s.top + 18, bottom: z.bottom - s.top - 6 }; }
+      return { top: 92, bottom: Math.max(280, H * 0.5) };
+    }
+  });
+  var priceEl = document.getElementById('price'), sel = document.getElementById('sel'), vid = document.getElementById('vid');
+  var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#rows .row'));
+  var fill = document.getElementById('fill'), track = document.querySelector('.rail__track');
+  var sbT = document.getElementById('sbar-t'), sbP = document.getElementById('sbar-p');
+
+  function railFill(){
+    var s = stops[L].getBoundingClientRect(), t = track.getBoundingClientRect();
+    fill.style.width = Math.max(0, t.right - (s.left + s.width/2)) + 'px';
+  }
+  function update(anim){
+    var v = V[L];
+    if (arrived) string1.set(v.b, anim);
+    SW.countTo(priceEl, v.p);
+    var txt = v.m + ' מ׳ · ' + v.b + ' נורות · ' + CN[C];
+    sel.textContent = txt; sbT.textContent = txt; sbP.textContent = SW.fmt(v.p);
+    vid.value = v.ids[C];
+    stops.forEach(function(s,i){ s.setAttribute('aria-checked', String(i===L)); });
+    rows.forEach(function(r,i){ r.classList.toggle('on', i===L); r.querySelector('input[name=id]').value = V[i].ids[C]; });
+    railFill();
+  }
+  stops.forEach(function(s){ s.addEventListener('click', function(){ L = +s.dataset.i; update(true); }); });
+  document.querySelectorAll('input[name=colour]').forEach(function(r){
+    r.addEventListener('change', function(){ C = +r.value; string1.colour(CK[C]); string2.colour(CK[C]); update(false); });
+  });
+  rows.forEach(function(r){
+    var f = r.querySelector('form'); var s = f.querySelector('select'); s.disabled = true;
+    var h = document.createElement('input'); h.type = 'hidden'; h.name = 'id'; h.value = V[+r.dataset.i].ids[0]; f.insertBefore(h, s);
+    r.querySelector('.row__pick').addEventListener('click', function(){ L = +r.dataset.i; update(true); document.getElementById('stage').scrollIntoView({behavior: SW.rm ? 'auto' : 'smooth'}); });
+  });
+  document.getElementById('small-step').addEventListener('click', function(){ L = 0; update(true); document.getElementById('buy').requestSubmit(); });
+
+  /* the stage lights on arrival: bulbs one by one */
+  stage.querySelector('[data-lamp]').addEventListener('lamp', function(){ arrived = true; string1.set(V[L].b, true); });
+
+  /* ledger mini strings: bar = metres/22, dots = bulbs */
+  function drawMinis(){
+    rows.forEach(function(r){
+      var mini = r.querySelector('.mini'); var W = mini.clientWidth || 300; mini.innerHTML = '';
+      var m = +mini.dataset.m, b = +mini.dataset.b, len = W * (m/22);
+      mini.appendChild(SW.el('line', {x1: W, y1: 15, x2: W - len, y2: 15}));
+      for (var i=0;i<b;i++){ mini.appendChild(SW.el('circle', {cx: (W - len * (i+0.5)/b).toFixed(1), cy: 15, r: b > 100 ? 1.5 : 2.2})); }
+    });
+  }
+  drawMinis();
+  window.addEventListener('resize', function(){ clearTimeout(drawMinis.t); drawMinis.t = setTimeout(function(){ drawMinis(); railFill(); string1.relayout(); string1.set(V[L].b, false); }, 180); });
+
+  /* the switch: atmosphere on, strong light off */
+  var sw = document.getElementById('fit'), knob = document.getElementById('knob');
+  var string2 = SW.makeString(document.getElementById('string2'), { max: 60, area: function(W,H){ return { top: 24, bottom: H - 60 }; }, spacing: 30, rowGap: 80, sag: 56, mobile: { spacing: 18, sag: 30, rowGap: 46 } });
+  document.getElementById('swstage').addEventListener('lamp', function(){ string2.set(60, true); });
+  function setMode(off){
+    sw.classList.toggle('off', off);
+    knob.setAttribute('aria-checked', String(!off));
+    sw.querySelectorAll('.toggle [role=radio]').forEach(function(b){ b.setAttribute('aria-checked', String((b.dataset.mode==='off')===off)); });
+    string2.dark(off);
+  }
+  sw.querySelectorAll('.toggle [role=radio]').forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode==='off'); }); });
+  knob.addEventListener('click', function(){ setMode(!sw.classList.contains('off')); });
+  knob.addEventListener('keydown', function(e){ if (e.key==='Enter'||e.key===' ') { e.preventDefault(); setMode(!sw.classList.contains('off')); } });
+
+  SW.observeLamps(document);
+  SW.stickyBar(document.getElementById('buy-anchor'), document.getElementById('sbar'));
+  SW.mockForms(); SW.anchors();
+  update(false);
+  if (SW.rm) { arrived = true; string1.set(V[L].b, false); string2.set(60, false); }
+})();
+</script>
+</body>
+</html>

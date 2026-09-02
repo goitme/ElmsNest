@@ -47,7 +47,7 @@ body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
 /* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
    sale badges never render (settings hidden_badges + this belt) */
 option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
-.hdt-badge__wrapp{display:none}
+.hdt-badge__wrapp{display:none!important}
 
 /* ---------- section root helper + container (§3.3) ---------- */
 .env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}

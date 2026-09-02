@@ -225,7 +225,7 @@
           "type": "_product_sidebar",
           "static": true,
           "settings": {
-            "color_scheme": "",
+            "color_scheme": "scheme-env2-night",
             "space": 50,
             "last_order": false
           },
@@ -273,7 +273,7 @@
         "btn_transform": "",
         "btn_style": "",
         "colors_by_section": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-env2-night",
         "background_opacity": 1,
         "fullwidth": false,
         "mg": "",

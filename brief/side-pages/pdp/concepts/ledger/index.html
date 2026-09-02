@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ElmsNest — גרילנדת כדורי קריסטל סולארית</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<style>
+/* ============================================================
+   הפנקס — THE LEDGER. A typographic product page: the variant
+   matrix is the hero. Every length is a row on a hairline; the
+   numerals light as they arrive; selecting a row lights the photo.
+   Tokens, buttons and the lamp device are lifted from the dusk
+   homepage so this is unmistakably the same store.
+   ============================================================ */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-serif:'Frank Ruhl Libre','Noto Serif Hebrew','David Libre',Georgia,serif;
+  --env2-sans:'Heebo','Assistant',system-ui,sans-serif;
+  --env2-w:1240px;--env2-gut:clamp(20px,4vw,64px);
+  --sky-2:var(--env2-sky-2);--sky-3:var(--env2-sky-3);--sky-4:var(--env2-sky-4);
+  --ink:var(--env2-ink);--ink-2:var(--env2-ink-2);--mute:var(--env2-mute);
+  --gold:var(--env2-gold);--glow:var(--env2-glow);--ember:var(--env2-ember);
+  --hair:var(--env2-hair);--serif:var(--env2-serif);--sans:var(--env2-sans);--gut:var(--env2-gut);
+  --halo:255,211,148;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--sky-4);scroll-behavior:smooth}
+body{
+  font-family:var(--sans);font-weight:300;font-size:15px;color:var(--ink);line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;min-height:100vh;
+  background:linear-gradient(180deg,var(--sky-2) 0%,#0b1322 22%,var(--sky-3) 52%,var(--sky-4) 100%) no-repeat;
+  background-size:100% 100%;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+fieldset{border:0;min-inline-size:0}
+legend{padding:0}
+bdi{unicode-bidi:isolate}
+:focus-visible{outline:2px solid var(--glow);outline-offset:4px}
+.wrap{width:min(var(--env2-w),100% - 2*var(--gut));margin-inline:auto}
+.eyebrow{font-size:12px;letter-spacing:.16em;color:var(--gold);font-weight:500;display:flex;gap:14px;align-items:center;line-height:1.4}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.8;flex:0 0 34px}
+.kicker{font-size:11.5px;letter-spacing:.16em;color:var(--gold);font-weight:500;line-height:1.4;display:block}
+.kicker--mute{color:var(--mute)}
+.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+.h em{font-style:normal;color:var(--glow)}
+.price{font-family:var(--serif);font-weight:500;font-variant-numeric:tabular-nums;color:var(--glow);white-space:nowrap;line-height:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;min-height:48px;padding:12px 24px;border-radius:999px;font-weight:500;font-size:15px;background:var(--glow);color:var(--env2-btn-ink);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55)}
+.btn--ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.btn--ghost:hover{box-shadow:inset 0 0 0 1px var(--glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;transition:color .3s,border-color .3s}
+.link:hover{color:var(--glow);border-color:var(--glow)}
+.link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}
+.lead{font-size:clamp(16px,1.3vw,19px);color:var(--ink-2);max-width:38ch;font-weight:300}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- the lamp device: dim → lit (from dusk) ---------- */
+html.js [data-lamp]{--lit:0}
+html.js [data-lamp].lit{--lit:1}
+[data-lamp]{--lit:1}
+[data-lamp="off"]{--lit:0!important}
+.ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+.ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+.ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(var(--halo),.42),rgba(var(--halo),0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+.stars{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px;opacity:var(--stars,.25)}
+
+/* ---------- lit numerals: outline → ink on arrival, glow when chosen ---------- */
+.num{font-family:var(--serif);font-weight:500;font-variant-numeric:tabular-nums;line-height:.9;letter-spacing:-.02em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px var(--env2-hair-num);transition:color 1.1s cubic-bezier(.2,.7,.2,1),-webkit-text-stroke-color 1.1s,text-shadow 1.1s;transition-delay:calc(var(--i,0)*.11s)}
+.num small{font-family:var(--sans);font-weight:400;font-size:.3em;color:var(--ink-2);-webkit-text-stroke:0;margin-inline-start:.28em;letter-spacing:0;vertical-align:baseline}
+[data-lamp].lit .num,html:not(.js) .num{color:var(--ink);-webkit-text-stroke-color:transparent}
+.num--glow{color:var(--glow)!important;text-shadow:0 0 28px rgba(255,211,148,.45)}
+
+/* ---------- header: static Kalles-like strip, transparent over the sky ---------- */
+.lg-hdr{position:absolute;top:0;inset-inline:0;height:70px;z-index:50;display:flex;align-items:center}
+.lg-hdr__in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.lg-nav{display:flex;gap:30px;font-size:14px;font-weight:400;color:var(--ink-2)}
+.lg-nav a{padding:6px 0;position:relative}
+.lg-nav a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--glow);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.lg-nav a:hover::after{transform:scaleX(1)}
+.lg-nav--end{justify-content:flex-end}
+.lg-logo img{width:46px;height:46px;filter:drop-shadow(0 0 10px rgba(233,185,110,.5))}
+.lg-ics{display:flex;gap:4px;align-items:center;margin-inline-start:14px}
+.lg-ic{width:44px;height:44px;display:grid;place-items:center;color:var(--ink-2);border-radius:50%}
+.lg-ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.lg-ic--burger,.lg-ic--m{display:none}
+
+/* ============================================================
+   1. THE LEDGER — screen 1
+   ============================================================ */
+.lg-hero{position:relative;padding-block:112px 72px}
+.lg-hero__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.55fr);gap:24px 48px;align-items:end;margin-bottom:40px}
+.lg-hero__h1{font-size:clamp(48px,7.4vw,112px);margin-top:18px}
+.lg-hero__side{display:grid;gap:10px;padding-bottom:10px}
+.lg-title{font-family:var(--sans);font-weight:400;font-size:clamp(16px,1.25vw,19px);line-height:1.35;color:var(--ink);unicode-bidi:isolate}
+.lg-hero__grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:0 clamp(32px,5vw,88px);align-items:start}
+.lg-ledger{display:grid;grid-row:1/3}
+.lg-ledger > .kicker{margin-bottom:8px}
+.lg-row{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.15fr) auto minmax(0,.95fr);gap:0 clamp(12px,2vw,28px);align-items:baseline;padding-block:18px;border-top:1px solid var(--hair);cursor:pointer;position:relative;min-height:60px;transition:padding .3s}
+.lg-row:last-of-type{border-bottom:1px solid var(--hair)}
+.lg-row input{position:absolute;opacity:0;width:1px;height:1px}
+.lg-row .num{font-size:clamp(46px,5.4vw,80px)}
+.lg-row .num--b{font-size:clamp(30px,3.4vw,50px);color:var(--ink-2)}
+[data-lamp].lit .lg-row .num--b,.lg-row.lit .num--b{color:var(--ink-2)}
+.lg-per{font-size:12.5px;color:var(--mute);white-space:nowrap;letter-spacing:.02em}
+.lg-row .price{font-size:clamp(24px,2.6vw,36px);justify-self:end;opacity:.72;transition:opacity .4s,text-shadow .6s}
+.lg-row::before{content:"";position:absolute;inset-inline-start:calc(-1*var(--gut));top:-1px;height:1px;width:calc(100% + var(--gut));background:var(--glow);transform:scaleX(0);transform-origin:right;transition:transform .5s cubic-bezier(.2,.8,.2,1);opacity:.9}
+.lg-row.on::before{transform:scaleX(1)}
+.lg-row.on .num{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 28px rgba(255,211,148,.45)}
+.lg-row.on .num--b{color:var(--ink)}
+.lg-row.on .price{opacity:1;text-shadow:0 0 22px rgba(255,211,148,.45)}
+.lg-row:hover .num{color:var(--ink)}
+.lg-row:focus-within{outline:2px solid var(--glow);outline-offset:-2px}
+.lg-tip{margin-top:18px;font-size:14px;color:var(--ink-2);max-width:52ch;line-height:1.55}
+.lg-tip b{font-weight:500;color:var(--ink)}
+.lg-col{margin-top:26px;display:flex;flex-wrap:wrap;gap:6px 26px;align-items:center}
+.lg-col legend{float:inline-start;margin-inline-end:6px;margin-bottom:6px}
+.lg-col label{display:inline-flex;align-items:center;gap:9px;min-height:44px;font-size:15.5px;color:var(--ink-2);cursor:pointer;position:relative;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.lg-col label input{position:absolute;opacity:0;width:1px;height:1px}
+.lg-col label:has(:checked),.lg-col label.on{color:var(--ink);border-color:var(--glow)}
+.lg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.lg-dot--y{background:#ffd394;box-shadow:0 0 8px rgba(255,211,148,.7)}
+.lg-dot--b{background:#8fb8ff;box-shadow:0 0 8px rgba(143,184,255,.7)}
+.lg-dot--m{background:conic-gradient(#ffd394,#8fb8ff,#ff8fa3,#9dffb0,#ffd394);box-shadow:0 0 8px rgba(255,255,255,.4)}
+.lg-dot--w{background:#f8f4ec;box-shadow:0 0 8px rgba(255,255,255,.7)}
+.lg-dot--k{background:#141821;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+/* evidence beside the numbers */
+.lg-buy{display:grid;gap:10px;padding:22px 0 26px;border-top:1px solid var(--hair);align-content:start}
+.lg-buy__sel{font-size:16px;color:var(--ink);font-weight:400;unicode-bidi:isolate}
+.lg-buy__price{font-size:38px}
+.lg-buy__row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:4px}
+.lg-buy__terms{font-size:12.5px;color:var(--mute);line-height:1.5}
+.lg-buy__terms a{color:var(--ink-2);border-bottom:1px solid rgba(201,196,184,.35)}
+.lg-buy select{background:var(--sky-3);border:1px solid var(--env2-hair-btn);padding:10px;color:var(--ink);width:100%}
+.lg-ev{margin-top:8px}
+.lg-ev .ph{aspect-ratio:1/1.02}
+.lg-ev .ph::after{opacity:calc(var(--lit,1)*(.45 + .55*var(--len,1)));inset:calc(-32% + 18%*var(--len,1)) calc(-20% - 12%*var(--len,1)) calc(-10% - 30%*var(--len,1))}
+.lg-ev figcaption{font-size:13px;color:var(--mute);margin-top:12px;line-height:1.5}
+.lg-tape{position:relative;height:56px;margin-top:22px}
+.lg-tape__rail{position:absolute;inset-inline:0;top:30px;height:1px;background:var(--hair)}
+.lg-tape__fill{position:absolute;inset-inline-start:0;top:29px;height:3px;width:calc(var(--len,1)*100%);background:linear-gradient(90deg,var(--glow),rgba(255,211,148,.35));box-shadow:0 0 12px rgba(255,211,148,.55);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.lg-tape__t{position:absolute;top:22px;inset-inline-start:calc(var(--x)*100%);width:1px;height:17px;background:var(--env2-hair-num);transform:translateX(50%)}
+.lg-tape__t i{position:absolute;top:22px;inset-inline-start:0;transform:translateX(50%);font-style:normal;font-family:var(--serif);font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lg-tape__t.on i{color:var(--glow)}
+.lg-tape__z{position:absolute;top:0;inset-inline-start:0;font-size:11px;letter-spacing:.14em;color:var(--mute)}
+.lg-tape__z--e{inset-inline-start:auto;inset-inline-end:0}
+
+/* sticky buy bar — mobile only */
+.lg-sticky{position:fixed;inset-inline:0;bottom:0;z-index:60;display:none;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:10px var(--gut) max(10px,env(safe-area-inset-bottom));background:var(--env2-scrim);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--hair);transform:translateY(102%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.lg-sticky.show{transform:none}
+.lg-sticky__t{display:grid;gap:2px;min-width:0}
+.lg-sticky__sel{font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg-sticky .price{font-size:22px}
+.lg-sticky .btn{min-height:46px;padding-inline:20px;font-size:14px}
+
+/* ============================================================
+   2. FIT — the one pair, a lit line and a dark line
+   ============================================================ */
+.lg-fit{position:relative;padding-block:120px 110px;overflow:clip}
+.lg-fit__grid{position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.75fr);gap:48px clamp(32px,6vw,110px);align-items:end}
+.lg-fit__place{font-size:15px;color:var(--ink-2);margin:12px 0 44px}
+.lg-fit__place b{font-weight:500;color:var(--ink)}
+.lg-fit__yes{font-family:var(--serif);font-weight:900;font-size:clamp(58px,9.6vw,156px);line-height:.95;letter-spacing:-.015em;margin:6px 0 46px;color:transparent;-webkit-text-stroke:1px var(--env2-hair-num);transition:color 1.4s cubic-bezier(.2,.7,.2,1),text-shadow 1.4s,-webkit-text-stroke-color 1.4s}
+.lg-fit__yes.lit,html:not(.js) .lg-fit__yes{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 40px rgba(255,211,148,.5)}
+.lg-fit__no{font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.3vw,66px);line-height:1.02;margin:6px 0 0;color:transparent;-webkit-text-stroke:1px var(--env2-hair-num);text-wrap:balance;max-width:20ch}
+.lg-fit__hint{font-size:12px;letter-spacing:.06em;color:var(--mute);margin-top:14px}
+.lg-fit__note{margin-top:40px;padding-top:18px;border-top:1px solid var(--hair);font-size:14.5px;color:var(--ink-2);max-width:48ch;line-height:1.55}
+.lg-fit__note b{font-weight:500;color:var(--ink)}
+.lg-fit__ph .ph{aspect-ratio:4/5}
+.lg-fit__ph figcaption{font-size:13.5px;color:var(--ink-2);margin-top:14px;line-height:1.5;max-width:34ch}
+.lg-fit__pair{display:grid;gap:26px}
+.lg-fit__pair .ph{aspect-ratio:1/1}
+.lg-fit__pair figure:nth-child(2){width:72%;margin-inline-start:auto}
+.lg-fit__pair figcaption{font-size:12.5px;color:var(--mute);margin-top:10px;letter-spacing:.04em}
+
+/* ============================================================
+   3. NIGHT — full-bleed evidence
+   ============================================================ */
+.lg-night{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate;margin-top:20px}
+.lg-night__bg{position:absolute;inset:0;z-index:-1}
+.lg-night__bg .ph{position:absolute;inset:0}
+.lg-night__bg .ph img{object-position:50% 38%;transform:none}
+.lg-night__bg .ph::after{background:radial-gradient(70% 50% at 40% 30%,rgba(255,211,148,.3),rgba(255,211,148,0) 70%)}
+.lg-night__veil{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,var(--sky-3) 0,rgba(7,11,21,0) 24%),linear-gradient(0deg,var(--sky-3) 0,rgba(7,11,21,.72) 30%,rgba(7,11,21,0) 62%)}
+.lg-night__in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:40px;align-items:end;padding-block:160px 88px}
+.lg-night__h2{font-size:clamp(46px,6.8vw,104px);margin:16px 0 22px}
+.lg-night__p{font-size:16px;color:var(--ink-2);max-width:40ch}
+.lg-night__side{display:grid;gap:26px;justify-items:end}
+.lg-night__inset{width:min(100%,300px)}
+.lg-night__inset .ph{aspect-ratio:1/1}
+.lg-night__inset figcaption{font-size:13px;color:var(--ink-2);margin-top:10px;line-height:1.5}
+.lg-metre{width:min(100%,360px);display:grid;gap:10px}
+.lg-metre__rail{position:relative;height:28px;border-inline:1px solid var(--env2-hair-num)}
+.lg-metre__rail::before{content:"";position:absolute;inset-inline:0;top:50%;height:1px;background:var(--hair)}
+.lg-metre__dots{position:absolute;inset:0;display:flex;justify-content:space-evenly;align-items:center}
+.lg-metre__dots i{width:9px;height:9px;border-radius:50%;background:var(--glow);box-shadow:0 0 10px 2px rgba(255,211,148,.6);opacity:var(--lit,1);transition:opacity 1.2s}
+.lg-metre__cap{display:flex;justify-content:space-between;font-size:12.5px;color:var(--mute);letter-spacing:.04em}
+.lg-metre__cap b{font-weight:500;color:var(--ink-2)}
+
+/* ============================================================
+   4. FACTS — the spec as a column of numerals
+   ============================================================ */
+.lg-facts{position:relative;padding-block:120px 100px}
+.lg-facts__head{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:baseline;margin-bottom:56px}
+.lg-facts__h2{font-size:clamp(38px,5vw,74px);margin-top:14px}
+.lg-facts__head p{color:var(--ink-2);max-width:42ch;font-size:15.5px;justify-self:end;text-align:end}
+.lg-facts__grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px clamp(40px,7vw,120px);align-items:start}
+.lg-facts__big{display:grid;gap:8px;padding-bottom:34px;border-bottom:1px solid var(--hair);margin-bottom:6px}
+.lg-facts__big .num{font-size:clamp(84px,10.5vw,168px)}
+.lg-facts__big .num small{font-size:.22em}
+.lg-facts__big p{font-size:16px;color:var(--ink-2);max-width:36ch}
+.lg-fact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px;align-items:baseline;padding-block:20px;border-bottom:1px solid var(--hair)}
+.lg-fact .num{font-size:clamp(34px,3.6vw,54px)}
+.lg-fact .num--w{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.4vw,34px);letter-spacing:0}
+.lg-fact p{font-size:15px;color:var(--ink-2)}
+.lg-fact p b{font-weight:500;color:var(--ink)}
+.lg-facts__txt{display:grid;gap:30px;padding-top:14px}
+.lg-facts__txt article{display:grid;gap:8px;max-width:50ch}
+.lg-facts__txt h3{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.2vw,30px);line-height:1.2}
+.lg-facts__txt p{color:var(--ink-2);font-size:15.5px}
+.lg-facts__only{font-size:13px;color:var(--mute);border-top:1px solid var(--hair);padding-top:18px;max-width:44ch}
+
+/* ============================================================
+   5. AFTER — the receipt: the chosen row again, then four numbers
+   ============================================================ */
+.lg-after{position:relative;padding-block:110px 100px}
+.lg-after__head{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:40px;margin-bottom:32px}
+.lg-after__h2{font-size:clamp(38px,4.8vw,70px);margin-top:14px}
+.lg-after__head p{color:var(--ink-2);max-width:40ch;font-size:15.5px;justify-self:end;text-align:end}
+.lg-receipt{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:18px 32px;align-items:center;padding-block:26px;border-top:2px solid var(--glow);border-bottom:1px solid var(--hair);margin-bottom:8px}
+.lg-receipt .kicker{margin-bottom:6px}
+.lg-receipt__sel{font-size:18px;font-weight:400;unicode-bidi:isolate}
+.lg-receipt .price{font-size:40px}
+.line{display:grid;grid-template-columns:minmax(200px,.46fr) minmax(0,1fr);gap:32px;align-items:baseline;padding-block:28px;border-bottom:1px solid var(--hair)}
+.line .num{font-size:clamp(52px,7vw,104px);color:var(--glow)!important;-webkit-text-stroke:0}
+.line .t{display:grid;gap:6px;max-width:56ch}
+.line .t b{font-weight:500;font-size:19px}
+.line .t p{color:var(--ink-2);font-size:15px}
+.line .t a{color:var(--glow);border-bottom:1px solid rgba(255,211,148,.4)}
+.lg-after__foot{margin-top:24px;font-size:12.5px;color:var(--mute);display:flex;flex-wrap:wrap;gap:8px 22px}
+.lg-after__foot a{border-bottom:1px solid rgba(143,149,163,.4)}
+
+/* ============================================================
+   6. WHY HERE + the small step
+   ============================================================ */
+.lg-why{position:relative;padding-block:100px 110px}
+.lg-why__grid{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px clamp(40px,7vw,120px);align-items:start}
+.lg-why blockquote{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.8vw,40px);line-height:1.22;max-width:24ch;color:var(--ink)}
+.lg-why cite{display:block;font-style:normal;font-family:var(--sans);font-size:13px;color:var(--mute);margin-top:16px;letter-spacing:.06em}
+.lg-why__line{margin-top:30px;font-size:16px;color:var(--ink-2);max-width:46ch}
+.lg-why__line a{color:var(--ink);border-bottom:1px solid var(--env2-hair-btn)}
+.lg-step{display:grid;gap:18px;padding-top:12px;border-top:1px solid var(--hair)}
+.lg-step__h{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,36px);line-height:1.1;margin-top:6px}
+.lg-step p{font-size:15px;color:var(--ink-2);max-width:40ch}
+.lg-step__acts{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:6px}
+.lg-step__or{font-size:13px;color:var(--mute);letter-spacing:.06em}
+
+/* ============================================================
+   7. MORE FOR THIS PLACE — the catalogue card
+   ============================================================ */
+.lg-more{position:relative;padding-block:100px 110px;overflow:clip}
+.lg-more__head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:56px}
+.lg-more__h2{font-size:clamp(36px,4.6vw,66px);margin-top:14px}
+.lg-more__head p{color:var(--ink-2);max-width:36ch;font-size:15.5px}
+.lg-shelf{position:relative;display:flex;align-items:flex-end;gap:clamp(20px,3.4vw,56px);padding-bottom:44px}
+.lg-shelf::after{content:"";position:absolute;inset-inline:-10vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,211,148,.45) 30%,rgba(255,211,148,.45) 70%,transparent)}
+.lg-card{flex:0 0 var(--w,240px);width:var(--w,240px);display:grid;gap:8px;position:relative;margin-bottom:var(--up,0)}
+.lg-card .ph{aspect-ratio:var(--ar,1/1.15)}
+.lg-card .ph::before{content:"";position:absolute;inset-inline:10%;bottom:-38px;height:40px;background:radial-gradient(50% 100% at 50% 100%,rgba(255,211,148,.55),transparent 70%);opacity:var(--lit,1);transition:opacity 1.6s .3s;z-index:2;filter:blur(6px)}
+.lg-card .kicker{margin-top:10px}
+.lg-card__t{font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.35;unicode-bidi:isolate}
+.lg-card__t a:hover{color:var(--glow)}
+.lg-card__row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:4px}
+.lg-card .price{font-size:22px}
+.lg-card__act{font-size:13px;font-weight:500;color:var(--ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:2px;min-height:auto;transition:color .3s,border-color .3s}
+.lg-card__act:hover{color:var(--glow);border-color:var(--glow)}
+.lg-more__after{margin-top:40px;display:flex;justify-content:flex-end}
+
+/* ============================================================
+   footer — one dark block
+   ============================================================ */
+.lg-ftr{position:relative;padding-block:80px 36px;background:var(--sky-4);border-top:1px solid var(--hair)}
+.lg-ftr__top{display:grid;grid-template-columns:1.3fr .8fr .9fr 1fr;gap:40px;align-items:start}
+.lg-ftr__brand{display:flex;align-items:center;gap:12px}
+.lg-ftr__brand img{width:56px;height:56px;filter:drop-shadow(0 0 10px rgba(233,185,110,.5))}
+.lg-ftr__brand b{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:.02em}
+.lg-ftr__tag{margin-top:16px;max-width:30ch;color:var(--ink-2);font-size:15px}
+.lg-ftr h4{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;color:var(--gold);margin-bottom:16px}
+.lg-ftr ul{list-style:none;display:grid;gap:10px;font-size:15px;color:var(--ink-2)}
+.lg-ftr ul a:hover{color:var(--glow)}
+.lg-ftr__mail{display:inline-block;margin-top:8px;font-size:15px;color:var(--ink);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:2px}
+.lg-ftr__bottom{margin-top:70px;padding-top:20px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;gap:20px;font-size:12.5px;color:var(--mute);flex-wrap:wrap}
+.lg-ftr__bottom a{border-bottom:1px solid rgba(143,149,163,.4)}
+
+/* ---------- motion prefs ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html.js [data-lamp]{--lit:1}
+  .num{color:var(--ink);-webkit-text-stroke-color:transparent}
+  .lg-fit__yes{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 40px rgba(255,211,148,.5)}
+}
+
+/* ============================================================
+   mobile — a different composition, not a collapsed grid
+   ============================================================ */
+@media (max-width:900px){
+  .lg-hdr{height:64px}
+  .lg-hdr__in{grid-template-columns:1fr auto 1fr;gap:8px}
+  .lg-nav{display:none}
+  .lg-ic--burger,.lg-ic--m{display:grid}
+  .lg-ics{margin:0;justify-content:flex-end}
+  .lg-logo img{width:40px;height:40px}
+
+  .lg-hero{padding-block:84px 40px}
+  .lg-hero__head{grid-template-columns:1fr;gap:10px;margin-bottom:20px}
+  .lg-hero__h1{font-size:clamp(42px,12vw,56px);margin-top:12px}
+  .lg-hero__side{padding:0;gap:6px}
+  .lg-title{font-size:15px}
+  .lead{display:none}
+  .lg-hero__grid{display:flex;flex-direction:column;gap:0}
+  .lg-ledger{order:1}
+  .lg-buy{order:2;border-top:0;padding:18px 0 10px}
+  .lg-ev{order:3;margin-top:28px}
+  .lg-row{grid-template-columns:auto minmax(0,1fr) auto;gap:0 14px;padding-block:9px;min-height:54px;align-items:baseline}
+  .lg-row .num{font-size:38px;min-width:2.3em}
+  .lg-row .num--b{font-size:20px}
+  .lg-per{grid-column:2;grid-row:2;font-size:11.5px;margin-top:-2px}
+  .lg-row .price{font-size:22px;grid-row:1/3;align-self:center}
+  .lg-row::before{inset-inline-start:0;width:100%}
+  .lg-tip{display:none}
+  .lg-col{margin-top:14px;gap:2px 18px}
+  .lg-col label{font-size:14.5px;min-height:40px}
+  .lg-buy__price{font-size:32px}
+  .lg-buy__row{gap:14px}
+  .lg-buy__row .btn{flex:1 1 auto}
+  .lg-buy__sel{font-size:15px}
+  .lg-sticky{display:grid}
+  .lg-tape{height:52px}
+  body{padding-bottom:0}
+
+  .lg-fit{padding-block:72px 64px}
+  .lg-fit__grid{grid-template-columns:1fr;gap:34px}
+  .lg-fit__place{margin:8px 0 26px}
+  .lg-fit__yes{font-size:clamp(56px,16vw,76px);margin-bottom:30px}
+  .lg-fit__no{font-size:clamp(28px,8vw,36px)}
+  .lg-fit__note{margin-top:28px}
+  .lg-fit__ph{width:82%}
+  .lg-fit__ph .ph{aspect-ratio:1/1}
+
+  .lg-night{min-height:auto;margin-top:0}
+  .lg-night__bg{height:64vh;inset:0 0 auto 0}
+  .lg-night__bg .ph img{object-position:38% 40%}
+  .lg-night__veil{background:linear-gradient(0deg,var(--sky-3) 0,rgba(7,11,21,.94) 40%,rgba(7,11,21,.2) 66%,transparent 100%),linear-gradient(180deg,var(--sky-3) 0,transparent 16%)}
+  .lg-night__in{grid-template-columns:1fr;gap:28px;padding-block:46vh 56px}
+  .lg-night__h2{font-size:clamp(44px,12.5vw,58px)}
+  .lg-night__side{justify-items:start}
+  .lg-night__inset{width:64%;margin-inline-start:auto}
+
+  .lg-facts{padding-block:72px 60px}
+  .lg-facts__head{grid-template-columns:1fr;gap:12px;margin-bottom:28px}
+  .lg-facts__head p{justify-self:start;text-align:start}
+  .lg-facts__grid{grid-template-columns:1fr;gap:34px}
+  .lg-facts__big .num{font-size:clamp(76px,22vw,96px)}
+  .lg-fact{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);padding-block:14px}
+  .lg-fact .num{font-size:32px}
+  .lg-fact .num--w{font-size:22px}
+
+  .lg-after{padding-block:64px 64px}
+  .lg-after__head{grid-template-columns:1fr;gap:10px;margin-bottom:20px}
+  .lg-after__head p{justify-self:start;text-align:start}
+  .lg-receipt{grid-template-columns:1fr auto;gap:12px 16px;padding-block:20px}
+  .lg-receipt .btn{grid-column:1/-1;justify-self:stretch}
+  .lg-receipt .price{font-size:32px}
+  .line{grid-template-columns:1fr;gap:8px;padding-block:22px}
+  .line .num{font-size:58px}
+  .line .t b{font-size:17px}
+
+  .lg-why{padding-block:64px 64px}
+  .lg-why__grid{grid-template-columns:1fr;gap:36px}
+  .lg-why blockquote{font-size:24px}
+
+  .lg-more{padding-block:64px 56px}
+  .lg-more__head{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:36px}
+  .lg-shelf{overflow-x:auto;scroll-snap-type:x proximity;padding-inline:var(--gut);margin-inline:calc(-1*var(--gut));scrollbar-width:none;padding-bottom:36px}
+  .lg-shelf::-webkit-scrollbar{display:none}
+  .lg-card{scroll-snap-align:start;--w:min(220px,66vw)!important}
+  .lg-more__after{justify-content:flex-start;margin-top:20px}
+
+  .lg-ftr{padding-block:60px 100px}
+  .lg-ftr__top{grid-template-columns:1fr 1fr;gap:32px 20px}
+  .lg-ftr__top>:first-child{grid-column:1/-1}
+  .lg-ftr__top>:last-child{grid-column:1/-1}
+  .lg-ftr__bottom{margin-top:50px}
+}
+
+/* ---------- late rules: order-sensitive overrides and the two sibling ledgers ---------- */
+.line .num{color:transparent;-webkit-text-stroke:1px var(--env2-hair-num)}
+.line.lit .num,html:not(.js) .line .num{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 28px rgba(255,211,148,.4)}
+.lg-row.on .num,.lg-krow.on .num{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 28px rgba(255,211,148,.45);transition-delay:0s}
+.lg-row.on .num--b{color:var(--ink)}
+/* quantity ledger (single-variant product): n · why · total */
+.lg-row--q{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr) minmax(0,.9fr)}
+.lg-row--q .lg-per{font-size:14px;color:var(--ink-2);white-space:normal}
+/* wattage × kelvin ledger (wall light) */
+.lg-wrow{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);gap:8px clamp(16px,3vw,40px);align-items:start;padding-block:22px;border-top:1px solid var(--hair);position:relative}
+.lg-wrow:last-of-type{border-bottom:1px solid var(--hair)}
+.lg-wrow .num--w{font-size:clamp(64px,8vw,120px);display:block}
+.lg-wrow .num--w small{font-size:.32em}
+.lg-wrow__why{font-size:14.5px;color:var(--ink-2);max-width:26ch;margin-top:10px}
+.lg-wrow.on .num--w{color:var(--glow);-webkit-text-stroke-color:transparent;text-shadow:0 0 28px rgba(255,211,148,.45)}
+.lg-wrow__k{display:grid}
+.lg-krow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,.8fr);gap:0 16px;align-items:baseline;padding:12px 0;min-height:52px;cursor:pointer;position:relative;border-bottom:1px solid var(--hair)}
+.lg-krow:last-child{border-bottom:0}
+.lg-krow input{position:absolute;opacity:0;width:1px;height:1px}
+.lg-krow .num{font-size:clamp(30px,3.2vw,46px)}
+.lg-krow__l{font-size:13.5px;color:var(--mute);white-space:nowrap}
+.lg-krow .price{font-size:clamp(22px,2.4vw,32px);justify-self:end;opacity:.72;transition:opacity .4s,text-shadow .6s}
+.lg-krow.on .price{opacity:1;text-shadow:0 0 22px rgba(255,211,148,.45)}
+.lg-krow.on .lg-krow__l{color:var(--ink)}
+.lg-krow:focus-within{outline:2px solid var(--glow);outline-offset:-2px}
+/* quadrant crop of the studio 4-up: one body colour per swatch photo */
+.lg-quad{position:relative;overflow:hidden;width:44px;aspect-ratio:1;display:inline-block;background:#05070c;filter:brightness(.55) saturate(.6);transition:filter .5s}
+.lg-quad img{position:absolute;width:200%;height:200%;max-width:none;left:-100%;top:0;object-fit:cover}
+.lg-quad--w img{top:-100%}
+.lg-quad.on,.lg-col label:has(:checked) .lg-quad{filter:brightness(1) saturate(1)}
+@media (max-width:900px){
+  .lg-row--q{grid-template-columns:auto minmax(0,1fr) auto}
+  .lg-row--q .lg-per{grid-column:2;grid-row:1;font-size:12.5px}
+  .lg-wrow{grid-template-columns:1fr;gap:4px;padding-block:14px}
+  .lg-wrow .num--w{font-size:56px}
+  .lg-wrow__why{margin-top:2px;font-size:13px}
+  .lg-krow{grid-template-columns:minmax(0,1fr) auto auto;padding:8px 0;min-height:46px}
+  .lg-krow .num{font-size:26px}
+  .lg-krow .price{font-size:20px}
+  .lg-quad{width:36px}
+}
+
+/* ---------- round 2: explicit ledger placement, colour axis without <legend>, mobile order ---------- */
+.lg-col{display:flex;flex-wrap:wrap;gap:4px 26px;align-items:center;margin-top:26px}
+.lg-col__k{flex-basis:100%;margin-bottom:2px}
+.lg-row--q .num{grid-column:1;grid-row:1}
+.lg-row--q .lg-per{grid-column:2;grid-row:1}
+.lg-row--q .price{grid-column:3;grid-row:1}
+@media (max-width:900px){
+  .eyebrow{font-size:11.5px;letter-spacing:.1em}
+  .lg-hero__grid{display:flex;flex-direction:column}
+  .lg-buy{order:0;padding:6px 0 22px;margin-bottom:6px;border-top:0;border-bottom:1px solid var(--hair)}
+  .lg-ledger{order:1}
+  .lg-ev{order:2}
+  .lg-row{grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto auto;gap:0 14px;padding-block:8px;min-height:54px;align-items:center}
+  .lg-row .num{grid-column:1;grid-row:1/3;align-self:center;font-size:38px;min-width:2.3em}
+  .lg-row .num--b{grid-column:2;grid-row:1;align-self:end;font-size:20px}
+  .lg-row .lg-per{grid-column:2;grid-row:2;font-size:11.5px;margin-top:2px}
+  .lg-row .price{grid-column:3;grid-row:1/3;align-self:center;font-size:22px}
+  .lg-row--q{grid-template-rows:auto}
+  .lg-row--q .num{grid-row:1}
+  .lg-row--q .lg-per{grid-row:1;font-size:13px;align-self:center}
+  .lg-row--q .price{grid-row:1}
+  .lg-col{margin-top:16px;gap:0 18px}
+}
+
+@media (max-width:900px){.lg-ics button{display:none}}
+
+</style>
+</head>
+<body>
+<header class="lg-hdr" id="top">
+  <div class="wrap lg-hdr__in">
+    <div style="display:flex;align-items:center">
+      <button type="button" class="lg-ic lg-ic--burger" aria-label="תפריט"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+      <button type="button" class="lg-ic lg-ic--m" aria-label="חיפוש"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+      <nav class="lg-nav" aria-label="ניווט ראשי — חלק ראשון"><a href="#top">דף הבית</a><a href="#more">קולקציות</a><a href="#fit">מדריך לבחירה</a></nav>
+    </div>
+    <a class="lg-logo" href="#top" aria-label="ElmsNest — דף הבית"><img src="../../../../assets/img/logo.png" alt="" width="46" height="46"></a>
+    <div style="display:flex;align-items:center;justify-content:flex-end">
+      <nav class="lg-nav lg-nav--end" aria-label="ניווט ראשי — חלק שני"><a href="#why">מי אנחנו</a><a href="#contact">יצירת קשר</a></nav>
+      <div class="lg-ics">
+        <button type="button" class="lg-ic" aria-label="חיפוש"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <a class="lg-ic" href="#cart" aria-label="סל קניות"><svg viewBox="0 0 24 24"><path d="M4 5h2l2.2 10.2a1 1 0 0 0 1 .8h8.4a1 1 0 0 0 1-.8L20 9H7"/><circle cx="10" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= 1. THE LEDGER — screen 1 ================= -->
+<section class="lg-hero" id="buy" aria-labelledby="h1">
+  <div class="wrap">
+    <div class="lg-hero__head">
+      <div>
+        <p class="eyebrow">מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה</p>
+        <h1 class="h lg-hero__h1" id="h1">כמה מטרים<br><em>של ערב.</em></h1>
+      </div>
+      <div class="lg-hero__side">
+        <p class="lg-title">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</p>
+        <p class="lead">שישה אורכים, ארבעה צבעים. המחיר לפי האורך בלבד — כל השורות פתוחות, בוחרים אחת.</p>
+      </div>
+    </div>
+
+    <form class="lg-form" id="product-form-ledger" method="post" action="/cart/add">
+      <div class="lg-hero__grid">
+        <fieldset class="lg-ledger">
+          <legend class="kicker">אורך ומספר נורות · המחיר לפי האורך</legend>
+          <label class="lg-row" data-lamp style="--i:0"><input type="radio" name="len" value="0" checked><span class="num"><bdi>5</bdi><small>מ׳</small></span><span class="num num--b"><bdi>20</bdi><small>נורות</small></span><span class="lg-per"><bdi>17.98</bdi> ₪ למטר</span><span class="price"><bdi>89.90</bdi> ₪</span></label>
+          <label class="lg-row" data-lamp style="--i:1"><input type="radio" name="len" value="1"><span class="num"><bdi>6.5</bdi><small>מ׳</small></span><span class="num num--b"><bdi>30</bdi><small>נורות</small></span><span class="lg-per"><bdi>13.83</bdi> ₪ למטר</span><span class="price"><bdi>89.90</bdi> ₪</span></label>
+          <label class="lg-row" data-lamp style="--i:2"><input type="radio" name="len" value="2"><span class="num"><bdi>9.5</bdi><small>מ׳</small></span><span class="num num--b"><bdi>50</bdi><small>נורות</small></span><span class="lg-per"><bdi>10.52</bdi> ₪ למטר</span><span class="price"><bdi>99.90</bdi> ₪</span></label>
+          <label class="lg-row" data-lamp style="--i:3"><input type="radio" name="len" value="3"><span class="num"><bdi>11</bdi><small>מ׳</small></span><span class="num num--b"><bdi>60</bdi><small>נורות</small></span><span class="lg-per"><bdi>9.99</bdi> ₪ למטר</span><span class="price"><bdi>109.90</bdi> ₪</span></label>
+          <label class="lg-row" data-lamp style="--i:4"><input type="radio" name="len" value="4"><span class="num"><bdi>13</bdi><small>מ׳</small></span><span class="num num--b"><bdi>100</bdi><small>נורות</small></span><span class="lg-per"><bdi>9.99</bdi> ₪ למטר</span><span class="price"><bdi>129.90</bdi> ₪</span></label>
+          <label class="lg-row" data-lamp style="--i:5"><input type="radio" name="len" value="5"><span class="num"><bdi>22</bdi><small>מ׳</small></span><span class="num num--b"><bdi>200</bdi><small>נורות</small></span><span class="lg-per"><bdi>8.18</bdi> ₪ למטר</span><span class="price"><bdi>179.90</bdi> ₪</span></label>
+          <p class="lg-tip"><b>בחרו אורך שמאפשר להשלים את המסגרת.</b> מדדו את אזור התלייה והוסיפו מרווח לקשתות ולליפוף. שרשרת מעט ארוכה יותר נראית מלאה ומעוצבת יותר משרשרת מתוחה מדי.</p>
+          <div class="lg-col" role="radiogroup" aria-label="צבע התאורה">
+            <span class="kicker lg-col__k">צבע התאורה · לא משנה את המחיר</span>
+            <label><input type="radio" name="col" value="0" checked><i class="lg-dot lg-dot--y"></i>צהוב</label>
+            <label><input type="radio" name="col" value="1"><i class="lg-dot lg-dot--b"></i>כחול</label>
+            <label><input type="radio" name="col" value="2"><i class="lg-dot lg-dot--m"></i>צבעוני</label>
+            <label><input type="radio" name="col" value="3"><i class="lg-dot lg-dot--w"></i>לבן</label>
+          </div>
+        </fieldset>
+
+        <div class="lg-buy">
+          <span class="kicker">השורה שבחרתם</span>
+          <p class="lg-buy__sel" data-sel>5 מ׳ / 20 נורות · צהוב</p>
+          <p class="price lg-buy__price" data-price><bdi>89.90</bdi> ₪</p>
+          <noscript><label>דגם <select name="id"><option value="48880938221742">5 מ׳ / 20 נורות / צהוב — 89.90 ₪</option><option value="48880938254510">5 מ׳ / 20 נורות / כחול — 89.90 ₪</option><option value="48880938287278">5 מ׳ / 20 נורות / צבעוני — 89.90 ₪</option><option value="48880938320046">5 מ׳ / 20 נורות / לבן — 89.90 ₪</option><option value="48880938352814">6.5 מ׳ / 30 נורות / צהוב — 89.90 ₪</option><option value="48880938385582">6.5 מ׳ / 30 נורות / כחול — 89.90 ₪</option><option value="48880938418350">6.5 מ׳ / 30 נורות / צבעוני — 89.90 ₪</option><option value="48880938451118">6.5 מ׳ / 30 נורות / לבן — 89.90 ₪</option><option value="48880938483886">9.5 מ׳ / 50 נורות / צהוב — 99.90 ₪</option><option value="48880938516654">9.5 מ׳ / 50 נורות / כחול — 99.90 ₪</option><option value="48880938549422">9.5 מ׳ / 50 נורות / צבעוני — 99.90 ₪</option><option value="48880938582190">9.5 מ׳ / 50 נורות / לבן — 99.90 ₪</option><option value="48880938614958">11 מ׳ / 60 נורות / צהוב — 109.90 ₪</option><option value="48880938647726">11 מ׳ / 60 נורות / כחול — 109.90 ₪</option><option value="48880938680494">11 מ׳ / 60 נורות / צבעוני — 109.90 ₪</option><option value="48880938713262">11 מ׳ / 60 נורות / לבן — 109.90 ₪</option><option value="48880938746030">13 מ׳ / 100 נורות / צהוב — 129.90 ₪</option><option value="48880938778798">13 מ׳ / 100 נורות / כחול — 129.90 ₪</option><option value="48880938811566">13 מ׳ / 100 נורות / צבעוני — 129.90 ₪</option><option value="48880938844334">13 מ׳ / 100 נורות / לבן — 129.90 ₪</option><option value="48880938877102">22 מ׳ / 200 נורות / צהוב — 179.90 ₪</option><option value="48880938909870">22 מ׳ / 200 נורות / כחול — 179.90 ₪</option><option value="48880938942638">22 מ׳ / 200 נורות / צבעוני — 179.90 ₪</option><option value="48880938975406">22 מ׳ / 200 נורות / לבן — 179.90 ₪</option></select></label></noscript>
+          <div class="lg-buy__row"><button class="btn" type="submit" id="buy-btn">הוספה לסל</button><a class="link" href="#fit">למי זה לא מתאים <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></div>
+          <p class="lg-buy__terms">משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר. <a href="#after">כל המספרים</a></p>
+        </div>
+
+        <figure class="lg-ev" data-lamp style="--len:.227">
+          <div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="כדורי קריסטל דולקים על השרשרת, מקרוב, בלילה" width="1000" height="1000" fetchpriority="high"></div>
+          <div class="lg-tape" aria-hidden="true">
+            <span class="lg-tape__z">אורך השרשרת · מטר</span>
+            <div class="lg-tape__rail"></div><div class="lg-tape__fill"></div>
+            <span class="lg-tape__t on" style="--x:.227"><i>5</i></span>
+            <span class="lg-tape__t" style="--x:.295"><i>6.5</i></span>
+            <span class="lg-tape__t" style="--x:.432"><i>9.5</i></span>
+            <span class="lg-tape__t" style="--x:.5"><i>11</i></span>
+            <span class="lg-tape__t" style="--x:.591"><i>13</i></span>
+            <span class="lg-tape__t" style="--x:1"><i>22</i></span>
+          </div>
+          <figcaption>הכדורים השקופים שוברים את האור. השרשרת שבחרתם מסומנת על הסרגל.</figcaption>
+        </figure>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= 2. FIT — the one pair ================= -->
+<section class="lg-fit" id="fit">
+  <div class="stars" style="--stars:.18"></div>
+  <div class="wrap lg-fit__grid">
+    <div class="lg-fit__txt">
+      <p class="eyebrow">02 · לפני שקונים</p>
+      <p class="lg-fit__place">המקום: <b>מרפסת ופינת ישיבה</b></p>
+      <span class="kicker">מתאים כדי</span>
+      <p class="lg-fit__yes" data-lamp>ליצור אווירה.</p>
+      <span class="kicker kicker--mute">לא מתאים כש־</span>
+      <p class="lg-fit__no">צריך אור חזק — זו אינה מטרתה.</p>
+      <p class="lg-fit__hint">השורה הזאת לא נדלקת. זו הנקודה.</p>
+      <p class="lg-fit__note"><b>טעינה סולארית.</b> הפאנל נטען מהשמש, והשרשרת נדלקת עם החשכה במצב התאורה שבחרתם — בלי חיבור לחשמל.</p>
+    </div>
+    <figure class="lg-fit__ph" data-lamp>
+      <div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-2.jpg" alt="גרילנדת כדורי קריסטל דולקת על גדר עץ בין עלים, בלילה" width="1000" height="1000" loading="lazy"></div>
+      <figcaption>תולים סביב אזור הישיבה, לאורך גדר או בתוך אוהל ומקבלים אווירה בולטת בלי חיבור לחשמל.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 3. NIGHT — full-bleed evidence ================= -->
+<section class="lg-night" id="night">
+  <div class="lg-night__bg" data-lamp><div class="ph"><img src="../../../../assets/img/collection-decor.jpg" alt="גרילנדה מעל פינת ישיבה במרפסת בלילה — האור היחיד הוא של השרשרת" width="800" height="1000" loading="lazy"></div></div>
+  <div class="lg-night__veil"></div>
+  <div class="wrap lg-night__in">
+    <div>
+      <p class="eyebrow">03 · בלילה</p>
+      <h2 class="h lg-night__h2">מראה חגיגי<br><em>שמתחיל לבד.</em></h2>
+      <p class="lg-night__p">הפאנל נטען מהשמש, והשרשרת נדלקת עם החשכה במצב התאורה שבחרתם. שמונה מצבים: אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע.</p>
+    </div>
+    <div class="lg-night__side">
+      <figure class="lg-night__inset" data-lamp>
+        <div class="ph"><img src="../../../../assets/img/solar-crystal-ball-string-lights-2.jpg" alt="השרשרת לאורך גדר עץ" width="1000" height="1000" loading="lazy" style="object-position:60% 40%"></div>
+        <figcaption>לאורך גדר. האור משתקף בתוך כל כדור ומעניק לחלל תחושה עשירה וחגיגית יותר.</figcaption>
+      </figure>
+      <div class="lg-metre" data-lamp>
+        <span class="kicker">מרווח · מטר אחד מהשרשרת שבחרתם</span>
+        <div class="lg-metre__rail"><div class="lg-metre__dots" data-dots><i></i><i></i><i></i><i></i></div></div>
+        <div class="lg-metre__cap"><b data-metre>כ־4 נורות למטר</b><span data-metre-sel>5 מ׳ / 20 נורות</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. FACTS — the spec as a column of numerals ================= -->
+<section class="lg-facts" id="facts">
+  <div class="stars" style="--stars:.3"></div>
+  <div class="wrap">
+    <div class="lg-facts__head">
+      <div><p class="eyebrow">04 · פרטים שכדאי לדעת</p><h2 class="h lg-facts__h2">מה שכתוב במפרט.<br>לא יותר.</h2></div>
+      <p>המספרים כאן הם מהמפרט של המוצר. מה שלא כתוב שם — לא כתוב גם כאן.</p>
+    </div>
+    <div class="lg-facts__grid">
+      <div class="lg-facts__col">
+        <div class="lg-facts__big" data-lamp><span class="num"><bdi>8–10</bdi><small>שעות</small></span><p>כ־8–10 שעות עבודה לאחר טעינה מלאה.</p></div>
+        <div class="lg-fact" data-lamp style="--i:1"><span class="num"><bdi>8</bdi><small>מצבים</small></span><p><b>מצבי תאורה.</b> קבוע, גל, דעיכה, הבהוב.</p></div>
+        <div class="lg-fact" data-lamp style="--i:2"><span class="num num--w"><bdi>IP65</bdi></span><p><b>עמידות.</b> מיועדת להישאר בחוץ.</p></div>
+        <div class="lg-fact" data-lamp style="--i:3"><span class="num"><bdi>5–22</bdi><small>מ׳</small></span><p><b>אורך.</b> <bdi>20–200</bdi> נורות <bdi>LED</bdi>.</p></div>
+        <div class="lg-fact" data-lamp style="--i:4"><span class="num num--w">שמש</span><p><b>טעינה סולארית.</b> הפאנל נטען מהשמש.</p></div>
+        <div class="lg-fact" data-lamp style="--i:5"><span class="num"><bdi>4</bdi><small>צבעים</small></span><p>צהוב, כחול, צבעוני או לבן.</p></div>
+      </div>
+      <div class="lg-facts__txt">
+        <article><h3>מיועדת להישאר בחוץ</h3><p>עמידות <bdi>IP65</bdi> מאפשרת שימוש בגינה ובמרפסת בתנאי מזג אוויר משתנים.</p></article>
+        <article><h3>שמונה מצבים לאווירות שונות</h3><p>בחרו אור קבוע לערב רגוע, גל או דעיכה לאפקט עדין, והבהוב למסיבה ואירוע.</p></article>
+        <article><h3>צבע שמגדיר את האירוע</h3><p>צהוב לאווירה חמה, לבן למראה נקי, כחול לאפקט קריר או צבעוני למסיבה.</p></article>
+        <article><h3>הפרטים הקטנים הם אלה שנראים הכי טוב בתמונות</h3><p>כדורי הקריסטל מוסיפים עומק וברק סביב שולחן, שביל, פרגולה או רקע צילום.</p></article>
+        <p class="lg-facts__only">מידות הכדורים והפאנל לא מופיעות במפרט שקיבלנו — ולכן לא כאן. שאלה לפני ההזמנה? <a href="mailto:info@elmsnest.com">info@elmsnest.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. AFTER — the receipt ================= -->
+<section class="lg-after" id="after">
+  <div class="stars" style="--stars:.45"></div>
+  <div class="wrap">
+    <div class="lg-after__head">
+      <div><p class="eyebrow">05 · מה קורה אחרי הלחיצה</p><h2 class="h lg-after__h2">ארבעה מספרים,<br>לפני שמשלמים.</h2></div>
+      <p>לא אותיות קטנות. אותיות גדולות, במקום גלוי, ליד הכפתור.</p>
+    </div>
+    <div class="lg-receipt">
+      <div><span class="kicker">השורה שבחרתם</span><p class="lg-receipt__sel" data-sel>5 מ׳ / 20 נורות · צהוב</p></div>
+      <p class="price" data-price><bdi>89.90</bdi> ₪</p>
+      <button class="btn" type="submit" form="product-form-ledger">הוספה לסל</button>
+    </div>
+    <div class="line" data-lamp style="--i:0"><div class="num"><bdi>0</bdi><small>₪</small></div><div class="t"><b>משלוח לנקודת איסוף — חינם.</b><p>משלוח עד הבית: <bdi>29.90</bdi> ₪.</p></div></div>
+    <div class="line" data-lamp style="--i:1"><div class="num"><bdi>8–17</bdi><small>ימי עסקים</small></div><div class="t"><b>מרגע ההזמנה עד הדלת.</b><p><bdi>1–3</bdi> ימי טיפול ועוד <bdi>7–14</bdi> ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן אנחנו כותבים את זה כאן, ולא מגלים אחרי.</p></div></div>
+    <div class="line" data-lamp style="--i:2"><div class="num"><bdi>14</bdi><small>יום</small></div><div class="t"><b>ביטול עסקה לפי חוק הגנת הצרכן.</b><p>עד 14 יום מקבלת המוצר. דמי ביטול עד <bdi>5%</bdi> ממחיר העסקה או <bdi>100</bdi> ₪ — הנמוך מביניהם.</p></div></div>
+    <div class="line" data-lamp style="--i:3"><div class="num"><bdi>1</bdi><small>תמונה</small></div><div class="t"><b>שלחו תמונה של המקום — נבדוק התאמה לפני שתזמינו.</b><p>ואם המוצר לא מתאים, נגיד. <a href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%92%D7%A8%D7%99%D7%9C%D7%A0%D7%93%D7%AA%20%D7%9B%D7%93%D7%95%D7%A8%D7%99%20%D7%A7%D7%A8%D7%99%D7%A1%D7%98%D7%9C%20%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA&body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D.">לשלוח תמונה של המקום</a></p></div></div>
+    <p class="lg-after__foot"><a href="#">משלוחים ואספקה</a><a href="#">ביטול עסקה</a><a href="#">שאלות נפוצות</a></p>
+  </div>
+</section>
+
+
+<!-- ================= 6. WHY HERE + 7. THE SMALL STEP ================= -->
+<section class="lg-why" id="why">
+  <div class="stars" style="--stars:.55"></div>
+  <div class="wrap lg-why__grid">
+    <div>
+      <p class="eyebrow">06 · למה כאן</p>
+      <blockquote>«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»<cite>מתוך «מי אנחנו», elmsnest.com</cite></blockquote>
+      <p class="lg-why__line">חנות תאורת חוץ אחת, בעברית, שאומרת גם מתי המוצר לא מתאים — זה קרה למעלה, במסך השני. בלי כוכבים, בלי «נמכר ביותר», עם אדם שאפשר לשאול לפני שמזמינים. <a href="#">מי אנחנו</a></p>
+    </div>
+    <div class="lg-step">
+      <span class="kicker">07 · צעד קטן</span>
+      <p class="lg-step__h">לא חייבים להחליט על 22 מטר הערב.</p>
+      <p>שלחו תמונה של המרפסת — נגיד איזה אורך משלים את המסגרת. או התחילו מהשורה הראשונה.</p>
+      <div class="lg-step__acts">
+        <a class="btn btn--ghost" href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%92%D7%A8%D7%99%D7%9C%D7%A0%D7%93%D7%AA%20%D7%9B%D7%93%D7%95%D7%A8%D7%99%20%D7%A7%D7%A8%D7%99%D7%A1%D7%98%D7%9C%20%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA&body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D.">לשלוח תמונה של המקום</a>
+        <span class="lg-step__or">או</span>
+        <a class="link" href="#buy" data-pick="0">להתחיל מ־5 מטר · <bdi>89.90</bdi> ₪</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. MORE FOR THIS PLACE — the catalogue card ================= -->
+<section class="lg-more" id="more">
+  <div class="stars" style="--stars:.6"></div>
+  <div class="wrap">
+    <div class="lg-more__head">
+      <div><p class="eyebrow">08 · עוד למרפסת</p><h2 class="h lg-more__h2">עוד שלושה לאותו מקום.</h2></div>
+      <p>מחיר אחד לכל אחד, לפי הכלל: מחיר בודד, טווח, או «מ־». בלי תגיות ובלי מבצעים.</p>
+    </div>
+    <div class="lg-shelf">
+      <article class="lg-card" data-lamp style="--w:300px;--ar:1/1.05">
+        <div class="ph"><img src="../../../../assets/img/solar-edison-string-lights-3.jpg" alt="גרילנדת נורות אדיסון מעל שולחן בלילה" width="1000" height="1000" loading="lazy"></div>
+        <span class="kicker">מרפסת ופינת ישיבה</span>
+        <h3 class="lg-card__t"><a href="#">גרילנדת נורות אדיסון סולארית – 5 או 8 מטר</a></h3>
+        <div class="lg-card__row"><span class="price">מ־<bdi>139.90</bdi> ₪</span><a class="lg-card__act" href="#">לבחירת אורך</a></div>
+      </article>
+      <article class="lg-card" data-lamp style="--w:280px;--ar:4/2.9;--up:26px">
+        <div class="ph"><img src="../../../../assets/img/solar-rope-string-lights-2.jpg" alt="שרשרת חבל דולקת על עץ בלילה" width="1000" height="1000" loading="lazy" style="object-position:50% 100%"></div>
+        <span class="kicker">מרפסת ופינת ישיבה</span>
+        <h3 class="lg-card__t"><a href="#">שרשרת חבל סולארית לחוץ – 50 עד 300 נורות <bdi>LED</bdi></a></h3>
+        <div class="lg-card__row"><span class="price">מ־<bdi>89.90</bdi> ₪</span><a class="lg-card__act" href="#">לבחירת אורך</a></div>
+      </article>
+      <article class="lg-card" data-lamp style="--w:250px;--ar:1/.92">
+        <div class="ph"><img src="../../../../assets/img/solar-firefly-garden-lights-3.jpg" alt="תאורת גחליליות סולארית מקרוב, בלילה" width="1000" height="1000" loading="lazy" style="object-position:50% 0"></div>
+        <span class="kicker">מרפסת ופינת ישיבה</span>
+        <h3 class="lg-card__t"><a href="#">תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות</a></h3>
+        <div class="lg-card__row"><span class="price"><bdi>99.90</bdi> ₪</span><form method="post" action="/cart/add" id="form-firefly"><input type="hidden" name="id" value="48880934813870"><input type="hidden" name="quantity" value="1"><button class="lg-card__act" type="submit">הוספה לסל</button></form></div>
+      </article>
+    </div>
+    <div class="lg-more__after"><a class="link" href="#">לכל הגרילנדות והתאורה הדקורטיבית <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></div>
+  </div>
+</section>
+</main>
+
+<div class="lg-sticky" id="sticky">
+  <div class="lg-sticky__t"><span class="lg-sticky__sel" data-sel>5 מ׳ / 20 נורות · צהוב</span><span class="price" data-price><bdi>89.90</bdi> ₪</span></div>
+  <button class="btn" type="submit" form="product-form-ledger">הוספה לסל</button>
+</div>
+
+<footer class="lg-ftr" id="contact">
+  <div class="wrap">
+    <div class="lg-ftr__top">
+      <div>
+        <a class="lg-ftr__brand" href="#top"><img src="../../../../assets/img/logo.png" alt="" width="56" height="56"><b>ElmsNest</b></a>
+        <p class="lg-ftr__tag">תאורת חוץ בלבד, לפי המקום: שביל, קיר, גינה, מרפסת. אם משהו לא מתאים לכם — נגיד לפני שתזמינו.</p>
+      </div>
+      <div>
+        <h4>קולקציות</h4>
+        <ul><li><a href="#">שביל, עמוד וגינה</a></li><li><a href="#">תאורת קיר</a></li><li><a href="#">ספוטים ופרוז׳קטורים</a></li><li><a href="#">גרילנדות ודקורטיבי</a></li></ul>
+      </div>
+      <div>
+        <h4>מידע</h4>
+        <ul><li><a href="#">מדריך לבחירת תאורה לגינה</a></li><li><a href="#">מי אנחנו</a></li><li><a href="#">משלוחים ואספקה</a></li><li><a href="#">ביטול עסקה</a></li><li><a href="#">שאלות נפוצות</a></li></ul>
+      </div>
+      <div>
+        <h4>יצירת קשר</h4>
+        <p style="font-size:15px;color:var(--ink-2)">שאלות על מוצר או על התאמה למקום? כתבו לנו:</p>
+        <a class="lg-ftr__mail" href="mailto:info@elmsnest.com">info@elmsnest.com</a>
+      </div>
+    </div>
+    <div class="lg-ftr__bottom">
+      <p>ElmsNest © 2026 · <a href="#after">תנאי משלוח וביטול</a></p>
+      <p>elmsnest.com</p>
+    </div>
+  </div>
+</footer>
+
+<script type="application/json" id="lg-data">{"type":"matrix","max":22,"lens":[{"label":"5 מ׳ / 20 נורות","m":5,"b":20,"price":89.9},{"label":"6.5 מ׳ / 30 נורות","m":6.5,"b":30,"price":89.9},{"label":"9.5 מ׳ / 50 נורות","m":9.5,"b":50,"price":99.9},{"label":"11 מ׳ / 60 נורות","m":11,"b":60,"price":109.9},{"label":"13 מ׳ / 100 נורות","m":13,"b":100,"price":129.9},{"label":"22 מ׳ / 200 נורות","m":22,"b":200,"price":179.9}],"cols":["צהוב","כחול","צבעוני","לבן"],"ids":[[48880938221742,48880938254510,48880938287278,48880938320046],[48880938352814,48880938385582,48880938418350,48880938451118],[48880938483886,48880938516654,48880938549422,48880938582190],[48880938614958,48880938647726,48880938680494,48880938713262],[48880938746030,48880938778798,48880938811566,48880938844334],[48880938877102,48880938909870,48880938942638,48880938975406]]}</script>
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- lamps light as they enter the viewport (once, never re-dim) ---------- */
+  var lamps = [].slice.call(document.querySelectorAll('[data-lamp]')).filter(function(el){ return el.getAttribute('data-lamp') !== 'off'; });
+  if (rm || !('IntersectionObserver' in window)) {
+    lamps.forEach(function(el){ el.classList.add('lit'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('lit'); io.unobserve(e.target); } });
+    }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+    lamps.forEach(function(el){ io.observe(el); });
+  }
+  function sweep(){
+    var vh = window.innerHeight;
+    lamps.forEach(function(el){
+      if (el.classList.contains('lit')) return;
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.82 && r.bottom > vh * 0.1) el.classList.add('lit');
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){ sweep(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', sweep);
+  sweep();
+
+  /* ---------- the ledger: one form, radios per axis, hidden id per variant ---------- */
+  var dataEl = document.getElementById('lg-data');
+  var D = dataEl ? JSON.parse(dataEl.textContent) : null;
+  var form = document.getElementById('product-form-ledger');
+  function fmt(n){ return (Math.round(n * 100) / 100).toFixed(2); }
+  function setHTML(sel, html){ document.querySelectorAll(sel).forEach(function(e){ e.innerHTML = html; }); }
+  function checked(name){ var i = form.querySelector('input[name="' + name + '"]:checked'); return i ? +i.value : 0; }
+  function setId(id){
+    var hid = form.querySelector('input[data-id]');
+    if (!hid) { hid = document.createElement('input'); hid.type = 'hidden'; hid.name = 'id'; hid.setAttribute('data-id', ''); form.appendChild(hid); }
+    hid.value = id;
+    try { var u = new URL(location.href); u.searchParams.set('variant', id); history.replaceState(null, '', u); } catch (e) {}
+  }
+  function markRows(){
+    form.querySelectorAll('.lg-row, .lg-krow, .lg-col label').forEach(function(l){ var i = l.querySelector('input'); if (i) l.classList.toggle('on', i.checked); });
+    form.querySelectorAll('.lg-wrow').forEach(function(w){ w.classList.toggle('on', !!w.querySelector('input:checked')); });
+  }
+  function update(){
+    if (!D || !form) return;
+    var selHtml = '', price = 0, len = 1;
+    if (D.type === 'matrix') {
+      var li = checked('len'), ci = checked('col'), L = D.lens[li];
+      price = L.price; selHtml = L.label + ' · ' + D.cols[ci]; len = L.m / D.max;
+      setId(D.ids[li][ci]);
+      document.querySelectorAll('.lg-tape__t').forEach(function(t, i){ t.classList.toggle('on', i === li); });
+      var n = Math.round(L.b / L.m), dots = document.querySelector('[data-dots]');
+      if (dots) { dots.innerHTML = ''; for (var k = 0; k < n; k++) dots.appendChild(document.createElement('i')); }
+      setHTML('[data-metre]', 'כ־' + n + ' נורות למטר');
+      setHTML('[data-metre-sel]', L.label);
+    } else if (D.type === 'wall') {
+      var wi = checked('wk'), cj = checked('col'), W = D.wk[wi];
+      price = W.price; len = W.w === 12 ? 1 : 0.55;
+      selHtml = D.cols[cj] + ' · <bdi>' + W.w + 'W</bdi> · ' + W.klabel + ' <bdi>' + W.k + 'K</bdi>';
+      setId(D.ids[wi][cj]);
+      document.documentElement.style.setProperty('--halo', W.k === 6000 ? '223,233,255' : '255,211,148');
+      document.querySelectorAll('.lg-quad').forEach(function(q, i){ q.classList.toggle('on', i === cj); });
+    } else if (D.type === 'qty') {
+      var q = checked('quantity') || 1;
+      price = D.unit * q; len = q / 6;
+      selHtml = (q === 1 ? 'יחידה אחת' : q + ' יחידות') + ' · ' + D.suffix;
+    }
+    setHTML('[data-sel]', selHtml);
+    setHTML('[data-price]', '<bdi>' + fmt(price) + '</bdi> ₪');
+    document.querySelectorAll('.lg-ev').forEach(function(e){ e.style.setProperty('--len', len); });
+    markRows();
+  }
+  if (form) {
+    form.addEventListener('change', update);
+    update();
+    /* the small step: "start from the first row" picks a row and returns to the ledger */
+    document.querySelectorAll('[data-pick]').forEach(function(a){
+      a.addEventListener('click', function(){
+        var name = D.type === 'matrix' ? 'len' : D.type === 'wall' ? 'wk' : 'quantity';
+        var r = form.querySelector('input[name="' + name + '"][value="' + a.getAttribute('data-pick') + '"]');
+        if (r) { r.checked = true; update(); }
+      });
+    });
+  }
+
+  /* ---------- mobile sticky buy bar: appears once the hero button has scrolled away ---------- */
+  var sticky = document.getElementById('sticky'), buyBtn = document.getElementById('buy-btn');
+  function stickyCheck(){ if (sticky && buyBtn) sticky.classList.toggle('show', buyBtn.getBoundingClientRect().bottom < 0); }
+  window.addEventListener('scroll', stickyCheck, { passive: true });
+  window.addEventListener('resize', stickyCheck);
+  stickyCheck();
+
+  /* ---------- smooth anchors (instant under reduced motion) ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var h = a.getAttribute('href'); if (h.length < 2) return;
+      var t = document.querySelector(h); if (!t) return; e.preventDefault();
+      t.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+
+  /* ---------- mockup: forms do not post anywhere ---------- */
+  document.querySelectorAll('form').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btns = document.querySelectorAll('button[type="submit"][form="' + f.id + '"], #' + f.id + ' button[type="submit"]');
+      if (!btns.length) btns = f.querySelectorAll('button[type="submit"]');
+      btns.forEach(function(btn){ var t = btn.textContent; btn.textContent = 'נוסף לסל'; setTimeout(function(){ btn.textContent = t; }, 1600); });
+    });
+  });
+})();
+
+</script>
+</body>
+</html>

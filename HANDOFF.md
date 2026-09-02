@@ -88,3 +88,38 @@ Same bar as the homepage: one idea per template that only a lighting store could
   metafields (`custom.faq/not_fit_for/direct_answer` + specs) filled on 1 of 27 products.
 - **Do not push** `brief/inventory/theme-src/templates/page.store-locator.json` (Kalles demo with a live Mapbox token;
   GitHub push protection blocks it; it is gitignored).
+
+### 7.1 Stopped mid-run on 2026-09-02 (usage limit) — exact resume state
+
+**Owner decisions received (verbatim in `brief/side-pages/OWNER-NOTES.md`):** no WhatsApp number yet (email path
+`mailto:info@elmsnest.com` is the fallback; never write "בוואטסאפ"); replace PDP v2 (keep copy assets); image ledger =
+never index 0 of the never-use list (owner delegated); metafields = extract from descriptions, owner approves, then write;
+NO sales (no badges/strikethrough/sale collection); cart drawer is the primary post-ATC experience.
+
+**Round 0 — shared core (spec `brief/side-pages/core/CORE-SPEC.md`):** the engineer DEPLOYED everything to the dev theme
+(verified on the theme at 09:04–09:18 UTC: `snippets/elmsnest-v2-core.liquid` 15.9 KB, `elmsnest-v2-ground-index.liquid`,
+`elmsnest-v2-photo-url.liquid`, `elmsnest-v2-base.liquid` = 344 B stub, `layout/theme.liquid` (core rendered from head),
+`config/settings_data.json`, `sections/system-group.json`, `snippets/css-variables.liquid` (`--en-*` retargeted), templates
+`404/blog/cart/collection/list-collections/page/page.contact-us/product.elmsnest/search.json` + `customers/*`). Repo copies are
+under `theme/`. The engineer was in the VERIFY step when stopped: `brief/side-pages/core/` holds the before-home baseline PNGs,
+`drawer-desktop/mobile.png`, `pdp-sticky-*.png`, `cmp-home-*.png`, `diff-home-desktop-fold.png` (gitignored — regenerate); no
+`REPORT.md` yet; the two adversarial verifiers never ran. **To resume:** re-mirror + shoot (`bash brief/inventory/mirror-all.sh`
+&& `bash brief/inventory/shot-all-http.sh`), run the acceptance in CORE-SPEC §F.4 yourself, then run the verify/fix phases of
+`brief/side-pages/workflows/core-round-0.js` (edit the script: skip the Build agent, feed the verifiers the REPORT you write).
+Also confirm `theme/sections/elmsnest-v2-hero.liquid` line 7 renders `elmsnest-v2-ground-index` (not base) and that the
+homepage fold is pixel-identical to the baseline.
+
+**Round 1 — PDP concepts (brief `brief/side-pages/pdp/BRIEF.md`, data `products.json`, workflow
+`brief/side-pages/workflows/pdp-concepts-round-1.js`):** designers finished `place` and `ledger` (index/path/wall + CRITIQUE +
+PNGs), `switch` and `dialogue` have `index.html` + PNGs only (no path/wall/critique), `walk` was not started. Judges and the lead
+synthesis did NOT run. **To resume:** re-run the workflow but replace the Concepts phase with: finish `switch` + `dialogue`
+(path.html, wall.html, CRITIQUE.md, shots) and build `walk` from scratch; keep `place`/`ledger` as they are; then Judges →
+Synthesis → owner checkpoint (show the five `shot-*-fold.png` + `RULING.md` before any build). PNGs are gitignored —
+regenerate with `node brief/shot.js brief/side-pages/pdp/concepts/<key>/index.html brief/side-pages/pdp/concepts/<key>/shot`
+(and `path.html` → `shot-path`, `wall.html` → `shot-wall`).
+
+**Metafields:** `brief/side-pages/pdp/METAFIELD-SHEET.md` + `metafields.json` are ready for the owner (generator
+`brief/side-pages/pdp/build_sheet.py`). Owner must decide the 4 items in summary line 15 before any write.
+
+**Tooling that must be re-installed in a fresh container:** `npm install playwright@1.54.1` in the scratchpad
+(`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`), `pip install pillow`, then `cd brief/assets && python3 fetch.py`.

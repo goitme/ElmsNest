@@ -159,7 +159,6 @@
       render 'social-meta-tags'
       render 'css-variables', is_rtl: is_rtl
       render 'elmsnest-v2-fonts'
-      render 'elmsnest-v2-core'
       unless request.page_type == 'index'
         render 'product-styles'
       endunless
@@ -171,6 +170,8 @@
     -%}
 
     {{ content_for_header }}
+    {%- comment -%} ElmsNest v2 core (tokens, type, lamps, window.env2): AFTER content_for_header so it follows the section {% stylesheet %} bundle, as the base did when the hero rendered it (CONTRACT: base helpers win over single-class section rules). Fonts are rendered above, after css-variables. {%- endcomment -%}
+    {%- render 'elmsnest-v2-core' -%}
     {%- endunless -%}
   </head>
 
