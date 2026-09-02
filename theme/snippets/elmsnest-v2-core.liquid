@@ -100,11 +100,14 @@ option[value="best-selling"],hdt-richlist button[role="option"][value="best-sell
 :root{--en-warning-text:255 211 148}
 /* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
    hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
-   so it renders as an opaque #0d0d0f square over the photo on every card with an invisible glyph in it.
-   Legible pair for the pointer case; painted out (layout untouched) where there is no hover — the whole card
-   already links to the PDP and show_quick_add is off — until round 2 rebuilds the card. */
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
 .hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
-@media (hover:none){.hdt-card-product__btn-ultra{visibility:hidden}}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
 
 /* ---------- section root helper + container (§3.3) ---------- */
 .env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}

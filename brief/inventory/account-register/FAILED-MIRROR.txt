@@ -1,0 +1,13 @@
+FAILED MIRROR — this page does not exist on this store.
+
+/account/register ?preview_theme_id=154726400174 returns HTTP 302 to
+https://shopify.com/68949278894/account?locale=he...  (Shopify "new customer accounts").
+curl follows the redirect and the shopify.com endpoint answers 406 Not Acceptable, so
+index.html here is the 14-byte string "Not Acceptable", not a theme render.
+
+Consequence for round 0: the seven templates/customers/*.json files edited under CORE-SPEC §B
+(account, activate_account, addresses, login, order, register, reset_password) are never rendered
+by this storefront. Those edits are inert. See REPORT.md "Fix pass" -> V-5.
+
+The four http-*.png files that used to sit here were screenshots of the error string and have been
+deleted; nothing in this directory is evidence of a theme render.
