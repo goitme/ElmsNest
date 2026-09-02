@@ -5,3 +5,8 @@ brief/assets/fonts/
 brief/concepts/**/*.png
 brief/build-preview/**/*.png
 node_modules/
+# Inventory mirrors of the dev theme (brief/inventory/mirror-all.sh regenerates them): keep index.html + logs summary, drop assets/cookies/2x PNGs
+brief/inventory/**/a/
+brief/inventory/**/cj.txt
+brief/inventory/**/*.log
+brief/inventory/**/*.png

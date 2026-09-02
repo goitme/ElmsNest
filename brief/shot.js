@@ -2,7 +2,16 @@
 // Renders the mockup offline (file://) at desktop 1440 and mobile 390, full page, 2x.
 // Writes <out-prefix>-desktop.png, <out-prefix>-mobile.png and prints page heights.
 const path = require('path');
-const { chromium } = require('/tmp/claude-0/-home-user-ElmsNest/594be2b1-bb4b-50f5-8428-3a60ec433681/scratchpad/node_modules/playwright');
+const fs = require('fs');
+// playwright lives in the session scratchpad (node_modules is gitignored); resolve it from ENV2_PW_ROOT,
+// then any scratchpad under /tmp/claude-0, then a plain require.
+function loadPlaywright() {
+  const roots = [process.env.ENV2_PW_ROOT].filter(Boolean);
+  try { for (const d of fs.readdirSync('/tmp/claude-0/-home-user-ElmsNest')) roots.push(`/tmp/claude-0/-home-user-ElmsNest/${d}/scratchpad`); } catch (e) {}
+  for (const r of roots) { try { return require(`${r}/node_modules/playwright`); } catch (e) {} }
+  return require('playwright');
+}
+const { chromium } = loadPlaywright();
 (async () => {
   const [,, htmlPath, outPrefix] = process.argv;
   if (!htmlPath || !outPrefix) { console.error('usage: node shot.js <html> <out-prefix>'); process.exit(2); }
