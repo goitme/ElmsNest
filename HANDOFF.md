@@ -169,3 +169,27 @@ Open for the lead: the 13px-vs-14px minimum contradiction between `pdp/WINNING-S
 (PDP floor raised to 14 px); Heebo letterspacing and `.env2-h` leading belong to the core round, not the PDP.
 Owner page: `brief/side-pages/pdp/build-owner-page.py`. **Next: owner verdict → round 2 (collection), which inherits
 `snippets/elmsnest-v2-pdp-card.liquid` as the catalogue card.**
+
+### 7.4 Round 2 (collection) BUILT, critiqued, fixed, independently verified (2026-09-03)
+
+Live on the dev theme for all five URLs (`templates/collection.json`, seven sections
+`elmsnest-v2-coll-{scene,ruler,bands,span,ledger,terms,goodnight}` + snippets `coll-{axis,rail,paginate,glyph}`,
+`ground-collection`, and the PDP card/image snippets extended additively). Kalles `main-collection`,
+`main-heading` and `top-list-collections` are out of the template; their files stay on the theme.
+Records: `brief/side-pages/collection/{BRIEF,WINNING-SPEC,RULING,FIX-REPORT}.md` and
+`CRITIQUE-{lead,creative,typographer,qa}.md`.
+Final: decor 10,706/12,339 · path 12,940/15,273 · wall 8,743/9,718 · spot 9,978/10,867 · all 18,836/22,305 px;
+0 Liquid errors; price + a route to buy in the fold on all five (the audit's worst defect); 5 URLs x 4 viewports
+clean on tag-overlap, the 44 px narrow row, and horizontal overflow.
+Process note: the four critic agents failed three times on API 500/529, so the lead executed the shopper journey
+himself and wrote `CRITIQUE-lead.md`; the other three lenses ran later and found 42 findings, 24 closed with
+measured evidence and confirmed by an independent verifier that re-mirrored everything after the deploy timestamp.
+**Two of the lead's own calls were overturned by measurement and both corrections are recorded in
+`CRITIQUE-lead.md` / `FIX-REPORT.md`:** LEAD-01 was marked closed on 2 of 5 URLs (it was in fact on all five, but
+the evidence did not cover them); and the ruling "shrink the photo at <=360px" was proved inert at 320x568 (the
+tag ceiling is already at its 72 px floor there) and replaced by a cap scoped to <=360px.
+**One finding is OPEN by decision:** at 320x568 the buy control sits 26-43 px below the fold; the boundary is a
+contract — **360x640 must stay inside the fold; any change that pushes it out is a regression.**
+Owner page generator: `brief/side-pages/collection/build-owner-page.py`.
+**Next: round 3, cart drawer + cart page** (the drawer is the primary post-ATC experience per OWNER-NOTES), then
+search + 404, then the content pages, then policies. The card and the core are done, so each round is shorter.
