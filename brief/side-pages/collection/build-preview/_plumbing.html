@@ -1,0 +1,804 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest collection — plumbing proof</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<style>
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1), every template ----------
+   Kalles paints body with its scheme and wraps content in painted containers; here the document
+   is night on every page type and the wrappers go clear. The index keeps its own dusk gradient
+   (snippets/elmsnest-v2-ground-index, rendered by the hero); every other template gets the
+   side-page ground: sky-2 -> sky-3 -> sky-4, ending in #020306 before the footer. */
+html{background:#020306}
+body[class*="hdt-page-type-"]{background-color:#020306;color:#f4eee3}
+body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+#wrapper,.main-content,main,#MainContent,.hdt-main-content,.hdt-page-content,.shopify-section{background:transparent}
+/* Kalles back-to-top: a white square bottom-right (old palette) — hidden everywhere (§7.11) */
+.hdt-back-to-top,back-to-top{display:none!important}
+/* Kalles footer group: same sans as the page, quiet links (underline on hover only).
+   The link rules must reach (0,2,2): the footer links sit inside .hdt-text-warry.hdt-rte, and Kalles'
+   .hdt-rte a:not(.hdt-btn){text-decoration:underline} is (0,2,1), so the plain unscoped selector (0,1,1)
+   lost to it and every footer link came back underlined (fix pass R0-01). The index-scoped rule this
+   replaced was body.hdt-page-type-index .shopify-section-group-footer-group a = (0,2,2) and did win. */
+.shopify-section-group-footer-group{font-family:var(--env2-sans)}
+body .shopify-section-group-footer-group a:not(.hdt-btn){text-decoration:none}
+body .shopify-section-group-footer-group a:not(.hdt-btn):hover,body .shopify-section-group-footer-group a:not(.hdt-btn):focus-visible{text-decoration:underline}
+/* Kalles chrome type: header menu, drawers, popovers, facets and the old sections use Heebo.
+   css-variables sets --f_family_1..3 on :root from the Shopify font (assistant_n4); this comes after it. */
+:root{--f_family_1:var(--env2-sans);--f_family_2:var(--env2-sans);--f_family_3:var(--env2-sans)}
+/* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
+   sale badges never render (settings hidden_badges + this belt) */
+option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
+.hdt-badge__wrapp{display:none!important}
+/* Kalles form fields: the theme paints a field with rgb(var(--color-input-primary)) and writes it with
+   --color-input-secondary. Both the :root fallback (css-variables l.185-186) and the night scheme's
+   input pair still carry cream-era values, so every form rendered a light slab with 2.7:1 text on the
+   night ground (contact form, account/login/register, the cart discount field). Night field, ink text.
+   --en-input-bg is the last #fffdf7 in the token set (the header search field) — retargeted with it. */
+:root{--en-input-bg:17 29 51}
+:root,[color-scheme]{--color-input-primary:var(--en-surface-elevated);--color-input-secondary:var(--en-color-light)}
+/* Kalles accent buttons hard-code white labels (.hdt-btn-accent{--hdt-btn-color:255 255 255}); under the
+   night scheme their fill is --env2-glow, so the label needs the dark ink (§D): 1.4:1 -> 13:1. */
+.hdt-btn-accent{--hdt-btn-color:var(--en-text-inverse)}
+/* Kalles swatch/tooltip bubble: css-variables pairs --color-tooltip-background with
+   --color-tooltip-text, and §D moved BOTH ends of that pair to near-black (--en-color-dark 2 3 6 /
+   --en-text-inverse 2 3 6) — the bubble is ink-on-ink. Night bubble, ink label (hover only). */
+:root{--color-tooltip-background:var(--en-surface-elevated);--color-tooltip-text:var(--en-color-light)}
+
+/* ---------- fix pass, round 0 second pass (V-1 · V-2 · V-4 · V-6) ---------- */
+/* V-1: the header search panel is <hdt-predictive-search color-scheme="scheme-1"> — the attribute is written
+   in a Kalles core section we do not own, so settings.color_scheme_dialog never reaches it, and scheme-1 is
+   the cream scheme (#f7f0e6 background, #fffdf7 background2, #2b2118 foreground): the three hexes this round
+   forbids, on the drawer behind the magnifier on every template. scheme-1 is remapped onto the night pair.
+   Exactly one element per page carries it (the search panel, closed) — the homepage included — so nothing
+   else can move. The input pair is deliberately NOT listed here: the :root,[color-scheme] rule above owns it
+   at the same specificity and must keep winning. */
+[color-scheme="scheme-1"]{
+  --color-background:2 3 6;--color-background2:7 11 21;--color-foreground:244 238 227;--color-foreground2:201 196 184;
+  --color-accent:255 211 148;--color-secondary:208 182 135;--color-tertiary:155 122 61;
+  --hdt-btn-color:26 18 6;--hdt-btn-bg:255 211 148;--hdt-btn-border-color:255 211 148;
+  --hdt-btn-hover-color:26 18 6;--hdt-btn-hover-bg:var(--en-surface-card);--hdt-btn-hover-border-color:var(--en-surface-card);
+  --hdt-btn-secondary-color:83 73 54;--hdt-btn-secondary-bg:208 182 135;
+  --hdt-btn-tertiary-color:62 49 24;--hdt-btn-tertiary-bg:155 122 61;
+  --hdt-btn-outline-color:244 238 227;--hdt-btn-outline-border-color:244 238 227;
+  --hdt-link-color:244 238 227;--hdt-link-hover-color:255 211 148;
+  --color-line-border:31 30 29;--color-overlay:2 3 6;--payment-terms-background-color:rgb(2 3 6);
+  --color-pr-price:255 211 148;--color-pr-sale-price:255 211 148;--color-pr-text:244 238 227;
+  --color-focus:var(--en-focus-dark);--en-focus-contrast:var(--en-focus-light)
+}
+/* the search drawer's category <select> and its options paint from the UA, not from the scheme (old open item 5) */
+#drawer-search-form select,#drawer-search-form option{background-color:rgb(var(--en-surface-elevated));color:rgb(var(--en-color-light))}
+/* V-4: <dialog id="modal-contactFormAsk"> has no background rule of its own, so it falls back to the UA's
+   white canvas while its wrapper's night scheme paints the ink — heading 1.15:1, field labels 1.74:1. */
+#modal-contactFormAsk{background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}
+/* V-6: --en-warning-text (96 64 0) was built for the cream page; §D moved the ground to #020306 and did not
+   list it, so .hdt-no-result-product — the only copy on the no-results page — reads 2.19:1. The amber the
+   design system already uses gives 11.9:1 on #020306. The two other consumers (.toast.warning border,
+   .toast-icon.warning fill, which pairs it with --en-text-inverse) stay legible. */
+:root{--en-warning-text:255 211 148}
+/* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
+   hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
+.hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-price__from{font-family:var(--env2-sans);font-weight:400;font-size:.62em;color:var(--env2-ink-2);margin-inline-end:.15em;letter-spacing:0}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<style>
+/* ---------- page ground (§3.1): night measured in px, not % ----------
+   Screen 1 is a photo ground painted by elmsnest-v2-coll-scene; the document below it is this one
+   gradient and nothing else. No section paints a background (§3.1: the only card surface anywhere on
+   this page is the scrim --env2-scrim + backdrop-filter, used exactly twice). */
+html body.hdt-page-type-collection{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,
+    #0b1526 0px,
+    #0a1120 620px,
+    #080e1c 1500px,
+    #060a14 2600px,
+    #04070e 3800px,
+    #020306 5000px);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-attachment:scroll;
+  min-height:100vh;
+}
+/* A page that is SHORTER than the gradient (6 products, one screen) must not be handed a squashed
+   sky: background-size:100% 100% would compress the 5000px ramp into a 2000px document and the short
+   page would go black three times faster than the long one. Painting the ramp on a fixed 5000px box
+   anchored at the top and letting #020306 fill the rest keeps every collection identical for the first
+   5000px, which is the whole point of §3.1. */
+html body.hdt-page-type-collection{background-size:100% 5000px}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-collection #wrapper,
+html body.hdt-page-type-collection .main-content,
+html body.hdt-page-type-collection main,
+html body.hdt-page-type-collection #MainContent,
+html body.hdt-page-type-collection .hdt-main-content,
+html body.hdt-page-type-collection .hdt-page-content,
+html body.hdt-page-type-collection .shopify-section{background:transparent}
+/* The header is transparent over the scene: the scene is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it — Kalles ships a top margin
+   on the first collection section for its taupe banner, which this template retires (§5.4). */
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal page scroll at 360px (§6.13). The scene, the band scenes and the goodnight photo are
+   full-bleed, and the ruler's dot rails scroll INSIDE their own row — never the document. */
+html body.hdt-page-type-collection{overflow-x:hidden}
+/* §3.2's tap-target floor, on this template only. elmsnest-v2-core sizes .env2-btn--sm at 36px tall on
+   desktop (it was sized for the PDP related row) and only raises it to 44px under 900px. The collection
+   spec asks for 48px, 44px absolute, with no viewport caveat — so the floor is set here, scoped to the
+   collection body, and the PDP is not touched. Measured in the plumbing render: 36px -> 44px. */
+html body.hdt-page-type-collection .env2-btn--sm{min-block-size:44px}
+html body.hdt-page-type-collection .env2-pdp-card__action .env2-btn{min-block-size:44px}
+/* Kalles' collection chrome that §5.4 retires from templates/collection.json. The section files stay on
+   the theme until the owner signs off, so nothing is deleted; these two belts only make sure that a
+   left-over instance cannot paint a cream strip or a taupe banner over the night. */
+html body.hdt-page-type-collection .hdt-collection-toolbar,
+html body.hdt-page-type-collection .hdt-collection-banner{background:transparent}
+</style>
+<style id="env2-pdp-card-css">
+.env2-pdp-card{position:relative;display:flex;flex-direction:column;gap:12px;margin:0;padding:0;
+  inline-size:var(--env2-pdp-card-w,280px);max-inline-size:100%;border-radius:0;background:transparent}
+.env2-pdp-card__media{position:relative;display:block;inline-size:100%;border-radius:0}
+.env2-pdp-card__ph{display:block;position:relative;inline-size:100%;aspect-ratio:var(--env2-pdp-card-ar,1/1.15);
+  overflow:hidden;border-radius:0;background:#05070c;isolation:isolate}
+.env2-pdp-card__ph img{inline-size:100%;block-size:100%;object-fit:cover;display:block}
+.env2-pdp-card__kicker{margin:0;font-size:11.5px;line-height:1.35;text-wrap:balance}
+/* §6 #18's 13px floor: .62em of the 19px mobile card price is 11.78px, and this is the glyph pair
+   that turns an exact price into a minimum (TYPOGRAPHER-05). Scoped here, not on the shared class. */
+.env2-pdp-card__price .env2-price__from{font-size:max(13px,.62em)}
+.env2-pdp-card__title{margin:0;font-family:var(--env2-sans);font-weight:400;
+  font-size:var(--env2-pdp-card-title,15px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:balance}
+.env2-pdp-card__title a{color:inherit;text-decoration:none;transition:color .3s}
+.env2-pdp-card__title a:hover,.env2-pdp-card__title a:focus-visible{color:var(--env2-glow)}
+.env2-pdp-card__row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-block-start:2px}
+.env2-pdp-card__price .env2-price{--env2-price-size:21px}
+/* §8.3 belt: .env2-section a{color:inherit} outranks .env2-btn{color:…}, so an ANCHOR styled as the
+   filled pill would render ink-on-glow at 1.21:1. elmsnest-v2-buy only ever emits a ghost anchor, but
+   these two rules make both cases explicit and correct whatever a caller passes. */
+.env2-pdp-card__action .env2-btn{color:var(--env2-btn-ink)}
+.env2-pdp-card__action .env2-btn--ghost{color:var(--env2-ink)}
+.env2-pdp-card__action .env2-buy{display:inline-block}
+@media (max-width:900px){
+  .env2-pdp-card{inline-size:min(var(--env2-pdp-card-w,280px),62vw);gap:10px}
+  .env2-pdp-card__price .env2-price{--env2-price-size:19px}
+  .env2-pdp-card__title{font-size:var(--env2-pdp-card-title-mb,15px)}
+}
+/* ---------- round 2, collection §3.5. Every selector below needs a class or an element the PDP
+   never emits (--scene, __axis, __unit, .env2-coll-glyph), so the PDP related row is unaffected. ---- */
+.env2-pdp-card__axis,.env2-pdp-card__unit{margin:0;font-family:var(--env2-sans);font-weight:300;
+  font-size:14px;line-height:1.45;color:var(--env2-ink-2);unicode-bidi:isolate;text-wrap:pretty}
+.env2-pdp-card__axis{margin-block-start:-4px}
+.env2-pdp-card__unit{margin-block-start:-6px;font-variant-numeric:tabular-nums}
+/* the scrim card that rides a photograph — the ONLY card surface on the collection page (§3.1),
+   used exactly twice: the pinned card on the scene and the card on a band photo. Radius stays 0. */
+.env2-pdp-card--scene{background:var(--env2-scrim);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);padding:22px 26px;border-radius:0;gap:10px}
+.env2-pdp-card--scene .env2-pdp-card__row{margin-block-start:6px}
+@media (max-width:900px){
+  .env2-pdp-card--scene{padding:18px 20px;inline-size:100%;max-inline-size:100%}
+}
+/* a drawn plate stands in for the photograph in the same box (§3.6.3) */
+.env2-pdp-card__ph .env2-coll-glyph{position:absolute;inset:0;inline-size:100%;block-size:100%;aspect-ratio:auto}
+</style>
+<style id="env2-coll-rail-css">
+/* ---------- one product's dot rail (§4.2) ---------- */
+.env2-coll-rail{position:relative;display:block;inline-size:100%;min-inline-size:0;
+  padding-block:14px 0;font-family:var(--env2-sans);font-weight:300}
+.env2-coll-rail__line{position:absolute;inset-inline:0;inset-block-start:8px;block-size:1px;
+  background:var(--env2-hair);display:block}
+.env2-coll-rail__dot{position:absolute;inset-block-start:4px;inset-inline-start:var(--env2-rail-p,0);
+  margin-inline-start:-4px;inline-size:9px;block-size:9px;border-radius:999px;
+  background:var(--env2-mute);display:block;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s,box-shadow .25s}
+/* the cursor knob — the ruler section puts this class on its own knob and the generated
+   :checked ruleset moves it. It is the second and last round thing on this page (§3.1). */
+.env2-coll-rail__cursor{position:absolute;inset-block-start:0;inset-inline-start:0;
+  margin-inline-start:-7px;inline-size:14px;block-size:14px;border-radius:999px;
+  background:var(--env2-glow);box-shadow:0 0 0 7px rgba(255,211,148,.12),0 0 22px 6px rgba(247,162,74,.30);
+  transition:inset-inline-start .32s cubic-bezier(.2,.7,.2,1)}
+/* every stop's answer is in the DOM; CSS chooses. Without the generated ruleset (or with CSS off)
+   the range is what shows — never nothing. */
+.env2-coll-rail__v{display:none;align-items:baseline;gap:10px;flex-wrap:wrap;margin-block-start:12px;
+  font-size:15px;line-height:1.4;color:var(--env2-ink-2)}
+.env2-coll-rail__v--all{display:flex}
+.env2-coll-rail__val{font-family:var(--env2-serif);font-weight:500;font-size:17px;
+  font-variant-numeric:tabular-nums;color:var(--env2-ink);white-space:nowrap}
+.env2-coll-rail__price{font-family:var(--env2-serif);font-weight:500;font-size:17px;
+  font-variant-numeric:tabular-nums;color:var(--env2-glow);white-space:nowrap}
+.env2-coll-rail__price .env2-price{--env2-price-size:17px}
+.env2-coll-rail__per{font-size:14px;color:var(--env2-ink-2);font-variant-numeric:tabular-nums}
+/* 'beyond': the row dims (the ruler puts data-short on it) and the rail SAYS how far it reaches.
+   Never display:none — §6.6. */
+.env2-coll-rail__v[data-state="beyond"]{color:var(--env2-mute)}
+.env2-coll-rail__miss{font-size:14px;color:var(--env2-ink-2)}
+.env2-coll-rail__price--miss{color:var(--env2-ink-2)}
+/* 'off': not measured in this unit at all — no dots, no span, only the caller's honest note. */
+.env2-coll-rail--off{padding-block-start:0}
+.env2-coll-rail__off{margin:0;font-size:14px;color:var(--env2-ink-2)}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-rail__dot,.env2-coll-rail__cursor{transition:none}
+}
+@media (max-width:900px){
+  .env2-coll-rail__val,.env2-coll-rail__price{font-size:16px}
+  .env2-coll-rail__v{font-size:14px;gap:8px}
+  .env2-coll-rail__per,.env2-coll-rail__miss{font-size:13px}
+}
+</style>
+<style id="env2-coll-rail-stops">#env2-stop-3:checked ~ .plumb-ruler .env2-coll-rail__v{display:none}
+#env2-stop-3:checked ~ .plumb-ruler .env2-coll-rail__v[data-stop="3"]{display:flex}
+#env2-stop-3:checked ~ .plumb-ruler .env2-coll-rail__dot[data-pick~="3"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-3:checked ~ .plumb-ruler [data-short~="3"]{opacity:.4}
+#env2-stop-3:checked ~ .plumb-ruler [data-short~="3"] [data-short~="3"]{opacity:1}
+#env2-stop-3:checked ~ .plumb-ruler .env2-coll-rail__cursor{inset-inline-start:9.38%}
+#env2-stop-6:checked ~ .plumb-ruler .env2-coll-rail__v{display:none}
+#env2-stop-6:checked ~ .plumb-ruler .env2-coll-rail__v[data-stop="6"]{display:flex}
+#env2-stop-6:checked ~ .plumb-ruler .env2-coll-rail__dot[data-pick~="6"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-6:checked ~ .plumb-ruler [data-short~="6"]{opacity:.4}
+#env2-stop-6:checked ~ .plumb-ruler [data-short~="6"] [data-short~="6"]{opacity:1}
+#env2-stop-6:checked ~ .plumb-ruler .env2-coll-rail__cursor{inset-inline-start:18.75%}
+#env2-stop-10:checked ~ .plumb-ruler .env2-coll-rail__v{display:none}
+#env2-stop-10:checked ~ .plumb-ruler .env2-coll-rail__v[data-stop="10"]{display:flex}
+#env2-stop-10:checked ~ .plumb-ruler .env2-coll-rail__dot[data-pick~="10"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-10:checked ~ .plumb-ruler [data-short~="10"]{opacity:.4}
+#env2-stop-10:checked ~ .plumb-ruler [data-short~="10"] [data-short~="10"]{opacity:1}
+#env2-stop-10:checked ~ .plumb-ruler .env2-coll-rail__cursor{inset-inline-start:31.25%}
+#env2-stop-15:checked ~ .plumb-ruler .env2-coll-rail__v{display:none}
+#env2-stop-15:checked ~ .plumb-ruler .env2-coll-rail__v[data-stop="15"]{display:flex}
+#env2-stop-15:checked ~ .plumb-ruler .env2-coll-rail__dot[data-pick~="15"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-15:checked ~ .plumb-ruler [data-short~="15"]{opacity:.4}
+#env2-stop-15:checked ~ .plumb-ruler [data-short~="15"] [data-short~="15"]{opacity:1}
+#env2-stop-15:checked ~ .plumb-ruler .env2-coll-rail__cursor{inset-inline-start:46.88%}
+#env2-stop-22:checked ~ .plumb-ruler .env2-coll-rail__v{display:none}
+#env2-stop-22:checked ~ .plumb-ruler .env2-coll-rail__v[data-stop="22"]{display:flex}
+#env2-stop-22:checked ~ .plumb-ruler .env2-coll-rail__dot[data-pick~="22"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-22:checked ~ .plumb-ruler [data-short~="22"]{opacity:.4}
+#env2-stop-22:checked ~ .plumb-ruler [data-short~="22"] [data-short~="22"]{opacity:1}
+#env2-stop-22:checked ~ .plumb-ruler .env2-coll-rail__cursor{inset-inline-start:68.75%}
+#env2-stop-30:checked ~ .plumb-ruler .env2-coll-rail__v{display:none}
+#env2-stop-30:checked ~ .plumb-ruler .env2-coll-rail__v[data-stop="30"]{display:flex}
+#env2-stop-30:checked ~ .plumb-ruler .env2-coll-rail__dot[data-pick~="30"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-30:checked ~ .plumb-ruler [data-short~="30"]{opacity:.4}
+#env2-stop-30:checked ~ .plumb-ruler [data-short~="30"] [data-short~="30"]{opacity:1}
+#env2-stop-30:checked ~ .plumb-ruler .env2-coll-rail__cursor{inset-inline-start:93.75%}
+#env2-stop-all:checked ~ .plumb-ruler .env2-coll-rail__v{display:none}
+#env2-stop-all:checked ~ .plumb-ruler .env2-coll-rail__v--all{display:flex}
+#env2-stop-all:checked ~ .plumb-ruler .env2-coll-rail__dot[data-pick~="all"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-all:checked ~ .plumb-ruler .env2-coll-rail__cursor{inset-inline-start:0%}
+</style>
+<style id="env2-coll-paginate-css">
+/* ---------- §3.7 — one hairline of plain anchors, no boxes ---------- */
+.env2-coll-paginate{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding-block:20px;border-block-start:1px solid var(--env2-hair);
+  font-family:var(--env2-sans);font-weight:300;font-size:15px;color:var(--env2-ink-2)}
+.env2-coll-paginate__list{display:flex;align-items:center;gap:4px;flex-wrap:wrap;list-style:none;margin:0;padding:0}
+.env2-coll-paginate__n,.env2-coll-paginate__step{display:inline-flex;align-items:center;justify-content:center;
+  min-inline-size:48px;min-block-size:48px;padding-inline:12px;border-radius:0;
+  font-variant-numeric:tabular-nums;color:var(--env2-ink-2);text-decoration:none;transition:color .3s}
+.env2-coll-paginate__n:hover,.env2-coll-paginate__step:hover,
+.env2-coll-paginate__n:focus-visible,.env2-coll-paginate__step:focus-visible{color:var(--env2-glow)}
+.env2-coll-paginate__n.is-current{color:var(--env2-glow);
+  box-shadow:inset 0 -1px 0 0 var(--env2-glow)}
+.env2-coll-paginate__step[aria-disabled="true"]{opacity:.35;pointer-events:none}
+.env2-coll-paginate__count{font-variant-numeric:tabular-nums}
+.env2-coll-paginate__note{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:15px;color:var(--env2-ink-2)}
+@media (max-width:900px){
+  .env2-coll-paginate{gap:10px;font-size:14px}
+  .env2-coll-paginate__n,.env2-coll-paginate__step{min-inline-size:44px;padding-inline:8px}
+}
+</style>
+<style>
+body{margin:0;font-family:var(--env2-sans);color:var(--env2-ink)}
+.plumb{width:min(1240px,100% - 2*var(--env2-gut));margin-inline:auto;padding-block:56px 120px}
+.plumb-h1{font-family:var(--env2-serif);font-weight:700;font-size:clamp(34px,4.4vw,62px);line-height:.98;margin:0 0 10px}
+.plumb-h2{font-family:var(--env2-serif);font-weight:700;font-size:clamp(24px,2.6vw,36px);line-height:1;margin:64px 0 6px;color:var(--env2-glow)}
+.plumb-note{font-size:13px;color:var(--env2-ink-2);margin:0 0 12px;max-width:78ch}
+.plumb-t{border-collapse:collapse;font-size:13px;margin-block-end:14px;width:100%}
+.plumb-t th,.plumb-t td{border-top:1px solid var(--env2-hair);padding:5px 10px;text-align:start;vertical-align:top}
+.plumb-t thead th{color:var(--env2-gold);font-size:11.5px;letter-spacing:.12em;font-weight:500;white-space:nowrap}
+.plumb-grp th{color:var(--env2-glow);font-family:var(--env2-serif);font-size:19px;padding-block:18px 6px;border-top:1px solid rgba(255,211,148,.35)}
+.plumb-meta td{color:var(--env2-ink-2);background:rgba(255,211,148,.045)}
+.plumb-meta .plumb-h{color:var(--env2-ink);font-weight:500}
+.plumb-n,.plumb-p,.plumb-i{font-variant-numeric:tabular-nums;white-space:nowrap}
+.plumb-p{color:var(--env2-glow)}
+.plumb-v{color:var(--env2-ink)}
+.plumb-no{color:var(--env2-ember)}
+.plumb-nc td{background:rgba(247,162,74,.07)}
+.plumb-scroll{overflow-x:auto;overscroll-behavior-inline:contain}
+.plumb-cards{display:flex;align-items:flex-end;gap:clamp(20px,3.4vw,56px);flex-wrap:wrap;margin-block:18px 8px}
+.plumb-scene{position:relative;padding:34px;margin-block:18px;background:linear-gradient(180deg,#0a1424,#050a14);display:flex;justify-content:flex-end}
+.plumb-gl{inline-size:180px}
+.plumb-gls{display:flex;gap:24px;flex-wrap:wrap;margin-block:18px}
+.plumb-sr{position:absolute;inline-size:1px;block-size:1px;opacity:0;pointer-events:none}
+.plumb-stops{position:relative;margin-block:18px}
+.plumb-pills{display:flex;gap:8px;flex-wrap:wrap;margin-block-end:26px}
+.plumb-pill{display:inline-flex;align-items:center;justify-content:center;min-block-size:48px;padding-inline:20px;
+  border:1px solid rgba(244,238,227,.25);border-radius:999px;font-size:15px;cursor:pointer;color:var(--env2-ink-2)}
+.plumb-master{position:relative;block-size:22px;margin-block-end:26px}
+.plumb-row{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:20px;align-items:start;
+  padding-block:16px;border-top:1px solid var(--env2-hair);transition:opacity .28s}
+.plumb-row__t{font-size:15px;color:var(--env2-ink)}
+.plumb-row__t span{display:block;font-size:13px;color:var(--env2-mute);margin-block-start:4px}
+.plumb-pre{font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.5;color:var(--env2-ink-2);
+  background:rgba(255,255,255,.03);padding:14px;overflow-x:auto;white-space:pre-wrap;word-break:break-all;direction:ltr;text-align:left}
+.plumb-ok{color:var(--env2-glow);font-size:13px}
+@media (max-width:900px){
+  .plumb-row{grid-template-columns:minmax(0,1fr)}
+  .plumb-t{font-size:12px}
+  .plumb-t th,.plumb-t td{padding:4px 6px}
+}
+</style></head>
+<body class="hdt-page-type-collection template-collection">
+<svg class="env2-coll-glyph-sprite" aria-hidden="true" focusable="false" width="0" height="0"><defs>
+<symbol id="env2-glyph-bollard" viewBox="0 0 120 140">
+  <path d="M44 34h32v10H44z"/><path d="M47 44v-6a13 13 0 0 1 26 0v6"/><path d="M60 44v70"/>
+  <path d="M50 114h20"/><path d="M44 126h32"/><path d="M52 54h16M52 66h16M52 78h16"/>
+</symbol>
+<symbol id="env2-glyph-cube" viewBox="0 0 120 140">
+  <path d="M34 52h52v40H34z"/><path d="M34 92l10 10h52l-10-10"/><path d="M86 52l10-10H44l-10 10"/>
+  <path d="M46 64h28M46 76h28"/><path d="M60 102v14"/>
+</symbol>
+<symbol id="env2-glyph-string" viewBox="0 0 120 140">
+  <path d="M8 44c20 26 36 26 52 0s32-26 52 0"/>
+  <path d="M22 60v8M38 68v8M60 72v8M82 68v8M98 60v8"/>
+  <circle cx="22" cy="74" r="6"/><circle cx="38" cy="82" r="6"/><circle cx="60" cy="86" r="6"/>
+  <circle cx="82" cy="82" r="6"/><circle cx="98" cy="74" r="6"/>
+</symbol>
+<symbol id="env2-glyph-net" viewBox="0 0 120 140">
+  <path d="M24 38h72v64H24z"/>
+  <path d="M42 38v64M60 38v64M78 38v64M24 54h72M24 70h72M24 86h72"/>
+  <circle cx="42" cy="54" r="3"/><circle cx="60" cy="70" r="3"/><circle cx="78" cy="86" r="3"/>
+  <circle cx="78" cy="54" r="3"/><circle cx="42" cy="86" r="3"/>
+</symbol>
+<symbol id="env2-glyph-spot" viewBox="0 0 120 140">
+  <path d="M36 40l44 18-10 24-44-18z"/><path d="M70 82l8 18"/><path d="M60 112h30"/>
+  <path d="M75 100v12"/><path d="M84 30l14-8M96 46l16-2M88 60l14 8"/>
+</symbol>
+</defs></svg>
+<style id="env2-coll-glyph-css">
+/* ---------- the drawn plate (§3.6.3) — same aspect, same radius 0, as the photograph it replaces ---------- */
+.env2-coll-glyph-sprite{position:absolute;inline-size:0;block-size:0;overflow:hidden}
+.env2-coll-glyph{position:relative;display:block;inline-size:100%;
+  aspect-ratio:var(--env2-glyph-ar,1/1.15);background:#080d18;border-radius:0;overflow:hidden;isolation:isolate}
+/* the warm radial where the light source is — --env2-ember at 22 %. This is the thing that lights. */
+.env2-coll-glyph__halo{position:absolute;inset:0;pointer-events:none;display:block;
+  background:radial-gradient(38% 34% at var(--env2-glyph-hx,50%) var(--env2-glyph-hy,32%),
+    rgba(247,162,74,.22),rgba(247,162,74,0) 72%);
+  opacity:var(--lit,1);transition:opacity 1.8s .2s;mix-blend-mode:screen}
+.env2-coll-glyph__art{position:absolute;inset:0;inline-size:100%;block-size:100%;display:block;
+  fill:none;stroke:rgba(244,238,227,.45);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;
+  padding:16%;box-sizing:border-box;
+  opacity:calc(.55 + .45*var(--lit,1));transition:opacity 1.6s cubic-bezier(.2,.7,.2,1)}
+.env2-coll-glyph[data-glyph="bollard"]{--env2-glyph-hx:50%;--env2-glyph-hy:26%}
+.env2-coll-glyph[data-glyph="cube"]{--env2-glyph-hx:50%;--env2-glyph-hy:44%}
+.env2-coll-glyph[data-glyph="string"]{--env2-glyph-hx:50%;--env2-glyph-hy:52%}
+.env2-coll-glyph[data-glyph="net"]{--env2-glyph-hx:50%;--env2-glyph-hy:46%}
+.env2-coll-glyph[data-glyph="spot"]{--env2-glyph-hx:38%;--env2-glyph-hy:40%}
+/* the caption, in the kicker style, at the bottom START edge (§3.6.3) */
+.env2-coll-glyph__cap{position:absolute;inset-block-end:12px;inset-inline-start:14px;
+  font-family:var(--env2-sans);font-weight:500;font-size:11.5px;letter-spacing:.16em;line-height:1.2;
+  color:var(--env2-gold);pointer-events:none}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-glyph__halo,.env2-coll-glyph__art{transition:none}
+}
+</style>
+<main class="env2-section plumb" dir="rtl">
+  <h1 class="plumb-h1">שרברבות הקולקציה — הוכחה אופליין</h1>
+  <p class="plumb-note">Rendered from theme/snippets/elmsnest-v2-{ground-collection,coll-axis,coll-rail,coll-glyph,coll-paginate}.liquid
+  and elmsnest-v2-{pdp-card,pdp-image,core,price,buy}.liquid by python-liquid, with the local image pack.
+  Every number below came out of the Liquid; none is typed. The body carries hdt-page-type-collection, so the
+  §3.1 ground is the real one.</p>
+
+  <h2 class="plumb-h2">1 · elmsnest-v2-coll-axis — the parse, all 27 products</h2>
+  <p class="plumb-note">§3.4 / §6.19. The first option axis of every product in the catalogue, as the snippet reads it.
+  A gold row is the axis meta (unit · unit_label · unit_word · measured · is_area · min · max · price at max · price span · stops);
+  the plain rows under it are its stop records. "measured = לא" means the product is NOT on a rail in its own unit —
+  a colour/model axis, an axis with no number, or an area — and §3.4 lifts it into its own band with a real card.</p>
+  <p class="plumb-note">The rail unions these numbers exactly as §3.4 tells the ruler section to:
+  decor (m) → <b>1.5 · 3 · 5 · 6 · 6.5 · 7 · 8 · 9.5 · 10 · 11 · 12 · 13 · 22 · 32</b> · path (qty) → <b>1 · 2 · 4 · 6 · 8 · 12</b>. Both match §3.4 to the digit.</p>
+  <div class="plumb-scroll"><table class="plumb-t plumb-axis"><thead><tr><th>#</th><th>ערך האופציה / handle</th><th>number</th><th>unit</th><th>unit_label</th><th>area_h</th><th>number2</th><th>unit2</th><th>price</th><th>per_unit</th><th>per_unit_label</th><th>variants</th></tr></thead><tbody><tr class="plumb-grp"><th colspan="12">גרילנדות ותאורה דקורטיבית · <bdi>גרילנדות-ותאורה-דקורטיבית</bdi> · 7 מוצרים</th></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>decorative-led-net-lights</bdi> · גודל</td><td><b>area</b></td><td>מ׳</td><td>שטח</td><td><span class="plumb-no">not measured</span></td><td>area</td><td>1.5</td><td>12</td><td>469.90</td><td><bdi>109.90–469.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>1.5×1.5 מ׳ / 96 LED</bdi></td><td class="plumb-n">1.5</td><td>area</td><td>מ׳</td><td>1.5</td><td class="plumb-n">96</td><td>LED</td><td class="plumb-p">109.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>3×2 מ׳ / 196 LED</bdi></td><td class="plumb-n">3</td><td>area</td><td>מ׳</td><td>2</td><td class="plumb-n">196</td><td>LED</td><td class="plumb-p">169.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>6×2 מ׳ / 380 LED</bdi></td><td class="plumb-n">6</td><td>area</td><td>מ׳</td><td>2</td><td class="plumb-n">380</td><td>LED</td><td class="plumb-p">269.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">3</td><td class="plumb-v"><bdi>9×2 מ׳ / 580 LED</bdi></td><td class="plumb-n">9</td><td>area</td><td>מ׳</td><td>2</td><td class="plumb-n">580</td><td>LED</td><td class="plumb-p">369.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">4</td><td class="plumb-v"><bdi>12×2 מ׳ / 780 LED</bdi></td><td class="plumb-n">12</td><td>area</td><td>מ׳</td><td>2</td><td class="plumb-n">780</td><td>LED</td><td class="plumb-p">469.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">5</td><td class="plumb-v"><bdi>6×4 מ׳ / 672 LED</bdi></td><td class="plumb-n">6</td><td>area</td><td>מ׳</td><td>4</td><td class="plumb-n">672</td><td>LED</td><td class="plumb-p">339.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>led-globe-string-lights</bdi> · אורך ומספר נורות</td><td><b>m</b></td><td>מ׳</td><td>מטרים</td><td>measured</td><td>—</td><td>1.5</td><td>12</td><td>179.90</td><td><bdi>89.90–179.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>1.5 מ׳ / 10 נורות</bdi></td><td class="plumb-n">1.5</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">10</td><td>נורות</td><td class="plumb-p">89.90 ₪</td><td class="plumb-p"><bdi>≈59.93</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>3 מ׳ / 20 נורות</bdi></td><td class="plumb-n">3</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">20</td><td>נורות</td><td class="plumb-p">99.90 ₪</td><td class="plumb-p"><bdi>≈33.30</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>6 מ׳ / 40 נורות</bdi></td><td class="plumb-n">6</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">40</td><td>נורות</td><td class="plumb-p">119.90 ₪</td><td class="plumb-p"><bdi>≈19.98</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">3</td><td class="plumb-v"><bdi>10 מ׳ / 80 נורות</bdi></td><td class="plumb-n">10</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">80</td><td>נורות</td><td class="plumb-p">169.90 ₪</td><td class="plumb-p"><bdi>≈16.99</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">4</td><td class="plumb-v"><bdi>12 מ׳ / 100 נורות</bdi></td><td class="plumb-n">12</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">100</td><td>נורות</td><td class="plumb-p">179.90 ₪</td><td class="plumb-p"><bdi>≈14.99</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>lighted-birch-branches-20-led</bdi> · צבע תאורה</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>89.90–89.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>לבן חם</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">89.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>לבן קר</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">89.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-firefly-garden-lights</bdi> · דגם</td><td><b>led</b></td><td>נורות</td><td>נורות</td><td>measured</td><td>—</td><td>10</td><td>10</td><td>99.90</td><td><bdi>99.90–99.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>10 נורות</bdi></td><td class="plumb-n">10</td><td>led</td><td>נורות</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">99.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-rope-string-lights</bdi> · אורך ומספר נורות</td><td><b>m</b></td><td>מ׳</td><td>מטרים</td><td>measured</td><td>—</td><td>7</td><td>32</td><td>159.90</td><td><bdi>89.90–159.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>7 מ׳ / 50 נורות</bdi></td><td class="plumb-n">7</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">50</td><td>נורות</td><td class="plumb-p">89.90 ₪</td><td class="plumb-p"><bdi>≈12.84</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>12 מ׳ / 100 נורות</bdi></td><td class="plumb-n">12</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">100</td><td>נורות</td><td class="plumb-p">99.90 ₪</td><td class="plumb-p"><bdi>≈8.32</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>22 מ׳ / 200 נורות</bdi></td><td class="plumb-n">22</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">200</td><td>נורות</td><td class="plumb-p">119.90 ₪</td><td class="plumb-p"><bdi>≈5.45</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">3</td><td class="plumb-v"><bdi>32 מ׳ / 300 נורות</bdi></td><td class="plumb-n">32</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">300</td><td>נורות</td><td class="plumb-p">159.90 ₪</td><td class="plumb-p"><bdi>≈5.00</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-edison-string-lights</bdi> · אורך ומספר נורות</td><td><b>m</b></td><td>מ׳</td><td>מטרים</td><td>measured</td><td>—</td><td>5</td><td>8</td><td>179.90</td><td><bdi>139.90–179.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>5 מ׳ / 10 נורות</bdi></td><td class="plumb-n">5</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">10</td><td>נורות</td><td class="plumb-p">139.90 ₪</td><td class="plumb-p"><bdi>≈27.98</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>8 מ׳ / 20 נורות</bdi></td><td class="plumb-n">8</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">20</td><td>נורות</td><td class="plumb-p">179.90 ₪</td><td class="plumb-p"><bdi>≈22.49</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-crystal-ball-string-lights</bdi> · אורך ומספר נורות</td><td><b>m</b></td><td>מ׳</td><td>מטרים</td><td>measured</td><td>—</td><td>5</td><td>22</td><td>179.90</td><td><bdi>89.90–179.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>5 מ׳ / 20 נורות</bdi></td><td class="plumb-n">5</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">20</td><td>נורות</td><td class="plumb-p">89.90 ₪</td><td class="plumb-p"><bdi>≈17.98</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>6.5 מ׳ / 30 נורות</bdi></td><td class="plumb-n">6.5</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">30</td><td>נורות</td><td class="plumb-p">89.90 ₪</td><td class="plumb-p"><bdi>≈13.83</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>9.5 מ׳ / 50 נורות</bdi></td><td class="plumb-n">9.5</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">50</td><td>נורות</td><td class="plumb-p">99.90 ₪</td><td class="plumb-p"><bdi>≈10.52</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">3</td><td class="plumb-v"><bdi>11 מ׳ / 60 נורות</bdi></td><td class="plumb-n">11</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">60</td><td>נורות</td><td class="plumb-p">109.90 ₪</td><td class="plumb-p"><bdi>≈9.99</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">4</td><td class="plumb-v"><bdi>13 מ׳ / 100 נורות</bdi></td><td class="plumb-n">13</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">100</td><td>נורות</td><td class="plumb-p">129.90 ₪</td><td class="plumb-p"><bdi>≈9.99</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">5</td><td class="plumb-v"><bdi>22 מ׳ / 200 נורות</bdi></td><td class="plumb-n">22</td><td>m</td><td>מ׳</td><td>—</td><td class="plumb-n">200</td><td>נורות</td><td class="plumb-p">179.90 ₪</td><td class="plumb-p"><bdi>≈8.18</bdi></td><td>₪ למטר</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-grp"><th colspan="12">תאורת שביל, עמוד וגינה · <bdi>תאורת-שביל-סולארית</bdi> · 8 מוצרים</th></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>waterproof-solar-deck-step-lights</bdi> · כמות</td><td><b>qty</b></td><td>יח׳</td><td>יחידות</td><td>measured</td><td>—</td><td>2</td><td>8</td><td>149.90</td><td><bdi>149.90–149.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>2 &#x27;יח</bdi></td><td class="plumb-n">2</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">149.90 ₪</td><td class="plumb-p"><bdi>≈74.95</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>4 &#x27;יח</bdi></td><td class="plumb-n">4</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">149.90 ₪</td><td class="plumb-p"><bdi>≈37.48</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>6 &#x27;יח</bdi></td><td class="plumb-n">6</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">149.90 ₪</td><td class="plumb-p"><bdi>≈24.98</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">3</td><td class="plumb-v"><bdi>8 &#x27;יח</bdi></td><td class="plumb-n">8</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">149.90 ₪</td><td class="plumb-p"><bdi>≈18.74</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>stainless-steel-solar-path-light-ip65</bdi> · צבע אור</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>169.90–169.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>צהוב חם</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">169.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>retro-solar-path-lights-set</bdi> · כמות</td><td><b>qty</b></td><td>יח׳</td><td>יחידות</td><td>measured</td><td>—</td><td>2</td><td>6</td><td>529.90</td><td><bdi>219.90–529.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>2 יחידות</bdi></td><td class="plumb-n">2</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">219.90 ₪</td><td class="plumb-p"><bdi>≈109.95</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>4 יחידות</bdi></td><td class="plumb-n">4</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">389.90 ₪</td><td class="plumb-p"><bdi>≈97.48</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>6 יחידות</bdi></td><td class="plumb-n">6</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">529.90 ₪</td><td class="plumb-p"><bdi>≈88.32</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>warm-solar-step-deck-lights</bdi> · כמות</td><td><b>qty</b></td><td>יח׳</td><td>יחידות</td><td>measured</td><td>—</td><td>1</td><td>12</td><td>349.90</td><td><bdi>69.90–349.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>1 יחידה</bdi></td><td class="plumb-n">1</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">69.90 ₪</td><td class="plumb-p"><bdi>≈69.90</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>4 יחידות</bdi></td><td class="plumb-n">4</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">159.90 ₪</td><td class="plumb-p"><bdi>≈39.98</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>8 יחידות</bdi></td><td class="plumb-n">8</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">269.90 ₪</td><td class="plumb-p"><bdi>≈33.74</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">3</td><td class="plumb-v"><bdi>12 יחידות</bdi></td><td class="plumb-n">12</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">349.90 ₪</td><td class="plumb-p"><bdi>≈29.16</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>modern-solar-path-lights-set</bdi> · כמות</td><td><b>qty</b></td><td>יח׳</td><td>יחידות</td><td>measured</td><td>—</td><td>4</td><td>8</td><td>999.90</td><td><bdi>549.90–999.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>4 יחידות</bdi></td><td class="plumb-n">4</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">549.90 ₪</td><td class="plumb-p"><bdi>≈137.48</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>8 יחידות</bdi></td><td class="plumb-n">8</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">999.90 ₪</td><td class="plumb-p"><bdi>≈124.99</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>modern-led-bollard-light-5w-ip65</bdi> · צבע גוף</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>129.90–129.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">129.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>swaying-solar-path-lights-ip65</bdi> · כמות</td><td><b>qty</b></td><td>יח׳</td><td>יחידות</td><td>measured</td><td>—</td><td>2</td><td>6</td><td>329.90</td><td><bdi>189.90–329.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>2 יחידות</bdi></td><td class="plumb-n">2</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">189.90 ₪</td><td class="plumb-p"><bdi>≈94.95</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>6 יחידות</bdi></td><td class="plumb-n">6</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">329.90 ₪</td><td class="plumb-p"><bdi>≈54.98</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>powerful-solar-garden-light</bdi> · כמות</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>179.90–179.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>יחידה אחת</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">179.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-grp"><th colspan="12">תאורת קיר · <bdi>solar-wall-lights</bdi> · 6 מוצרים</th></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-wall-light-motion-sensor-ip65</bdi> · צבע</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>129.90–159.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>לבן</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">129.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">2</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">129.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">2</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>modern-led-wall-light-6w-up-down</bdi> · צבע גוף</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>109.90–193.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>לבן</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">109.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">4</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">109.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">4</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>modern-led-wall-light-indoor-outdoor</bdi> · צבע גוף</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>99.90–121.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>לבן</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">99.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">4</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">99.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">4</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>waterproof-led-wall-light-ip65-6w-12w</bdi> · צבע גוף</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>219.90–252.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>לבן</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">219.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">4</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">219.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">4</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>magnetic-rechargeable-touch-wall-light</bdi> · צבע גוף</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>159.90–159.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>לבן</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">159.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">159.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>outdoor-bidirectional-led-wall-light-ip65</bdi> · עיצוב</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>159.90–162.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>דגם A</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">159.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">2</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>דגם B</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">159.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">2</td></tr>
+<tr class="plumb-grp"><th colspan="12">ספוטים, פרוז׳קטורים ותאורה ניידת · <bdi>ספוטים-ופרוז-קטורים-סולאריים</bdi> · 6 מוצרים</th></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-garden-lantern-9-led</bdi> · Title</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>169.90–169.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>Default Title</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">169.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-garden-spotlight-52-led</bdi> · כמות</td><td><b>qty</b></td><td>יח׳</td><td>יחידות</td><td>measured</td><td>—</td><td>2</td><td>2</td><td>429.90</td><td><bdi>219.90–429.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>יחידה אחת</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">219.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>2 יחידות</bdi></td><td class="plumb-n">2</td><td>qty</td><td>יח׳</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">429.90 ₪</td><td class="plumb-p"><bdi>≈214.95</bdi></td><td>₪ ליחידה</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-security-light-100-led</bdi> · צבע</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>99.90–99.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">99.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>solar-floodlight-ip67-remote-timer</bdi> · דגם</td><td><b>led</b></td><td>LED</td><td>נורות</td><td>measured</td><td>—</td><td>72</td><td>200</td><td>499.90</td><td><bdi>199.90–499.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>72 LED / 100W</bdi></td><td class="plumb-n">72</td><td>led</td><td>LED</td><td>—</td><td class="plumb-n">100</td><td>W</td><td class="plumb-p">199.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">1</td><td class="plumb-v"><bdi>128 LED / 200W</bdi></td><td class="plumb-n">128</td><td>led</td><td>LED</td><td>—</td><td class="plumb-n">200</td><td>W</td><td class="plumb-p">329.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr><td class="plumb-i">2</td><td class="plumb-v"><bdi>200 LED / 300W</bdi></td><td class="plumb-n">200</td><td>led</td><td>LED</td><td>—</td><td class="plumb-n">300</td><td>W</td><td class="plumb-p">499.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>rechargeable-telescopic-camping-lantern</bdi> · צבע</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>189.90–189.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>כסוף־שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">189.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr>
+<tr class="plumb-meta"><td class="plumb-h" colspan="2"><bdi>dual-head-garden-light-10w-ip65</bdi> · צבע גוף</td><td><b>—</b></td><td>—</td><td>—</td><td><span class="plumb-no">not measured</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td><bdi>189.90–189.90</bdi></td></tr>
+<tr><td class="plumb-i">0</td><td class="plumb-v"><bdi>שחור</bdi></td><td class="plumb-n">—</td><td>—</td><td>—</td><td>—</td><td class="plumb-n">—</td><td>—</td><td class="plumb-p">189.90 ₪</td><td class="plumb-p">—</td><td>—</td><td class="plumb-n">1</td></tr></tbody></table></div>
+
+  <h2 class="plumb-h2">2 · elmsnest-v2-coll-rail — the three stop states, live, with no JavaScript</h2>
+  <p class="plumb-note">§4.2 · graft C1. The pills below are &lt;label&gt;s over radio inputs and the whole mechanism is
+  <b>#env2-stop-N:checked ~ …</b> CSS generated by the snippet itself (emit:'css'). There is no script on this page.
+  Tap <b>10 מ׳</b>: rope answers 12 מ׳ / 99.90 ₪, crystal 11 מ׳ / 109.90 ₪, globe 10 מ׳ / 169.90 ₪, and Edison
+  <b>dims to .4 and prints האורך המרבי: 8 מ׳</b> — it is never hidden (§6.6). Tap <b>3 מ׳</b> and rope/crystal/Edison
+  go to <b>below</b>: their smallest offering overshoots the stop, and they say which one it is.
+  The net and the birch and the fireflies are <b>off</b> — no dots, no span, only the honest note.</p>
+  <div class="plumb-stops"><input type="radio" name="env2-stop" id="env2-stop-all" class="plumb-sr" checked><input type="radio" name="env2-stop" id="env2-stop-3" class="plumb-sr"><input type="radio" name="env2-stop" id="env2-stop-6" class="plumb-sr"><input type="radio" name="env2-stop" id="env2-stop-10" class="plumb-sr"><input type="radio" name="env2-stop" id="env2-stop-15" class="plumb-sr"><input type="radio" name="env2-stop" id="env2-stop-22" class="plumb-sr"><input type="radio" name="env2-stop" id="env2-stop-30" class="plumb-sr"><div class="plumb-pills"><label class="plumb-pill" for="env2-stop-all">הכול</label><label class="plumb-pill" for="env2-stop-3">3 מ׳</label><label class="plumb-pill" for="env2-stop-6">6 מ׳</label><label class="plumb-pill" for="env2-stop-10">10 מ׳</label><label class="plumb-pill" for="env2-stop-15">15 מ׳</label><label class="plumb-pill" for="env2-stop-22">22 מ׳</label><label class="plumb-pill" for="env2-stop-30">30 מ׳</label></div><div class="plumb-ruler"><div class="plumb-master"><span class="env2-coll-rail__line"></span><span class="env2-coll-rail__cursor"></span></div><div class="plumb-row"><div class="plumb-row__t"><bdi>רשת תאורת LED דקורטיבית לחוץ ולגינה – 1.5 עד 12 מטר</bdi><span>גודל</span></div><div class="env2-coll-rail env2-coll-rail--off" data-unit="m" data-state="off" style="--env2-rail-max:32.0"><p class="env2-coll-rail__off">נמדדת לפי שטח, לא לפי אורך</p></div></div>
+<div class="plumb-row" data-short="15 22 30"><div class="plumb-row__t"><bdi>גרילנדת כדורי LED דקורטיבית – USB או סוללות</bdi><span>אורך ומספר נורות</span></div><div class="env2-coll-rail" data-unit="m" data-state="on" data-short="15 22 30" style="--env2-rail-max:32.0"><span class="env2-coll-rail__line" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="1.5" data-pick="all" style="--env2-rail-p:4.69%" title="1.5 מ׳ / 10 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="3" data-pick="3" style="--env2-rail-p:9.38%" title="3 מ׳ / 20 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="6" data-pick="6" style="--env2-rail-p:18.75%" title="6 מ׳ / 40 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="10" data-pick="10" style="--env2-rail-p:31.25%" title="10 מ׳ / 80 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="12" style="--env2-rail-p:37.5%" title="12 מ׳ / 100 נורות" aria-hidden="true"></span><span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+      <b class="env2-coll-rail__val"><bdi>1.5–12</bdi> מ׳</b>
+      <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    </span><span class="env2-coll-rail__v" data-stop="3" data-state="at" data-n="3" data-variant-id="10537">
+              <b class="env2-coll-rail__val"><bdi>3</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>99.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈33.30</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="6" data-state="at" data-n="6" data-variant-id="10538">
+              <b class="env2-coll-rail__val"><bdi>6</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>119.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈19.98</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="10" data-state="at" data-n="10" data-variant-id="10539">
+              <b class="env2-coll-rail__val"><bdi>10</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>169.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈16.99</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="15" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>12</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span><span class="env2-coll-rail__v" data-stop="22" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>12</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span><span class="env2-coll-rail__v" data-stop="30" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>12</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span></div></div>
+<div class="plumb-row"><div class="plumb-row__t"><bdi>ענפי ליבנה מוארים – 20 נורות LED לעיצוב הבית</bdi><span>צבע תאורה</span></div><div class="env2-coll-rail env2-coll-rail--off" data-unit="m" data-state="off" style="--env2-rail-max:32.0"><p class="env2-coll-rail__off">לא נמדדת במטרים</p></div></div>
+<div class="plumb-row"><div class="plumb-row__t"><bdi>תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות</bdi><span>דגם</span></div><div class="env2-coll-rail env2-coll-rail--off" data-unit="m" data-state="off" style="--env2-rail-max:32.0"><p class="env2-coll-rail__off">לא נמדדת במטרים</p></div></div>
+<div class="plumb-row"><div class="plumb-row__t"><bdi>שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED</bdi><span>אורך ומספר נורות</span></div><div class="env2-coll-rail" data-unit="m" data-state="on" style="--env2-rail-max:32.0"><span class="env2-coll-rail__line" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="7" data-pick="3 6 all" style="--env2-rail-p:21.88%" title="7 מ׳ / 50 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="12" data-pick="10" style="--env2-rail-p:37.5%" title="12 מ׳ / 100 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="22" data-pick="15 22" style="--env2-rail-p:68.75%" title="22 מ׳ / 200 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="32" data-pick="30" style="--env2-rail-p:100.0%" title="32 מ׳ / 300 נורות" aria-hidden="true"></span><span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+      <b class="env2-coll-rail__val"><bdi>7–32</bdi> מ׳</b>
+      <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    </span><span class="env2-coll-rail__v" data-stop="3" data-state="below" data-n="7" data-variant-id="77613">
+              <b class="env2-coll-rail__val"><bdi>7</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>89.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈12.84</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="6" data-state="below" data-n="7" data-variant-id="77613">
+              <b class="env2-coll-rail__val"><bdi>7</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>89.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈12.84</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="10" data-state="at" data-n="12" data-variant-id="77614">
+              <b class="env2-coll-rail__val"><bdi>12</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>99.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈8.32</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="15" data-state="at" data-n="22" data-variant-id="77615">
+              <b class="env2-coll-rail__val"><bdi>22</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>119.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈5.45</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="22" data-state="at" data-n="22" data-variant-id="77615">
+              <b class="env2-coll-rail__val"><bdi>22</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>119.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈5.45</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="30" data-state="at" data-n="32" data-variant-id="77616">
+              <b class="env2-coll-rail__val"><bdi>32</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>159.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈5.00</bdi> ₪ למטר</span></span></div></div>
+<div class="plumb-row" data-short="10 15 22 30"><div class="plumb-row__t"><bdi>גרילנדת נורות אדיסון סולארית – 5 או 8 מטר</bdi><span>אורך ומספר נורות</span></div><div class="env2-coll-rail" data-unit="m" data-state="on" data-short="10 15 22 30" style="--env2-rail-max:32.0"><span class="env2-coll-rail__line" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="5" data-pick="3 all" style="--env2-rail-p:15.62%" title="5 מ׳ / 10 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="8" data-pick="6" style="--env2-rail-p:25.0%" title="8 מ׳ / 20 נורות" aria-hidden="true"></span><span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+      <b class="env2-coll-rail__val"><bdi>5–8</bdi> מ׳</b>
+      <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>139.90</bdi> ₪</span></span>
+    </span><span class="env2-coll-rail__v" data-stop="3" data-state="below" data-n="5" data-variant-id="73136">
+              <b class="env2-coll-rail__val"><bdi>5</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>139.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈27.98</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="6" data-state="at" data-n="8" data-variant-id="73137">
+              <b class="env2-coll-rail__val"><bdi>8</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>179.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈22.49</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="10" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>8</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span><span class="env2-coll-rail__v" data-stop="15" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>8</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span><span class="env2-coll-rail__v" data-stop="22" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>8</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span><span class="env2-coll-rail__v" data-stop="30" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>8</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span></div></div>
+<div class="plumb-row" data-short="30"><div class="plumb-row__t"><bdi>גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</bdi><span>אורך ומספר נורות</span></div><div class="env2-coll-rail" data-unit="m" data-state="on" data-short="30" style="--env2-rail-max:32.0"><span class="env2-coll-rail__line" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="5" data-pick="3 all" style="--env2-rail-p:15.62%" title="5 מ׳ / 20 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="6.5" data-pick="6" style="--env2-rail-p:20.31%" title="6.5 מ׳ / 30 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="9.5" style="--env2-rail-p:29.69%" title="9.5 מ׳ / 50 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="11" data-pick="10" style="--env2-rail-p:34.38%" title="11 מ׳ / 60 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="13" style="--env2-rail-p:40.62%" title="13 מ׳ / 100 נורות" aria-hidden="true"></span><span class="env2-coll-rail__dot" data-n="22" data-pick="15 22" style="--env2-rail-p:68.75%" title="22 מ׳ / 200 נורות" aria-hidden="true"></span><span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+      <b class="env2-coll-rail__val"><bdi>5–22</bdi> מ׳</b>
+      <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    </span><span class="env2-coll-rail__v" data-stop="3" data-state="below" data-n="5" data-variant-id="59339">
+              <b class="env2-coll-rail__val"><bdi>5</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>89.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈17.98</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="6" data-state="at" data-n="6.5" data-variant-id="59340">
+              <b class="env2-coll-rail__val"><bdi>6.5</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>89.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈13.83</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="10" data-state="at" data-n="11" data-variant-id="59342">
+              <b class="env2-coll-rail__val"><bdi>11</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>109.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈9.99</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="15" data-state="at" data-n="22" data-variant-id="59344">
+              <b class="env2-coll-rail__val"><bdi>22</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>179.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈8.18</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="22" data-state="at" data-n="22" data-variant-id="59344">
+              <b class="env2-coll-rail__val"><bdi>22</bdi> מ׳</b>
+              <span class="env2-coll-rail__price"><bdi>179.90</bdi> ₪</span><span class="env2-coll-rail__per"><bdi>≈8.18</bdi> ₪ למטר</span></span><span class="env2-coll-rail__v" data-stop="30" data-state="beyond">
+          <span class="env2-coll-rail__miss">האורך המרבי: <bdi>22</bdi> מ׳</span>
+          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><bdi>179.90</bdi> ₪</span>
+        </span></div></div></div></div>
+
+  <h2 class="plumb-h2">3 · elmsnest-v2-coll-glyph — the plate for the fifteen</h2>
+  <p class="plumb-note">§3.6.3 · graft C3. Five shape families, one &lt;symbol&gt; sprite, ground #080d18, stroke
+  rgba(244,238,227,.45), a warm --env2-ember halo at 22 % where the light source is, and the caption
+  <b>איור · אין תצלום נקי</b>. Radius 0. No cream, no beige, no "coming soon".</p>
+  <div class="plumb-gls"><div class="plumb-gl"><div class="plumb-gl__box"><span class="env2-coll-glyph" data-glyph="bollard" data-lamp style="--env2-glyph-ar:1/1.15">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label=" — איור, אין תצלום נקי" focusable="false"><use href="#env2-glyph-bollard"></use></svg><span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span></span></div><p class="plumb-note">bollard</p></div><div class="plumb-gl"><div class="plumb-gl__box"><span class="env2-coll-glyph" data-glyph="cube" data-lamp style="--env2-glyph-ar:1/1.15">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label=" — איור, אין תצלום נקי" focusable="false"><use href="#env2-glyph-cube"></use></svg><span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span></span></div><p class="plumb-note">cube</p></div><div class="plumb-gl"><div class="plumb-gl__box"><span class="env2-coll-glyph" data-glyph="string" data-lamp style="--env2-glyph-ar:1/1.15">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label=" — איור, אין תצלום נקי" focusable="false"><use href="#env2-glyph-string"></use></svg><span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span></span></div><p class="plumb-note">string</p></div><div class="plumb-gl"><div class="plumb-gl__box"><span class="env2-coll-glyph" data-glyph="net" data-lamp style="--env2-glyph-ar:1/1.15">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label=" — איור, אין תצלום נקי" focusable="false"><use href="#env2-glyph-net"></use></svg><span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span></span></div><p class="plumb-note">net</p></div><div class="plumb-gl"><div class="plumb-gl__box"><span class="env2-coll-glyph" data-glyph="spot" data-lamp style="--env2-glyph-ar:1/1.15">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label=" — איור, אין תצלום נקי" focusable="false"><use href="#env2-glyph-spot"></use></svg><span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span></span></div><p class="plumb-note">spot</p></div></div>
+  <p class="plumb-note">And the ledger behind it: elmsnest-v2-pdp-image now answers <b>emit:'no_clean'</b> and
+  <b>glyph:true</b>. The index column proves the ADDITIVE promise — the slot resolver still returns exactly the index
+  it returned before, for every one of the 27 products.</p>
+  <div class="plumb-scroll"><table class="plumb-t plumb-rows"><thead><tr><th>handle</th><th>emit:no_clean</th><th>slot card → index</th><th>glyph:true →</th></tr></thead><tbody><tr class="plumb-nc"><td><bdi>decorative-led-net-lights</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>led-globe-string-lights</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class=""><td><bdi>lighted-birch-branches-20-led</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr>
+<tr class=""><td><bdi>solar-firefly-garden-lights</bdi></td><td>יש</td><td>3</td><td><b>3</b></td></tr>
+<tr class=""><td><bdi>solar-rope-string-lights</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr>
+<tr class=""><td><bdi>solar-edison-string-lights</bdi></td><td>יש</td><td>3</td><td><b>3</b></td></tr>
+<tr class=""><td><bdi>solar-crystal-ball-string-lights</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr>
+<tr class="plumb-nc"><td><bdi>waterproof-solar-deck-step-lights</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class=""><td><bdi>stainless-steel-solar-path-light-ip65</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr>
+<tr class="plumb-nc"><td><bdi>retro-solar-path-lights-set</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>warm-solar-step-deck-lights</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>modern-solar-path-lights-set</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>modern-led-bollard-light-5w-ip65</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>swaying-solar-path-lights-ip65</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class=""><td><bdi>powerful-solar-garden-light</bdi></td><td>יש</td><td>2</td><td><b>2</b></td></tr>
+<tr class="plumb-nc"><td><bdi>solar-wall-light-motion-sensor-ip65</bdi></td><td>אין תצלום נקי</td><td>0</td><td><b>glyph</b></td></tr>
+<tr class=""><td><bdi>modern-led-wall-light-6w-up-down</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr>
+<tr class=""><td><bdi>modern-led-wall-light-indoor-outdoor</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr>
+<tr class=""><td><bdi>waterproof-led-wall-light-ip65-6w-12w</bdi></td><td>יש</td><td>1</td><td><b>1</b></td></tr>
+<tr class="plumb-nc"><td><bdi>magnetic-rechargeable-touch-wall-light</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class=""><td><bdi>outdoor-bidirectional-led-wall-light-ip65</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr>
+<tr class="plumb-nc"><td><bdi>solar-garden-lantern-9-led</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>solar-garden-spotlight-52-led</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>solar-security-light-100-led</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>solar-floodlight-ip67-remote-timer</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class="plumb-nc"><td><bdi>rechargeable-telescopic-camping-lantern</bdi></td><td>אין תצלום נקי</td><td>1</td><td><b>glyph</b></td></tr>
+<tr class=""><td><bdi>dual-head-garden-light-10w-ip65</bdi></td><td>יש</td><td>0</td><td><b>0</b></td></tr></tbody></table></div>
+
+  <h2 class="plumb-h2">4 · elmsnest-v2-pdp-card — the same card, four modes</h2>
+  <p class="plumb-note">§3.5. Left to right: today's card (nothing passed, byte-identical to the PDP's);
+  the same card with <b>axis_caption</b> and <b>unit_price_line</b>; a card whose product has no clean photograph at
+  any index, with <b>glyph:'auto'</b>; and another. Staggered 300 / 210 / 260 px at 1/1.05 · 1/1.4 · 1/.9 — never equal cells.</p>
+  <div class="plumb-cards"><article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:300px;--env2-pdp-card-ar:1/1.05">
+  <a class="env2-pdp-card__media" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg"
+             srcset="../../../assets/img/solar-crystal-ball-string-lights-0.jpg 420w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 720w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1040w"
+             sizes="(max-width:900px) 62vw, 300px"
+             width="300" height="315" loading="lazy" decoding="async"
+             alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות"></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה</p><h3 class="env2-pdp-card__title"><a href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</a></h3>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/solar-crystal-ball-string-lights">לבחירת אורך</a></span>
+  </div>
+</article><article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:300px;--env2-pdp-card-ar:1/1.05">
+  <a class="env2-pdp-card__media" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg"
+             srcset="../../../assets/img/solar-crystal-ball-string-lights-0.jpg 420w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 720w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1040w"
+             sizes="(max-width:900px) 62vw, 300px"
+             width="300" height="315" loading="lazy" decoding="async"
+             alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות"></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה</p><h3 class="env2-pdp-card__title"><a href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</a></h3>
+  <p class="env2-pdp-card__axis">5 מ׳ / 20 נורות · 6.5 מ׳ / 30 נורות</p>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/solar-crystal-ball-string-lights">לבחירת אורך</a></span>
+  </div>
+  <p class="env2-pdp-card__unit"><bdi>≈17.98</bdi> ₪ למטר</p>
+</article><article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:210px;--env2-pdp-card-ar:1/1.4">
+  <a class="env2-pdp-card__media" href="/products/warm-solar-step-deck-lights" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><span class="env2-coll-glyph" data-glyph="cube" style="--env2-glyph-ar:1/1.4">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label="מנורות סולאריות למדרגות ולדק באור חם – 1/4/8/12 יחידות — איור, אין תצלום נקי" focusable="false"><use href="#env2-glyph-cube"></use></svg><span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span></span></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">שביל, מדרגות ומעברים · מתאים כדי לראות את הדרך</p><h3 class="env2-pdp-card__title"><a href="/products/warm-solar-step-deck-lights">מנורות סולאריות למדרגות ולדק באור חם – 1/4/8/12 יחידות</a></h3>
+  <p class="env2-pdp-card__axis">1 יחידה · 4 יחידות</p>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>69.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/warm-solar-step-deck-lights">לבחירת כמות</a></span>
+  </div>
+  <p class="env2-pdp-card__unit"><bdi>≈69.90</bdi> ₪ ליחידה</p>
+</article><article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:260px;--env2-pdp-card-ar:1/.9">
+  <a class="env2-pdp-card__media" href="/products/led-globe-string-lights" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><span class="env2-coll-glyph" data-glyph="string" style="--env2-glyph-ar:1/.9">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label="גרילנדת כדורי LED דקורטיבית – USB או סוללות — איור, אין תצלום נקי" focusable="false"><use href="#env2-glyph-string"></use></svg><span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span></span></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה</p><h3 class="env2-pdp-card__title"><a href="/products/led-globe-string-lights">גרילנדת כדורי LED דקורטיבית – USB או סוללות</a></h3>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/led-globe-string-lights">לבחירת אורך</a></span>
+  </div>
+</article></div>
+  <p class="plumb-note"><b>variant:'scene'</b> — the scrim card that rides a photograph, the only card surface on the page (§3.1), used exactly twice.</p>
+  <div class="plumb-scene"><article class="env2-pdp-card env2-pdp-card--scene" data-lamp style="--env2-pdp-card-w:420px;--env2-pdp-card-ar:1/1.05">
+  <a class="env2-pdp-card__media" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg"
+             srcset="../../../assets/img/solar-crystal-ball-string-lights-0.jpg 420w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 720w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1040w"
+             sizes="(max-width:900px) 62vw, 420px"
+             width="420" height="441" loading="lazy" decoding="async"
+             alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות"></span>
+  </a><p class="env2-kicker env2-pdp-card__kicker">מרפסת ופינת ישיבה · מתאים כדי ליצור אווירה</p><h3 class="env2-pdp-card__title"><a href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</a></h3>
+  <p class="env2-pdp-card__axis">5 מ׳ / 20 נורות · 6.5 מ׳ / 30 נורות</p>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/solar-crystal-ball-string-lights">לבחירת אורך</a></span>
+  </div>
+  <p class="env2-pdp-card__unit"><bdi>≈17.98</bdi> ₪ למטר</p>
+</article></div>
+
+  <h2 class="plumb-h2">5 · elmsnest-v2-coll-paginate</h2>
+  <p class="plumb-note">§3.7. First: a simulated 3-page catalogue with ?sort_by=price-ascending carried onto every link.
+  Second: the real case — paginate.pages = 1, and the snippet prints <b>absolutely nothing</b> (the empty rule below).
+  Third: the emit:'note' line §4.5's foot prints.</p>
+  <nav class="env2-coll-paginate" aria-label="עמודים"><a class="env2-coll-paginate__step" rel="prev" href="/collections/all?page=1&amp;sort_by=price-ascending">הקודם →</a><span class="env2-coll-paginate__count">עמוד <bdi>2</bdi> מתוך <bdi>3</bdi></span>
+  <ol class="env2-coll-paginate__list"><li><a class="env2-coll-paginate__n" href="/collections/all?page=1&amp;sort_by=price-ascending">1</a></li><li><span class="env2-coll-paginate__n is-current" aria-current="page">2</span></li><li><a class="env2-coll-paginate__n" href="/collections/all?page=3&amp;sort_by=price-ascending">3</a></li></ol><a class="env2-coll-paginate__step" rel="next" href="/collections/all?page=3&amp;sort_by=price-ascending">← הבא</a></nav>
+  <p class="plumb-note">pages = 1 → [] ← nothing between the brackets.</p>
+  <p class="env2-coll-paginate__note">27 מנורות בעמוד אחד. אין עמוד 2.</p>
+
+  <h2 class="plumb-h2">6 · elmsnest-v2-coll-axis, emit:'json'</h2>
+  <p class="plumb-note">One &lt;script type="application/json"&gt; per product for the eleven-line ruler enhancement. JSON.parse OK.</p>
+  <div class="plumb-pre">{&quot;handle&quot;:&quot;solar-crystal-ball-string-lights&quot;,&quot;axis&quot;:&quot;אורך ומספר נורות&quot;,&quot;unit&quot;:&quot;m&quot;,&quot;unit_label&quot;:&quot;מ׳&quot;,&quot;unit_word&quot;:&quot;מטרים&quot;,&quot;per_unit_label&quot;:&quot;₪ למטר&quot;,&quot;measured&quot;:true,&quot;area&quot;:false,&quot;min&quot;:5,&quot;max&quot;:22,&quot;max_price&quot;:&quot;179.90&quot;,&quot;price_min&quot;:&quot;89.90&quot;,&quot;price_max&quot;:&quot;179.90&quot;,&quot;variants&quot;:6,&quot;available&quot;:true,&quot;default_variant_id&quot;:59339,&quot;stops&quot;:[{&quot;i&quot;:0,&quot;value&quot;:&quot;5 מ׳ / 20 נורות&quot;,&quot;number&quot;:5,&quot;unit&quot;:&quot;m&quot;,&quot;unit_label&quot;:&quot;מ׳&quot;,&quot;area_h&quot;:null,&quot;number2&quot;:20,&quot;unit2&quot;:&quot;led&quot;,&quot;unit2_label&quot;:&quot;נורות&quot;,&quot;price&quot;:&quot;89.90&quot;,&quot;price_cents&quot;:8990,&quot;price_max&quot;:&quot;89.90&quot;,&quot;per_unit&quot;:&quot;17.98&quot;,&quot;per_unit_label&quot;:&quot;₪ למטר&quot;,&quot;available&quot;:true,&quot;variant_id&quot;:59339,&quot;variants&quot;:1},{&quot;i&quot;:1,&quot;value&quot;:&quot;6.5 מ׳ / 30 נורות&quot;,&quot;number&quot;:6.5,&quot;unit&quot;:&quot;m&quot;,&quot;unit_label&quot;:&quot;מ׳&quot;,&quot;area_h&quot;:null,&quot;number2&quot;:30,&quot;unit2&quot;:&quot;led&quot;,&quot;unit2_label&quot;:&quot;נורות&quot;,&quot;price&quot;:&quot;89.90&quot;,&quot;price_cents&quot;:8990,&quot;price_max&quot;:&quot;89.90&quot;,&quot;per_unit&quot;:&quot;13.83&quot;,&quot;per_unit_label&quot;:&quot;₪ למטר&quot;,&quot;available&quot;:true,&quot;variant_id&quot;:59340,&quot;variants&quot;:1},{&quot;i&quot;:2,&quot;value&quot;:&quot;9.5 מ׳ / 50 נורות&quot;,&quot;number&quot;:9.5,&quot;unit&quot;:&quot;m&quot;,&quot;unit_label&quot;:&quot;מ׳&quot;,&quot;area_h&quot;:null,&quot;number2&quot;:50,&quot;unit2&quot;:&quot;led&quot;,&quot;unit2_label&quot;:&quot;נורות&quot;,&quot;price&quot;:&quot;99.90&quot;,&quot;price_cents&quot;:9990,&quot;price_max&quot;:&quot;99.90&quot;,&quot;per_unit&quot;:&quot;10.52&quot;,&quot;per_unit_label&quot;:&quot;₪ למטר&quot;,&quot;available&quot;:true,&quot;variant_id&quot;:59341,&quot;variants&quot;:1},{&quot;i&quot;:3,&quot;value&quot;:&quot;11 מ׳ / 60 נורות&quot;,&quot;number&quot;:11,&quot;unit&quot;:&quot;m&quot;,&quot;unit_label&quot;:&quot;מ׳&quot;,&quot;area_h&quot;:null,&quot;number2&quot;:60,&quot;unit2&quot;:&quot;led&quot;,&quot;unit2_label&quot;:&quot;נורות&quot;,&quot;price&quot;:&quot;109.90&quot;,&quot;price_cents&quot;:10990,&quot;price_max&quot;:&quot;109.90&quot;,&quot;per_unit&quot;:&quot;9.99&quot;,&quot;per_unit_label&quot;:&quot;₪ למטר&quot;,&quot;available&quot;:true,&quot;variant_id&quot;:59342,&quot;variants&quot;:1},{&quot;i&quot;:4,&quot;value&quot;:&quot;13 מ׳ / 100 נורות&quot;,&quot;number&quot;:13,&quot;unit&quot;:&quot;m&quot;,&quot;unit_label&quot;:&quot;מ׳&quot;,&quot;area_h&quot;:null,&quot;number2&quot;:100,&quot;unit2&quot;:&quot;led&quot;,&quot;unit2_label&quot;:&quot;נורות&quot;,&quot;price&quot;:&quot;129.90&quot;,&quot;price_cents&quot;:12990,&quot;price_max&quot;:&quot;129.90&quot;,&quot;per_unit&quot;:&quot;9.99&quot;,&quot;per_unit_label&quot;:&quot;₪ למטר&quot;,&quot;available&quot;:true,&quot;variant_id&quot;:59343,&quot;variants&quot;:1},{&quot;i&quot;:5,&quot;value&quot;:&quot;22 מ׳ / 200 נורות&quot;,&quot;number&quot;:22,&quot;unit&quot;:&quot;m&quot;,&quot;unit_label&quot;:&quot;מ׳&quot;,&quot;area_h&quot;:null,&quot;number2&quot;:200,&quot;unit2&quot;:&quot;led&quot;,&quot;unit2_label&quot;:&quot;נורות&quot;,&quot;price&quot;:&quot;179.90&quot;,&quot;price_cents&quot;:17990,&quot;price_max&quot;:&quot;179.90&quot;,&quot;per_unit&quot;:&quot;8.18&quot;,&quot;per_unit_label&quot;:&quot;₪ למטר&quot;,&quot;available&quot;:true,&quot;variant_id&quot;:59344,&quot;variants&quot;:1}]}</div>
+</main>
+</body></html>

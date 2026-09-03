@@ -1,0 +1,145 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — PAGINATION (WINNING-SPEC §3.7).
+
+  §3.7 in one line: the template opens a Liquid `paginate collection.products by 50` block, so at 27
+  products there IS no second page and this control renders NOTHING. It is built anyway, for two reasons the
+  spec states outright: the catalogue will grow, and `?sort_by=` must survive a page boundary — the
+  control appends the current sort to every page link.
+
+  Why 50 and not 12: a 12-per-page break cuts the ruler in half and destroys the only comparison the
+  page exists to enable. Today's /collections/all paginates 12/12/3 into three arbitrary alphabetical
+  pages (AUDIT §1). That decision is printed once for the owner to read, by §4.5's foot, from Liquid:
+      {{ collection.all_products_count }} מנורות בעמוד אחד. אין עמוד 2.
+  This snippet will print that same line on request (emit: 'note') so the wording lives in one place.
+
+  ------------------------------------------------------------------ call signatures
+      open   :  a Liquid paginate block over collection.products, by 50
+        …the seven sections…
+        {% render 'elmsnest-v2-coll-paginate', paginate: paginate, collection: collection %}
+      close  :  endpaginate
+
+      {% render 'elmsnest-v2-coll-paginate', collection: collection, paginate: paginate, emit: 'note' %}
+      {% render 'elmsnest-v2-coll-paginate', css: true %}      once per page, before the control
+
+  `paginate` is only in scope INSIDE that block, and a {% render %} does not inherit the
+  caller's scope, so it must be passed explicitly. That is the one mistake to avoid.
+
+  ------------------------------------------------------------------ inputs
+    paginate  : required for the control. Missing, or paginate.pages <= 1 -> PRINTS NOTHING AT ALL.
+    collection: required for emit:'note' (all_products_count). Optional otherwise — when given, the
+                current order is read from collection.sort_by and appended to every page link.
+    sort_by   : an explicit sort key to carry, overriding collection.sort_by. Pass the ruler's own
+                resolved sort so the two can never disagree.
+    label     : the aria-label on the <nav>. Default 'עמודים'.
+    emit      : '' (default, the control) | 'note' (the one-page line) 
+    css       : true -> print ONLY the stylesheet.
+
+  ------------------------------------------------------------------ what it prints
+    <nav class="env2-coll-paginate" aria-label="עמודים">
+      <a class="env2-coll-paginate__step" rel="prev" href="…?sort_by=…">הקודם →</a>
+      <span class="env2-coll-paginate__count">עמוד <bdi>1</bdi> מתוך <bdi>3</bdi></span>
+      <ol class="env2-coll-paginate__list">
+        <li><a class="env2-coll-paginate__n" href="…">1</a></li>
+        <li><span class="env2-coll-paginate__n is-current" aria-current="page">2</span></li>
+      </ol>
+      <a class="env2-coll-paginate__step" rel="next" href="…">← הבא</a>
+    </nav>
+  Plain anchors on one hairline. No boxes, no rounded tiles, radius 0 (§6.14). Every link carries the
+  current ?sort_by=, added only when the URL Shopify built does not already hold one.
+  Never a <select>, never a "load more" button, never infinite scroll (§6.1).
+{%- endcomment -%}
+{%- liquid
+  assign env2_mode = emit | default: ''
+  if css == true
+    assign env2_mode = 'css'
+  endif
+  assign env2_sb = sort_by | default: collection.sort_by | default: ''
+  if env2_sb == 'best-selling' or env2_sb == 'popularity'
+    comment
+      Do-not §6.5: one test order exists in the store's history, so a best-seller order is a lie. It is
+      never offered by the ruler's order line and never carried across a page boundary either.
+    endcomment
+    assign env2_sb = ''
+  endif
+-%}
+{%- if env2_mode == 'note' -%}
+<p class="env2-coll-paginate__note">{{ collection.all_products_count }} מנורות בעמוד אחד. אין עמוד 2.</p>
+{%- elsif env2_mode == 'css' -%}
+<style id="env2-coll-paginate-css">
+/* ---------- §3.7 — one hairline of plain anchors, no boxes ---------- */
+.env2-coll-paginate{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding-block:20px;border-block-start:1px solid var(--env2-hair);
+  font-family:var(--env2-sans);font-weight:300;font-size:15px;color:var(--env2-ink-2)}
+.env2-coll-paginate__list{display:flex;align-items:center;gap:4px;flex-wrap:wrap;list-style:none;margin:0;padding:0}
+.env2-coll-paginate__n,.env2-coll-paginate__step{display:inline-flex;align-items:center;justify-content:center;
+  min-inline-size:48px;min-block-size:48px;padding-inline:12px;border-radius:0;
+  font-variant-numeric:tabular-nums;color:var(--env2-ink-2);text-decoration:none;transition:color .3s}
+.env2-coll-paginate__n:hover,.env2-coll-paginate__step:hover,
+.env2-coll-paginate__n:focus-visible,.env2-coll-paginate__step:focus-visible{color:var(--env2-glow)}
+.env2-coll-paginate__n.is-current{color:var(--env2-glow);
+  box-shadow:inset 0 -1px 0 0 var(--env2-glow)}
+.env2-coll-paginate__step[aria-disabled="true"]{opacity:.35;pointer-events:none}
+.env2-coll-paginate__count{font-variant-numeric:tabular-nums}
+.env2-coll-paginate__note{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:15px;color:var(--env2-ink-2)}
+@media (max-width:900px){
+  .env2-coll-paginate{gap:10px;font-size:14px}
+  .env2-coll-paginate__n,.env2-coll-paginate__step{min-inline-size:44px;padding-inline:8px}
+}
+</style>
+{%- elsif paginate.pages > 1 -%}
+{%- liquid
+  assign env2_lbl = label | default: 'עמודים'
+-%}
+<nav class="env2-coll-paginate" aria-label="{{ env2_lbl | escape }}">
+  {%- capture env2_prev -%}{%- if paginate.previous.is_link -%}{{ paginate.previous.url }}{%- endif -%}{%- endcapture -%}
+  {%- if env2_prev != '' -%}
+    {%- assign env2_href = env2_prev -%}
+    {%- if env2_sb != '' -%}
+      {%- unless env2_href contains 'sort_by=' -%}
+        {%- assign env2_j = '&amp;' -%}
+        {%- unless env2_href contains '?' -%}{%- assign env2_j = '?' -%}{%- endunless -%}
+        {%- capture env2_href -%}{{ env2_href }}{{ env2_j }}sort_by={{ env2_sb | escape }}{%- endcapture -%}
+      {%- endunless -%}
+    {%- endif -%}
+    <a class="env2-coll-paginate__step" rel="prev" href="{{ env2_href }}">הקודם →</a>
+  {%- else -%}
+    <span class="env2-coll-paginate__step" aria-disabled="true">הקודם →</span>
+  {%- endif -%}
+  <span class="env2-coll-paginate__count">עמוד <bdi>{{ paginate.current_page }}</bdi> מתוך <bdi>{{ paginate.pages }}</bdi></span>
+  <ol class="env2-coll-paginate__list">
+    {%- for part in paginate.parts -%}
+      <li>
+        {%- if part.is_link -%}
+          {%- assign env2_href = part.url -%}
+          {%- if env2_sb != '' -%}
+            {%- unless env2_href contains 'sort_by=' -%}
+              {%- assign env2_j = '&amp;' -%}
+              {%- unless env2_href contains '?' -%}{%- assign env2_j = '?' -%}{%- endunless -%}
+              {%- capture env2_href -%}{{ env2_href }}{{ env2_j }}sort_by={{ env2_sb | escape }}{%- endcapture -%}
+            {%- endunless -%}
+          {%- endif -%}
+          <a class="env2-coll-paginate__n" href="{{ env2_href }}">{{ part.title }}</a>
+        {%- elsif part.title == paginate.current_page -%}
+          <span class="env2-coll-paginate__n is-current" aria-current="page">{{ part.title }}</span>
+        {%- else -%}
+          <span class="env2-coll-paginate__n" aria-hidden="true">{{ part.title }}</span>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ol>
+  {%- capture env2_next -%}{%- if paginate.next.is_link -%}{{ paginate.next.url }}{%- endif -%}{%- endcapture -%}
+  {%- if env2_next != '' -%}
+    {%- assign env2_href = env2_next -%}
+    {%- if env2_sb != '' -%}
+      {%- unless env2_href contains 'sort_by=' -%}
+        {%- assign env2_j = '&amp;' -%}
+        {%- unless env2_href contains '?' -%}{%- assign env2_j = '?' -%}{%- endunless -%}
+        {%- capture env2_href -%}{{ env2_href }}{{ env2_j }}sort_by={{ env2_sb | escape }}{%- endcapture -%}
+      {%- endunless -%}
+    {%- endif -%}
+    <a class="env2-coll-paginate__step" rel="next" href="{{ env2_href }}">← הבא</a>
+  {%- else -%}
+    <span class="env2-coll-paginate__step" aria-disabled="true">← הבא</span>
+  {%- endif -%}
+</nav>
+{%- endif -%}

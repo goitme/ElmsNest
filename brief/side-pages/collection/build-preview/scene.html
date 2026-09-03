@@ -1,0 +1,647 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest — מסך פתיחה · גרילנדות-ותאורה-דקורטיבית</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<script>document.documentElement.classList.add('env2-js');</script>
+
+<style id="env2-base">
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1), every template ----------
+   Kalles paints body with its scheme and wraps content in painted containers; here the document
+   is night on every page type and the wrappers go clear. The index keeps its own dusk gradient
+   (snippets/elmsnest-v2-ground-index, rendered by the hero); every other template gets the
+   side-page ground: sky-2 -> sky-3 -> sky-4, ending in #020306 before the footer. */
+html{background:#020306}
+body[class*="hdt-page-type-"]{background-color:#020306;color:#f4eee3}
+body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+#wrapper,.main-content,main,#MainContent,.hdt-main-content,.hdt-page-content,.shopify-section{background:transparent}
+/* Kalles back-to-top: a white square bottom-right (old palette) — hidden everywhere (§7.11) */
+.hdt-back-to-top,back-to-top{display:none!important}
+/* Kalles footer group: same sans as the page, quiet links (underline on hover only).
+   The link rules must reach (0,2,2): the footer links sit inside .hdt-text-warry.hdt-rte, and Kalles'
+   .hdt-rte a:not(.hdt-btn){text-decoration:underline} is (0,2,1), so the plain unscoped selector (0,1,1)
+   lost to it and every footer link came back underlined (fix pass R0-01). The index-scoped rule this
+   replaced was body.hdt-page-type-index .shopify-section-group-footer-group a = (0,2,2) and did win. */
+.shopify-section-group-footer-group{font-family:var(--env2-sans)}
+body .shopify-section-group-footer-group a:not(.hdt-btn){text-decoration:none}
+body .shopify-section-group-footer-group a:not(.hdt-btn):hover,body .shopify-section-group-footer-group a:not(.hdt-btn):focus-visible{text-decoration:underline}
+/* Kalles chrome type: header menu, drawers, popovers, facets and the old sections use Heebo.
+   css-variables sets --f_family_1..3 on :root from the Shopify font (assistant_n4); this comes after it. */
+:root{--f_family_1:var(--env2-sans);--f_family_2:var(--env2-sans);--f_family_3:var(--env2-sans)}
+/* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
+   sale badges never render (settings hidden_badges + this belt) */
+option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
+.hdt-badge__wrapp{display:none!important}
+/* Kalles form fields: the theme paints a field with rgb(var(--color-input-primary)) and writes it with
+   --color-input-secondary. Both the :root fallback (css-variables l.185-186) and the night scheme's
+   input pair still carry cream-era values, so every form rendered a light slab with 2.7:1 text on the
+   night ground (contact form, account/login/register, the cart discount field). Night field, ink text.
+   --en-input-bg is the last #fffdf7 in the token set (the header search field) — retargeted with it. */
+:root{--en-input-bg:17 29 51}
+:root,[color-scheme]{--color-input-primary:var(--en-surface-elevated);--color-input-secondary:var(--en-color-light)}
+/* Kalles accent buttons hard-code white labels (.hdt-btn-accent{--hdt-btn-color:255 255 255}); under the
+   night scheme their fill is --env2-glow, so the label needs the dark ink (§D): 1.4:1 -> 13:1. */
+.hdt-btn-accent{--hdt-btn-color:var(--en-text-inverse)}
+/* Kalles swatch/tooltip bubble: css-variables pairs --color-tooltip-background with
+   --color-tooltip-text, and §D moved BOTH ends of that pair to near-black (--en-color-dark 2 3 6 /
+   --en-text-inverse 2 3 6) — the bubble is ink-on-ink. Night bubble, ink label (hover only). */
+:root{--color-tooltip-background:var(--en-surface-elevated);--color-tooltip-text:var(--en-color-light)}
+
+/* ---------- fix pass, round 0 second pass (V-1 · V-2 · V-4 · V-6) ---------- */
+/* V-1: the header search panel is <hdt-predictive-search color-scheme="scheme-1"> — the attribute is written
+   in a Kalles core section we do not own, so settings.color_scheme_dialog never reaches it, and scheme-1 is
+   the cream scheme (#f7f0e6 background, #fffdf7 background2, #2b2118 foreground): the three hexes this round
+   forbids, on the drawer behind the magnifier on every template. scheme-1 is remapped onto the night pair.
+   Exactly one element per page carries it (the search panel, closed) — the homepage included — so nothing
+   else can move. The input pair is deliberately NOT listed here: the :root,[color-scheme] rule above owns it
+   at the same specificity and must keep winning. */
+[color-scheme="scheme-1"]{
+  --color-background:2 3 6;--color-background2:7 11 21;--color-foreground:244 238 227;--color-foreground2:201 196 184;
+  --color-accent:255 211 148;--color-secondary:208 182 135;--color-tertiary:155 122 61;
+  --hdt-btn-color:26 18 6;--hdt-btn-bg:255 211 148;--hdt-btn-border-color:255 211 148;
+  --hdt-btn-hover-color:26 18 6;--hdt-btn-hover-bg:var(--en-surface-card);--hdt-btn-hover-border-color:var(--en-surface-card);
+  --hdt-btn-secondary-color:83 73 54;--hdt-btn-secondary-bg:208 182 135;
+  --hdt-btn-tertiary-color:62 49 24;--hdt-btn-tertiary-bg:155 122 61;
+  --hdt-btn-outline-color:244 238 227;--hdt-btn-outline-border-color:244 238 227;
+  --hdt-link-color:244 238 227;--hdt-link-hover-color:255 211 148;
+  --color-line-border:31 30 29;--color-overlay:2 3 6;--payment-terms-background-color:rgb(2 3 6);
+  --color-pr-price:255 211 148;--color-pr-sale-price:255 211 148;--color-pr-text:244 238 227;
+  --color-focus:var(--en-focus-dark);--en-focus-contrast:var(--en-focus-light)
+}
+/* the search drawer's category <select> and its options paint from the UA, not from the scheme (old open item 5) */
+#drawer-search-form select,#drawer-search-form option{background-color:rgb(var(--en-surface-elevated));color:rgb(var(--en-color-light))}
+/* V-4: <dialog id="modal-contactFormAsk"> has no background rule of its own, so it falls back to the UA's
+   white canvas while its wrapper's night scheme paints the ink — heading 1.15:1, field labels 1.74:1. */
+#modal-contactFormAsk{background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}
+/* V-6: --en-warning-text (96 64 0) was built for the cream page; §D moved the ground to #020306 and did not
+   list it, so .hdt-no-result-product — the only copy on the no-results page — reads 2.19:1. The amber the
+   design system already uses gives 11.9:1 on #020306. The two other consumers (.toast.warning border,
+   .toast-icon.warning fill, which pairs it with --en-text-inverse) stay legible. */
+:root{--en-warning-text:255 211 148}
+/* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
+   hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
+.hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-price__from{font-family:var(--env2-sans);font-weight:400;font-size:.62em;color:var(--env2-ink-2);margin-inline-end:.15em;letter-spacing:0}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<script id="env2-base-js">
+(function(){
+  if (window.env2 && window.env2.observe) return;
+  var root = document.documentElement;
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen = (typeof WeakSet === 'function') ? new WeakSet() : null;
+  var tracked = [];
+  var io = null;
+
+  function light(el){ if (el && el.classList) el.classList.add('lit'); }
+  function inView(el){
+    var vh = window.innerHeight || root.clientHeight; var r = el.getBoundingClientRect();
+    return r.top < vh * 0.82 && r.bottom > vh * 0.1;
+  }
+  /* belt and braces: light anything already inside the viewport (passive scroll, rAF) */
+  function sweep(){
+    for (var i = tracked.length - 1; i >= 0; i--) {
+      var el = tracked[i];
+      if (el.classList.contains('lit')) { tracked.splice(i, 1); continue; }
+      if (inView(el)) { light(el); if (io) io.unobserve(el); tracked.splice(i, 1); }
+    }
+  }
+  function getIO(){
+    if (io || !('IntersectionObserver' in window)) return io;
+    io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { light(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+    return io;
+  }
+  /* observe(root): idempotent, safe per section, safe on document. Lamps with
+     data-lamp="manual" are left to their section (light them with env2.light(el)),
+     except under reduced motion, where every lamp is lit at once. */
+  function observe(rootEl){
+    rootEl = rootEl || document;
+    var list = [];
+    if (rootEl.nodeType === 1 && rootEl.hasAttribute('data-lamp')) list.push(rootEl);
+    var q = rootEl.querySelectorAll ? rootEl.querySelectorAll('[data-lamp]') : [];
+    for (var i = 0; i < q.length; i++) list.push(q[i]);
+    list.forEach(function(el){
+      if (el.classList.contains('lit')) return;
+      if (seen ? seen.has(el) : el.__env2seen) return;
+      if (el.getAttribute('data-lamp') === 'manual' && !rm) return;
+      if (seen) seen.add(el); else el.__env2seen = true;
+      if (rm || !getIO()) { light(el); return; }
+      tracked.push(el); io.observe(el);
+    });
+    sweep();
+    return list.length;
+  }
+
+  /* scroll progress → --env2-p (alias --p) on <html>; the sun rail and the hero use it */
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var max = Math.max(1, root.scrollHeight - window.innerHeight);
+      var y = window.scrollY || window.pageYOffset || 0;
+      var p = rm ? 0 : Math.min(1, Math.max(0, y / max));
+      var v = p.toFixed(4);
+      root.style.setProperty('--env2-p', v); root.style.setProperty('--p', v);
+      sweep();
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
+
+  /* in-page anchors to sections (#env2-…) scroll smoothly, instantly under reduced motion */
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#env2-"]') : null;
+    if (!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+    if (window.history && history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+  });
+
+  /* buy forms (snippets/elmsnest-v2-buy): add to cart without leaving the page and open the Kalles
+     cart drawer. Anything missing (no drawer, no fetch, request failed) → the native POST still works. */
+  document.addEventListener('submit', function(e){
+    var form = e.target;
+    if (!form || !form.matches || !form.matches('form[data-env2-buy]')) return;
+    var drawer = document.querySelector('hdt-cart-drawer[section-id]');
+    if (!drawer || typeof window.fetch !== 'function' || typeof window.FormData !== 'function') return;
+    e.preventDefault();
+    var btn = form.querySelector('[type="submit"]');
+    var fd = new FormData(form);
+    fd.append('sections', drawer.getAttribute('section-id'));
+    fd.append('sections_url', location.pathname);
+    if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+    var rootPath = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+    fetch(rootPath + 'cart/add.js', {
+      method: 'POST', body: fd,
+      headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/javascript' }
+    }).then(function(r){ return r.json(); }).then(function(j){
+      if (!j || j.status) throw new Error('cart/add failed');
+      /* The drawer is the theme's, and on a slow phone or a failed chunk its custom element can still
+         be un-upgraded when the POST succeeds — the item enters the cart and the screen does not
+         change, so the same button gets pressed twice. The page therefore acknowledges the add on its
+         own, before and regardless of the drawer: the label says so and the control stays disabled
+         while it does. Restored by the finally-branch below. */
+      if (btn && !btn.getAttribute('data-env2-said')) {
+        btn.setAttribute('data-env2-said', btn.textContent);
+        btn.textContent = btn.getAttribute('data-env2-added') || 'נוסף לסל';
+        setTimeout(function(){
+          var was = btn.getAttribute('data-env2-said');
+          if (was !== null) { btn.textContent = was; btn.removeAttribute('data-env2-said'); }
+          btn.disabled = false; btn.removeAttribute('aria-busy');
+        }, 1600);
+      }
+      document.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: {
+        resource: {}, sourceId: String(fd.get('id')), cartData: j,
+        actionAfterATC: 'open_cart_drawer', source: 'product-form-component',
+        data: { itemCount: 1, sections: j.sections }
+      } }));
+    }).catch(function(){
+      if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+      form.submit();
+    }).then(function(){
+      if (btn && !btn.getAttribute('data-env2-said')) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+    });
+  });
+
+  window.env2 = { rm: rm, observe: observe, sweep: sweep, light: light, version: '2.0' };
+
+  function boot(){ observe(document); onScroll(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  document.addEventListener('shopify:section:load', function(e){ observe(e.target || document); });
+})();
+</script>
+<style>
+body{margin:0}
+/* the Kalles header the real page renders above the section, at its real height, transparent over the
+   scene exactly as §4.1 requires — so the fold measurement below is the one the visitor gets. */
+.env2-mock-header{position:absolute;inset-block-start:0;inset-inline:0;block-size:70px;z-index:9;
+  display:flex;align-items:center;justify-content:space-between;padding-inline:clamp(20px,4vw,64px);
+  font-family:var(--env2-sans);font-size:13px;letter-spacing:.14em;color:var(--env2-ink);pointer-events:none}
+@media (max-width:900px){.env2-mock-header{block-size:60px}}
+</style>
+<style>
+/* ElmsNest v2 collection — 4.1 the gate. Every selector is .env2-coll-scene__…, nothing here restyles
+   a core class, and no section paints a background: the only surface is the scrim card (3.1). */
+.env2-coll-scene{padding-block:0;overflow-x:clip}
+.env2-coll-scene__stage{position:relative;isolation:isolate}
+.env2-coll-scene__media{position:absolute;inset:0;z-index:0;overflow:hidden;background:#05070c}
+.env2-coll-scene__pic{display:block;position:absolute;inset:0}
+.env2-coll-scene__pic img{inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--env2-scene-focus,50% 45%);
+  display:block;filter:brightness(.6) saturate(.84) contrast(1.02)}
+/* the night wash under the veil: the four collection photographs are warm and bright and the h1, the
+   eyebrow and the counts line are read straight off them. Without it the gold eyebrow on a lit garland
+   is under 3:1 (3.1, 3.2). It is one gradient, it paints no colour of its own, and it stops at the veil. */
+.env2-coll-scene__wash{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,3,6,.66) 0%,rgba(2,3,6,.3) 22%,rgba(2,3,6,.22) 46%,rgba(7,11,21,.5) 74%,rgba(15,26,47,.66) 100%)}
+/* the two-stop veil over the bottom of the photograph (4.1): the type block and the counts line sit on
+   it, and it lands on --env2-sky-2 so the photograph joins the ground with no seam. */
+.env2-coll-scene__veil{position:absolute;inset-inline:0;inset-block-end:0;block-size:34%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(15,26,47,0) 0%,rgba(15,26,47,.72) 62%,#0f1a2f 100%)}
+.env2-coll-scene__stage--noimg .env2-coll-scene__media{background:
+  radial-gradient(120% 80% at 50% 0%,rgba(31,51,87,.55),rgba(2,3,6,0) 70%),#050a14}
+
+.env2-coll-scene__inner{box-sizing:border-box;position:relative;z-index:2;display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,var(--env2-scene-cardw,420px));
+  align-items:end;gap:clamp(28px,4vw,72px);min-block-size:100svh;padding-block:clamp(120px,14vh,168px) clamp(56px,7vh,84px)}
+.env2-coll-scene__type{max-inline-size:min(100%,640px)}
+.env2-coll-scene__eyebrow{margin-block-end:clamp(16px,2vh,26px)}
+.env2-coll-scene__h1{font-size:clamp(38px,5.8vw,84px);line-height:.98;max-inline-size:22ch;
+  text-shadow:0 2px 34px rgba(2,3,6,.75)}
+.env2-coll-scene__h1b{display:block}
+.env2-coll-scene__deck{margin-block-start:clamp(14px,2vh,22px);max-inline-size:38ch;color:var(--env2-ink-2);
+  text-shadow:0 1px 18px rgba(2,3,6,.7)}
+.env2-coll-scene__suits{margin:10px 0 0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.5;
+  max-inline-size:42ch;color:var(--env2-mute);text-wrap:pretty;text-shadow:0 1px 18px rgba(2,3,6,.7)}
+.env2-coll-scene__rule{margin-block-start:clamp(18px,2.6vh,30px)}
+.env2-coll-scene__counts{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin:14px 0 0;
+  font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.5;color:var(--env2-ink-2);
+  font-variant-numeric:tabular-nums}
+.env2-coll-scene__count{display:inline-flex;align-items:baseline;gap:.35em;white-space:nowrap}
+.env2-coll-scene__count+.env2-coll-scene__count::before{content:"·";margin-inline-end:.6em;color:var(--env2-mute)}
+.env2-coll-scene__count bdi{color:var(--env2-ink)}
+
+/* the pinned card is elmsnest-v2-pdp-card variant:'scene' — the scrim of 3.1, never hand-rolled here */
+.env2-coll-scene__card{justify-self:end;inline-size:100%;max-inline-size:var(--env2-scene-cardw,420px)}
+.env2-coll-scene__card .env2-pdp-card{box-sizing:border-box;inline-size:100%}
+.env2-coll-scene__card .env2-pdp-card__price .env2-price{--env2-price-size:34px}
+.env2-coll-scene__card .env2-pdp-card__title{font-size:clamp(16px,1.3vw,19px)}
+
+/* the pin (graft C10): a lit dot, a hairline stem, a gold tag that names the lamp and its real value */
+.env2-coll-scene__pin{position:absolute;z-index:3;inset-inline-start:var(--env2-pin-x,42%);inset-block-start:var(--env2-pin-y,28%);
+  display:block;inline-size:0;text-decoration:none}
+.env2-coll-scene__dot{position:absolute;inset-block-start:-5px;inset-inline-start:-5px;inline-size:10px;block-size:10px;
+  border-radius:50%;background:var(--env2-glow);opacity:calc(.25 + .75*var(--lit,1));
+  box-shadow:0 0 0 calc(6px*var(--lit,1)) rgba(255,211,148,.14),0 0 34px calc(10px*var(--lit,1)) rgba(255,196,110,.5);
+  transition:opacity .5s,box-shadow .5s}
+.env2-coll-scene__stem{position:absolute;inset-block-start:0;inset-inline-start:0;inline-size:1px;
+  block-size:var(--env2-pin-stem,120px);background:linear-gradient(180deg,rgba(255,211,148,.85),rgba(255,211,148,.28));
+  transform-origin:top;transform:scaleY(var(--lit,1));transition:transform .45s .15s cubic-bezier(.2,.7,.2,1)}
+.env2-coll-scene__tag{position:absolute;inset-block-start:var(--env2-pin-stem,120px);inset-inline-start:0;
+  display:inline-flex;align-items:center;min-block-size:44px;padding-inline:12px;white-space:nowrap;
+  inline-size:max-content;max-inline-size:min(var(--env2-pin-room,340px),340px);
+  font-family:var(--env2-sans);font-size:11.5px;font-weight:500;letter-spacing:.16em;color:var(--env2-gold);
+  border-radius:0;box-shadow:inset 0 1px 0 0 rgba(233,185,110,.55);
+  background:linear-gradient(180deg,rgba(5,8,14,.62),rgba(5,8,14,.32));backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);opacity:calc(.15 + .85*var(--lit,1));transition:opacity .5s .3s,color .3s}
+.env2-coll-scene__pin--flip .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
+.env2-coll-scene__pin:hover .env2-coll-scene__tag,
+.env2-coll-scene__pin:focus-visible .env2-coll-scene__tag{color:var(--env2-glow)}
+.env2-coll-scene__tag bdi{letter-spacing:0;font-variant-numeric:tabular-nums}
+.env2-coll-scene__tagname{unicode-bidi:isolate}
+.env2-coll-scene__tagtext{display:inline}
+.env2-coll-scene__tagsep{color:var(--env2-mute)}
+.env2-coll-scene__tagval{font-size:13px;letter-spacing:0;color:var(--env2-glow);
+  font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+
+/* below the veil: the collection's own first paragraph, and the route on to the ruler */
+.env2-coll-scene__below{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);align-items:start;
+  gap:clamp(20px,3vw,56px);padding-block:clamp(34px,5vh,56px) clamp(40px,6vh,72px)}
+.env2-coll-scene__p{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:clamp(15px,1.15vw,17px);
+  line-height:1.65;max-inline-size:62ch;color:var(--env2-ink-2);text-wrap:pretty}
+.env2-coll-scene__p--2{margin-block-start:10px;color:var(--env2-mute)}
+.env2-coll-scene__next{margin:0;justify-self:end}
+.env2-coll-scene__card .env2-pdp-card__title a{display:inline-block;padding-block:12px;margin-block:-12px}
+.env2-coll-scene__next .env2-link{position:relative}
+.env2-coll-scene__next .env2-link::before{content:"";position:absolute;inset:-11px -8px}
+
+@media (max-width:900px){
+  .env2-coll-scene__media{inset-block-end:auto;block-size:var(--env2-scene-hm,78svh)}
+  .env2-coll-scene__pic img{object-position:var(--env2-scene-focus-m,50% 50%)}
+  .env2-coll-scene__veil{block-size:52%}
+  .env2-coll-scene__inner{display:block;min-block-size:0;padding-block:0}
+  /* the photograph keeps its 78svh; the type block stops --env2-scene-lift above its foot so the card
+     rides the last band of the veil and its buy control lands well inside the 844px fold (4.1 n-n 1).
+     Measured with the widest card in the catalogue (the wall pair, whose title wraps to three lines
+     and whose price is a range): 788px at 390 and 776px at 360. */
+  .env2-coll-scene__type{box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;
+    max-inline-size:100%;min-block-size:calc(var(--env2-scene-hm,78svh) - var(--env2-scene-lift,84px));
+    padding-block:76px 14px}
+  .env2-coll-scene__h1{max-inline-size:16ch}
+  .env2-coll-scene__deck{margin-block-start:10px;font-size:16px;max-inline-size:34ch}
+  .env2-coll-scene__suits{font-size:14px;margin-block-start:8px}
+  .env2-coll-scene__rule{margin-block-start:14px}
+  .env2-coll-scene__counts{margin-block-start:10px;font-size:14px;gap:4px 14px}
+  /* the card rides the foot of the veil so its buy control lands inside the 844px fold (4.1 n-n 1);
+     the photograph above it is already the lamp in its place, so the card's own thumbnail is dropped
+     rather than shown twice. */
+  .env2-coll-scene__card{inline-size:100%;max-inline-size:100%;position:relative;z-index:2;margin-block-start:0}
+  .env2-coll-scene__card .env2-pdp-card__media{display:none}
+  .env2-coll-scene__card .env2-pdp-card__price .env2-price{--env2-price-size:30px}
+  .env2-coll-scene__card .env2-pdp-card{gap:8px}
+  .env2-coll-scene__pin{inset-inline-start:var(--env2-pin-xm,50%);inset-block-start:var(--env2-pin-ym,24%)}
+  .env2-coll-scene__pin--flip .env2-coll-scene__tag{inset-inline-start:0;inset-inline-end:auto}
+  .env2-coll-scene__pin--flipm .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
+  /* belt: a long lamp name can never be cut at the frame edge — it wraps inside the tag instead */
+  .env2-coll-scene__tag{white-space:normal;max-inline-size:min(var(--env2-pin-room-m,74vw),300px);
+    padding-block:9px;line-height:1.45}
+  .env2-coll-scene__below{display:block;padding-block:30px 40px}
+  .env2-coll-scene__next{margin-block-start:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-scene__dot,.env2-coll-scene__stem,.env2-coll-scene__tag{transition:none}
+}
+</style>
+</head>
+<body class="hdt-page-type-collection template-collection">
+<div class="env2-mock-header"><span>ElmsNest</span><span>סל</span></div>
+<div id="MainContent"><div class="shopify-section"><style id="env2-ground-collection">
+/* ---------- page ground (§3.1): night measured in px, not % ----------
+   Screen 1 is a photo ground painted by elmsnest-v2-coll-scene; the document below it is this one
+   gradient and nothing else. No section paints a background (§3.1: the only card surface anywhere on
+   this page is the scrim --env2-scrim + backdrop-filter, used exactly twice). */
+html body.hdt-page-type-collection{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,
+    #0b1526 0px,
+    #0a1120 620px,
+    #080e1c 1500px,
+    #060a14 2600px,
+    #04070e 3800px,
+    #020306 5000px);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-attachment:scroll;
+  min-height:100vh;
+}
+/* A page that is SHORTER than the gradient (6 products, one screen) must not be handed a squashed
+   sky: background-size:100% 100% would compress the 5000px ramp into a 2000px document and the short
+   page would go black three times faster than the long one. Painting the ramp on a fixed 5000px box
+   anchored at the top and letting #020306 fill the rest keeps every collection identical for the first
+   5000px, which is the whole point of §3.1. */
+html body.hdt-page-type-collection{background-size:100% 5000px}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-collection #wrapper,
+html body.hdt-page-type-collection .main-content,
+html body.hdt-page-type-collection main,
+html body.hdt-page-type-collection #MainContent,
+html body.hdt-page-type-collection .hdt-main-content,
+html body.hdt-page-type-collection .hdt-page-content,
+html body.hdt-page-type-collection .shopify-section{background:transparent}
+/* The header is transparent over the scene: the scene is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it — Kalles ships a top margin
+   on the first collection section for its taupe banner, which this template retires (§5.4). */
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal page scroll at 360px (§6.13). The scene, the band scenes and the goodnight photo are
+   full-bleed, and the ruler's dot rails scroll INSIDE their own row — never the document. */
+html body.hdt-page-type-collection{overflow-x:hidden}
+/* §3.2's tap-target floor, on this template only. elmsnest-v2-core sizes .env2-btn--sm at 36px tall on
+   desktop (it was sized for the PDP related row) and only raises it to 44px under 900px. The collection
+   spec asks for 48px, 44px absolute, with no viewport caveat — so the floor is set here, scoped to the
+   collection body, and the PDP is not touched. Measured in the plumbing render: 36px -> 44px. */
+html body.hdt-page-type-collection .env2-btn--sm{min-block-size:44px}
+html body.hdt-page-type-collection .env2-pdp-card__action .env2-btn{min-block-size:44px}
+/* Kalles' collection chrome that §5.4 retires from templates/collection.json. The section files stay on
+   the theme until the owner signs off, so nothing is deleted; these two belts only make sure that a
+   left-over instance cannot paint a cream strip or a taupe banner over the night. */
+html body.hdt-page-type-collection .hdt-collection-toolbar,
+html body.hdt-page-type-collection .hdt-collection-banner{background:transparent}
+</style>
+<svg class="env2-coll-glyph-sprite" aria-hidden="true" focusable="false" width="0" height="0"><defs>
+<symbol id="env2-glyph-bollard" viewBox="0 0 120 140">
+  <path d="M44 34h32v10H44z"/><path d="M47 44v-6a13 13 0 0 1 26 0v6"/><path d="M60 44v70"/>
+  <path d="M50 114h20"/><path d="M44 126h32"/><path d="M52 54h16M52 66h16M52 78h16"/>
+</symbol>
+<symbol id="env2-glyph-cube" viewBox="0 0 120 140">
+  <path d="M34 52h52v40H34z"/><path d="M34 92l10 10h52l-10-10"/><path d="M86 52l10-10H44l-10 10"/>
+  <path d="M46 64h28M46 76h28"/><path d="M60 102v14"/>
+</symbol>
+<symbol id="env2-glyph-string" viewBox="0 0 120 140">
+  <path d="M8 44c20 26 36 26 52 0s32-26 52 0"/>
+  <path d="M22 60v8M38 68v8M60 72v8M82 68v8M98 60v8"/>
+  <circle cx="22" cy="74" r="6"/><circle cx="38" cy="82" r="6"/><circle cx="60" cy="86" r="6"/>
+  <circle cx="82" cy="82" r="6"/><circle cx="98" cy="74" r="6"/>
+</symbol>
+<symbol id="env2-glyph-net" viewBox="0 0 120 140">
+  <path d="M24 38h72v64H24z"/>
+  <path d="M42 38v64M60 38v64M78 38v64M24 54h72M24 70h72M24 86h72"/>
+  <circle cx="42" cy="54" r="3"/><circle cx="60" cy="70" r="3"/><circle cx="78" cy="86" r="3"/>
+  <circle cx="78" cy="54" r="3"/><circle cx="42" cy="86" r="3"/>
+</symbol>
+<symbol id="env2-glyph-spot" viewBox="0 0 120 140">
+  <path d="M36 40l44 18-10 24-44-18z"/><path d="M70 82l8 18"/><path d="M60 112h30"/>
+  <path d="M75 100v12"/><path d="M84 30l14-8M96 46l16-2M88 60l14 8"/>
+</symbol>
+</defs></svg>
+<style id="env2-coll-glyph-css">
+/* ---------- the drawn plate (§3.6.3) — same aspect, same radius 0, as the photograph it replaces ---------- */
+.env2-coll-glyph-sprite{position:absolute;inline-size:0;block-size:0;overflow:hidden}
+.env2-coll-glyph{position:relative;display:block;inline-size:100%;
+  aspect-ratio:var(--env2-glyph-ar,1/1.15);background:#080d18;border-radius:0;overflow:hidden;isolation:isolate}
+/* the warm radial where the light source is — --env2-ember at 22 %. This is the thing that lights. */
+.env2-coll-glyph__halo{position:absolute;inset:0;pointer-events:none;display:block;
+  background:radial-gradient(38% 34% at var(--env2-glyph-hx,50%) var(--env2-glyph-hy,32%),
+    rgba(247,162,74,.22),rgba(247,162,74,0) 72%);
+  opacity:var(--lit,1);transition:opacity 1.8s .2s;mix-blend-mode:screen}
+.env2-coll-glyph__art{position:absolute;inset:0;inline-size:100%;block-size:100%;display:block;
+  fill:none;stroke:rgba(244,238,227,.45);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;
+  padding:16%;box-sizing:border-box;
+  opacity:calc(.55 + .45*var(--lit,1));transition:opacity 1.6s cubic-bezier(.2,.7,.2,1)}
+.env2-coll-glyph[data-glyph="bollard"]{--env2-glyph-hx:50%;--env2-glyph-hy:26%}
+.env2-coll-glyph[data-glyph="cube"]{--env2-glyph-hx:50%;--env2-glyph-hy:44%}
+.env2-coll-glyph[data-glyph="string"]{--env2-glyph-hx:50%;--env2-glyph-hy:52%}
+.env2-coll-glyph[data-glyph="net"]{--env2-glyph-hx:50%;--env2-glyph-hy:46%}
+.env2-coll-glyph[data-glyph="spot"]{--env2-glyph-hx:38%;--env2-glyph-hy:40%}
+/* the caption, in the kicker style, at the bottom START edge (§3.6.3) */
+.env2-coll-glyph__cap{position:absolute;inset-block-end:12px;inset-inline-start:14px;
+  font-family:var(--env2-sans);font-weight:500;font-size:11.5px;letter-spacing:.16em;line-height:1.2;
+  color:var(--env2-gold);pointer-events:none}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-glyph__halo,.env2-coll-glyph__art{transition:none}
+}
+</style>
+<style id="env2-pdp-card-css">
+.env2-pdp-card{position:relative;display:flex;flex-direction:column;gap:12px;margin:0;padding:0;
+  inline-size:var(--env2-pdp-card-w,280px);max-inline-size:100%;border-radius:0;background:transparent}
+.env2-pdp-card__media{position:relative;display:block;inline-size:100%;border-radius:0}
+.env2-pdp-card__ph{display:block;position:relative;inline-size:100%;aspect-ratio:var(--env2-pdp-card-ar,1/1.15);
+  overflow:hidden;border-radius:0;background:#05070c;isolation:isolate}
+.env2-pdp-card__ph img{inline-size:100%;block-size:100%;object-fit:cover;display:block}
+.env2-pdp-card__kicker{margin:0;font-size:11.5px;line-height:1.35;text-wrap:balance}
+/* §6 #18's 13px floor: .62em of the 19px mobile card price is 11.78px, and this is the glyph pair
+   that turns an exact price into a minimum (TYPOGRAPHER-05). Scoped here, not on the shared class. */
+.env2-pdp-card__price .env2-price__from{font-size:max(13px,.62em)}
+.env2-pdp-card__title{margin:0;font-family:var(--env2-sans);font-weight:400;
+  font-size:var(--env2-pdp-card-title,15px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:balance}
+.env2-pdp-card__title a{color:inherit;text-decoration:none;transition:color .3s}
+.env2-pdp-card__title a:hover,.env2-pdp-card__title a:focus-visible{color:var(--env2-glow)}
+.env2-pdp-card__row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-block-start:2px}
+.env2-pdp-card__price .env2-price{--env2-price-size:21px}
+/* §8.3 belt: .env2-section a{color:inherit} outranks .env2-btn{color:…}, so an ANCHOR styled as the
+   filled pill would render ink-on-glow at 1.21:1. elmsnest-v2-buy only ever emits a ghost anchor, but
+   these two rules make both cases explicit and correct whatever a caller passes. */
+.env2-pdp-card__action .env2-btn{color:var(--env2-btn-ink)}
+.env2-pdp-card__action .env2-btn--ghost{color:var(--env2-ink)}
+.env2-pdp-card__action .env2-buy{display:inline-block}
+@media (max-width:900px){
+  .env2-pdp-card{inline-size:min(var(--env2-pdp-card-w,280px),62vw);gap:10px}
+  .env2-pdp-card__price .env2-price{--env2-price-size:19px}
+  .env2-pdp-card__title{font-size:var(--env2-pdp-card-title-mb,15px)}
+}
+/* ---------- round 2, collection §3.5. Every selector below needs a class or an element the PDP
+   never emits (--scene, __axis, __unit, .env2-coll-glyph), so the PDP related row is unaffected. ---- */
+.env2-pdp-card__axis,.env2-pdp-card__unit{margin:0;font-family:var(--env2-sans);font-weight:300;
+  font-size:14px;line-height:1.45;color:var(--env2-ink-2);unicode-bidi:isolate;text-wrap:pretty}
+.env2-pdp-card__axis{margin-block-start:-4px}
+.env2-pdp-card__unit{margin-block-start:-6px;font-variant-numeric:tabular-nums}
+/* the scrim card that rides a photograph — the ONLY card surface on the collection page (§3.1),
+   used exactly twice: the pinned card on the scene and the card on a band photo. Radius stays 0. */
+.env2-pdp-card--scene{background:var(--env2-scrim);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);padding:22px 26px;border-radius:0;gap:10px}
+.env2-pdp-card--scene .env2-pdp-card__row{margin-block-start:6px}
+@media (max-width:900px){
+  .env2-pdp-card--scene{padding:18px 20px;inline-size:100%;max-inline-size:100%}
+}
+/* a drawn plate stands in for the photograph in the same box (§3.6.3) */
+.env2-pdp-card__ph .env2-coll-glyph{position:absolute;inset:0;inline-size:100%;block-size:100%;aspect-ratio:auto}
+</style><section id="env2-coll-scene" data-env2-coll-scene class="env2-section env2-coll env2-coll-scene" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0;--env2-scene-focus:50% 45%;--env2-scene-focus-m:50% 46%;--env2-scene-hm:78svh">
+  <div class="env2-coll-scene__stage">
+    <div class="env2-coll-scene__media"><picture class="env2-coll-scene__pic">
+        <source media="(max-width:900px)" srcset="../../../assets/img/collection-decor.jpg">
+        <img src="../../../assets/img/collection-decor.jpg"
+             srcset="../../../assets/img/collection-decor.jpg 900w, ../../../assets/img/collection-decor.jpg 1400w, ../../../assets/img/collection-decor.jpg 1800w, ../../../assets/img/collection-decor.jpg 2400w"
+             sizes="100vw" width="1800" height="2250"
+             loading="eager" fetchpriority="high" decoding="async"
+             alt="גרילנדות ותאורה דקורטיבית">
+      </picture><span class="env2-coll-scene__wash" aria-hidden="true"></span>
+      <span class="env2-coll-scene__veil" aria-hidden="true"></span><a class="env2-coll-scene__pin env2-coll-scene__pin--flipm" href="/products/solar-crystal-ball-string-lights" data-lamp
+         style="--env2-pin-x:44%;--env2-pin-y:26%;--env2-pin-xm:54%;--env2-pin-ym:22%;--env2-pin-stem:120px;--env2-pin-room:calc(56vw - 18px);--env2-pin-room-m:calc(54vw - 18px)">
+        <span class="env2-coll-scene__dot" aria-hidden="true"></span>
+        <span class="env2-coll-scene__stem" aria-hidden="true"></span>
+        <span class="env2-coll-scene__tag"><span class="env2-coll-scene__tagtext"><span class="env2-coll-scene__tagname">גרילנדת כדורי קריסטל</span> <span class="env2-coll-scene__tagsep" aria-hidden="true">·</span> <span class="env2-coll-scene__tagval"><bdi>5</bdi> מ׳</span></span></span>
+      </a></div>
+
+    <div class="env2-wrap env2-coll-scene__inner">
+      <div class="env2-coll-scene__type">
+        <p class="env2-eyebrow env2-coll-scene__eyebrow">ערב אחד בחצר · קולקציה</p>
+        <h1 class="env2-h env2-coll-scene__h1">גרילנדות ותאורה <span class="env2-glow env2-coll-scene__h1b">דקורטיבית</span></h1><p class="env2-lead env2-coll-scene__deck">מהשולחן, דרך העצים והערוגה, עד הגדר בסוף החצר.</p><p class="env2-coll-scene__suits">מתאים כדי ליצור אווירה. לא מתאים אם צריך אור חזק — זו אינה מטרתה.</p><hr class="env2-hair env2-coll-scene__rule">
+        <p class="env2-coll-scene__counts"><span class="env2-coll-scene__count"><bdi>7</bdi> מנורות</span><span class="env2-coll-scene__count"><bdi>105</bdi> וריאציות</span><span class="env2-coll-scene__count"><bdi>89.90–469.90</bdi> ₪</span></p>
+      </div><div class="env2-coll-scene__card">
+        <article class="env2-pdp-card env2-pdp-card--scene" data-lamp style="--env2-pdp-card-w:420px;--env2-pdp-card-ar:1/.72">
+  <a class="env2-pdp-card__media" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+    <span class="env2-pool" aria-hidden="true"></span>
+    <span class="env2-ph env2-pdp-card__ph"><img src="../../../assets/img/solar-crystal-ball-string-lights-0.jpg"
+             srcset="../../../assets/img/solar-crystal-ball-string-lights-0.jpg 420w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 720w, ../../../assets/img/solar-crystal-ball-string-lights-0.jpg 1040w"
+             sizes="(max-width:900px) 62vw, 420px"
+             width="420" height="302" loading="lazy" decoding="async"
+             alt="גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות"></span>
+  </a><h3 class="env2-pdp-card__title"><a href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות</a></h3>
+  <p class="env2-pdp-card__axis">5 מ׳ / 20 נורות · 22 מ׳ / 200 נורות</p>
+  <div class="env2-pdp-card__row">
+    <span class="env2-pdp-card__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>89.90</bdi> ₪</span></span>
+    <span class="env2-pdp-card__action"><a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/solar-crystal-ball-string-lights">לבחירת אורך</a></span>
+  </div>
+  <p class="env2-pdp-card__unit"><bdi>≈17.98</bdi> ₪ למטר</p>
+</article>
+      </div></div>
+  </div><div class="env2-wrap env2-coll-scene__below">
+    <div class="env2-coll-scene__desc"><p class="env2-coll-scene__p">גרילנדות ותאורה דקורטיבית לחצר, למרפסת, לפרגולה ולפינות ישיבה. תאורה שמוסיפה אווירה חמימה ונעימה לערבים בחוץ — בלי להפוך את ההתקנה לפרויקט.</p></div><p class="env2-coll-scene__next"><a class="env2-link" href="#env2-coll-ruler">אל הסרגל — לפי מידה <span aria-hidden="true">←</span></a></p></div></section></div></div>
+<script>
+/* elmsnest-v2-coll-scene — 4.1. The gate is server-rendered and buyable with scripting off; the only
+   thing this file does is register the pin as a lamp so the dot lights and the stem draws on arrival
+   (3.3), and light it outright when window.env2 is not there. Nothing else in screen 1 moves. */
+(function () {
+  document.querySelectorAll('[data-env2-coll-scene]').forEach(function (el) {
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  });
+})();
+</script>
+</body></html>

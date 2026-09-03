@@ -1,0 +1,469 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — the FIRST-OPTION-AXIS PARSER (collection WINNING-SPEC §3.4, §4.2, §4.4, §4.5).
+
+  This snippet is the SINGLE SOURCE OF EVERY NUMBER ON THE COLLECTION PAGE. §6.19 is absolute: no
+  length, no quantity, no watt, no price and no per-unit figure is ever typed into a section. They all
+  come from here, and here they all come from product.options_with_values[0] and variant.price.
+
+  It reads ONE product's first option axis and prints a parsed model of it: for every option value, the
+  number the buyer measures in, the unit that number is in, the real price at that value, the variant
+  that price belongs to, and whether it can be bought. Nothing is invented: a value with no number in it
+  prints an empty number, and the section carries it in the "לא צוין" bucket (C9, §3.4) rather than
+  hiding it (§6.6).
+
+  ------------------------------------------------------------------ call signatures
+  A. the model the no-JS markup is built from (default):
+
+      {%- capture env2_axis -%}
+        {%- render 'elmsnest-v2-coll-axis', product: product -%}
+      {%- endcapture -%}
+      {%- assign env2_recs = env2_axis | split: '~~R~~' -%}
+      {%- assign env2_meta = env2_recs[0] | split: '~~F~~' -%}
+      {%- for env2_rec in env2_recs offset: 1 -%}
+        {%- assign s = env2_rec | split: '~~F~~' -%}
+        {{ s[3] }} {{ s[5] }} — {{ s[10] }} ₪        {%- comment -%} 5 מ׳ — 89.90 ₪ {%- endcomment -%}
+      {%- endfor -%}
+
+     (A snippet's own {% assign %} does NOT leak to its caller — {% render %} has an isolated scope —
+     so the model is PRINTED and the caller splits it back into Liquid variables. This is the same
+     convention snippets/elmsnest-v2-pdp-variants.liquid already ships on the PDP; keep it.)
+
+  B. one JSON script tag for the eleven-line ruler enhancement (§3.4) and for debugging:
+
+      {%- render 'elmsnest-v2-coll-axis', product: product, emit: 'json' -%}
+
+  ------------------------------------------------------------------ inputs
+    product  : required. Blank, or a product with no options / no variants -> prints NOTHING AT ALL
+               (not an empty record — nothing, so `capture | split` yields a single empty string and
+               the caller's `env2_recs.size > 1` test is false).
+    emit     : 'rows' (default) | 'json'
+    json_id  : id of the <script> in json mode. Default 'env2-coll-axis-<handle>'.
+    per_unit_word : override for the per-unit noun. Blank -> '₪ למטר' for a length axis and
+               '₪ ליחידה' for a quantity axis. The path collection prints '₪ לנקודת אור' (§4.2 C2);
+               that is a SECTION word choice, so the section passes it, the snippet never guesses it.
+
+  ------------------------------------------------------------------ the parse, against the real data
+  Every first-axis value in brief/side-pages/collection/data.json, and what this snippet makes of it:
+
+    "5 מ׳ / 20 נורות"      -> number 5    unit m     unit_label מ׳   number2 20  unit2 led  (נורות)
+    "12×2 מ׳ / 780 LED"    -> number 12   unit area  unit_label מ׳   area_h 2    number2 780 unit2 led
+    "1.5×1.5 מ׳ / 96 LED"  -> number 1.5  unit area  unit_label מ׳   area_h 1.5  number2 96  unit2 led
+    "2 יחידות"             -> number 2    unit qty   unit_label יח׳
+    "4 יח׳"  /  "4 'יח"     -> number 4    unit qty   unit_label יח׳   (the live data carries the ASCII
+                              apostrophe form "4 'יח" on waterproof-solar-deck-step-lights; both parse)
+    "10 נורות"             -> number 10   unit led   unit_label נורות   (a bulb count, NOT a length:
+                              solar-firefly-garden-lights is off-scale on the metre rail, §3.4)
+    "6W"  /  "10W"         -> number 6    unit w     unit_label W
+    "3000K" / "אור חם 3000K" -> number 3000 unit k   unit_label K   (the number need not lead)
+    "72 LED / 100W"        -> number 72   unit led   unit_label LED  number2 100 unit2 w
+    "יחידה אחת"            -> number ''   unit ''    — a word is not a number. powerful-solar-garden-light
+                              and solar-garden-spotlight-52-led both use it, and §3.4 puts the first in
+                              the off-scale band precisely because its axis carries no number.
+    "לבן" / "שחור" / "דגם A" / "Default Title" / "כחול" / "RGB צבעוני" / "USB" / "זוג"
+                           -> number ''   unit ''    — a colour / model / power-source axis. meta[9]
+                              (measured) is '0' and the whole product belongs in the price-mode ruler
+                              (§3.4: wall and spot have no honest numeric axis at all).
+
+  Unit keys are stable and the sections branch on them, never on the Hebrew:
+    m = metres · qty = units · led = bulbs/LED · w = watts · k = kelvin · area = a rectangle in metres
+    '' = this value carries no number.
+
+  **area is not a length.** decorative-led-net-lights is sold by area and §4.5 non-negotiable 3 says it
+  never appears as a length. meta[9] measured = '0' and meta[10] is_area = '1' for it; a section that
+  puts an is_area product on a metre rail has broken the spec. meta[11]/[12] still carry the first
+  dimension so the off-scale band can print the span honestly ("מ־1.5×1.5 מ׳ ועד 12×2 מ׳").
+
+  ------------------------------------------------------------------ meta record  (fields ~~F~~, records ~~R~~)
+    0  'meta'
+    1  handle
+    2  axis_name           options_with_values[0].name — 'אורך ומספר נורות', 'כמות', 'צבע גוף', 'Title'
+    3  unit                the axis's DOMINANT unit key: the unit of the first value that carries one
+    4  unit_label          the printable token: 'מ׳' 'יח׳' 'נורות' 'LED' 'W' 'K' ''
+    5  unit_word           the noun for prose: 'מטרים' 'יחידות' 'נורות' 'ואט' 'קלווין' 'שטח' ''
+    6  per_unit_label      '₪ למטר' | '₪ ליחידה' | ''  (or the per_unit_word the caller passed)
+    7  stops               how many stop records follow (= the axis's value count)
+    8  numbered            how many of them carry a number in the dominant unit
+    9  measured            '1' when this product belongs on a rail in its own unit; '0' otherwise
+                           (no number anywhere, or the axis is an area)
+    10 is_area             '1' | '0'
+    11 min_number          smallest number on the axis, '' when none
+    12 max_number          largest number on the axis, '' when none  ← the "האורך המרבי: 8 מ׳" figure
+    13 max_price           the price at max_number, '' when none
+    14 price_min           product.price_min          '89.90'
+    15 price_max           product.price_max          '179.90'
+    16 price_varies        '1' | '0'
+    17 variants            product.variants.size
+    18 values              the axis's value count (= stops)
+    19 available           '1' when any variant is available
+    20 default_variant_id  the cheapest AVAILABLE variant (else the first) — the scene card's form
+    21 'e'                 terminator. A trailing empty field is dropped by split, so every record ends
+                           in a literal 'e' and no real field is ever last.
+
+  ------------------------------------------------------------------ stop record, one per option value
+    0  'stop'
+    1  i                   0-based, in the option's own value order
+    2  value               the raw option value, unescaped ("5 מ׳ / 20 נורות")
+    3  number              '5' | '1.5' | ''      the number the buyer measures in
+    4  unit                m | qty | led | w | k | area | ''
+    5  unit_label          'מ׳' | 'יח׳' | 'נורות' | 'LED' | 'W' | 'K' | ''
+    6  area_h              the second dimension of an area value ('2' of 12×2), '' otherwise
+    7  number2             the second number in the value ('20' of "5 מ׳ / 20 נורות'), '' when none
+    8  unit2               its unit key
+    9  unit2_label         its printable token
+    10 price               the LOWEST price at this value    '89.90'
+    11 price_cents         8990
+    12 price_max           the HIGHEST price at this value   '89.90' (wall axes span: 109.90–193.90)
+    13 per_unit            price ÷ number, to the agora, ONLY for m and qty; '' otherwise (§4.4 n-n 1)
+    14 per_unit_label      '₪ למטר' | '₪ ליחידה' | ''  — the section prefixes '≈', never this snippet
+    15 available           '1' when any variant at this value is available
+    16 variant_id          the first AVAILABLE variant at this value (else the first) — the row's form
+    17 variant_count       how many variants share this value
+    18 'e'                 terminator
+
+  Nothing here is escaped. Escape at the point of use ({{ s[2] | escape }}), exactly as the rest of the
+  theme does. The json emit escapes through the `json` filter.
+
+  ------------------------------------------------------------------ the JSON shape (emit: 'json')
+    <script type="application/json" id="env2-coll-axis-<handle>">
+    {"handle":…,"axis":…,"unit":…,"unit_label":…,"unit_word":…,"per_unit_label":…,
+     "measured":true,"area":false,"min":5,"max":12,"max_price":…,"price_min":…,"price_max":…,
+     "variants":24,"available":true,"default_variant_id":123,
+     "stops":[{"i":0,"value":…,"number":5,"unit":"m","unit_label":…,"area_h":null,
+               "number2":20,"unit2":"led","unit2_label":…,"price":…,"price_cents":8990,
+               "price_max":…,"per_unit":…,"per_unit_label":…,"available":true,
+               "variant_id":123,"variants":4}]}
+    </script>
+  Numbers are JSON numbers; a missing number is null. Prices stay STRINGS ('89.90') because they are
+  already formatted to the agora and re-formatting them in JS would reintroduce 1-decimal figures.
+{%- endcomment -%}
+{%- liquid
+  assign env2_ok = false
+  if product != blank and product.variants.size > 0 and product.options_with_values.size > 0
+    assign env2_ok = true
+  endif
+-%}
+{%- if env2_ok -%}
+{%- liquid
+  assign FS = '~~F~~'
+  assign RS = '~~R~~'
+  assign SEPS = '|/|·|-|־|+|,|×|'
+  assign DIGITS = '0123456789.'
+
+  assign opt = product.options_with_values[0]
+  assign axis_name = opt.name
+  assign nvals = opt.values.size
+
+  # ---------------------------------------------------------------- 0. the product-wide numbers
+  assign p_min = product.price_min | money_without_currency
+  assign p_max = product.price_max | money_without_currency
+  assign p_varies = '0'
+  if product.price_varies
+    assign p_varies = '1'
+  endif
+  assign any_avail = '0'
+  assign def_vid = product.variants[0].id
+  assign def_price = 0
+  for v in product.variants
+    if v.available
+      assign any_avail = '1'
+      if def_price == 0 or v.price < def_price
+        assign def_price = v.price
+        assign def_vid = v.id
+      endif
+    endif
+  endfor
+
+  # ---------------------------------------------------------------- 1. one record per option value
+  assign body = ''
+  assign m_unit = ''
+  assign m_label = ''
+  assign m_numbered = 0
+  assign m_area = false
+  assign m_min = ''
+  assign m_max = ''
+  assign m_maxprice = ''
+
+  for value in opt.values
+    assign si = forloop.index0
+
+    # -------------------------------------------------------------- 1a. the number parse
+    assign s_num = ''
+    assign s_rest = ''
+    assign s_areah = ''
+    assign s_num2 = ''
+    assign s_rest2 = ''
+    assign is_area = false
+    assign toks = value | split: ' '
+    for t in toks
+      assign numpart = ''
+      assign rest = ''
+      assign stopped = false
+      assign chars = t | split: ''
+      for ch in chars
+        if stopped
+          assign rest = rest | append: ch
+        else
+          if DIGITS contains ch
+            assign numpart = numpart | append: ch
+          else
+            assign stopped = true
+            assign rest = rest | append: ch
+          endif
+        endif
+      endfor
+      if numpart != ''
+        assign rest_head = rest | slice: 0
+        if rest_head == '×' and s_num == ''
+          comment
+            an area token — "12×2", "1.5×1.5". The first dimension is the number, the second is
+            area_h, and the unit token that follows ("מ׳") attaches as the label on the next pass.
+          endcomment
+          assign is_area = true
+          assign s_num = numpart
+          assign s_areah = rest | remove_first: '×'
+        elsif s_num == ''
+          assign s_num = numpart
+          assign s_rest = rest
+        elsif s_num2 == ''
+          assign s_num2 = numpart
+          assign s_rest2 = rest
+        endif
+      else
+        assign sep_probe = '|' | append: t | append: '|'
+        unless SEPS contains sep_probe
+          if s_num != '' and s_rest == '' and s_num2 == ''
+            assign s_rest = t
+          elsif s_num2 != '' and s_rest2 == ''
+            assign s_rest2 = t
+          endif
+        endunless
+      endif
+    endfor
+
+    # -------------------------------------------------------------- 1b. unit 1, normalised
+    assign s_unit = ''
+    assign s_label = ''
+    if s_num != ''
+      if is_area
+        assign s_unit = 'area'
+        assign s_label = s_rest | default: 'מ׳'
+      elsif s_rest contains 'מ׳' or s_rest == 'מ' or s_rest contains 'מטר'
+        assign s_unit = 'm'
+        assign s_label = 'מ׳'
+      elsif s_rest contains 'יח'
+        assign s_unit = 'qty'
+        assign s_label = 'יח׳'
+      elsif s_rest contains 'נור'
+        assign s_unit = 'led'
+        assign s_label = 'נורות'
+      elsif s_rest contains 'LED' or s_rest contains 'led'
+        assign s_unit = 'led'
+        assign s_label = 'LED'
+      elsif s_rest == 'W' or s_rest == 'w' or s_rest contains 'ואט'
+        assign s_unit = 'w'
+        assign s_label = 'W'
+      elsif s_rest == 'K' or s_rest == 'k' or s_rest contains 'קלווין'
+        assign s_unit = 'k'
+        assign s_label = 'K'
+      else
+        assign s_label = s_rest
+      endif
+    endif
+
+    # -------------------------------------------------------------- 1c. unit 2, normalised
+    assign s_unit2 = ''
+    assign s_label2 = ''
+    if s_num2 != ''
+      if s_rest2 contains 'מ׳' or s_rest2 == 'מ' or s_rest2 contains 'מטר'
+        assign s_unit2 = 'm'
+        assign s_label2 = 'מ׳'
+      elsif s_rest2 contains 'יח'
+        assign s_unit2 = 'qty'
+        assign s_label2 = 'יח׳'
+      elsif s_rest2 contains 'נור'
+        assign s_unit2 = 'led'
+        assign s_label2 = 'נורות'
+      elsif s_rest2 contains 'LED' or s_rest2 contains 'led'
+        assign s_unit2 = 'led'
+        assign s_label2 = 'LED'
+      elsif s_rest2 == 'W' or s_rest2 == 'w' or s_rest2 contains 'ואט'
+        assign s_unit2 = 'w'
+        assign s_label2 = 'W'
+      elsif s_rest2 == 'K' or s_rest2 == 'k' or s_rest2 contains 'קלווין'
+        assign s_unit2 = 'k'
+        assign s_label2 = 'K'
+      else
+        assign s_label2 = s_rest2
+      endif
+    endif
+
+    # -------------------------------------------------------------- 1d. the real prices at this value
+    assign s_lo = 0
+    assign s_hi = 0
+    assign s_vid = 0
+    assign s_avail = '0'
+    assign s_count = 0
+    for v in product.variants
+      if v.options[0] == value
+        assign s_count = s_count | plus: 1
+        if s_lo == 0 or v.price < s_lo
+          assign s_lo = v.price
+        endif
+        if v.price > s_hi
+          assign s_hi = v.price
+        endif
+        if s_vid == 0
+          assign s_vid = v.id
+        endif
+        if v.available
+          assign s_avail = '1'
+          if v.price == s_lo
+            assign s_vid = v.id
+          endif
+        endif
+      endif
+    endfor
+    assign s_price = s_lo | money_without_currency
+    assign s_pricemax = s_hi | money_without_currency
+
+    # -------------------------------------------------------------- 1e. the derived per-unit figure (C2)
+    assign s_per = ''
+    assign s_perlabel = ''
+    if s_num != '' and s_count > 0
+      assign nnum = s_num | plus: 0.0
+      if nnum > 0
+        if s_unit == 'm'
+          assign s_per = s_lo | divided_by: nnum | round | money_without_currency
+          assign s_perlabel = per_unit_word | default: '₪ למטר'
+        elsif s_unit == 'qty'
+          assign s_per = s_lo | divided_by: nnum | round | money_without_currency
+          assign s_perlabel = per_unit_word | default: '₪ ליחידה'
+        endif
+      endif
+    endif
+
+    # -------------------------------------------------------------- 1f. roll the axis-wide meta
+    if s_unit != '' and m_unit == ''
+      assign m_unit = s_unit
+      assign m_label = s_label
+    endif
+    if is_area
+      assign m_area = true
+    endif
+    if s_num != '' and s_unit == m_unit
+      assign m_numbered = m_numbered | plus: 1
+      assign cur = s_num | plus: 0.0
+      if m_min == ''
+        assign m_min = s_num
+        assign m_max = s_num
+        assign m_maxprice = s_price
+      else
+        assign lo = m_min | plus: 0.0
+        assign hi = m_max | plus: 0.0
+        if cur < lo
+          assign m_min = s_num
+        endif
+        if cur > hi
+          assign m_max = s_num
+          assign m_maxprice = s_price
+        endif
+      endif
+    endif
+
+    assign rec = 'stop' | append: FS | append: si | append: FS | append: value | append: FS | append: s_num
+    assign rec = rec | append: FS | append: s_unit | append: FS | append: s_label | append: FS | append: s_areah
+    assign rec = rec | append: FS | append: s_num2 | append: FS | append: s_unit2 | append: FS | append: s_label2
+    assign rec = rec | append: FS | append: s_price | append: FS | append: s_lo | append: FS | append: s_pricemax
+    assign rec = rec | append: FS | append: s_per | append: FS | append: s_perlabel | append: FS | append: s_avail
+    assign rec = rec | append: FS | append: s_vid | append: FS | append: s_count | append: FS | append: 'e'
+    assign body = body | append: RS | append: rec
+  endfor
+
+  # ---------------------------------------------------------------- 2. the axis-wide words
+  assign m_word = ''
+  assign m_perlabel = ''
+  if m_unit == 'm'
+    assign m_word = 'מטרים'
+    assign m_perlabel = per_unit_word | default: '₪ למטר'
+  elsif m_unit == 'qty'
+    assign m_word = 'יחידות'
+    assign m_perlabel = per_unit_word | default: '₪ ליחידה'
+  elsif m_unit == 'led'
+    assign m_word = 'נורות'
+  elsif m_unit == 'w'
+    assign m_word = 'ואט'
+  elsif m_unit == 'k'
+    assign m_word = 'קלווין'
+  elsif m_unit == 'area'
+    assign m_word = 'שטח'
+  endif
+
+  assign m_measured = '0'
+  if m_numbered > 0 and m_area == false and m_unit != ''
+    assign m_measured = '1'
+  endif
+  assign m_isarea = '0'
+  if m_area
+    assign m_isarea = '1'
+  endif
+
+  assign meta = 'meta' | append: FS | append: product.handle | append: FS | append: axis_name
+  assign meta = meta | append: FS | append: m_unit | append: FS | append: m_label | append: FS | append: m_word
+  assign meta = meta | append: FS | append: m_perlabel | append: FS | append: nvals | append: FS | append: m_numbered
+  assign meta = meta | append: FS | append: m_measured | append: FS | append: m_isarea
+  assign meta = meta | append: FS | append: m_min | append: FS | append: m_max | append: FS | append: m_maxprice
+  assign meta = meta | append: FS | append: p_min | append: FS | append: p_max | append: FS | append: p_varies
+  assign meta = meta | append: FS | append: product.variants.size | append: FS | append: nvals
+  assign meta = meta | append: FS | append: any_avail | append: FS | append: def_vid | append: FS | append: 'e'
+
+  assign env2_mode = emit | default: 'rows'
+-%}
+{%- if env2_mode == 'json' -%}
+{%- liquid
+  assign jid = json_id | default: 'env2-coll-axis-'
+  if json_id == blank
+    assign jid = jid | append: product.handle
+  endif
+  # body opens with a record separator, so strip it before splitting or the first element is empty
+  assign recs = body | remove_first: RS | split: RS
+  assign t_yes = 'true'
+  assign t_no = 'false'
+  assign j_measured = t_no
+  if m_measured == '1'
+    assign j_measured = t_yes
+  endif
+  assign j_area = t_no
+  if m_area
+    assign j_area = t_yes
+  endif
+  assign j_avail = t_no
+  if any_avail == '1'
+    assign j_avail = t_yes
+  endif
+  assign NUL = 'null'
+  assign j_min = m_min | default: NUL
+  assign j_max = m_max | default: NUL
+-%}
+<script type="application/json" id="{{ jid }}">
+{"handle":{{ product.handle | json }},"axis":{{ axis_name | json }},"unit":{{ m_unit | json }},"unit_label":{{ m_label | json }},"unit_word":{{ m_word | json }},"per_unit_label":{{ m_perlabel | json }},"measured":{{ j_measured }},"area":{{ j_area }},"min":{{ j_min }},"max":{{ j_max }},"max_price":{{ m_maxprice | json }},"price_min":{{ p_min | json }},"price_max":{{ p_max | json }},"variants":{{ product.variants.size }},"available":{{ j_avail }},"default_variant_id":{{ def_vid }},"stops":[
+{%- for rec in recs -%}
+  {%- assign s = rec | split: FS -%}
+  {%- liquid
+    assign sn = s[3] | default: NUL
+    assign sah = s[6] | default: NUL
+    assign sn2 = s[7] | default: NUL
+    assign sper = s[13]
+    assign sav = t_no
+    if s[15] == '1'
+      assign sav = t_yes
+    endif
+  -%}
+  {%- unless forloop.first %},{% endunless -%}
+  {"i":{{ s[1] }},"value":{{ s[2] | json }},"number":{{ sn }},"unit":{{ s[4] | json }},"unit_label":{{ s[5] | json }},"area_h":{{ sah }},"number2":{{ sn2 }},"unit2":{{ s[8] | json }},"unit2_label":{{ s[9] | json }},"price":{{ s[10] | json }},"price_cents":{{ s[11] }},"price_max":{{ s[12] | json }},"per_unit":{% if sper == blank %}{{ NUL }}{% else %}{{ sper | json }}{% endif %},"per_unit_label":{{ s[14] | json }},"available":{{ sav }},"variant_id":{{ s[16] }},"variants":{{ s[17] }}}
+{%- endfor -%}
+]}
+</script>
+{%- else -%}
+{{- meta }}{{ body -}}
+{%- endif -%}
+{%- endif -%}

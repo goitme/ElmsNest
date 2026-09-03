@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 """Lint ElmsNest v2 theme files. Usage: python3 brief/lint.py [theme_dir]
 Checks every sections/elmsnest-v2-*.liquid + snippets/elmsnest-v2-*.liquid (which includes the PDP set,
-sections/elmsnest-v2-pdp-* and snippets/elmsnest-v2-pdp-*, globbed explicitly below), every
+sections/elmsnest-v2-pdp-* and snippets/elmsnest-v2-pdp-*, and the COLLECTION set,
+sections/elmsnest-v2-coll-* and snippets/elmsnest-v2-coll-*, all globbed explicitly below), every
 templates/*.json + templates/customers/*.json + sections/*-group.json under theme_dir (settings <->
 schema per section type, using the verbatim Kalles dumps in brief/inventory/theme-src/sections/ for
 non-env2 sections), that templates/product.elmsnest.json matches the PDP section schemas (WINNING-SPEC
-§8.1: the PDP template file is product.elmsnest.json, NOT product.json), and that no file anywhere under
-theme_dir contains the sequence of three double quotes (GraphQL block string).
+§8.1: the PDP template file is product.elmsnest.json, NOT product.json), that templates/collection.json
+matches the collection section schemas (collection WINNING-SPEC §5.1 — one file serves all five URLs),
+and that no file anywhere under theme_dir contains the sequence of three double quotes (GraphQL block
+string).
 
-The PDP-only rules (applied to elmsnest-v2-pdp-* files only, so nothing already shipped can regress):
+The strict rules (applied to elmsnest-v2-pdp-*, elmsnest-v2-coll-* and the two ground snippets only, so
+nothing already shipped on the homepage can regress):
 no "בוואטסאפ" outside the photo-cta snippet while settings.whatsapp_number is empty (BRIEF §3, do-not
 §6.9) · no compare-at / sale UI (§6.5) · no <bdi> split across a slash pair (§6.17) · logical CSS
 properties only (an RTL app flips physical ones) · no raw product.images[0] (the never-use ledger lives
@@ -21,8 +25,10 @@ def err(f,msg):
 schemas={}
 env2_files=sorted(set(
     glob.glob(root+'/sections/elmsnest-v2-*.liquid')+glob.glob(root+'/snippets/elmsnest-v2-*.liquid')+
-    glob.glob(root+'/sections/elmsnest-v2-pdp-*.liquid')+glob.glob(root+'/snippets/elmsnest-v2-pdp-*.liquid')))
+    glob.glob(root+'/sections/elmsnest-v2-pdp-*.liquid')+glob.glob(root+'/snippets/elmsnest-v2-pdp-*.liquid')+
+    glob.glob(root+'/sections/elmsnest-v2-coll-*.liquid')+glob.glob(root+'/snippets/elmsnest-v2-coll-*.liquid')))
 pdp_sections=sorted(os.path.basename(f)[:-7] for f in glob.glob(root+'/sections/elmsnest-v2-pdp-*.liquid'))
+coll_sections=sorted(os.path.basename(f)[:-7] for f in glob.glob(root+'/sections/elmsnest-v2-coll-*.liquid'))
 for f in env2_files:
     s=open(f,encoding='utf-8').read(); name=os.path.basename(f)
     if '"""' in s: err(name,'contains """ (breaks GraphQL block string upload)')
@@ -41,6 +47,8 @@ for f in env2_files:
                 ids=[x.get('id') for x in j.get('settings',[]) if x.get('id')]
                 if len(ids)!=len(set(ids)): err(name,'duplicate setting ids')
                 if not j.get('presets'): err(name,'no presets (section will not appear in the theme editor)')
+                nm=j.get('name','')
+                if len(nm)>25: err(name,f'schema name {nm!r} is {len(nm)} chars — the limit is 25')
             except Exception as e: err(name,f'schema JSON invalid: {e}')
         if not re.search(r'id="env2-',s): err(name,'no id="env2-…" anchor on the section root')
         if 'scroll-margin-top' not in s: err(name,'no scroll-margin-top for the sticky header')
@@ -51,9 +59,10 @@ for f in env2_files:
             if leak: err(name,f'unprefixed selectors in stylesheet: {sorted(set(leak))[:6]}')
         if re.search(r'\{\{\s*block\.',s) and 'block.shopify_attributes' not in s: err(name,'blocks used but no block.shopify_attributes')
         if re.search(r'#2b2118|#f7f0e6',s,re.I): print(f"  .. {name}: contains v1 brown/cream hex — check it is not a surface")
-# ---- PDP-only rules (elmsnest-v2-pdp-*): applied nowhere else, so the shipped homepage cannot regress ----
+# ---- strict rules (elmsnest-v2-pdp-*, elmsnest-v2-coll-*, the grounds): applied nowhere else, so the
+#      shipped homepage cannot regress ----
 PHYS=re.compile(r'(?<![-\w])(margin|padding|border)-(left|right)\s*:|(?<![-\w])(left|right)\s*:\s*[-0-9a-z]|text-align\s*:\s*(left|right)')
-PDPSET=('elmsnest-v2-pdp-','elmsnest-v2-ground-product')
+PDPSET=('elmsnest-v2-pdp-','elmsnest-v2-ground-product','elmsnest-v2-coll-','elmsnest-v2-ground-collection')
 for f in [x for x in env2_files if os.path.basename(x).startswith(PDPSET)]:
     s=open(f,encoding='utf-8').read(); name=os.path.basename(f)
     body=re.sub(r'\{%-?\s*comment\s*-?%\}.*?\{%-?\s*endcomment\s*-?%\}','',s,flags=re.S)
@@ -118,6 +127,9 @@ def check_template(path):
         if sec.get('blocks') and not set(sec.get('block_order',[]))<=set(sec['blocks']): err(name,f'{sid} block_order names a block that does not exist')   # static (content_for) blocks are absent from block_order by design
     if set(d.get('order',[]))!=set(secs): err(name,'order/sections mismatch')
 PDP_ORDER=["pdp_stage","pdp_fit","pdp_night","pdp_ledger","pdp_facts","pdp_terms","pdp_ask","pdp_related"]
+# collection WINNING-SPEC §5.1 — one templates/collection.json serves all five URLs; the sections branch
+# on collection.handle through their own unit_mode defaults, never through a template suffix.
+COLL_ORDER=["coll_scene","coll_ruler","coll_bands","coll_span","coll_ledger","coll_terms","coll_goodnight"]
 def check_pdp_template():
     path=os.path.join(root,'templates','product.elmsnest.json')
     if not os.path.exists(path):
@@ -142,8 +154,38 @@ def check_pdp_template():
     else:
         print('  .. templates/product.elmsnest.json: still the v1 template (no elmsnest-v2-pdp-* section) — nothing to check yet')
 
+def check_collection_template():
+    path=os.path.join(root,'templates','collection.json')
+    if not os.path.exists(path):
+        err('templates/collection.json','missing — one file serves all five collection URLs (§5.1)'); return
+    if glob.glob(root+'/templates/collection.*.json'):
+        err('templates/collection.json','a collection.<suffix>.json exists — §5.1: no per-collection template suffix is in use, one file serves all five URLs')
+    try: d=json.loads(strip_header(open(path,encoding='utf-8').read()))
+    except Exception: return          # check_template already reported the JSON error
+    secs=d.get('sections',{}); order=d.get('order',[])
+    used=[t for t in (v.get('type') for v in secs.values()) if t and t.startswith('elmsnest-v2-coll-')]
+    for t in used:
+        if not os.path.exists(os.path.join(root,'sections',t+'.liquid')):
+            err('templates/collection.json',f'section type {t} has no sections/{t}.liquid — Shopify rejects the template on upsert')
+    if len(coll_sections)>=7:         # the build has landed: the template must be the §5.1 list, in order
+        if order!=COLL_ORDER:
+            err('templates/collection.json',f'order is {order} — collection WINNING-SPEC §5.1 wants {COLL_ORDER}')
+        for sid in COLL_ORDER:
+            want='elmsnest-v2-coll-'+sid.split('_',1)[1]
+            if secs.get(sid,{}).get('type')!=want:
+                err('templates/collection.json',f'section "{sid}" should be type {want}')
+        for sid,sec in secs.items():
+            t=sec.get('type') or ''
+            if t in ('main-collection','main-heading','top-list-collections') or t.startswith('collections_list'):
+                err('templates/collection.json',f'section "{sid}" type {t} is retired by §5.4 — remove it from the template (the file stays on the theme)')
+    elif used:
+        print(f'  .. templates/collection.json: {len(coll_sections)}/7 collection sections built — order/type check deferred')
+    else:
+        print('  .. templates/collection.json: still the Kalles template (no elmsnest-v2-coll-* section) — nothing to check yet')
+
 for tj in sorted(glob.glob(root+'/templates/*.json')+glob.glob(root+'/templates/customers/*.json')+glob.glob(root+'/sections/*-group.json')):
     check_template(tj)
 check_pdp_template()
+check_collection_template()
 print('LINT', 'FAIL' if bad else 'OK', f'({bad} issues)')
 sys.exit(1 if bad else 0)

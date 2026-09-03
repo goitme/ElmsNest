@@ -1,0 +1,157 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — THE DRAWN LIGHT-GLYPH PLATE (WINNING-SPEC §3.6.3, graft C3).
+
+  Fifteen of the twenty-seven products have NO text-free photograph at any index 0–3. Every one is a
+  marketing poster: a baked Hebrew headline, a spec icon strip, a cream or beige ground — and §6.10
+  forbids cream on any surface, including a photograph's own ground. modern-led-bollard-light-5w-ip65
+  is worse still: three conflicting third-party wordmarks (LUMIÈRE / LUMORA / LUMIRA) across four images.
+
+  So for those fifteen the page does not crop, does not dim, and does not apologise. It DRAWS the lamp,
+  in the same aspect and the same radius 0 as the photograph it replaces, and says so in the caption:
+
+        איור · אין תצלום נקי
+
+  It is NOT a grey placeholder and it NEVER says "coming soon" (§3.6.3). It is a [data-lamp] like any
+  photograph — its warm halo is the thing that lights.
+
+  ------------------------------------------------------------------ call signatures
+    once per page, before any plate (the <symbol> sprite + the stylesheet):
+      {% render 'elmsnest-v2-coll-glyph', sprite: true %}
+
+    one plate, in place of an <img>:
+      {% render 'elmsnest-v2-coll-glyph', product: p, aspect: '1/1.15' %}
+      {% render 'elmsnest-v2-coll-glyph', glyph: 'net', aspect: '1/.9', caption: 'איור · אין תצלום נקי' %}
+
+  ------------------------------------------------------------------ inputs
+    sprite  : true -> print ONLY the <symbol> sprite and the stylesheet. Call it ONCE per page, before
+              any plate; a plate whose sprite is missing draws nothing, so this is not optional.
+    product : the product the plate stands in for. Chooses the glyph from the shape ledger below and
+              writes the alt text. Blank -> `glyph` must be given.
+    glyph   : force one of the FIVE shape families — bollard | cube | string | net | spot.
+              There are five and there will stay five; a sixth would be a new drawing style.
+    aspect  : the aspect-ratio of the plate, matching the card or figure it replaces. Default '1/1.15'.
+    caption : the plate caption. Default 'איור · אין תצלום נקי' (§3.6.3, verbatim). Pass '' for none —
+              only ever inside a figure that has already said it.
+    lamp    : 'off' to skip [data-lamp] (a plate inside an already-lit figure).
+    class   : extra classes on the root.
+
+  ------------------------------------------------------------------ the shape ledger
+    bollard — a post with a head: the path/bollard family
+    cube    — a low box or a wall plate: step and deck lights, wall plates, lanterns
+    string  — a cable carrying bulbs: the garlands
+    net     — a mesh: decorative-led-net-lights, the one product sold by area
+    spot    — an angled head on a bracket: spots, floodlights, security lights
+
+  A product not in the ledger falls back on product.type, which maps 1:1 to the four collections, so a
+  lamp the merchant adds tomorrow still gets a truthful shape with no file edit.
+
+  ------------------------------------------------------------------ what it prints
+    <span class="env2-coll-glyph" data-glyph="bollard" data-lamp style="--env2-glyph-ar:1/1.15">
+      <span class="env2-coll-glyph__halo"></span>       the warm --env2-ember radial, at 22%
+      <svg class="env2-coll-glyph__art"><use href="#env2-glyph-bollard"></use></svg>
+      <span class="env2-coll-glyph__cap">איור · אין תצלום נקי</span>
+    </span>
+  Ground #080d18, radius 0, stroke rgba(244,238,227,.45) at 1px, caption in the kicker style at the
+  bottom start edge. No cream, no beige, no brown anywhere in it (§6.10).
+{%- endcomment -%}
+{%- liquid
+  assign env2_sprite = false
+  if sprite == true
+    assign env2_sprite = true
+  endif
+-%}
+{%- unless env2_sprite -%}
+{%- liquid
+  assign env2_g = glyph | default: ''
+  if env2_g == ''
+    assign led = '|modern-led-bollard-light-5w-ip65=bollard|retro-solar-path-lights-set=bollard|modern-solar-path-lights-set=bollard|swaying-solar-path-lights-ip65=bollard|stainless-steel-solar-path-light-ip65=bollard|warm-solar-step-deck-lights=cube|waterproof-solar-deck-step-lights=cube|magnetic-rechargeable-touch-wall-light=cube|solar-wall-light-motion-sensor-ip65=cube|modern-led-wall-light-6w-up-down=cube|modern-led-wall-light-indoor-outdoor=cube|waterproof-led-wall-light-ip65-6w-12w=cube|outdoor-bidirectional-led-wall-light-ip65=cube|solar-garden-lantern-9-led=cube|rechargeable-telescopic-camping-lantern=cube|led-globe-string-lights=string|solar-rope-string-lights=string|solar-edison-string-lights=string|solar-crystal-ball-string-lights=string|solar-firefly-garden-lights=string|lighted-birch-branches-20-led=string|decorative-led-net-lights=net|solar-security-light-100-led=spot|solar-floodlight-ip67-remote-timer=spot|solar-garden-spotlight-52-led=spot|powerful-solar-garden-light=spot|dual-head-garden-light-10w-ip65=spot|'
+    assign key = '|' | append: product.handle | append: '='
+    assign hit = led | split: key
+    if hit.size > 1
+      assign env2_g = hit[1] | split: '|' | first
+    endif
+  endif
+  if env2_g == ''
+    assign t = product.type | default: ''
+    if t == 'תאורת קיר'
+      assign env2_g = 'cube'
+    elsif t == 'גרילנדות ותאורה דקורטיבית'
+      assign env2_g = 'string'
+    elsif t == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+      assign env2_g = 'spot'
+    else
+      assign env2_g = 'bollard'
+    endif
+  endif
+  assign env2_ar = aspect | default: '1/1.15'
+  assign env2_cap = 'איור · אין תצלום נקי'
+  if caption != nil
+    assign env2_cap = caption
+  endif
+  assign env2_alt = 'איור של המנורה — אין תצלום נקי'
+  if product != blank
+    assign env2_alt = product.title | append: ' — איור, אין תצלום נקי'
+  endif
+  assign env2_extra = class | default: ''
+-%}
+<span class="env2-coll-glyph{% if env2_extra != '' %} {{ env2_extra }}{% endif %}" data-glyph="{{ env2_g }}"{% unless lamp == 'off' %} data-lamp{% endunless %} style="--env2-glyph-ar:{{ env2_ar }}">
+  <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
+  <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label="{{ env2_alt | escape }}" focusable="false"><use href="#env2-glyph-{{ env2_g }}"></use></svg>
+  {%- if env2_cap != '' -%}<span class="env2-coll-glyph__cap">{{ env2_cap }}</span>{%- endif -%}
+</span>
+{%- endunless -%}
+{%- if env2_sprite -%}
+<svg class="env2-coll-glyph-sprite" aria-hidden="true" focusable="false" width="0" height="0"><defs>
+<symbol id="env2-glyph-bollard" viewBox="0 0 120 140">
+  <path d="M44 34h32v10H44z"/><path d="M47 44v-6a13 13 0 0 1 26 0v6"/><path d="M60 44v70"/>
+  <path d="M50 114h20"/><path d="M44 126h32"/><path d="M52 54h16M52 66h16M52 78h16"/>
+</symbol>
+<symbol id="env2-glyph-cube" viewBox="0 0 120 140">
+  <path d="M34 52h52v40H34z"/><path d="M34 92l10 10h52l-10-10"/><path d="M86 52l10-10H44l-10 10"/>
+  <path d="M46 64h28M46 76h28"/><path d="M60 102v14"/>
+</symbol>
+<symbol id="env2-glyph-string" viewBox="0 0 120 140">
+  <path d="M8 44c20 26 36 26 52 0s32-26 52 0"/>
+  <path d="M22 60v8M38 68v8M60 72v8M82 68v8M98 60v8"/>
+  <circle cx="22" cy="74" r="6"/><circle cx="38" cy="82" r="6"/><circle cx="60" cy="86" r="6"/>
+  <circle cx="82" cy="82" r="6"/><circle cx="98" cy="74" r="6"/>
+</symbol>
+<symbol id="env2-glyph-net" viewBox="0 0 120 140">
+  <path d="M24 38h72v64H24z"/>
+  <path d="M42 38v64M60 38v64M78 38v64M24 54h72M24 70h72M24 86h72"/>
+  <circle cx="42" cy="54" r="3"/><circle cx="60" cy="70" r="3"/><circle cx="78" cy="86" r="3"/>
+  <circle cx="78" cy="54" r="3"/><circle cx="42" cy="86" r="3"/>
+</symbol>
+<symbol id="env2-glyph-spot" viewBox="0 0 120 140">
+  <path d="M36 40l44 18-10 24-44-18z"/><path d="M70 82l8 18"/><path d="M60 112h30"/>
+  <path d="M75 100v12"/><path d="M84 30l14-8M96 46l16-2M88 60l14 8"/>
+</symbol>
+</defs></svg>
+<style id="env2-coll-glyph-css">
+/* ---------- the drawn plate (§3.6.3) — same aspect, same radius 0, as the photograph it replaces ---------- */
+.env2-coll-glyph-sprite{position:absolute;inline-size:0;block-size:0;overflow:hidden}
+.env2-coll-glyph{position:relative;display:block;inline-size:100%;
+  aspect-ratio:var(--env2-glyph-ar,1/1.15);background:#080d18;border-radius:0;overflow:hidden;isolation:isolate}
+/* the warm radial where the light source is — --env2-ember at 22 %. This is the thing that lights. */
+.env2-coll-glyph__halo{position:absolute;inset:0;pointer-events:none;display:block;
+  background:radial-gradient(38% 34% at var(--env2-glyph-hx,50%) var(--env2-glyph-hy,32%),
+    rgba(247,162,74,.22),rgba(247,162,74,0) 72%);
+  opacity:var(--lit,1);transition:opacity 1.8s .2s;mix-blend-mode:screen}
+.env2-coll-glyph__art{position:absolute;inset:0;inline-size:100%;block-size:100%;display:block;
+  fill:none;stroke:rgba(244,238,227,.45);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;
+  padding:16%;box-sizing:border-box;
+  opacity:calc(.55 + .45*var(--lit,1));transition:opacity 1.6s cubic-bezier(.2,.7,.2,1)}
+.env2-coll-glyph[data-glyph="bollard"]{--env2-glyph-hx:50%;--env2-glyph-hy:26%}
+.env2-coll-glyph[data-glyph="cube"]{--env2-glyph-hx:50%;--env2-glyph-hy:44%}
+.env2-coll-glyph[data-glyph="string"]{--env2-glyph-hx:50%;--env2-glyph-hy:52%}
+.env2-coll-glyph[data-glyph="net"]{--env2-glyph-hx:50%;--env2-glyph-hy:46%}
+.env2-coll-glyph[data-glyph="spot"]{--env2-glyph-hx:38%;--env2-glyph-hy:40%}
+/* the caption, in the kicker style, at the bottom START edge (§3.6.3) */
+.env2-coll-glyph__cap{position:absolute;inset-block-end:12px;inset-inline-start:14px;
+  font-family:var(--env2-sans);font-weight:500;font-size:11.5px;letter-spacing:.16em;line-height:1.2;
+  color:var(--env2-gold);pointer-events:none}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-glyph__halo,.env2-coll-glyph__art{transition:none}
+}
+</style>
+{%- endif -%}

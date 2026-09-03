@@ -1,0 +1,918 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ruler · ספוטים-ופרוז-קטורים-סולאריים</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<style>
+/* ---------- tokens (§3.1) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-p:0;--p:0;
+}
+
+/* ---------- page ground (§3.1), every template ----------
+   Kalles paints body with its scheme and wraps content in painted containers; here the document
+   is night on every page type and the wrappers go clear. The index keeps its own dusk gradient
+   (snippets/elmsnest-v2-ground-index, rendered by the hero); every other template gets the
+   side-page ground: sky-2 -> sky-3 -> sky-4, ending in #020306 before the footer. */
+html{background:#020306}
+body[class*="hdt-page-type-"]{background-color:#020306;color:#f4eee3}
+body[class*="hdt-page-type-"]:not(.hdt-page-type-index){
+  background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll;
+  min-height:100vh;
+}
+#wrapper,.main-content,main,#MainContent,.hdt-main-content,.hdt-page-content,.shopify-section{background:transparent}
+/* Kalles back-to-top: a white square bottom-right (old palette) — hidden everywhere (§7.11) */
+.hdt-back-to-top,back-to-top{display:none!important}
+/* Kalles footer group: same sans as the page, quiet links (underline on hover only).
+   The link rules must reach (0,2,2): the footer links sit inside .hdt-text-warry.hdt-rte, and Kalles'
+   .hdt-rte a:not(.hdt-btn){text-decoration:underline} is (0,2,1), so the plain unscoped selector (0,1,1)
+   lost to it and every footer link came back underlined (fix pass R0-01). The index-scoped rule this
+   replaced was body.hdt-page-type-index .shopify-section-group-footer-group a = (0,2,2) and did win. */
+.shopify-section-group-footer-group{font-family:var(--env2-sans)}
+body .shopify-section-group-footer-group a:not(.hdt-btn){text-decoration:none}
+body .shopify-section-group-footer-group a:not(.hdt-btn):hover,body .shopify-section-group-footer-group a:not(.hdt-btn):focus-visible{text-decoration:underline}
+/* Kalles chrome type: header menu, drawers, popovers, facets and the old sections use Heebo.
+   css-variables sets --f_family_1..3 on :root from the Shopify font (assistant_n4); this comes after it. */
+:root{--f_family_1:var(--env2-sans);--f_family_2:var(--env2-sans);--f_family_3:var(--env2-sans)}
+/* interim (until the collection is rebuilt, round 2): sort entries that imply sales data are hidden;
+   sale badges never render (settings hidden_badges + this belt) */
+option[value="best-selling"],hdt-richlist button[role="option"][value="best-selling"]{display:none}
+.hdt-badge__wrapp{display:none!important}
+/* Kalles form fields: the theme paints a field with rgb(var(--color-input-primary)) and writes it with
+   --color-input-secondary. Both the :root fallback (css-variables l.185-186) and the night scheme's
+   input pair still carry cream-era values, so every form rendered a light slab with 2.7:1 text on the
+   night ground (contact form, account/login/register, the cart discount field). Night field, ink text.
+   --en-input-bg is the last #fffdf7 in the token set (the header search field) — retargeted with it. */
+:root{--en-input-bg:17 29 51}
+:root,[color-scheme]{--color-input-primary:var(--en-surface-elevated);--color-input-secondary:var(--en-color-light)}
+/* Kalles accent buttons hard-code white labels (.hdt-btn-accent{--hdt-btn-color:255 255 255}); under the
+   night scheme their fill is --env2-glow, so the label needs the dark ink (§D): 1.4:1 -> 13:1. */
+.hdt-btn-accent{--hdt-btn-color:var(--en-text-inverse)}
+/* Kalles swatch/tooltip bubble: css-variables pairs --color-tooltip-background with
+   --color-tooltip-text, and §D moved BOTH ends of that pair to near-black (--en-color-dark 2 3 6 /
+   --en-text-inverse 2 3 6) — the bubble is ink-on-ink. Night bubble, ink label (hover only). */
+:root{--color-tooltip-background:var(--en-surface-elevated);--color-tooltip-text:var(--en-color-light)}
+
+/* ---------- fix pass, round 0 second pass (V-1 · V-2 · V-4 · V-6) ---------- */
+/* V-1: the header search panel is <hdt-predictive-search color-scheme="scheme-1"> — the attribute is written
+   in a Kalles core section we do not own, so settings.color_scheme_dialog never reaches it, and scheme-1 is
+   the cream scheme (#f7f0e6 background, #fffdf7 background2, #2b2118 foreground): the three hexes this round
+   forbids, on the drawer behind the magnifier on every template. scheme-1 is remapped onto the night pair.
+   Exactly one element per page carries it (the search panel, closed) — the homepage included — so nothing
+   else can move. The input pair is deliberately NOT listed here: the :root,[color-scheme] rule above owns it
+   at the same specificity and must keep winning. */
+[color-scheme="scheme-1"]{
+  --color-background:2 3 6;--color-background2:7 11 21;--color-foreground:244 238 227;--color-foreground2:201 196 184;
+  --color-accent:255 211 148;--color-secondary:208 182 135;--color-tertiary:155 122 61;
+  --hdt-btn-color:26 18 6;--hdt-btn-bg:255 211 148;--hdt-btn-border-color:255 211 148;
+  --hdt-btn-hover-color:26 18 6;--hdt-btn-hover-bg:var(--en-surface-card);--hdt-btn-hover-border-color:var(--en-surface-card);
+  --hdt-btn-secondary-color:83 73 54;--hdt-btn-secondary-bg:208 182 135;
+  --hdt-btn-tertiary-color:62 49 24;--hdt-btn-tertiary-bg:155 122 61;
+  --hdt-btn-outline-color:244 238 227;--hdt-btn-outline-border-color:244 238 227;
+  --hdt-link-color:244 238 227;--hdt-link-hover-color:255 211 148;
+  --color-line-border:31 30 29;--color-overlay:2 3 6;--payment-terms-background-color:rgb(2 3 6);
+  --color-pr-price:255 211 148;--color-pr-sale-price:255 211 148;--color-pr-text:244 238 227;
+  --color-focus:var(--en-focus-dark);--en-focus-contrast:var(--en-focus-light)
+}
+/* the search drawer's category <select> and its options paint from the UA, not from the scheme (old open item 5) */
+#drawer-search-form select,#drawer-search-form option{background-color:rgb(var(--en-surface-elevated));color:rgb(var(--en-color-light))}
+/* V-4: <dialog id="modal-contactFormAsk"> has no background rule of its own, so it falls back to the UA's
+   white canvas while its wrapper's night scheme paints the ink — heading 1.15:1, field labels 1.74:1. */
+#modal-contactFormAsk{background:rgb(var(--en-surface-elevated));color:rgb(var(--en-text-primary))}
+/* V-6: --en-warning-text (96 64 0) was built for the cream page; §D moved the ground to #020306 and did not
+   list it, so .hdt-no-result-product — the only copy on the no-results page — reads 2.19:1. The amber the
+   design system already uses gives 11.9:1 on #020306. The two other consumers (.toast.warning border,
+   .toast-icon.warning fill, which pairs it with --en-text-inverse) stay legible. */
+:root{--en-warning-text:255 211 148}
+/* V-2: the product card's "בחירת אפשרויות" action (.hdt-card-product__btn-ultra). Kalles reveals it on card
+   hover on a pointer device, where it computed ink-on-ink; where there is no hover (390) it never fades out,
+   so it renders as an opaque #020306 square over the photo on every card with a 1:1 glyph inside it.
+   Legible pair for the pointer case; painted out (layout untouched) where there is no hover, and below 900px
+   where the grid is 2-up and a 36px overlay on a small card has nothing to reveal — the whole card already
+   links to the PDP and show_quick_add is off — until round 2 rebuilds the card. The width half of the query
+   is load-bearing for evidence too: Playwright's fullPage capture drops the touch emulation, so a hover-only
+   query never shows in a full-page mobile PNG. */
+.hdt-card-product__btn-ultra{--atc-cl:rgb(var(--en-text-inverse));--atc-bg-cl:rgb(var(--en-button-primary));--atc-cl-hover:rgb(var(--en-text-inverse));--atc-bg-cl-hover:rgb(var(--en-button-primary-hover))}
+@media (hover:none),(max-width:900px){.hdt-card-product__btn-ultra{visibility:hidden}}
+
+/* ---------- section root helper + container (§3.3) ---------- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-wrap--wide{width:min(1500px,100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---------- type helpers (§3.2) ---------- */
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h em,.env2-h .env2-glow{font-style:normal;color:var(--env2-glow)}
+.env2-serif{font-family:var(--env2-serif)}
+.env2-lead{font-family:var(--env2-sans);font-weight:300;font-size:clamp(17px,1.4vw,21px);line-height:1.5;max-width:38ch;color:var(--env2-ink-2);margin:0}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-eyebrow--ink{color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-price{font-family:var(--env2-serif);font-weight:500;font-variant-numeric:tabular-nums;font-size:var(--env2-price-size,24px);line-height:1.1;color:var(--env2-glow);white-space:nowrap;unicode-bidi:isolate}
+.env2-price bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-price__from{font-family:var(--env2-sans);font-weight:400;font-size:.62em;color:var(--env2-ink-2);margin-inline-end:.15em;letter-spacing:0}
+.env2-hair{border:0;border-top:1px solid var(--env2-hair);margin:0}
+
+/* ---------- buttons + links (§3.4 #5) ---------- */
+.env2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;margin:0;padding:14px 22px;min-height:0;border:0;border-radius:999px;appearance:none;-webkit-appearance:none;cursor:pointer;font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:none;text-decoration:none;background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .5s,color .3s,background-color .3s}
+.env2-btn:hover,.env2-btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 40px -8px rgba(255,211,148,.55);background:var(--env2-glow);color:var(--env2-btn-ink);text-decoration:none}
+.env2-btn--ghost,.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{background:transparent;color:var(--env2-ink)}
+.env2-btn--ghost{box-shadow:inset 0 0 0 1px var(--env2-hair-btn)}
+.env2-btn--ghost:hover,.env2-btn--ghost:focus-visible{box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 40px -12px rgba(255,211,148,.4)}
+.env2-btn--sm{padding:10px 16px;font-size:13.5px}
+.env2-btn svg{width:16px;height:16px;flex:none}
+.env2-buy{display:inline-block;margin:0;padding:0}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+.env2-link svg{width:14px;height:14px;flex:none}
+@media (max-width:900px){.env2-btn{font-size:14px;padding:13px 20px}.env2-btn--sm{font-size:14px;padding:14px 18px;min-height:44px}.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- stars (§3.1): static layer, per-section opacity via --env2-stars ---------- */
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),
+   radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),
+   radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),
+   radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),
+   radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the lamp device (§3.4 #1): dim until reached, then lit, never dark again ----------
+   --lit is 1 by default (no JS = lit). Only html.env2-js dims lamps; .lit re-lights them. */
+.env2-js [data-lamp]{--lit:0}
+.env2-js [data-lamp].lit{--lit:1}
+[data-lamp] .env2-ph{position:relative;overflow:hidden;background:#05070c;isolation:isolate}
+[data-lamp] .env2-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(calc(.22 + .78*var(--lit,1))) saturate(calc(.4 + .6*var(--lit,1)));transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:scale(1.02)}
+[data-lamp] .env2-ph::after{content:"";position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(60% 55% at 50% 45%,rgba(255,211,148,.42),rgba(255,211,148,0) 70%);opacity:var(--lit,1);transition:opacity 1.6s .2s;mix-blend-mode:screen}
+[data-lamp] .env2-halo{position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(50% 50% at 50% 60%,rgba(255,196,110,.35),transparent 70%);opacity:var(--lit,1);transition:opacity 2s .3s;z-index:-1;filter:blur(14px)}
+[data-lamp] .env2-pool{position:absolute;inset:auto -30% -18% -30%;height:60%;pointer-events:none;background:radial-gradient(50% 60% at 50% 40%,rgba(255,196,110,.28),transparent 70%);opacity:var(--lit,1);transition:opacity 1.8s .2s;filter:blur(12px);z-index:-1}
+@keyframes env2-lamp-on{0%{opacity:0}40%{opacity:1}55%{opacity:.25}70%{opacity:1}100%{opacity:1}}
+@keyframes env2-flick{0%{opacity:1}30%{opacity:.15}60%{opacity:.9}80%{opacity:.3}100%{opacity:1}}
+
+/* ---------- reduced motion (§3.4): lamps lit, no sweeps, no parallax, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  .env2-js [data-lamp],[data-lamp],.env2-js [data-lamp].lit{--lit:1}
+  .env2-section,.env2-section *,.env2-section *::before,.env2-section *::after,.env2-btn,.env2-link{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+<style>
+/* ---------- page ground (§3.1): night measured in px, not % ----------
+   Screen 1 is a photo ground painted by elmsnest-v2-coll-scene; the document below it is this one
+   gradient and nothing else. No section paints a background (§3.1: the only card surface anywhere on
+   this page is the scrim --env2-scrim + backdrop-filter, used exactly twice). */
+html body.hdt-page-type-collection{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,
+    #0b1526 0px,
+    #0a1120 620px,
+    #080e1c 1500px,
+    #060a14 2600px,
+    #04070e 3800px,
+    #020306 5000px);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-attachment:scroll;
+  min-height:100vh;
+}
+/* A page that is SHORTER than the gradient (6 products, one screen) must not be handed a squashed
+   sky: background-size:100% 100% would compress the 5000px ramp into a 2000px document and the short
+   page would go black three times faster than the long one. Painting the ramp on a fixed 5000px box
+   anchored at the top and letting #020306 fill the rest keeps every collection identical for the first
+   5000px, which is the whole point of §3.1. */
+html body.hdt-page-type-collection{background-size:100% 5000px}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-collection #wrapper,
+html body.hdt-page-type-collection .main-content,
+html body.hdt-page-type-collection main,
+html body.hdt-page-type-collection #MainContent,
+html body.hdt-page-type-collection .hdt-main-content,
+html body.hdt-page-type-collection .hdt-page-content,
+html body.hdt-page-type-collection .shopify-section{background:transparent}
+/* The header is transparent over the scene: the scene is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it — Kalles ships a top margin
+   on the first collection section for its taupe banner, which this template retires (§5.4). */
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal page scroll at 360px (§6.13). The scene, the band scenes and the goodnight photo are
+   full-bleed, and the ruler's dot rails scroll INSIDE their own row — never the document. */
+html body.hdt-page-type-collection{overflow-x:hidden}
+/* §3.2's tap-target floor, on this template only. elmsnest-v2-core sizes .env2-btn--sm at 36px tall on
+   desktop (it was sized for the PDP related row) and only raises it to 44px under 900px. The collection
+   spec asks for 48px, 44px absolute, with no viewport caveat — so the floor is set here, scoped to the
+   collection body, and the PDP is not touched. Measured in the plumbing render: 36px -> 44px. */
+html body.hdt-page-type-collection .env2-btn--sm{min-block-size:44px}
+html body.hdt-page-type-collection .env2-pdp-card__action .env2-btn{min-block-size:44px}
+/* Kalles' collection chrome that §5.4 retires from templates/collection.json. The section files stay on
+   the theme until the owner signs off, so nothing is deleted; these two belts only make sure that a
+   left-over instance cannot paint a cream strip or a taupe banner over the night. */
+html body.hdt-page-type-collection .hdt-collection-toolbar,
+html body.hdt-page-type-collection .hdt-collection-banner{background:transparent}
+</style>
+<style id="env2-pdp-card-css">
+.env2-pdp-card{position:relative;display:flex;flex-direction:column;gap:12px;margin:0;padding:0;
+  inline-size:var(--env2-pdp-card-w,280px);max-inline-size:100%;border-radius:0;background:transparent}
+.env2-pdp-card__media{position:relative;display:block;inline-size:100%;border-radius:0}
+.env2-pdp-card__ph{display:block;position:relative;inline-size:100%;aspect-ratio:var(--env2-pdp-card-ar,1/1.15);
+  overflow:hidden;border-radius:0;background:#05070c;isolation:isolate}
+.env2-pdp-card__ph img{inline-size:100%;block-size:100%;object-fit:cover;display:block}
+.env2-pdp-card__kicker{margin:0;font-size:11.5px;line-height:1.35;text-wrap:balance}
+/* §6 #18's 13px floor: .62em of the 19px mobile card price is 11.78px, and this is the glyph pair
+   that turns an exact price into a minimum (TYPOGRAPHER-05). Scoped here, not on the shared class. */
+.env2-pdp-card__price .env2-price__from{font-size:max(13px,.62em)}
+.env2-pdp-card__title{margin:0;font-family:var(--env2-sans);font-weight:400;
+  font-size:var(--env2-pdp-card-title,15px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:balance}
+.env2-pdp-card__title a{color:inherit;text-decoration:none;transition:color .3s}
+.env2-pdp-card__title a:hover,.env2-pdp-card__title a:focus-visible{color:var(--env2-glow)}
+.env2-pdp-card__row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-block-start:2px}
+.env2-pdp-card__price .env2-price{--env2-price-size:21px}
+/* §8.3 belt: .env2-section a{color:inherit} outranks .env2-btn{color:…}, so an ANCHOR styled as the
+   filled pill would render ink-on-glow at 1.21:1. elmsnest-v2-buy only ever emits a ghost anchor, but
+   these two rules make both cases explicit and correct whatever a caller passes. */
+.env2-pdp-card__action .env2-btn{color:var(--env2-btn-ink)}
+.env2-pdp-card__action .env2-btn--ghost{color:var(--env2-ink)}
+.env2-pdp-card__action .env2-buy{display:inline-block}
+@media (max-width:900px){
+  .env2-pdp-card{inline-size:min(var(--env2-pdp-card-w,280px),62vw);gap:10px}
+  .env2-pdp-card__price .env2-price{--env2-price-size:19px}
+  .env2-pdp-card__title{font-size:var(--env2-pdp-card-title-mb,15px)}
+}
+/* ---------- round 2, collection §3.5. Every selector below needs a class or an element the PDP
+   never emits (--scene, __axis, __unit, .env2-coll-glyph), so the PDP related row is unaffected. ---- */
+.env2-pdp-card__axis,.env2-pdp-card__unit{margin:0;font-family:var(--env2-sans);font-weight:300;
+  font-size:14px;line-height:1.45;color:var(--env2-ink-2);unicode-bidi:isolate;text-wrap:pretty}
+.env2-pdp-card__axis{margin-block-start:-4px}
+.env2-pdp-card__unit{margin-block-start:-6px;font-variant-numeric:tabular-nums}
+/* the scrim card that rides a photograph — the ONLY card surface on the collection page (§3.1),
+   used exactly twice: the pinned card on the scene and the card on a band photo. Radius stays 0. */
+.env2-pdp-card--scene{background:var(--env2-scrim);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);padding:22px 26px;border-radius:0;gap:10px}
+.env2-pdp-card--scene .env2-pdp-card__row{margin-block-start:6px}
+@media (max-width:900px){
+  .env2-pdp-card--scene{padding:18px 20px;inline-size:100%;max-inline-size:100%}
+}
+/* a drawn plate stands in for the photograph in the same box (§3.6.3) */
+.env2-pdp-card__ph .env2-coll-glyph{position:absolute;inset:0;inline-size:100%;block-size:100%;aspect-ratio:auto}
+</style>
+<style>
+/* ---------- ElmsNest v2 collection — the ruler (§4.2). Every selector is prefixed .env2-coll-ruler.
+   The per-stop :checked ruleset is NOT here: it is generated per instance by
+   snippets/elmsnest-v2-coll-rail.liquid (emit:'css') and by the inline style element above, because
+   a section stylesheet block is static and may hold no Liquid. ---------- */
+.env2-coll-ruler{padding-block:120px 96px}
+.env2-coll-ruler__head,.env2-coll-ruler__body{position:relative;z-index:1}
+
+/* the head: numeral at the start edge, the place's question beside it (§4.2 desktop) */
+.env2-coll-ruler__eyebrow{margin-block-end:26px}
+.env2-coll-ruler__headgrid{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);
+  gap:clamp(24px,4vw,72px);align-items:end}
+.env2-coll-ruler__num{margin:0;font-family:var(--env2-serif);font-weight:900;
+  font-size:clamp(88px,10vw,150px);line-height:.86;font-variant-numeric:tabular-nums;
+  color:rgba(255,211,148,calc(.92*var(--lit,1)));-webkit-text-stroke:1px var(--env2-hair-num);
+  transition:color 1.6s cubic-bezier(.2,.7,.2,1)}
+.env2-coll-ruler__numcap{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--env2-ink-2);
+  max-inline-size:26ch;font-variant-numeric:tabular-nums}
+.env2-coll-ruler__h2{font-size:clamp(34px,4.9vw,72px);line-height:.98}
+.env2-coll-ruler__deck{margin-block-start:18px;max-inline-size:42ch}
+
+/* the stops. 48px pills, 999px radius — with the cursor knob the only round things on this page. */
+.env2-coll-ruler__sr{position:absolute;inline-size:1px;block-size:1px;margin:0;padding:0;border:0;
+  opacity:0;pointer-events:none;clip-path:inset(50%)}
+.env2-coll-ruler__stops{margin-block-start:clamp(40px,5vw,72px)}
+.env2-coll-ruler__stopq{margin:0 0 16px;font-size:15px;line-height:1.5;color:var(--env2-ink-2)}
+.env2-coll-ruler__pills{display:flex;flex-wrap:wrap;gap:10px}
+.env2-coll-ruler__pill{display:inline-flex;align-items:center;justify-content:center;
+  min-block-size:48px;padding-inline:22px;border-radius:999px;cursor:pointer;
+  box-shadow:inset 0 0 0 1px var(--env2-hair-btn);background:transparent;color:var(--env2-ink);
+  font-family:var(--env2-sans);font-weight:500;font-size:15px;line-height:1.2;white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  transition:box-shadow .3s,background-color .3s,color .3s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.env2-coll-ruler__pill:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px var(--env2-glow)}
+.env2-coll-ruler__pilltxt{display:block}
+
+/* the order line — four plain anchors on one hairline, inside this section and above the fold (§4.2 n-n 4) */
+.env2-coll-ruler__sort{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin:26px 0 0;
+  padding-block:16px;border-block-start:1px solid var(--env2-hair);
+  border-block-end:1px solid var(--env2-hair)}
+.env2-coll-ruler__sortlab{flex:none;font-size:11.5px}
+.env2-coll-ruler__sortlink{display:inline-flex;align-items:center;min-block-size:44px;padding-inline:2px;
+  font-size:15px;color:var(--env2-ink-2);border-block-end:1px solid transparent;transition:color .3s,border-color .3s}
+.env2-coll-ruler__sortlink:hover,.env2-coll-ruler__sortlink:focus-visible{color:var(--env2-glow)}
+.env2-coll-ruler__sortlink.is-current{color:var(--env2-glow);border-block-end-color:var(--env2-glow)}
+.env2-coll-ruler__sortnote{margin:14px 0 0;font-size:14px;color:var(--env2-ink-2)}
+
+/* the master rail. Same grid as a row, so the cursor stands over the column of dots. */
+.env2-coll-ruler__master{display:grid;grid-template-columns:minmax(0,270px) minmax(0,1fr) minmax(0,150px);
+  gap:clamp(16px,2vw,32px);align-items:center;margin-block-start:clamp(36px,4vw,60px);
+  padding-block-end:34px}
+.env2-coll-ruler__track{position:relative;block-size:16px;min-inline-size:0}
+.env2-coll-ruler__cursor{inset-block-start:1px}
+.env2-coll-ruler__tick{position:absolute;inset-block-start:4px;inset-inline-start:var(--env2-tick-p,0);
+  margin-inline-start:-1px;inline-size:1px;block-size:9px;background:var(--env2-hair-num);display:block;
+  transition:background-color .3s,block-size .25s}
+.env2-coll-ruler__end{position:absolute;inset-block-start:22px;font-family:var(--env2-serif);
+  font-weight:500;font-size:15px;line-height:1.2;font-variant-numeric:tabular-nums;
+  color:var(--env2-mute);white-space:nowrap}
+.env2-coll-ruler__end--a{inset-inline-start:0}
+.env2-coll-ruler__end--b{inset-inline-end:0}
+.env2-coll-ruler__masterpad{display:block}
+
+/* one row per product. It never disappears and it is never four equal cells. */
+.env2-coll-ruler__rows{border-block-start:1px solid var(--env2-hair)}
+.env2-coll-ruler__row{display:grid;grid-template-columns:minmax(0,270px) minmax(0,1fr) minmax(0,150px);
+  gap:clamp(16px,2vw,32px);align-items:center;min-block-size:96px;padding-block:18px;
+  border-block-end:1px solid var(--env2-hair);transition:opacity .28s}
+.env2-coll-ruler__rowhead{min-inline-size:0}
+.env2-coll-ruler__title{margin:0;font-family:var(--env2-sans);font-weight:400;
+  font-size:clamp(16px,1.3vw,19px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;
+  text-wrap:balance}
+.env2-coll-ruler__title a{transition:color .3s}
+.env2-coll-ruler__title a:hover,.env2-coll-ruler__title a:focus-visible{color:var(--env2-glow)}
+.env2-coll-ruler__axis{margin:6px 0 0;font-size:14px;line-height:1.45;color:var(--env2-ink-2);
+  unicode-bidi:isolate}
+/* The dot rail is positioned in PERCENT of its own column, so it can never be wider than the row and
+   never needs a scroller — and a scroller here would CLIP the dot that sits on the rail's far end
+   (measured: the rope's 32 מ׳ dot came out as a half circle under overflow-x:auto). The document's own
+   no-horizontal-scroll guarantee (§6.13) is .env2-section{overflow-x:clip} plus the ground snippet;
+   both viewports measure horizontal-overflow=false at 1440, 390 and 360. */
+.env2-coll-ruler__rail{min-inline-size:0}
+.env2-coll-ruler__rail .env2-coll-rail__v{justify-content:flex-end}
+.env2-coll-ruler__act{display:flex;justify-content:flex-end}
+.env2-coll-ruler__act .env2-btn{min-block-size:44px;color:var(--env2-btn-ink)}
+.env2-coll-ruler__act .env2-btn--ghost{color:var(--env2-ink)}
+
+/* price mode: the rung is a solid bar to the entry price and a hairline on to the top of the range */
+.env2-coll-ruler__bar{position:absolute;inset-block-start:8px;inset-inline-start:var(--env2-bar-a,0);
+  inline-size:var(--env2-bar-w,0);block-size:1px;background:var(--env2-hair-num);display:block}
+
+/* the foot: the honest sentence, and the products this unit cannot measure — carried, never hidden (C9) */
+.env2-coll-ruler__foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 40px;
+  margin-block-start:28px}
+.env2-coll-ruler__footnote{margin:0;font-size:14px;line-height:1.6;color:var(--env2-ink-2);
+  max-inline-size:64ch}
+.env2-coll-ruler__offnote{margin:0}
+.env2-coll-ruler__offnote .env2-link{min-block-size:44px}
+
+/* the catalogue variant (§3.8.2): three unit numerals, then the four places */
+.env2-coll-ruler__units{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(20px,3vw,52px);margin:clamp(36px,4vw,60px) 0 0;padding:0;list-style:none}
+.env2-coll-ruler__unit{padding-block:0}
+.env2-coll-ruler__unit a{display:block;transition:color .3s}
+.env2-coll-ruler__unit a:hover,.env2-coll-ruler__unit a:focus-visible{color:var(--env2-glow)}
+.env2-coll-ruler__unitn{display:block;font-family:var(--env2-serif);font-weight:900;
+  font-size:clamp(56px,6.6vw,96px);line-height:.9;font-variant-numeric:tabular-nums;color:var(--env2-gold)}
+.env2-coll-ruler__unitt{display:block;margin-block-start:10px;font-size:clamp(16px,1.3vw,19px);
+  color:var(--env2-ink)}
+.env2-coll-ruler__unitk{display:block;margin-block-start:6px;font-size:14px;color:var(--env2-ink-2)}
+.env2-coll-ruler__places{margin:clamp(36px,4vw,60px) 0 0;padding:0;list-style:none}
+.env2-coll-ruler__place{border-block-start:1px solid var(--env2-hair)}
+.env2-coll-ruler__placelink{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.6fr) minmax(0,1fr);
+  gap:clamp(16px,2vw,40px);align-items:baseline;padding-block:22px;transition:color .3s}
+.env2-coll-ruler__placelink:hover,.env2-coll-ruler__placelink:focus-visible{color:var(--env2-glow)}
+.env2-coll-ruler__placelab{display:block;font-family:var(--env2-serif);font-weight:700;
+  font-size:clamp(22px,2.2vw,32px);line-height:1.05;color:inherit}
+.env2-coll-ruler__placeq{display:block;margin-block-start:8px;font-size:14px;color:var(--env2-ink-2)}
+.env2-coll-ruler__placefacts{font-size:15px;color:var(--env2-ink-2);font-variant-numeric:tabular-nums;
+  white-space:nowrap}
+.env2-coll-ruler__placenames{font-size:14px;color:var(--env2-mute);unicode-bidi:isolate}
+
+@media (max-width:900px){
+  .env2-coll-ruler{padding-block:72px 56px}
+  .env2-coll-ruler__headgrid{grid-template-columns:minmax(0,1fr);gap:20px;align-items:start}
+  .env2-coll-ruler__num{font-size:88px;line-height:.9}
+  .env2-coll-ruler__numcap{max-inline-size:none}
+  .env2-coll-ruler__h2{font-size:34px}
+  .env2-coll-ruler__deck{margin-block-start:14px}
+  .env2-coll-ruler__stops{margin-block-start:36px}
+  .env2-coll-ruler__pills{gap:8px}
+  .env2-coll-ruler__pill{min-block-size:48px;padding-inline:18px;font-size:14px}
+  .env2-coll-ruler__sort{gap:6px 16px;margin-block-start:22px}
+  .env2-coll-ruler__sortlink{font-size:14px}
+  .env2-coll-ruler__master{grid-template-columns:minmax(0,1fr);gap:0;padding-block-end:30px;
+    margin-block-start:30px}
+  .env2-coll-ruler__masterpad{display:none}
+  .env2-coll-ruler__end{font-size:13px;inset-block-start:20px}
+  .env2-coll-ruler__rail .env2-coll-rail__v{justify-content:flex-start}
+  .env2-coll-ruler__row{grid-template-columns:minmax(0,1fr);gap:2px;min-block-size:0;padding-block:20px;
+    align-items:stretch}
+  .env2-coll-ruler__rail{margin-block-start:2px}
+  .env2-coll-ruler__act{justify-content:flex-end;margin-block-start:12px}
+  /* the row head is the product link's real tap area on a phone: the house hit expander (core does
+     the same for .env2-link under 900px) over a head that is floored at the 44px target (§6.13).
+     A product whose axis caption is suppressed leaves a 22px title alone, which would miss it. */
+  .env2-coll-ruler__rowhead{position:relative;min-block-size:44px;display:flex;
+    flex-direction:column;justify-content:center}
+  .env2-coll-ruler__title a::before{content:"";position:absolute;inset:-6px}
+  .env2-coll-ruler__foot{gap:14px;margin-block-start:24px}
+  .env2-coll-ruler__units{grid-template-columns:minmax(0,1fr);gap:0}
+  .env2-coll-ruler__unit{padding-block:20px;border-block-end:1px solid var(--env2-hair)}
+  .env2-coll-ruler__unitn{font-size:56px}
+  .env2-coll-ruler__placelink{grid-template-columns:minmax(0,1fr);gap:8px;padding-block:20px}
+  .env2-coll-ruler__placefacts{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-ruler__num{transition:none}
+}
+</style>
+</head>
+<body class="hdt-page-type-collection template-collection">
+<main id="MainContent" class="hdt-main-content">
+<div class="shopify-section"><section id="env2-coll-ruler" data-env2-coll-ruler data-unit-key="band" class="env2-section env2-coll env2-coll-ruler" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.28" aria-labelledby="env2-coll-ruler-h2">
+  <div class="env2-stars" aria-hidden="true"></div><style id="env2-coll-rail-css">
+/* ---------- one product's dot rail (§4.2) ---------- */
+.env2-coll-rail{position:relative;display:block;inline-size:100%;min-inline-size:0;
+  padding-block:14px 0;font-family:var(--env2-sans);font-weight:300}
+.env2-coll-rail__line{position:absolute;inset-inline:0;inset-block-start:8px;block-size:1px;
+  background:var(--env2-hair);display:block}
+.env2-coll-rail__dot{position:absolute;inset-block-start:4px;inset-inline-start:var(--env2-rail-p,0);
+  margin-inline-start:-4px;inline-size:9px;block-size:9px;border-radius:999px;
+  background:var(--env2-mute);display:block;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s,box-shadow .25s}
+/* the cursor knob — the ruler section puts this class on its own knob and the generated
+   :checked ruleset moves it. It is the second and last round thing on this page (§3.1). */
+.env2-coll-rail__cursor{position:absolute;inset-block-start:0;inset-inline-start:0;
+  margin-inline-start:-7px;inline-size:14px;block-size:14px;border-radius:999px;
+  background:var(--env2-glow);box-shadow:0 0 0 7px rgba(255,211,148,.12),0 0 22px 6px rgba(247,162,74,.30);
+  transition:inset-inline-start .32s cubic-bezier(.2,.7,.2,1)}
+/* every stop's answer is in the DOM; CSS chooses. Without the generated ruleset (or with CSS off)
+   the range is what shows — never nothing. */
+.env2-coll-rail__v{display:none;align-items:baseline;gap:10px;flex-wrap:wrap;margin-block-start:12px;
+  font-size:15px;line-height:1.4;color:var(--env2-ink-2)}
+.env2-coll-rail__v--all{display:flex}
+.env2-coll-rail__val{font-family:var(--env2-serif);font-weight:500;font-size:17px;
+  font-variant-numeric:tabular-nums;color:var(--env2-ink);white-space:nowrap}
+.env2-coll-rail__price{font-family:var(--env2-serif);font-weight:500;font-size:17px;
+  font-variant-numeric:tabular-nums;color:var(--env2-glow);white-space:nowrap}
+.env2-coll-rail__price .env2-price{--env2-price-size:17px}
+.env2-coll-rail__per{font-size:14px;color:var(--env2-ink-2);font-variant-numeric:tabular-nums}
+/* 'beyond': the row dims (the ruler puts data-short on it) and the rail SAYS how far it reaches.
+   Never display:none — §6.6. */
+.env2-coll-rail__v[data-state="beyond"]{color:var(--env2-mute)}
+.env2-coll-rail__miss{font-size:14px;color:var(--env2-ink-2)}
+.env2-coll-rail__price--miss{color:var(--env2-ink-2)}
+/* 'off': not measured in this unit at all — no dots, no span, only the caller's honest note. */
+.env2-coll-rail--off{padding-block-start:0}
+.env2-coll-rail__off{margin:0;font-size:14px;color:var(--env2-ink-2)}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-rail__dot,.env2-coll-rail__cursor{transition:none}
+}
+@media (max-width:900px){
+  .env2-coll-rail__val,.env2-coll-rail__price{font-size:16px}
+  .env2-coll-rail__v{font-size:14px;gap:8px}
+  .env2-coll-rail__per,.env2-coll-rail__miss{font-size:13px}
+}
+</style><style id="env2-coll-rail-stops">#env2-stop-99_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v{display:none}
+#env2-stop-99_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v[data-stop="99_90"]{display:flex}
+#env2-stop-99_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__dot[data-pick~="99_90"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-99_90:checked ~ .env2-coll-ruler__body [data-short~="99_90"]{opacity:.4}
+#env2-stop-99_90:checked ~ .env2-coll-ruler__body [data-short~="99_90"] [data-short~="99_90"]{opacity:1}
+#env2-stop-99_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__cursor{inset-inline-start:19.98%}
+#env2-stop-169_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v{display:none}
+#env2-stop-169_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v[data-stop="169_90"]{display:flex}
+#env2-stop-169_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__dot[data-pick~="169_90"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-169_90:checked ~ .env2-coll-ruler__body [data-short~="169_90"]{opacity:.4}
+#env2-stop-169_90:checked ~ .env2-coll-ruler__body [data-short~="169_90"] [data-short~="169_90"]{opacity:1}
+#env2-stop-169_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__cursor{inset-inline-start:33.99%}
+#env2-stop-189_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v{display:none}
+#env2-stop-189_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v[data-stop="189_90"]{display:flex}
+#env2-stop-189_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__dot[data-pick~="189_90"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-189_90:checked ~ .env2-coll-ruler__body [data-short~="189_90"]{opacity:.4}
+#env2-stop-189_90:checked ~ .env2-coll-ruler__body [data-short~="189_90"] [data-short~="189_90"]{opacity:1}
+#env2-stop-189_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__cursor{inset-inline-start:37.99%}
+#env2-stop-199_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v{display:none}
+#env2-stop-199_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v[data-stop="199_90"]{display:flex}
+#env2-stop-199_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__dot[data-pick~="199_90"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-199_90:checked ~ .env2-coll-ruler__body [data-short~="199_90"]{opacity:.4}
+#env2-stop-199_90:checked ~ .env2-coll-ruler__body [data-short~="199_90"] [data-short~="199_90"]{opacity:1}
+#env2-stop-199_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__cursor{inset-inline-start:39.99%}
+#env2-stop-219_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v{display:none}
+#env2-stop-219_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__v[data-stop="219_90"]{display:flex}
+#env2-stop-219_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__dot[data-pick~="219_90"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-219_90:checked ~ .env2-coll-ruler__body [data-short~="219_90"]{opacity:.4}
+#env2-stop-219_90:checked ~ .env2-coll-ruler__body [data-short~="219_90"] [data-short~="219_90"]{opacity:1}
+#env2-stop-219_90:checked ~ .env2-coll-ruler__body .env2-coll-rail__cursor{inset-inline-start:43.99%}
+#env2-stop-all:checked ~ .env2-coll-ruler__body .env2-coll-rail__v{display:none}
+#env2-stop-all:checked ~ .env2-coll-ruler__body .env2-coll-rail__v--all{display:flex}
+#env2-stop-all:checked ~ .env2-coll-ruler__body .env2-coll-rail__dot[data-pick~="all"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
+#env2-stop-all:checked ~ .env2-coll-ruler__body .env2-coll-rail__cursor{inset-inline-start:0%}
+</style>
+    <style id="env2-coll-ruler-stops">#env2-stop-99_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-99_90"]{background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 34px -12px rgba(255,211,148,.5)}
+#env2-stop-99_90:focus-visible ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-99_90"]{outline:2px solid var(--env2-glow);outline-offset:4px}
+#env2-stop-99_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__tick[data-tick="99_90"]{background:var(--env2-glow);block-size:14px;inset-block-start:1px}#env2-stop-169_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-169_90"]{background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 34px -12px rgba(255,211,148,.5)}
+#env2-stop-169_90:focus-visible ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-169_90"]{outline:2px solid var(--env2-glow);outline-offset:4px}
+#env2-stop-169_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__tick[data-tick="169_90"]{background:var(--env2-glow);block-size:14px;inset-block-start:1px}#env2-stop-189_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-189_90"]{background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 34px -12px rgba(255,211,148,.5)}
+#env2-stop-189_90:focus-visible ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-189_90"]{outline:2px solid var(--env2-glow);outline-offset:4px}
+#env2-stop-189_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__tick[data-tick="189_90"]{background:var(--env2-glow);block-size:14px;inset-block-start:1px}#env2-stop-199_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-199_90"]{background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 34px -12px rgba(255,211,148,.5)}
+#env2-stop-199_90:focus-visible ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-199_90"]{outline:2px solid var(--env2-glow);outline-offset:4px}
+#env2-stop-199_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__tick[data-tick="199_90"]{background:var(--env2-glow);block-size:14px;inset-block-start:1px}#env2-stop-219_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-219_90"]{background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 34px -12px rgba(255,211,148,.5)}
+#env2-stop-219_90:focus-visible ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-219_90"]{outline:2px solid var(--env2-glow);outline-offset:4px}
+#env2-stop-219_90:checked ~ .env2-coll-ruler__body .env2-coll-ruler__tick[data-tick="219_90"]{background:var(--env2-glow);block-size:14px;inset-block-start:1px}#env2-stop-all:checked ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-all"]{background:var(--env2-glow);color:var(--env2-btn-ink);box-shadow:inset 0 0 0 1px var(--env2-glow),0 10px 34px -12px rgba(255,211,148,.5)}
+#env2-stop-all:focus-visible ~ .env2-coll-ruler__body .env2-coll-ruler__pill[for="env2-stop-all"]{outline:2px solid var(--env2-glow);outline-offset:4px}
+    </style><div class="env2-wrap env2-wrap--wide env2-coll-ruler__head"><p class="env2-eyebrow env2-coll-ruler__eyebrow">המקום — והמידה</p><div class="env2-coll-ruler__headgrid">
+      <div class="env2-coll-ruler__numblock" data-lamp>
+        <p class="env2-coll-ruler__num" aria-hidden="true"><bdi>6</bdi></p>
+        <p class="env2-coll-ruler__numcap"><bdi>6</bdi> דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה</p>
+      </div>
+      <div class="env2-coll-ruler__ask">
+        <h2 class="env2-h env2-coll-ruler__h2" id="env2-coll-ruler-h2">מה בדיוק צריך להאיר?</h2></div>
+    </div>
+  </div><input type="radio" name="env2-stop" id="env2-stop-all" class="env2-coll-ruler__sr" checked><input type="radio" name="env2-stop" id="env2-stop-99_90" class="env2-coll-ruler__sr"><input type="radio" name="env2-stop" id="env2-stop-169_90" class="env2-coll-ruler__sr"><input type="radio" name="env2-stop" id="env2-stop-189_90" class="env2-coll-ruler__sr"><input type="radio" name="env2-stop" id="env2-stop-199_90" class="env2-coll-ruler__sr"><input type="radio" name="env2-stop" id="env2-stop-219_90" class="env2-coll-ruler__sr"><div class="env2-wrap env2-wrap--wide env2-coll-ruler__body"><div class="env2-coll-ruler__stops" role="group" aria-label="מחיר כניסה עד הסכום שנבחר. השורה מציגה את הטווח המלא."><p class="env2-coll-ruler__stopq">מחיר כניסה עד הסכום שנבחר. השורה מציגה את הטווח המלא.</p><div class="env2-coll-ruler__pills">
+          <label class="env2-coll-ruler__pill" for="env2-stop-all"><span class="env2-coll-ruler__pilltxt">הכול</span></label><label class="env2-coll-ruler__pill" for="env2-stop-99_90"><span class="env2-coll-ruler__pilltxt">עד <bdi>99.90</bdi> ₪</span></label><label class="env2-coll-ruler__pill" for="env2-stop-169_90"><span class="env2-coll-ruler__pilltxt">עד <bdi>169.90</bdi> ₪</span></label><label class="env2-coll-ruler__pill" for="env2-stop-189_90"><span class="env2-coll-ruler__pilltxt">עד <bdi>189.90</bdi> ₪</span></label><label class="env2-coll-ruler__pill" for="env2-stop-199_90"><span class="env2-coll-ruler__pilltxt">עד <bdi>199.90</bdi> ₪</span></label><label class="env2-coll-ruler__pill" for="env2-stop-219_90"><span class="env2-coll-ruler__pilltxt">עד <bdi>219.90</bdi> ₪</span></label></div>
+      </div><p class="env2-coll-ruler__sort">
+      <span class="env2-kicker env2-coll-ruler__sortlab">סדר:</span><a href="/collections/ספוטים-ופרוז-קטורים-סולאריים?sort_by=manual" class="env2-coll-ruler__sortlink is-current" aria-current="true">לפי סדר הערב</a><a href="/collections/ספוטים-ופרוז-קטורים-סולאריים?sort_by=price-ascending" class="env2-coll-ruler__sortlink">מחיר עולה</a><a href="/collections/ספוטים-ופרוז-קטורים-סולאריים?sort_by=price-descending" class="env2-coll-ruler__sortlink">מחיר יורד</a><a href="/collections/ספוטים-ופרוז-קטורים-סולאריים?sort_by=title-ascending" class="env2-coll-ruler__sortlink">א־ב</a></p><div class="env2-coll-ruler__master" aria-hidden="true">
+          <span class="env2-coll-ruler__masterpad"></span>
+          <div class="env2-coll-ruler__track">
+            <span class="env2-coll-rail__line"></span>
+            <span class="env2-coll-rail__cursor env2-coll-ruler__cursor"></span><span class="env2-coll-ruler__tick" data-tick="99_90" style="--env2-tick-p:19.98%"></span><span class="env2-coll-ruler__tick" data-tick="169_90" style="--env2-tick-p:33.99%"></span><span class="env2-coll-ruler__tick" data-tick="189_90" style="--env2-tick-p:37.99%"></span><span class="env2-coll-ruler__tick" data-tick="199_90" style="--env2-tick-p:39.99%"></span><span class="env2-coll-ruler__tick" data-tick="219_90" style="--env2-tick-p:43.99%"></span><span class="env2-coll-ruler__end env2-coll-ruler__end--a"><bdi>0</bdi> ₪</span>
+            <span class="env2-coll-ruler__end env2-coll-ruler__end--b"><bdi>499.90</bdi> ₪</span>
+          </div>
+          <span class="env2-coll-ruler__masterpad"></span>
+        </div><div class="env2-coll-ruler__rows"><div class="env2-coll-ruler__row" data-short="99_90">
+              <div class="env2-coll-ruler__rowhead">
+                <p class="env2-coll-ruler__title"><a href="/products/solar-garden-lantern-9-led">פנס סולארי לגינה 9 LED | עמיד למים ומתכוונן</a></p></div>
+              <div class="env2-coll-ruler__rail"><div class="env2-coll-rail" data-unit="price" data-state="on" data-short="99_90">
+                    <span class="env2-coll-rail__line" aria-hidden="true"></span>
+                    <span class="env2-coll-ruler__bar" style="--env2-bar-a:33.99%;--env2-bar-w:0.0%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__dot" data-n="169.90" data-pick="169_90 189_90 199_90 219_90 all" style="--env2-rail-p:33.99%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+                      <span class="env2-coll-rail__price"><span class="env2-price"><bdi>169.90</bdi> ₪</span></span>
+                    </span><span class="env2-coll-rail__v" data-stop="99_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>169.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><bdi>169.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="169_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>169.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="189_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>169.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="199_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>169.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="219_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>169.90</bdi> ₪</span></span>
+                        </span></div></div>
+              <div class="env2-coll-ruler__act">
+                <form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-buy" data-env2-buy>
+      <input type="hidden" name="form_type" value="product">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="id" value="55909">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" name="add" class="env2-btn env2-btn--sm">הוספה לסל</button>
+    </form>
+              </div>
+            </div><div class="env2-coll-ruler__row" data-short="99_90 169_90 189_90 199_90">
+              <div class="env2-coll-ruler__rowhead">
+                <p class="env2-coll-ruler__title"><a href="/products/solar-garden-spotlight-52-led">ספוט סולארי עוצמתי לגינה – 52 LED עם 3 מצבי תאורה</a></p><p class="env2-coll-ruler__axis">כמות · <bdi>2</bdi> אפשרויות</p></div>
+              <div class="env2-coll-ruler__rail"><div class="env2-coll-rail" data-unit="price" data-state="on" data-short="99_90 169_90 189_90 199_90">
+                    <span class="env2-coll-rail__line" aria-hidden="true"></span>
+                    <span class="env2-coll-ruler__bar" style="--env2-bar-a:43.99%;--env2-bar-w:42.01%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__dot" data-n="219.90" data-pick="219_90 all" style="--env2-rail-p:43.99%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+                      <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>219.90</bdi> ₪</span></span>
+                    </span><span class="env2-coll-rail__v" data-stop="99_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>219.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>219.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="169_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>219.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>219.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="189_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>219.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>219.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="199_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>219.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>219.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="219_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>219.90</bdi> ₪</span></span>
+                        </span></div></div>
+              <div class="env2-coll-ruler__act">
+                <a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/solar-garden-spotlight-52-led">לבחירת דגם</a>
+              </div>
+            </div><div class="env2-coll-ruler__row">
+              <div class="env2-coll-ruler__rowhead">
+                <p class="env2-coll-ruler__title"><a href="/products/solar-security-light-100-led">תאורת אבטחה סולארית 100 LED עם חיישן תנועה</a></p></div>
+              <div class="env2-coll-ruler__rail"><div class="env2-coll-rail" data-unit="price" data-state="on">
+                    <span class="env2-coll-rail__line" aria-hidden="true"></span>
+                    <span class="env2-coll-ruler__bar" style="--env2-bar-a:19.98%;--env2-bar-w:0.0%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__dot" data-n="99.90" data-pick="99_90 169_90 189_90 199_90 219_90 all" style="--env2-rail-p:19.98%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+                      <span class="env2-coll-rail__price"><span class="env2-price"><bdi>99.90</bdi> ₪</span></span>
+                    </span><span class="env2-coll-rail__v" data-stop="99_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>99.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="169_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>99.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="189_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>99.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="199_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>99.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="219_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>99.90</bdi> ₪</span></span>
+                        </span></div></div>
+              <div class="env2-coll-ruler__act">
+                <form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-buy" data-env2-buy>
+      <input type="hidden" name="form_type" value="product">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="id" value="95649">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" name="add" class="env2-btn env2-btn--sm">הוספה לסל</button>
+    </form>
+              </div>
+            </div><div class="env2-coll-ruler__row" data-short="99_90 169_90 189_90">
+              <div class="env2-coll-ruler__rowhead">
+                <p class="env2-coll-ruler__title"><a href="/products/solar-floodlight-ip67-remote-timer">פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED</a></p><p class="env2-coll-ruler__axis">דגם · <bdi>3</bdi> אפשרויות</p></div>
+              <div class="env2-coll-ruler__rail"><div class="env2-coll-rail" data-unit="price" data-state="on" data-short="99_90 169_90 189_90">
+                    <span class="env2-coll-rail__line" aria-hidden="true"></span>
+                    <span class="env2-coll-ruler__bar" style="--env2-bar-a:39.99%;--env2-bar-w:60.01%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__dot" data-n="199.90" data-pick="199_90 219_90 all" style="--env2-rail-p:39.99%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+                      <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>199.90</bdi> ₪</span></span>
+                    </span><span class="env2-coll-rail__v" data-stop="99_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>199.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>199.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="169_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>199.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>199.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="189_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>199.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>199.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="199_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>199.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="219_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><span class="env2-price__from">מ־</span><bdi>199.90</bdi> ₪</span></span>
+                        </span></div></div>
+              <div class="env2-coll-ruler__act">
+                <a class="env2-btn env2-btn--sm env2-btn--ghost" href="/products/solar-floodlight-ip67-remote-timer">לבחירת דגם</a>
+              </div>
+            </div><div class="env2-coll-ruler__row" data-short="99_90 169_90">
+              <div class="env2-coll-ruler__rowhead">
+                <p class="env2-coll-ruler__title"><a href="/products/rechargeable-telescopic-camping-lantern">פנס קמפינג טלסקופי נטען 360° עם תאורת צד</a></p></div>
+              <div class="env2-coll-ruler__rail"><div class="env2-coll-rail" data-unit="price" data-state="on" data-short="99_90 169_90">
+                    <span class="env2-coll-rail__line" aria-hidden="true"></span>
+                    <span class="env2-coll-ruler__bar" style="--env2-bar-a:37.99%;--env2-bar-w:0.0%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__dot" data-n="189.90" data-pick="189_90 199_90 219_90 all" style="--env2-rail-p:37.99%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+                      <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                    </span><span class="env2-coll-rail__v" data-stop="99_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>189.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="169_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>189.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="189_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="199_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="219_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span></div></div>
+              <div class="env2-coll-ruler__act">
+                <form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-buy" data-env2-buy>
+      <input type="hidden" name="form_type" value="product">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="id" value="36235">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" name="add" class="env2-btn env2-btn--sm">הוספה לסל</button>
+    </form>
+              </div>
+            </div><div class="env2-coll-ruler__row" data-short="99_90 169_90">
+              <div class="env2-coll-ruler__rowhead">
+                <p class="env2-coll-ruler__title"><a href="/products/dual-head-garden-light-10w-ip65">מנורת גינה דו־ראשית מתכווננת 180° – ‏10W IP65</a></p></div>
+              <div class="env2-coll-ruler__rail"><div class="env2-coll-rail" data-unit="price" data-state="on" data-short="99_90 169_90">
+                    <span class="env2-coll-rail__line" aria-hidden="true"></span>
+                    <span class="env2-coll-ruler__bar" style="--env2-bar-a:37.99%;--env2-bar-w:0.0%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__dot" data-n="189.90" data-pick="189_90 199_90 219_90 all" style="--env2-rail-p:37.99%" aria-hidden="true"></span>
+                    <span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
+                      <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                    </span><span class="env2-coll-rail__v" data-stop="99_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>189.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="169_90" data-state="beyond">
+                          <span class="env2-coll-rail__miss">מחיר הכניסה: <bdi>189.90</bdi> ₪</span>
+                          <span class="env2-coll-rail__price env2-coll-rail__price--miss"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="189_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="199_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span><span class="env2-coll-rail__v" data-stop="219_90" data-state="at">
+                          <span class="env2-coll-rail__price"><span class="env2-price"><bdi>189.90</bdi> ₪</span></span>
+                        </span></div></div>
+              <div class="env2-coll-ruler__act">
+                <form method="post" action="/cart/add" accept-charset="UTF-8" class="env2-buy" data-env2-buy>
+      <input type="hidden" name="form_type" value="product">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="id" value="49350">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" name="add" class="env2-btn env2-btn--sm">הוספה לסל</button>
+    </form>
+              </div>
+            </div></div>
+
+      <div class="env2-coll-ruler__foot"><p class="env2-coll-ruler__footnote">כל שורה מציגה את טווח המחירים המלא של הדגם. כשמחיר הכניסה גבוה מהסכום שנבחר — כתוב מהו, ולא מוסתר.</p></div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+</div>
+</main>
+<script>
+(function(){
+  if (window.env2 && window.env2.observe) return;
+  var root = document.documentElement;
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen = (typeof WeakSet === 'function') ? new WeakSet() : null;
+  var tracked = [];
+  var io = null;
+
+  function light(el){ if (el && el.classList) el.classList.add('lit'); }
+  function inView(el){
+    var vh = window.innerHeight || root.clientHeight; var r = el.getBoundingClientRect();
+    return r.top < vh * 0.82 && r.bottom > vh * 0.1;
+  }
+  /* belt and braces: light anything already inside the viewport (passive scroll, rAF) */
+  function sweep(){
+    for (var i = tracked.length - 1; i >= 0; i--) {
+      var el = tracked[i];
+      if (el.classList.contains('lit')) { tracked.splice(i, 1); continue; }
+      if (inView(el)) { light(el); if (io) io.unobserve(el); tracked.splice(i, 1); }
+    }
+  }
+  function getIO(){
+    if (io || !('IntersectionObserver' in window)) return io;
+    io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { light(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.25, rootMargin: '0px 0px -6% 0px' });
+    return io;
+  }
+  /* observe(root): idempotent, safe per section, safe on document. Lamps with
+     data-lamp="manual" are left to their section (light them with env2.light(el)),
+     except under reduced motion, where every lamp is lit at once. */
+  function observe(rootEl){
+    rootEl = rootEl || document;
+    var list = [];
+    if (rootEl.nodeType === 1 && rootEl.hasAttribute('data-lamp')) list.push(rootEl);
+    var q = rootEl.querySelectorAll ? rootEl.querySelectorAll('[data-lamp]') : [];
+    for (var i = 0; i < q.length; i++) list.push(q[i]);
+    list.forEach(function(el){
+      if (el.classList.contains('lit')) return;
+      if (seen ? seen.has(el) : el.__env2seen) return;
+      if (el.getAttribute('data-lamp') === 'manual' && !rm) return;
+      if (seen) seen.add(el); else el.__env2seen = true;
+      if (rm || !getIO()) { light(el); return; }
+      tracked.push(el); io.observe(el);
+    });
+    sweep();
+    return list.length;
+  }
+
+  /* scroll progress → --env2-p (alias --p) on <html>; the sun rail and the hero use it */
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var max = Math.max(1, root.scrollHeight - window.innerHeight);
+      var y = window.scrollY || window.pageYOffset || 0;
+      var p = rm ? 0 : Math.min(1, Math.max(0, y / max));
+      var v = p.toFixed(4);
+      root.style.setProperty('--env2-p', v); root.style.setProperty('--p', v);
+      sweep();
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
+
+  /* in-page anchors to sections (#env2-…) scroll smoothly, instantly under reduced motion */
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#env2-"]') : null;
+    if (!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+    if (window.history && history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+  });
+
+  /* buy forms (snippets/elmsnest-v2-buy): add to cart without leaving the page and open the Kalles
+     cart drawer. Anything missing (no drawer, no fetch, request failed) → the native POST still works. */
+  document.addEventListener('submit', function(e){
+    var form = e.target;
+    if (!form || !form.matches || !form.matches('form[data-env2-buy]')) return;
+    var drawer = document.querySelector('hdt-cart-drawer[section-id]');
+    if (!drawer || typeof window.fetch !== 'function' || typeof window.FormData !== 'function') return;
+    e.preventDefault();
+    var btn = form.querySelector('[type="submit"]');
+    var fd = new FormData(form);
+    fd.append('sections', drawer.getAttribute('section-id'));
+    fd.append('sections_url', location.pathname);
+    if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+    var rootPath = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+    fetch(rootPath + 'cart/add.js', {
+      method: 'POST', body: fd,
+      headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/javascript' }
+    }).then(function(r){ return r.json(); }).then(function(j){
+      if (!j || j.status) throw new Error('cart/add failed');
+      /* The drawer is the theme's, and on a slow phone or a failed chunk its custom element can still
+         be un-upgraded when the POST succeeds — the item enters the cart and the screen does not
+         change, so the same button gets pressed twice. The page therefore acknowledges the add on its
+         own, before and regardless of the drawer: the label says so and the control stays disabled
+         while it does. Restored by the finally-branch below. */
+      if (btn && !btn.getAttribute('data-env2-said')) {
+        btn.setAttribute('data-env2-said', btn.textContent);
+        btn.textContent = btn.getAttribute('data-env2-added') || 'נוסף לסל';
+        setTimeout(function(){
+          var was = btn.getAttribute('data-env2-said');
+          if (was !== null) { btn.textContent = was; btn.removeAttribute('data-env2-said'); }
+          btn.disabled = false; btn.removeAttribute('aria-busy');
+        }, 1600);
+      }
+      document.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: {
+        resource: {}, sourceId: String(fd.get('id')), cartData: j,
+        actionAfterATC: 'open_cart_drawer', source: 'product-form-component',
+        data: { itemCount: 1, sections: j.sections }
+      } }));
+    }).catch(function(){
+      if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+      form.submit();
+    }).then(function(){
+      if (btn && !btn.getAttribute('data-env2-said')) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+    });
+  });
+
+  window.env2 = { rm: rm, observe: observe, sweep: sweep, light: light, version: '2.0' };
+
+  function boot(){ observe(document); onScroll(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  document.addEventListener('shopify:section:load', function(e){ observe(e.target || document); });
+})();
+</script>
+<script>
+/* elmsnest-v2-coll-ruler — the ENHANCEMENT, and nothing else (collection WINNING-SPEC §3.4).
+   The narrowing itself is radio inputs plus generated ":checked ~" CSS and works with this file
+   deleted, with scripting disabled and with reduced motion on. All this does is:
+     1. read #len-10 / #qty-4 / #band-149_90 out of the URL on load and check that stop, so a narrowed
+        page can be shared;
+     2. write the chosen stop back into the hash on change, with replaceState so no history entry and
+        no scroll jump is created (a :target mechanism would jump; that is why this page uses radios).
+   history.replaceState throws on some file:// and sandboxed contexts, so it is guarded — a failure
+   must never cost the visitor the narrowing, which is not ours to break. Ends with the CONTRACT's
+   env2.observe fallback line so the count numeral lights (and lights anyway without JS). */
+(function () {
+  function init(el) {
+    if (el.__env2CollRuler) return;
+    el.__env2CollRuler = true;
+    var key = el.getAttribute('data-unit-key') || 'len';
+    var pick = function (hash) {
+      if (!hash) return;
+      var k = hash.replace(/^#(len|qty|band)-/, '');
+      if (k === hash || !k) return;
+      if (!/^[A-Za-z0-9_]+$/.test(k)) return;
+      var input = el.querySelector('#env2-stop-' + k);
+      if (input && input.name === 'env2-stop') input.checked = true;
+    };
+    pick(window.location.hash);
+    el.addEventListener('change', function (e) {
+      var t = e.target;
+      if (!t || t.name !== 'env2-stop' || !t.id) return;
+      var v = t.id.replace('env2-stop-', '');
+      try {
+        window.history.replaceState(null, '',
+          v === 'all' ? window.location.pathname + window.location.search : '#' + key + '-' + v);
+      } catch (err) { /* file:// and sandboxed documents refuse replaceState; the radio still narrowed */ }
+    });
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-coll-ruler]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-coll-ruler]')) init(scope);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+</script>
+</body></html>

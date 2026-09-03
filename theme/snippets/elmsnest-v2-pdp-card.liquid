@@ -23,12 +23,39 @@
     lamp         : 'off' to skip [data-lamp] (a card inside an already-lit figure).
     class        : extra classes on the <article>.
 
+  ------------------------------------------------------------------ round 2 additions (collection §3.5)
+  ADDITIVE, 2026-09-03. All four are OPTIONAL and all four default to today's rendering, so the PDP
+  related row (sections/elmsnest-v2-pdp-related.liquid, which passes none of them) renders byte for
+  byte what it rendered before. Nothing was forked: the collection page reuses THIS card.
+
+    variant      : 'scene' -> the scrim card that rides a photograph (collection §4.1 and §4.3): the
+                   --env2-scrim ground with backdrop-filter:blur(10px), 22px/26px padding, and the
+                   price and the action on one space-between row. Blank -> the transparent card.
+    axis_caption : one 14px --env2-ink-2 line UNDER THE TITLE — the option axis and how far it reaches
+                   ("5 מ׳ / 10 נורות · 8 מ׳ / 20 נורות"). Always derived from
+                   snippets/elmsnest-v2-coll-axis.liquid; never typed (§6.19).
+    unit_price_line : one 14px --env2-ink-2 line UNDER THE PRICE ROW, at the start edge — the derived
+                   per-unit figure (graft C2), always '≈'-prefixed by the CALLER ("≈29.16 ₪ ליחידה").
+                   The card prints the string it is handed; it does no arithmetic.
+    glyph        : '' (default, always an <img>) | 'auto' | 'force'.
+                   'auto' asks elmsnest-v2-pdp-image (emit:'no_clean') whether this handle has a
+                   text-free photograph at any index, and draws the §3.6.3 plate instead when it has
+                   none. 'force' always draws the plate. Collection §3.6.1 makes 'auto' the house rule
+                   on the collection page for the fifteen poster-only products; it is opt-in precisely
+                   so the PDP cannot change under it.
+                   THE CALLER MUST RENDER THE SPRITE ONCE PER PAGE FIRST:
+                   {% render 'elmsnest-v2-coll-glyph', sprite: true %}
+
   ------------------------------------------------------------------ what it prints
     <article class="env2-pdp-card" data-lamp style="--env2-pdp-card-w:…;--env2-pdp-card-ar:…">
       <a  class="env2-pdp-card__media">  <span class="env2-pool">  <span class="env2-ph env2-pdp-card__ph"> <img>
       <p  class="env2-kicker env2-pdp-card__kicker">        place · approved suits phrase   (or absent)
       <h3 class="env2-pdp-card__title"><a>                  Heebo 400 — NEVER the serif (§6.12)
+      <p  class="env2-pdp-card__axis">                      axis_caption, only when passed
       <div class="env2-pdp-card__row">  {price}  {buy}      elmsnest-v2-price + elmsnest-v2-buy
+      <p  class="env2-pdp-card__unit">                      unit_price_line, only when passed
+    variant:'scene' adds .env2-pdp-card--scene to the <article> and nothing else to the markup;
+    glyph draws <span class="env2-coll-glyph"> inside the __ph instead of the <img>.
     Price rule is elmsnest-v2-price, unchanged: single -> '169.90 ₪'; max <= min*1.25 ->
     '219.90–252.90 ₪'; else -> 'מ־89.90 ₪'. Buy is elmsnest-v2-buy: one available variant -> a real
     POST form with a <button>; anything else -> a ghost link to the product.
@@ -50,6 +77,14 @@
   assign env2_ar = aspect | default: '1/1.15'
   assign env2_extra = class | default: ''
 
+  # round 2 (collection §3.5): three optional lines and one optional plate. Every one of them is
+  # empty/false unless the caller asks, so the PDP related row is untouched.
+  assign env2_axisline = axis_caption | default: ''
+  assign env2_unitline = unit_price_line | default: ''
+  if variant == 'scene'
+    assign env2_extra = env2_extra | append: ' env2-pdp-card--scene' | strip
+  endif
+
   # the place kicker: the four approved pairs, keyed by the product type that maps 1:1 to the four
   # collections. Anything else prints nothing — never a new place, never a new promise.
   # 'none' = the caller has already said the place (the related deck's own eyebrow and deck line do),
@@ -70,7 +105,15 @@
     endif
   endif
 -%}
-{%- capture env2_ci -%}{%- render 'elmsnest-v2-pdp-image', product: product, slot: 'card', index: image_index -%}{%- endcapture -%}
+{%- assign env2_useglyph = false -%}
+{%- if glyph == 'force' -%}
+  {%- assign env2_useglyph = true -%}
+{%- elsif glyph == 'auto' -%}
+  {%- capture env2_nc -%}{%- render 'elmsnest-v2-pdp-image', product: product, emit: 'no_clean' -%}{%- endcapture -%}
+  {%- assign env2_nc = env2_nc | strip -%}
+  {%- if env2_nc == '1' -%}{%- assign env2_useglyph = true -%}{%- endif -%}
+{%- endif -%}
+{%- capture env2_ci -%}{%- render 'elmsnest-v2-pdp-image', product: product, slot: 'card', index: image_index, emit: '', glyph: false -%}{%- endcapture -%}
 {%- liquid
   assign env2_ci = env2_ci | plus: 0
   assign env2_img = image | default: product.images[env2_ci] | default: product.featured_image
@@ -87,7 +130,9 @@
   <a class="env2-pdp-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
     <span class="env2-pool" aria-hidden="true"></span>
     <span class="env2-ph env2-pdp-card__ph">
-      {%- if env2_img != blank -%}
+      {%- if env2_useglyph -%}
+        {%- render 'elmsnest-v2-coll-glyph', product: product, aspect: env2_ar, lamp: 'off', glyph: '', class: '' -%}
+      {%- elsif env2_img != blank -%}
         <img src="{{ env2_img | image_url: width: 720 }}"
              srcset="{{ env2_img | image_url: width: 420 }} 420w, {{ env2_img | image_url: width: 720 }} 720w, {{ env2_img | image_url: width: 1040 }} 1040w"
              sizes="(max-width:900px) 62vw, {{ env2_w }}px"
@@ -97,11 +142,13 @@
     </span>
   </a>
   {%- if env2_kicker != '' -%}<p class="env2-kicker env2-pdp-card__kicker">{{ env2_kicker }}</p>{%- endif -%}
-  <h3 class="env2-pdp-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+  <h3 class="env2-pdp-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>{% if env2_axisline != '' %}
+  <p class="env2-pdp-card__axis">{{ env2_axisline }}</p>{% endif %}
   <div class="env2-pdp-card__row">
     <span class="env2-pdp-card__price">{% render 'elmsnest-v2-price', product: product %}</span>
     <span class="env2-pdp-card__action">{% render 'elmsnest-v2-buy', product: product, label: action_label, add_label: add_label, small: true %}</span>
-  </div>
+  </div>{% if env2_unitline != '' %}
+  <p class="env2-pdp-card__unit">{{ env2_unitline }}</p>{% endif %}
 </article>
 {%- endunless -%}
 {%- if env2_css_only -%}
@@ -133,5 +180,21 @@
   .env2-pdp-card__price .env2-price{--env2-price-size:19px}
   .env2-pdp-card__title{font-size:var(--env2-pdp-card-title-mb,15px)}
 }
+/* ---------- round 2, collection §3.5. Every selector below needs a class or an element the PDP
+   never emits (--scene, __axis, __unit, .env2-coll-glyph), so the PDP related row is unaffected. ---- */
+.env2-pdp-card__axis,.env2-pdp-card__unit{margin:0;font-family:var(--env2-sans);font-weight:300;
+  font-size:14px;line-height:1.45;color:var(--env2-ink-2);unicode-bidi:isolate;text-wrap:pretty}
+.env2-pdp-card__axis{margin-block-start:-4px}
+.env2-pdp-card__unit{margin-block-start:-6px;font-variant-numeric:tabular-nums}
+/* the scrim card that rides a photograph — the ONLY card surface on the collection page (§3.1),
+   used exactly twice: the pinned card on the scene and the card on a band photo. Radius stays 0. */
+.env2-pdp-card--scene{background:var(--env2-scrim);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);padding:22px 26px;border-radius:0;gap:10px}
+.env2-pdp-card--scene .env2-pdp-card__row{margin-block-start:6px}
+@media (max-width:900px){
+  .env2-pdp-card--scene{padding:18px 20px;inline-size:100%;max-inline-size:100%}
+}
+/* a drawn plate stands in for the photograph in the same box (§3.6.3) */
+.env2-pdp-card__ph .env2-coll-glyph{position:absolute;inset:0;inline-size:100%;block-size:100%;aspect-ratio:auto}
 </style>
 {%- endif -%}

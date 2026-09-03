@@ -16,6 +16,27 @@
     index   : the section's 1-based range setting (1 = admin position 1 = product.images[0]).
               0 / blank / nil  -> the per-product ledger default for the slot.
     fallback: optional 0-based index used when the ledger has nothing for this handle.
+    emit    : 'no_clean' -> print '1' or '0' INSTEAD of an index and stop: does this handle have NO
+              text-free photograph at any index at all (collection WINNING-SPEC §3.6.2)? Opt-in, so
+              every existing caller is untouched.
+    glyph   : true -> print the literal string 'glyph' instead of an index for such a handle, so one
+              call answers both questions. Opt-in for the same reason. A caller that does not pass it
+              gets exactly the index it got before this parameter existed.
+
+  ------------------------------------------------------------------ the glyph branch (collection §3.6.2)
+  ADDITIVE, 2026-09-03, by the collection plumbing engineer. Contact sheets over brief/assets/img/,
+  indexes 0-3, all 27 products: FIFTEEN handles have no text-free image at ANY index. Every one is a
+  marketing poster — baked Hebrew headline, spec icon strip, cream or beige ground — and §6.10 bans
+  cream on any surface, including a photograph's own ground. modern-led-bollard-light-5w-ip65 also
+  carries three conflicting third-party wordmarks (LUMIERE / LUMORA / LUMIRA) across four images.
+
+  The PDP's "silently step to index 1" resolver is not enough there: it can only choose a different
+  poster. So this snippet now also ANSWERS the question, and the collection page draws the lamp instead
+  (snippets/elmsnest-v2-coll-glyph.liquid, the plate captioned "איור · אין תצלום נקי").
+
+  The stepping behaviour is UNCHANGED for every existing caller: the PDP asks for an index and still
+  gets the same index it got before. Only a caller that passes emit:'no_clean' or glyph:true sees the
+  new answer. A product with no images at all also answers '1' — there is nothing to render but a plate.
 
   Guarantees
     1. The printed index is always inside 0 … product.images.size-1 (0 when there are no images).
@@ -29,8 +50,26 @@
   if product != blank
     assign env2_n = product.images.size
   endif
+
+  comment
+    Collection WINNING-SPEC §3.6.2 — the handles with NO clean frame at any index 0-3, so no
+    index can be stepped to. Five spot products (the whole ספוטים collection except dual-head), five
+    path products, the bollard with the three wordmarks, two decor posters on cream, and two wall
+    products that are posters or white studio cut-outs. Fifteen handles, listed there in one table.
+  endcomment
+  assign env2_no_clean_image = '|solar-security-light-100-led|solar-garden-lantern-9-led|rechargeable-telescopic-camping-lantern|solar-floodlight-ip67-remote-timer|solar-garden-spotlight-52-led|warm-solar-step-deck-lights|waterproof-solar-deck-step-lights|retro-solar-path-lights-set|modern-solar-path-lights-set|swaying-solar-path-lights-ip65|modern-led-bollard-light-5w-ip65|led-globe-string-lights|decorative-led-net-lights|magnetic-rechargeable-touch-wall-light|solar-wall-light-motion-sensor-ip65|'
+  assign env2_nc = '0'
+  if env2_n == 0
+    assign env2_nc = '1'
+  endif
+  if product != blank
+    assign env2_nckey = '|' | append: product.handle | append: '|'
+    if env2_no_clean_image contains env2_nckey
+      assign env2_nc = '1'
+    endif
+  endif
 -%}
-{%- if env2_n == 0 -%}0{%- else -%}
+{%- if emit == 'no_clean' -%}{{ env2_nc }}{%- elsif glyph == true and env2_nc == '1' -%}glyph{%- elsif env2_n == 0 -%}0{%- else -%}
 {%- liquid
   assign env2_slot = slot | default: 'hero'
 

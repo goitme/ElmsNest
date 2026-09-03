@@ -1,0 +1,80 @@
+{%- comment -%}
+  ElmsNest v2 — the COLLECTION ground only (collection WINNING-SPEC §3.1). Mirrors
+  snippets/elmsnest-v2-ground-product.liquid, which does the same job for the PDP, and
+  snippets/elmsnest-v2-ground-index.liquid, which does it for the homepage.
+
+  Rendered by sections/elmsnest-v2-coll-scene.liquid ONLY, once per page, at the very top of its
+  markup — exactly as the hero renders elmsnest-v2-ground-index and the stage renders
+  elmsnest-v2-ground-product. No other section may render it; rendering it twice would print the
+  same <style id> twice for no gain.
+
+  The page-agnostic tokens / type / lamps / buttons live in snippets/elmsnest-v2-core.liquid, which
+  layout/theme.liquid renders on EVERY template. Nothing here redefines a core token, nothing here is
+  per-instance, so there is no Liquid below the comment.
+
+  THE ONE IDEA (§3.1): a collection page's length is unknown — 6 products is one screen, 27 is five.
+  A percentage-stop gradient would therefore put "deep night" at 30 % of a short page and at 78 % of a
+  long one, and the two pages would not look like the same shop. So the sky is measured in PIXELS: every
+  collection reaches full night at the same distance from the top and then simply stays there.
+
+  Specificity note (load-bearing, same trap as the PDP ground): elmsnest-v2-core sets the generic
+  side-page ground with `body[class*="hdt-page-type-"]:not(.hdt-page-type-index)` = (0,2,1). A plain
+  `body.hdt-page-type-collection` is (0,1,1) and would LOSE, so every rule here is written
+  `html body.hdt-page-type-collection…` = (0,2,2). Everything is scoped to that class, so no other
+  template — index, product, page, search, cart — can be touched by this file.
+{%- endcomment -%}
+<style id="env2-ground-collection">
+/* ---------- page ground (§3.1): night measured in px, not % ----------
+   Screen 1 is a photo ground painted by elmsnest-v2-coll-scene; the document below it is this one
+   gradient and nothing else. No section paints a background (§3.1: the only card surface anywhere on
+   this page is the scrim --env2-scrim + backdrop-filter, used exactly twice). */
+html body.hdt-page-type-collection{
+  background-color:#020306;
+  background-image:linear-gradient(180deg,
+    #0b1526 0px,
+    #0a1120 620px,
+    #080e1c 1500px,
+    #060a14 2600px,
+    #04070e 3800px,
+    #020306 5000px);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-attachment:scroll;
+  min-height:100vh;
+}
+/* A page that is SHORTER than the gradient (6 products, one screen) must not be handed a squashed
+   sky: background-size:100% 100% would compress the 5000px ramp into a 2000px document and the short
+   page would go black three times faster than the long one. Painting the ramp on a fixed 5000px box
+   anchored at the top and letting #020306 fill the rest keeps every collection identical for the first
+   5000px, which is the whole point of §3.1. */
+html body.hdt-page-type-collection{background-size:100% 5000px}
+/* Kalles wraps the template in painted containers; the sky must be visible between sections. */
+html body.hdt-page-type-collection #wrapper,
+html body.hdt-page-type-collection .main-content,
+html body.hdt-page-type-collection main,
+html body.hdt-page-type-collection #MainContent,
+html body.hdt-page-type-collection .hdt-main-content,
+html body.hdt-page-type-collection .hdt-page-content,
+html body.hdt-page-type-collection .shopify-section{background:transparent}
+/* The header is transparent over the scene: the scene is the first section, starts at top 0 and clears
+   the 70px bar with its own padding (§4.1). Kill any inherited gap above it — Kalles ships a top margin
+   on the first collection section for its taupe banner, which this template retires (§5.4). */
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child{margin-block-start:0;padding-block-start:0}
+html body.hdt-page-type-collection #MainContent>.shopify-section:first-child .env2-section,
+html body.hdt-page-type-collection .hdt-main-content>.shopify-section:first-child .env2-section{margin-block-start:0}
+/* No horizontal page scroll at 360px (§6.13). The scene, the band scenes and the goodnight photo are
+   full-bleed, and the ruler's dot rails scroll INSIDE their own row — never the document. */
+html body.hdt-page-type-collection{overflow-x:hidden}
+/* §3.2's tap-target floor, on this template only. elmsnest-v2-core sizes .env2-btn--sm at 36px tall on
+   desktop (it was sized for the PDP related row) and only raises it to 44px under 900px. The collection
+   spec asks for 48px, 44px absolute, with no viewport caveat — so the floor is set here, scoped to the
+   collection body, and the PDP is not touched. Measured in the plumbing render: 36px -> 44px. */
+html body.hdt-page-type-collection .env2-btn--sm{min-block-size:44px}
+html body.hdt-page-type-collection .env2-pdp-card__action .env2-btn{min-block-size:44px}
+/* Kalles' collection chrome that §5.4 retires from templates/collection.json. The section files stay on
+   the theme until the owner signs off, so nothing is deleted; these two belts only make sure that a
+   left-over instance cannot paint a cream strip or a taupe banner over the night. */
+html body.hdt-page-type-collection .hdt-collection-toolbar,
+html body.hdt-page-type-collection .hdt-collection-banner{background:transparent}
+</style>
