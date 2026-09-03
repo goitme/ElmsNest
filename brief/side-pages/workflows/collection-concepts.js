@@ -21,6 +21,8 @@ Look (Read) at these renders before you design: ${ROOT}/brief/inventory/pdp-mult
 YOUR CREATIVE SEED (commit to it; the other four are radically different): ${s.seed}
 Concept key: "${s.key}" ("${s.name}").
 
+**This container is restarted every hour or two, so work in a way that survives it: FIRST run \`ls ${DIR}/concepts/${s.key}/\` — if files are already there, a previous run of you was interrupted: READ them, keep their idea and CSS, and produce only what is missing. Then work strictly in this order, writing each artefact to disk and screenshotting it BEFORE starting the next: index.html → shot → path.html → shot-path → all.html → shot-all → CRITIQUE.md. Never hold work in memory across steps.**
+
 Build offline, real content only, in ${DIR}/concepts/${s.key}/:
 - index.html — /collections/גרילנדות-ותאורה-דקורטיבית (7 products, 105 variants, 89.90–469.90): the complete page.
 - path.html — /collections/תאורת-שביל-סולארית (8 products, 69.90–999.90): the same system under a 14x price span.
