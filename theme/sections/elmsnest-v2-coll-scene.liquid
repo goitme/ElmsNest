@@ -512,8 +512,8 @@
 .env2-coll-scene{padding-block:0;overflow-x:clip}
 /* the photograph's mobile height is derived, never consumed raw: --env2-scene-hm is the merchant's own
    setting (image_height_mobile, inline on the section root) and --env2-scene-h is what the mobile block
-   actually measures with, so a very narrow viewport can scale the merchant's number PROPORTIONALLY in
-   one place instead of the layout being re-authored around a second constant. */
+   actually measures with, so the narrowest viewports can bound the merchant's number in ONE place
+   instead of the layout being re-authored around a second constant. Above 360px it is the setting. */
 .env2-coll-scene{--env2-scene-h:var(--env2-scene-hm,78svh)}
 .env2-coll-scene__stage{position:relative;isolation:isolate}
 .env2-coll-scene__media{position:absolute;inset:0;z-index:0;overflow:hidden;background:#05070c}
@@ -703,14 +703,28 @@
   .env2-coll-scene__next{margin-block-start:18px}
 }
 /* ---- QA-02 (regression from the QA-01 fix) -------------------------------------------------------
-   Reserving the tag's band above the type block pushed the buy control 26-68px below a 568px fold on
-   four of the five collections. The copy is not the thing to cut and the tag is not going back over
-   the h1, so at 320-360 the PHOTOGRAPH gives up the room instead: --env2-scene-h is the merchant's own
-   image_height_mobile scaled by .8 (78svh -> 62.4svh, ~89px at 568), which the media box, the type
-   block's min-height and the tag's pin band all read, so the whole scene scales together and the
-   merchant's setting is still the number in charge. Wider phones are untouched.                  */
+   Reserving the tag's band above the type block pushed the buy control below a 568px fold on four of
+   the five collections, and the first prescription — scale the photograph by .8 at <=360 — was measured
+   INERT at 320x568: the buy control sat at the same pixel with the photograph at 443, 416, 399, 354 and
+   221px. The reason is --env2-scene-tagtop above. Its ceiling is max(72px, photo - 400px), so once the
+   photograph is under 472px the ceiling IS the 72px floor and the tag band is a constant 144px that no
+   further shrinking can lower; at 320x568 the photograph is 443px before anything is done to it, so a
+   scale there only slides the copy off the picture onto the veil and buys nothing.
+
+   So the photograph is CAPPED, not scaled — 472px is the exact height at which the ceiling reaches the
+   floor, i.e. the last pixel that is still load-bearing. min() means the merchant's setting is still the
+   number in charge and is never exceeded: at 320x568 (443px) the cap does not bind at all and the
+   picture is untouched, at 360x640 it takes 499px to 472px and returns the tag band's 27px to the fold.
+   Scoped to <=360 because 78svh is over 472px on a 390 phone too (658px at 390x844, 518px at 390x664),
+   where the ceiling is genuinely above the floor and the deeper band is the composition as approved —
+   an unconditional cap would rewrite the 390x844 fold the lead and the creative director signed off.
+
+   320x568 is not closed by this and is not meant to be: the stack there is a 144px tag band + 310px of
+   copy + 14px padding before the card, the photograph contributes nothing to it, and the levers that
+   would close it all cost more than the 43px they buy. Ruled OPEN and accepted at <=320; 360x640 is the
+   line that must stay inside the fold.                                                             */
 @media (max-width:360px){
-  .env2-coll-scene{--env2-scene-h:calc(var(--env2-scene-hm,78svh) * .8)}
+  .env2-coll-scene{--env2-scene-h:min(var(--env2-scene-hm,78svh),472px)}
 }
 @media (prefers-reduced-motion:reduce){
   .env2-coll-scene__dot,.env2-coll-scene__stem,.env2-coll-scene__tag{transition:none}

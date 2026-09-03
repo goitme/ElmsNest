@@ -40,6 +40,14 @@ Three of the seven were upserted more than once during the round (rail 2×, rule
 findings were verified and corrected on the live render; the table gives the final state, and the
 local repo is byte-identical to it.
 
+**Follow-up deploy (QA-02, same day, one file).** `sections/elmsnest-v2-coll-scene.liquid` was upserted
+twice more while QA-02 below was worked: once with the lead's prescribed `.8` photograph scale
+(`ca74f152e15b6e2a19db98d07874979e`, 52,664 bytes) and once with the measured replacement that shipped —
+the 472 px cap — at **`0787eea1023baacc782ddb3dc53d7f5b`, 53,929 bytes**, `userErrors` empty, checksum
+verified against `md5(local file with the trailing newline removed)`. No other file was touched; the
+inline style, the schema and `templates/collection.json` are unchanged, so merchant settings survive.
+`python3 brief/lint.py` → **LINT OK (0 issues)**. All five URLs re-mirrored and re-shot after it.
+
 ---
 
 ## 2. Finding by finding
@@ -64,6 +72,28 @@ above 568 px at **any** tag position — before this round spot's buy control la
 i.e. on the fold line, and only because the tag was printed across the h1. The binding fold
 measurement in `WINNING-SPEC` §4.1 n-n 1 and §7 check 1 is 390×844 (`< 800 px`), and it is met with
 59–128 px to spare. Reported to the lead as an open item, not hidden.
+
+### QA-02 — the regression QA-01 left, and what actually moved it
+
+| id | sev | what changed | evidence |
+|---|---|---|---|
+| **QA-02** | blocker (partly closed) | `elmsnest-v2-coll-scene`. The photograph's mobile height is no longer consumed raw: `--env2-scene-h` is derived once (`.env2-coll-scene{--env2-scene-h:var(--env2-scene-hm,78svh)}`) and **all four** consumers in the mobile block read it — the media box, the type block's `min-block-size`, and both arms of `--env2-scene-tagtop`. At ≤360 px it is **capped, not scaled**: `@media (max-width:360px){.env2-coll-scene{--env2-scene-h:min(var(--env2-scene-hm,78svh),472px)}}`. `min()` means the merchant's `image_height_mobile` is still the number in charge and is never exceeded. | 5 URLs × 4 viewports on the deployed render. **360×640 gains 27.2 px on all five** (decor 613.5 → 586.3, path 588.0 → 560.8, wall 582.1 → 554.9, spot 563.7 → 536.5, `/all` 558.5 → 531.3), all inside the fold. **390×844 and 390×664 are byte-identical to pre-round** (718 / 718 / 741 / 672 / 718 and 607 / 577 / 601 / 557 / 577; photograph still 658.3 and 517.9 px). **320×568 is untouched** — photograph back at its original 443 px. `tagOverH1` / `tagOverEyebrow` **false in all 20**; narrow row **44 px and in fold in all 20**; no horizontal overflow; `Liquid error` = 0 in all five mirrors. |
+
+**Why the lead's first prescription was replaced.** The ruling was to shrink the photograph by `.8` at
+≤360 px, on the arithmetic that 78 svh → 62.4 svh returns ~89 px at 568. Measured, it returned **zero**:
+the buy control sat at the *same pixel* at 320×568 with the photograph at 443, 416, 399, 354 **and
+221 px**. The photograph is not in the chain at that height. `--env2-scene-tagtop`'s ceiling is
+`max(72px, photo − 400px)`, so below a 472 px photograph the ceiling *is* the 72 px floor, the tag band
+is a constant `72 + 72 = 144 px`, and `min-block-size: photo − 84px` (270 px at `.8`) is far under the
+type block's real 468–480 px of content — the block is content-sized, not photograph-sized. At 320×568
+the photograph is already 443 px before anything is done to it, so any scale there only slides the copy
+off the picture onto the veil and buys nothing. **472 px is the exact height at which the ceiling
+reaches the floor** — the last pixel that is still load-bearing — which is why the shipped rule caps
+there instead of scaling. It is scoped to ≤360 px because 78 svh is over 472 px on a 390 phone too
+(658 px at 390×844, 518 px at 390×664), where the ceiling is genuinely above the floor: an
+unconditional cap was measured and would have collapsed the 390×844 photograph to 472 px and moved the
+buy control 718 → 561 on decor, 741 → 555 on wall and 672 → 515 on spot — rewriting the fold the lead
+and the creative director signed off.
 
 ### Majors
 
@@ -196,10 +226,36 @@ The values are the finding; the location is a call the lead may reverse.
 
 **For the lead**
 
-1. **320×568.** The buy control now sits 26–68 px below the fold on decor, path, wall and spot at the
-   smallest phone size. Closing QA-01 without this cost is not possible at 78 svh of photograph; the
-   levers are the photograph's mobile height (`image_height_mobile`, a setting) or shorter deck/suits
-   copy at ≤360 px. A decision, not a bug.
+1. **320×568 — OPEN, accepted at ≤320 px, held at 360 px.** Ruled by the lead, not a bug and not a
+   pending fix. The buy control lands **43 / 43 / 26 / 31 px** below a 568 px fold on decor, path, wall
+   and spot; `/collections/all` is inside at 524.
+
+   **The arithmetic.** At 320×568 the stack above the buy control is a **144 px tag band** (72 px tag
+   floor, clear of the 60 px header, + 72 px reserve) + **310 px of copy** (eyebrow top 143 → narrow-row
+   bottom 453) + **14 px** type padding-bottom, and then the card, whose button ends 144 px in — 611 px
+   against 568. **The photograph contributes nothing to it**: proven by measuring the same pixel with
+   the photograph at 443, 416, 399, 354 and 221 px (see QA-02). There is no slack in this file to find.
+
+   **The four levers, and why each was rejected.**
+   - *Tighten the tag reserve* (`--env2-scene-tagres` 72 → ~64 px): only ~9 px is available before
+     spot's 63.2 px tag touches the eyebrow. It trades a blocker for a blocker, and does not reach 43.
+   - *Drop the pin band at ≤360 px*: reclaims the full 144 px and closes all four — but that **is**
+     QA-01's fix removed at that width. The same trade in another dress.
+   - *Trim the scene card at ≤360 px* (axis caption + per-unit line, ≈40 px on decor): the per-metre
+     figure is the strongest selling device on the page and the one no competitor prints. Losing it on
+     every ≤360 px phone to buy 40 px against a 43 px deficit would **not even close decor**.
+   - *Shrink the photograph* (the lead's first ruling): measured inert at this viewport for any factor.
+
+   **What the visitor gets at 320.** The photograph, the title, the counts, the narrow row, the product,
+   the price and the per-metre figure — and a 43 px scroll for the button. That is a scroll, not a
+   failure. Note for the record that the **pre-round page only passed at 320 because the tag was
+   printing across the h1** — spot sat at exactly 568.0 by virtue of the QA-01 bug, not despite it, so
+   there is no earlier state to restore.
+
+   **Acceptance boundary — treat as a contract.** **360×640 must stay inside the fold** (currently
+   586.3 / 560.8 / 554.9 / 536.5 / 531.3 against 640, with 27 px returned by the QA-02 cap). Any future
+   change that pushes 360×640 out of the fold is a **regression**, not a new trade. 320×568 is accepted
+   as-is; 390×844 and 390×664 remain the signed-off measurements and are unchanged.
 2. **CREATIVE-04 is partly closed.** The empty screens are gone and four of five URLs are shorter, but
    `coll-path`'s median ink fell 5.2 → 3.8 because it regained the authored quote band. Two things the
    metric cannot see: a hairline table (the ledger, the span ladder, the terms) scores 2–3 % however
