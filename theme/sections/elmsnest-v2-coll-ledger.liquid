@@ -67,6 +67,11 @@
   risk 11) and cannot spend one of §3.1's two scrim surfaces (risk 10). It carries no .env2-btn, so
   core REPORT §9.1's ink-on-glow anchor cannot appear (risk 9); the link colours are set from
   «.env2-coll-ledger .env2-coll-ledger__…» at (0,2,0), which outranks «.env2-section a» at (0,1,1).
+
+  Shopify lexer note (2026-09-03, integration): Ruby Liquid closes an output tag at the FIRST «}»
+  (VariableIncompleteEnd = /\}\}?/), so a «{n}» placeholder inside «{{ … }}» is a parse error on
+  Shopify even though the offline python-liquid harness accepts it. Every placeholder substitution
+  below is therefore done in an «assign» tag and only the finished string is echoed.
 {%- endcomment -%}
 
 {%- liquid
@@ -439,7 +444,8 @@
           {%- for env2_cl in env2_cllist -%}{{ env2_cl }}{%- unless forloop.last -%}; {% endunless -%}{%- endfor -%}.
           {%- if env2_hidden > 0 -%}
             {%- capture env2_bhid -%}<bdi>{{ env2_hidden }}</bdi>{%- endcapture -%}
-            {{ ' ' }}{{ env2_s.foot_more | default: 'ועוד {n} מנורות שנמדדות אחרת.' | escape | replace: '{n}', env2_bhid }}
+            {%- assign env2_moretxt = env2_s.foot_more | default: 'ועוד {n} מנורות שנמדדות אחרת.' | escape | replace: '{n}', env2_bhid -%}
+            {{ ' ' }}{{ env2_moretxt }}
           {%- endif -%}
         </p>
       {%- endif -%}

@@ -1,116 +1,173 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main_heading_PHNGje": {
-      "type": "main-heading",
+    "coll_scene": {
+      "type": "elmsnest-v2-coll-scene",
       "blocks": {
-        "heading_liquid_wcaa7G": {
-          "type": "_heading_liquid",
-          "settings": {
-            "text": "{{ collection.title }}",
-            "line_height": "",
-            "font_family": "hdt-font-1",
-            "text_size": "2xl",
-            "text_color": "hdt-s-text",
-            "italic": false,
-            "uppercase": false,
-            "font_size_text_lg": 16,
-            "font_size_text": 14,
-            "letter_spacing_text": 0
-          },
-          "blocks": {}
-        },
-        "heading_brc_pYUK78": {
-          "type": "_heading_brc",
-          "settings": {},
-          "blocks": {}
-        }
+        "count_products": { "type": "count", "settings": { "value": "products", "label": "מנורות" } },
+        "count_variants": { "type": "count", "settings": { "value": "variants", "label": "וריאציות" } },
+        "count_span": { "type": "count", "settings": { "value": "span", "label": "₪" } }
       },
-      "block_order": [
-        "heading_liquid_wcaa7G",
-        "heading_brc_pYUK78"
-      ],
+      "block_order": ["count_products", "count_variants", "count_span"],
       "settings": {
-        "use_dynamic_source": false,
-        "image": "",
-        "color_scheme": "scheme-env2-night",
-        "bg_overlay": 0,
-        "space_item": 0,
-        "mg": "",
-        "mg_mb": "",
-        "pd": "55px,,55px,",
-        "pd_mb": "34px,,34px,"
+        "title_glow_words": 1,
+        "show_description_p1": true,
+        "show_description_p2": false,
+        "next_label": "אל הסרגל — לפי מידה",
+        "next_anchor": "#env2-coll-ruler",
+        "image_position_desktop": "50% 45%",
+        "image_position_mobile": "50% 50%",
+        "image_height_mobile": 78,
+        "pin_x": 42,
+        "pin_y": 28,
+        "pin_x_m": 50,
+        "pin_y_m": 24,
+        "pin_stem": 120,
+        "card_image_index": 0,
+        "card_add_label": "הוספה לסל",
+        "show_unit_price": true,
+        "fallback_collection": "גרילנדות-ותאורה-דקורטיבית",
+        "collection_map": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|46|24|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|62|26|58|22|50% 50%|50% 52%\nsolar-wall-lights|outdoor-bidirectional-led-wall-light-ip65|70|24|62|22|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|solar-garden-lantern-9-led|46|24|48|22|50% 45%|50% 48%\nall|solar-firefly-garden-lights|44|26|46|24|50% 45%|50% 46%"
       }
     },
-    "main-collection": {
-      "type": "main-collection",
+    "coll_ruler": {
+      "type": "elmsnest-v2-coll-ruler",
       "blocks": {
-        "filter_KX6bJW": {
-          "type": "filter",
-          "disabled": true,
-          "settings": {}
-        }
+        "place_path": { "type": "place", "settings": { "product_type": "תאורת שביל, עמוד וגינה", "label": "שביל, מדרגות ומעברים", "question": "כמה נקודות אור צריך השביל?", "anchor": "#env2-coll-bands" } },
+        "place_wall": { "type": "place", "settings": { "product_type": "תאורת קיר", "label": "כניסה, קיר וחזית", "question": "כמה חזק האור צריך להיות?", "anchor": "#env2-coll-bands" } },
+        "place_spot": { "type": "place", "settings": { "product_type": "ספוטים, פרוז׳קטורים ותאורה ניידת", "label": "הדגשת אזור בגינה", "question": "מה בדיוק צריך להאיר?", "anchor": "#env2-coll-bands" } },
+        "place_decor": { "type": "place", "settings": { "product_type": "גרילנדות ותאורה דקורטיבית", "label": "מרפסת ופינת ישיבה", "question": "כמה מטר צריך לכסות?", "anchor": "#env2-coll-bands" } }
       },
-      "block_order": [
-        "filter_KX6bJW"
-      ],
+      "block_order": ["place_path", "place_wall", "place_spot", "place_decor"],
       "settings": {
-        "show_description": true,
-        "use_read_more": false,
-        "read_more_height": 300,
-        "description_position": "before",
-        "product_des": "1",
-        "image_ratio": "custom-pr",
-        "image_size": true,
-        "show_vendor": false,
-        "pr_border": "none",
-        "products_count": 12,
-        "col_dk": "4",
-        "col_tb": "3",
-        "col_mb": "2",
-        "space_items": "x",
-        "pagination_type": "links",
-        "enable_progressbar": true,
-        "paginate_pos": "center",
-        "dis_pagination": 40,
-        "btn_label": "",
-        "btn_style": "hdt-btn-outline",
-        "size": "xl",
-        "btn_fw": "medium",
-        "enable_sorting": true,
-        "enable_filtering": true,
-        "enable_num_cols_selector": true,
-        "widget_heading": "קטגוריות מוצרים",
-        "cat_source": "1",
-        "cat_link_list": "",
-        "count": false,
-        "colors_by_section": false,
-        "color_scheme": "scheme-env2-night",
-        "background_opacity": 0,
-        "section_layout": "container",
-        "mg": "",
-        "mg_mb": "",
-        "pd": ",,30px,",
-        "pd_mb": ",,22px,",
-        "sidebar_drawer": false,
-        "sidebar_position": "left",
-        "sidebar_size": "small",
-        "colors_by_section_sb": true,
-        "color_scheme_sb": "",
-        "background_opacity_sb": 1
+        "unit_mode": "auto",
+        "stops_max": 6,
+        "show_unit_price": true,
+        "eyebrow": "המקום — והמידה",
+        "sort_note": "הקיבוץ לפי מרחק בוטל.",
+        "off_scale_anchor": "#env2-coll-bands"
+      }
+    },
+    "coll_bands": {
+      "type": "elmsnest-v2-coll-bands",
+      "settings": {
+        "eyebrow": "תחנות הערב",
+        "band_mode": "auto",
+        "max_bands": 5,
+        "area_label": "נמדדת לפי שטח",
+        "rest_label": "שאר הקולקציה",
+        "show_unit_price": true,
+        "show_kicker": true,
+        "show_pins": true,
+        "pin_stem": 110,
+        "show_assert": true
+      }
+    },
+    "coll_span": {
+      "type": "elmsnest-v2-coll-span",
+      "blocks": {
+        "span_band_1": { "type": "band", "settings": {} },
+        "span_band_2": { "type": "band", "settings": {} },
+        "span_band_3": { "type": "band", "settings": {} }
+      },
+      "block_order": ["span_band_1", "span_band_2", "span_band_3"],
+      "settings": {
+        "enabled": true,
+        "show_on": "auto",
+        "eyebrow": "אותה קולקציה, פי {ratio_word}",
+        "heading": "כמה מנורות צריך?",
+        "deck": "המוצר היקר בקולקציה עולה פי {ratio} מהזול — לא כי הוא מנורה טובה יותר, אלא כי הוא סט של {units} יחידות.",
+        "deck_alt": "המוצר היקר בקולקציה עולה פי {ratio} מהזול. הווריאציה היקרה שלו היא {value} — זה ההפרש.",
+        "resolution_line": "{units_word} מנורות לאורך הדרך, {price} ₪ כל אחת.",
+        "scale_label": "סולם ליניארי",
+        "band_1_max": 150,
+        "band_2_max": 350,
+        "count_noun": "מנורות",
+        "from_word": "מ־",
+        "to_word": "עד",
+        "options_noun": "אפשרויות",
+        "show_unit_price": true,
+        "unit_stops": "4,8",
+        "unit_noun": "נקודות",
+        "per_unit_word": "₪ לנקודה",
+        "at_word": "ב־",
+        "or_word": "או",
+        "sold_only": "נמכרת",
+        "only_word": "בלבד",
+        "col_lamp": "המנורה",
+        "col_price": "מחיר",
+        "foot_note": "המחיר ליחידה מחושב מהמחיר של הווריאציה חלקי מספר היחידות שבה. אינו מחיר קטלוגי."
+      }
+    },
+    "coll_ledger": {
+      "type": "elmsnest-v2-coll-ledger",
+      "blocks": {
+        "ledger_note": { "type": "note", "settings": { "text": "" } }
+      },
+      "block_order": ["ledger_note"],
+      "settings": {
+        "enabled": true,
+        "show_on": "auto",
+        "unit_mode": "auto",
+        "eyebrow": "אחרי המקום — המידה",
+        "heading": "כמה מטר צריך?",
+        "heading_alt": "כמה מנורות צריך?",
+        "link_rows": true,
+        "link_label": "לסרגל המידה",
+        "short_titles": true,
+        "show_unit_price": "auto",
+        "foot_max": 6,
+        "show_page_note": true
+      }
+    },
+    "coll_terms": {
+      "type": "elmsnest-v2-coll-terms",
+      "blocks": {
+        "term_ship": { "type": "number", "settings": { "numeral": "0", "unit": "₪", "headline": "משלוח לנקודת איסוף — חינם.", "sub": "עד הבית 29.90 ₪." } },
+        "term_days": { "type": "number", "settings": { "numeral": "8–17", "unit": "ימי עסקים", "headline": "לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.", "sub": "ייתכן משלוח ממחסן מחוץ לישראל." } },
+        "term_cancel": { "type": "number", "settings": { "numeral": "14", "unit": "יום", "headline": "לביטול מקבלת המוצר, לפי חוק הגנת הצרכן.", "sub": "דמי ביטול עד 5% או 100 ₪ — הנמוך מביניהם." } },
+        "term_photo": { "type": "number", "settings": { "numeral": "1", "unit": "תמונה", "headline": "שולחים תמונה של המקום ואנחנו בודקים התאמה לפני ההזמנה.", "sub": "" } }
+      },
+      "block_order": ["term_ship", "term_days", "term_cancel", "term_photo"],
+      "settings": {
+        "eyebrow": "אחרי הבחירה — התנאים",
+        "heading": "ארבעה מספרים, לפני שמשלמים.",
+        "deck": "לא אותיות קטנות. אותם תנאים לכל [count] המנורות בקולקציה.",
+        "deck_no_count": "לא אותיות קטנות. אותם תנאים לכל המנורות בחנות.",
+        "cta_label": "לשלוח תמונה של המקום",
+        "mail_subject": "בדיקת התאמה — תמונה של המקום",
+        "cta_note": "כאשר מידע אינו מאומת, איננו מציגים אותו כעובדה."
+      }
+    },
+    "coll_goodnight": {
+      "type": "elmsnest-v2-coll-goodnight",
+      "blocks": {
+        "gn_path": { "type": "place", "settings": { "collection": "תאורת-שביל-סולארית", "label": "שביל" } },
+        "gn_wall": { "type": "place", "settings": { "collection": "solar-wall-lights", "label": "קיר" } },
+        "gn_spot": { "type": "place", "settings": { "collection": "ספוטים-ופרוז-קטורים-סולאריים", "label": "גינה" } },
+        "gn_decor": { "type": "place", "settings": { "collection": "גרילנדות-ותאורה-דקורטיבית", "label": "מרפסת" } }
+      },
+      "block_order": ["gn_path", "gn_wall", "gn_spot", "gn_decor"],
+      "settings": {
+        "image_position": "50% 70%",
+        "big_word": "לילה טוב",
+        "links_label": "להמשיך אל",
+        "show_counts": true,
+        "auto_places": true,
+        "all_label": "לכל [count] המוצרים ←",
+        "step_line": "שולחים תמונה של המקום ואנחנו בודקים התאמה לפני ההזמנה.",
+        "cta_label": "לשלוח תמונה של המקום",
+        "cta_style": "link",
+        "mail_subject": "בדיקת התאמה — תמונה של המקום"
       }
     }
   },
   "order": [
-    "main_heading_PHNGje",
-    "main-collection"
+    "coll_scene",
+    "coll_ruler",
+    "coll_bands",
+    "coll_span",
+    "coll_ledger",
+    "coll_terms",
+    "coll_goodnight"
   ]
 }

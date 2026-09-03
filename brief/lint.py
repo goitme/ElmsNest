@@ -49,6 +49,15 @@ for f in env2_files:
                 if not j.get('presets'): err(name,'no presets (section will not appear in the theme editor)')
                 nm=j.get('name','')
                 if len(nm)>25: err(name,f'schema name {nm!r} is {len(nm)} chars — the limit is 25')
+                # Shopify caps a setting label at 70 characters and rejects the whole file otherwise
+                def _labels(items,where):
+                    for it in items or []:
+                        lb=it.get('label')
+                        if isinstance(lb,str) and len(lb)>70:
+                            err(name,f'{where} setting {it.get("id")} label is {len(lb)} chars — Shopify caps a label at 70')
+                _labels(j.get('settings'),'section')
+                for _b in j.get('blocks',[]) or []:
+                    _labels(_b.get('settings'),'block '+str(_b.get('type')))
             except Exception as e: err(name,f'schema JSON invalid: {e}')
         if not re.search(r'id="env2-',s): err(name,'no id="env2-…" anchor on the section root')
         if 'scroll-margin-top' not in s: err(name,'no scroll-margin-top for the sticky header')
@@ -78,6 +87,13 @@ for f in [x for x in env2_files if os.path.basename(x).startswith(PDPSET)]:
         for r in set(re.findall(r'border-radius\s*:\s*([^;}]+)',css)):
             if r.strip() not in ('0','0px','999px','50%','inherit','var(--env2-radius,0)'):
                 err(name,f'border-radius:{r.strip()} — radius 0 everywhere except pills (999px) (§6.14)')
+    # Ruby Liquid closes an output tag at the FIRST '}' (VariableIncompleteEnd = /\}\}?/), so a
+    # {placeholder} inside {{ ... }} is a Shopify parse error even though python-liquid accepts it.
+    for m in re.finditer(r'\{\{',s):
+        j=s.find('}',m.end())
+        if j>=0 and s[j:j+2]!='}}':
+            err(name,f'output tag closes on a single "}}" at line {s.count(chr(10),0,m.start())+1} — a {{placeholder}} inside {{{{ … }}}} is a Shopify Liquid parse error; substitute inside an assign tag')
+            break
     if re.search(r'product\.images\[\s*0\s*\]',body):
         err(name,'raw product.images[0] — resolve every slot through elmsnest-v2-pdp-image so a never-use index 0 can never render (§3.5)')
     small=[x for x in re.findall(r'font-size\s*:\s*([0-9.]+)px',body) if float(x)<11.5]

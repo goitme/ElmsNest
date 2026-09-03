@@ -72,6 +72,25 @@ html body.hdt-page-type-collection{overflow-x:hidden}
    collection body, and the PDP is not touched. Measured in the plumbing render: 36px -> 44px. */
 html body.hdt-page-type-collection .env2-btn--sm{min-block-size:44px}
 html body.hdt-page-type-collection .env2-pdp-card__action .env2-btn{min-block-size:44px}
+/* §3.2's 13px floor for an information-bearing caption, same belt, same scope. The shared
+   .env2-price__from is .62em, so on the ruler row and the ledger row (17px prices) the "מ־" that turns
+   an exact price into a MINIMUM was measured at 10.54px — under the floor. elmsnest-v2-pdp-card already
+   floors it inside its own price column; this does the same for every other price on this template. The
+   selector is (0,2,2) and only sizes the shared class, it does not restyle it. */
+html body.hdt-page-type-collection .env2-price__from{font-size:max(13px,.62em)}
+/* §6.13's 44px tap floor for every product-name link on this template. A one-line name is 21-22px and a
+   two-line name is 43px, both under the floor; the hit area is expanded with padding that the negative
+   margin gives straight back, so the vertical rhythm of every row is unchanged and only the touch box
+   grows. sections/elmsnest-v2-coll-bands.liquid already does this for its own cards row; this belt adds
+   the ruler row's name, the span ladder's name, the card title wherever a card is used, and the scene's
+   own "to the ruler" link, which is a standalone link and not a link inside a sentence. Scoped to
+   .env2-coll so no Kalles link and no PDP card is touched. 14px, not 12px: at 12px the scene's own
+   19px-tall link came out 43px, one pixel short of the floor. Measured at 390 after the change: the
+   scene link 19px -> 47px, a one-line name 21px -> 49px, a two-line name 43px -> 71px. */
+html body.hdt-page-type-collection .env2-coll .env2-pdp-card__title a,
+html body.hdt-page-type-collection .env2-coll .env2-coll-ruler__title a,
+html body.hdt-page-type-collection .env2-coll .env2-coll-span__name a,
+html body.hdt-page-type-collection .env2-coll .env2-coll-scene__next a{display:inline-block;padding-block:14px;margin-block:-14px}
 /* Kalles' collection chrome that §5.4 retires from templates/collection.json. The section files stay on
    the theme until the owner signs off, so nothing is deleted; these two belts only make sure that a
    left-over instance cannot paint a cream strip or a taupe banner over the night. */

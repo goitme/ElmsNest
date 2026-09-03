@@ -1,0 +1,903 @@
+{
+ "fold": {
+  "h1": "גרילנדות ותאורה דקורטיבית",
+  "title": "גרילנדות ותאורה דקורטיבית לגינה | ElmsNest",
+  "docH": 12339,
+  "firstBuy": {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "top": 673,
+   "bottom": 718,
+   "h": 45,
+   "w": 113
+  },
+  "buys": [
+   {
+    "t": "לבחירת אורך",
+    "tag": "A",
+    "top": 673,
+    "bottom": 718,
+    "h": 45,
+    "w": 113
+   },
+   {
+    "t": "לבחירת אורך",
+    "tag": "A",
+    "top": 1684,
+    "bottom": 1729,
+    "h": 45,
+    "w": 113
+   },
+   {
+    "t": "לבחירת אורך",
+    "tag": "A",
+    "top": 1884,
+    "bottom": 1929,
+    "h": 45,
+    "w": 113
+   },
+   {
+    "t": "לבחירת אורך",
+    "tag": "A",
+    "top": 2084,
+    "bottom": 2129,
+    "h": 45,
+    "w": 113
+   }
+  ],
+  "foldText": [
+   "גרילנדת כדורי קריסטל · 5 מ׳",
+   "גרילנדת כדורי קריסטל · 5 מ׳",
+   "גרילנדת כדורי קריסטל",
+   "·",
+   "5 מ׳",
+   "ערב אחד בחצר · קולקציה",
+   "גרילנדות ותאורה דקורטיבית",
+   "דקורטיבית",
+   "מהשולחן, דרך העצים והערוגה, עד הגדר בסוף החצר.",
+   "מתאים כדי ליצור אווירה. לא מתאים אם צריך אור חזק — זו אינה מטרתה.",
+   "7 מנורות105 וריאציות89.90–469.90 ₪",
+   "7 מנורות",
+   "105 וריאציות",
+   "89.90–469.90 ₪",
+   "5 מ׳ / 20 נורות · 22 מ׳ / 200 נורות",
+   "מ־89.90 ₪",
+   "מ־89.90 ₪",
+   "מ־",
+   "לבחירת אורך",
+   "≈17.98 ₪ למטר"
+  ]
+ },
+ "secs": [
+  {
+   "id": "env2-coll-glyph-css",
+   "top": 0,
+   "h": 0
+  },
+  {
+   "id": "env2-coll-scene",
+   "top": -1,
+   "h": 944
+  },
+  {
+   "id": "env2-coll-ruler",
+   "top": 943,
+   "h": 1590
+  },
+  {
+   "id": "env2-coll-rail-css",
+   "top": 0,
+   "h": 0
+  },
+  {
+   "id": "env2-coll-rail-stops",
+   "top": 0,
+   "h": 0
+  },
+  {
+   "id": "env2-coll-ruler-stops",
+   "top": 0,
+   "h": 0
+  },
+  {
+   "id": "env2-coll-ruler-h2",
+   "top": 1161,
+   "h": 33
+  },
+  {
+   "id": "env2-coll-bands",
+   "top": 2533,
+   "h": 4890
+  },
+  {
+   "id": "env2-coll-glyph-css",
+   "top": 0,
+   "h": 0
+  },
+  {
+   "id": "env2-coll-ledger",
+   "top": 7423,
+   "h": 2259
+  },
+  {
+   "id": "env2-coll-ledger-h2",
+   "top": 7525,
+   "h": 33
+  },
+  {
+   "id": "env2-coll-terms",
+   "top": 9682,
+   "h": 1201
+  },
+  {
+   "id": "env2-coll-terms-h2",
+   "top": 9769,
+   "h": 59
+  },
+  {
+   "id": "env2-coll-goodnight",
+   "top": 10882,
+   "h": 608
+  }
+ ],
+ "pills": [
+  {
+   "t": "הכול",
+   "top": 1269,
+   "w": 64.3,
+   "h": 48,
+   "forId": "env2-stop-all"
+  },
+  {
+   "t": "1.5 מ׳",
+   "top": 1269,
+   "w": 71.1,
+   "h": 48,
+   "forId": "env2-stop-1_5"
+  },
+  {
+   "t": "6 מ׳",
+   "top": 1269,
+   "w": 61.1,
+   "h": 48,
+   "forId": "env2-stop-6"
+  },
+  {
+   "t": "7 מ׳",
+   "top": 1269,
+   "w": 61.1,
+   "h": 48,
+   "forId": "env2-stop-7"
+  },
+  {
+   "t": "10 מ׳",
+   "top": 1325,
+   "w": 67.5,
+   "h": 48,
+   "forId": "env2-stop-10"
+  },
+  {
+   "t": "12 מ׳",
+   "top": 1325,
+   "w": 67.5,
+   "h": 48,
+   "forId": "env2-stop-12"
+  },
+  {
+   "t": "32 מ׳",
+   "top": 1325,
+   "w": 68.1,
+   "h": 48,
+   "forId": "env2-stop-32"
+  }
+ ],
+ "taps": [
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית – 20 עד 200 נור",
+   "tag": "A",
+   "w": 310,
+   "h": 71.2,
+   "top": 577,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 673,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "אל הסרגל — לפי מידה ←",
+   "tag": "A",
+   "w": 159.4,
+   "h": 69.2,
+   "top": 869,
+   "cls": "env2-link"
+  },
+  {
+   "t": "הכול",
+   "tag": "LABEL",
+   "w": 64.3,
+   "h": 48,
+   "top": 1269,
+   "cls": "env2-coll-ruler__pill"
+  },
+  {
+   "t": "1.5 מ׳",
+   "tag": "LABEL",
+   "w": 71.1,
+   "h": 48,
+   "top": 1269,
+   "cls": "env2-coll-ruler__pill"
+  },
+  {
+   "t": "6 מ׳",
+   "tag": "LABEL",
+   "w": 61.1,
+   "h": 48,
+   "top": 1269,
+   "cls": "env2-coll-ruler__pill"
+  },
+  {
+   "t": "7 מ׳",
+   "tag": "LABEL",
+   "w": 61.1,
+   "h": 48,
+   "top": 1269,
+   "cls": "env2-coll-ruler__pill"
+  },
+  {
+   "t": "10 מ׳",
+   "tag": "LABEL",
+   "w": 67.5,
+   "h": 48,
+   "top": 1325,
+   "cls": "env2-coll-ruler__pill"
+  },
+  {
+   "t": "12 מ׳",
+   "tag": "LABEL",
+   "w": 67.5,
+   "h": 48,
+   "top": 1325,
+   "cls": "env2-coll-ruler__pill"
+  },
+  {
+   "t": "32 מ׳",
+   "tag": "LABEL",
+   "w": 68.1,
+   "h": 48,
+   "top": 1325,
+   "cls": "env2-coll-ruler__pill"
+  },
+  {
+   "t": "לפי אורך",
+   "tag": "A",
+   "w": 55.2,
+   "h": 44,
+   "top": 1412,
+   "cls": "env2-coll-ruler__sortlink is-current"
+  },
+  {
+   "t": "מחיר עולה",
+   "tag": "A",
+   "w": 66.2,
+   "h": 44,
+   "top": 1412,
+   "cls": "env2-coll-ruler__sortlink"
+  },
+  {
+   "t": "מחיר יורד",
+   "tag": "A",
+   "w": 59,
+   "h": 44,
+   "top": 1412,
+   "cls": "env2-coll-ruler__sortlink"
+  },
+  {
+   "t": "א־ב",
+   "tag": "A",
+   "w": 26.5,
+   "h": 44,
+   "top": 1412,
+   "cls": "env2-coll-ruler__sortlink"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית – 20 עד 200 נור",
+   "tag": "A",
+   "w": 337.7,
+   "h": 61.6,
+   "top": 1556,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 1684,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "גרילנדת כדורי LED דקורטיבית – USB או סוללות",
+   "tag": "A",
+   "w": 317.7,
+   "h": 61.6,
+   "top": 1756,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 1884,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED",
+   "tag": "A",
+   "w": 337.4,
+   "h": 61.6,
+   "top": 1956,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 2084,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "גרילנדת נורות אדיסון סולארית – 5 או 8 מטר",
+   "tag": "A",
+   "w": 294.8,
+   "h": 61.6,
+   "top": 2156,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 2285,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "3 מוצרים בקולקציה אינם נמדדים ביחידה הזאת ←",
+   "tag": "A",
+   "w": 306.1,
+   "h": 66,
+   "top": 2433,
+   "cls": "env2-link"
+  },
+  {
+   "t": "איור · אין תצלום נקי",
+   "tag": "A",
+   "w": 190.9,
+   "h": 200.4,
+   "top": 2829,
+   "cls": "env2-pdp-card__media"
+  },
+  {
+   "t": "גרילנדת כדורי LED דקורטיבית – USB או סוללות",
+   "tag": "A",
+   "w": 190.9,
+   "h": 68.5,
+   "top": 3067,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 3215,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "",
+   "tag": "A",
+   "w": 141.1,
+   "h": 197.5,
+   "top": 2873,
+   "cls": "env2-pdp-card__media"
+  },
+  {
+   "t": "גרילנדת נורות אדיסון סולארית – 5 או 8 מטר",
+   "tag": "A",
+   "w": 141.1,
+   "h": 68.5,
+   "top": 3067,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 3215,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית – 20 עד 200 נור",
+   "tag": "A",
+   "w": 0,
+   "h": 136.6,
+   "top": 3642,
+   "cls": "env2-coll-bands__pin"
+  },
+  {
+   "t": "",
+   "tag": "A",
+   "w": 310,
+   "h": 279,
+   "top": 3911,
+   "cls": "env2-pdp-card__media"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית – 20 עד 200 נור",
+   "tag": "A",
+   "w": 305.3,
+   "h": 48.3,
+   "top": 4186,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 4263,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "איור · אין תצלום נקי",
+   "tag": "A",
+   "w": 350,
+   "h": 490,
+   "top": 4685,
+   "cls": "env2-pdp-card__media"
+  },
+  {
+   "t": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED",
+   "tag": "A",
+   "w": 305.1,
+   "h": 48.3,
+   "top": 5171,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת אורך",
+   "tag": "A",
+   "w": 112.8,
+   "h": 44.8,
+   "top": 5243,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "",
+   "tag": "A",
+   "w": 252,
+   "h": 264.6,
+   "top": 5688,
+   "cls": "env2-pdp-card__media"
+  },
+  {
+   "t": "תאורת גחליליות סולארית לגינה – 10 נורות מתנד",
+   "tag": "A",
+   "w": 252,
+   "h": 68.5,
+   "top": 5949,
+   "cls": ""
+  },
+  {
+   "t": "הוספה לסל",
+   "tag": "BUTTON",
+   "w": 103.8,
+   "h": 44.8,
+   "top": 6042,
+   "cls": "env2-btn env2-btn--sm"
+  },
+  {
+   "t": "",
+   "tag": "A",
+   "w": 252,
+   "h": 352.8,
+   "top": 6112,
+   "cls": "env2-pdp-card__media"
+  },
+  {
+   "t": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב הבית",
+   "tag": "A",
+   "w": 252,
+   "h": 68.5,
+   "top": 6461,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת גוון",
+   "tag": "A",
+   "w": 101.5,
+   "h": 44.8,
+   "top": 6554,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "איור · אין תצלום נקי",
+   "tag": "A",
+   "w": 300,
+   "h": 315,
+   "top": 6825,
+   "cls": "env2-pdp-card__media"
+  },
+  {
+   "t": "רשת תאורת LED דקורטיבית לחוץ ולגינה – 1.5 עד",
+   "tag": "A",
+   "w": 300,
+   "h": 68.5,
+   "top": 7136,
+   "cls": ""
+  },
+  {
+   "t": "לבחירת דגם",
+   "tag": "A",
+   "w": 106.9,
+   "h": 44.8,
+   "top": 7228,
+   "cls": "env2-btn env2-btn--sm env2-btn--ghost"
+  },
+  {
+   "t": "1.5מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 7683,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי LED דקורטיבית 10 נורות",
+   "tag": "A",
+   "w": 246.9,
+   "h": 44,
+   "top": 7731,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "3מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 7800,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי LED דקורטיבית 20 נורות",
+   "tag": "A",
+   "w": 247.4,
+   "h": 44,
+   "top": 7848,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "5מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 7917,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית 20 נורות",
+   "tag": "A",
+   "w": 262.2,
+   "h": 44,
+   "top": 7965,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "גרילנדת נורות אדיסון סולארית 10 נורות",
+   "tag": "A",
+   "w": 250.5,
+   "h": 44,
+   "top": 8013,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "6מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8082,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי LED דקורטיבית 40 נורות",
+   "tag": "A",
+   "w": 247.4,
+   "h": 44,
+   "top": 8130,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "6.5מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8199,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית 30 נורות",
+   "tag": "A",
+   "w": 262.2,
+   "h": 44,
+   "top": 8247,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "7מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8316,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "שרשרת חבל סולארית לחוץ 50 נורות",
+   "tag": "A",
+   "w": 232.9,
+   "h": 44,
+   "top": 8364,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "8מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8433,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת נורות אדיסון סולארית 20 נורות",
+   "tag": "A",
+   "w": 251,
+   "h": 44,
+   "top": 8481,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "9.5מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8550,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית 50 נורות",
+   "tag": "A",
+   "w": 262.2,
+   "h": 44,
+   "top": 8598,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "10מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8667,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי LED דקורטיבית 80 נורות",
+   "tag": "A",
+   "w": 247.4,
+   "h": 44,
+   "top": 8715,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "11מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8784,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית 60 נורות",
+   "tag": "A",
+   "w": 260.3,
+   "h": 44,
+   "top": 8833,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "12מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 8902,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "שרשרת חבל סולארית לחוץ 100 נורות",
+   "tag": "A",
+   "w": 239.1,
+   "h": 44,
+   "top": 8950,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "גרילנדת כדורי LED דקורטיבית 100 נורות",
+   "tag": "A",
+   "w": 253.6,
+   "h": 44,
+   "top": 8998,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "13מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 9067,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית 100 נורות",
+   "tag": "A",
+   "w": 260.3,
+   "h": 44,
+   "top": 9116,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "22מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 9185,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "שרשרת חבל סולארית לחוץ 200 נורות",
+   "tag": "A",
+   "w": 239.6,
+   "h": 44,
+   "top": 9233,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "גרילנדת כדורי קריסטל סולארית 200 נורות",
+   "tag": "A",
+   "w": 260.3,
+   "h": 44,
+   "top": 9282,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "32מ׳",
+   "tag": "A",
+   "w": 350,
+   "h": 44,
+   "top": 9351,
+   "cls": "env2-coll-ledger__k"
+  },
+  {
+   "t": "שרשרת חבל סולארית לחוץ 300 נורות",
+   "tag": "A",
+   "w": 239.6,
+   "h": 44,
+   "top": 9399,
+   "cls": "env2-coll-ledger__name"
+  },
+  {
+   "t": "לשלוח תמונה של המקום",
+   "tag": "A",
+   "w": 350,
+   "h": 48,
+   "top": 10595,
+   "cls": "env2-btn env2-btn--ghost env2-pdp-photo env2-coll-terms__btn"
+  },
+  {
+   "t": "משלוחים ואספקה",
+   "tag": "A",
+   "w": 105.7,
+   "h": 47,
+   "top": 10732,
+   "cls": ""
+  },
+  {
+   "t": "זמני טיפול",
+   "tag": "A",
+   "w": 58.6,
+   "h": 47,
+   "top": 10732,
+   "cls": ""
+  },
+  {
+   "t": "מדיניות ביטולים",
+   "tag": "A",
+   "w": 89.3,
+   "h": 47,
+   "top": 10732,
+   "cls": ""
+  },
+  {
+   "t": "שאלות נפוצות",
+   "tag": "A",
+   "w": 82.5,
+   "h": 47,
+   "top": 10779,
+   "cls": ""
+  },
+  {
+   "t": "שביל8",
+   "tag": "A",
+   "w": 350,
+   "h": 50.4,
+   "top": 11122,
+   "cls": "env2-coll-goodnight__a"
+  },
+  {
+   "t": "קיר6",
+   "tag": "A",
+   "w": 350,
+   "h": 50.4,
+   "top": 11172,
+   "cls": "env2-coll-goodnight__a"
+  },
+  {
+   "t": "גינה6",
+   "tag": "A",
+   "w": 350,
+   "h": 50.4,
+   "top": 11223,
+   "cls": "env2-coll-goodnight__a"
+  },
+  {
+   "t": "לכל 27 המוצרים ←",
+   "tag": "A",
+   "w": 350,
+   "h": 50.4,
+   "top": 11275,
+   "cls": "env2-coll-goodnight__all"
+  },
+  {
+   "t": "לשלוח תמונה של המקום ←",
+   "tag": "A",
+   "w": 186.9,
+   "h": 67.5,
+   "top": 11408,
+   "cls": "env2-link env2-pdp-photo env2-coll-goodnight__photo"
+  }
+ ],
+ "errs": [
+  "Uncaught SyntaxError: Unexpected token '<'",
+  "Uncaught SyntaxError: Unexpected token '<'",
+  "Uncaught SyntaxError: Unexpected token '<'",
+  "Uncaught SyntaxError: Unexpected token '<'",
+  "TypeError: Failed to resolve module specifier 'a/ee2dde4a8a54739b5011515d7f9480c5.js'",
+  "TypeError: Failed to resolve module specifier \"@theme/utilities\". Import Map: \"@theme/utilities\" matches with \"@theme/utilities\" but is blocked by a null value",
+  "TypeError: Failed to resolve module specifier \"@theme/libs\". Import Map: \"@theme/libs\" matches with \"@theme/libs\" but is blocked by a null value"
+ ],
+ "nav": [
+  "https://elmsnest.com/cdn/shopifycloud/privacy-banner/storefront-banner.js",
+  "https://elmsnest.com/.well-known/shopify/monorail/unstable/produce_batch",
+  "https://elmsnest.com/.well-known/shopify/monorail/unstable/produce_batch",
+  "https://elmsnest.com/cdn/wpm/b027c20d5w154ab788p53b8a3a3maf518783m.js",
+  "http://elmsnest.com/cdn/s/trekkie.storefront.c3de4351cec0b617fdf79b803eb104cc6c0d8097.min.js",
+  "http://elmsnest.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+  "https://elmsnest.com/.well-known/shopify/monorail/unstable/produce_batch",
+  "https://elmsnest.com/api/collect"
+ ]
+}

@@ -55,9 +55,10 @@
     Collection WINNING-SPEC §3.6.2 — the handles with NO clean frame at any index 0-3, so no
     index can be stepped to. Five spot products (the whole ספוטים collection except dual-head), five
     path products, the bollard with the three wordmarks, two decor posters on cream, and two wall
-    products that are posters or white studio cut-outs. Fifteen handles, listed there in one table.
+    products that are posters or white studio cut-outs. Fifteen handles, listed there in one table,
+    plus solar-rope-string-lights (see the ledger note below) — sixteen.
   endcomment
-  assign env2_no_clean_image = '|solar-security-light-100-led|solar-garden-lantern-9-led|rechargeable-telescopic-camping-lantern|solar-floodlight-ip67-remote-timer|solar-garden-spotlight-52-led|warm-solar-step-deck-lights|waterproof-solar-deck-step-lights|retro-solar-path-lights-set|modern-solar-path-lights-set|swaying-solar-path-lights-ip65|modern-led-bollard-light-5w-ip65|led-globe-string-lights|decorative-led-net-lights|magnetic-rechargeable-touch-wall-light|solar-wall-light-motion-sensor-ip65|'
+  assign env2_no_clean_image = '|solar-security-light-100-led|solar-garden-lantern-9-led|rechargeable-telescopic-camping-lantern|solar-floodlight-ip67-remote-timer|solar-garden-spotlight-52-led|warm-solar-step-deck-lights|waterproof-solar-deck-step-lights|retro-solar-path-lights-set|modern-solar-path-lights-set|swaying-solar-path-lights-ip65|modern-led-bollard-light-5w-ip65|led-globe-string-lights|decorative-led-net-lights|magnetic-rechargeable-touch-wall-light|solar-wall-light-motion-sensor-ip65|solar-rope-string-lights|'
   assign env2_nc = '0'
   if env2_n == 0
     assign env2_nc = '1'
@@ -87,14 +88,23 @@
       powerful-solar-garden-light           0/1/3 carry a caption chip, 4/5 are diagrams          → 2 is clean
     solar-rope-string-lights has NO text-free frame at all: 0/1/3/4 carry a headline, 5 is a diagram,
     and 2 carries an "עמידות IP65" chip that only a top crop removes; brief/WINNING-SPEC §3.6 uses it
-    with object-position 50% 100%. A card cannot crop, so no row is recorded for it here.
+    with object-position 50% 100%. A card cannot crop, so no row is recorded for it here — and since a
+    card cannot crop, 2026-09-03 (integration) moved it into env2_no_clean_image as well, after the
+    deployed decor page shipped its index-0 headline poster as a card thumbnail. The PDP is unaffected:
+    emit:'no_clean' and glyph:true are opt-in and no PDP section passes either.
+
+    'context' rows, added 2026-09-03 (integration): the collection's band scene photograph asks for the
+    context slot, and only sections/elmsnest-v2-coll-bands.liquid ever does, so these rows cannot reach
+    the PDP. Without them the slot fell to the catalogue default 0, which is a baked-headline poster for
+    fireflies ("מראה קסום בגינה", shipped in the decor wide band), for indoor-outdoor, for edison and
+    for powerful. Each row carries the same clean index its card row already names.
 
     Extended again for the CLOSING screen (§4.7's full-bleed photograph): the "ask" slot is deliberately
     NOT the hero's own frame, so the page does not open and close on the same picture. A = the lit
     crystal balls in the tree (0), B = the bollard on the path at night (1), C = the lamp on the wall (3),
     which is the only night-lit frame that product owns.
   endcomment
-  assign env2_led = '|solar-crystal-ball-string-lights:,hero=2,context=2,close=0,card=0,big=2,small=0,thumb=0,wall-pair=2,ask=0,|stainless-steel-solar-path-light-ip65:,hero=0,context=3,close=3,card=0,big=3,small=1,thumb=3,wall-pair=3,ask=1,|waterproof-led-wall-light-ip65-6w-12w:,hero=1,context=3,close=1,card=1,big=3,small=1,thumb=1,wall-pair=3,ask=3,|modern-led-wall-light-indoor-outdoor:,card=4,close=4,|solar-firefly-garden-lights:,card=3,close=3,|solar-edison-string-lights:,card=3,close=3,|powerful-solar-garden-light:,card=2,close=2,|'
+  assign env2_led = '|solar-crystal-ball-string-lights:,hero=2,context=2,close=0,card=0,big=2,small=0,thumb=0,wall-pair=2,ask=0,|stainless-steel-solar-path-light-ip65:,hero=0,context=3,close=3,card=0,big=3,small=1,thumb=3,wall-pair=3,ask=1,|waterproof-led-wall-light-ip65-6w-12w:,hero=1,context=3,close=1,card=1,big=3,small=1,thumb=1,wall-pair=3,ask=3,|modern-led-wall-light-indoor-outdoor:,card=4,close=4,context=4,|solar-firefly-garden-lights:,card=3,close=3,context=3,|solar-edison-string-lights:,card=3,close=3,context=3,|powerful-solar-garden-light:,card=2,close=2,context=2,|'
 
   comment
     Banned indices. The 15 handles of brief/WINNING-SPEC.md §3.6 (index 0 carries baked-in text; for

@@ -47,6 +47,10 @@
     elmsnest-v2-coll-axis   the parser — the single source of every number (CONTRACT §2).
   The kicker is printed on the FIRST card of the section only, never down a column (CONTRACT risk 13).
 
+  The band's own scene photograph asks elmsnest-v2-pdp-image for the 'context' slot — this is the only
+  file in the theme that does, which is why that slot's per-handle rows can be corrected without the
+  PDP moving a pixel (integration, 2026-09-03).
+
   ---------------------------------------------------------------- no-JS / reduced motion
   Everything is markup. The cards' add-to-cart is a real POST form, the pins are plain links, and the
   bands need no scripting at all. With JS disabled the only loss is the lamp reveal: every photo, halo
@@ -830,6 +834,11 @@
 .env2-coll-bands__cell{display:flex;align-items:flex-end;min-inline-size:0}
 .env2-coll-bands__cards .env2-pdp-card__axis,
 .env2-coll-bands__cards .env2-pdp-card__unit{font-size:14px}
+/* §6.13 — the card title is a real link and a real tap target. One line of the title is 19px and two are
+   39px, both under the 44px floor, so the hit area is expanded with padding the negative margin gives
+   back; this is the same device .env2-coll-scene__card already uses on its own title. Measured at 390:
+   19/39px -> 44px, with no change to the band's vertical rhythm. */
+.env2-coll-bands__cards .env2-pdp-card__title a{display:inline-block;padding-block:12px;margin-block:-12px}
 
 /* 01 pair — cards on a hairline, the quiet opening. Three unequal columns, never four in a row and
    never equal cells (§6.3): the card keeps its own staggered width inside its column. */

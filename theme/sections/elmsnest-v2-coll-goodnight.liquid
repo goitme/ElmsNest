@@ -145,35 +145,54 @@
     photograph instead of a hole.
     Each candidate is judged by the URL it RENDERS, never by the object: a collection with no image
     yields nil on Shopify and an empty object elsewhere, and only the rendered url tells the two
-    apart. If the url is empty no img is printed at all and the section is the word on the night.
+    apart. BUT image_url on a nil image RAISES, and Shopify prints that error INTO the capture, so
+    the capture alone would come back non-blank and the section would draw a broken img and never
+    reach its own fallback (measured: every one of the five urls, an unset picker). The object test
+    stops the filter from running at all and the scrub is the belt for any engine that still emits
+    one. If the url is empty no img is printed and the section is the word on the night.
   endcomment
   assign env2_img = section.settings.image
   capture env2_src
-    echo env2_img | image_url: width: 1800
+    if env2_img != blank
+      echo env2_img | image_url: width: 1800
+    endif
   endcapture
   assign env2_src = env2_src | strip
+  if env2_src contains 'Liquid error'
+    assign env2_src = ''
+  endif
   if env2_src == blank and collection != blank
     assign env2_img = collection.image
     capture env2_src
-      echo env2_img | image_url: width: 1800
+      if env2_img != blank
+        echo env2_img | image_url: width: 1800
+      endif
     endcapture
     assign env2_src = env2_src | strip
+    if env2_src contains 'Liquid error'
+      assign env2_src = ''
+    endif
   endif
-  if env2_src == blank
-    for block in section.blocks
-      if block.type != 'place'
-        continue
-      endif
+-%}
+{%- if env2_src == blank -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type != 'place' -%}{%- continue -%}{%- endif -%}
+    {%- liquid
       assign env2_img = block.settings.collection.image
       capture env2_src
-        echo env2_img | image_url: width: 1800
+        if env2_img != blank
+          echo env2_img | image_url: width: 1800
+        endif
       endcapture
       assign env2_src = env2_src | strip
-      if env2_src != blank
-        break
+      if env2_src contains 'Liquid error'
+        assign env2_src = ''
       endif
-    endfor
-  endif
+    -%}
+    {%- if env2_src != blank -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- liquid
   assign env2_pos = section.settings.image_position | default: '50% 70%'
 
   assign env2_mail_body = 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר.'

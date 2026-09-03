@@ -30,6 +30,9 @@
   Do-not, enforced here: no banner band, no breadcrumb strip, no toolbar (4.1 n-n 3, 6.1); no sale UI
   (6.4); no product title in the serif (6.11); no typed number (6.19); radius 0 except the pill (6.14);
   logical properties only (3.1); no cream, beige or brown surface (6.10).
+
+  Shopify schema note (2026-09-03, integration): a setting LABEL is capped at 70 characters and the
+  whole file is rejected past it, so collection_map's field list lives in its info string.
 {%- endcomment -%}
 {% render 'elmsnest-v2-ground-collection' %}
 {% render 'elmsnest-v2-coll-glyph', sprite: true %}
@@ -311,12 +314,21 @@
     assign env2_img = collection.image
   endif
 -%}
-{%- capture env2_src -%}{{ env2_img | image_url: width: 1800 }}{%- endcapture -%}
+{%- comment -%}
+  The guard is the RENDERED url, but image_url on a nil image raises a Liquid error that Shopify
+  prints INTO the capture — so an unset picker would come back non-blank and the section would draw a
+  broken <img> and skip its own fallback. Measured on /collections/all, which owns no image. The
+  object test stops the filter from running at all, and the scrub is the belt for any engine that
+  still emits one.
+{%- endcomment -%}
+{%- capture env2_src -%}{%- if env2_img != blank -%}{{ env2_img | image_url: width: 1800 }}{%- endif -%}{%- endcapture -%}
 {%- assign env2_src = env2_src | strip -%}
+{%- if env2_src contains 'Liquid error' -%}{%- assign env2_src = '' -%}{%- endif -%}
 {%- if env2_src == '' and section.settings.fallback_collection != blank -%}
   {%- assign env2_img = collections[section.settings.fallback_collection].image -%}
-  {%- capture env2_src -%}{{ env2_img | image_url: width: 1800 }}{%- endcapture -%}
+  {%- capture env2_src -%}{%- if env2_img != blank -%}{{ env2_img | image_url: width: 1800 }}{%- endif -%}{%- endcapture -%}
   {%- assign env2_src = env2_src | strip -%}
+  {%- if env2_src contains 'Liquid error' -%}{%- assign env2_src = '' -%}{%- endif -%}
 {%- endif -%}
 {%- liquid
   # the guard is the resolved URL, not the object: an image object that resolves to nothing would
@@ -660,8 +672,8 @@
     { "type": "text", "id": "card_add_label", "label": "טקסט הכפתור כשיש אפשרות אחת", "default": "הוספה לסל" },
     { "type": "checkbox", "id": "show_unit_price", "label": "להציג את המחיר ליחידה מתחת למחיר", "default": true },
     { "type": "header", "content": "לפי קולקציה" },
-    { "type": "text", "id": "fallback_collection", "label": "מזהה הקולקציה שהתמונה שלה משמשת כשאין תמונה", "info": "כתובת /collections/all אינה מחזיקה תמונה משלה.", "default": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|46|24|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|62|26|58|22|50% 50%|50% 52%\nsolar-wall-lights|outdoor-bidirectional-led-wall-light-ip65|70|24|62|22|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|solar-garden-lantern-9-led|46|24|48|22|50% 45%|50% 48%\nall|solar-firefly-garden-lights|44|26|46|24|50% 45%|50% 46%" },
-    { "type": "textarea", "id": "collection_map", "label": "שורה לכל קולקציה: מזהה|מוצר|רוחב|גובה|רוחב במובייל|גובה במובייל|מיקוד דסקטופ|מיקוד מובייל|מספר תמונה", "info": "תבנית אחת משרתת את חמש כתובות הקולקציה, ולכן ההבדלים ביניהן נכתבים כאן. שדה ריק חוזר להגדרה שלמעלה.", "default": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|46|24|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|62|26|58|22|50% 50%|50% 52%\nsolar-wall-lights|outdoor-bidirectional-led-wall-light-ip65|70|24|62|22|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|solar-garden-lantern-9-led|46|24|48|22|50% 45%|50% 48%\nall|solar-firefly-garden-lights|44|26|46|24|50% 45%|50% 46%" }
+    { "type": "text", "id": "fallback_collection", "label": "מזהה הקולקציה שהתמונה שלה משמשת כשאין תמונה", "info": "כתובת /collections/all אינה מחזיקה תמונה משלה.", "default": "גרילנדות-ותאורה-דקורטיבית" },
+    { "type": "textarea", "id": "collection_map", "label": "שורה לכל קולקציה", "info": "מזהה|מוצר|רוחב|גובה|רוחב במובייל|גובה במובייל|מיקוד דסקטופ|מיקוד מובייל|מספר תמונה — תבנית אחת משרתת את חמש כתובות הקולקציה, ולכן ההבדלים ביניהן נכתבים כאן. שדה ריק חוזר להגדרה שלמעלה.", "default": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|46|24|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|62|26|58|22|50% 50%|50% 52%\nsolar-wall-lights|outdoor-bidirectional-led-wall-light-ip65|70|24|62|22|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|solar-garden-lantern-9-led|46|24|48|22|50% 45%|50% 48%\nall|solar-firefly-garden-lights|44|26|46|24|50% 45%|50% 46%" }
   ],
   "blocks": [
     {

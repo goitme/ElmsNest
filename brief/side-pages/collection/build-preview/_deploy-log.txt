@@ -1,0 +1,53 @@
+Collection round — deployed to theme 154726400174 (unpublished), 2026-09-03
+Sizes are what themeFilesUpsert echoed back for each file. Order: snippets, then sections, then the template.
+
+FIRST PASS (11:00-11:09)
+snippets/elmsnest-v2-ground-collection.liquid   5456
+snippets/elmsnest-v2-coll-axis.liquid          21894
+snippets/elmsnest-v2-coll-rail.liquid          20871
+snippets/elmsnest-v2-coll-paginate.liquid       8309
+snippets/elmsnest-v2-coll-glyph.liquid          9921
+snippets/elmsnest-v2-pdp-card.liquid           13979
+snippets/elmsnest-v2-pdp-image.liquid          10866
+sections/elmsnest-v2-coll-scene.liquid         44094
+sections/elmsnest-v2-coll-ruler.liquid         56180
+sections/elmsnest-v2-coll-bands.liquid         60407
+sections/elmsnest-v2-coll-span.liquid          43382
+sections/elmsnest-v2-coll-ledger.liquid        39187
+sections/elmsnest-v2-coll-terms.liquid         23668
+sections/elmsnest-v2-coll-goodnight.liquid     28829
+templates/collection.json                       9109
+
+Two userErrors fixed on the way (a userErrors entry means the file was NOT written):
+ 1. ledger l.442  {n} placeholder inside {{ }} — Ruby Liquid closes an output tag at the first '}'
+ 2. scene collection_map label 100 chars — Shopify caps a setting label at 70
+
+REDEPLOYS after reading the real render (11:13-12:31)
+sections/elmsnest-v2-coll-goodnight.liquid     29644  11:13  nil-image guard: image_url on nil raises and
+                                                             Shopify writes the error INTO the capture, so
+                                                             the blank test was false and the section shipped
+                                                             a broken <img>. Now guarded + scrubbed.
+sections/elmsnest-v2-coll-scene.liquid         44798  11:17  same nil-image guard (both branches)
+snippets/elmsnest-v2-ground-collection.liquid   6029  11:47  13px floor for .env2-price__from (was 10.54px)
+snippets/elmsnest-v2-pdp-image.liquid          11818  11:48  solar-rope-string-lights -> no-clean list;
+                                                             context= rows for the four handles whose index 0
+                                                             is a baked-headline poster. Both opt-in, PDP untouched.
+sections/elmsnest-v2-coll-bands.liquid         61155  11:52  §6.13 tap expander on the bands cards row
+snippets/elmsnest-v2-ground-collection.liquid   6790  12:28  tap expander widened to .env2-coll .env2-pdp-card__title a
+snippets/elmsnest-v2-ground-collection.liquid   7105  12:31  ...and to the ruler row title, the span ladder
+                                                             name and the scene's "to the ruler" link, which
+                                                             are the elements that were actually under 44px
+                                                             (21px one line, 43px two lines) on 390.
+snippets/elmsnest-v2-ground-collection.liquid   7289  12:53  padding 12px -> 14px: at 12px the scene's
+                                                             own 19px link came out 43px, one short of 44.
+
+FINAL MEASUREMENT on the re-mirrored deployed render (12:55-13:12)
+  Liquid errors: 0 on all five URLs.
+  Tap targets under 44px inside the collection sections: 0 on all five URLs, both 1440x900 and 390x844.
+  Horizontal overflow: false everywhere.
+  Document height desktop/mobile (CSS px):
+    decor 10706/12339  path 12940/15273  wall 8743/9718  spot 9978/10867  all 18836/22305
+  Buy control bottom edge (CSS px): desktop 790-814, mobile 672-741 — inside the first screen on all five.
+  Warm-light surfaces inside the collection sections: only rgb(255,211,148) — the lamp-glow CTA and the
+  chosen ruler pill. No cream, beige or taupe surface anywhere.
+  PDP: related row MAD 0.000000 on both viewports, two independent captures.

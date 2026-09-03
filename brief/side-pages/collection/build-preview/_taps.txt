@@ -1,0 +1,20 @@
+coll-decor desktop badTaps 0 docH 10706 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-ledger env2-coll-terms env2-coll-goodnight
+coll-decor mobile badTaps 0 docH 12339 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-ledger env2-coll-terms env2-coll-goodnight
+coll-path desktop badTaps 0 docH 12940 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-span env2-coll-ledger env2-coll-terms env2-coll-goodnight
+coll-path mobile badTaps 0 docH 15273 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-span env2-coll-ledger env2-coll-terms env2-coll-goodnight
+coll-wall desktop badTaps 0 docH 8743 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-terms env2-coll-goodnight
+coll-wall mobile badTaps 0 docH 9718 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-terms env2-coll-goodnight
+coll-spot desktop badTaps 0 docH 9978 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-span env2-coll-terms env2-coll-goodnight
+coll-spot mobile badTaps 0 docH 10867 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-span env2-coll-terms env2-coll-goodnight
+coll-all desktop badTaps 0 docH 18836 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-span env2-coll-terms env2-coll-goodnight
+coll-all mobile badTaps 0 docH 22305 ovf false
+  secs: env2-coll-scene env2-coll-ruler env2-coll-bands env2-coll-span env2-coll-terms env2-coll-goodnight
