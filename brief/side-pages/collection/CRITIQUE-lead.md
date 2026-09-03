@@ -91,3 +91,38 @@ photograph, the reason this concept won.
 The page is **verified and now partly critiqued**: the buy path, the narrowing device, the no-JS contract, the
 honesty rules, the RTL numerals and the tap targets are measured and sound; one major finding (LEAD-01) is open;
 the creative, typographic and full-QA lenses are still owed and must run when the model service recovers.
+
+## LEAD-01 — CLOSED (deployed 2026-09-03 20:01 UTC)
+
+**The fix.** One hairline row in `elmsnest-v2-coll-scene`, between the counts and the product card:
+the question in ink, then `לסרגל המידה ←` in gold, anchored to `#env2-coll-ruler`. Two new schema settings
+(`narrow_label`, `narrow_link_label`) so a merchant can reword it.
+
+**Why the wording is unit-neutral (`כמה אור צריך המקום?`) and not the ruler's own question.** The ruler resolves
+its unit from the data — length, count or price — in about a hundred lines that walk every product in the
+collection. Printing "כמה מטרים צריך להאיר?" in the scene would mean either duplicating that resolution (two
+sources, and the fold starts lying the day a collection's unit changes) or refactoring the ruler to publish it
+(a hundred working lines touched across five URLs, for one line of copy). A question that is true whether the
+rail measures metres, points of light or shekels is correct by construction on all five URLs including
+`/collections/all`, where the ruler is a table of contents and no unit applies. The `info` string in the schema
+records the reason so the next engineer does not "improve" it into a lie.
+
+**Verified on the deployed render** (Playwright, served mirror, 390×844):
+
+| | coll-decor | coll-all |
+|---|---|---|
+| row top (page coords) | 515.3 | 515.3 |
+| row height | **44.0** (the floor exactly) | 44.0 |
+| inside the 844 px fold | **yes**, bottom 559.3 | yes |
+| clear space to the card | 14 px | 14 px |
+| buy control | 672.8–717.6, still inside the fold | inside |
+| `#env2-coll-ruler` top | **943.4 — unchanged** | 735.6 |
+| click → ruler in view | scrollY 0→853, ruler at y=90 | 0→646, y=90 |
+| horizontal overflow @390 / @320 | none / none | none / none |
+| `Liquid error` | 0 | 0 |
+
+**The row costs nothing.** The ruler did not move: the scene's mobile type block is a flex column with
+`justify-content:flex-end`, so the new row consumed existing slack instead of pushing the page taller.
+Deploy verified by checksum, not by length — `checksumMd5 0ea1f284b2befc8dcea5db70d3acf1e0` equals the md5 of
+the local file, so the live section is byte-identical to the repo copy. (The byte count I gave the deploying
+engineer was stale; it caught that and verified harder instead of trusting my number.)
