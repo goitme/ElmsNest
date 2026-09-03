@@ -451,6 +451,15 @@
             {%- if env2_span != '' -%}<span class="env2-coll-scene__count"><bdi>{{ env2_span }}</bdi> ₪</span>{%- endif -%}
           {%- endif -%}
         </p>
+        {%- assign env2_narrow = section.settings.narrow_label | default: '' -%}
+        {%- if env2_narrow != '' -%}
+        <p class="env2-coll-scene__narrow">
+          <a class="env2-coll-scene__narrowlink" href="#env2-coll-ruler">
+            <span class="env2-coll-scene__narrowq">{{ env2_narrow }}</span>
+            <span class="env2-coll-scene__narrowgo">{{ section.settings.narrow_link_label | default: 'לסרגל המידה' }}<span aria-hidden="true"> ←</span></span>
+          </a>
+        </p>
+        {%- endif -%}
       </div>
 
       {%- if env2_pin_set == '1' -%}
@@ -527,6 +536,15 @@
 .env2-coll-scene__count{display:inline-flex;align-items:baseline;gap:.35em;white-space:nowrap}
 .env2-coll-scene__count+.env2-coll-scene__count::before{content:"·";margin-inline-end:.6em;color:var(--env2-mute)}
 .env2-coll-scene__count bdi{color:var(--env2-ink)}
+.env2-coll-scene__narrow{margin:12px 0 0;padding-block-start:12px;border-block-start:1px solid var(--env2-hair)}
+.env2-coll-scene__narrowlink{position:relative;display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.55em;
+  min-height:44px;align-content:center;font-family:var(--env2-sans);font-size:15px;line-height:1.4;color:var(--env2-ink-2);text-decoration:none}
+.env2-coll-scene__narrowlink::before{content:"";position:absolute;inset:-6px -8px}
+.env2-coll-scene__narrowq{color:var(--env2-ink)}
+.env2-coll-scene__narrowgo{font-size:13.5px;font-weight:500;letter-spacing:.02em;color:var(--env2-gold);
+  border-block-end:1px solid rgba(233,185,110,.42);padding-block-end:2px;transition:color .3s,border-color .3s}
+.env2-coll-scene__narrowlink:hover .env2-coll-scene__narrowgo,
+.env2-coll-scene__narrowlink:focus-visible .env2-coll-scene__narrowgo{color:var(--env2-glow);border-block-end-color:var(--env2-glow)}
 
 /* the pinned card is elmsnest-v2-pdp-card variant:'scene' — the scrim of 3.1, never hand-rolled here */
 .env2-coll-scene__card{justify-self:end;inline-size:100%;max-inline-size:var(--env2-scene-cardw,420px)}
@@ -605,6 +623,9 @@
   .env2-coll-scene__suits{font-size:14px;margin-block-start:8px}
   .env2-coll-scene__rule{margin-block-start:14px}
   .env2-coll-scene__counts{margin-block-start:10px;font-size:14px;gap:4px 14px}
+  .env2-coll-scene__narrow{margin-block-start:8px;padding-block-start:9px}
+  .env2-coll-scene__narrowlink{font-size:14.5px;gap:.4em}
+  .env2-coll-scene__narrowgo{font-size:13px}
   /* the card rides the foot of the veil so its buy control lands inside the 844px fold (4.1 n-n 1);
      the photograph above it is already the lamp in its place, so the card's own thumbnail is dropped
      rather than shown twice. */
@@ -670,6 +691,8 @@
     { "type": "range", "id": "card_image_index", "label": "מספר התמונה בכרטיס (0 = ברירת המחדל לפי המוצר)", "min": 0, "max": 6, "step": 1, "default": 0 },
     { "type": "text", "id": "card_action_label", "label": "טקסט הכפתור כשיש כמה אפשרויות (ריק = לפי ציר המוצר)" },
     { "type": "text", "id": "card_add_label", "label": "טקסט הכפתור כשיש אפשרות אחת", "default": "הוספה לסל" },
+    { "type": "text", "id": "narrow_label", "label": "השאלה שמובילה לסרגל המידה", "info": "ריק = השורה לא מוצגת. נשארת נכונה בכל קולקציה, גם כשהסרגל עובד במחיר.", "default": "כמה אור צריך המקום?" },
+    { "type": "text", "id": "narrow_link_label", "label": "טקסט הקישור לסרגל", "default": "לסרגל המידה" },
     { "type": "checkbox", "id": "show_unit_price", "label": "להציג את המחיר ליחידה מתחת למחיר", "default": true },
     { "type": "header", "content": "לפי קולקציה" },
     { "type": "text", "id": "fallback_collection", "label": "מזהה הקולקציה שהתמונה שלה משמשת כשאין תמונה", "info": "כתובת /collections/all אינה מחזיקה תמונה משלה.", "default": "גרילנדות-ותאורה-דקורטיבית" },
