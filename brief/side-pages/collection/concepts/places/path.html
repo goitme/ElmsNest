@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ארבעה מקומות · תאורת שביל, עמוד וגינה</title>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<style>
+*{box-sizing:border-box}
+:root{
+ --sky1:#1f3357;--sky2:#0f1a2f;--sky3:#070b15;--sky4:#020306;
+ --ink:#f4eee3;--ink2:#c9c4b8;--mute:#8f95a3;--gold:#e9b96e;--glow:#ffd394;--ember:#f7a24a;--btnink:#1a1206;
+ --hair:rgba(244,238,227,.12);--hair2:rgba(244,238,227,.25);--hair3:rgba(244,238,227,.45);
+ --gut:clamp(20px,4vw,64px);
+ --serif:"Frank Ruhl Libre","Noto Serif Hebrew","David Libre",serif;
+ --sans:"Heebo","Assistant",system-ui,sans-serif;
+}
+html{background:var(--sky4);-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;color:var(--ink);font:300 15px/1.55 var(--sans);direction:rtl;overflow-x:clip;
+ background:linear-gradient(180deg,#0f1a2f 0%,#0a1122 12%,#070b15 34%,#04070e 62%,#020306 100%) no-repeat;
+ background-size:100% 100%}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p,ol,ul,figure{margin:0;padding:0}
+ol,ul{list-style:none}
+bdi{unicode-bidi:isolate}
+:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+.wrap{width:min(1240px,100% - 2*var(--gut));margin-inline:auto}
+.wrap--wide{width:min(1500px,100% - 2*var(--gut))}
+.sec{position:relative;padding-block:clamp(56px,7vw,116px)}
+.hair{border:0;border-top:1px solid var(--hair);margin:0}
+.serif{font-family:var(--serif)}
+.h{font-family:var(--serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+.h em{font-style:normal;color:var(--glow)}
+.lead{font:300 clamp(16px,1.35vw,20px)/1.55 var(--sans);color:var(--ink2);max-width:42ch}
+.eyebrow{display:flex;align-items:center;gap:12px;font:500 11.5px/1 var(--sans);letter-spacing:.17em;color:var(--gold)}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);flex:none}
+.kicker{font:500 11px/1.4 var(--sans);letter-spacing:.16em;color:var(--gold)}
+.mute{color:var(--mute)}
+.ink2{color:var(--ink2)}
+.price{font-family:var(--serif);font-weight:500;font-variant-numeric:tabular-nums;color:var(--glow);white-space:nowrap;font-size:var(--ps,22px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;
+ background:var(--glow);color:var(--btnink);font:500 15px/1 var(--sans);padding:14px 26px;cursor:pointer;
+ transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,211,148,.28)}
+.btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--hair2)}
+.btn--ghost:hover{border-color:var(--glow);color:var(--glow);box-shadow:none}
+.btn--sm{padding:10px 18px;font-size:14px}
+.link{display:inline-flex;align-items:center;gap:8px;font:400 14px/1.4 var(--sans);color:var(--ink2);
+ border-bottom:1px solid var(--hair2);padding-bottom:3px;transition:color .3s,border-color .3s}
+.link:hover{color:var(--glow);border-color:var(--glow)}
+form.buy{margin:0}
+
+/* stars */
+.stars{position:absolute;inset:0;pointer-events:none;opacity:var(--st,.25);
+ background-image:radial-gradient(1.4px 1.4px at 12% 22%,rgba(255,255,255,.75),transparent),
+ radial-gradient(1.2px 1.2px at 34% 8%,rgba(255,255,255,.6),transparent),
+ radial-gradient(1.6px 1.6px at 58% 31%,rgba(255,255,255,.55),transparent),
+ radial-gradient(1.1px 1.1px at 77% 14%,rgba(255,255,255,.7),transparent),
+ radial-gradient(1.3px 1.3px at 88% 44%,rgba(255,255,255,.5),transparent),
+ radial-gradient(1.2px 1.2px at 22% 61%,rgba(255,255,255,.45),transparent),
+ radial-gradient(1.5px 1.5px at 46% 78%,rgba(255,255,255,.5),transparent),
+ radial-gradient(1.1px 1.1px at 68% 88%,rgba(255,255,255,.4),transparent),
+ radial-gradient(1.3px 1.3px at 6% 90%,rgba(255,255,255,.45),transparent)}
+
+/* lamps */
+[data-lamp]{--lit:1}
+html.js [data-lamp]{--lit:0}
+html.js [data-lamp].lit{--lit:1}
+.ph{position:relative;overflow:hidden;background:#05070d;aspect-ratio:var(--ar,1)}
+.ph img{width:100%;height:100%;object-fit:cover;object-position:var(--ox,50%) var(--oy,50%);transform:scale(var(--z,1)) translate(var(--tx,0),var(--ty,0));
+ filter:brightness(calc(.24 + .76*var(--lit,1))) saturate(calc(.45 + .55*var(--lit,1)));
+ transition:filter 1.6s cubic-bezier(.2,.7,.2,1)}
+.ph--dim img{filter:brightness(calc(.14 + .30*var(--lit,1))) saturate(calc(.3 + .4*var(--lit,1))) contrast(1.1)}
+.ph--dim::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+ background:linear-gradient(to top,rgba(4,7,14,.72),rgba(7,11,21,.46));mix-blend-mode:multiply}
+.ph::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;z-index:2;
+ background:radial-gradient(60% 46% at var(--hx,50%) var(--hy,46%),rgba(247,162,74,.30),rgba(247,162,74,0) 70%);
+ opacity:var(--lit,1);transition:opacity 1.6s .2s}
+@media (prefers-reduced-motion:reduce){
+ [data-lamp],html.js [data-lamp]{--lit:1 !important}
+ *{transition:none !important;animation:none !important}
+ html{scroll-behavior:auto}
+}
+
+/* header */
+.hd{position:absolute;inset-inline:0;top:0;height:70px;z-index:20;display:grid;
+ grid-template-columns:1fr auto 1fr;align-items:center;padding-inline:var(--gut)}
+.hd nav{display:flex;gap:26px;font:400 13.5px/1 var(--sans);color:var(--ink)}
+.hd nav.end{justify-content:flex-end}
+.hd nav a{opacity:.92}
+.hd nav a:hover{color:var(--glow)}
+.hd__logo{width:44px;height:44px;justify-self:center;opacity:.95}
+.hd__burger{display:none;justify-self:end;width:24px}
+.hd__burger i{display:block;height:1.5px;background:var(--ink);margin:5px 0}
+@media(max-width:900px){
+ .hd{grid-template-columns:1fr auto 1fr}
+ .hd nav{display:none}
+ .hd__burger{display:block}
+ .hd__cart{display:block;justify-self:start;font:500 11px/1 var(--sans);letter-spacing:.14em;color:var(--gold)}
+}
+.hd__cart{font:500 11px/1 var(--sans);letter-spacing:.14em;color:var(--gold);justify-self:start}
+@media(min-width:901px){.hd__cart{display:none}}
+
+/* numerals */
+.num{font-family:var(--serif);font-weight:900;line-height:.82;font-variant-numeric:tabular-nums;
+ color:transparent;-webkit-text-stroke:1px rgba(244,238,227,.45);
+ text-shadow:0 0 calc(38px*var(--lit,1)) rgba(255,211,148,calc(.45*var(--lit,1)));
+ transition:color 1.4s,-webkit-text-stroke-color 1.4s,text-shadow 1.4s}
+[data-lamp].lit .num,html:not(.js) .num{color:var(--glow);-webkit-text-stroke-color:rgba(255,211,148,.0)}
+
+/* ladder (variant axis) */
+.ladder{display:flex;flex-wrap:wrap;border-top:1px solid var(--hair)}
+.ladder li{flex:1 1 var(--lw,116px);min-width:var(--lw,116px);padding:12px 14px 14px 0;border-bottom:1px solid var(--hair);
+ border-inline-end:1px solid var(--hair)}
+.ladder li:last-child{border-inline-end:0}
+.ladder b{display:block;font:500 clamp(24px,2.2vw,34px)/1 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums}
+.ladder b span{font-size:.34em;color:var(--mute);margin-inline-start:4px;letter-spacing:.04em}
+.ladder em{display:block;font:300 12px/1.3 var(--sans);color:var(--mute);font-style:normal;margin-top:5px}
+.ladder .price{--ps:16px;display:block;margin-top:7px}
+
+/* terms */
+.terms__grid{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--hair)}
+.terms__grid>div{padding:26px 0 30px;padding-inline-start:20px;border-inline-end:1px solid var(--hair)}
+.terms__grid>div:last-child{border-inline-end:0}
+.terms__grid b{display:block;font:500 clamp(26px,2.6vw,40px)/1 var(--serif);color:var(--glow);font-variant-numeric:tabular-nums}
+.terms__grid span{display:block;font:300 13px/1.45 var(--sans);color:var(--ink2);margin-top:10px}
+@media(max-width:760px){.terms__grid{grid-template-columns:repeat(2,1fr)}
+ .terms__grid>div{border-bottom:1px solid var(--hair);padding-block:20px 22px}
+ .terms__grid>div:nth-child(2n){border-inline-end:0}
+ .terms__grid>div:nth-last-child(-n+2){border-bottom:0}}
+
+/* footer */
+.ft{background:var(--sky4);border-top:1px solid var(--hair);padding-block:56px 28px;position:relative;z-index:2}
+.ft__top{display:grid;grid-template-columns:1.1fr repeat(3,minmax(0,.8fr));gap:36px}
+.ft__logo{width:56px;opacity:.9;margin-bottom:14px}
+.ft h4{font:500 11.5px/1 var(--sans);letter-spacing:.16em;color:var(--gold);margin-bottom:16px}
+.ft li{font:300 13.5px/2.05 var(--sans);color:var(--ink2)}
+.ft li a:hover{color:var(--glow)}
+.ft__note{font:300 13.5px/1.6 var(--sans);color:var(--ink2);max-width:34ch}
+.ft__bot{margin-top:44px;padding-top:18px;border-top:1px solid var(--hair);font:300 12.5px/1.5 var(--sans);color:var(--mute);text-align:center}
+@media(max-width:860px){.ft__top{grid-template-columns:1fr 1fr;gap:30px}.ft__note{grid-column:1/-1}}
+
+/* ---------- place ---------- */
+.place{position:relative;min-height:min(536px,80svh);display:flex;align-items:flex-end;padding-block:126px 24px;overflow:hidden}
+.place__bg{position:absolute;inset:0;z-index:0}
+.place__bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pox,50%) var(--poy,44%);
+ filter:brightness(calc(.26+.74*var(--lit,1))) saturate(calc(.5+.5*var(--lit,1)));transition:filter 1.8s cubic-bezier(.2,.7,.2,1)}
+.place__bg::after{content:"";position:absolute;inset:0;
+ background:linear-gradient(to top,#020306 0,rgba(2,3,6,.80) 30%,rgba(2,3,6,.18) 84%),
+            linear-gradient(to left,rgba(2,3,6,.80),rgba(2,3,6,.18) 58%,rgba(2,3,6,0) 82%)}
+.place__wrap{position:relative;z-index:1;width:min(1240px,100% - 2*var(--gut));margin-inline:auto}
+.place__in{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3.4vw,60px);align-items:end}
+.place__num .num{font-size:clamp(88px,10.6vw,168px);display:block}
+.place__numlbl{display:block;font:500 11px/1 var(--sans);letter-spacing:.16em;color:var(--gold);margin-top:16px;white-space:nowrap}
+.place__h1{font-size:clamp(40px,6.9vw,102px);margin:16px 0 0}
+.place__suits{font:300 clamp(15px,1.35vw,19px)/1.5 var(--sans);color:var(--ink);margin-top:18px;max-width:40ch}
+.place__suits em{font-style:normal;color:var(--glow)}
+.place__suits span{color:var(--mute)}
+.place__lead{margin-top:14px}
+.place__facts{display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,52px);align-items:baseline;
+ margin-top:clamp(22px,2.4vw,36px);padding-top:16px;border-top:1px solid var(--hair2);font:300 14px/1 var(--sans);color:var(--ink2)}
+.place__facts b{font:500 clamp(22px,2.2vw,30px)/1 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums;margin-inline-end:7px}
+.place__facts .price{--ps:clamp(20px,2vw,28px)}
+@media(max-width:760px){
+ .place{display:block;padding:0;min-height:0}
+ .place__bg{position:relative;height:206px}
+ .place__wrap{padding-block:20px 0;position:relative}
+ .place__in{display:block}
+ .place__num{position:absolute;top:-124px;inset-inline-start:0;z-index:3;display:flex;align-items:baseline;gap:12px}
+ .place__num .num{font-size:76px}
+ .place__numlbl{margin-top:0}
+ .place__h1{margin-top:12px}
+ .place__suits{margin-top:11px;font-size:14.5px}
+ .place__lead{margin-top:10px;font-size:14.5px}
+ .place__facts{margin-top:16px;gap:12px 22px;padding-top:14px}
+}
+
+/* ---------- question ---------- */
+.q{padding-block:clamp(30px,3vw,50px) clamp(40px,4vw,72px)}
+.q__h{font-size:clamp(29px,5.4vw,74px);margin-top:15px}
+.q__deck{margin-top:22px;max-width:56ch}
+.qrows{margin-top:clamp(20px,3.2vw,48px);border-top:1px solid var(--hair2)}
+.qrow{display:grid;grid-template-columns:minmax(200px,250px) 1fr auto;gap:14px 26px;align-items:center;
+ padding-block:20px;border-bottom:1px solid var(--hair);transition:background .3s}
+.qrow:hover{background:rgba(233,185,110,.05)}
+.qrow__len{font:500 clamp(19px,1.7vw,24px)/1.05 var(--serif);color:var(--ink);white-space:nowrap}
+.qrow__len b{font-weight:500;font-size:clamp(30px,3.2vw,46px);color:var(--glow);font-variant-numeric:tabular-nums;margin-inline:5px}
+.qrow__where{font:300 14.5px/1.45 var(--sans);color:var(--ink2)}
+.qrow__where i{display:block;font-style:normal;font-size:12px;letter-spacing:.09em;color:var(--mute);margin-top:5px}
+.qrow__pick{font:400 13.5px/1.5 var(--sans);color:var(--ink2);text-align:start;justify-self:end;max-width:34ch}
+.qrow__pick .price{--ps:19px;margin-inline-start:8px}
+.qrow__pick i{font-style:normal;color:var(--mute);display:block;font-size:11.5px;letter-spacing:.1em;margin-bottom:5px}
+.q__note{margin-top:20px;font:300 13px/1.6 var(--sans);color:var(--mute);max-width:52ch}
+@media(max-width:760px){
+ .qrow{grid-template-columns:1fr;gap:8px;padding-block:16px}
+ .qrow__pick{justify-self:start;max-width:none}
+}
+
+/* ---------- ruler ---------- */
+.rul{padding-block:clamp(46px,5vw,92px);position:relative}
+.rul__h{font-size:clamp(26px,3.4vw,50px);margin-top:18px;max-width:22ch}
+.rul__box{margin-top:clamp(30px,3.6vw,56px)}
+.rul__ax{position:relative;height:24px}
+.rrow--ax{padding-block:0 4px;border-top:0}
+.rrow--last{border-bottom:1px solid var(--hair)}
+.rul__unit{font:500 10.5px/1 var(--sans);letter-spacing:.16em;color:var(--gold)}
+.rtk{position:absolute;bottom:0;inset-inline-end:calc(100% - var(--t)/var(--max)*100%);
+ font:500 10.5px/1 var(--sans);letter-spacing:.12em;color:var(--mute);padding-inline-start:6px}
+.rtk::before{content:"";position:absolute;bottom:-6px;inset-inline-end:0;width:1px;height:7px;background:var(--hair2)}
+.rrow{display:grid;grid-template-columns:clamp(150px,18vw,230px) 1fr;gap:clamp(12px,2vw,28px);
+ align-items:center;padding-block:13px;border-top:1px solid var(--hair)}
+.rrow__name{font:400 14px/1.35 var(--sans);color:var(--ink)}
+.rrow__name i{display:block;font-style:normal;font:300 11.5px/1.4 var(--sans);color:var(--gold);letter-spacing:.06em;margin-top:4px}
+.rrow:hover .rrow__name{color:var(--glow)}
+.rtrack{position:relative;height:46px}
+.rbar{position:absolute;top:11px;height:2px;
+ inset-inline-end:calc(100% - var(--b)/var(--max)*100%);width:calc((var(--b) - var(--a))/var(--max)*100%);
+ background:linear-gradient(to left,var(--glow),rgba(255,211,148,.45));box-shadow:0 0 16px rgba(255,211,148,.5);
+ transform:scaleX(var(--lit,1));transform-origin:100% 50%;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.rdot{position:absolute;top:6px;width:1px;height:12px;background:rgba(255,211,148,.75);
+ inset-inline-end:calc(100% - var(--t)/var(--max)*100%);opacity:var(--lit,1);transition:opacity 1.1s .35s}
+.rmk{position:absolute;top:22px;inset-inline-end:calc(100% - var(--t)/var(--max)*100%);
+ font:500 12px/1.3 var(--serif);color:var(--ink2);white-space:nowrap;font-variant-numeric:tabular-nums;padding-inline-start:9px}
+.rmk .price{--ps:14px;margin-inline-start:6px}
+.rrow--pt .rtrack{height:38px}
+.rpt{position:absolute;top:9px;inset-inline-start:0;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.rpt::before{content:"";width:8px;height:8px;border:1px solid var(--hair3);flex:none;transform:rotate(45deg)}
+.rpt span{font:500 12px/1 var(--serif);color:var(--ink2)}
+.rrow__name i.rrow__sum{display:none;font-style:normal;font:500 13px/1.4 var(--serif);color:var(--ink2);margin-top:5px;font-variant-numeric:tabular-nums}
+.rrow__sum .price{--ps:14px;margin-inline-start:7px}
+.rul__note{margin-top:22px;font:300 12.5px/1.65 var(--sans);color:var(--mute);max-width:56ch}
+@media(max-width:760px){
+ .rrow{grid-template-columns:1fr;gap:2px;padding-block:11px}
+ .rtrack{height:24px}
+ .rmk{display:none}
+ .rrow__name i.rrow__sum{display:block}
+ .rrow--pt .rtrack{height:26px}
+ .rpt{top:2px}
+}
+
+/* ---------- order line ---------- */
+.ord{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:baseline;justify-content:space-between;
+ padding-block:20px;border-block:1px solid var(--hair2)}
+.ord__t{font:400 14.5px/1.5 var(--sans);color:var(--ink2)}
+.ord__t b{color:var(--ink);font-weight:500}
+.ord__l{display:flex;flex-wrap:wrap;gap:8px 22px;font:400 13.5px/1 var(--sans)}
+.ord__l a{color:var(--mute);border-bottom:1px solid transparent;padding-bottom:4px}
+.ord__l a:hover{color:var(--glow);border-color:var(--glow)}
+.ord__l a[aria-current]{color:var(--gold);border-color:var(--gold)}
+
+/* ---------- bands / products ---------- */
+.band{padding-block:clamp(52px,6vw,110px);position:relative}
+.band__hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 22px;margin-bottom:clamp(24px,3vw,44px)}
+.band__n{font:500 clamp(28px,3.4vw,48px)/1 var(--serif);color:var(--glow);font-variant-numeric:tabular-nums}
+.band__t{font:500 12px/1 var(--sans);letter-spacing:.16em;color:var(--gold)}
+.band__c{font:300 13px/1 var(--sans);color:var(--mute);letter-spacing:.1em}
+.pt{font:400 clamp(16px,1.5vw,20px)/1.3 var(--sans);color:var(--ink);margin-top:12px;unicode-bidi:isolate}
+.pcap{font:300 13.5px/1.55 var(--sans);color:var(--ink2);margin-top:9px;max-width:44ch}
+.pbuy{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin-top:16px}
+.pbuy .price{--ps:clamp(22px,2vw,28px)}
+
+
+.b2{display:grid;grid-template-columns:1.42fr 1fr;gap:clamp(22px,3.4vw,56px);align-items:start}
+.trip{display:grid;grid-template-columns:1.25fr .82fr .95fr;gap:clamp(18px,2.6vw,42px);align-items:end}
+.wide{display:grid;grid-template-columns:.95fr 1.15fr;gap:clamp(22px,3.4vw,58px);align-items:center;padding-block:clamp(26px,3vw,44px);border-top:1px solid var(--hair)}
+.wide--b{grid-template-columns:1.15fr .95fr}
+.wide--b .wide__ph{order:2}
+.split{display:grid;grid-template-columns:1fr .8fr;gap:clamp(24px,4vw,68px);align-items:end}
+@media(max-width:860px){.b2,.trip,.wide,.wide--b,.split{grid-template-columns:1fr;gap:26px}.wide--b .wide__ph{order:0}}
+/* per-point comparison */
+.pp{display:grid;grid-template-columns:1.16fr .92fr 1.06fr;gap:clamp(20px,3vw,50px);margin-top:clamp(28px,3.4vw,52px);
+ border-top:1px solid var(--hair2)}
+.pp>div{padding-top:22px;border-inline-end:1px solid var(--hair);padding-inline-end:clamp(16px,2vw,34px)}
+.pp>div:last-child{border-inline-end:0}
+.pp__k{font:500 11px/1.4 var(--sans);letter-spacing:.16em;color:var(--gold)}
+.pp__p{font:500 clamp(34px,4.6vw,68px)/1 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums;margin-top:12px}
+.pp__p span{font-size:.34em;color:var(--mute);margin-inline-start:6px}
+.pp__t{font:400 14px/1.4 var(--sans);color:var(--ink2);margin-top:12px}
+.pp__u{font:500 clamp(20px,2.2vw,30px)/1.1 var(--serif);color:var(--glow);margin-top:14px;font-variant-numeric:tabular-nums}
+.pp__u i{font-style:normal;font:300 12px/1 var(--sans);color:var(--mute);letter-spacing:.1em;margin-inline-start:8px}
+@media(max-width:860px){.pp{grid-template-columns:1fr}.pp>div{border-inline-end:0;border-bottom:1px solid var(--hair);padding-bottom:20px}
+ .pp>div:last-child{border-bottom:0}}
+.rooms__grid{display:grid;grid-template-columns:1.2fr .88fr .92fr;gap:clamp(16px,2.4vw,34px);align-items:end;margin-top:clamp(28px,3.4vw,50px)}
+.room{display:block}
+.room .num{font-size:clamp(46px,4.6vw,72px)}
+.room__t{display:block;font:400 16px/1.3 var(--sans);color:var(--ink);margin-top:12px}
+.room__q{display:block;font:500 clamp(16px,1.6vw,22px)/1.25 var(--serif);color:var(--glow);margin-top:8px}
+.room__m{display:block;font:300 12.5px/1.5 var(--sans);color:var(--mute);margin-top:8px;letter-spacing:.04em}
+.room:hover .room__t{color:var(--glow)}
+@media(max-width:820px){.rooms__grid{grid-template-columns:1fr 1fr;gap:22px}.rooms__grid>:first-child{grid-column:1/-1}}
+</style>
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+<header class="hd">
+  <nav class="start"><a href="#">דף הבית</a><a href="all.html">קולקציות</a><a href="#">מדריך לבחירה</a></nav>
+  <a class="hd__logo" href="#"><img src="../../../../assets/img/logo.png" alt="ElmsNest" width="44" height="44"></a>
+  <nav class="end"><a href="#">מי אנחנו</a><a href="#">יצירת קשר</a></nav>
+  <span class="hd__cart">סל · 0</span>
+  <span class="hd__burger" aria-hidden="true"><i></i><i></i><i></i></span>
+</header>
+
+<section class="place" data-lamp>
+ <div class="place__bg"><img src="../../../../assets/img/collection-path.jpg" alt="מנורת שביל דולקת ליד מדרגות אבן בלילה" width="800" height="1000" style="--poy:44%"></div>
+ <div class="place__wrap">
+  <div class="place__in">
+   <div class="place__num"><span class="num">1</span><span class="place__numlbl">המקום הראשון</span></div>
+   <div class="place__txt">
+    <p class="eyebrow">ממשיכים מהעמוד הראשי · ארבעה מקומות</p>
+    <h1 class="h place__h1">שביל, מדרגות<br>ומעברים</h1>
+    <p class="place__suits">מתאים כדי <em>לראות את הדרך</em>. <span>לא מתאים כשהמקום כמעט אינו מקבל אור יום.</span></p>
+    <p class="lead place__lead">תאורת שביל סולארית לגינה, לכניסה, לחצר ולמעברים חיצוניים — להדגשת הדרך ולמראה מסודר סביב הבית.</p>
+   </div>
+  </div>
+  <div class="place__facts">
+   <span><b><bdi>8</bdi></b>מוצרים</span>
+   <span><b><bdi>22</bdi></b>כמויות וגוונים</span>
+   <span class="price"><bdi>69.90–999.90</bdi> ₪</span>
+  </div>
+ </div>
+</section>
+
+<section class="sec q" id="q">
+ <div class="stars" style="--st:.18"></div>
+ <div class="wrap">
+  <p class="eyebrow">השאלה של המקום</p>
+  <h2 class="h q__h">כמה נקודות אור צריך השביל?</h2>
+  <div class="qrows"><a class="qrow" href="#bD">
+   <span class="qrow__len">נקודה <b>אחת</b></span>
+   <span class="qrow__where">כניסה, פינה, עץ בודד או שלט<i>4 מוצרים מגיעים לשם</i></span>
+   <span class="qrow__pick"><i>הזול שמגיע לשם</i>מנורת מדרגה בודדת · <bdi>1</bdi> יח׳<span class="price"><bdi>69.90</bdi> ₪</span></span>
+  </a><a class="qrow" href="#bC">
+   <span class="qrow__len"><b>2</b> עד <b>4</b> נקודות</span>
+   <span class="qrow__where">גרם מדרגות קצר, שביל של עשרה מטר<i>5 מוצרים מגיעים לשם</i></span>
+   <span class="qrow__pick"><i>הזול לנקודת אור</i>תאורת דק · <bdi>4</bdi> יח׳ = <bdi>37.48</bdi> ₪ לנקודה<span class="price"><bdi>149.90</bdi> ₪</span></span>
+  </a><a class="qrow" href="#bC">
+   <span class="qrow__len"><b>6</b> עד <b>12</b> נקודות</span>
+   <span class="qrow__where">שביל שלם, גרם מדרגות ארוך, היקף חצר<i>5 מוצרים מגיעים לשם</i></span>
+   <span class="qrow__pick"><i>הזול לנקודת אור</i>תאורת דק · <bdi>8</bdi> יח׳ = <bdi>18.74</bdi> ₪ לנקודה<span class="price"><bdi>149.90</bdi> ₪</span></span>
+  </a></div>
+  <p class="q__deck lead">שביל של עשרה מטר מסתדר עם ארבע נקודות אור; גרם מדרגות רוצה אחת לכל שתי מדרגות. לכן המחיר כאן נע בין <bdi>69.90</bdi> ₪ ל־<bdi>999.90</bdi> ₪ — פי ארבעה־עשר — וההפרש הוא בעיקר כמות, לא איכות.</p>
+  <p class="q__note">הכמויות והמחירים לקוחים מרשימת הגדלים של כל מוצר. מוצר מופיע בכל טווח שהוא מכסה, ולכן הוא יכול להופיע ביותר משורה אחת.</p>
+ </div>
+</section>
+
+<section class="sec rul" id="rul">
+ <div class="stars" style="--st:.3"></div>
+ <div class="wrap wrap--wide">
+  <p class="eyebrow">כל השמונה על סרגל אחד</p>
+  <h2 class="h rul__h">מנורה אחת, או <em>שתים־עשרה</em>.</h2>
+  <div class="rul__box">
+   <div class="rrow rrow--ax" style="--max:12">
+    <span class="rul__unit">נקודות אור</span>
+    <span class="rul__ax"><span class="rtk" style="--t:0"><bdi>0</bdi></span><span class="rtk" style="--t:2"><bdi>2</bdi></span><span class="rtk" style="--t:4"><bdi>4</bdi></span><span class="rtk" style="--t:6"><bdi>6</bdi></span><span class="rtk" style="--t:8"><bdi>8</bdi></span><span class="rtk" style="--t:10"><bdi>10</bdi></span><span class="rtk" style="--t:12"><bdi>12</bdi></span></span>
+   </div>
+   <a class="rrow" href="#bD" data-lamp style="--max:12"><span class="rrow__name">מנורות מדרגה ודק באור חם<i>מ־<bdi>29.16</bdi> ₪ לנקודה בסט הגדול</i><i class="rrow__sum"><bdi>1–12</bdi> יח׳ <span class="price">מ־<bdi>69.90</bdi> ₪</span></i></span><span class="rtrack"><span class="rbar" style="--a:1;--b:12"></span><i class="rdot" style="--t:1"></i><i class="rdot" style="--t:4"></i><i class="rdot" style="--t:8"></i><i class="rdot" style="--t:12"></i><span class="rmk" style="--t:1"><bdi>1 יח׳</bdi><span class="price"><bdi>69.90</bdi> ₪</span></span><span class="rmk" style="--t:12"><bdi>12 יח׳</bdi><span class="price"><bdi>349.90</bdi> ₪</span></span></span></a><a class="rrow" href="#bC" data-lamp style="--max:12"><span class="rrow__name">תאורת דק ומדרגות עמידה למים<i><bdi>18.74</bdi> ₪ לנקודה בסט הגדול</i><i class="rrow__sum"><bdi>2–8</bdi> יח׳ <span class="price"><bdi>149.90</bdi> ₪</span></i></span><span class="rtrack"><span class="rbar" style="--a:2;--b:8"></span><i class="rdot" style="--t:2"></i><i class="rdot" style="--t:4"></i><i class="rdot" style="--t:6"></i><i class="rdot" style="--t:8"></i><span class="rmk" style="--t:2"><bdi>2 יח׳</bdi><span class="price"><bdi>149.90</bdi> ₪</span></span><span class="rmk" style="--t:8"><bdi>8 יח׳</bdi><span class="price"><bdi>149.90</bdi> ₪</span></span></span></a><a class="rrow" href="#bC" data-lamp style="--max:12"><span class="rrow__name">סט שביל מודרני בצורת <bdi>7</bdi><i><bdi>124.99</bdi> ₪ לנקודה בסט הגדול</i><i class="rrow__sum"><bdi>4–8</bdi> יח׳ <span class="price">מ־<bdi>549.90</bdi> ₪</span></i></span><span class="rtrack"><span class="rbar" style="--a:4;--b:8"></span><i class="rdot" style="--t:4"></i><i class="rdot" style="--t:8"></i><span class="rmk" style="--t:4"><bdi>4 יח׳</bdi><span class="price"><bdi>549.90</bdi> ₪</span></span><span class="rmk" style="--t:8"><bdi>8 יח׳</bdi><span class="price"><bdi>999.90</bdi> ₪</span></span></span></a><a class="rrow" href="#bB" data-lamp style="--max:12"><span class="rrow__name">סט מנורות שביל רטרו<i><bdi>88.32</bdi> ₪ לנקודה בסט הגדול</i><i class="rrow__sum"><bdi>2–6</bdi> יח׳ <span class="price">מ־<bdi>219.90</bdi> ₪</span></i></span><span class="rtrack"><span class="rbar" style="--a:2;--b:6"></span><i class="rdot" style="--t:2"></i><i class="rdot" style="--t:4"></i><i class="rdot" style="--t:6"></i><span class="rmk" style="--t:2"><bdi>2 יח׳</bdi><span class="price"><bdi>219.90</bdi> ₪</span></span><span class="rmk" style="--t:6"><bdi>6 יח׳</bdi><span class="price"><bdi>529.90</bdi> ₪</span></span></span></a><a class="rrow" href="#bB" data-lamp style="--max:12"><span class="rrow__name">סט מנורות מתנדנדות ברוח<i><bdi>54.98</bdi> ₪ לנקודה בסט הגדול</i><i class="rrow__sum"><bdi>2–6</bdi> יח׳ <span class="price">מ־<bdi>189.90</bdi> ₪</span></i></span><span class="rtrack"><span class="rbar" style="--a:2;--b:6"></span><i class="rdot" style="--t:2"></i><i class="rdot" style="--t:6"></i><span class="rmk" style="--t:2"><bdi>2 יח׳</bdi><span class="price"><bdi>189.90</bdi> ₪</span></span><span class="rmk" style="--t:6"><bdi>6 יח׳</bdi><span class="price"><bdi>329.90</bdi> ₪</span></span></span></a>
+   <a class="rrow rrow--pt" href="#bA" data-lamp style="--max:12"><span class="rrow__name">מנורת שביל מנירוסטה<i>צהוב חם · <bdi>IP65</bdi> · כ־<bdi>8–10</bdi> שעות</i></span><span class="rtrack"><span class="rpt"><span><bdi>169.90</bdi> ₪ · יחידה אחת, אין סט</span></span></span></a><a class="rrow rrow--pt" href="#bA" data-lamp style="--max:12"><span class="rrow__name">מנורת גינה סולארית עוצמתית<i>דגם אחד · נדלקת אוטומטית</i></span><span class="rtrack"><span class="rpt"><span><bdi>179.90</bdi> ₪ · יחידה אחת, אין סט</span></span></span></a><a class="rrow rrow--pt rrow--last" href="#bA" data-lamp style="--max:12"><span class="rrow__name">מנורת עמוד <bdi>LED</bdi> מודרנית<i>שחור · <bdi>5W</bdi> · אור חם · <bdi>IP65</bdi></i></span><span class="rtrack"><span class="rpt"><span><bdi>129.90</bdi> ₪ · יחידה אחת, אין סט</span></span></span></a>
+  </div>
+  <p class="rul__note">₪ לנקודת אור = מחיר הסט חלקי מספר היחידות שבו. חישוב שלנו מתוך המחירון, לא נתון של היצרן. תאורת הדק נמכרת באותו מחיר לכל הכמויות — כך מופיע המחירון.</p>
+ </div>
+</section>
+
+<section class="sec" id="pp" style="padding-block:clamp(44px,5vw,92px)">
+ <div class="stars" style="--st:.36"></div>
+ <div class="wrap">
+  <p class="eyebrow">פי ארבעה־עשר</p>
+  <h2 class="h" style="font-size:clamp(26px,3.6vw,54px);margin-top:18px;max-width:20ch">הזול ביותר במחיר אינו הזול ביותר <em>לנקודת אור</em>.</h2>
+  <div class="pp">
+   <div>
+    <p class="pp__k">המחיר הנמוך ביותר בחנות</p>
+    <p class="pp__p"><bdi>69.90</bdi><span>₪</span></p>
+    <p class="pp__t">מנורת מדרגה אחת, באור חם. מאירה מדרגה אחת.</p>
+    <p class="pp__u"><bdi>69.90</bdi> ₪ <i>לנקודת אור</i></p>
+   </div>
+   <div>
+    <p class="pp__k">המחיר הגבוה ביותר בחנות</p>
+    <p class="pp__p"><bdi>999.90</bdi><span>₪</span></p>
+    <p class="pp__t">סט שביל מודרני, שמונה יחידות. מאיר שביל שלם.</p>
+    <p class="pp__u"><bdi>124.99</bdi> ₪ <i>לנקודת אור</i></p>
+   </div>
+   <div>
+    <p class="pp__k">הזול ביותר לנקודת אור</p>
+    <p class="pp__p"><bdi>149.90</bdi><span>₪</span></p>
+    <p class="pp__t">תאורת דק ומדרגות, שמונה יחידות. המחירון מציג את אותו מחיר לכל הכמויות — משתיים ועד שמונה.</p>
+    <p class="pp__u"><bdi>18.74</bdi> ₪ <i>לנקודת אור</i></p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<div class="wrap">
+ <div class="ord">
+  <p class="ord__t"><b>מסודר לפי מספר נקודות האור שהמוצר מכסה</b> — מאחת לשתים־עשרה. שמונה מוצרים, ללא דפדוף.</p>
+  <p class="ord__l">
+   <a href="?sort_by=manual" aria-current="true">לפי כמות</a>
+   <a href="?sort_by=price-ascending">מחיר — מהנמוך</a>
+   <a href="?sort_by=price-descending">מחיר — מהגבוה</a>
+   <a href="?sort_by=title-ascending">שם, א־ת</a>
+  </p>
+ </div>
+</div>
+
+<section class="sec band" id="bA">
+ <div class="stars" style="--st:.34"></div>
+ <div class="wrap">
+  <div class="band__hd">
+   <span class="band__n">נקודה אחת</span><span class="band__t">שלושה מוצרים</span>
+   <span class="band__c">דגם אחד לכל אחד — אפשר להוסיף לסל מכאן</span>
+  </div>
+  <div class="trip">
+   <div>
+    <figure class="ph " style="--ar:3/4;--ox:50%;--oy:50%;--z:1;--tx:0;--ty:0"><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-3.jpg" alt="מנורת שביל מנירוסטה ליד קיר לבנים" width="1000" height="1000" loading="lazy"></figure>
+    <p class="kicker" style="margin-top:16px">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית <bdi>IP65</bdi></h3>
+    <p class="pcap">גוף נירוסטה · עמידות <bdi>IP65</bdi> · זמן עבודה כ־<bdi>8–10</bdi> שעות. נטענת ביום ונדלקת לבד עם החשכה.</p>
+    <form class="buy pbuy" method="post" action="/cart/add"><input type="hidden" name="id" value="1"><input type="hidden" name="quantity" value="1"><span class="price"><bdi>169.90</bdi> ₪</span><button class="btn btn--sm" type="submit">הוספה לסל</button></form>
+   </div>
+   <div>
+    <figure class="ph " style="--ar:4/5;--ox:0%;--oy:50%;--z:1.55;--tx:10%;--ty:0"><img src="../../../../assets/img/modern-led-bollard-light-5w-ip65-3.jpg" alt="ראש מנורת עמוד LED מואר" width="1000" height="1000" loading="lazy"></figure>
+    <p class="kicker" style="margin-top:16px">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt">מנורת עמוד <bdi>LED</bdi> מודרנית – <bdi>5W</bdi> <bdi>IP65</bdi></h3>
+    <p class="pcap">שחור · אור חם · חיבור קבוע. הדגם היחיד כאן שאינו סולארי.</p>
+    <form class="buy pbuy" method="post" action="/cart/add"><input type="hidden" name="id" value="1"><input type="hidden" name="quantity" value="1"><span class="price"><bdi>129.90</bdi> ₪</span><button class="btn btn--sm" type="submit">הוספה לסל</button></form>
+   </div>
+   <div>
+    <figure class="ph " style="--ar:4/3;--ox:50%;--oy:50%;--z:1;--tx:0;--ty:0"><img src="../../../../assets/img/powerful-solar-garden-light-2.jpg" alt="מנורות גינה סולאריות לאורך שביל" width="1000" height="1000" loading="lazy"></figure>
+    <p class="kicker" style="margin-top:16px">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt">מנורת גינה סולארית עוצמתית <bdi>LED</bdi></h3>
+    <p class="pcap">אור ברור לחצר, לשביל ולכניסה — בלי להעביר כבלים ובלי לחפש שקע.</p>
+    <form class="buy pbuy" method="post" action="/cart/add"><input type="hidden" name="id" value="1"><input type="hidden" name="quantity" value="1"><span class="price"><bdi>179.90</bdi> ₪</span><button class="btn btn--sm" type="submit">הוספה לסל</button></form>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec band" id="bB" style="padding-block:clamp(46px,5vw,92px)">
+ <div class="stars" style="--st:.4"></div>
+ <div class="wrap">
+  <div class="band__hd">
+   <span class="band__n">עד <bdi>6</bdi> נקודות</span><span class="band__t">שני מוצרים</span>
+   <span class="band__c">סטים של <bdi>2</bdi>, <bdi>4</bdi> או <bdi>6</bdi> יחידות</span>
+  </div>
+  <div class="wide">
+   <div class="wide__ph"><figure class="ph " style="--ar:3/4;--ox:42%;--oy:50%;--z:2.08;--tx:0;--ty:8.1%"><img src="../../../../assets/img/retro-solar-path-lights-set-2.jpg" alt="מנורות שביל רטרו דולקות" width="1000" height="1000" loading="lazy"></figure></div>
+   <div>
+    <p class="kicker">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt" style="font-size:clamp(17px,1.8vw,23px)">סט מנורות שביל סולאריות רטרו באור חם – <bdi>2/4/6</bdi> יחידות</h3>
+    <p class="pcap">אור פילמנט חם שמעניק לשביל אופי של מקום מעוצב. טעינה סולארית · עמידות <bdi>IP65</bdi>.</p>
+    <div class="pbuy"><span class="price">מ־<bdi>219.90</bdi> ₪</span><a class="btn btn--ghost btn--sm" href="#">לבחירת כמות</a></div>
+    <ol class="ladder" style="--lw:136px"><li><b><bdi>2</bdi><span>יח׳</span></b><em>109.95 ₪ לנקודה</em><span class="price"><bdi>219.90</bdi> ₪</span></li><li><b><bdi>4</bdi><span>יח׳</span></b><em>97.48 ₪ לנקודה</em><span class="price"><bdi>389.90</bdi> ₪</span></li><li><b><bdi>6</bdi><span>יח׳</span></b><em>88.32 ₪ לנקודה</em><span class="price"><bdi>529.90</bdi> ₪</span></li></ol>
+   </div>
+  </div>
+  <div class="wide wide--b">
+   <div class="wide__ph"><figure class="ph " style="--ar:2/1;--ox:50%;--oy:100%;--z:1;--tx:0;--ty:0"><img src="../../../../assets/img/swaying-solar-path-lights-ip65-1.jpg" alt="מנורות שביל מתנדנדות ברוח בגינה בלילה" width="1000" height="1000" loading="lazy"></figure></div>
+   <div>
+    <p class="kicker">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt" style="font-size:clamp(17px,1.8vw,23px)">סט מנורות שביל סולאריות מתנדנדות ברוח – <bdi>2/6</bdi> יחידות <bdi>IP65</bdi></h3>
+    <p class="pcap">נעות בעדינות עם הרוח ויוצרות אפקט חי לאורך שבילים, ערוגות ומדשאות.</p>
+    <div class="pbuy"><span class="price">מ־<bdi>189.90</bdi> ₪</span><a class="btn btn--ghost btn--sm" href="#">לבחירת כמות</a></div>
+    <ol class="ladder" style="--lw:140px"><li><b><bdi>2</bdi><span>יח׳</span></b><em>94.95 ₪ לנקודה</em><span class="price"><bdi>189.90</bdi> ₪</span></li><li><b><bdi>6</bdi><span>יח׳</span></b><em>54.98 ₪ לנקודה</em><span class="price"><bdi>329.90</bdi> ₪</span></li></ol>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec band" id="bC" style="padding-block:0 clamp(50px,6vw,104px)">
+ <figure class="ph" data-lamp style="--ar:2/1;--oy:60%;--z:1.2">
+  <img src="../../../../assets/img/modern-solar-path-lights-set-2.jpg" alt="סט תאורת שביל מודרנית לאורך מדרגות בגינה" width="1000" height="1000" loading="lazy">
+ </figure>
+ <div class="wrap">
+  <div class="band__hd" style="margin-top:34px">
+   <span class="band__n">עד <bdi>8</bdi> נקודות</span><span class="band__t">שני מוצרים</span>
+   <span class="band__c">כאן נמצאים גם היקר ביותר וגם הזול ביותר לנקודת אור</span>
+  </div>
+  <div class="b2">
+   <div>
+    <p class="kicker">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt" style="font-size:clamp(18px,2vw,26px)">סט תאורת שביל סולארית מודרנית בצורת <bdi>7</bdi> – <bdi>4/8</bdi> יחידות</h3>
+    <p class="pcap">גוון חם <bdi>2700K</bdi> · עמידות <bdi>IP65</bdi>. מפנות אור כלפי מטה ויוצרות רצף נקי לאורך השביל — לא מסנוורות.</p>
+    <div class="pbuy"><span class="price">מ־<bdi>549.90</bdi> ₪</span><a class="btn btn--ghost btn--sm" href="#">לבחירת כמות</a>
+     <span class="mute" style="font-size:12.5px">המוצר היקר בחנות — ושמונה נקודות אור</span></div>
+   </div>
+   <div><ol class="ladder" style="--lw:150px"><li><b><bdi>4</bdi><span>יח׳</span></b><em>137.48 ₪ לנקודה</em><span class="price"><bdi>549.90</bdi> ₪</span></li><li><b><bdi>8</bdi><span>יח׳</span></b><em>124.99 ₪ לנקודה</em><span class="price"><bdi>999.90</bdi> ₪</span></li></ol></div>
+  </div>
+  <div class="split" style="margin-top:clamp(40px,5vw,84px)">
+   <div>
+    <p class="kicker">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt" style="font-size:clamp(18px,2vw,26px)">תאורה סולארית עמידה למים לדק ולמדרגות</h3>
+    <p class="pcap">פס אור חם לכל מדרגה, דק או שביל, בלי כבלים גלויים. המחירון מציג את אותו מחיר לכל הכמויות — משתיים ועד שמונה יחידות.</p>
+    <div class="pbuy"><span class="price"><bdi>149.90</bdi> ₪</span><a class="btn btn--ghost btn--sm" href="#">לבחירת כמות</a></div>
+    <ol class="ladder" style="--lw:124px"><li><b><bdi>2</bdi><span>יח׳</span></b><em>74.95 ₪ לנקודה</em><span class="price"><bdi>149.90</bdi> ₪</span></li><li><b><bdi>4</bdi><span>יח׳</span></b><em>37.48 ₪ לנקודה</em><span class="price"><bdi>149.90</bdi> ₪</span></li><li><b><bdi>6</bdi><span>יח׳</span></b><em>24.98 ₪ לנקודה</em><span class="price"><bdi>149.90</bdi> ₪</span></li><li><b><bdi>8</bdi><span>יח׳</span></b><em>18.74 ₪ לנקודה</em><span class="price"><bdi>149.90</bdi> ₪</span></li></ol>
+   </div>
+   <div><figure class="ph " style="--ar:4/5;--ox:10%;--oy:50%;--z:1.62;--tx:0;--ty:9%"><img src="../../../../assets/img/waterproof-solar-deck-step-lights-2.jpg" alt="מדרגות מוארות בלילה" width="1000" height="1000" loading="lazy"></figure></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec band" id="bD">
+ <div class="stars" style="--st:.5"></div>
+ <div class="wrap">
+  <div class="band__hd">
+   <span class="band__n">עד <bdi>12</bdi> נקודות</span><span class="band__t">מוצר אחד</span>
+   <span class="band__c">הכי הרבה נקודות אור בקולקציה — וגם ההתחלה הזולה ביותר</span>
+  </div>
+  <div class="split">
+   <div><figure class="ph " style="--ar:3/4;--ox:100%;--oy:50%;--z:1.47;--tx:0;--ty:-10.9%"><img src="../../../../assets/img/warm-solar-step-deck-lights-1.jpg" alt="מדרגות עם מנורות סולאריות דולקות" width="1000" height="1000" loading="lazy"></figure></div>
+   <div>
+    <p class="kicker">שביל, מדרגות ומעברים · לראות את הדרך</p>
+    <h3 class="pt" style="font-size:clamp(18px,2vw,26px)">מנורות סולאריות למדרגות ולדק באור חם – <bdi>1/4/8/12</bdi> יחידות</h3>
+    <p class="pcap">אפשר להתחיל ביחידה אחת ולראות איך זה נראה, ואפשר לקנות שתים־עשרה ולסיים גרם מדרגות שלם. שחור או חום.</p>
+    <div class="pbuy"><span class="price">מ־<bdi>69.90</bdi> ₪</span><a class="btn btn--ghost btn--sm" href="#">לבחירת כמות</a></div>
+    <ol class="ladder" style="--lw:124px"><li><b><bdi>1</bdi><span>יח׳</span></b><em>69.90 ₪ לנקודה</em><span class="price"><bdi>69.90</bdi> ₪</span></li><li><b><bdi>4</bdi><span>יח׳</span></b><em>39.98 ₪ לנקודה</em><span class="price"><bdi>159.90</bdi> ₪</span></li><li><b><bdi>8</bdi><span>יח׳</span></b><em>33.74 ₪ לנקודה</em><span class="price"><bdi>269.90</bdi> ₪</span></li><li><b><bdi>12</bdi><span>יח׳</span></b><em>29.16 ₪ לנקודה</em><span class="price"><bdi>349.90</bdi> ₪</span></li></ol>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec band" id="rooms" style="padding-block:clamp(52px,6vw,104px)">
+ <div class="stars" style="--st:.55"></div>
+ <div class="wrap">
+  <div style="display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-end;justify-content:space-between">
+   <div>
+    <p class="eyebrow">שלושת החדרים האחרים</p>
+    <h2 class="h" style="font-size:clamp(26px,3.4vw,52px);margin-top:16px">לכל מקום יש שאלה<br>אחרת לשאול.</h2>
+   </div>
+   <a class="link" href="all.html">הבית מבחוץ — כל <bdi>27</bdi> המוצרים ←</a>
+  </div>
+  <div class="rooms__grid"><a class="room" href="#" data-lamp>
+   <figure class="ph" style="--ar:16/9;--oy:44%"><img src="../../../../assets/img/collection-wall.jpg" alt="כניסה, קיר וחזית" width="800" height="1000" loading="lazy"></figure>
+   <span class="num" style="display:block;margin-top:14px">2</span>
+   <span class="room__t">כניסה, קיר וחזית</span><span class="room__q">כמה חזק, ובאיזה גוון?</span><span class="room__m">6 מוצרים · <bdi>99.90–252.90</bdi> ₪</span>
+  </a><a class="room" href="#" data-lamp>
+   <figure class="ph" style="--ar:3/4.6;--oy:50%"><img src="../../../../assets/img/collection-spot.jpg" alt="הדגשת אזור בגינה" width="800" height="1000" loading="lazy"></figure>
+   <span class="num" style="display:block;margin-top:14px">3</span>
+   <span class="room__t">הדגשת אזור בגינה</span><span class="room__q">כמה רחוק צריך להגיע האור?</span><span class="room__m">6 מוצרים · <bdi>99.90–499.90</bdi> ₪</span>
+  </a><a class="room" href="index.html" data-lamp>
+   <figure class="ph" style="--ar:3/4.2;--oy:40%"><img src="../../../../assets/img/collection-decor.jpg" alt="מרפסת ופינת ישיבה" width="800" height="1000" loading="lazy"></figure>
+   <span class="num" style="display:block;margin-top:14px">4</span>
+   <span class="room__t">מרפסת ופינת ישיבה</span><span class="room__q">כמה מטר צריך לכסות?</span><span class="room__m">7 מוצרים · <bdi>89.90–469.90</bdi> ₪</span>
+  </a></div>
+ </div>
+</section>
+<section class="sec terms" style="padding-block:clamp(48px,5vw,86px)">
+ <div class="stars" style="--st:.55"></div>
+ <div class="wrap">
+  <p class="eyebrow" style="margin-bottom:26px">לפני שמזמינים</p>
+  <div class="terms__grid">
+   <div><b>0</b><span>משלוח לנקודת איסוף — ללא עלות</span></div>
+   <div><b><bdi>29.90</bdi> ₪</b><span>משלוח עד הבית</span></div>
+   <div><b><bdi>8–17</bdi></b><span>ימי עסקים לאספקה: <bdi>1–3</bdi> ימי טיפול ועוד <bdi>7–14</bdi> ימי משלוח. חלק מהמשלוחים יוצאים ממחסנים מחוץ לישראל.</span></div>
+   <div><b><bdi>14</bdi> יום</b><span>לביטול מקבלת המוצר, לפי חוק הגנת הצרכן. דמי ביטול עד <bdi>5%</bdi> ממחיר המוצר או <bdi>100</bdi> ₪ — הנמוך מביניהם.</span></div>
+  </div>
+  <p style="margin-top:26px;display:flex;gap:26px;flex-wrap:wrap;align-items:center">
+   <a class="link" href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94">לשלוח תמונה של המקום ונבדוק התאמה ←</a>
+   <a class="link" href="all.html">לקטלוג המלא ←</a>
+  </p>
+ </div>
+</section>
+<footer class="ft">
+ <div class="wrap">
+  <div class="ft__top">
+   <div>
+    <img class="ft__logo" src="../../../../assets/img/logo.png" alt="ElmsNest" width="56" height="56">
+    <p class="ft__note">שאלות על מוצר או על התאמה למקום? כתבו לנו: <a href="mailto:info@elmsnest.com" style="color:var(--glow)">info@elmsnest.com</a></p>
+   </div>
+   <div><h4>קולקציות</h4><ul>
+     <li><a href="path.html">שביל, עמוד וגינה</a></li><li><a href="#">תאורת קיר</a></li>
+     <li><a href="#">ספוטים ופרוז׳קטורים</a></li><li><a href="index.html">גרילנדות ותאורה דקורטיבית</a></li>
+     <li><a href="all.html">כל <bdi>27</bdi> המוצרים</a></li></ul></div>
+   <div><h4>מידע</h4><ul>
+     <li><a href="#">מדריך לבחירת תאורה לגינה</a></li><li><a href="#">למה תאורה סולארית</a></li>
+     <li><a href="#">מי אנחנו</a></li><li><a href="#">משלוחים ואספקה</a></li><li><a href="#">שאלות נפוצות</a></li></ul></div>
+   <div><h4>יצירת קשר</h4><ul>
+     <li><a href="#">עמוד יצירת קשר</a></li><li><a href="mailto:info@elmsnest.com">לשליחת תמונה של המקום</a></li>
+     <li><a href="#">תנאי משלוח וביטול</a></li></ul></div>
+  </div>
+  <p class="ft__bot">ElmsNest © <bdi>2026</bdi> · תנאי משלוח וביטול</p>
+ </div>
+</footer>
+<script>
+(function(){
+ var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var els = [].slice.call(document.querySelectorAll('[data-lamp]'));
+ function lightAll(){ els.forEach(function(e){ e.classList.add('lit'); }); }
+ if (rm || !('IntersectionObserver' in window)) { lightAll(); return; }
+ var io = new IntersectionObserver(function(en){
+   en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('lit'); io.unobserve(e.target); } });
+ }, {threshold:.25, rootMargin:'0px 0px -6% 0px'});
+ els.forEach(function(e){ io.observe(e); });
+ function sweep(){ els.forEach(function(e){ var r=e.getBoundingClientRect();
+   if(r.top < innerHeight*0.94 && r.bottom > 0) e.classList.add('lit'); }); }
+ addEventListener('load', sweep); addEventListener('scroll', sweep, {passive:true}); sweep();
+})();
+</script>
+</body></html>
