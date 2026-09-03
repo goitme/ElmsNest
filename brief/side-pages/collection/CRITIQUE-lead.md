@@ -51,3 +51,43 @@ The adversarial round: four lenses on the deployed render, the shopper executing
 engineer testing keyboard, reduced motion and 320 px, the typographer reading every mixed-direction number, and the
 creative director trying to prove the page is not world-class. Re-run `brief/side-pages/workflows/collection-critique.js`
 when the model service recovers. Until then this page is **verified, not critiqued**.
+
+---
+
+## The shopper journey, executed (added after the critics failed a third time)
+
+The four critic agents failed on three attempts (500, then 529 twice, parallel and sequential), so I drove the
+purchase myself with Playwright on the served `coll-decor` mirror at 390×844, with and without JavaScript.
+Screenshots: `brief/side-pages/collection/shopper/decor-6m-js{true,false}.png`.
+
+**The task:** I want string lights for a six-metre pergola. Seven garlands, 105 variants, prices 89.90–469.90.
+
+| Step | What happened | Verdict |
+|---|---|---|
+| Land | The fold gives the place, one lit garland pinned in the photograph, `מ־89.90 ₪`, `≈17.98 ₪ למטר` and `לבחירת אורך` | pass |
+| Find the instrument | The ruler's first pixel is at **943 px — 1.12 screens down**. I had to scroll past a full screen to reach the one device this page exists for | **LEAD-01, major** |
+| Choose 6 מ׳ | Every row collapsed from a range to one real answer: crystal `6.5 מ׳ · 89.90 ₪ · ≈13.83 ₪/מ׳`, globe `6 מ׳ · 119.90 ₪ · ≈19.98`, rope `7 מ׳ · 89.90 ₪ · ≈12.84`, Edison `8 מ׳ · 179.90 ₪ · ≈22.49` | pass — and this is the best conversion device in the whole project: four comparable offers, and the cheapest per metre is visible without arithmetic |
+| Same with JavaScript disabled | **Byte-identical output.** The stop is a label over a native radio and the narrowing is pure CSS `:checked` | pass |
+| Reach a product | Every row's title is a 50 px link to the product page and carries a 45 px `לבחירת אורך`; the stops are 48 px | pass — above the 44 px floor |
+| The three garlands not measured in metres | fireflies, birch and the net are **not dropped** — they appear elsewhere on the page (2, 3 and 3 links respectively) rather than being forced onto a metre rail | pass |
+
+### LEAD-01 · major · `elmsnest-v2-coll-scene` + `-ruler`
+
+**What.** The narrowing device sits 943 px down on a phone — 1.12 screens. `BRIEF.md` §6 sets the bar as: within
+the first screen on a phone the visitor must see the place, a real product with a real price, **and a way to narrow
+the set**. The first two are there; the third is one full scroll away, so the page's own instrument is invisible at
+the moment of arrival.
+
+**Evidence.** Measured `getBoundingClientRect().top + scrollY` on `#env2-coll-ruler` at 390×844 = 943 px.
+
+**Fix (one iteration, no redesign).** Put the question in the scene, not just the section: a single hairline line
+under the counts reading `כמה מטרים צריך להאיר?` followed by the six stop values as anchors to `#env2-coll-ruler`
+(they are already `<a>`-able ids). It costs about 60 px in the fold, it uses copy that already exists, and it makes
+the instrument discoverable without moving the ruler above the bands — which would cost the page its opening
+photograph, the reason this concept won.
+
+## Corrected verdict
+
+The page is **verified and now partly critiqued**: the buy path, the narrowing device, the no-JS contract, the
+honesty rules, the RTL numerals and the tap targets are measured and sound; one major finding (LEAD-01) is open;
+the creative, typographic and full-QA lenses are still owed and must run when the model service recovers.
