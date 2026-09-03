@@ -1,5 +1,5 @@
 {%- comment -%}
-  ElmsNest v2 PDP — §4.7 "עוד לא בטוחים? לא צריך להיות."  ·  #env2-pdp-ask  ·  spine answers #7 + #8.
+  ElmsNest v2 PDP — §4.7 "עוד לא בטוחים? לא חייבים."  ·  #env2-pdp-ask  ·  spine answers #7 + #8.
 
   Two jobs, one screen: the specialist line (why here and not a marketplace) and the two ways to
   NOT buy yet — send a photo of the place, or start from the smallest thing the product sells.
@@ -21,11 +21,23 @@
   §4.7's lead opens "אמרנו למעלה מתי היא לא מתאימה" — true only when §4.2 actually printed a negative.
   custom.not_fit_for is EMPTY on all 27 products today, so §4.2 renders its "how to choose" mode and
   this section must say the same thing. The test here is byte-identical to elmsnest-v2-pdp-fit's:
-  the metafield must match one of the FOUR approved negatives exactly, and the solar clause only
-  counts on a product whose custom.power_source is 'סולארי'. When it does not, the first sentence
-  becomes "אמרנו למעלה איך בוחרים נכון." — the same words §4.2 uses in that state. lead_mode lets an
+  the metafield must match one of the FOUR approved negatives exactly and, when the metafield is
+  blank, the place's own approved pair stands in — gated on solar for the three negatives that are
+  only true on a battery, exactly as §4.2 gates them (BRIEF §4 row 2 names the pair and the
+  description as the honest sources). When neither yields a negative — product C — the first
+  sentence becomes "אמרנו למעלה איך בוחרים נכון." — the same words §4.2 uses in that state. lead_mode lets an
   integrator pin it if §4.2 was overridden from its own section settings (which this file cannot read).
   This section says nothing about power, ever, on any product — so §3.7 cannot be breached here.
+
+  ------------------------------------------------------------------ the closing photograph (CREATIVE-10)
+  Below the ledger the page stopped producing photographic events: the third and fourth quarters of
+  every PDP measured 2.6–9.3 % lit against the homepage's 16.7 %, i.e. grey text on black for the
+  last 4,000 px. This section now closes the page on the thing it opens with — the product's own
+  light, full bleed, with the §3.1 veil carrying the copy exactly as the stage carries it. One
+  enormous thing on the last screen (§3.3 / §8). It is a section setting, so it can be switched off,
+  and the photograph is resolved through elmsnest-v2-pdp-image's own "ask" slot (§3.5) — never a
+  baked-text slide, and deliberately never the hero's own frame, so the page does not open and close
+  on the same picture.
 
   ------------------------------------------------------------------ the two calls to action
   1. The small step (primary, filled pill). An <a href="#env2-pdp-ledger"> so it works with no JS at
@@ -40,8 +52,9 @@
 
   ------------------------------------------------------------------ motion (§3.3)
   Exactly one thing switches on, and it is not text (do-not §6.19 forbids a text fade-in): the
-  hairline that carries the quote lights from .3 to full when the quote arrives. Every word is
-  server-rendered at full opacity in every state. Reduced motion / no JS: the hairline is lit.
+  hairline that carries the quote lights from .3 to full when the quote arrives, and the closing
+  photograph lights with it. Every word is server-rendered at full opacity in every state.
+  Reduced motion / no JS: both are lit.
 
   ------------------------------------------------------------------ no JS
   The section is complete and buyable without JavaScript: both CTAs are ordinary anchors, the small
@@ -50,7 +63,7 @@
 
   Plumbing: elmsnest-v2-core (rendered from layout/theme.liquid on every page) supplies the tokens,
   the fonts, the .env2-* helpers, [data-lamp] and window.env2. This section renders no global, no
-  ground and no font link (§8.2), and owns no image slot.
+  ground and no font link (§8.2).
 {%- endcomment -%}
 {%- liquid
   assign env2_RS = '~~R~~'
@@ -154,6 +167,15 @@
   assign env2_ok_neg = '~המקום כמעט אינו מקבל אור יום~נדרש אור חזק וקבוע לאורך כל הלילה~צריך אור חזק — זו אינה מטרתה~נדרשת התקנה מיוחדת או חיבור קבוע~'
   assign env2_solar_clause = 'המקום כמעט אינו מקבל אור יום'
   assign env2_pwr = product.metafields.custom.power_source | default: '' | strip
+  assign env2_solar = false
+  if env2_pwr == 'סולארי'
+    assign env2_solar = true
+  elsif env2_pwr == ''
+    assign env2_hay = product.description | strip_html | append: ' ' | append: product.title
+    if env2_hay contains 'סולארי'
+      assign env2_solar = true
+    endif
+  endif
   assign env2_neg = product.metafields.custom.not_fit_for | default: '' | strip
   if env2_neg != ''
     assign env2_probe2 = '~' | append: env2_neg | append: '~'
@@ -161,8 +183,22 @@
       assign env2_neg = ''
     endunless
   endif
-  if env2_neg == env2_solar_clause and env2_pwr != 'סולארי'
+  if env2_neg == env2_solar_clause and env2_solar == false
     assign env2_neg = ''
+  endif
+  # the same fallback §4.2 now uses, so the two sections cannot disagree about what the page said:
+  # the place's OWN approved pair when the metafield is blank, and only where it is literally true.
+  if env2_neg == ''
+    assign env2_ptype = product.type | default: ''
+    if env2_ptype == 'גרילנדות ותאורה דקורטיבית'
+      assign env2_neg = 'צריך אור חזק — זו אינה מטרתה'
+    elsif env2_solar and env2_ptype == 'תאורת שביל, עמוד וגינה'
+      assign env2_neg = 'המקום כמעט אינו מקבל אור יום'
+    elsif env2_solar and env2_ptype == 'תאורת קיר'
+      assign env2_neg = 'נדרש אור חזק וקבוע לאורך כל הלילה'
+    elsif env2_solar and env2_ptype == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+      assign env2_neg = 'נדרשת התקנה מיוחדת או חיבור קבוע'
+    endif
   endif
   assign env2_has_neg = false
   if env2_neg != ''
@@ -209,6 +245,12 @@
   # ---------------------------------------------------------------- the quote(s)
   assign env2_quotes = section.blocks | where: 'type', 'quote'
 -%}
+{%- assign env2_photo = blank -%}
+{%- if section.settings.show_photo and product != blank -%}
+  {%- capture env2_pi -%}{%- render 'elmsnest-v2-pdp-image', product: product, slot: 'ask', index: section.settings.photo_index -%}{%- endcapture -%}
+  {%- assign env2_pi = env2_pi | plus: 0 -%}
+  {%- assign env2_photo = section.settings.photo_image | default: product.images[env2_pi] | default: product.featured_image -%}
+{%- endif -%}
 {%- comment -%} the step's label: the row's own value + the row's own price, or the merchant's own line {%- endcomment -%}
 {%- capture env2_step_label -%}
   {%- if section.settings.start_small_label != blank -%}
@@ -221,8 +263,16 @@
     להתחיל מ־<bdi>{{ env2_seg }}</bdi> — <bdi>{{ env2_sprice }}</bdi>&nbsp;&#8362;
   {%- endif -%}
 {%- endcapture -%}
-<section id="env2-pdp-ask" data-env2-pdp-ask class="env2-section env2-pdp-ask" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.62" aria-labelledby="env2-pdp-ask-h2">
+<section id="env2-pdp-ask" data-env2-pdp-ask class="env2-section env2-pdp-ask{% if env2_photo != blank %} env2-pdp-ask--photo{% endif %}" dir="rtl" style="scroll-margin-top:90px;--env2-stars:{% if env2_photo != blank %}.2{% else %}.62{% endif %}" aria-labelledby="env2-pdp-ask-h2">
   <div class="env2-stars" aria-hidden="true"></div>
+  {%- if env2_photo != blank -%}
+    <div class="env2-pdp-ask__bg" data-lamp aria-hidden="true">
+      <div class="env2-ph env2-pdp-ask__ph">
+        {{ env2_photo | image_url: width: 1800 | image_tag: loading: 'lazy', decoding: 'async', widths: '600,900,1400,1800', sizes: '100vw', alt: '', class: 'env2-pdp-ask__img' }}
+      </div>
+    </div>
+    <div class="env2-pdp-ask__veil" aria-hidden="true"></div>
+  {%- endif -%}
 
   <div class="env2-wrap env2-pdp-ask__wrap">
     <div class="env2-pdp-ask__main">
@@ -288,9 +338,21 @@
 /* ---------- §4.7 PDP ask: the specialist line + the small step ----------
    Composition nobody else on this page uses (do-not §6.20): a two-column split whose halves are
    aligned on their BOTTOM edge — the heading, the lead and the two buttons at the start side, the
-   quotation alone at the end side, on one hairline. No surface, no box, no card: the ground is the
-   body gradient from elmsnest-v2-ground-product and the only layer above it is the star field. */
+   quotation alone at the end side. No surface, no box, no card; the only ground is the closing
+   photograph and the §3.1 veil over it. */
 .env2-pdp-ask{padding-block:100px}
+/* the closing photograph: full bleed behind the section, the copy carried on the §3.1 veil exactly as
+   the stage carries it. The head sits low so the top of the band is photograph, not type. */
+.env2-pdp-ask--photo{position:relative;isolation:isolate;overflow:clip;padding-block:clamp(150px,20vw,260px) clamp(84px,9vw,110px)}
+.env2-pdp-ask__bg{position:absolute;inset:0;z-index:-2}
+.env2-pdp-ask__bg[data-lamp] .env2-pdp-ask__ph{position:absolute;inset:0;background:#05070c;border-radius:0}
+.env2-pdp-ask__bg[data-lamp] .env2-pdp-ask__ph img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:brightness(calc(.1 + .34*var(--lit,1))) saturate(.85);transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:none}
+.env2-pdp-ask__bg[data-lamp] .env2-pdp-ask__ph::after{display:none}
+.env2-pdp-ask__veil{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(74% 58% at 100% 76%,rgba(4,7,14,.62),rgba(4,7,14,0) 76%),linear-gradient(0deg,var(--env2-sky-2) 0,rgba(15,26,47,.94) 16%,rgba(15,26,47,.82) 38%,rgba(15,26,47,.5) 66%,rgba(15,26,47,.2) 88%),linear-gradient(180deg,rgba(2,3,6,.5),rgba(2,3,6,0) 34%)}
+.env2-pdp-ask--photo .env2-pdp-ask__h2.env2-h{text-shadow:0 2px 40px rgba(0,0,0,.55)}
+.env2-pdp-ask--photo .env2-pdp-ask__lead.env2-lead,
+.env2-pdp-ask--photo .env2-pdp-ask__q,
+.env2-pdp-ask--photo .env2-pdp-ask__cite{text-shadow:0 1px 14px rgba(0,0,0,.6)}
 .env2-pdp-ask__wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;gap:clamp(30px,6vw,100px)}
 .env2-pdp-ask__main{min-inline-size:0}
 
@@ -310,7 +372,10 @@
 /* border-box and white-space:normal are not decoration: .env2-btn is nowrap, the label is built from
    the product's own option value, and a long one ("1.5×1.5 מטר", "אור חם 3000K") would otherwise push
    a full-width mobile button past the viewport. The numbers stay unbreakable inside their own <bdi>. */
-.env2-pdp-ask__start,.env2-pdp-ask__photo{box-sizing:border-box;min-block-size:48px;white-space:normal}
+.env2-pdp-ask__start,.env2-pdp-ask__photo{box-sizing:border-box;white-space:normal}
+/* §4.1's 52px and §6.18's 44px floor: .env2-btn{min-height:0} is (0,1,0) and sits later in the
+   cascade (the layout's inline <style>), so the floor has to be stated at (0,2,x) — QA-03. */
+.env2-pdp-ask a.env2-pdp-ask__start,.env2-pdp-ask .env2-pdp-ask__photo{min-block-size:52px}
 .env2-pdp-ask__start{padding-inline:26px;text-align:center}
 .env2-pdp-ask__start bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums;white-space:nowrap}
 
@@ -331,7 +396,8 @@
   .env2-pdp-ask__h2.env2-h{max-inline-size:none}
   .env2-pdp-ask__lead.env2-lead{margin-block-start:18px;max-inline-size:none}
   .env2-pdp-ask__cta{flex-direction:column;align-items:stretch;gap:12px;margin-block-start:30px}
-  .env2-pdp-ask__start,.env2-pdp-ask__photo{inline-size:100%;min-block-size:52px}
+  .env2-pdp-ask__start,.env2-pdp-ask__photo{inline-size:100%}
+  .env2-pdp-ask--photo{padding-block:clamp(120px,34vw,180px) 64px}
   .env2-pdp-ask__side{gap:28px}
   .env2-pdp-ask__quote{padding-inline-start:20px}
   .env2-pdp-ask__cite{margin-block-start:14px}
@@ -406,16 +472,20 @@
   "tag": "section",
   "class": "env2-pdp-ask-section hdt-section",
   "settings": [
+    { "type": "header", "content": "המסך הסוגר" },
+    { "type": "checkbox", "id": "show_photo", "label": "רקע צילום למסך הסוגר", "default": true },
+    { "type": "range", "id": "photo_index", "label": "מספר התמונה במוצר (0 = ברירת מחדל)", "min": 0, "max": 6, "step": 1, "default": 0 },
+    { "type": "image_picker", "id": "photo_image", "label": "תמונה — החלפה ידנית" },
     { "type": "header", "content": "הכותרת" },
     { "type": "text", "id": "eyebrow", "label": "שורת מספר", "default": "07 · למה כאן" },
     { "type": "text", "id": "heading_line1", "label": "כותרת — שורה ראשונה", "default": "עוד לא בטוחים?" },
-    { "type": "text", "id": "heading_line2", "label": "כותרת — שורה שנייה (בזוהר)", "default": "לא צריך להיות." },
+    { "type": "text", "id": "heading_line2", "label": "כותרת — שורה שנייה (בזוהר)", "default": "לא חייבים." },
     { "type": "header", "content": "פסקת הפתיחה" },
-    { "type": "paragraph", "content": "המשפט הראשון נבחר לבד: הוא מבטיח «אמרנו למעלה מתי היא לא מתאימה» רק כשבמדור 02 באמת נכתב 'לא מתאים' מאושר (custom.not_fit_for). כשאין — נכתב הנוסח השני. הסיומת («מהאורך הקצר» / «מיחידה אחת» / «מהעוצמה הנמוכה») נגזרת מהמוצר עצמו." },
+    { "type": "paragraph", "content": "המשפט הראשון נבחר לבד: הוא מבטיח «אמרנו למעלה מתי היא לא מתאימה» רק כשבמדור 02 באמת נכתב 'לא מתאים' מאושר. כשאין — נכתב הנוסח השני. הסיומת («מהאורך הקצר» / «מיחידה אחת» / «מהעוצמה הנמוכה») נגזרת מהמוצר עצמו." },
     { "type": "textarea", "id": "lead", "label": "פתיחה — כשיש 'לא מתאים' מאושר", "default": "אמרנו למעלה מתי היא לא מתאימה. המפרט בעברית, ומה שלא ידוע — לא כתוב." },
     { "type": "textarea", "id": "lead_choose", "label": "פתיחה — כשאין 'לא מתאים'", "default": "אמרנו למעלה איך בוחרים נכון. המפרט בעברית, ומה שלא ידוע — לא כתוב." },
     { "type": "textarea", "id": "lead_step", "label": "המשפט על הצעד הקטן (בלי הסיומת)", "default": "ולפני שמזמינים יש למי לשלוח תמונה", "info": "הסיומת נוספת אוטומטית לפי המוצר. ריק = הפסקה מסתיימת אחרי המשפט הראשון." },
-    { "type": "select", "id": "lead_mode", "label": "איזה משפט ראשון", "options": [ { "value": "auto", "label": "אוטומטי (לפי המוצר)" }, { "value": "notfit", "label": "תמיד 'מתי היא לא מתאימה'" }, { "value": "choose", "label": "תמיד 'איך בוחרים נכון'" } ], "default": "auto", "info": "השאירו אוטומטי. שנו רק אם במדור 02 נכתב 'לא מתאים' מתוך הגדרות המדור ולא מתוך המטה־פילד." },
+    { "type": "select", "id": "lead_mode", "label": "איזה משפט ראשון", "options": [ { "value": "auto", "label": "אוטומטי (לפי המוצר)" }, { "value": "notfit", "label": "תמיד 'מתי היא לא מתאימה'" }, { "value": "choose", "label": "תמיד 'איך בוחרים נכון'" } ], "default": "auto", "info": "השאירו אוטומטי. שנו רק אם במדור 02 נכתב 'לא מתאים' מתוך הגדרות המדור ולא מתוך המקור האוטומטי." },
     { "type": "header", "content": "הצעד הקטן" },
     { "type": "checkbox", "id": "show_start_small", "label": "להציג את כפתור 'להתחיל מ…'", "default": true },
     { "type": "text", "id": "start_small_label", "label": "טקסט הכפתור (ריק = נבנה מהמוצר)", "info": "ריק = השורה הזולה והזמינה ביותר במחירון, עם המחיר שלה. אל תקלידו מחיר — הוא ישתנה בלי שתשימו לב." },

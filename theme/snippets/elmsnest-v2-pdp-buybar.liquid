@@ -102,6 +102,19 @@
   unicode-bidi:isolate;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .env2-pdp-bar__price{flex:none;--env2-price-size:22px}
 .env2-pdp-bar__btn{flex:none;min-height:44px;color:var(--env2-btn-ink)}
+/* TYPOGRAPHER-07 / SHOPPER-10: at 390 the thumbnail, the price and the pill left the text column 96px,
+   so the bar clipped the selection mirror — and clipped it inside a Latin token ("6W / אור חם …",
+   hiding the price-bearing 3000K). The mirror is the reason the bar exists, so on a narrow phone the
+   thumbnail goes (the photograph is two swipes away, and the title still names the product) and the
+   price steps down one notch. Nothing else moves. */
+@media (max-width:430px){
+  .env2-pdp-bar{padding-inline:14px}
+  .env2-pdp-bar__thumb{display:none}
+  .env2-pdp-bar__form{gap:8px}
+  .env2-pdp-bar__title{font-size:13px}
+  .env2-pdp-bar__price{--env2-price-size:20px}
+  .env2-pdp-bar__btn{padding-inline:16px}
+}
 @media (prefers-reduced-motion:reduce){.env2-pdp-bar{transition:none}}
 </style>
 {%- endif -%}

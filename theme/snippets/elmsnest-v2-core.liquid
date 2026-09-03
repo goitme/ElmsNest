@@ -278,6 +278,20 @@ option[value="best-selling"],hdt-richlist button[role="option"][value="best-sell
       headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/javascript' }
     }).then(function(r){ return r.json(); }).then(function(j){
       if (!j || j.status) throw new Error('cart/add failed');
+      /* The drawer is the theme's, and on a slow phone or a failed chunk its custom element can still
+         be un-upgraded when the POST succeeds — the item enters the cart and the screen does not
+         change, so the same button gets pressed twice. The page therefore acknowledges the add on its
+         own, before and regardless of the drawer: the label says so and the control stays disabled
+         while it does. Restored by the finally-branch below. */
+      if (btn && !btn.getAttribute('data-env2-said')) {
+        btn.setAttribute('data-env2-said', btn.textContent);
+        btn.textContent = btn.getAttribute('data-env2-added') || 'נוסף לסל';
+        setTimeout(function(){
+          var was = btn.getAttribute('data-env2-said');
+          if (was !== null) { btn.textContent = was; btn.removeAttribute('data-env2-said'); }
+          btn.disabled = false; btn.removeAttribute('aria-busy');
+        }, 1600);
+      }
       document.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: {
         resource: {}, sourceId: String(fd.get('id')), cartData: j,
         actionAfterATC: 'open_cart_drawer', source: 'product-form-component',
@@ -287,7 +301,7 @@ option[value="best-selling"],hdt-richlist button[role="option"][value="best-sell
       if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
       form.submit();
     }).then(function(){
-      if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+      if (btn && !btn.getAttribute('data-env2-said')) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
     });
   });
 

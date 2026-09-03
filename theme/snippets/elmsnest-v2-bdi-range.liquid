@@ -1,0 +1,66 @@
+{%- comment -%}
+  ElmsNest v2 — RANGE ISOLATOR (WINNING-SPEC §3.2 "<bdi> on every Latin token"; §6 do-not #17).
+
+  Usage — the snippet PRINTS the text back with every "number–number" range wrapped in ONE <bdi>:
+
+      {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: some_value -%}{%- endcapture -%}
+
+  Why it has to exist. ASCII digits are bidi class EN, not L. Inside an RTL paragraph an EN run gets
+  its own embedding level and, by rule N1, a neutral between two EN runs resolves to R — so the en
+  dash in "5–22 מטר" sits at the RTL level while "5" and "22" sit at the LTR level, and the two
+  numbers change places on screen: the page prints "22–5 מטר" for a 5–22 metre product. One <bdi>
+  around the WHOLE range (never one per number) puts both numbers and the dash in a single isolate
+  and the pair prints in the order it was written. Verified per character with client rects.
+
+  It wraps only a range: a run of digits (and "." / ",") immediately before the dash and immediately
+  after it. Anything else — an em dash between words, a lone number, a dash inside a word — is left
+  exactly as it was, and text already inside a <bdi> is never touched (the check is done by the
+  caller: pass the RAW value, wrap Latin tokens afterwards).
+{%- endcomment -%}
+{%- liquid
+  assign env2_t = text | default: ''
+  assign env2_dg = '0123456789.,'
+-%}
+{%- if env2_t contains '–' -%}
+  {%- liquid
+    assign env2_parts = env2_t | split: '–'
+    assign env2_out = env2_parts[0]
+    assign env2_n = env2_parts.size | minus: 1
+    for env2_k in (1..env2_n)
+      assign env2_right = env2_parts[env2_k]
+      # the numeric run that ENDS the text built so far
+      assign env2_tl = 0
+      for env2_s in (1..10)
+        assign env2_neg = 0 | minus: env2_s
+        assign env2_ch = env2_out | slice: env2_neg, 1
+        if env2_ch != '' and env2_dg contains env2_ch
+          assign env2_tl = env2_s
+        else
+          break
+        endif
+      endfor
+      # the numeric run that STARTS the next part
+      assign env2_hl = 0
+      for env2_s in (1..10)
+        assign env2_i0 = env2_s | minus: 1
+        assign env2_ch = env2_right | slice: env2_i0, 1
+        if env2_ch != '' and env2_dg contains env2_ch
+          assign env2_hl = env2_s
+        else
+          break
+        endif
+      endfor
+      if env2_tl > 0 and env2_hl > 0
+        assign env2_cut = env2_out.size | minus: env2_tl
+        assign env2_head = env2_out | slice: 0, env2_cut
+        assign env2_num1 = env2_out | slice: env2_cut, env2_tl
+        assign env2_num2 = env2_right | slice: 0, env2_hl
+        assign env2_rest = env2_right | slice: env2_hl, env2_right.size
+        assign env2_out = env2_head | append: '<bdi>' | append: env2_num1 | append: '–' | append: env2_num2 | append: '</bdi>' | append: env2_rest
+      else
+        assign env2_out = env2_out | append: '–' | append: env2_right
+      endif
+    endfor
+    echo env2_out
+  -%}
+{%- else -%}{{ env2_t }}{%- endif -%}

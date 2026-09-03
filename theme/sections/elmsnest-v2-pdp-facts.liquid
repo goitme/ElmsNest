@@ -49,6 +49,16 @@
 
   # ---------------------------------------------------------------- the power branch, three states
   assign pwr = product.metafields.custom.power_source | default: '' | strip
+  # custom.power_source is unwritten on all 27 products. BRIEF §4 row 5 names the power source as a
+  # RISK fact and BRIEF §4 row 2 names "power source from description" as its honest source, so when
+  # the metafield is blank the product's own word decides. It is only ever read as SOLAR — a product
+  # that does not say "סולארי" keeps saying nothing about power (§3.7 / §6.7), which is product C.
+  if pwr == ''
+    assign hay_pwr = product.description | strip_html | append: ' ' | append: product.title
+    if hay_pwr contains 'סולארי'
+      assign pwr = 'סולארי'
+    endif
+  endif
   assign gate_power = true
   if pwr != ''
     assign gate_power = false
@@ -431,7 +441,11 @@
           {%- for rec in row_list offset: 1 -%}
             {%- assign f = rec | split: FS -%}
             {%- if f.size < 2 -%}{%- continue -%}{%- endif -%}
-            {%- capture v -%}{{ f[1] }}{%- endcapture -%}
+            {%- comment -%} the giant numeral already prints this value once; a row that only repeats
+              it is a duplicate, not a fact (SHOPPER-13). {%- endcomment -%}
+            {%- assign vplain = f[1] | strip -%}
+            {%- if giant != blank and vplain == giant -%}{%- continue -%}{%- endif -%}
+            {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: f[1] -%}{%- endcapture -%}
             {%- assign v = v | replace: 'IP20', '<bdi>IP20</bdi>' | replace: 'IP44', '<bdi>IP44</bdi>' | replace: 'IP54', '<bdi>IP54</bdi>' | replace: 'IP55', '<bdi>IP55</bdi>' | replace: 'IP65', '<bdi>IP65</bdi>' | replace: 'IP66', '<bdi>IP66</bdi>' | replace: 'IP67', '<bdi>IP67</bdi>' | replace: 'IP68', '<bdi>IP68</bdi>' | replace: 'LED', '<bdi>LED</bdi>' | replace: 'USB', '<bdi>USB</bdi>' | replace: 'PIR', '<bdi>PIR</bdi>' | replace: 'RGB', '<bdi>RGB</bdi>' | replace: 'ABS', '<bdi>ABS</bdi>' | replace: 'mAh', '<bdi>mAh</bdi>' | replace: 'ON ', '<bdi>ON</bdi> ' -%}
             <div class="env2-pdp-facts__row{% if f[0] == blank %} env2-pdp-facts__row--wide{% endif %}">
               {%- if f[0] != blank -%}<dt class="env2-pdp-facts__dt">{{ f[0] }}</dt>{%- endif -%}
@@ -449,7 +463,7 @@
             {%- if show_block -%}
               <div class="env2-pdp-facts__row{% if block.settings.label == blank %} env2-pdp-facts__row--wide{% endif %}" {{ block.shopify_attributes }}>
                 {%- if block.settings.label != blank -%}<dt class="env2-pdp-facts__dt">{{ block.settings.label }}</dt>{%- endif -%}
-                <dd class="env2-pdp-facts__dd">{{ block.settings.value }}</dd>
+                <dd class="env2-pdp-facts__dd">{%- render 'elmsnest-v2-bdi-range', text: block.settings.value -%}</dd>
               </div>
             {%- endif -%}
           {%- endfor -%}
@@ -469,7 +483,10 @@
     {%- if section.settings.show_full_description and product.description != blank -%}
       <details class="env2-pdp-facts__more">
         <summary class="env2-pdp-facts__summary">{{ section.settings.more_label | default: 'כל מה שכתוב על המוצר' }}</summary>
-        <div class="env2-pdp-facts__desc">{{ product.description }}</div>
+        {%- comment -%} the merchant's own copy carries an <h2> and three <h3>; inside a <details> at
+          the foot of section 05 they would join the page's heading outline as siblings of the eight
+          section headings, one of them a duplicate of the h3 §4.2 quotes. Demoted, not rewritten. {%- endcomment -%}
+        <div class="env2-pdp-facts__desc">{{ product.description | replace: '<h2', '<h4' | replace: '</h2>', '</h4>' | replace: '<h3', '<h5' | replace: '</h3>', '</h5>' }}</div>
       </details>
     {%- endif -%}
 
@@ -498,15 +515,16 @@
 .env2-pdp-facts__dl{grid-column:1;grid-row:2;margin:0}
 .env2-pdp-facts__dl--solo{grid-column:2;grid-row:1;max-width:none}
 
-/* the one enormous thing on the screen: outline until it is reached, then glow (§3.3) */
-.env2-pdp-facts__giant{font-family:var(--env2-serif);font-weight:900;font-size:clamp(96px,13vw,230px);line-height:.86;letter-spacing:-.02em;color:rgba(255,211,148,var(--lit,1));-webkit-text-stroke:1px rgba(244,238,227,calc(.45 - .45*var(--lit,1)));text-shadow:0 0 50px rgba(255,211,148,calc(.4*var(--lit,1)));transition:color 1.4s ease,-webkit-text-stroke-color 1.4s ease,text-shadow 1.4s ease}
+/* the one enormous thing on the screen: outline until it is reached, then glow (§3.3).
+   The clamp is §3.2's own — 13vw made the page's biggest typographic gesture 19 % small. */
+.env2-pdp-facts__giant{font-family:var(--env2-serif);font-weight:900;font-size:clamp(96px,16vw,240px);line-height:.86;letter-spacing:-.02em;color:rgba(255,211,148,var(--lit,1));-webkit-text-stroke:1px rgba(244,238,227,calc(.45 - .45*var(--lit,1)));text-shadow:0 0 50px rgba(255,211,148,calc(.4*var(--lit,1)));transition:color 1.4s ease,-webkit-text-stroke-color 1.4s ease,text-shadow 1.4s ease}
 .env2-pdp-facts__giant bdi{unicode-bidi:isolate}
-.env2-pdp-facts__giantsub{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-width:34ch}
+.env2-pdp-facts__giantsub{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-width:34ch;unicode-bidi:isolate}
 
 /* ---------- the ledger: hairlines, no boxes ---------- */
 .env2-pdp-facts__row{display:grid;grid-template-columns:128px minmax(0,1fr);gap:0 clamp(14px,2vw,26px);align-items:baseline;border-top:1px solid var(--env2-hair);padding-block:14px}
 .env2-pdp-facts__row--wide{grid-template-columns:minmax(0,1fr)}
-.env2-pdp-facts__dt{font-family:var(--env2-sans);font-weight:400;font-size:13.5px;line-height:1.5;color:var(--env2-mute)}
+.env2-pdp-facts__dt{font-family:var(--env2-sans);font-weight:400;font-size:14px;line-height:1.5;color:var(--env2-mute)}
 .env2-pdp-facts__dd{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.55;color:var(--env2-ink);max-width:46ch}
 .env2-pdp-facts__dd bdi{unicode-bidi:isolate}
 .env2-pdp-facts__row--unknown{border-top-color:rgba(244,238,227,.45);margin-block-start:10px;padding-block:18px 0}
@@ -523,12 +541,15 @@
 .env2-pdp-facts__desc{padding-block:6px 30px;max-width:78ch}
 
 /* the owner's .elms-sales description keeps its words and loses its cream card: every surface,
-   border, radius and face is rewritten from this section's own selectors (two classes = it wins). */
+   border, radius and face is rewritten from this section's own selectors (two classes = it wins).
+   The h2/h3 it carries are demoted to h4/h5 before printing (QA-07), so both are restyled here. */
 .env2-pdp-facts__desc .elms-sales,
 .env2-pdp-facts__desc .elms-sales *{background:none;background-color:transparent;border:0;border-radius:0;box-shadow:none;color:inherit;font-family:var(--env2-sans);max-width:none;text-align:start}
 .env2-pdp-facts__desc .elms-sales{display:block;color:var(--env2-ink-2);font-weight:300;font-size:15px;line-height:1.6;padding:0}
 .env2-pdp-facts__desc .elms-sales h2,
 .env2-pdp-facts__desc .elms-sales h3,
+.env2-pdp-facts__desc .elms-sales h4,
+.env2-pdp-facts__desc .elms-sales h5,
 .env2-pdp-facts__desc .elms-sales b,
 .env2-pdp-facts__desc .elms-sales strong{display:block;color:var(--env2-ink);font-weight:500;font-size:16px;line-height:1.4;margin-block:18px 6px;padding:0}
 .env2-pdp-facts__desc .elms-sales p{margin-block:0 10px}

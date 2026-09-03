@@ -12,7 +12,7 @@
 
   Inputs
     product : required. Anything else prints 0.
-    slot    : hero | context | close | card | wall-pair | big | small | thumb   (default 'hero')
+    slot    : hero | context | close | card | wall-pair | big | small | thumb | ask   (default 'hero')
     index   : the section's 1-based range setting (1 = admin position 1 = product.images[0]).
               0 / blank / nil  -> the per-product ledger default for the slot.
     fallback: optional 0-based index used when the ledger has nothing for this handle.
@@ -49,9 +49,13 @@
     solar-rope-string-lights has NO text-free frame at all: 0/1/3/4 carry a headline, 5 is a diagram,
     and 2 carries an "עמידות IP65" chip that only a top crop removes; brief/WINNING-SPEC §3.6 uses it
     with object-position 50% 100%. A card cannot crop, so no row is recorded for it here.
-    No existing row changed; the three archetypes resolve exactly as before.
+
+    Extended again for the CLOSING screen (§4.7's full-bleed photograph): the "ask" slot is deliberately
+    NOT the hero's own frame, so the page does not open and close on the same picture. A = the lit
+    crystal balls in the tree (0), B = the bollard on the path at night (1), C = the lamp on the wall (3),
+    which is the only night-lit frame that product owns.
   endcomment
-  assign env2_led = '|solar-crystal-ball-string-lights:,hero=2,context=2,close=0,card=0,big=2,small=0,thumb=0,wall-pair=2,|stainless-steel-solar-path-light-ip65:,hero=0,context=3,close=3,card=0,big=3,small=1,thumb=3,wall-pair=3,|waterproof-led-wall-light-ip65-6w-12w:,hero=1,context=3,close=3,card=1,big=3,small=2,thumb=1,wall-pair=3,|modern-led-wall-light-indoor-outdoor:,card=4,close=4,|solar-firefly-garden-lights:,card=3,close=3,|solar-edison-string-lights:,card=3,close=3,|powerful-solar-garden-light:,card=2,close=2,|'
+  assign env2_led = '|solar-crystal-ball-string-lights:,hero=2,context=2,close=0,card=0,big=2,small=0,thumb=0,wall-pair=2,ask=0,|stainless-steel-solar-path-light-ip65:,hero=0,context=3,close=3,card=0,big=3,small=1,thumb=3,wall-pair=3,ask=1,|waterproof-led-wall-light-ip65-6w-12w:,hero=1,context=3,close=1,card=1,big=3,small=1,thumb=1,wall-pair=3,ask=3,|modern-led-wall-light-indoor-outdoor:,card=4,close=4,|solar-firefly-garden-lights:,card=3,close=3,|solar-edison-string-lights:,card=3,close=3,|powerful-solar-garden-light:,card=2,close=2,|'
 
   comment
     Banned indices. The 15 handles of brief/WINNING-SPEC.md §3.6 (index 0 carries baked-in text; for
@@ -59,9 +63,12 @@
     three archetypes' per-image bans from the PDP BRIEF §6 ledger:
       A solar-crystal-ball-string-lights   1 = "22 מטר / 200 LED" slide, 3 = installation infographic
       B stainless-steel-solar-path-light   2 = dimensions slide
-      C waterproof-led-wall-light-6w-12w   0 = slogan slide
+      C waterproof-led-wall-light-6w-12w   0 = slogan slide, 2 = a supplier 2x2 contact sheet (four equal
+                                          cells, black/white x two shapes, on a white seamless) — it was
+                                          the "small" gallery frame and §6.2 forbids four equal cells in
+                                          a row, so it is banned from every slot and small falls to 1
   endcomment
-  assign env2_deny = '|retro-solar-path-lights-set=,0,|warm-solar-step-deck-lights=,0,|waterproof-solar-deck-step-lights=,0,|solar-garden-lantern-9-led=,0,|solar-garden-spotlight-52-led=,0,|solar-security-light-100-led=,0,|modern-solar-path-lights-set=,0,|solar-floodlight-ip67-remote-timer=,0,|decorative-led-net-lights=,0,|led-globe-string-lights=,0,|modern-led-bollard-light-5w-ip65=,0,|rechargeable-telescopic-camping-lantern=,0,|swaying-solar-path-lights-ip65=,0,|magnetic-rechargeable-touch-wall-light=,0,|dual-head-garden-light-10w-ip65=,1,2,3,|solar-crystal-ball-string-lights=,1,3,|stainless-steel-solar-path-light-ip65=,2,|waterproof-led-wall-light-ip65-6w-12w=,0,|'
+  assign env2_deny = '|retro-solar-path-lights-set=,0,|warm-solar-step-deck-lights=,0,|waterproof-solar-deck-step-lights=,0,|solar-garden-lantern-9-led=,0,|solar-garden-spotlight-52-led=,0,|solar-security-light-100-led=,0,|modern-solar-path-lights-set=,0,|solar-floodlight-ip67-remote-timer=,0,|decorative-led-net-lights=,0,|led-globe-string-lights=,0,|modern-led-bollard-light-5w-ip65=,0,|rechargeable-telescopic-camping-lantern=,0,|swaying-solar-path-lights-ip65=,0,|magnetic-rechargeable-touch-wall-light=,0,|dual-head-garden-light-10w-ip65=,1,2,3,|solar-crystal-ball-string-lights=,1,3,|stainless-steel-solar-path-light-ip65=,2,|waterproof-led-wall-light-ip65-6w-12w=,0,2,|'
 
   # 1. the wanted index: the section setting (1-based) wins, else the ledger, else the fallback
   assign env2_i = -1
@@ -88,7 +95,7 @@
   if env2_i < 0
     # catalogue defaults for every other product: a context slot wants a scene, a close slot the next frame
     assign env2_i = 0
-    if env2_slot == 'close' or env2_slot == 'small' or env2_slot == 'wall-pair'
+    if env2_slot == 'close' or env2_slot == 'small' or env2_slot == 'wall-pair' or env2_slot == 'ask'
       assign env2_i = 1
     endif
   endif

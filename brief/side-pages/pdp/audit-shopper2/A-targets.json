@@ -1,0 +1,612 @@
+[
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "skip-to-content-link button sr-only ",
+  "txt": "דילוג לתוכן",
+  "w": 1,
+  "h": 1,
+  "y": -1,
+  "fs": "14px"
+ },
+ {
+  "sec": "HEADER",
+  "tag": "BUTTON",
+  "cls": "hdt-push-menu-btn hdt-menu-bar hdt-flex hdt-justify-center h",
+  "txt": "",
+  "w": 30,
+  "h": 40,
+  "y": 10,
+  "fs": "14px"
+ },
+ {
+  "sec": "HEADER",
+  "tag": "A",
+  "cls": "hdt-inline-flex hdt-align-center",
+  "txt": "",
+  "w": 50,
+  "h": 50,
+  "y": 5,
+  "fs": "14px"
+ },
+ {
+  "sec": "HEADER",
+  "tag": "A",
+  "cls": "hdt-inline-flex hdt-align-center hdt-relative",
+  "txt": "",
+  "w": 22,
+  "h": 23,
+  "y": 19,
+  "fs": "14px"
+ },
+ {
+  "sec": "HEADER",
+  "tag": "A",
+  "cls": "hdt-inline-flex hdt-align-center",
+  "txt": "0 0.00 ₪",
+  "w": 24,
+  "h": 24,
+  "y": 18,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "MAIN",
+  "cls": "content-for-layout focus-none",
+  "txt": "/* ---------- page ground (PDP §3.1): th",
+  "w": 390,
+  "h": 7993,
+  "y": 60,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "LABEL",
+  "cls": "env2-kicker env2-pdp-stage__axis-label",
+  "txt": "צבע תאורה",
+  "w": 68.8,
+  "h": 17,
+  "y": 277,
+  "fs": "11px"
+ },
+ {
+  "sec": "env2-pdp-stage-quiet",
+  "tag": "SELECT",
+  "cls": "env2-pdp-stage__select",
+  "txt": "צהובכחולצבעונילבן",
+  "w": 260,
+  "h": 44,
+  "y": 300,
+  "fs": "15px"
+ },
+ {
+  "sec": "ref: <Node>",
+  "tag": "BUTTON",
+  "cls": "env2-btn env2-pdp-stage__atc",
+  "txt": "הוספה לסל",
+  "w": 350,
+  "h": 42.8,
+  "y": 513,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-link env2-pdp-stage__fit",
+  "txt": "איך בוחרים נכון ←",
+  "w": 107.4,
+  "h": 22.2,
+  "y": 568,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-link env2-pdp-stage__terms-link",
+  "txt": "כל המספרים",
+  "w": 75,
+  "h": 22.2,
+  "y": 620,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-link env2-pdp-photo env2-pdp-stage__photo",
+  "txt": "לשלוח תמונה של המקום ←",
+  "w": 152.7,
+  "h": 20.9,
+  "y": 653,
+  "fs": "13px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-pdp-stage__stop env2-pdp-stage__stop--on",
+  "txt": "5מ׳20 נורות89.90 ₪",
+  "w": 92,
+  "h": 96.3,
+  "y": 725,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-pdp-stage__stop",
+  "txt": "6.5מ׳30 נורות89.90 ₪",
+  "w": 92,
+  "h": 96.3,
+  "y": 725,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-pdp-stage__stop",
+  "txt": "9.5מ׳50 נורות99.90 ₪",
+  "w": 92,
+  "h": 96.3,
+  "y": 725,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-pdp-stage__stop",
+  "txt": "11מ׳60 נורות109.90 ₪",
+  "w": 92,
+  "h": 96.3,
+  "y": 725,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-pdp-stage__stop",
+  "txt": "13מ׳100 נורות129.90 ₪",
+  "w": 92,
+  "h": 96.3,
+  "y": 725,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-stage",
+  "tag": "A",
+  "cls": "env2-pdp-stage__stop",
+  "txt": "22מ׳200 נורות179.90 ₪",
+  "w": 92,
+  "h": 96.3,
+  "y": 725,
+  "fs": "15px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "env2-pdp-bar__thumb",
+  "txt": "",
+  "w": 46,
+  "h": 46,
+  "y": 857,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "BUTTON",
+  "cls": "env2-btn env2-btn--sm env2-pdp-bar__btn",
+  "txt": "הוספה לסל",
+  "w": 103.8,
+  "h": 44.8,
+  "y": 858,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-fit",
+  "tag": "A",
+  "cls": "env2-link env2-pdp-photo env2-pdp-fit__photo",
+  "txt": "לשלוח תמונה של המקום ←",
+  "w": 163.8,
+  "h": 22.2,
+  "y": 1725,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "BUTTON",
+  "cls": "env2-pdp-ledger__pick",
+  "txt": "5מ׳ 20 נורות 89.90 ₪ ≈ 17.98 ₪ למטר",
+  "w": 350,
+  "h": 66.4,
+  "y": 3222,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "BUTTON",
+  "cls": "env2-pdp-ledger__pick",
+  "txt": "6.5מ׳ 30 נורות 89.90 ₪ ≈ 13.83 ₪ למטר",
+  "w": 350,
+  "h": 66.4,
+  "y": 3329,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "BUTTON",
+  "cls": "env2-pdp-ledger__pick",
+  "txt": "9.5מ׳ 50 נורות 99.90 ₪ ≈ 10.52 ₪ למטר",
+  "w": 350,
+  "h": 66.4,
+  "y": 3436,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "BUTTON",
+  "cls": "env2-pdp-ledger__pick",
+  "txt": "11מ׳ 60 נורות 109.90 ₪ ≈ 9.99 ₪ למטר",
+  "w": 350,
+  "h": 66.4,
+  "y": 3544,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "BUTTON",
+  "cls": "env2-pdp-ledger__pick",
+  "txt": "13מ׳ 100 נורות 129.90 ₪ ≈ 9.99 ₪ למטר",
+  "w": 350,
+  "h": 66.4,
+  "y": 3651,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "BUTTON",
+  "cls": "env2-pdp-ledger__pick",
+  "txt": "22מ׳ 200 נורות 179.90 ₪ ≈ 8.18 ₪ למטר",
+  "w": 350,
+  "h": 66.4,
+  "y": 3759,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "SELECT",
+  "cls": "env2-pdp-ledger__sel env2-pdp-ledger__buysel",
+  "txt": "צהובכחולצבעונילבן",
+  "w": 181.1,
+  "h": 44,
+  "y": 3922,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-ledger",
+  "tag": "BUTTON",
+  "cls": "env2-btn env2-btn--sm env2-pdp-ledger__buybtn",
+  "txt": "הוספה לסל",
+  "w": 154.9,
+  "h": 44.8,
+  "y": 3922,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-facts",
+  "tag": "SUMMARY",
+  "cls": "env2-pdp-facts__summary",
+  "txt": "כל מה שכתוב על המוצר",
+  "w": 350,
+  "h": 49,
+  "y": 5187,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-terms",
+  "tag": "A",
+  "cls": "env2-link env2-pdp-photo env2-pdp-terms__a",
+  "txt": "לשלוח תמונה של המקום ←",
+  "w": 163.8,
+  "h": 44,
+  "y": 6236,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-terms",
+  "tag": "A",
+  "cls": "",
+  "txt": "משלוחים ואספקה",
+  "w": 105.7,
+  "h": 48,
+  "y": 6329,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-terms",
+  "tag": "A",
+  "cls": "",
+  "txt": "זמני טיפול",
+  "w": 58.6,
+  "h": 48,
+  "y": 6329,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-terms",
+  "tag": "A",
+  "cls": "",
+  "txt": "מדיניות ביטולים",
+  "w": 89.3,
+  "h": 48,
+  "y": 6329,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-terms",
+  "tag": "A",
+  "cls": "",
+  "txt": "שאלות נפוצות",
+  "w": 82.5,
+  "h": 48,
+  "y": 6377,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-ask",
+  "tag": "A",
+  "cls": "env2-btn env2-pdp-ask__start",
+  "txt": "להתחיל מ־5 מטר — 89.90 ₪",
+  "w": 350,
+  "h": 42.8,
+  "y": 6766,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-ask",
+  "tag": "A",
+  "cls": "env2-btn env2-btn--ghost env2-pdp-photo env2-pdp-ask__photo",
+  "txt": "לשלוח תמונה של המקום",
+  "w": 350,
+  "h": 42.8,
+  "y": 6821,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-ask",
+  "tag": "A",
+  "cls": "env2-link env2-pdp-ask__a",
+  "txt": "מי אנחנו ←",
+  "w": 68.7,
+  "h": 44,
+  "y": 7064,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "env2-pdp-card__media",
+  "txt": "",
+  "w": 241.8,
+  "h": 253.9,
+  "y": 7487,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "",
+  "txt": "תאורת גחליליות סולארית לגינה – 10 נורות ",
+  "w": 162.1,
+  "h": 39.3,
+  "y": 7792,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "BUTTON",
+  "cls": "env2-btn env2-btn--sm",
+  "txt": "הוספה לסל",
+  "w": 103.8,
+  "h": 44.8,
+  "y": 7844,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "env2-pdp-card__media",
+  "txt": "",
+  "w": 210,
+  "h": 294,
+  "y": 7447,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "",
+  "txt": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב ",
+  "w": 144.5,
+  "h": 39.3,
+  "y": 7792,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "env2-btn env2-btn--sm env2-btn--ghost",
+  "txt": "לבחירת דגם",
+  "w": 106.9,
+  "h": 44.8,
+  "y": 7844,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "env2-pdp-card__media",
+  "txt": "",
+  "w": 241.8,
+  "h": 217.6,
+  "y": 7523,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "",
+  "txt": "גרילנדת נורות אדיסון סולארית – 5 או 8 מט",
+  "w": 133.6,
+  "h": 39.3,
+  "y": 7792,
+  "fs": "15px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "env2-btn env2-btn--sm env2-btn--ghost",
+  "txt": "לבחירת דגם",
+  "w": 106.9,
+  "h": 44.8,
+  "y": 7844,
+  "fs": "14px"
+ },
+ {
+  "sec": "env2-pdp-related",
+  "tag": "A",
+  "cls": "env2-link env2-pdp-related__all",
+  "txt": "לכל הגרילנדות והתאורה הדקורטיבית",
+  "w": 237.4,
+  "h": 44,
+  "y": 7919,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "שביל, עמוד וגינה",
+  "w": 95.3,
+  "h": 18,
+  "y": 8270,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "תאורת קיר",
+  "w": 63.3,
+  "h": 18,
+  "y": 8308,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "ספוטים ופרוז׳קטורים",
+  "w": 124,
+  "h": 18,
+  "y": 8347,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "גרילנדות ודקורטיבי",
+  "w": 110.4,
+  "h": 18,
+  "y": 8386,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "מדריך לבחירת תאורה לגינה",
+  "w": 160.6,
+  "h": 18,
+  "y": 8469,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "למה תאורה סולארית",
+  "w": 122.1,
+  "h": 18,
+  "y": 8508,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "מי אנחנו",
+  "w": 49,
+  "h": 18,
+  "y": 8546,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "משלוחים ואספקה",
+  "w": 105.7,
+  "h": 18,
+  "y": 8585,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "זמני טיפול",
+  "w": 58.6,
+  "h": 18,
+  "y": 8624,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "שאלות נפוצות",
+  "w": 82.5,
+  "h": 18,
+  "y": 8663,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "עמוד יצירת קשר",
+  "w": 94.8,
+  "h": 18,
+  "y": 8746,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "לשליחת תמונה של המקום",
+  "w": 152.6,
+  "h": 18,
+  "y": 8784,
+  "fs": "14px"
+ },
+ {
+  "sec": "other",
+  "tag": "A",
+  "cls": "",
+  "txt": "תנאי משלוח וביטול",
+  "w": 109.1,
+  "h": 18,
+  "y": 8866,
+  "fs": "14px"
+ }
+]

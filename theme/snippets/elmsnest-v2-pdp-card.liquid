@@ -17,7 +17,7 @@
     image        : image_picker override; wins over everything.
     kicker       : the place kicker line. Blank -> derived from product.type through the FOUR APPROVED
                    pairs only (BRIEF §3). An unknown type prints NO kicker — the card never invents a
-                   place or a promise.
+                   place or a promise. 'none' -> no kicker at all (the caller has already said it).
     action_label : the multi-variant link label ('לבחירת אורך' / 'לבחירת דגם' / 'לבחירת גוון').
     add_label    : the single-variant button label. Default 'הוספה לסל'.
     lamp         : 'off' to skip [data-lamp] (a card inside an already-lit figure).
@@ -52,8 +52,12 @@
 
   # the place kicker: the four approved pairs, keyed by the product type that maps 1:1 to the four
   # collections. Anything else prints nothing — never a new place, never a new promise.
+  # 'none' = the caller has already said the place (the related deck's own eyebrow and deck line do),
+  # so the card must not repeat it three times in one row (CREATIVE-07 / TYPOGRAPHER-15).
   assign env2_kicker = kicker | default: ''
-  if env2_kicker == ''
+  if env2_kicker == 'none'
+    assign env2_kicker = ''
+  elsif env2_kicker == ''
     assign env2_t = product.type | default: ''
     if env2_t == 'תאורת שביל, עמוד וגינה'
       assign env2_kicker = 'שביל, מדרגות ומעברים · מתאים כדי לראות את הדרך'
@@ -109,6 +113,9 @@
   overflow:hidden;border-radius:0;background:#05070c;isolation:isolate}
 .env2-pdp-card__ph img{inline-size:100%;block-size:100%;object-fit:cover;display:block}
 .env2-pdp-card__kicker{margin:0;font-size:11.5px;line-height:1.35;text-wrap:balance}
+/* §6 #18's 13px floor: .62em of the 19px mobile card price is 11.78px, and this is the glyph pair
+   that turns an exact price into a minimum (TYPOGRAPHER-05). Scoped here, not on the shared class. */
+.env2-pdp-card__price .env2-price__from{font-size:max(13px,.62em)}
 .env2-pdp-card__title{margin:0;font-family:var(--env2-sans);font-weight:400;
   font-size:var(--env2-pdp-card-title,15px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:balance}
 .env2-pdp-card__title a{color:inherit;text-decoration:none;transition:color .3s}

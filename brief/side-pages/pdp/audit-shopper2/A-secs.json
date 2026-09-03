@@ -1,0 +1,82 @@
+[
+ {
+  "id": "shopify-section-template--21567616745646__pdp_stage",
+  "top": -1,
+  "h": 844
+ },
+ {
+  "id": "env2-pdp-stage",
+  "top": -1,
+  "h": 844
+ },
+ {
+  "id": "shopify-section-template--21567616745646__pdp_fit",
+  "top": 843,
+  "h": 965
+ },
+ {
+  "id": "env2-pdp-fit",
+  "top": 843,
+  "h": 965
+ },
+ {
+  "id": "shopify-section-template--21567616745646__pdp_night",
+  "top": 1808,
+  "h": 1071
+ },
+ {
+  "id": "env2-pdp-night",
+  "top": 1808,
+  "h": 1071
+ },
+ {
+  "id": "shopify-section-template--21567616745646__pdp_ledger",
+  "top": 2879,
+  "h": 1310
+ },
+ {
+  "id": "env2-pdp-ledger",
+  "top": 2879,
+  "h": 1310
+ },
+ {
+  "id": "shopify-section-template--21567616745646__pdp_facts",
+  "top": 4189,
+  "h": 1111
+ },
+ {
+  "id": "env2-pdp-facts",
+  "top": 4189,
+  "h": 1111
+ },
+ {
+  "id": "shopify-section-template--21567616745646__pdp_terms",
+  "top": 5300,
+  "h": 1190
+ },
+ {
+  "id": "env2-pdp-terms",
+  "top": 5300,
+  "h": 1190
+ },
+ {
+  "id": "shopify-section-template--21567616745646__pdp_ask",
+  "top": 6489,
+  "h": 683
+ },
+ {
+  "id": "env2-pdp-ask",
+  "top": 6489,
+  "h": 683
+ },
+ {
+  "id": "shopify-section-template--21567616745646__pdp_related",
+  "top": 7172,
+  "h": 881
+ },
+ {
+  "id": "env2-pdp-related",
+  "top": 7172,
+  "h": 881
+ }
+]

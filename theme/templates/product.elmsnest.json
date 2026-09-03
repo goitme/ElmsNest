@@ -13,14 +13,14 @@
         "quantity_unit": "יחידות",
         "quantity_label_one": "יחידה אחת",
         "add_label": "הוספה לסל",
-        "fit_link_label": "איך בוחרים נכון",
         "terms_strip": "משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר.",
         "terms_link_label": "כל המספרים",
         "photo_intro": "לפני שמזמינים אפשר",
         "mailto_subject": "בדיקת התאמה למקום",
         "show_buybar": true,
         "hero_image_index": 0,
-        "thumb_image_index": 0
+        "thumb_image_index": 0,
+        "heading_map": "solar-crystal-ball-string-lights|הערב מתחיל|מהכדור הראשון.\nstainless-steel-solar-path-light-ip65|הדרך הביתה|נדלקת לבד.\nwaterproof-led-wall-light-ip65-6w-12w|קיר אחד.|שתי אלומות."
       }
     },
     "pdp_fit": {
@@ -28,8 +28,8 @@
       "settings": {
         "eyebrow": "02 · מתי כן, ומתי לא",
         "eyebrow_choose": "02 · איך בוחרים נכון",
-        "lead": "לכל מקום יש מטרה שהתאורה ממלאת — ומצב שבו היא לא. העבירו את המתג ותראו.",
-        "lead_choose": "לכל מקום יש מטרה שהתאורה ממלאת. מה שכתוב כאן על הבחירה מגיע מתיאור המוצר עצמו.",
+        "lead": "לכל מקום יש תפקיד שהתאורה ממלאת — ומצב שבו היא לא. העבירו את המתג ותראו.",
+        "lead_choose": "לכל מקום יש תפקיד שהתאורה ממלאת. מה שכתוב כאן על הבחירה מגיע מתיאור המוצר עצמו.",
         "suits_label": "מתאים כדי",
         "notfit_label": "לא מתאים כש־",
         "refusal_line": "לא נדלק. זו הנקודה.",
@@ -43,7 +43,8 @@
         "choose_source": "advice",
         "choose_note": "מתוך תיאור המוצר",
         "foot_lead": "לא בטוחים?",
-        "mailto_subject": "בדיקת התאמה למקום"
+        "mailto_subject": "בדיקת התאמה למקום",
+        "notfit_source": "auto"
       }
     },
     "pdp_night": {
@@ -74,7 +75,155 @@
         "quantity_unit_one": "יחידה",
         "quantity_unit": "יחידות",
         "js_note": "לחיצה על שורה מדליקה אותה בבמה למעלה."
-      }
+      },
+      "blocks": {
+        "row_a5": {
+          "type": "row",
+          "settings": {
+            "label": "5 מ׳ / 20 נורות",
+            "handle": "solar-crystal-ball-string-lights",
+            "use_caption": "לפינת ישיבה קטנה או לשולחן אחד"
+          }
+        },
+        "row_a65": {
+          "type": "row",
+          "settings": {
+            "label": "6.5 מ׳ / 30 נורות",
+            "handle": "solar-crystal-ball-string-lights",
+            "use_caption": "אותו מחיר, מטר וחצי יותר"
+          }
+        },
+        "row_a95": {
+          "type": "row",
+          "settings": {
+            "label": "9.5 מ׳ / 50 נורות",
+            "handle": "solar-crystal-ball-string-lights",
+            "use_caption": "לאורך גדר או מעקה"
+          }
+        },
+        "row_a11": {
+          "type": "row",
+          "settings": {
+            "label": "11 מ׳ / 60 נורות",
+            "handle": "solar-crystal-ball-string-lights",
+            "use_caption": "מסגרת לפרגולה"
+          }
+        },
+        "row_a13": {
+          "type": "row",
+          "settings": {
+            "label": "13 מ׳ / 100 נורות",
+            "handle": "solar-crystal-ball-string-lights",
+            "use_caption": "כמעט פי שניים נורות לאותו מרחק"
+          }
+        },
+        "row_a22": {
+          "type": "row",
+          "settings": {
+            "label": "22 מ׳ / 200 נורות",
+            "handle": "solar-crystal-ball-string-lights",
+            "use_caption": "קישוט של חלל שלם"
+          }
+        },
+        "row_b1": {
+          "type": "row",
+          "settings": {
+            "label": "1",
+            "handle": "stainless-steel-solar-path-light-ip65",
+            "use_caption": "יחידה אחת מאירה נקודה"
+          }
+        },
+        "row_b2": {
+          "type": "row",
+          "settings": {
+            "label": "2",
+            "handle": "stainless-steel-solar-path-light-ip65",
+            "use_caption": "משני צידי כניסה"
+          }
+        },
+        "row_b3": {
+          "type": "row",
+          "settings": {
+            "label": "3",
+            "handle": "stainless-steel-solar-path-light-ip65",
+            "use_caption": "שורה קצרה"
+          }
+        },
+        "row_b4": {
+          "type": "row",
+          "settings": {
+            "label": "4",
+            "handle": "stainless-steel-solar-path-light-ip65",
+            "use_caption": "לאורך שביל"
+          }
+        },
+        "row_b6": {
+          "type": "row",
+          "settings": {
+            "label": "6",
+            "handle": "stainless-steel-solar-path-light-ip65",
+            "use_caption": "מהשער אל הדלת"
+          }
+        },
+        "row_b8": {
+          "type": "row",
+          "settings": {
+            "label": "8",
+            "handle": "stainless-steel-solar-path-light-ip65",
+            "use_caption": "מסביב למדשאה"
+          }
+        },
+        "row_c63": {
+          "type": "row",
+          "settings": {
+            "label": "6W / אור חם 3000K",
+            "handle": "waterproof-led-wall-light-ip65-6w-12w",
+            "use_caption": "אפקט עדין וממוקד"
+          }
+        },
+        "row_c66": {
+          "type": "row",
+          "settings": {
+            "label": "6W / אור קר 6000K",
+            "handle": "waterproof-led-wall-light-ip65-6w-12w",
+            "use_caption": "עדין, בגוון לבן וחד"
+          }
+        },
+        "row_c123": {
+          "type": "row",
+          "settings": {
+            "label": "12W / אור חם 3000K",
+            "handle": "waterproof-led-wall-light-ip65-6w-12w",
+            "use_caption": "נוכחות חזקה יותר על שטח גדול"
+          }
+        },
+        "row_c126": {
+          "type": "row",
+          "settings": {
+            "label": "12W / אור קר 6000K",
+            "handle": "waterproof-led-wall-light-ip65-6w-12w",
+            "use_caption": "חזק, בגוון לבן וחד"
+          }
+        }
+      },
+      "block_order": [
+        "row_a5",
+        "row_a65",
+        "row_a95",
+        "row_a11",
+        "row_a13",
+        "row_a22",
+        "row_b1",
+        "row_b2",
+        "row_b3",
+        "row_b4",
+        "row_b6",
+        "row_b8",
+        "row_c63",
+        "row_c66",
+        "row_c123",
+        "row_c126"
+      ]
     },
     "pdp_facts": {
       "type": "elmsnest-v2-pdp-facts",
@@ -140,14 +289,21 @@
           }
         }
       },
-      "block_order": ["n_shipping", "n_days", "n_cancel", "n_photo"]
+      "block_order": [
+        "n_shipping",
+        "n_days",
+        "n_cancel",
+        "n_photo"
+      ]
     },
     "pdp_ask": {
       "type": "elmsnest-v2-pdp-ask",
       "settings": {
+        "show_photo": true,
+        "photo_index": 0,
         "eyebrow": "07 · למה כאן",
         "heading_line1": "עוד לא בטוחים?",
-        "heading_line2": "לא צריך להיות.",
+        "heading_line2": "לא חייבים.",
         "lead": "אמרנו למעלה מתי היא לא מתאימה. המפרט בעברית, ומה שלא ידוע — לא כתוב.",
         "lead_choose": "אמרנו למעלה איך בוחרים נכון. המפרט בעברית, ומה שלא ידוע — לא כתוב.",
         "lead_step": "ולפני שמזמינים יש למי לשלוח תמונה",
@@ -167,7 +323,9 @@
           }
         }
       },
-      "block_order": ["q_about"]
+      "block_order": [
+        "q_about"
+      ]
     },
     "pdp_related": {
       "type": "elmsnest-v2-pdp-related",
@@ -200,8 +358,21 @@
           }
         }
       },
-      "block_order": ["card_1", "card_2", "card_3"]
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ]
     }
   },
-  "order": ["pdp_stage", "pdp_fit", "pdp_night", "pdp_ledger", "pdp_facts", "pdp_terms", "pdp_ask", "pdp_related"]
+  "order": [
+    "pdp_stage",
+    "pdp_fit",
+    "pdp_night",
+    "pdp_ledger",
+    "pdp_facts",
+    "pdp_terms",
+    "pdp_ask",
+    "pdp_related"
+  ]
 }

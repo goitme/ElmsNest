@@ -16,6 +16,11 @@
   the four APPROVED place pairs (BRIEF §3). A product whose type is none of the four prints the
   quiet generic frame — never an invented place and never an invented promise.
 
+  Because all three cards come from the SAME place, the card's own place kicker would print the same
+  gold line three times in one row — texture, not information (CREATIVE-07 / TYPOGRAPHER-15). The
+  section says the place once, in its eyebrow and its deck, and passes kicker: 'none' to any card
+  whose place is the one the buyer is already looking at. A card from another place keeps its kicker.
+
   The deck is graft G (§2), the best sentence written for this brief, and it is the reason this
   module can exist at all in a store with one test order: it converts the ABSENCE of proof into
   evidence of the position. No stars, no rating, no "נמכר ביותר", no counts (BRIEF §11, §6.4).
@@ -173,9 +178,14 @@
       {%- if env2_p.price_varies and env2_p.price_min != env2_p.price_max -%}
         {%- assign env2_varies = true -%}
       {%- endif -%}
+      {%- comment -%} same place as the product being viewed? then the section head has already said
+        it, and three identical gold kickers in one row are texture, not information. {%- endcomment -%}
+      {%- assign env2_ck = '' -%}
+      {%- if env2_p.type == product.type -%}{%- assign env2_ck = 'none' -%}{%- endif -%}
       <li class="env2-pdp-related__cell" {{ block.shopify_attributes }}>
         {%- render 'elmsnest-v2-pdp-card',
               product: env2_p,
+              kicker: env2_ck,
               width: block.settings.card_width,
               aspect: block.settings.card_aspect,
               image_index: block.settings.card_image_index,
@@ -272,12 +282,15 @@
 .env2-pdp-related{padding-block:100px 90px}
 .env2-pdp-related__wrap{position:relative;z-index:1}
 
-/* head: eyebrow + h2 at the start, graft G's deck at the end, bottoms aligned */
+/* head: eyebrow + h2 at the start, graft G's deck at the end, bottoms aligned.
+   The deck is NOT text-align:end: in RTL "end" is flush-left and ragged-right, so the rag falls on
+   the side the eye returns to and the third line strands 255px inboard (TYPOGRAPHER-03). The flex
+   placement already puts the paragraph at the end side; the text inside it aligns to start. */
 .env2-pdp-related__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 40px;margin-bottom:56px}
 .env2-pdp-related__title{min-width:0;flex:1 1 22ch}
 .env2-pdp-related__eyebrow{margin-bottom:18px}
 .env2-pdp-related__h2.env2-h{font-size:clamp(34px,4.8vw,70px);max-width:16ch}
-.env2-pdp-related__deck{flex:0 1 38ch;margin:0 0 .35em;max-width:38ch;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.6;color:var(--env2-ink-2);text-align:end;text-wrap:pretty}
+.env2-pdp-related__deck{flex:0 1 38ch;margin:0 0 .35em;max-width:38ch;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.6;color:var(--env2-ink-2);text-wrap:pretty}
 
 /* the floor: one warm rule the objects stand on, bleeding past the wrap on both sides
    (.env2-section is overflow-x:clip, so the bleed can never scroll the page). The shelf and the
@@ -302,7 +315,7 @@
   .env2-pdp-related__head{display:block;margin-bottom:30px}
   .env2-pdp-related__eyebrow{margin-bottom:14px}
   .env2-pdp-related__h2.env2-h{max-width:none}
-  .env2-pdp-related__deck{max-width:none;margin:16px 0 0;text-align:start;font-size:15.5px}
+  .env2-pdp-related__deck{max-width:none;margin:16px 0 0;font-size:15.5px}
   .env2-pdp-related__floor{display:block;padding-block-end:26px}
   .env2-pdp-related__row{gap:20px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;margin-inline:calc(-1 * var(--env2-gut));padding-inline:var(--env2-gut);padding-block-end:4px;scroll-padding-inline-start:var(--env2-gut);-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
   .env2-pdp-related__row::-webkit-scrollbar{display:none}

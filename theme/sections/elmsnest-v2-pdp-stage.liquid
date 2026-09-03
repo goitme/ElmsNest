@@ -11,9 +11,20 @@
     the small step (photo check) · and a preview of the ledger (the rail).
 
   Everything the page states about the product comes from the product object, the ledger model
-  (elmsnest-v2-pdp-variants) or the four approved place pairs of BRIEF §3. Nothing is typed:
-  every custom.* metafield is EMPTY at render time, so this section never says anything about
-  power, and never renders a negative of its own — it links to §4.2, which owns that decision.
+  (elmsnest-v2-pdp-variants) or the four approved place pairs of BRIEF §3. Nothing is typed, and
+  this section never renders a negative of its own — it links to §4.2, which owns that decision.
+
+  The h1 is AUTHORED, never the compliance phrase (§4.1: "הערב מתחיל / מהכדור הראשון."). One
+  template serves all 27 products and heading_line1/2 are single-valued, so the per-product pair
+  lives in heading_map ("handle|line1|line2", one per line) and a product that is not in the map
+  gets an authored pair for its PLACE. Only a product with no place at all falls back to
+  "מתאים כדי …", which is the kicker's line — §4.1 puts the suits phrase in the kicker, where it is
+  said once, and nowhere else on the page.
+
+  The negative link ("למי זה לא מתאים ←") is decided the same way §4.2 decides whether it has a
+  negative to show — the place's approved pair, gated on solar for the three that are only true on a
+  battery — so the fold never points at a section that cannot answer, and never says "how to choose"
+  where the answer exists.
 
   No JS:
     the photograph is lit (--lit defaults to 1), the price, mirror, range line and terms are
@@ -137,10 +148,49 @@
   assign env2_h1b = section.settings.heading_line2 | default: ''
   assign env2_authored = true
   if env2_h1a == blank and env2_h1b == blank
-    assign env2_authored = false
-    if env2_phrase != blank
-      assign env2_h1a = 'מתאים כדי'
-      assign env2_h1b = env2_phrase | append: '.'
+    # 1. the per-product authored pair, from the section's own map ("handle|line1|line2", one per line).
+    #    §4.1 gives the three archetypes their own headline; the map is where they live, because ONE
+    #    template serves all 27 products (§8.1) and heading_line1/2 are single-valued.
+    assign env2_hm = section.settings.heading_map | default: ''
+    if env2_hm != blank
+      assign env2_hkey = env2_p.handle | append: '|'
+      assign env2_hrows = env2_hm | newline_to_br | split: '<br />'
+      for env2_hr in env2_hrows
+        assign env2_hr = env2_hr | strip_html | strip
+        if env2_hr contains env2_hkey
+          assign env2_hf = env2_hr | split: '|'
+          assign env2_hh = env2_hf[0] | strip
+          if env2_hh == env2_p.handle
+            assign env2_h1a = env2_hf[1] | strip
+            assign env2_h1b = env2_hf[2] | strip
+          endif
+        endif
+      endfor
+    endif
+    # 2. otherwise an authored pair per place — a brand line, never the compliance phrase, which
+    #    §4.1 puts in the kicker. Nothing here states a product fact (BRIEF §5).
+    if env2_h1a == blank and env2_h1b == blank
+      if env2_p.type == 'גרילנדות ותאורה דקורטיבית'
+        assign env2_h1a = 'הערב מתחיל'
+        assign env2_h1b = 'מהאור הראשון.'
+      elsif env2_p.type == 'תאורת שביל, עמוד וגינה'
+        assign env2_h1a = 'הדרך הביתה'
+        assign env2_h1b = 'מקבלת קו אור.'
+      elsif env2_p.type == 'תאורת קיר'
+        assign env2_h1a = 'קיר ריק'
+        assign env2_h1b = 'עד שהאור נדלק.'
+      elsif env2_p.type == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+        assign env2_h1a = 'עץ אחד'
+        assign env2_h1b = 'והגינה משתנה.'
+      endif
+    endif
+    # 3. only a product with no place at all keeps the old compliance headline
+    if env2_h1a == blank and env2_h1b == blank
+      assign env2_authored = false
+      if env2_phrase != blank
+        assign env2_h1a = 'מתאים כדי'
+        assign env2_h1b = env2_phrase | append: '.'
+      endif
     endif
   endif
   assign env2_kicker = section.settings.kicker | default: ''
@@ -151,6 +201,34 @@
       assign env2_kicker = env2_place
     endif
   endif
+
+  # ---------------------------------------------------------------- the negative link (§4.1, SHOPPER-03)
+  # The fold link must say "who this is NOT for" wherever §4.2 can actually answer, and "how to choose
+  # right" only where it cannot. The two sections therefore decide the SAME way: the approved pair of
+  # the product's own place, and — for the three pairs that are only true on a battery — solar.
+  # custom.power_source is empty on all 27 products, so solar is read from the product's OWN words.
+  assign env2_pwr = env2_p.metafields.custom.power_source | default: '' | strip
+  assign env2_solar = false
+  if env2_pwr == 'סולארי'
+    assign env2_solar = true
+  elsif env2_pwr == blank
+    assign env2_hay = env2_p.description | strip_html | append: ' ' | append: env2_p.title
+    if env2_hay contains 'סולארי'
+      assign env2_solar = true
+    endif
+  endif
+  assign env2_hasneg = false
+  if env2_p.metafields.custom.not_fit_for != blank
+    assign env2_hasneg = true
+  elsif env2_p.type == 'גרילנדות ותאורה דקורטיבית'
+    assign env2_hasneg = true
+  elsif env2_solar and env2_place != blank
+    assign env2_hasneg = true
+  endif
+  assign env2_fitlabel = section.settings.fit_link_label | default: 'למי זה לא מתאים'
+  unless env2_hasneg
+    assign env2_fitlabel = section.settings.fit_link_label_choose | default: 'איך בוחרים נכון'
+  endunless
 
   # the range line — derived from the model, never typed
   assign env2_range = section.settings.range_note | default: ''
@@ -262,7 +340,7 @@
       {%- elsif env2_qn > 1 -%}
       <div class="env2-pdp-stage__axis">
         <span class="env2-kicker env2-pdp-stage__axis-label" id="env2-pdp-stage-quiet-label">{{ env2_qlabel }}</span>
-        <div class="env2-pdp-stage__radios" role="group" aria-labelledby="env2-pdp-stage-quiet-label" data-env2-stage-radios>
+        <div class="env2-pdp-stage__radios" role="radiogroup" aria-labelledby="env2-pdp-stage-quiet-label" data-env2-stage-radios>
           {%- for q in env2_quietvars -%}
             {%- assign qf = q | split: '^' -%}
             <label class="env2-pdp-stage__radio"><input type="radio" name="id" value="{{ qf[0] }}" form="env2-pdp-stage-form"{% if qf[0] == env2_selid_s %} checked{% endif %}{% if qf[3] != '1' %} disabled{% endif %} data-env2-stage-quiet><span>{{ qf[1] | escape }}</span></label>
@@ -292,8 +370,8 @@
           <input type="hidden" name="quantity" value="1" data-env2-stage-qty>
           <button type="submit" name="add" class="env2-btn env2-pdp-stage__atc">{{ section.settings.add_label | default: 'הוספה לסל' }}</button>
         </form>
-        {%- if section.settings.fit_link_label != blank -%}
-        <a class="env2-link env2-pdp-stage__fit" href="#env2-pdp-fit">{{ section.settings.fit_link_label }} <span aria-hidden="true">&#8592;</span></a>
+        {%- if env2_fitlabel != blank -%}
+        <a class="env2-link env2-pdp-stage__fit" href="#env2-pdp-fit">{{ env2_fitlabel }} <span aria-hidden="true">&#8592;</span></a>
         {%- endif -%}
       </div>
 
@@ -308,7 +386,7 @@
   {%- if env2_show_rail -%}
   <div class="env2-wrap env2-pdp-stage__rail">
     <p class="env2-pdp-stage__rail-label"><span>{{ env2_raillabel }}</span>{% if env2_railnote != blank %}<small>{{ env2_railnote }}</small>{% endif %}</p>
-    <div class="env2-pdp-stage__track" data-env2-stage-track>
+    <div class="env2-pdp-stage__track{% if env2_ax2 > 0 %} env2-pdp-stage__track--pair{% endif %}" data-env2-stage-track>
       <i class="env2-pdp-stage__fill" data-env2-stage-fill aria-hidden="true"></i>
       {%- if env2_mode == 'single' -%}
         {%- for env2_q in env2_qsteps -%}
@@ -399,7 +477,11 @@
    type over it keeps its contrast. The core's generic lamp halo is switched off here. */
 .env2-pdp-stage__bg[data-lamp] .env2-pdp-stage__ph img{width:100%;height:100%;object-fit:cover;object-position:var(--env2-pdp-obj,50% 45%);filter:brightness(calc(.13 + .39*var(--lit,1))) saturate(.85);transition:filter 1.6s cubic-bezier(.2,.7,.2,1);transform:none}
 .env2-pdp-stage__bg[data-lamp] .env2-pdp-stage__ph::after{display:none}
-.env2-pdp-stage__veil{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(78% 56% at 100% 58%,rgba(4,7,14,.52),rgba(4,7,14,0) 74%),linear-gradient(0deg,var(--env2-sky-2) 0,rgba(15,26,47,.9) 13%,rgba(15,26,47,.66) 26%,rgba(15,26,47,.34) 44%,rgba(15,26,47,0) 74%),linear-gradient(180deg,rgba(2,3,6,.62),rgba(2,3,6,0) 24%)}
+/* the veil carries the whole copy band, not just the buy line: with the old two-stop gradient the
+   place kicker sat where the photograph was still at full brightness and measured 2.75:1 over a lit
+   bulb (QA-04). One more stop, and the studio-lit wall product reads as night like every other
+   screen in the store (CREATIVE-05). */
+.env2-pdp-stage__veil{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(78% 56% at 100% 58%,rgba(4,7,14,.52),rgba(4,7,14,0) 74%),linear-gradient(0deg,var(--env2-sky-2) 0,rgba(15,26,47,.92) 13%,rgba(15,26,47,.74) 26%,rgba(15,26,47,.5) 44%,rgba(15,26,47,.26) 62%,rgba(15,26,47,0) 84%),linear-gradient(180deg,rgba(2,3,6,.62),rgba(2,3,6,0) 24%)}
 
 /* the device drawn on the photograph: a string of bulbs (A), a receding path (B), a halo (C) */
 .env2-pdp-stage__device{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
@@ -418,6 +500,13 @@
 .env2-pdp-stage__body{position:relative;z-index:1;align-self:end;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);align-items:end;gap:40px 56px;padding-block:min(30vh,300px) 4px}
 .env2-pdp-stage__txt{min-width:0}
 .env2-pdp-stage__kicker{display:block;margin:0;text-shadow:0 1px 14px rgba(0,0,0,.55)}
+/* QA-04: over a lit bulb the 11px gold kicker measured 2.75:1 on the wall desktop fold. The veil is
+   an average; this is a local one, shaped like the veil (a gradient, no edge, no radius, §6.14) —
+   and the box is shrunk to the words so the scrim covers the type and nothing else. */
+@media (min-width:901px){
+  .env2-pdp-stage__kicker{position:relative;display:inline-block;isolation:isolate}
+  .env2-pdp-stage__kicker::before{content:"";position:absolute;z-index:-1;inset-block:-30px;inset-inline:-90px;background:radial-gradient(46% 48% at 50% 50%,rgba(3,5,10,.95) 0,rgba(3,5,10,.8) 62%,rgba(3,5,10,0) 100%);pointer-events:none}
+}
 .env2-pdp-stage__h1{font-size:clamp(38px,5.8vw,84px);max-width:15ch;margin:14px 0 16px;text-shadow:0 2px 40px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.35)}
 .env2-pdp-stage__title{margin:0;max-width:42ch;font-family:var(--env2-sans);font-weight:400;font-size:clamp(16px,1.3vw,19px);line-height:1.35;color:var(--env2-ink);unicode-bidi:isolate;text-wrap:pretty;text-shadow:0 1px 12px rgba(0,0,0,.55)}
 .env2-pdp-stage__fact{margin:8px 0 0;max-width:42ch;font-size:14px;line-height:1.5;color:var(--env2-ink-2);text-shadow:0 1px 12px rgba(0,0,0,.55)}
@@ -427,7 +516,9 @@
 .env2-pdp-stage__select option{background:#0f1a2f;color:#f4eee3}
 .env2-pdp-stage__axis-note{margin:0;font-size:13px;line-height:1.5;color:var(--env2-ink-2)}
 .env2-pdp-stage__radios{display:flex;flex-wrap:wrap;align-items:center;gap:0 20px}
-.env2-pdp-stage__radio{position:relative;display:inline-flex;align-items:center;min-height:44px;padding-block:10px;color:var(--env2-ink-2);font-size:15px;cursor:pointer;transition:color .3s}
+/* §6.18: a tap target is never under 44px in EITHER axis — "לבן" measured 21px wide (SHOPPER-08).
+   The underline still tracks the word, because it is drawn on the inner <span>. */
+.env2-pdp-stage__radio{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-inline-size:44px;padding-block:10px;padding-inline:6px;color:var(--env2-ink-2);font-size:15px;cursor:pointer;transition:color .3s}
 .env2-pdp-stage__radio input{position:absolute;opacity:0;width:1px;height:1px}
 .env2-pdp-stage__radio span{border-block-end:1px solid transparent;padding-block-end:3px;transition:border-color .3s,color .3s}
 .env2-pdp-stage__radio input:checked+span{color:var(--env2-ink);border-block-end-color:var(--env2-glow);text-shadow:0 0 18px rgba(255,211,148,.45)}
@@ -443,12 +534,31 @@
 .env2-pdp-stage__form{margin:0;padding:0}
 /* §8.3: .env2-section a{color:inherit} beats .env2-btn, so a filled pill is only safe as a <button>.
    This one is a submit button AND states its ink, so the contrast cannot regress either way. */
-.env2-pdp-stage__atc{color:var(--env2-btn-ink);min-height:52px;padding-inline:34px;font-size:15px}
+.env2-pdp-stage__atc{color:var(--env2-btn-ink);padding-inline:34px;font-size:15px}
+/* §6.18 (44px floor) / §4.1 (52px): .env2-btn{min-height:0} sits in the layout's inline <style> at the
+   same specificity (0,1,0) and later in the cascade, so the floor has to be stated at (0,2,0). */
+.env2-pdp-stage .env2-pdp-stage__atc{min-height:52px}
 .env2-pdp-stage__fit{font-size:14px}
 .env2-pdp-stage__terms{margin:0;font-size:13px;line-height:1.6;color:var(--env2-ink-2);max-width:52ch}
 .env2-pdp-stage__terms-link{font-size:13px;vertical-align:baseline}
 .env2-pdp-stage__small{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;line-height:1.5;color:var(--env2-ink-2)}
 .env2-pdp-stage__small .env2-pdp-stage__photo{font-size:13px}
+
+/* §3.2's desktop floor is 14px, "hard floor — no exceptions" (§6.18): the buy column's caption, the
+   mirror, the range line, the terms strip and the rail's own captions were set 13–13.5 and every one
+   of them carries a fact (TYPOGRAPHER-04). The boxes are already wider than the text, so nothing
+   reflows. Mobile keeps 13, which is the floor there. */
+@media (min-width:901px){
+  .env2-pdp-stage__axis-note,
+  .env2-pdp-stage__terms,
+  .env2-pdp-stage__terms-link,
+  .env2-pdp-stage__small,
+  .env2-pdp-stage__small .env2-pdp-stage__photo,
+  .env2-pdp-stage__mirror,
+  .env2-pdp-stage__range,
+  .env2-pdp-stage__cap,
+  .env2-pdp-stage__use{font-size:14px}
+}
 
 /* ---------- the rail: every price visible before choosing, on one hairline ---------- */
 .env2-pdp-stage__rail{position:relative;z-index:1;min-width:0;padding-block:24px 30px}
@@ -464,6 +574,11 @@
 .env2-pdp-stage__n--text{font-family:var(--env2-sans);font-size:15px;font-weight:400;line-height:1.3;text-align:center}
 .env2-pdp-stage__stop--on .env2-pdp-stage__n{color:var(--env2-ink)}
 .env2-pdp-stage__cap{font-size:13px;line-height:1.35;color:var(--env2-ink-2);text-align:center;text-wrap:balance}
+/* two price axes (C: עוצמה x גוון אור) means the numeral REPEATS down the rail — "6W · 6W · 12W · 12W"
+   reads as a duplication bug, and the thing that actually differs is the caption. So on a paired rail
+   the caption carries the same weight as the numeral (CREATIVE-13, partly — the lead still owes a
+   ruling on whether the two axes should be split into two rails). */
+.env2-pdp-stage__track--pair .env2-pdp-stage__cap{color:var(--env2-ink);font-size:14px;font-weight:400}
 .env2-pdp-stage__use{font-size:13px;line-height:1.35;color:var(--env2-ink-2);text-align:center;max-width:14ch}
 .env2-pdp-stage__sp{font-style:normal;font-family:var(--env2-serif);font-weight:500;font-size:14.5px;line-height:1.2;color:var(--env2-glow);font-variant-numeric:tabular-nums;white-space:nowrap;opacity:.78;transition:opacity .3s}
 .env2-pdp-stage__stop--on .env2-pdp-stage__sp{opacity:1}
@@ -486,7 +601,7 @@
   /* with JS the sticky bar is hidden while the stage is on screen; without JS it is always visible,
      so the stage gives back exactly its height and the rail's prices stay inside the fold. */
   html:not(.env2-js) .env2-pdp-stage{min-height:calc(100vh - var(--env2-pdp-bar-h,78px));min-height:calc(100svh - var(--env2-pdp-bar-h,78px))}
-  .env2-pdp-stage__track{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to left,#000 84%,transparent 100%);mask-image:linear-gradient(to left,#000 84%,transparent 100%)}
+  .env2-pdp-stage__track{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to left,#000 90%,transparent 100%);mask-image:linear-gradient(to left,#000 90%,transparent 100%)}
   .env2-pdp-stage__track::-webkit-scrollbar{display:none}
   .env2-pdp-stage__stop{min-width:92px;scroll-snap-align:center}
   .env2-pdp-stage__n{font-size:26px}
@@ -819,6 +934,18 @@
       paintFill();
       paintDevice(anim !== false);
       syncUrl();
+      /* SHOPPER-01: the ledger below is the section built to make this exact choice, and until now the
+         binding ran one way only — a ledger row drove the stage, but the fold rail, the colour select
+         and the radio line did not drive the ledger, so the row marked "your choice" (and the id its
+         buy line posted) could disagree with the price at the top of the page. The stage announces
+         every change; §4.4 listens and repaints without answering back, so the two cannot loop. */
+      if (window.CustomEvent) {
+        try {
+          document.dispatchEvent(new CustomEvent('env2:pdp:stage', { detail: {
+            stage: el, row: row, qty: qty, single: single, quiet: clean(quietLabel())
+          } }));
+        } catch (e) { /* very old browser: the ledger keeps its own server-rendered row */ }
+      }
     }
 
     function pickStop(i, stop) {
@@ -904,6 +1031,7 @@
     { "type": "text", "id": "kicker", "label": "שורת מקום (ריק = לפי סוג המוצר, מתוך ארבעת הזוגות המאושרים)" },
     { "type": "text", "id": "heading_line1", "label": "כותרת — שורה ראשונה" },
     { "type": "text", "id": "heading_line2", "label": "כותרת — שורה שנייה (זוהרת)" },
+    { "type": "textarea", "id": "heading_map", "label": "כותרות לפי מוצר — שורה לכל מוצר: מזהה|שורה ראשונה|שורה שנייה", "info": "התבנית משותפת לכל המוצרים, ולכן הכותרת האישית של כל מוצר נכתבת כאן. מוצר שאינו ברשימה מקבל כותרת לפי סוג המוצר." },
     { "type": "header", "content": "התמונה של הבמה" },
     { "type": "range", "id": "hero_image_index", "label": "מספר התמונה במוצר (0 = ברירת המחדל לפי המוצר)", "min": 0, "max": 6, "step": 1, "default": 0 },
     { "type": "image_picker", "id": "hero_image", "label": "תמונה — החלפה ידנית (דסקטופ)" },
@@ -929,6 +1057,7 @@
     { "type": "header", "content": "קופסת הקנייה" },
     { "type": "text", "id": "add_label", "label": "כפתור ראשי", "default": "הוספה לסל" },
     { "type": "text", "id": "fit_link_label", "label": "קישור למי זה לא מתאים (ריק = בלי קישור)", "default": "למי זה לא מתאים" },
+    { "type": "text", "id": "fit_link_label_choose", "label": "אותו קישור כשאין למוצר משפט «לא מתאים»", "default": "איך בוחרים נכון" },
     { "type": "textarea", "id": "terms_strip", "label": "שורת התנאים שמתחת לכפתור", "default": "משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר." },
     { "type": "text", "id": "terms_link_label", "label": "קישור לכל המספרים", "default": "כל המספרים" },
     { "type": "text", "id": "photo_intro", "label": "הצעד הקטן — פתיח", "default": "לפני שמזמינים אפשר" },

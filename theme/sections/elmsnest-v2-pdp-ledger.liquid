@@ -13,7 +13,8 @@
               variant, so the model says mode=single and the ledger becomes a QUANTITY ledger posting
               quantity=N against the single variant id (§4.4 product B, graft C).
   per-unit  : the model's own field, computed price / metres (or / units) to the AGORA, never 1 dp.
-              It is empty for a wattage axis, because a price per watt is meaningless.
+              It is empty for a wattage axis, because a price per watt is meaningless — and it is
+              suppressed on a QUANTITY ledger, where it would print the same number on every row.
   lead      : parsed VERBATIM from the product's own description — the advice paragraph that sits
               immediately before "פרטים שכדאי לדעת" (§5). Nothing is typed. Blank if nothing fits.
   headline  : two authored brand lines keyed to what the model found: the row count and unit word for
@@ -39,9 +40,18 @@
            §8.3: never an anchor styled as the filled pill), the stage above is driven by clicking
            its own matching stop, and ?variant= is kept in sync with history.replaceState.
            The enhanced state is the REDUCED state.
+  BINDING: two-way, and that is not decoration. Until it was, the ledger and the stage could disagree
+           about what the buyer had chosen — tapping "11 מ׳" on the fold rail left this section
+           reading "5 מ׳" and its buy line POSTing the 5 m variant, on all three archetypes. The
+           ledger drives the stage by clicking the stage's own matching stop (one code path), and the
+           stage announces every change on document as "env2:pdp:stage", which this section receives
+           and repaints from WITHOUT answering back — so the two can never loop and never disagree.
   MOTION : §3.3 "ledger — the chosen row's string; the previous row's string dims to cord only". The
            <ol> is data-lamp="manual"; one IntersectionObserver lights it and the rows fade up 55 ms
            apart. Reduced motion: the core lights every lamp, manual included, with no transition.
+  ARIA   : the six rows are ONE six-way choice, not six independent toggles — the <ol> carries
+           role="radiogroup" and each row button role="radio" + aria-checked, so a screen reader
+           hears "2 of 6" instead of six unrelated pressed states.
 
   Plumbing: elmsnest-v2-core (from layout/theme.liquid) supplies the tokens, fonts, .env2-* helpers,
   [data-lamp], window.env2 and the form[data-env2-buy] handler. No image is rendered here, so the
@@ -303,7 +313,7 @@
       {%- endif -%}
     </div>
 
-    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="{{ env2_mode }}">
+    <ol class="env2-pdp-ledger__rows" data-lamp="manual" data-env2-pdp-ledger-rows data-mode="{{ env2_mode }}" role="radiogroup" aria-label="{{ env2_h1 | strip_html | escape }}">
       {%- for env2_rec in env2_rowlist offset: 1 -%}
         {%- assign r = env2_rec | split: FS -%}
         {%- liquid
@@ -417,7 +427,7 @@
         {%- if rcap_over != blank -%}{%- assign rcap = rcap_over -%}{%- endif -%}
         {%- unless rlatin -%}{%- assign ru = runit -%}{%- endunless -%}
         <li class="env2-pdp-ledger__row{% if forloop.index0 == env2_defrow %} env2-pdp-ledger__row--on{% endif %}" data-env2-pdp-ledger-row data-i="{{ forloop.index0 }}" data-label="{{ r[5] | escape }}" data-qty="{% if env2_mode == 'single' %}{{ r[6] }}{% else %}1{% endif %}" data-price="{{ r[11] }}" data-id="{{ r[15] }}" data-quiet="{{ r[17] | escape }}" style="--env2-pdp-ledger-d:{{ forloop.index0 }}" {{ rattr }}>
-          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick aria-pressed="{% if forloop.index0 == env2_defrow %}true{% else %}false{% endif %}" aria-label="{{ r[5] | escape }}, {{ rprice }} ש״ח">
+          <button type="button" class="env2-pdp-ledger__pick" data-env2-pdp-ledger-pick role="radio" aria-checked="{% if forloop.index0 == env2_defrow %}true{% else %}false{% endif %}" aria-label="{{ r[5] | escape }}, {{ rprice }} ש״ח">
             <span class="env2-pdp-ledger__n">
               {%- if rn != blank -%}
                 {%- if rlatin or rjoin -%}<bdi>{{ rnum }}</bdi>{%- else -%}<bdi>{{ rn }}</bdi>{%- if ru != blank -%}<small>{{ ru }}</small>{%- endif -%}{%- endif -%}
@@ -431,7 +441,7 @@
             </span>
             <span class="env2-pdp-ledger__use">{{ ruse }}</span>
             <span class="env2-price env2-pdp-ledger__price"><bdi>{{ rprice }}</bdi> &#8362;</span>
-            <span class="env2-pdp-ledger__pm">{%- if r[12] != blank and section.settings.show_per_unit -%}&#8776;&nbsp;<bdi>{{ r[12] }}</bdi> {{ env2_perlabel_over | default: r[13] }}{%- endif -%}</span>
+            <span class="env2-pdp-ledger__pm">{%- if r[12] != blank and section.settings.show_per_unit and env2_mode != 'single' -%}&#8776;&nbsp;<bdi>{{ r[12] }}</bdi> {{ env2_perlabel_over | default: r[13] }}{%- endif -%}</span>
           </button>
           <form method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8" enctype="multipart/form-data" class="env2-pdp-ledger__form">
             <input type="hidden" name="form_type" value="product">
@@ -517,8 +527,12 @@
 .env2-pdp-ledger__rows{list-style:none;margin:0;padding:0}
 .env2-pdp-ledger__row{display:flex;align-items:center;gap:clamp(12px,1.6vw,24px);border-block-start:1px solid var(--env2-hair)}
 .env2-pdp-ledger__row:last-of-type{border-block-end:1px solid var(--env2-hair)}
+/* Every row is its OWN grid, so a max-content column is sized per row and the price column drifted
+   by a full digit between a 5-character price and a 6-character one — in the one column whose job is
+   comparing six prices (TYPOGRAPHER-08). Flooring the last two columns pins the price column to the
+   same x on every row, so the figures line up and tabular-nums finally pays. */
 .env2-pdp-ledger__pick{flex:1 1 auto;min-inline-size:0;display:grid;
-  grid-template-columns:minmax(88px,max-content) 200px minmax(0,1fr) max-content minmax(96px,max-content);
+  grid-template-columns:minmax(88px,max-content) 200px minmax(0,1fr) minmax(112px,max-content) minmax(132px,max-content);
   align-items:center;column-gap:clamp(12px,1.6vw,24px);
   margin:0;padding:18px 0;border:0;border-radius:0;background:transparent;color:inherit;
   font:inherit;text-align:start;cursor:pointer;appearance:none;-webkit-appearance:none}
@@ -537,12 +551,12 @@
   background-size:calc(100% / var(--env2-pdp-ledger-n,10)) 100%;
   opacity:calc(.24 + .46*var(--lit,1));
   transition:opacity .55s ease;transition-delay:calc(var(--env2-pdp-ledger-d,0) * 55ms)}
-.env2-pdp-ledger__b{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.3;color:var(--env2-mute);
+.env2-pdp-ledger__b{font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.3;color:var(--env2-mute);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;unicode-bidi:isolate}
 .env2-pdp-ledger__use{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.45;color:var(--env2-ink-2);
   text-wrap:pretty;unicode-bidi:isolate}
 .env2-pdp-ledger__price{--env2-price-size:22px;color:var(--env2-ink-2);transition:color .4s,text-shadow .4s}
-.env2-pdp-ledger__pm{font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.35;color:var(--env2-mute);
+.env2-pdp-ledger__pm{font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.35;color:var(--env2-mute);
   font-variant-numeric:tabular-nums;white-space:nowrap}
 /* the chosen row: its numeral and price come up to full ink, its string lights, the others stay cord */
 .env2-pdp-ledger__row--on .env2-pdp-ledger__n{color:var(--env2-ink)}
@@ -584,7 +598,7 @@
   line-height:1.5;color:var(--env2-ink-2);max-inline-size:60ch}
 .env2-pdp-ledger__jsnote{display:none}
 .env2-js .env2-pdp-ledger__jsnote{display:block;margin:clamp(14px,2vw,20px) 0 0;font-family:var(--env2-sans);font-weight:300;
-  font-size:13px;line-height:1.5;color:var(--env2-mute)}
+  font-size:14px;line-height:1.5;color:var(--env2-mute)}
 .env2-pdp-ledger__empty{font-family:var(--env2-sans);font-size:14px;color:var(--env2-mute);padding-block:40px}
 
 /* ---------- 900px: two lines per row, never a six-column squeeze (§4.4) ---------- */
@@ -729,7 +743,7 @@
         var on = k === i;
         rows[k].classList.toggle('env2-pdp-ledger__row--on', on);
         var b = rows[k].querySelector('[data-env2-pdp-ledger-pick]');
-        if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+        if (b) { b.setAttribute('aria-checked', on ? 'true' : 'false'); }
       }
       var d = data[i];
       if (!single) { fillQuiet(d); }
@@ -771,6 +785,32 @@
         syncUrl(quietEl.value);
       });
     }
+
+    /* SHOPPER-01: the binding is TWO-WAY. driveStage() sends a ledger pick up to the stage; this
+       receives the stage's own picks (the fold rail, the colour select, the radio line) and repaints
+       the ledger from them, so the row marked "your choice" and the id its buy line posts can never
+       disagree with the price at the top of the page. paint(i,false) does not call driveStage, so the
+       two directions cannot loop. */
+    document.addEventListener('env2:pdp:stage', function (ev) {
+      var d = (ev && ev.detail) || {};
+      if (!d.stage || d.stage !== stage) { return; }
+      if (quietEl && d.quiet) {
+        for (var q = 0; q < quietEl.options.length; q++) {
+          if (quietEl.options[q].text === d.quiet) { quietEl.selectedIndex = q; break; }
+        }
+      }
+      var want = -1;
+      if (single) {
+        for (var k = 0; k < data.length; k++) { if (String(data[k].qty) === String(d.qty)) { want = k; } }
+      } else if (typeof d.row === 'number' && d.row > -1 && d.row < rows.length) {
+        want = d.row;
+      }
+      if (want < 0 || want === cur) {
+        if (want === cur) { paint(cur, false); }
+        return;
+      }
+      paint(want, false);
+    });
 
     /* an incoming ?variant= (a shared link, a Meta catalogue deep link) opens on its own row */
     var start = cur;
@@ -827,7 +867,7 @@
     { "type": "textarea", "id": "lead", "label": "פסקת פתיחה (ריק = פסקת ההמלצה מתוך תיאור המוצר)" },
     { "type": "header", "content": "השורות" },
     { "type": "select", "id": "price_axis_option", "label": "האפשרות שקובעת את המחיר", "options": [ { "value": "auto", "label": "זיהוי אוטומטי" }, { "value": "option1", "label": "אפשרות 1" }, { "value": "option2", "label": "אפשרות 2" }, { "value": "option3", "label": "אפשרות 3" } ], "default": "auto" },
-    { "type": "checkbox", "id": "show_per_unit", "label": "להציג מחיר למטר / ליחידה", "default": true },
+    { "type": "checkbox", "id": "show_per_unit", "label": "להציג מחיר למטר / ליחידה", "default": true, "info": "לא מוצג במחירון כמויות, שם המחיר ליחידה זהה בכל השורות." },
     { "type": "text", "id": "per_unit_suffix", "label": "טקסט אחרי המחיר ליחידה (ריק = לפי היחידה של המוצר)" },
     { "type": "text", "id": "add_label", "label": "כפתור הוספה לסל", "default": "הוספה לסל" },
     { "type": "text", "id": "chosen_label", "label": "תווית שורת הבחירה", "default": "הבחירה שלכם" },

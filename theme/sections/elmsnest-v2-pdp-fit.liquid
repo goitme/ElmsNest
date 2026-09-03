@@ -6,22 +6,38 @@
   before she pays. Solar products only (§3.7).
 
   ------------------------------------------------------------------ the two modes, and why
-  MODE 1 "switch"  — custom.not_fit_for holds one of the FOUR approved negatives (BRIEF §3).
-                     Two halves + a knob; choosing the negative half flickers the light out for
-                     240 ms and then leaves it dark, and the refusal line prints.
-  MODE 2 "choose"  — that metafield is EMPTY. This is EVERY product today (metafields.json is a
-                     proposal that has not been written to Shopify). The section then renders the
-                     SUITS half plus the product's own choosing sentences, parsed verbatim out of
-                     its description, and NO negative at all — WINNING-SPEC §3.7 + §4.2 (C), do-not
-                     §6.8 "never write a new negative". There is no fifth negative anywhere.
+  MODE 1 "switch"  — the product HAS one of the FOUR approved negatives (BRIEF §3). Two halves and a
+                     knob; choosing the negative half flickers the light out for 240 ms and leaves
+                     it dark, and the refusal line prints.
+  MODE 2 "choose"  — it has none. The section renders the SUITS half plus the product's own choosing
+                     sentences, parsed verbatim out of its description, and NO negative at all —
+                     WINNING-SPEC §4.2 (C), do-not §6.8 "never write a new negative".
+
+  ------------------------------------------------------------------ where the negative comes from
+  custom.not_fit_for FIRST. It is unwritten on all 27 products, and an empty metafield is not a
+  reason to drop spine answer #2 from every page in the store: BRIEF §4 row 2 names the honest
+  source as "BRIEF pair; power source from description", and BRIEF §3 fixes the pair BY PLACE. So
+  when the metafield is blank the place's own approved negative stands in — never a fifth one,
+  never a new one, and only where it is literally true:
+
+    · decor (מרפסת ופינת ישיבה)  "צריך אור חזק — זו אינה מטרתה"
+      a statement about the product's PURPOSE. A decorative garland is ambience, not task light,
+      whatever it runs on — so this one needs no power test.
+    · path / wall / spot         each of those three negatives is only true on a battery charged by
+      the sun ("the place gets almost no daylight", "strong constant light all night", "permanent
+      wiring"), so all three are gated on SOLAR. A mains wall light CAN give strong constant light
+      all night — which is exactly why §4.2 (C) says C has no negative, and why product C still
+      renders "choose" mode with this fallback in place.
+
+  Solar itself is read the same way: custom.power_source when it is written, otherwise the product's
+  OWN word. 16 of 27 descriptions carry "סולארי" and none of them carries it in a negation (checked
+  over products.json). A product that does not say it stays silent about power (§3.7 / §6.7).
 
   Belts, because this is the honesty section:
-   · the negative may only ever be one of the four approved strings — a section setting that is not
-     one of them is IGNORED, not printed (§4.2 "never a fifth negative");
-   · the solar clause "המקום כמעט אינו מקבל אור יום" is dropped unless power_source == 'סולארי'
-     (BRIEF §3: the solar clause applies to solar products only);
-   · graft B renders only when power_source == 'סולארי'. Empty power_source → the page says NOTHING
-     about power (§3.7 — that is product C today, and 26 of 27 products).
+   · whatever the source, the negative must match one of the four approved strings EXACTLY or it is
+     dropped, not printed (§4.2 "never a fifth negative");
+   · the solar clause "המקום כמעט אינו מקבל אור יום" is dropped on a product that is not solar;
+   · graft B (the sun question) renders on solar products only.
 
   ------------------------------------------------------------------ no JS / reduced motion
   The switch is TWO NATIVE RADIOS plus CSS `:checked ~` — so it works with JavaScript disabled: the
@@ -30,6 +46,12 @@
   blanket rule kills the flicker; both states stay legible and every word is present in the DOM.
   Nothing in this section uses [data-lamp] — §3.3: "fit: nothing lights". The contract's observe()
   line is still called so a future lamp inside the section cannot be orphaned.
+
+  ------------------------------------------------------------------ the band, one per archetype
+  The drawn light takes the shape of the product's own kind (§4.2): a hung catenary for a garland,
+  a RECEDING LINE OF STOPS for a path light (each smaller and dimmer than the last), and TWO BEAMS,
+  up and down, for a wall light. One shape for every product is a decorative dotted rule, and on a
+  mains wall lamp it also says something untrue.
 
   Plumbing: elmsnest-v2-core (rendered from layout/theme.liquid) supplies the tokens, the fonts,
   .env2-* helpers and window.env2. elmsnest-v2-pdp-photo-cta owns the one mailto/wa.me branch.
@@ -77,12 +99,35 @@
   assign is_solar = false
   if pwr == 'סולארי'
     assign is_solar = true
+  elsif pwr == ''
+    # custom.power_source is unwritten on all 27 products, so the solar branch reads the product's OWN
+    # words instead of staying silent: BRIEF §4 row 2 names "power source from description" as the
+    # honest source. The test is the word itself; 16 of 27 descriptions carry it, and NONE of them
+    # carries it in a negation (checked over products.json). A product that does not say it stays
+    # silent about power, exactly as §3.7 requires — that is product C.
+    assign hay_pwr = product.description | strip_html | append: ' ' | append: product.title
+    if hay_pwr contains 'סולארי'
+      assign is_solar = true
+    endif
   endif
 
-  # ---------------------------------------------------------------- the negative: metafield only, verbatim
+  # ---------------------------------------------------------------- the negative, verbatim, never a fifth
   assign neg = section.settings.notfit_text | default: '' | strip
   if neg == ''
     assign neg = product.metafields.custom.not_fit_for | default: '' | strip
+  endif
+  # The metafield is the FIRST source, not the only one — see the header comment for why, and for
+  # why three of the four pairs are gated on solar and the fourth is not.
+  if neg == '' and section.settings.notfit_source != 'metafield'
+    if ptype == 'גרילנדות ותאורה דקורטיבית'
+      assign neg = 'צריך אור חזק — זו אינה מטרתה'
+    elsif is_solar and ptype == 'תאורת שביל, עמוד וגינה'
+      assign neg = 'המקום כמעט אינו מקבל אור יום'
+    elsif is_solar and ptype == 'תאורת קיר'
+      assign neg = 'נדרש אור חזק וקבוע לאורך כל הלילה'
+    elsif is_solar and ptype == 'ספוטים, פרוז׳קטורים ותאורה ניידת'
+      assign neg = 'נדרשת התקנה מיוחדת או חיבור קבוע'
+    endif
   endif
   if neg != ''
     assign probe = '~' | append: neg | append: '~'
@@ -199,12 +244,15 @@
     assign c_head = ''
   endif
   # the drawn light takes the shape of the product's own kind: a hung garland for decor and spot
-  # products, a straight lit line for a path or a wall. Never a photograph, so nothing is claimed.
+  # products, a receding line of stops for a path, two beams for a wall. Never a photograph, so
+  # nothing is claimed — and never one shape for all three, which is a dotted rule (CREATIVE-06).
   assign shape = section.settings.string_shape | default: 'auto'
   if shape == 'auto'
     assign shape = 'hang'
-    if ptype == 'תאורת שביל, עמוד וגינה' or ptype == 'תאורת קיר'
-      assign shape = 'row'
+    if ptype == 'תאורת שביל, עמוד וגינה'
+      assign shape = 'path'
+    elsif ptype == 'תאורת קיר'
+      assign shape = 'halo'
     endif
   endif
 
@@ -265,17 +313,27 @@
 
       {%- if section.settings.show_string -%}
         {%- comment -%} the light itself: a cord and its bulbs, drawn, so no photograph is ever claimed {%- endcomment -%}
-        {%- liquid
-          assign cord_d = 'M0 10 Q12.5 150 25 10 Q37.5 150 50 10 Q62.5 150 75 10 Q87.5 150 100 10'
-          assign ys_list = '30.4,56.7,74.2,82.9,82.9,74.2,56.7,30.4'
-          if shape == 'row'
-            assign cord_d = 'M0 54 L100 54'
-            assign ys_list = '54,54,54,54,54,54,54,54'
-          endif
-        -%}
         <div class="env2-pdp-fit__band env2-pdp-fit__band--{{ shape }}" aria-hidden="true">
-          <svg class="env2-pdp-fit__cord" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path d="{{ cord_d }}" vector-effect="non-scaling-stroke"/></svg>
-          {%- assign ys = ys_list | split: ',' -%}
+        {%- case shape -%}
+        {%- when 'halo' -%}
+          {%- comment -%} C: a wall lamp throws two beams, up and down — not a garland (§4.2). {%- endcomment -%}
+          <svg class="env2-pdp-fit__cord" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path d="M42 48 L58 48" vector-effect="non-scaling-stroke"/></svg>
+          <i class="env2-pdp-fit__beam env2-pdp-fit__beam--up"></i>
+          <i class="env2-pdp-fit__beam env2-pdp-fit__beam--down"></i>
+          <i class="env2-pdp-fit__b" style="--x:50%;--y:48%;--i:0"></i>
+        {%- when 'path' -%}
+          {%- comment -%} B: stops receding along a path, each smaller and dimmer than the last (§4.2). {%- endcomment -%}
+          <svg class="env2-pdp-fit__cord" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path d="M99 88 L6 30" vector-effect="non-scaling-stroke"/></svg>
+          {%- assign pxs = '99,84.4,70.6,57.9,46.2,35.6,26.1,17.7' | split: ',' -%}
+          {%- assign pys = '88,79,70.4,62.5,55.2,48.5,42.6,37.3' | split: ',' -%}
+          {%- assign pss = '1.5,1.32,1.15,1,.86,.73,.62,.52' | split: ',' -%}
+          {%- for i in (0..7) -%}
+            <i class="env2-pdp-fit__b env2-pdp-fit__b--post" style="--x:{{ pxs[i] }}%;--y:{{ pys[i] }}%;--s:{{ pss[i] }};--i:{{ i }}"></i>
+          {%- endfor -%}
+        {%- else -%}
+          {%- comment -%} A: the hung catenary — bulbs on a cord, nothing else on the ground. {%- endcomment -%}
+          <svg class="env2-pdp-fit__cord" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path d="M0 10 Q12.5 150 25 10 Q37.5 150 50 10 Q62.5 150 75 10 Q87.5 150 100 10" vector-effect="non-scaling-stroke"/></svg>
+          {%- assign ys = '30.4,56.7,74.2,82.9,82.9,74.2,56.7,30.4' | split: ',' -%}
           {%- assign xs = '1.5625,4.6875,7.8125,10.9375,14.0625,17.1875,20.3125,23.4375' | split: ',' -%}
           {%- for i in (0..31) -%}
             {%- liquid
@@ -287,6 +345,7 @@
             -%}
             <i class="env2-pdp-fit__b" style="--x:{{ bx }}%;--y:{{ ys[pos] }}%;--i:{{ i }}"></i>
           {%- endfor -%}
+        {%- endcase -%}
         </div>
       {%- endif -%}
 
@@ -358,7 +417,7 @@
 {% stylesheet %}
 /* §4.2 — the not-for device. Every selector .env2-pdp-fit__…, logical properties only, radius 0
    except the knob pill and the round bulbs. No Liquid in here: per-instance values arrive as
-   inline custom properties (--x / --y / --i on each bulb). */
+   inline custom properties (--x / --y / --s / --i on each bulb). */
 .env2-pdp-fit{padding-block:clamp(72px,9vw,110px) clamp(60px,7vw,90px)}
 .env2-pdp-fit__wrap{position:relative;z-index:1}
 
@@ -397,6 +456,19 @@
 .env2-pdp-fit__band{position:relative;width:100vw;margin-inline:calc(50% - 50vw);height:clamp(120px,15vw,200px);margin-block-start:clamp(28px,4vw,44px);isolation:isolate}
 .env2-pdp-fit__band::after{content:"";position:absolute;inset:-34% -6% -44%;pointer-events:none;background:radial-gradient(46% 54% at 50% 46%,rgba(255,211,148,.22),rgba(255,211,148,0) 70%);opacity:1;transition:opacity .7s .1s;z-index:-1}
 .env2-pdp-fit__band--row{height:clamp(96px,11vw,140px)}
+.env2-pdp-fit__band--path{height:clamp(120px,14vw,180px)}
+.env2-pdp-fit__band--halo{height:clamp(120px,14vw,180px)}
+/* B: a receding line of stops — each one smaller and dimmer, so the band says "a path", not "a rule" */
+.env2-pdp-fit__b--post{transform:scale(var(--s,1));opacity:calc(.42 + .38*var(--s,1))}
+.env2-pdp-fit__b--post::after{content:"";position:absolute;inset-inline-start:50%;inset-block-start:2px;width:1.5px;height:calc(16px * var(--s,1));margin-inline-start:-.75px;background:linear-gradient(180deg,rgba(244,238,227,.5),rgba(244,238,227,.06));transition:background .45s var(--d,0s)}
+/* C: one lamp on the wall, two beams — the shape the product's own description states */
+.env2-pdp-fit__beam{position:absolute;inset-inline-start:50%;width:min(46%,420px);height:44%;margin-inline-start:calc(min(46%,420px) / -2);background:radial-gradient(52% 100% at 50% 100%,rgba(255,211,148,.42),rgba(255,211,148,0) 72%);transition:opacity .5s}
+.env2-pdp-fit__beam--up{inset-block-start:0}
+.env2-pdp-fit__beam--down{inset-block-end:0;transform:scaleY(-1)}
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__band .env2-pdp-fit__beam,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__band .env2-pdp-fit__beam{opacity:0}
+.env2-pdp-fit__r--off:checked~.env2-pdp-fit__band .env2-pdp-fit__b--post::after,
+.env2-pdp-fit__r--sunno:checked~.env2-pdp-fit__band .env2-pdp-fit__b--post::after{background:linear-gradient(180deg,rgba(244,238,227,.14),rgba(244,238,227,.03))}
 .env2-pdp-fit__cord{position:absolute;inset:0;width:100%;height:100%;display:block;fill:none;stroke:rgba(244,238,227,.3);stroke-width:1.2;transition:stroke .6s}
 .env2-pdp-fit__b{--d:calc(var(--i,0) * 14ms);position:absolute;inset-inline-start:var(--x);inset-block-start:var(--y);width:9px;height:9px;margin-inline-start:-4.5px;margin-block-start:-4.5px;border-radius:50%;background:var(--env2-glow);box-shadow:0 0 3px 1px rgba(255,241,214,.85),0 0 14px 5px rgba(255,211,148,.4);transition:background .45s var(--d,0s),box-shadow .45s var(--d,0s)}
 .env2-pdp-fit__r--off:checked~.env2-pdp-fit__band .env2-pdp-fit__b,
@@ -456,7 +528,8 @@
   .env2-pdp-fit__knob{order:0}
   .env2-pdp-fit__band{height:clamp(112px,30vw,160px)}
   .env2-pdp-fit__band--row{height:clamp(92px,22vw,120px)}
-  .env2-pdp-fit__b:nth-child(2n){display:none}
+  .env2-pdp-fit__band--path,.env2-pdp-fit__band--halo{height:clamp(104px,26vw,140px)}
+  .env2-pdp-fit__band--hang .env2-pdp-fit__b:nth-child(2n){display:none}
   .env2-pdp-fit__sun{grid-template-columns:minmax(0,1fr);gap:18px}
   .env2-pdp-fit__list{grid-template-columns:minmax(0,1fr)}
   .env2-pdp-fit__itext{max-width:none}
@@ -516,20 +589,21 @@ document.querySelectorAll('[data-env2-pdp-fit]').forEach(function (el) {
     { "type": "text", "id": "eyebrow", "label": "תווית — כשיש ניסוח 'לא מתאים' מאושר", "default": "02 · מתי כן, ומתי לא" },
     { "type": "text", "id": "eyebrow_choose", "label": "תווית — כשאין ניסוח 'לא מתאים'", "default": "02 · איך בוחרים נכון" },
     { "type": "text", "id": "question", "label": "השאלה (ריק = לפי המקום של המוצר)", "info": "נכתבת בגרשיים «…» אוטומטית. ריק → «זה יתאים לשביל/לקיר/למרפסת/לגינה שלי?» לפי סוג המוצר." },
-    { "type": "textarea", "id": "lead", "label": "פסקת פתיחה — עם המתג", "default": "לכל מקום יש מטרה שהתאורה ממלאת — ומצב שבו היא לא. העבירו את המתג ותראו." },
-    { "type": "textarea", "id": "lead_choose", "label": "פסקת פתיחה — בלי המתג", "default": "לכל מקום יש מטרה שהתאורה ממלאת. מה שכתוב כאן על הבחירה מגיע מתיאור המוצר עצמו." },
+    { "type": "textarea", "id": "lead", "label": "פסקת פתיחה — עם המתג", "default": "לכל מקום יש תפקיד שהתאורה ממלאת — ומצב שבו היא לא. העבירו את המתג ותראו." },
+    { "type": "textarea", "id": "lead_choose", "label": "פסקת פתיחה — בלי המתג", "default": "לכל מקום יש תפקיד שהתאורה ממלאת. מה שכתוב כאן על הבחירה מגיע מתיאור המוצר עצמו." },
     { "type": "header", "content": "המתג — הצמד המאושר" },
-    { "type": "paragraph", "content": "רק ארבעת הצמדים המאושרים. טקסט שאינו אחד מהם לא ייכתב בעמוד. ה'לא מתאים' נלקח מ־custom.not_fit_for של המוצר; כשהוא ריק — לא נכתב שום 'לא מתאים', והמדור מציג את משפטי הבחירה מתיאור המוצר." },
+    { "type": "paragraph", "content": "רק ארבעת הצמדים המאושרים. טקסט שאינו אחד מהם לא ייכתב בעמוד. ה'לא מתאים' נלקח קודם מ־custom.not_fit_for של המוצר; כשהוא ריק — מהזוג המאושר של המקום, ורק היכן שהוא נכון באמת (שלושה מהארבעה נכונים רק במוצר סולארי)." },
     { "type": "text", "id": "suits_label", "label": "תווית הצד המתאים", "default": "מתאים כדי" },
     { "type": "text", "id": "suits_text", "label": "מתאים כדי… (ריק = לפי המקום)", "info": "מותר רק: לראות את הדרך · להאיר נקודה מסוימת · ליצור אווירה · להאיר עץ או ערוגה" },
     { "type": "text", "id": "notfit_label", "label": "תווית הצד הלא מתאים", "default": "לא מתאים כש־" },
-    { "type": "text", "id": "notfit_text", "label": "לא מתאים כש… (ריק = מתוך המטה־פילד)", "info": "מותר רק אחד מארבעת הניסוחים המאושרים, מילה במילה. חל על כל המוצרים בתבנית — עדיף להשאיר ריק ולמלא את custom.not_fit_for לכל מוצר." },
+    { "type": "text", "id": "notfit_text", "label": "לא מתאים כש… (ריק = מהמטה־פילד או מהזוג של המקום)", "info": "מותר רק אחד מארבעת הניסוחים המאושרים, מילה במילה. חל על כל המוצרים בתבנית — עדיף להשאיר ריק." },
+    { "type": "select", "id": "notfit_source", "label": "מקור המשפט «לא מתאים»", "info": "ברירת מחדל: מטא-פילד המוצר, ואם הוא ריק — הזוג המאושר של המקום (BRIEF §3), ורק היכן שהוא נכון באמת.", "options": [ { "value": "auto", "label": "מטא-פילד, ואם ריק — הזוג של המקום" }, { "value": "metafield", "label": "מטא-פילד בלבד" } ], "default": "auto" },
     { "type": "text", "id": "refusal_line", "label": "המשפט שנדלק כשהאור כבה", "default": "לא נדלק. זו הנקודה." },
     { "type": "richtext", "id": "redirect_html", "label": "לאן כן (קישור אחד)", "info": "מוצג רק כשיש 'לא מתאים' מאושר. לדוגמה: לאור חזק על קיר או בכניסה יש אצלנו מקום אחר — תאורת קיר." },
     { "type": "checkbox", "id": "show_string", "label": "להציג את שורת האור", "default": true },
-    { "type": "select", "id": "string_shape", "label": "צורת האור", "options": [ { "value": "auto", "label": "לפי המקום של המוצר" }, { "value": "hang", "label": "שרשרת תלויה" }, { "value": "row", "label": "שורת נקודות אור" } ], "default": "auto" },
+    { "type": "select", "id": "string_shape", "label": "צורת האור", "options": [ { "value": "auto", "label": "לפי המקום של המוצר" }, { "value": "hang", "label": "שרשרת תלויה" }, { "value": "path", "label": "שורת מנורות בשביל" }, { "value": "halo", "label": "שתי אלומות על קיר" }, { "value": "row", "label": "שורת נקודות אור" } ], "default": "auto" },
     { "type": "header", "content": "השאלה השנייה — סולארי בלבד" },
-    { "type": "paragraph", "content": "מוצגת רק כאשר custom.power_source של המוצר הוא 'סולארי'. כשהשדה ריק — העמוד לא אומר דבר על מקור החשמל." },
+    { "type": "paragraph", "content": "מוצגת רק במוצר סולארי — לפי custom.power_source, ואם הוא ריק לפי המילה «סולארי» בתיאור המוצר עצמו. במוצר שאינו אומר זאת — העמוד לא אומר דבר על מקור החשמל." },
     { "type": "checkbox", "id": "show_solar_question", "label": "להציג את שאלת השמש", "default": true },
     { "type": "text", "id": "solar_question", "label": "השאלה", "default": "כמה שמש המקום מקבל ביום?" },
     { "type": "text", "id": "solar_yes", "label": "תשובה — יש שמש", "default": "שמש במשך היום" },

@@ -9,13 +9,43 @@ function loadPlaywright() {
   return require('playwright');
 }
 const { chromium } = loadPlaywright();
+// TYPOGRAPHER-01: the two brand faces come from fonts.googleapis.com, which this box cannot reach,
+// and the "FRL Fallback" chain (David / Times New Roman / Noto Serif Hebrew) resolves to nothing that
+// is installed here — so every render before this was shot in a generic serif and a generic sans, and
+// every type verdict taken from one was a verdict on DejaVu. The .woff2 files are already in the repo;
+// they are served locally and the Google stylesheet request is fulfilled with @font-face rules for
+// them, so the mirror renders in real Frank Ruhl Libre and real Heebo.
+const FONT_DIR = '/home/user/ElmsNest/brief/assets/fonts';
+const FONT_FAMILY = { FrankRuhlLibre: 'Frank Ruhl Libre', Heebo: 'Heebo' };
+const FONT_RANGE = {
+  hebrew: 'U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F',
+  latin: 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215'
+};
+function fontFaceCss(port) {
+  let css = '';
+  let files = [];
+  try { files = fs.readdirSync(FONT_DIR); } catch (e) { return ''; }
+  for (const f of files) {
+    const m = /^(FrankRuhlLibre|Heebo)-(hebrew|latin)-(\d+)\.woff2$/.exec(f);
+    if (!m) continue;
+    css += `@font-face{font-family:"${FONT_FAMILY[m[1]]}";font-style:normal;font-weight:${m[3]};font-display:swap;` +
+           `src:url(http://127.0.0.1:${port}/__fonts/${f}) format("woff2");unicode-range:${FONT_RANGE[m[2]]}}\n`;
+  }
+  return css;
+}
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.gif': 'image/gif', '.woff': 'font/woff', '.woff2': 'font/woff2', '.ico': 'image/x-icon', '.json': 'application/json' };
 (async () => {
   const [,, htmlPath, outPrefix, flag] = process.argv;
   if (!htmlPath || !outPrefix) { console.error('usage: node shot-http.js <html> <out-prefix> [--rm]'); process.exit(2); }
   const root = path.dirname(path.resolve(htmlPath)); const file = path.basename(htmlPath);
   const srv = http.createServer((req, res) => {
-    const p = decodeURIComponent(req.url.split('?')[0]); let f = path.join(root, p === '/' ? file : p);
+    const p = decodeURIComponent(req.url.split('?')[0]);
+    if (p.startsWith('/__fonts/')) {
+      const g = path.join(FONT_DIR, path.basename(p));
+      if (fs.existsSync(g)) { res.writeHead(200, { 'Content-Type': 'font/woff2', 'Access-Control-Allow-Origin': '*' }); return fs.createReadStream(g).pipe(res); }
+      res.writeHead(404); return res.end();
+    }
+    let f = path.join(root, p === '/' ? file : p);
     let g = f;
     if (!g.startsWith(root) || !fs.existsSync(g) || fs.statSync(g).isDirectory()) {
       // an asset this mirror did not fetch (dynamic import): borrow the same-hash file from any other mirror
@@ -39,7 +69,13 @@ const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-sandbox'] });
   for (const [name, vp] of [['desktop', { width: 1440, height: 900 }], ['mobile', { width: 390, height: 844 }]]) {
     const ctx = await b.newContext({ viewport: vp, deviceScaleFactor: 2, locale: 'he-IL', reducedMotion: flag === '--rm' ? 'reduce' : 'no-preference', hasTouch: name === 'mobile', isMobile: name === 'mobile' });
-    await ctx.route(/^https?:\/\//, r => /^https?:\/\/127\.0\.0\.1:/.test(r.request().url()) ? r.continue() : r.abort());
+    const faces = fontFaceCss(port);
+    await ctx.route(/^https?:\/\//, r => {
+      const u = r.request().url();
+      if (/^https?:\/\/127\.0\.0\.1:/.test(u)) return r.continue();
+      if (/fonts\.googleapis\.com/.test(u)) return r.fulfill({ status: 200, contentType: 'text/css', body: faces });
+      return r.abort();
+    });
     const p = await ctx.newPage(); const errors = [];
     p.on('pageerror', e => errors.push(String(e).slice(0, 120)));
     await p.goto(`http://127.0.0.1:${port}/${file}`, { waitUntil: 'load', timeout: 60000 });
