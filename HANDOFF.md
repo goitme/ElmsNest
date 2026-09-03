@@ -148,3 +148,24 @@ page: the generator is `brief/side-pages/pdp/build-ruling-page.py`.
 **Next after the owner approves the concept:** build the eight `elmsnest-v2-pdp-*` sections per the spec, deploy,
 adversarial critique (a critic must execute the buy flow on an http-served mirror), then the owner's verdict.
 Then round 2 (collection) inherits the product card designed inside the PDP.
+
+### 7.3 Round 1 (PDP) BUILT, critiqued, fixed — waiting on the owner (2026-09-03)
+
+The new product page is live on the dev theme for all 27 products (`templates/product.elmsnest.json` — products carry
+`templateSuffix: "elmsnest"`, which is a PRODUCT property shared with the live theme, so the suffix was never touched).
+Eight sections `sections/elmsnest-v2-pdp-{stage,fit,night,ledger,facts,terms,ask,related}.liquid` + seven snippets
+(`ground-product, pdp-image, pdp-variants, pdp-photo-cta, pdp-card, pdp-buybar, bdi-range`). `brief/side-pages/pdp/BUILD-REPORT.md`
+is the record; `CRITIQUE-{creative,shopper,typographer,qa}.md` are the four adversarial audits.
+Final: pdp-multi 8492/8988 px · pdp-single 8171/8750 · pdp-wall 8137/8527; 0 Liquid errors; buy inside the 390 fold on
+all three; 8/8 anchors; ATC 52 px; keyboard buy in six tabs; full no-JS path; no overflow at 320.
+Three blockers the critics found and the fix pass closed: the h1 was the compliance phrase on all 27 products (now an
+authored headline per archetype via `heading_map`); **`pdp-fit` rendered the positive half only** — the store's one
+differentiator was an empty frame, because it was wired to `custom.not_fit_for` (empty on 26/27) with no fallback (now
+derived from the four approved pairs + the description, and it correctly prints NOTHING on the mains wall light because
+no approved refusal is literally true there); and the stage rail and the ledger disagreed, so choosing 11 m added the
+5 m variant (now a two-way `env2:pdp:stage` CustomEvent).
+`brief/shot-http.js` now serves the real FRL/Heebo woff2 locally — renders before 2026-09-03 were shot without the brand faces.
+Open for the lead: the 13px-vs-14px minimum contradiction between `pdp/WINNING-SPEC.md` §6 and `brief/WINNING-SPEC.md` §3
+(PDP floor raised to 14 px); Heebo letterspacing and `.env2-h` leading belong to the core round, not the PDP.
+Owner page: `brief/side-pages/pdp/build-owner-page.py`. **Next: owner verdict → round 2 (collection), which inherits
+`snippets/elmsnest-v2-pdp-card.liquid` as the catalogue card.**
