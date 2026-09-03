@@ -97,7 +97,12 @@
 <span class="env2-coll-glyph{% if env2_extra != '' %} {{ env2_extra }}{% endif %}" data-glyph="{{ env2_g }}"{% unless lamp == 'off' %} data-lamp{% endunless %} style="--env2-glyph-ar:{{ env2_ar }}">
   <span class="env2-coll-glyph__halo" aria-hidden="true"></span>
   <svg class="env2-coll-glyph__art" viewBox="0 0 120 140" role="img" aria-label="{{ env2_alt | escape }}" focusable="false"><use href="#env2-glyph-{{ env2_g }}"></use></svg>
-  {%- if env2_cap != '' -%}<span class="env2-coll-glyph__cap">{{ env2_cap }}</span>{%- endif -%}
+  {%- comment -%}
+    QA-09 — the <svg role="img"> above already carries "<product> — איור, אין תצלום נקי" as its
+    accessible name, so the visible caption is a second reading of the same fact for a screen reader.
+    It stays on screen (it is the honesty, and sighted visitors need it) and out of the a11y tree.
+  {%- endcomment -%}
+  {%- if env2_cap != '' -%}<span class="env2-coll-glyph__cap" aria-hidden="true">{{ env2_cap }}</span>{%- endif -%}
 </span>
 {%- endunless -%}
 {%- if env2_sprite -%}
@@ -147,8 +152,10 @@
 .env2-coll-glyph[data-glyph="net"]{--env2-glyph-hx:50%;--env2-glyph-hy:46%}
 .env2-coll-glyph[data-glyph="spot"]{--env2-glyph-hx:38%;--env2-glyph-hy:40%}
 /* the caption, in the kicker style, at the bottom START edge (§3.6.3) */
+/* CREATIVE-14 — this is the only line on the page that explains why an image is a drawing, and it
+   was the smallest type on the page at 11.5px, under §6.13's 13px floor. */
 .env2-coll-glyph__cap{position:absolute;inset-block-end:12px;inset-inline-start:14px;
-  font-family:var(--env2-sans);font-weight:500;font-size:11.5px;letter-spacing:.16em;line-height:1.2;
+  font-family:var(--env2-sans);font-weight:500;font-size:13px;letter-spacing:.1em;line-height:1.2;
   color:var(--env2-gold);pointer-events:none}
 @media (prefers-reduced-motion:reduce){
   .env2-coll-glyph__halo,.env2-coll-glyph__art{transition:none}

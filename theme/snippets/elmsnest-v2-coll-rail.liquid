@@ -237,6 +237,31 @@
       assign picks = picks | append: firstlow | append: '=all|'
     endif
   endif
+  # ---------------------------------------------------------------- CREATIVE-01: the default state
+  # At 'הכול' the row printed a range and one entry price, so three of decor's four rows read the
+  # identical string 'מ־89.90 ₪' and the one column no competitor prints — the per-unit figure — was
+  # absent from the state every screenshot, every share and every first arrival is taken in.
+  # It is printed here too, derived from the SAME variant whose price is printed: the entry variant,
+  # the one with the lowest price (field 11 is that price in cents). Nothing is invented and nothing
+  # is pre-narrowed — 'הכול' still means all of them.
+  assign entryper = ''
+  assign entryperlab = ''
+  assign entryval = ''
+  if on
+    assign entrylo = 0
+    for rec in recs offset: 1
+      assign r = rec | split: FS
+      if r[3] != '' and r[4] == a_unit and r[11] != ''
+        assign candc = r[11] | plus: 0
+        if entrylo == 0 or candc < entrylo
+          assign entrylo = candc
+          assign entryper = r[13]
+          assign entryperlab = r[14]
+          assign entryval = r[3]
+        endif
+      endif
+    endfor
+  endif
   assign shortlist = shortlist | strip
 -%}
 {%- if env2_mode == 'short' -%}{{ shortlist }}{%- else -%}
@@ -282,6 +307,9 @@
     <span class="env2-coll-rail__v env2-coll-rail__v--all" data-stop="all" data-state="span">
       <b class="env2-coll-rail__val">{% if a_min == a_max %}<bdi>{{ a_min }}</bdi>{% else %}<bdi>{{ a_min }}–{{ a_max }}</bdi>{% endif %} {{ a_label }}</b>
       <span class="env2-coll-rail__price">{%- render 'elmsnest-v2-price', product: product -%}</span>
+      {%- if showper and entryper != '' -%}
+        <span class="env2-coll-rail__per env2-coll-rail__per--entry"><bdi>≈{{ entryper }}</bdi> {{ entryperlab }} <span class="env2-coll-rail__perat">ב־<bdi>{{ entryval }}</bdi> {{ a_label }}</span></span>
+      {%- endif -%}
     </span>
     {%- for s in stoplist -%}
       {%- liquid
@@ -368,7 +396,7 @@
 #env2-stop-all:checked ~ {{ sc }} .env2-coll-rail__v{display:none}
 #env2-stop-all:checked ~ {{ sc }} .env2-coll-rail__v--all{display:flex}
 #env2-stop-all:checked ~ {{ sc }} .env2-coll-rail__dot[data-pick~="all"]{transform:scale(1.5);background:var(--env2-glow);box-shadow:0 0 0 6px rgba(255,211,148,.14),0 0 18px 4px rgba(247,162,74,.34)}
-#env2-stop-all:checked ~ {{ sc }} .env2-coll-rail__cursor{inset-inline-start:0%}
+#env2-stop-all:checked ~ {{ sc }} .env2-coll-rail__cursor{inset-inline-start:0%;opacity:0}
 </style>
 {%- endif -%}
 {%- if env2_mode == 'css_static' -%}
@@ -384,7 +412,9 @@
   transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s,box-shadow .25s}
 /* the cursor knob — the ruler section puts this class on its own knob and the generated
    :checked ruleset moves it. It is the second and last round thing on this page (§3.1). */
-.env2-coll-rail__cursor{position:absolute;inset-block-start:0;inset-inline-start:0;
+/* CREATIVE-01 — at 'הכול' no stop is chosen, so the knob has no position to be at: parked at 0 it
+   read as "zero metres" in every still of the default state. It fades in with the first choice. */
+.env2-coll-rail__cursor{opacity:1;position:absolute;inset-block-start:0;inset-inline-start:0;
   margin-inline-start:-7px;inline-size:14px;block-size:14px;border-radius:999px;
   background:var(--env2-glow);box-shadow:0 0 0 7px rgba(255,211,148,.12),0 0 22px 6px rgba(247,162,74,.30);
   transition:inset-inline-start .32s cubic-bezier(.2,.7,.2,1)}
@@ -399,6 +429,7 @@
   font-variant-numeric:tabular-nums;color:var(--env2-glow);white-space:nowrap}
 .env2-coll-rail__price .env2-price{--env2-price-size:17px}
 .env2-coll-rail__per{font-size:14px;color:var(--env2-ink-2);font-variant-numeric:tabular-nums}
+.env2-coll-rail__perat{color:var(--env2-mute)}
 /* 'beyond': the row dims (the ruler puts data-short on it) and the rail SAYS how far it reaches.
    Never display:none — §6.6. */
 .env2-coll-rail__v[data-state="beyond"]{color:var(--env2-mute)}
@@ -414,6 +445,13 @@
   .env2-coll-rail__val,.env2-coll-rail__price{font-size:16px}
   .env2-coll-rail__v{font-size:14px;gap:8px}
   .env2-coll-rail__per,.env2-coll-rail__miss{font-size:13px}
+  /* TYPOGRAPHER-07 — on desktop every price in the rail starts at exactly the same x and the ₪ signs
+     and the decimal points stack; on the phone the price ran inline after the reach caption and its
+     edges landed at 249/239/249/250, up to 19px of jitter down the four rows the whole instrument
+     exists to make comparable. The auto margin gives the price the end column the desktop row has,
+     and the per-unit line takes its own row under it. */
+  .env2-coll-rail__price{margin-inline-start:auto;text-align:end}
+  .env2-coll-rail__per{flex-basis:100%;margin-block-start:2px}
 }
 </style>
 {%- endif -%}

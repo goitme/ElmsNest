@@ -267,6 +267,18 @@
     endif
   endif
 
+  # TYPOGRAPHER-04 — on wall and spot the rail is a BUDGET ladder (stops 'עד 99.90 ₪'), so a headline
+  # that promises a measure is do-not 7's wording half: a control labelled as something it is not.
+  # In price mode the h2 defaults to the budget question and the eyebrow to its own string, unless a
+  # merchant has written one, in which case theirs always wins.
+  if env2_s.heading == blank and env2_mode == 'price'
+    assign env2_h2 = 'מה נכנס לתקציב?'
+  endif
+  assign env2_eyebrow = env2_s.eyebrow | default: ''
+  if env2_mode == 'price' and env2_s.eyebrow_price != blank
+    assign env2_eyebrow = env2_s.eyebrow_price
+  endif
+
   assign env2_stopq = env2_s.question | default: ''
   if env2_stopq == ''
     if env2_mode == 'length'
@@ -276,6 +288,14 @@
     elsif env2_mode == 'price'
       assign env2_stopq = 'מחיר כניסה עד הסכום שנבחר. השורה מציגה את הטווח המלא.'
     endif
+  endif
+
+  # QA-06 — in price mode the visible copy under the stops is a two-sentence instruction, and it was
+  # also the role="group" accessible name, so a screen reader read the whole paragraph on entering the
+  # group. The instruction stays visible; the group gets a name.
+  assign env2_stoparia = env2_stopq
+  if env2_mode == 'price'
+    assign env2_stoparia = env2_s.question_aria | default: 'מחיר כניסה — עד כמה?'
   endif
 
   assign env2_action = env2_s.action_label | default: ''
@@ -371,17 +391,21 @@
   {%- endif -%}
 
   <div class="env2-wrap env2-wrap--wide env2-coll-ruler__head">
-    {%- if env2_s.eyebrow != blank -%}<p class="env2-eyebrow env2-coll-ruler__eyebrow">{{ env2_s.eyebrow }}</p>{%- endif -%}
+    {%- if env2_eyebrow != blank -%}<p class="env2-eyebrow env2-coll-ruler__eyebrow">{{ env2_eyebrow }}</p>{%- endif -%}
     <div class="env2-coll-ruler__headgrid">
       <div class="env2-coll-ruler__numblock" data-lamp>
         <p class="env2-coll-ruler__num" aria-hidden="true"><bdi>{{ env2_count }}</bdi></p>
+        {%- comment -%}
+          TYPOGRAPHER-13 — the numeral is the count; the caption used to print the same digit again
+          40px under it at 15px. It names what the numeral counts, which is §4.2's own copy.
+        {%- endcomment -%}
         <p class="env2-coll-ruler__numcap">
           {%- if env2_mode == 'mixed' -%}
-            <bdi>{{ env2_count }}</bdi> דגמים בקטלוג · שלוש יחידות מידה
+            דגמים בקטלוג · שלוש יחידות מידה
           {%- elsif env2_mode == 'price' or env2_mode == 'flat' -%}
-            <bdi>{{ env2_count }}</bdi> דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה
+            דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה
           {%- else -%}
-            <bdi>{{ env2_count }}</bdi> דגמים בקולקציה · <bdi>{% if env2_unit == 'm' %}{{ env2_n_m }}{% else %}{{ env2_n_q }}{% endif %}</bdi> מהם נמדדים ב{{ env2_word }}
+            דגמים בקולקציה · <bdi>{% if env2_unit == 'm' %}{{ env2_n_m }}{% else %}{{ env2_n_q }}{% endif %}</bdi> מהם נמדדים ב{{ env2_word }}
           {%- endif -%}
         </p>
       </div>
@@ -409,7 +433,7 @@
 
     {%- comment -%} the stops, then the order line, on the two hairlines of §3.4's sketch {%- endcomment -%}
     {%- if env2_mode == 'length' or env2_mode == 'count' or env2_mode == 'price' -%}
-      <div class="env2-coll-ruler__stops" role="group"{% if env2_stopq != blank %} aria-label="{{ env2_stopq | escape }}"{% endif %}>
+      <div class="env2-coll-ruler__stops" role="group"{% if env2_stoparia != blank %} aria-label="{{ env2_stoparia | escape }}"{% endif %}>
         {%- if env2_stopq != blank -%}<p class="env2-coll-ruler__stopq">{{ env2_stopq }}</p>{%- endif -%}
         <div class="env2-coll-ruler__pills">
           <label class="env2-coll-ruler__pill" for="env2-stop-all"><span class="env2-coll-ruler__pilltxt">הכול</span></label>
@@ -494,7 +518,8 @@
                   <span class="env2-coll-ruler__placefacts">
                     <bdi>{{ env2_pn }}</bdi> מנורות · <bdi>{{ env2_lo | money_without_currency }}–{{ env2_hi | money_without_currency }}</bdi> ₪
                   </span>
-                  <span class="env2-coll-ruler__placenames">{{ env2_names | remove_first: '~' | split: '~' | join: ' · ' }}</span>
+                  {%- assign env2_nmlist = env2_names | remove_first: '~' | split: '~' -%}
+                  <span class="env2-coll-ruler__placenames">{% for env2_nm in env2_nmlist %}<span class="env2-coll-ruler__placename">{{ env2_nm }}</span>{% endfor %}</span>
                 </a>
               </li>
             {%- endif -%}
@@ -522,7 +547,8 @@
                   <span class="env2-coll-ruler__placefacts">
                     <bdi>{{ env2_pn }}</bdi> מנורות · <bdi>{{ env2_lo | money_without_currency }}–{{ env2_hi | money_without_currency }}</bdi> ₪
                   </span>
-                  <span class="env2-coll-ruler__placenames">{{ env2_names | remove_first: '~' | split: '~' | join: ' · ' }}</span>
+                  {%- assign env2_nmlist = env2_names | remove_first: '~' | split: '~' -%}
+                  <span class="env2-coll-ruler__placenames">{% for env2_nm in env2_nmlist %}<span class="env2-coll-ruler__placename">{{ env2_nm }}</span>{% endfor %}</span>
                 </a>
               </li>
             {%- endif -%}
@@ -691,7 +717,9 @@
    The per-stop :checked ruleset is NOT here: it is generated per instance by
    snippets/elmsnest-v2-coll-rail.liquid (emit:'css') and by the inline style element above, because
    a section stylesheet block is static and may hold no Liquid. ---------- */
-.env2-coll-ruler{padding-block:120px 96px}
+/* CREATIVE-04 — 216px of ground at every section boundary on a page whose median screen carried 5%
+   ink against the homepage's 28.9%. The spend is cut by about a third; nothing is removed but ground. */
+.env2-coll-ruler{padding-block:84px 64px}
 .env2-coll-ruler__head,.env2-coll-ruler__body{position:relative;z-index:1}
 
 /* the head: numeral at the start edge, the place's question beside it (§4.2 desktop) */
@@ -806,7 +834,12 @@
 .env2-coll-ruler__placeq{display:block;margin-block-start:8px;font-size:14px;color:var(--env2-ink-2)}
 .env2-coll-ruler__placefacts{font-size:15px;color:var(--env2-ink-2);font-variant-numeric:tabular-nums;
   white-space:nowrap}
+/* TYPOGRAPHER-09 — the three lamp names under a place entry each carry their own spaced en dash, so
+   a middot list of them read as one 150-character run-on with no findable boundary. They are three
+   lines on the catalogue's own hairlines instead. */
 .env2-coll-ruler__placenames{font-size:14px;color:var(--env2-mute);unicode-bidi:isolate}
+.env2-coll-ruler__placename{display:block;unicode-bidi:isolate}
+.env2-coll-ruler__placename+.env2-coll-ruler__placename{margin-block-start:4px}
 
 @media (max-width:900px){
   .env2-coll-ruler{padding-block:72px 56px}
@@ -921,9 +954,11 @@
     { "type": "text", "id": "per_unit_word", "label": "המילה למחיר ליחידה", "info": "ריק = ₪ למטר / ₪ ליחידה. בשביל: ₪ לנקודת אור." },
     { "type": "header", "content": "הטקסטים" },
     { "type": "text", "id": "eyebrow", "label": "כותרת עליונה קטנה", "default": "המקום — והמידה" },
+    { "type": "text", "id": "eyebrow_price", "label": "כותרת עליונה — סרגל מחיר", "info": "בקולקציה שבה הסרגל הוא מחיר כניסה, לא מידה.", "default": "המקום — והתקציב" },
     { "type": "text", "id": "heading", "label": "כותרת", "info": "ריק = השאלה של המקום, לפי הקולקציה." },
     { "type": "textarea", "id": "deck", "label": "שורת פתיחה", "info": "בקולקציות שבהן העמוד באמת מספק את הבחירה — הפסקה השנייה מתיאור הקולקציה. בקיר ובספוטים היא לא מודפסת." },
     { "type": "text", "id": "question", "label": "השאלה שמעל הכפתורים", "info": "ריק = לפי יחידת המידה." },
+    { "type": "text", "id": "question_aria", "label": "שם הקבוצה לקורא מסך", "info": "בסרגל מחיר, המשפט שמעל הכפתורים הוא הסבר ולא שם. זה השם.", "default": "מחיר כניסה — עד כמה?" },
     { "type": "text", "id": "action_label", "label": "טקסט הכפתור בשורה", "info": "ריק = לבחירת אורך / לבחירת כמות / לבחירת דגם. מוצר עם אפשרות אחת מקבל «הוספה לסל»." },
     { "type": "text", "id": "miss_label", "label": "התווית כשהדגם לא מגיע", "info": "ריק = האורך המרבי / הכמות המרבית / מחיר הכניסה." },
     { "type": "textarea", "id": "rail_foot", "label": "המשפט מתחת לשורות", "info": "ריק = המשפט לפי יחידת המידה." },

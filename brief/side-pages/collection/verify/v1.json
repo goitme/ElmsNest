@@ -1,0 +1,6019 @@
+{
+ "coll-decor": {
+  "1440x900": {
+   "tag": {
+    "t": 305,
+    "b": 349,
+    "l": 628.2,
+    "r": 806.4,
+    "w": 178.2,
+    "h": 44
+   },
+   "h1": {
+    "t": 480.6,
+    "b": 644.3,
+    "l": 700,
+    "r": 1340,
+    "w": 640,
+    "h": 163.7
+   },
+   "eb": {
+    "t": 465,
+    "b": 480.6,
+    "l": 1119.3,
+    "r": 1340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 745.7,
+    "b": 789.7,
+    "l": 126,
+    "r": 229.6,
+    "w": 103.6,
+    "h": 44
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 131.6,
+   "gapEb": 116,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 792,
+    "b": 836,
+    "l": 1107,
+    "r": 1340,
+    "w": 233,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "גרילנדות ותאורה דקורטיבית",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    529,
+    332,
+    332
+   ],
+   "glowAlone": true,
+   "descMax": "460.533px",
+   "descW": 461,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "גרילנדת כדורי קריסטל"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "גרילנדת כדורי קריסטל",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 3,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה מטרים צריך להאיר?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה מטרים של אור?",
+   "numcap": "דגמים בקולקציה · 4 מהם נמדדים במטרים",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "46px",
+   "quoteTxt": "עשר נורות שמתנדנדות ברוח, ובוקעות מתוך הפרחים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 4,
+   "perAll": 27,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 378,
+     "r": 447
+    },
+    {
+     "l": 389,
+     "r": 458
+    },
+    {
+     "l": 378,
+     "r": 447
+    },
+    {
+     "l": 378,
+     "r": 454
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 1440,
+   "clientW": 1440,
+   "crossing": [
+    "env2-pool|1547",
+    "env2-pool|764",
+    "env2-pool|1547"
+   ],
+   "crossingN": 3,
+   "pageH": 10870,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "66.2344px 14.1875px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 960
+   },
+   "termsRowMax": null
+  },
+  "390x844": {
+   "tag": {
+    "t": 157,
+    "b": 212.7,
+    "l": 210.6,
+    "r": 372,
+    "w": 161.4,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 315.3,
+    "b": 389.8,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 299.8,
+    "b": 315.3,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 672.8,
+    "b": 717.6,
+    "l": 40,
+    "r": 150.2,
+    "w": 110.2,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 102.6,
+   "gapEb": 87.1,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 515.3,
+    "b": 559.3,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "גרילנדות ותאורה דקורטיבית",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    241,
+    151,
+    151
+   ],
+   "glowAlone": true,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "גרילנדת כדורי קריסטל"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "גרילנדת כדורי קריסטל",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 3,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה מטרים צריך להאיר?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה מטרים של אור?",
+   "numcap": "דגמים בקולקציה · 4 מהם נמדדים במטרים",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "עשר נורות שמתנדנדות ברוח, ובוקעות מתוך הפרחים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 4,
+   "perAll": 27,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|443",
+    "env2-pool|475",
+    "env2-pool|427",
+    "env2-pool|203"
+   ],
+   "crossingN": 7,
+   "pageH": 11313,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 13.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 350
+   },
+   "termsRowMax": null
+  },
+  "390x664": {
+   "tag": {
+    "t": 116.9,
+    "b": 172.6,
+    "l": 210.6,
+    "r": 372,
+    "w": 161.4,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 204.5,
+    "b": 279,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 188.9,
+    "b": 204.5,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 562,
+    "b": 606.8,
+    "l": 40,
+    "r": 150.2,
+    "w": 110.2,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 31.9,
+   "gapEb": 16.3,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 404.5,
+    "b": 448.5,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "גרילנדות ותאורה דקורטיבית",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    241,
+    151,
+    151
+   ],
+   "glowAlone": true,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "גרילנדת כדורי קריסטל"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "גרילנדת כדורי קריסטל",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 3,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה מטרים צריך להאיר?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה מטרים של אור?",
+   "numcap": "דגמים בקולקציה · 4 מהם נמדדים במטרים",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "עשר נורות שמתנדנדות ברוח, ובוקעות מתוך הפרחים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 4,
+   "perAll": 27,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|443",
+    "env2-pool|475",
+    "env2-pool|427",
+    "env2-pool|203"
+   ],
+   "crossingN": 7,
+   "pageH": 11066,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 13.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 350
+   },
+   "termsRowMax": null
+  },
+  "360x640": {
+   "tag": {
+    "t": 98.2,
+    "b": 153.9,
+    "l": 194.4,
+    "r": 342,
+    "w": 147.6,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 185.8,
+    "b": 260.3,
+    "l": 20,
+    "r": 340,
+    "w": 320,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 170.2,
+    "b": 185.8,
+    "l": 119.3,
+    "r": 340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 568.7,
+    "b": 613.5,
+    "l": 40,
+    "r": 150.2,
+    "w": 110.2,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 31.9,
+   "gapEb": 16.3,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 411.3,
+    "b": 455.3,
+    "l": 117.3,
+    "r": 340,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "גרילנדות ותאורה דקורטיבית",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    241,
+    151,
+    151
+   ],
+   "glowAlone": true,
+   "descMax": "417.48px",
+   "descW": 320,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "גרילנדת כדורי קריסטל"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "גרילנדת כדורי קריסטל",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 3,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה מטרים צריך להאיר?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה מטרים של אור?",
+   "numcap": "דגמים בקולקציה · 4 מהם נמדדים במטרים",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "עשר נורות שמתנדנדות ברוח, ובוקעות מתוך הפרחים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 4,
+   "perAll": 27,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 360,
+   "clientW": 360,
+   "crossing": [
+    "env2-pool|392",
+    "env2-pool|187",
+    "env2-pool|404",
+    "env2-pool|436",
+    "env2-pool|392",
+    "env2-pool|187"
+   ],
+   "crossingN": 7,
+   "pageH": 11098,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 13.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 320
+   },
+   "termsRowMax": null
+  },
+  "320x568": {
+   "tag": {
+    "t": 71,
+    "b": 126.7,
+    "l": 172.8,
+    "r": 302,
+    "w": 129.2,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 158.6,
+    "b": 233.1,
+    "l": 20,
+    "r": 300,
+    "w": 280,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 143,
+    "b": 158.6,
+    "l": 79.3,
+    "r": 300,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 566.5,
+    "b": 611.3,
+    "l": 40,
+    "r": 150.2,
+    "w": 110.2,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 31.9,
+   "gapEb": 16.3,
+   "buyInFold": false,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 409.1,
+    "b": 453.1,
+    "l": 77.3,
+    "r": 300,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "גרילנדות ותאורה דקורטיבית",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    241,
+    151,
+    151
+   ],
+   "glowAlone": true,
+   "descMax": "417.48px",
+   "descW": 280,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "גרילנדת כדורי קריסטל"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "גרילנדת כדורי קריסטל",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 3,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה מטרים צריך להאיר?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה מטרים של אור?",
+   "numcap": "דגמים בקולקציה · 4 מהם נמדדים במטרים",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "עשר נורות שמתנדנדות ברוח, ובוקעות מתוך הפרחים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 4,
+   "perAll": 27,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 89
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 320,
+   "clientW": 320,
+   "crossing": [
+    "env2-pool|345",
+    "env2-pool|165",
+    "env2-pool|352",
+    "env2-pool|384",
+    "env2-pool|345",
+    "env2-pool|165"
+   ],
+   "crossingN": 7,
+   "pageH": 11373,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 13.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 280
+   },
+   "termsRowMax": null
+  }
+ },
+ "coll-path": {
+  "1440x900": {
+   "tag": {
+    "t": 305,
+    "b": 349,
+    "l": 547.2,
+    "r": 742.4,
+    "w": 195.2,
+    "h": 44
+   },
+   "h1": {
+    "t": 480.6,
+    "b": 644.3,
+    "l": 700,
+    "r": 1340,
+    "w": 640,
+    "h": 163.7
+   },
+   "eb": {
+    "t": 465,
+    "b": 480.6,
+    "l": 1119.3,
+    "r": 1340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 770,
+    "b": 814,
+    "l": 126,
+    "r": 221.6,
+    "w": 95.6,
+    "h": 44
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 131.6,
+   "gapEb": 116,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 792,
+    "b": 836,
+    "l": 1107,
+    "r": 1340,
+    "w": 233,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת שביל, עמוד וגינה",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    413,
+    170,
+    158,
+    158
+   ],
+   "glowAlone": false,
+   "descMax": "460.533px",
+   "descW": 461,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת שביל סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת שביל סולארית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה נקודות אור צריך השביל?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה נקודות אור לאורך הדרך?",
+   "numcap": "דגמים בקולקציה · 5 מהם נמדדים בנקודות אור",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "46px",
+   "quoteTxt": "בין המנורה הזולה ליקרה יש פי 14. ההבדל הוא כמה מנורות מקבלים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 5,
+   "perAll": 34,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 421,
+     "r": 498
+    },
+    {
+     "l": 421,
+     "r": 498
+    },
+    {
+     "l": 413,
+     "r": 482
+    },
+    {
+     "l": 413,
+     "r": 483
+    },
+    {
+     "l": 413,
+     "r": 489
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 2
+   },
+   "overflowPage": false,
+   "scrollW": 1440,
+   "clientW": 1440,
+   "crossing": [],
+   "crossingN": 0,
+   "pageH": 12447,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "66.2344px 19.5px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 960
+   },
+   "termsRowMax": null
+  },
+  "390x844": {
+   "tag": {
+    "t": 143.8,
+    "b": 187.8,
+    "l": 163.8,
+    "r": 359,
+    "w": 195.2,
+    "h": 44
+   },
+   "h1": {
+    "t": 352.6,
+    "b": 389.8,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 337,
+    "b": 352.6,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 672.8,
+    "b": 717.6,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 164.8,
+   "gapEb": 149.2,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 515.3,
+    "b": 559.3,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת שביל, עמוד וגינה",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    274,
+    72,
+    72
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת שביל סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת שביל סולארית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה נקודות אור צריך השביל?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה נקודות אור לאורך הדרך?",
+   "numcap": "דגמים בקולקציה · 5 מהם נמדדים בנקודות אור",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "בין המנורה הזולה ליקרה יש פי 14. ההבדל הוא כמה מנורות מקבלים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 5,
+   "perAll": 34,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 20,
+     "r": 90
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 2
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|475",
+    "env2-pool|475",
+    "env2-pool|460",
+    "env2-pool|443"
+   ],
+   "crossingN": 8,
+   "pageH": 15173,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 18.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 350
+   },
+   "termsRowMax": null
+  },
+  "390x664": {
+   "tag": {
+    "t": 112.9,
+    "b": 156.9,
+    "l": 163.8,
+    "r": 359,
+    "w": 195.2,
+    "h": 44
+   },
+   "h1": {
+    "t": 212.2,
+    "b": 249.4,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 196.6,
+    "b": 212.2,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 532.4,
+    "b": 577.2,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 55.3,
+   "gapEb": 39.7,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 374.9,
+    "b": 418.9,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת שביל, עמוד וגינה",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    274,
+    72,
+    72
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת שביל סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת שביל סולארית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה נקודות אור צריך השביל?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה נקודות אור לאורך הדרך?",
+   "numcap": "דגמים בקולקציה · 5 מהם נמדדים בנקודות אור",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "בין המנורה הזולה ליקרה יש פי 14. ההבדל הוא כמה מנורות מקבלים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 5,
+   "perAll": 34,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 20,
+     "r": 90
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 2
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|475",
+    "env2-pool|475",
+    "env2-pool|460",
+    "env2-pool|443"
+   ],
+   "crossingN": 8,
+   "pageH": 14896,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 18.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 350
+   },
+   "termsRowMax": null
+  },
+  "360x640": {
+   "tag": {
+    "t": 98.2,
+    "b": 153.9,
+    "l": 151.2,
+    "r": 342,
+    "w": 190.8,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 185.8,
+    "b": 260.3,
+    "l": 20,
+    "r": 340,
+    "w": 320,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 170.2,
+    "b": 185.8,
+    "l": 119.3,
+    "r": 340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 543.2,
+    "b": 588,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 31.9,
+   "gapEb": 16.3,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 385.8,
+    "b": 429.8,
+    "l": 117.3,
+    "r": 340,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת שביל, עמוד וגינה",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    188,
+    77,
+    72,
+    72
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 320,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת שביל סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת שביל סולארית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה נקודות אור צריך השביל?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה נקודות אור לאורך הדרך?",
+   "numcap": "דגמים בקולקציה · 5 מהם נמדדים בנקודות אור",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "בין המנורה הזולה ליקרה יש פי 14. ההבדל הוא כמה מנורות מקבלים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 5,
+   "perAll": 34,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 20,
+     "r": 90
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 2
+   },
+   "overflowPage": false,
+   "scrollW": 360,
+   "clientW": 360,
+   "crossing": [
+    "env2-pool|392",
+    "env2-pool|187",
+    "env2-pool|436",
+    "env2-pool|436",
+    "env2-pool|430",
+    "env2-pool|404"
+   ],
+   "crossingN": 8,
+   "pageH": 14943,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 18.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 320
+   },
+   "termsRowMax": null
+  },
+  "320x568": {
+   "tag": {
+    "t": 71,
+    "b": 126.7,
+    "l": 134.4,
+    "r": 302,
+    "w": 167.6,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 158.6,
+    "b": 233.1,
+    "l": 20,
+    "r": 300,
+    "w": 280,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 143,
+    "b": 158.6,
+    "l": 79.3,
+    "r": 300,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 566.5,
+    "b": 611.3,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 31.9,
+   "gapEb": 16.3,
+   "buyInFold": false,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 409.1,
+    "b": 453.1,
+    "l": 77.3,
+    "r": 300,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת שביל, עמוד וגינה",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    188,
+    77,
+    72,
+    72
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 280,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת שביל סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת שביל סולארית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "כמה נקודות אור צריך השביל?",
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה נקודות אור לאורך הדרך?",
+   "numcap": "דגמים בקולקציה · 5 מהם נמדדים בנקודות אור",
+   "quoteN": 1,
+   "quoteBg": "rgba(0, 0, 0, 0)",
+   "quoteFs": "26px",
+   "quoteTxt": "בין המנורה הזולה ליקרה יש פי 14. ההבדל הוא כמה מנורות מקבלים.",
+   "quoteBefore": "none",
+   "bandKinds": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "bandComp": [
+    "reach",
+    "reach",
+    "reach",
+    "off"
+   ],
+   "perEntry": 5,
+   "perAll": 34,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 20,
+     "r": 90
+    },
+    {
+     "l": 20,
+     "r": 96
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 2
+   },
+   "overflowPage": false,
+   "scrollW": 320,
+   "clientW": 320,
+   "crossing": [
+    "env2-pool|345",
+    "env2-pool|165",
+    "env2-pool|384",
+    "env2-pool|384",
+    "env2-pool|379",
+    "env2-pool|352"
+   ],
+   "crossingN": 8,
+   "pageH": 14938,
+   "ledgerK": {
+    "d": "grid",
+    "gtc": "46px 18.3438px"
+   },
+   "ledgerRowMax": {
+    "mw": "none",
+    "w": 280
+   },
+   "termsRowMax": null
+  }
+ },
+ "coll-wall": {
+  "1440x900": {
+   "tag": {
+    "t": 305,
+    "b": 349,
+    "l": 432,
+    "r": 580.9,
+    "w": 148.9,
+    "h": 44
+   },
+   "h1": {
+    "t": 562.4,
+    "b": 644.3,
+    "l": 700,
+    "r": 1340,
+    "w": 640,
+    "h": 81.8
+   },
+   "eb": {
+    "t": 546.8,
+    "b": 562.4,
+    "l": 1119.3,
+    "r": 1340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 770,
+    "b": 814,
+    "l": 126,
+    "r": 224.5,
+    "w": 98.5,
+    "h": 44
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 213.4,
+   "gapEb": 197.8,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 792,
+    "b": 836,
+    "l": 1107,
+    "r": 1340,
+    "w": 233,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת קיר",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    227,
+    107,
+    107
+   ],
+   "glowAlone": false,
+   "descMax": "460.533px",
+   "descW": 461,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת קיר LED"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 2,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 236,
+     "r": 364
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 364
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 313
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 355
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 364
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 305
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.89994) saturate(0.919969)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 1440,
+   "clientW": 1440,
+   "crossing": [
+    "env2-pool|1547",
+    "env2-pool|764"
+   ],
+   "crossingN": 2,
+   "pageH": 8385,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "390x844": {
+   "tag": {
+    "t": 143.8,
+    "b": 187.8,
+    "l": 148.2,
+    "r": 297.1,
+    "w": 148.9,
+    "h": 44
+   },
+   "h1": {
+    "t": 352.6,
+    "b": 389.8,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 337,
+    "b": 352.6,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 696.5,
+    "b": 741.3,
+    "l": 245,
+    "r": 350,
+    "w": 105,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 164.8,
+   "gapEb": 149.2,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 515.3,
+    "b": 559.3,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת קיר",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    103,
+    49,
+    49
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת קיר LED"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 2,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 138
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|443",
+    "env2-pool|475"
+   ],
+   "crossingN": 6,
+   "pageH": 8716,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "390x664": {
+   "tag": {
+    "t": 112.9,
+    "b": 156.9,
+    "l": 148.2,
+    "r": 297.1,
+    "w": 148.9,
+    "h": 44
+   },
+   "h1": {
+    "t": 212.2,
+    "b": 249.4,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 196.6,
+    "b": 212.2,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 556,
+    "b": 600.8,
+    "l": 245,
+    "r": 350,
+    "w": 105,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 55.3,
+   "gapEb": 39.7,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 374.9,
+    "b": 418.9,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת קיר",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    103,
+    49,
+    49
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת קיר LED"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 2,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 138
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|443",
+    "env2-pool|475"
+   ],
+   "crossingN": 6,
+   "pageH": 8439,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "360x640": {
+   "tag": {
+    "t": 98.2,
+    "b": 142.2,
+    "l": 136.8,
+    "r": 285.7,
+    "w": 148.9,
+    "h": 44
+   },
+   "h1": {
+    "t": 193.5,
+    "b": 230.7,
+    "l": 20,
+    "r": 340,
+    "w": 320,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 177.9,
+    "b": 193.5,
+    "l": 119.3,
+    "r": 340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 537.3,
+    "b": 582.1,
+    "l": 215,
+    "r": 320,
+    "w": 105,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 51.3,
+   "gapEb": 35.7,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 356.2,
+    "b": 400.2,
+    "l": 117.3,
+    "r": 340,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת קיר",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    103,
+    49,
+    49
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 320,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת קיר LED"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 2,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 138
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 360,
+   "clientW": 360,
+   "crossing": [
+    "env2-pool|392",
+    "env2-pool|187",
+    "env2-pool|392",
+    "env2-pool|187",
+    "env2-pool|404",
+    "env2-pool|436"
+   ],
+   "crossingN": 6,
+   "pageH": 8343,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "320x568": {
+   "tag": {
+    "t": 71,
+    "b": 115,
+    "l": 121.6,
+    "r": 270.5,
+    "w": 148.9,
+    "h": 44
+   },
+   "h1": {
+    "t": 158.6,
+    "b": 195.8,
+    "l": 20,
+    "r": 300,
+    "w": 280,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 143,
+    "b": 158.6,
+    "l": 79.3,
+    "r": 300,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 549.1,
+    "b": 593.9,
+    "l": 175,
+    "r": 280,
+    "w": 105,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 43.6,
+   "gapEb": 28,
+   "buyInFold": false,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 346.3,
+    "b": 390.3,
+    "l": 77.3,
+    "r": 300,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "תאורת קיר",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    103,
+    49,
+    49
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 280,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "מנורת קיר LED"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת קיר LED",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 2,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 138
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 148
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 4
+   },
+   "overflowPage": false,
+   "scrollW": 320,
+   "clientW": 320,
+   "crossing": [
+    "env2-pool|345",
+    "env2-pool|165",
+    "env2-pool|345",
+    "env2-pool|165",
+    "env2-pool|352",
+    "env2-pool|384"
+   ],
+   "crossingN": 6,
+   "pageH": 8435,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  }
+ },
+ "coll-spot": {
+  "1440x900": {
+   "tag": {
+    "t": 305,
+    "b": 349,
+    "l": 777.6,
+    "r": 998.6,
+    "w": 221,
+    "h": 44
+   },
+   "h1": {
+    "t": 398.7,
+    "b": 644.3,
+    "l": 700,
+    "r": 1340,
+    "w": 640,
+    "h": 245.5
+   },
+   "eb": {
+    "t": 383.1,
+    "b": 398.7,
+    "l": 1119.3,
+    "r": 1340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 770,
+    "b": 814,
+    "l": 126,
+    "r": 221.6,
+    "w": 95.6,
+    "h": 44
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 49.7,
+   "gapEb": 34.1,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 792,
+    "b": 836,
+    "l": 1107,
+    "r": 1340,
+    "w": 233,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    250,
+    378,
+    249,
+    165,
+    165
+   ],
+   "glowAlone": false,
+   "descMax": "460.533px",
+   "descW": 461,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "פנס סולארי לגינה"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה דו־ראשית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "פנס קמפינג טלסקופי",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 236,
+     "r": 305
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 313
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 295
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 313
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 305
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 236,
+     "r": 305
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.52) saturate(0.72)": 1
+   },
+   "overflowPage": false,
+   "scrollW": 1440,
+   "clientW": 1440,
+   "crossing": [
+    "env2-pool|1547",
+    "env2-pool|764"
+   ],
+   "crossingN": 2,
+   "pageH": 9470,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "390x844": {
+   "tag": {
+    "t": 143.8,
+    "b": 207.1,
+    "l": 202.8,
+    "r": 372,
+    "w": 169.2,
+    "h": 63.2
+   },
+   "h1": {
+    "t": 315.3,
+    "b": 389.8,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 299.8,
+    "b": 315.3,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 626.9,
+    "b": 671.7,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 108.2,
+   "gapEb": 92.7,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 515.3,
+    "b": 559.3,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    294,
+    113,
+    75,
+    75
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "פנס סולארי לגינה"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה דו־ראשית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "פנס קמפינג טלסקופי",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 79
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.52) saturate(0.72)": 1
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|443",
+    "env2-pool|475",
+    "env2-pool|427",
+    "env2-pool|203"
+   ],
+   "crossingN": 6,
+   "pageH": 9820,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "390x664": {
+   "tag": {
+    "t": 112.9,
+    "b": 176.2,
+    "l": 202.8,
+    "r": 372,
+    "w": 169.2,
+    "h": 63.2
+   },
+   "h1": {
+    "t": 200.5,
+    "b": 275,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 184.9,
+    "b": 200.5,
+    "l": 149.3,
+    "r": 370,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 512.1,
+    "b": 556.9,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 24.3,
+   "gapEb": 8.7,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 400.5,
+    "b": 444.5,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    294,
+    113,
+    75,
+    75
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 350,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "פנס סולארי לגינה"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה דו־ראשית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "פנס קמפינג טלסקופי",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 79
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.52) saturate(0.72)": 1
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|443",
+    "env2-pool|475",
+    "env2-pool|427",
+    "env2-pool|203"
+   ],
+   "crossingN": 6,
+   "pageH": 9569,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "360x640": {
+   "tag": {
+    "t": 98.2,
+    "b": 161.4,
+    "l": 187.2,
+    "r": 342,
+    "w": 154.8,
+    "h": 63.2
+   },
+   "h1": {
+    "t": 185.8,
+    "b": 260.3,
+    "l": 20,
+    "r": 340,
+    "w": 320,
+    "h": 74.5
+   },
+   "eb": {
+    "t": 170.2,
+    "b": 185.8,
+    "l": 119.3,
+    "r": 340,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 518.9,
+    "b": 563.7,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 24.4,
+   "gapEb": 8.8,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 385.8,
+    "b": 429.8,
+    "l": 117.3,
+    "r": 340,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    294,
+    113,
+    75,
+    75
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 320,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "פנס סולארי לגינה"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה דו־ראשית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "פנס קמפינג טלסקופי",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 79
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.52) saturate(0.72)": 1
+   },
+   "overflowPage": false,
+   "scrollW": 360,
+   "clientW": 360,
+   "crossing": [
+    "env2-pool|392",
+    "env2-pool|187",
+    "env2-pool|404",
+    "env2-pool|436",
+    "env2-pool|392",
+    "env2-pool|187"
+   ],
+   "crossingN": 6,
+   "pageH": 9523,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "320x568": {
+   "tag": {
+    "t": 71,
+    "b": 134.2,
+    "l": 166.4,
+    "r": 302,
+    "w": 135.6,
+    "h": 63.2
+   },
+   "h1": {
+    "t": 158.6,
+    "b": 270.3,
+    "l": 20,
+    "r": 300,
+    "w": 280,
+    "h": 111.7
+   },
+   "eb": {
+    "t": 143,
+    "b": 158.6,
+    "l": 79.3,
+    "r": 300,
+    "w": 220.7,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 554,
+    "b": 598.8,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 24.4,
+   "gapEb": 8.8,
+   "buyInFold": false,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 420.8,
+    "b": 464.8,
+    "l": 77.3,
+    "r": 300,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "inline",
+   "h1lines": [
+    114,
+    172,
+    113,
+    75,
+    75
+   ],
+   "glowAlone": false,
+   "descMax": "417.48px",
+   "descW": 280,
+   "descCls": "env2-coll-scene__p",
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "פנס סולארי לגינה"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה דו־ראשית",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "פנס קמפינג טלסקופי",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 6,
+   "glyphcapAllHidden": true,
+   "groupAria": "מחיר כניסה — עד כמה?",
+   "rulerEyebrow": "המקום — והתקציב",
+   "rulerH2": "מה נכנס לתקציב?",
+   "numcap": "דגמים בקולקציה · הסרגל כאן הוא מחיר הכניסה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "price",
+    "price",
+    "price"
+   ],
+   "bandComp": [
+    "price",
+    "price",
+    "price"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 96
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 79
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 97
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 20,
+     "r": 88
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    },
+    {
+     "l": 0,
+     "r": 0
+    }
+   ],
+   "placenameDisp": null,
+   "placenameN": 0,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.52) saturate(0.72)": 1
+   },
+   "overflowPage": false,
+   "scrollW": 320,
+   "clientW": 320,
+   "crossing": [
+    "env2-pool|345",
+    "env2-pool|165",
+    "env2-pool|352",
+    "env2-pool|384",
+    "env2-pool|345",
+    "env2-pool|165"
+   ],
+   "crossingN": 6,
+   "pageH": 9630,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  }
+ },
+ "coll-all": {
+  "1440x900": {
+   "tag": {
+    "t": 305,
+    "b": 349,
+    "l": 588.4,
+    "r": 806.4,
+    "w": 218,
+    "h": 44
+   },
+   "h1": {
+    "t": 617.4,
+    "b": 699.3,
+    "l": 700,
+    "r": 1340,
+    "w": 640,
+    "h": 81.8
+   },
+   "eb": {
+    "t": 601.8,
+    "b": 617.4,
+    "l": 1154,
+    "r": 1340,
+    "w": 186,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 770,
+    "b": 814,
+    "l": 126,
+    "r": 221.6,
+    "w": 95.6,
+    "h": 44
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 268.4,
+   "gapEb": 252.8,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 792,
+    "b": 836,
+    "l": 1107,
+    "r": 1340,
+    "w": 233,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "קטלוג",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "NOSPAN",
+   "h1lines": [
+    187
+   ],
+   "glowAlone": null,
+   "descMax": null,
+   "descW": null,
+   "descCls": null,
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "תאורת גחליליות סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורות סולאריות למדרגות",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 16,
+   "glyphcapAllHidden": true,
+   "groupAria": null,
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה אור? שלוש יחידות מידה.",
+   "numcap": "דגמים בקטלוג · שלוש יחידות מידה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "bandComp": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [],
+   "placenameDisp": "block",
+   "placenameN": 12,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.89994) saturate(0.919969)": 1,
+    "brightness(0.52) saturate(0.72)": 11
+   },
+   "overflowPage": false,
+   "scrollW": 1440,
+   "clientW": 1440,
+   "crossing": [
+    "env2-pool|1547",
+    "env2-pool|764",
+    "env2-pool|1547",
+    "env2-pool|764",
+    "env2-pool|1547",
+    "env2-pool|764"
+   ],
+   "crossingN": 6,
+   "pageH": 16623,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "390x844": {
+   "tag": {
+    "t": 157,
+    "b": 212.7,
+    "l": 210.6,
+    "r": 372,
+    "w": 161.4,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 402.6,
+    "b": 439.8,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 387,
+    "b": 402.6,
+    "l": 184,
+    "r": 370,
+    "w": 186,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 672.8,
+    "b": 717.6,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 189.9,
+   "gapEb": 174.3,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 515.3,
+    "b": 559.3,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "קטלוג",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "NOSPAN",
+   "h1lines": [
+    85
+   ],
+   "glowAlone": null,
+   "descMax": null,
+   "descW": null,
+   "descCls": null,
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "תאורת גחליליות סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורות סולאריות למדרגות",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 16,
+   "glyphcapAllHidden": true,
+   "groupAria": null,
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה אור? שלוש יחידות מידה.",
+   "numcap": "דגמים בקטלוג · שלוש יחידות מידה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "bandComp": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [],
+   "placenameDisp": "block",
+   "placenameN": 12,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 11
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|427",
+    "env2-pool|203"
+   ],
+   "crossingN": 27,
+   "pageH": 21743,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "390x664": {
+   "tag": {
+    "t": 116.9,
+    "b": 172.6,
+    "l": 210.6,
+    "r": 372,
+    "w": 161.4,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 262.2,
+    "b": 299.4,
+    "l": 20,
+    "r": 370,
+    "w": 350,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 246.6,
+    "b": 262.2,
+    "l": 184,
+    "r": 370,
+    "w": 186,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 532.4,
+    "b": 577.2,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 89.6,
+   "gapEb": 74,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 374.9,
+    "b": 418.9,
+    "l": 147.3,
+    "r": 370,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "קטלוג",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "NOSPAN",
+   "h1lines": [
+    85
+   ],
+   "glowAlone": null,
+   "descMax": null,
+   "descW": null,
+   "descCls": null,
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "תאורת גחליליות סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורות סולאריות למדרגות",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 16,
+   "glyphcapAllHidden": true,
+   "groupAria": null,
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה אור? שלוש יחידות מידה.",
+   "numcap": "דגמים בקטלוג · שלוש יחידות מידה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "bandComp": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [],
+   "placenameDisp": "block",
+   "placenameN": 12,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 11
+   },
+   "overflowPage": false,
+   "scrollW": 390,
+   "clientW": 390,
+   "crossing": [
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|427",
+    "env2-pool|203",
+    "env2-pool|427",
+    "env2-pool|203"
+   ],
+   "crossingN": 27,
+   "pageH": 21464,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "360x640": {
+   "tag": {
+    "t": 98.2,
+    "b": 153.9,
+    "l": 194.4,
+    "r": 342,
+    "w": 147.6,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 218,
+    "b": 255.2,
+    "l": 20,
+    "r": 340,
+    "w": 320,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 202.4,
+    "b": 218,
+    "l": 154,
+    "r": 340,
+    "w": 186,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 513.7,
+    "b": 558.5,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 64.1,
+   "gapEb": 48.5,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 356.2,
+    "b": 400.2,
+    "l": 117.3,
+    "r": 340,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "קטלוג",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "NOSPAN",
+   "h1lines": [
+    85
+   ],
+   "glowAlone": null,
+   "descMax": null,
+   "descW": null,
+   "descCls": null,
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "תאורת גחליליות סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורות סולאריות למדרגות",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 16,
+   "glyphcapAllHidden": true,
+   "groupAria": null,
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה אור? שלוש יחידות מידה.",
+   "numcap": "דגמים בקטלוג · שלוש יחידות מידה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "bandComp": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [],
+   "placenameDisp": "block",
+   "placenameN": 12,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 11
+   },
+   "overflowPage": false,
+   "scrollW": 360,
+   "clientW": 360,
+   "crossing": [
+    "env2-pool|392",
+    "env2-pool|187",
+    "env2-pool|392",
+    "env2-pool|187",
+    "env2-pool|392",
+    "env2-pool|187"
+   ],
+   "crossingN": 27,
+   "pageH": 21292,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  },
+  "320x568": {
+   "tag": {
+    "t": 71,
+    "b": 126.7,
+    "l": 172.8,
+    "r": 302,
+    "w": 129.2,
+    "h": 55.7
+   },
+   "h1": {
+    "t": 158.6,
+    "b": 195.8,
+    "l": 20,
+    "r": 300,
+    "w": 280,
+    "h": 37.2
+   },
+   "eb": {
+    "t": 143,
+    "b": 158.6,
+    "l": 114,
+    "r": 300,
+    "w": 186,
+    "h": 15.6
+   },
+   "buy": {
+    "t": 479.3,
+    "b": 524.1,
+    "l": 40,
+    "r": 141.9,
+    "w": 101.9,
+    "h": 44.8
+   },
+   "tagOverH1_vert": false,
+   "tagOverH1_box": false,
+   "tagOverEb_vert": false,
+   "tagOverEb_box": false,
+   "gapH1": 31.9,
+   "gapEb": 16.3,
+   "buyInFold": true,
+   "narrowlinkN": 1,
+   "narrowlink": {
+    "t": 321.8,
+    "b": 365.8,
+    "l": 77.3,
+    "r": 300,
+    "w": 222.7,
+    "h": 44
+   },
+   "narrowInFold": true,
+   "rulerLinksInScene": 1,
+   "h1count": 1,
+   "h1text": "קטלוג",
+   "headings": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2
+   ],
+   "jumps": [],
+   "h1bDisplay": "NOSPAN",
+   "h1lines": [
+    85
+   ],
+   "glowAlone": null,
+   "descMax": null,
+   "descW": null,
+   "descCls": null,
+   "sceneTag": {
+    "fs": "13px",
+    "ls": "0.26px",
+    "tt": "none",
+    "txt": "תאורת גחליליות סולארית"
+   },
+   "sceneTagBg": {
+    "bg": "rgba(5, 8, 14, 0.55)",
+    "bd": "blur(8px)"
+   },
+   "pinnames": [
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורות סולאריות למדרגות",
+     "cls": "env2-coll-bands__pinname"
+    },
+    {
+     "fs": "13px",
+     "ls": "0.26px",
+     "tt": "none",
+     "clipped": false,
+     "ell": "clip",
+     "ws": "normal",
+     "txt": "מנורת גינה סולארית",
+     "cls": "env2-coll-bands__pinname"
+    }
+   ],
+   "glyphcap": {
+    "fs": "13px",
+    "ah": "true",
+    "txt": "איור · אין תצלום נקי"
+   },
+   "glyphcapN": 16,
+   "glyphcapAllHidden": true,
+   "groupAria": null,
+   "rulerEyebrow": "המקום — והמידה",
+   "rulerH2": "כמה אור? שלוש יחידות מידה.",
+   "numcap": "דגמים בקטלוג · שלוש יחידות מידה",
+   "quoteN": 0,
+   "quoteBg": null,
+   "quoteFs": null,
+   "quoteTxt": null,
+   "quoteBefore": null,
+   "bandKinds": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "bandComp": [
+    "place",
+    "place",
+    "place",
+    "place"
+   ],
+   "perEntry": 0,
+   "perAll": 0,
+   "railRows": 0,
+   "railPrices": [],
+   "placenameDisp": "block",
+   "placenameN": 12,
+   "bodyBg": "linear-gradient(rgb(15, 26, 47) 0%, rgb(7, 11, 21) 45%, rgb(2, 3, 6) 100%)",
+   "groundEl": null,
+   "lampFilters": {
+    "brightness(0.9) saturate(0.92)": 1,
+    "brightness(0.52) saturate(0.72)": 11
+   },
+   "overflowPage": false,
+   "scrollW": 320,
+   "clientW": 320,
+   "crossing": [
+    "env2-pool|345",
+    "env2-pool|165",
+    "env2-pool|345",
+    "env2-pool|165",
+    "env2-pool|345",
+    "env2-pool|165"
+   ],
+   "crossingN": 27,
+   "pageH": 21038,
+   "ledgerK": null,
+   "ledgerRowMax": null,
+   "termsRowMax": null
+  }
+ }
+}

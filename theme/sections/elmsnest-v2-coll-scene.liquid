@@ -382,8 +382,17 @@
   if env2_ci > 0
     assign env2_cimg = env2_ci
   endif
+  # QA-01. The pin is drawn only when every one of its four facts is real (4.1 non-negotiable 4), and
+  # the mobile type block has to reserve the tag's band ONLY when it is drawn — so the flag is computed
+  # here, once, and printed both as a modifier class and as the unitless per-cent the reserve is built
+  # from. --env2-pin-ym carries the % for the dot; --env2-pin-ymn carries the same number with no unit
+  # so calc() can turn it into a px band out of --env2-scene-hm, which is a length.
+  assign env2_haspin = false
+  if env2_pin_set == '1' and env2_hasphoto and env2_pinname != '' and env2_pinval != ''
+    assign env2_haspin = true
+  endif
 -%}
-<section id="env2-coll-scene" data-env2-coll-scene class="env2-section env2-coll env2-coll-scene" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0;--env2-scene-focus:{{ env2_focus }};--env2-scene-focus-m:{{ env2_focusm }};--env2-scene-hm:{{ section.settings.image_height_mobile | default: 78 }}svh">
+<section id="env2-coll-scene" data-env2-coll-scene class="env2-section env2-coll env2-coll-scene{% if env2_haspin %} env2-coll-scene--pinned{% endif %}" dir="rtl" style="scroll-margin-top:90px;--env2-stars:0;--env2-pin-ymn:{{ env2_pym }};--env2-scene-focus:{{ env2_focus }};--env2-scene-focus-m:{{ env2_focusm }};--env2-scene-hm:{{ section.settings.image_height_mobile | default: 78 }}svh">
   <div class="env2-coll-scene__stage{% unless env2_hasphoto %} env2-coll-scene__stage--noimg{% endunless %}">
     <div class="env2-coll-scene__media">
       {%- if env2_hasphoto -%}
@@ -398,7 +407,7 @@
       {%- endif -%}
       <span class="env2-coll-scene__wash" aria-hidden="true"></span>
       <span class="env2-coll-scene__veil" aria-hidden="true"></span>
-      {%- if env2_pin_set == '1' and env2_hasphoto and env2_pinname != '' and env2_pinval != '' -%}
+      {%- if env2_haspin -%}
       <div class="env2-coll-scene__pinwrap{{ env2_pinflip }}" data-lamp
            style="--env2-pin-xd:{{ env2_px }}%;--env2-pin-yd:{{ env2_py }}%;--env2-pin-xm:{{ env2_pxm }}%;--env2-pin-ym:{{ env2_pym }}%;--env2-pin-stem-d:{{ env2_stem }}px;--env2-pin-room-d:calc({{ env2_room }}vw - 18px);--env2-pin-room-m:calc({{ env2_roomm }}vw - 18px)">
         <span class="env2-coll-scene__dot" aria-hidden="true"></span>
@@ -465,7 +474,7 @@
       {%- if env2_pin_set == '1' -%}
       <div class="env2-coll-scene__card">
         {% render 'elmsnest-v2-pdp-card', product: env2_pin, variant: 'scene', width: 420, aspect: '1/.72',
-                  image_index: env2_cimg, kicker: 'none', action_label: env2_act,
+                  image_index: env2_cimg, kicker: 'none', action_label: env2_act, heading_level: 2,
                   add_label: section.settings.card_add_label, axis_caption: env2_axisline,
                   unit_price_line: env2_unitline, glyph: 'auto' %}
       </div>
@@ -483,7 +492,13 @@
         <p class="env2-coll-scene__p env2-coll-scene__p--2">{{ env2_p2 }}</p>
       {%- endif -%}
     </div>
-    {%- if section.settings.next_label != blank -%}
+    {%- comment -%}
+      QA-05 / TYPOGRAPHER-08 — the scene offers ONE door to the ruler. Since LEAD-01 the narrow row
+      ships in the fold with the same href; this second link, 141px below it under a different name at
+      a different size, was the same destination twice in four tab stops. It now renders only when the
+      row is switched off (narrow_label blank), so a merchant who removes the row keeps a route.
+    {%- endcomment -%}
+    {%- if section.settings.next_label != blank and env2_narrow == '' -%}
     <p class="env2-coll-scene__next"><a class="env2-link" href="{{ section.settings.next_anchor | default: '#env2-coll-ruler' }}">{{ section.settings.next_label }} <span aria-hidden="true">←</span></a></p>
     {%- endif -%}
   </div>
@@ -524,7 +539,11 @@
   text-shadow:0 1px 12px rgba(2,3,6,.9)}
 .env2-coll-scene__h1{font-size:clamp(38px,5.8vw,84px);line-height:.98;max-inline-size:22ch;
   text-shadow:0 2px 34px rgba(2,3,6,.75)}
-.env2-coll-scene__h1b{display:block}
+/* TYPOGRAPHER-01 — the two-tone headline is a COLOUR change, not a line break. display:block split
+   the h1 into two inline formatting contexts, which forced a break before the last word on every URL
+   (wall 208/107, spot 250/627/165 at 1440) and made the .env2-h text-wrap:balance inert. Inline gives
+   the balancer back the whole title and lets the colour break fall wherever the line falls. */
+.env2-coll-scene__h1b{display:inline}
 .env2-coll-scene__deck{margin-block-start:clamp(14px,2vh,22px);max-inline-size:38ch;color:var(--env2-ink-2);
   text-shadow:0 1px 18px rgba(2,3,6,.7)}
 .env2-coll-scene__suits{margin:10px 0 0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.5;
@@ -578,16 +597,24 @@
   transform-origin:top;transform:scaleY(var(--lit,1));transition:transform .45s .15s cubic-bezier(.2,.7,.2,1)}
 .env2-coll-scene__pin{position:absolute;pointer-events:auto;display:block;inline-size:0;
   inset-inline-start:var(--env2-pin-x);inset-block-start:var(--env2-pin-top);text-decoration:none}
+/* TYPOGRAPHER-03 — the tag carries a product NAME. 3.2 reserves the 11.5px/.16em tracked style for
+   labels and sets 13px as the floor for anything information-bearing; Hebrew is unicase and .16em at
+   11.5px dissolves the word shape a Hebrew reader depends on. 13px Heebo 400 at .02em.
+   CREATIVE-08 — and the surface is the scrim the page already owns, not a second opaque chip. */
 .env2-coll-scene__tag{position:absolute;inset-block-start:0;inset-inline-start:0;box-sizing:border-box;
   display:inline-flex;align-items:center;min-block-size:44px;padding-inline:12px;white-space:nowrap;
   inline-size:max-content;max-inline-size:min(var(--env2-pin-room),340px);
-  font-family:var(--env2-sans);font-size:11.5px;font-weight:500;letter-spacing:.16em;color:var(--env2-gold);
+  font-family:var(--env2-sans);font-size:13px;font-weight:400;letter-spacing:.02em;color:var(--env2-gold);
   border-radius:0;box-shadow:inset 0 1px 0 0 rgba(233,185,110,.55);
-  background:linear-gradient(180deg,rgba(5,8,14,.82),rgba(5,8,14,.62));backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);opacity:calc(.15 + .85*var(--lit,1));transition:opacity .5s .3s,color .3s}
+  background:rgba(5,8,14,.55);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);opacity:calc(.15 + .85*var(--lit,1));transition:opacity .5s .3s,color .3s}
 .env2-coll-scene__pinwrap--flip .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
 .env2-coll-scene__pin:hover .env2-coll-scene__tag,
 .env2-coll-scene__pin:focus-visible .env2-coll-scene__tag{color:var(--env2-glow)}
+/* QA-04 — the anchor's only child is absolutely positioned out of it, so its border box is 0x0 and
+   the focus ring painted an 8px gold square beside the tag. Ring the tag the user is actually on. */
+.env2-coll-scene__pin:focus-visible{outline:none}
+.env2-coll-scene__pin:focus-visible .env2-coll-scene__tag{outline:2px solid var(--env2-glow);outline-offset:3px}
 .env2-coll-scene__tag bdi{letter-spacing:0;font-variant-numeric:tabular-nums}
 .env2-coll-scene__tagname{unicode-bidi:isolate}
 .env2-coll-scene__tagtext{display:inline}
@@ -598,8 +625,12 @@
 /* below the veil: the collection's own first paragraph, and the route on to the ruler */
 .env2-coll-scene__below{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);align-items:start;
   gap:clamp(20px,3vw,56px);padding-block:clamp(34px,5vh,56px) clamp(40px,6vh,72px)}
+/* TYPOGRAPHER-02 — 62ch of Heebo sets 76 Hebrew characters to the line (Hebrew glyphs are narrower
+   than the ch unit's zero), against 38ch for every other paragraph in the system. 50ch measures 60–62
+   real characters and lands inside the 640px h1 column above it, so the two measures now step down
+   instead of jumping outward. */
 .env2-coll-scene__p{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:clamp(15px,1.15vw,17px);
-  line-height:1.65;max-inline-size:62ch;color:var(--env2-ink-2);text-wrap:pretty}
+  line-height:1.65;max-inline-size:50ch;color:var(--env2-ink-2);text-wrap:pretty}
 .env2-coll-scene__p--2{margin-block-start:10px;color:var(--env2-mute)}
 .env2-coll-scene__next{margin:0;justify-self:end}
 .env2-coll-scene__card .env2-pdp-card__title a{display:inline-block;padding-block:12px;margin-block:-12px}
@@ -618,6 +649,29 @@
   .env2-coll-scene__type{box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;
     max-inline-size:100%;min-block-size:calc(var(--env2-scene-hm,78svh) - var(--env2-scene-lift,84px));
     padding-block:76px 14px}
+  /* ---- QA-01 (blocker) --------------------------------------------------------------------------
+     The tag was pinned at a per-cent of the PHOTOGRAPH while the type block's content is bottom-set
+     inside (photo - 84px) and rises as the viewport shortens, so below ~740px tall they crossed: at
+     390x664 the tag printed across the eyebrow and the h1 on decor, path and spot, and at 320x568 on
+     four of five URLs. Reserving a band with a constant would not close it either, because the tag's
+     own height is the thing that varies (44px on wall, 78px on spot at 320).
+
+     The two blocks are now coupled by ONE number. --env2-scene-tagtop is the tag's block start, in px,
+     resolved from the merchant's pin_y_m per-cent of the photograph and floored at 72px (clear of the
+     60px header) so it rises as the photograph shortens; the type block's padding-block-start is that
+     same number plus the tag's reserve. contentTop is therefore >= tagTop + tagres BY CONSTRUCTION at
+     every viewport height, whatever the tag's per-cent, so the collision cannot come back — the only
+     thing a merchant can change is how much room the fold spends on it.
+     --env2-scene-tagres is the tag's own box (44px min, up to two 13px lines = 56px) plus 14px clear.
+     At 390x844 the ceiling never binds and the padding never exceeds the natural content top, so the
+     fold the lead and the creative director measured is byte-identical; the cost is only paid on the
+     short viewports where the overlap was.                                                        */
+  .env2-coll-scene{--env2-scene-tagres:72px;
+    --env2-scene-tagtop:clamp(72px,
+      calc(var(--env2-pin-ymn,24) * var(--env2-scene-hm,78svh) / 100),
+      max(72px,calc(var(--env2-scene-hm,78svh) - 400px)))}
+  .env2-coll-scene--pinned .env2-coll-scene__type{
+    padding-block-start:max(76px,calc(var(--env2-scene-tagtop) + var(--env2-scene-tagres)))}
   .env2-coll-scene__h1{max-inline-size:16ch}
   .env2-coll-scene__deck{margin-block-start:10px;font-size:16px;max-inline-size:34ch}
   .env2-coll-scene__suits{font-size:14px;margin-block-start:8px}
@@ -634,7 +688,7 @@
   .env2-coll-scene__card .env2-pdp-card__price .env2-price{--env2-price-size:30px}
   .env2-coll-scene__card .env2-pdp-card{gap:8px}
   .env2-coll-scene__pinwrap{--env2-pin-x:var(--env2-pin-xm,50%);--env2-pin-y:var(--env2-pin-ym,24%);
-    --env2-pin-stem:56px;--env2-pin-band:24%;--env2-pin-room:var(--env2-pin-room-m,74vw)}
+    --env2-pin-stem:56px;--env2-pin-band:var(--env2-scene-tagtop,24%);--env2-pin-room:var(--env2-pin-room-m,74vw)}
   .env2-coll-scene__pinwrap--flip .env2-coll-scene__tag{inset-inline-start:0;inset-inline-end:auto}
   .env2-coll-scene__pinwrap--flipm .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
   /* belt: a long lamp name can never be cut at the frame edge — it wraps inside the tag instead */

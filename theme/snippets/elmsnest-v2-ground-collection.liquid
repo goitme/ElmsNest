@@ -31,23 +31,47 @@
 html body.hdt-page-type-collection{
   background-color:#020306;
   background-image:linear-gradient(180deg,
-    #0b1526 0px,
-    #0a1120 620px,
-    #080e1c 1500px,
-    #060a14 2600px,
-    #04070e 3800px,
-    #020306 5000px);
+    #0f1a2f 0px,
+    #0d1626 900px,
+    #0a1120 2200px,
+    #080e1c 3800px,
+    #060a14 5600px,
+    #04070e 7600px,
+    #020306 9800px);
   background-repeat:no-repeat;
   background-size:100% 100%;
   background-attachment:scroll;
   min-height:100vh;
 }
 /* A page that is SHORTER than the gradient (6 products, one screen) must not be handed a squashed
-   sky: background-size:100% 100% would compress the 5000px ramp into a 2000px document and the short
-   page would go black three times faster than the long one. Painting the ramp on a fixed 5000px box
-   anchored at the top and letting #020306 fill the rest keeps every collection identical for the first
-   5000px, which is the whole point of §3.1. */
-html body.hdt-page-type-collection{background-size:100% 5000px}
+   sky: background-size:100% 100% would compress the ramp into a 2000px document and the short page
+   would go black three times faster than the long one. Painting the ramp on a fixed box anchored at
+   the top and letting #020306 fill the rest keeps every collection identical for its whole length,
+   which is the whole point of §3.1.
+   CREATIVE-05 — the ramp used to be spent by 5,000px, so from there down every collection was one
+   flat near-black field: 5,700px of it on decor and 13,700px on /collections/all, which is most of
+   the page and reads as "nothing here" rather than as night. It now runs to 9,800px — decor's whole
+   length, and past the ruler, the bands, the ladder and the ledger on every URL — and it starts at
+   --env2-sky-2 (#0f1a2f), which is the colour the scene's veil lands on, so the photograph still
+   joins the ground with no seam. (The critic asked for --env2-sky-1 at the top; that would put a
+   visible step across the foot of the hero on all five URLs, because the veil's own last stop is
+   sky-2. The descent it asked for is delivered by the length of the ramp, not by its first stop.) */
+html body.hdt-page-type-collection{background-size:100% 9800px}
+/* ---------- CREATIVE-07: the unlit lamp must still read as a photograph ----------
+   The core's dim floor is brightness .22 / saturate .4, and on this page it is not a rare state: a
+   visitor who follows the page's own in-page anchors (#env2-coll-ruler, #env2-coll-terms) lands past
+   every card between here and there, and the observer never sees them — 45 of 63 lamps on
+   /collections/all and 8 of 17 on decor stay dim for the rest of the session. At .22 a warm garden
+   photograph measures mean luminance 18/255 with a standard deviation under 1: a featureless brown
+   blur under a live 'הוספה לסל' button, which reads as a broken image, not as a lamp waiting to be
+   lit. The floor is raised here — on the collection page only, so the homepage and the product page
+   keep the core's own value — and the switch-on gesture is kept: .52 -> .90 is still a visible
+   lighting, and the accompanying halo, pool and glow layers are untouched.
+   CREATIVE-03 also rides on this: at .90/.92 the lit state carries a little less of a studio frame's
+   daylight, which the bands' multiply veil then finishes. */
+body.hdt-page-type-collection [data-lamp] .env2-ph img{
+  filter:brightness(calc(.52 + .38*var(--lit,1))) saturate(calc(.72 + .2*var(--lit,1)))}
+
 /* Kalles wraps the template in painted containers; the sky must be visible between sections. */
 html body.hdt-page-type-collection #wrapper,
 html body.hdt-page-type-collection .main-content,
@@ -91,6 +115,34 @@ html body.hdt-page-type-collection .env2-coll .env2-pdp-card__title a,
 html body.hdt-page-type-collection .env2-coll .env2-coll-ruler__title a,
 html body.hdt-page-type-collection .env2-coll .env2-coll-span__name a,
 html body.hdt-page-type-collection .env2-coll .env2-coll-scene__next a{display:inline-block;padding-block:14px;margin-block:-14px}
+/* ---------- CREATIVE-04 + TYPOGRAPHER-05 / -06: the page's vertical rhythm and two row measures ----
+   These six declarations belong to four sections that needed no other change this round
+   (elmsnest-v2-coll-span, -ledger, -terms, -goodnight). They are kept here, page-scoped at (0,3,1),
+   for the same reason the four belts above are: one place to read the collection page's spacing
+   decision, one place to revert it. The ruler and the bands carry the identical values inside their
+   own stylesheets because those two files were being rewritten anyway. The lead may fold the six
+   into their sections in a later round; the values, not the location, are the finding.
+
+   CREATIVE-04 — the page spent 216px of ground at every section boundary and ran long strings of
+   2–4% ink screens against the homepage's 28.9% median. The spend is cut by about a third at every
+   boundary. Nothing is removed but ground.
+   TYPOGRAPHER-06 — inside one 56px ledger row the name ended at x 890 and its price started at
+   x 100: ~710px of empty ground between a thing and its price. The terms row had ~300px gaps on
+   both sides of one statement. Both are capped so the pairing survives at 1440.
+   TYPOGRAPHER-05 — the fourteen measures are tabular figures but were start-aligned, so 9.5 put its
+   9 where 10 puts its 1 and the מ׳ floated to a different x on every row. The numeral takes a fixed
+   cell aligned on its end edge and the unit takes its own, so both form real columns. */
+html body.hdt-page-type-collection .env2-coll-span{padding-block:clamp(56px,5.6vw,84px) clamp(40px,4.2vw,64px)}
+html body.hdt-page-type-collection .env2-coll-ledger{padding-block:clamp(56px,5.6vw,84px) clamp(40px,4.2vw,64px)}
+html body.hdt-page-type-collection .env2-coll-terms{padding-block:84px 64px}
+html body.hdt-page-type-collection .env2-coll-goodnight{padding-block:clamp(72px,7.6vw,108px) 44px}
+html body.hdt-page-type-collection .env2-coll-ledger__rows{max-inline-size:min(100%,960px)}
+html body.hdt-page-type-collection .env2-coll-terms__head,
+html body.hdt-page-type-collection .env2-coll-terms__ledger{max-inline-size:min(100%,1120px)}
+html body.hdt-page-type-collection .env2-coll-ledger__k{display:grid;
+  grid-template-columns:clamp(46px,4.6vw,68px) auto;justify-content:start;align-items:baseline;gap:5px}
+html body.hdt-page-type-collection .env2-coll-ledger__k>bdi{display:block;text-align:end}
+
 /* Kalles' collection chrome that §5.4 retires from templates/collection.json. The section files stay on
    the theme until the owner signs off, so nothing is deleted; these two belts only make sure that a
    left-over instance cannot paint a cream strip or a taupe banner over the night. */

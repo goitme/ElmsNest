@@ -274,6 +274,25 @@
       {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_lab | append: '^reach^' | append: env2_hs | append: '^' | append: env2_cap -%}
     {%- endif -%}
   {%- endfor -%}
+  {%- comment -%}
+    CREATIVE-04 — the two tail bands, built together so a one-product tail never becomes a band of its
+    own. On decor the area band held exactly ONE lamp (the net) and spent a whole 1440x790 screen on a
+    95px numeral, a 60px heading and one 300px card: ink density 0.9%, the weakest screen on the page.
+    A band is a composition; one card is a card. When the area tail is a single lamp it joins the
+    off-scale band, whose label — "not measured in metres" — is exactly as true of it, so nothing has
+    to be reworded and the per-product axis caption still says 12x2 מ׳ on the card itself. Two or more
+    area lamps still earn their own band. §4.3 non-negotiable 5 still holds: every product is in
+    exactly one band and the sum is asserted in the foot.
+  {%- endcomment -%}
+  {%- assign env2_areahs = '|' -%}
+  {%- assign env2_arean = 0 -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_f = env2_r | split: '^' -%}
+    {%- if env2_f[3] == '1' -%}
+      {%- assign env2_areahs = env2_areahs | append: env2_f[0] | append: '|' -%}
+      {%- assign env2_arean = env2_arean | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
   {%- assign env2_hs = '|' -%}
   {%- for env2_r in env2_rowlist -%}
     {%- assign env2_f = env2_r | split: '^' -%}
@@ -283,18 +302,17 @@
       {%- endunless -%}
     {%- endunless -%}
   {%- endfor -%}
+  {%- assign env2_areamerged = false -%}
+  {%- if env2_arean == 1 and env2_hs != '|' -%}
+    {%- assign env2_areatail = env2_areahs | remove_first: '|' -%}
+    {%- assign env2_hs = env2_hs | append: env2_areatail -%}
+    {%- assign env2_areamerged = true -%}
+  {%- endif -%}
   {%- if env2_hs != '|' -%}
     {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_offlabel | append: '^off^' | append: env2_hs | append: '^' -%}
   {%- endif -%}
-  {%- assign env2_hs = '|' -%}
-  {%- for env2_r in env2_rowlist -%}
-    {%- assign env2_f = env2_r | split: '^' -%}
-    {%- if env2_f[3] == '1' -%}
-      {%- assign env2_hs = env2_hs | append: env2_f[0] | append: '|' -%}
-    {%- endif -%}
-  {%- endfor -%}
-  {%- if env2_hs != '|' -%}
-    {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_arealabel | append: '^area^' | append: env2_hs | append: '^' -%}
+  {%- if env2_areahs != '|' and env2_areamerged == false -%}
+    {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_arealabel | append: '^area^' | append: env2_areahs | append: '^' -%}
   {%- endif -%}
 
 {%- else -%}
@@ -352,8 +370,66 @@
   has a text-free photograph to carry them.
 {%- endcomment -%}
 {%- assign env2_blist = env2_bk | remove_first: '~~B~~' | split: '~~B~~' -%}
-{%- assign env2_order = 'pair,scene,quote,dip,wide' | split: ',' -%}
-{%- assign env2_free = 'pair,quote,dip' | split: ',' -%}
+{%- comment -%}
+  CREATIVE-02 — the pull quote is a HUMAN sentence or there is no pull quote. It used to fall back to
+  a sentence assembled from the band's own min and max ("2 דגמים בפס הזה, מ־149.90 ₪ ועד 999.90 ₪."),
+  set at 46px serif inside the only filled box on the page, restating the band header and the card
+  beside it — arithmetic in the one place reserved for a voice. The generated sentence is gone. The
+  quote composition is now only in the rotation when a line exists to set in it: a band block's own
+  quote, the section's, or §4.3's authored line for the collection it was written for. Where there is
+  none the band takes another composition, and no band ever repeats another's (non-negotiable 1).
+{%- endcomment -%}
+{%- assign env2_quotecopy = env2_s.quote | default: '' -%}
+{%- capture env2_rph -%}{ratio}{%- endcapture -%}
+{%- if env2_quotecopy == '' -%}
+  {%- if collection.handle == 'גרילנדות-ותאורה-דקורטיבית' -%}
+    {%- assign env2_quotecopy = 'עשר נורות שמתנדנדות ברוח, ובוקעות מתוך הפרחים.' -%}
+  {%- elsif collection.handle == 'תאורת-שביל-סולארית' -%}
+    {%- comment -%}
+      §4.3's second authored quote, with its one number DERIVED rather than typed (§6.19). The
+      sentence is the spec's; the ratio is this collection's own price_max over its price_min, the
+      same figure §4.4's ladder deck prints two screens below, so the two can never disagree and
+      neither can go stale when a price changes. If the ratio ever falls under two the sentence
+      stops being true and the band simply does not draw a quote.
+    {%- endcomment -%}
+    {%- capture env2_quotecopy -%}בין המנורה הזולה ליקרה יש פי {ratio}. ההבדל הוא כמה מנורות מקבלים.{%- endcapture -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if env2_quotecopy contains env2_rph -%}
+  {%- assign env2_qlo = 0 -%}
+  {%- assign env2_qhi = 0 -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_g = env2_r | split: '^' -%}
+    {%- assign env2_c1 = env2_g[5] | plus: 0 -%}
+    {%- assign env2_c2 = env2_g[6] | plus: 0 -%}
+    {%- if env2_qlo == 0 or env2_c1 < env2_qlo -%}{%- assign env2_qlo = env2_c1 -%}{%- endif -%}
+    {%- if env2_c2 > env2_qhi -%}{%- assign env2_qhi = env2_c2 -%}{%- endif -%}
+  {%- endfor -%}
+  {%- assign env2_qratio = 0 -%}
+  {%- if env2_qlo > 0 -%}
+    {%- assign env2_qratio = env2_qhi | times: 1.0 | divided_by: env2_qlo | round -%}
+  {%- endif -%}
+  {%- if env2_qratio >= 2 -%}
+    {%- capture env2_qrs -%}<bdi>{{ env2_qratio }}</bdi>{%- endcapture -%}
+    {%- assign env2_quotecopy = env2_quotecopy | replace: env2_rph, env2_qrs -%}
+  {%- else -%}
+    {%- assign env2_quotecopy = '' -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign env2_anyquote = false -%}
+{%- if env2_quotecopy != '' -%}{%- assign env2_anyquote = true -%}{%- endif -%}
+{%- for env2_qb in section.blocks -%}
+  {%- if env2_qb.settings.quote != blank -%}{%- assign env2_anyquote = true -%}{%- endif -%}
+{%- endfor -%}
+{%- if env2_anyquote -%}
+  {%- assign env2_order = 'pair,scene,quote,dip,wide' | split: ',' -%}
+  {%- assign env2_free = 'pair,quote,dip' | split: ',' -%}
+  {%- assign env2_nfree0 = 3 -%}
+{%- else -%}
+  {%- assign env2_order = 'pair,scene,dip,wide' | split: ',' -%}
+  {%- assign env2_free = 'pair,dip' | split: ',' -%}
+  {%- assign env2_nfree0 = 2 -%}
+{%- endif -%}
 {%- assign env2_shot = 'scene,wide' | split: ',' -%}
 
 {%- comment -%}
@@ -387,7 +463,7 @@
 {%- assign env2_used = '|' -%}
 {%- assign env2_bands = '' -%}
 {%- assign env2_sum = 0 -%}
-{%- assign env2_nfree = 3 -%}
+{%- assign env2_nfree = env2_nfree0 -%}
 {%- assign env2_pldone = 0 -%}
 {%- for env2_b in env2_blist -%}
   {%- if forloop.index > env2_maxbands -%}{%- break -%}{%- endif -%}
@@ -583,35 +659,26 @@
       {%- if env2_comp == 'wide' -%}{%- assign env2_comp = 'pair' -%}{%- endif -%}
     {%- endunless -%}
 
-    {%- comment -%} the pull quote: the merchant's line, or one derived from this band's real span {%- endcomment -%}
+    {%- comment -%} the pull quote: this band's authored line, or the collection's — never a derived one {%- endcomment -%}
     {%- assign env2_quote = env2_bquote -%}
-    {%- if env2_quote == '' -%}{%- assign env2_quote = env2_s.quote | default: '' -%}{%- endif -%}
-    {%- assign env2_qderived = false -%}
-    {%- if env2_comp == 'quote' and env2_quote == '' -%}{%- assign env2_qderived = true -%}{%- endif -%}
+    {%- if env2_quote == '' -%}{%- assign env2_quote = env2_quotecopy -%}{%- endif -%}
+    {%- if env2_comp == 'quote' and env2_quote == '' -%}{%- assign env2_comp = 'pair' -%}{%- endif -%}
 
     <article class="env2-coll-bands__band env2-coll-bands__band--{{ env2_comp }}" id="env2-band-{{ env2_num }}" data-kind="{{ env2_kind }}" data-cards="{{ env2_n }}"{% if env2_hasblk %} {{ env2_blk.shopify_attributes }}{% endif %}>
       <div class="env2-wrap env2-coll-bands__bandhead">
         <p class="env2-coll-bands__num" aria-hidden="true"><bdi>{% if env2_num < 10 %}0{% endif %}{{ env2_num }}</bdi></p>
         <div class="env2-coll-bands__bandtitle">
           <h2 class="env2-h env2-coll-bands__h2">{{ env2_label }}</h2>
-          {%- unless env2_qderived -%}
-            <p class="env2-coll-bands__facts">
-              {%- if env2_n == 1 -%}מנורה אחת{%- else -%}<bdi>{{ env2_n }}</bdi> מנורות{% endif %} · מ־<bdi>{{ env2_min | money_without_currency }}</bdi> ₪
-              {%- if env2_capline != '' %} · {{ env2_capline }}{% endif -%}
-            </p>
-          {%- endunless -%}
+          <p class="env2-coll-bands__facts">
+            {%- if env2_n == 1 -%}מנורה אחת{%- else -%}<bdi>{{ env2_n }}</bdi> מנורות{% endif %} · מ־<bdi>{{ env2_min | money_without_currency }}</bdi> ₪
+            {%- if env2_capline != '' %} · {{ env2_capline }}{% endif -%}
+          </p>
         </div>
       </div>
 
       {%- if env2_comp == 'quote' -%}
         <div class="env2-wrap env2-coll-bands__body env2-coll-bands__body--quote">
-          <blockquote class="env2-coll-bands__quote">
-            {%- if env2_qderived -%}
-              {%- if env2_n == 1 -%}דגם אחד בפס הזה{%- else -%}<bdi>{{ env2_n }}</bdi> דגמים בפס הזה{%- endif -%}, מ־<bdi>{{ env2_min | money_without_currency }}</bdi> ₪ ועד <bdi>{{ env2_max | money_without_currency }}</bdi> ₪.
-            {%- else -%}
-              {{ env2_quote }}
-            {%- endif -%}
-          </blockquote>
+          <blockquote class="env2-coll-bands__quote">{{ env2_quote }}</blockquote>
       {%- elsif env2_comp == 'scene' -%}
         <div class="env2-coll-bands__body env2-coll-bands__body--scene">
           <figure class="env2-coll-bands__fig env2-coll-bands__fig--scene" data-lamp>
@@ -646,7 +713,16 @@
                     <span class="env2-coll-bands__pindot" aria-hidden="true"></span>
                     <span class="env2-coll-bands__pinstem" aria-hidden="true"></span>
                     <span class="env2-coll-bands__pintag">
-                      <b class="env2-kicker env2-coll-bands__pinname">{{ env2_pp.title }}</b>
+                      {%- comment -%}
+                        CREATIVE-08 / QA-02 — the tag names the lamp in the words the shop opens with,
+                        not its whole SEO title. At 13px inside a 42vw tag a 54-character title still
+                        did not fit two lines on a phone (measured: clipped on 8 of 10 tags at 390 and
+                        10 of 10 at 320), and a name cut mid-word is not real data (§4.1 n-n 4). Three
+                        words is the same rule the scene's own tag has always used, so the two pins on
+                        the page now say the same kind of thing.
+                      {%- endcomment -%}
+                      {%- assign env2_pnm = env2_pp.title | split: '–' | first | split: ' - ' | first | strip | truncatewords: 3, '' -%}
+                      <b class="env2-coll-bands__pinname">{{ env2_pnm }}</b>
                       {%- if env2_pval != '' -%}<i class="env2-coll-bands__pinval">{{ env2_pval }}</i>{%- endif -%}
                     </span>
                   </a>
@@ -811,11 +887,16 @@
    only. Nothing here paints a page background: the ground is elmsnest-v2-ground-collection, rendered
    once by the scene section (§3.1). Shared classes are only SIZED from these selectors, never
    restyled (plumbing CONTRACT §0). */
-.env2-coll-bands{padding-block:clamp(72px,9vw,120px) clamp(56px,7vw,96px);position:relative}
+/* CREATIVE-04 — measured per 900px screen against the approved pages (homepage median 28.9% ink,
+   PDP 12.6%), this page ran long strings of 2–4% screens, and a good part of that was ground BETWEEN
+   things: 216px at every section boundary and up to 132px between bands, on a page whose bands are
+   already tall. The vertical spend is cut roughly a third here and in the four sections below; no
+   composition changes and nothing is removed but ground. */
+.env2-coll-bands{padding-block:clamp(56px,6vw,84px) clamp(40px,4.6vw,64px);position:relative}
 .env2-coll-bands__head{margin-block-end:clamp(28px,3vw,48px)}
 .env2-coll-bands__deck{margin-block:14px 0}
 
-.env2-coll-bands__band{position:relative;margin-block-end:clamp(64px,8vw,132px)}
+.env2-coll-bands__band{position:relative;margin-block-end:clamp(48px,5.4vw,88px)}
 .env2-coll-bands__band:last-child{margin-block-end:0}
 .env2-coll-bands__bandhead{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;
   gap:clamp(16px,2vw,32px);padding-block-start:clamp(20px,2.4vw,34px);
@@ -882,23 +963,41 @@
   background:linear-gradient(180deg,rgba(255,211,148,.75),rgba(244,238,227,.22));
   transform-origin:50% 0;transform:scaleY(var(--lit,1));
   transition:transform .45s cubic-bezier(.2,.7,.2,1) .15s}
+/* the pin box is zero-width, so a tag that is allowed to WRAP shrinks to min-content inside it — the
+   two-line name of QA-02 came out about 70px wide and clipped. max-content restores the intent: the
+   tag is as wide as its own line, capped by the room the figure has. */
 .env2-coll-bands__pintag{display:flex;flex-direction:column;gap:3px;justify-content:center;
-  min-block-size:44px;padding-inline:14px;padding-block:9px;background:rgba(5,8,14,.72);
-  backdrop-filter:blur(6px);border-radius:0;opacity:var(--lit,1);transition:opacity .4s ease .25s;
-  max-inline-size:20vw}
-.env2-coll-bands__pinname{display:block;color:var(--env2-gold);max-inline-size:20ch;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap;font-size:11.5px}
+  min-block-size:44px;padding-inline:14px;padding-block:9px;background:rgba(5,8,14,.55);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:0;opacity:var(--lit,1);
+  transition:opacity .4s ease .25s;inline-size:max-content;max-inline-size:26vw}
+/* QA-02 + TYPOGRAPHER-03 — the pin's label is the lamp's own NAME: data, not a tracked kicker. It
+   was set at 11px (§6 rule 13's floor is 13) and clipped by 20ch + ellipsis to about a third of
+   itself ('מנורת שביל סו…'), i.e. a link target that did not say what it linked to. 13px Heebo 400,
+   two lines on the scrim it already has, no ellipsis. */
+.env2-coll-bands__pinname{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  color:var(--env2-gold);max-inline-size:28ch;overflow:hidden;white-space:normal;
+  font-size:13px;font-weight:400;letter-spacing:.02em;line-height:1.35}
 .env2-coll-bands__pinval{display:block;font-family:var(--env2-sans);font-style:normal;font-weight:400;
   font-size:13px;line-height:1.2;color:var(--env2-ink);white-space:nowrap}
 .env2-coll-bands__pin:hover .env2-coll-bands__pinname{color:var(--env2-glow)}
-.env2-coll-bands__pin:focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+/* QA-04 — the anchor is 0 x 137 (its children are the box), so the ring painted a 2px hairline
+   beside the tag instead of round it. */
+.env2-coll-bands__pin:focus-visible{outline:none}
+.env2-coll-bands__pin:focus-visible .env2-coll-bands__pintag{outline:2px solid var(--env2-glow);outline-offset:3px}
 
 /* 03 quote — a pull quote at 46px beside one small card, 3:1 */
 .env2-coll-bands__body--quote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);
   gap:clamp(24px,3vw,52px);align-items:center}
+/* CREATIVE-02 — Kalles paints <blockquote> as a filled panel with a decorative quote mark, and it
+   came through as the only opaque rectangle on the page (§6.14: the scrim is the only card surface).
+   The quote is type on the night, with one gold hairline on the start edge and nothing else. */
 .env2-coll-bands__quote{grid-column:2;margin:0;font-family:var(--env2-serif);font-weight:400;
   font-size:clamp(26px,3.4vw,46px);line-height:1.2;letter-spacing:-.01em;color:var(--env2-ink);
-  text-wrap:balance;max-inline-size:22ch}
+  text-wrap:balance;max-inline-size:22ch;
+  background:none;box-shadow:none;border:0;border-radius:0;padding:0;
+  border-inline-start:1px solid var(--env2-gold);padding-inline-start:clamp(18px,2vw,32px)}
+.env2-coll-bands__quote::before,.env2-coll-bands__quote::after{content:none;display:none}
+.env2-coll-bands__quote p{margin:0}
 .env2-coll-bands__cards--quote{grid-column:1;grid-row:1;flex-direction:column;align-items:flex-start}
 
 /* 04 dip — an unequal photographic diptych, never two equal squares */
@@ -954,12 +1053,28 @@
   font-weight:300;font-size:14px;line-height:1.6;color:var(--env2-mute)}
 .env2-coll-bands__footnote{margin-block-start:8px}
 
-/* §3.6.4 — the off-scale and area bands are where the spec allows an interior frame (the birch) to
-   ship, and only under a --env2-sky-4 multiply veil. It is applied to every card photograph in those
-   two bands rather than to one handle, so the rule survives a merchant adding a lamp. */
-.env2-coll-bands__band[data-kind="off"] .env2-pdp-card__ph::after,
-.env2-coll-bands__band[data-kind="area"] .env2-pdp-card__ph::after{content:"";position:absolute;
-  inset:0;background:var(--env2-sky-4);mix-blend-mode:multiply;opacity:.34;pointer-events:none}
+/* CREATIVE-03 + §3.6.4 / do-not 10 — no cream, beige or brown on any surface, INCLUDING a photograph
+   whose own ground is cream. The veil was scoped to the off-scale and area bands, so wall band 01's
+   studio cut-out shipped at mean RGB (218,201,184) with 69% of its pixels above r200/g190/b170 — a
+   cream slab on a #070b15 ground — and the same two frames ran 511 and 691px wide on /collections/all,
+   the largest pictures on the page. The image ledger cannot answer this: it is shared with the product
+   page, whose render is frozen this round. So the veil now covers EVERY card photograph in every band
+   (a merchant image can be anything), and it is graded rather than merely multiplied: the sky-4
+   multiply kills the warmth and the brightness/saturation trim takes a daylight studio wall down to
+   the page's night. A frame that was already night is untouched by construction — multiplying near
+   black by a dark blue is still near black.
+
+   The veil is on ::BEFORE, not ::after, and that is the whole reason the old one never worked:
+   elmsnest-v2-core owns "[data-lamp] .env2-ph::after" for the warm halo, at the same specificity,
+   and later in the cascade — so the veil this section wrote for the off-scale band was silently
+   replaced by the core's screen glow and never painted a pixel. Measured on the deployed render
+   before this change: wall band 01's right card mean RGB (204,189,173) with 36.7% of its pixels
+   above r200/g190/b170, i.e. exactly the cream the critic reported, veil or no veil. ::before keeps
+   the core's halo (tree order paints it above) and finally applies the multiply. */
+.env2-coll-bands__cards .env2-pdp-card__ph::before{content:"";position:absolute;
+  inset:0;background:var(--env2-sky-4);mix-blend-mode:multiply;opacity:.46;pointer-events:none;z-index:1}
+.env2-coll-bands__band[data-kind="off"] .env2-pdp-card__ph::before,
+.env2-coll-bands__band[data-kind="area"] .env2-pdp-card__ph::before{opacity:.56}
 
 /* core REPORT §9.1 — an anchor styled as the filled pill inherits ink from .env2-section a and lands
    at 1.21:1. The card only ships ghost anchors, but this keeps a future one legible either way. */
@@ -1033,7 +1148,7 @@
     { "type": "checkbox", "id": "show_pins", "label": "להציג סימוני מנורה על הצילום", "default": true },
     { "type": "range", "id": "pin_stem", "label": "אורך הקו מהנקודה לתווית", "min": 60, "max": 200, "step": 10, "unit": "px", "default": 110 },
     { "type": "header", "content": "הסיום" },
-    { "type": "text", "id": "quote", "label": "משפט הפתיחה של פס הציטוט", "info": "ריק = משפט שנגזר מהמחירים של אותו פס." },
+    { "type": "text", "id": "quote", "label": "משפט הפתיחה של פס הציטוט", "info": "ריק = אין פס ציטוט. משפט נוצר ממחירים לא נכתב כאן לעולם." },
     { "type": "checkbox", "id": "show_assert", "label": "להדפיס את שורת הסיכום", "default": true },
     { "type": "text", "id": "foot_note", "label": "הערת סיום" }
   ],

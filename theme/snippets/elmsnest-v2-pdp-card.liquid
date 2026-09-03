@@ -105,6 +105,14 @@
     endif
   endif
 -%}
+{%- comment -%}
+  QA-07 (collection) — the card's title is an <h3> because on the PDP and in a band it sits under an
+  <h2>. In the collection scene it is the FIRST heading after the <h1> and the section has no h2, so
+  a screen-reader user jumped 1 -> 3. The level is a caller's choice with the same default, so the
+  PDP related row and every band render byte-identically; only a caller that asks gets an h2.
+{%- endcomment -%}
+{%- assign env2_hl = 'h3' -%}
+{%- if heading_level == 2 or heading_level == '2' -%}{%- assign env2_hl = 'h2' -%}{%- endif -%}
 {%- assign env2_useglyph = false -%}
 {%- if glyph == 'force' -%}
   {%- assign env2_useglyph = true -%}
@@ -142,7 +150,7 @@
     </span>
   </a>
   {%- if env2_kicker != '' -%}<p class="env2-kicker env2-pdp-card__kicker">{{ env2_kicker }}</p>{%- endif -%}
-  <h3 class="env2-pdp-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>{% if env2_axisline != '' %}
+  <{{ env2_hl }} class="env2-pdp-card__title"><a href="{{ product.url }}">{{ product.title }}</a></{{ env2_hl }}>{% if env2_axisline != '' %}
   <p class="env2-pdp-card__axis">{{ env2_axisline }}</p>{% endif %}
   <div class="env2-pdp-card__row">
     <span class="env2-pdp-card__price">{% render 'elmsnest-v2-price', product: product %}</span>
