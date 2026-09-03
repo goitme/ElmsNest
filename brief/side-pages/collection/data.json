@@ -1,0 +1,1248 @@
+{
+ "note": "Collection round data pack. Prices in ILS. images = Shopify CDN urls in order (index 0 first).",
+ "collections": {
+  "תאורת-שביל-סולארית": {
+   "title": "תאורת שביל, עמוד וגינה",
+   "count": 8,
+   "handles": [
+    "waterproof-solar-deck-step-lights",
+    "stainless-steel-solar-path-light-ip65",
+    "retro-solar-path-lights-set",
+    "warm-solar-step-deck-lights",
+    "modern-solar-path-lights-set",
+    "modern-led-bollard-light-5w-ip65",
+    "swaying-solar-path-lights-ip65",
+    "powerful-solar-garden-light"
+   ],
+   "priceMin": 69.9,
+   "priceMax": 999.9,
+   "variantTotal": 22
+  },
+  "ספוטים-ופרוז-קטורים-סולאריים": {
+   "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "count": 6,
+   "handles": [
+    "solar-garden-lantern-9-led",
+    "solar-garden-spotlight-52-led",
+    "solar-security-light-100-led",
+    "solar-floodlight-ip67-remote-timer",
+    "rechargeable-telescopic-camping-lantern",
+    "dual-head-garden-light-10w-ip65"
+   ],
+   "priceMin": 99.9,
+   "priceMax": 499.9,
+   "variantTotal": 11
+  },
+  "solar-wall-lights": {
+   "title": "תאורת קיר",
+   "count": 6,
+   "handles": [
+    "solar-wall-light-motion-sensor-ip65",
+    "modern-led-wall-light-6w-up-down",
+    "modern-led-wall-light-indoor-outdoor",
+    "waterproof-led-wall-light-ip65-6w-12w",
+    "magnetic-rechargeable-touch-wall-light",
+    "outdoor-bidirectional-led-wall-light-ip65"
+   ],
+   "priceMin": 99.9,
+   "priceMax": 252.9,
+   "variantTotal": 34
+  },
+  "גרילנדות-ותאורה-דקורטיבית": {
+   "title": "גרילנדות ותאורה דקורטיבית",
+   "count": 7,
+   "handles": [
+    "decorative-led-net-lights",
+    "led-globe-string-lights",
+    "lighted-birch-branches-20-led",
+    "solar-firefly-garden-lights",
+    "solar-rope-string-lights",
+    "solar-edison-string-lights",
+    "solar-crystal-ball-string-lights"
+   ],
+   "priceMin": 89.9,
+   "priceMax": 469.9,
+   "variantTotal": 105
+  }
+ },
+ "products": {
+  "waterproof-solar-deck-step-lights": {
+   "title": "תאורה סולארית עמידה למים לדק ולמדרגות",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 4,
+   "priceMin": 149.9,
+   "priceMax": 149.9,
+   "options": [
+    {
+     "name": "כמות",
+     "values": [
+      "2 'יח",
+      "4 'יח",
+      "6 'יח",
+      "8 'יח"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "2 'יח": [
+     149.9
+    ],
+    "4 'יח": [
+     149.9
+    ],
+    "6 'יח": [
+     149.9
+    ],
+    "8 'יח": [
+     149.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_52_49PM.png?v=1785086055",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_57_23PM.png?v=1785086055",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_49_17PM.png?v=1785086055",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul26_2026_07_49_21PM.png?v=1785086055"
+   ],
+   "mediaCount": 4,
+   "homeCardLine": "",
+   "descFirst": "לא עוד מדרגות שנעלמות בחושךכל צעד נראה טוב יותר — וגם מרגיש בטוח יותר\nתאורת המדרגות הסולארית מוסיפה פס אור חם ומדויק לכל מדרגה, דק או שביל. התוצאה היא חלל חוץ שנראה מושקע יותר בלילה, בלי כבלים גלויים ובלי חשבון חשמל נוסף"
+  },
+  "solar-garden-lantern-9-led": {
+   "title": "פנס סולארי לגינה 9 LED | עמיד למים ומתכוונן",
+   "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+   "type": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "variants": 1,
+   "priceMin": 169.9,
+   "priceMax": 169.9,
+   "options": [
+    {
+     "name": "Title",
+     "values": [
+      "Default Title"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "Default Title": [
+     169.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_5.png?v=1785255888",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_6.png?v=1785255888",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_14PM_1.png?v=1785255888",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_2.png?v=1785255888",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_3.png?v=1785255887",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_24_15PM_4.png?v=1785255888"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "9 נורות LED · ראש תאורה מתכוונן · עמידות IP65",
+   "descFirst": "הגינה היפה שלכם לא צריכה להיעלם עם השקיעהכוונו את האור — ותנו לכל פינה לקבל את הבמה שמגיעה לה\nהספוט הסולארי המתכוונן הופך עץ, עציץ, קיר אבן או שביל חשוך לנקודת עניין. במקום תאורה כללית שמבזבזת אור, אתם מחליטים בדיוק מה ל"
+  },
+  "solar-wall-light-motion-sensor-ip65": {
+   "title": "מנורת קיר סולארית LED עם חיישן תנועה – עמידה למים IP65",
+   "collection": "solar-wall-lights",
+   "type": "תאורת קיר",
+   "variants": 4,
+   "priceMin": 129.9,
+   "priceMax": 159.9,
+   "options": [
+    {
+     "name": "צבע",
+     "values": [
+      "לבן",
+      "שחור"
+     ]
+    },
+    {
+     "name": "כמות",
+     "values": [
+      "1 'יח",
+      "2 'יח"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "לבן": [
+     129.9,
+     159.9
+    ],
+    "שחור": [
+     129.9,
+     159.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPT_Image_Jul_28_2026_08_00_45_PM_2_4324c9b8-fe70-47dc-af8a-9b91fd784207.png?v=1785258083",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_47PM_5.png?v=1785692931",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_34_49PM_5.png?v=1785256512",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_34_48PM_2.png?v=1785256513",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_34_49PM_3.png?v=1785256513",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_34_49PM_4.png?v=1785256513",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_07_34_48PM_1.png?v=1785256512",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPT_Image_Jul_28_2026_08_00_45_PM_1_53b1f346-004c-4f0d-8309-74b45e61d27e.png?v=1785258228"
+   ],
+   "mediaCount": 8,
+   "homeCardLine": "חיישן תנועה PIR · 3 מצבי תאורה · עמידות IP65",
+   "descFirst": "כניסה מוארת מרגישה אחרתהאור נדלק ברגע שמתקרבים — ומעניק לבית קבלת פנים חמה יותר\nמנורת הקיר הסולארית משלבת אור LED חם עם חיישן תנועה, כדי להאיר את הכניסה, החצר או המעבר בזמן הנכון. בלי להשאיר מנורה דולקת כל הלילה ובלי לבנ"
+  },
+  "stainless-steel-solar-path-light-ip65": {
+   "title": "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 1,
+   "priceMin": 169.9,
+   "priceMax": 169.9,
+   "options": [
+    {
+     "name": "צבע אור",
+     "values": [
+      "צהוב חם"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "צהוב חם": [
+     169.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_59PM_4.png?v=1785261020",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_59PM_5.png?v=1785261020",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_59PM_6.png?v=1785261020",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_58PM_1.png?v=1785261019",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_58PM_2.png?v=1785261019",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_08_49_59PM_3.png?v=1785261020"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "גוף נירוסטה · עמידות IP65 · זמן עבודה כ־8–10 שעות",
+   "descFirst": "הדרך הביתה יכולה להרגיש אחרת כבר מהערב הראשוןמשביל חשוך ולא גמור — לקו אור חם שמוביל את הדרך\nמנורת השביל מנירוסטה מוסיפה לגינה תאורה רכה ומראה נקי, בלי כבלים שחוצים את הדשא ובלי צורך להזמין חשמלאי. היא נטענת ביום, נדלקת "
+  },
+  "retro-solar-path-lights-set": {
+   "title": "סט מנורות שביל סולאריות רטרו באור חם – 2/4/6 יחידות",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 3,
+   "priceMin": 219.9,
+   "priceMax": 529.9,
+   "options": [
+    {
+     "name": "כמות",
+     "values": [
+      "2 יחידות",
+      "4 יחידות",
+      "6 יחידות"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "2 יחידות": [
+     219.9
+    ],
+    "4 יחידות": [
+     389.9
+    ],
+    "6 יחידות": [
+     529.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_2.png?v=1785263955",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_3.png?v=1785263955",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_39_01PM.png?v=1785263955",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_4.png?v=1785263955",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_5.png?v=1785263955",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_58PM_6.png?v=1785263955",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_38_57PM_1.png?v=1785263955"
+   ],
+   "mediaCount": 7,
+   "homeCardLine": "טעינה סולארית · עמידות IP65 · סטים של 2, 4 או 6 יחידות",
+   "descFirst": "את האווירה של בית קפה אפשר להביא ישר לגינהאור פילמנט חם שמעניק לכל שביל אופי של מקום מעוצב\nמנורות השביל בעיצוב רטרו לא נועדו רק להראות איפה הולכים — הן יוצרות תחושה. נורת הפילמנט החמה מוסיפה לגינה מראה עשיר, נוסטלגי ומזמ"
+  },
+  "warm-solar-step-deck-lights": {
+   "title": "מנורות סולאריות למדרגות ולדק באור חם – 1/4/8/12 יחידות",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 8,
+   "priceMin": 69.9,
+   "priceMax": 349.9,
+   "options": [
+    {
+     "name": "כמות",
+     "values": [
+      "1 יחידה",
+      "4 יחידות",
+      "8 יחידות",
+      "12 יחידות"
+     ]
+    },
+    {
+     "name": "צבע",
+     "values": [
+      "שחור",
+      "חום"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "1 יחידה": [
+     69.9
+    ],
+    "4 יחידות": [
+     159.9
+    ],
+    "8 יחידות": [
+     269.9
+    ],
+    "12 יחידות": [
+     349.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_47PM_6.png?v=1785692900",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_08PM_2.png?v=1785262889",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_09PM_3.png?v=1785262889",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_09PM_4.png?v=1785262890",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_09PM_5.png?v=1785262889",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageJul28_2026_09_21_09PM_6.png?v=1785262890"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "הפרט הקטן שמשנה את כל אזור החוץאור חם לאורך המדרגות — למראה מסודר ונעים יותר בכל ערב\nהמנורות הסולאריות הקומפקטיות מדגישות כל מדרגה, קצה דק או גדר באור רך. הן הופכות אזור חשוך לחלל שנראה מתוכנן ומזמין, בלי כבלים גלויים וב"
+  },
+  "modern-led-wall-light-6w-up-down": {
+   "title": "מנורת קיר LED מודרנית 6W עם תאורת Up & Down",
+   "collection": "solar-wall-lights",
+   "type": "תאורת קיר",
+   "variants": 8,
+   "priceMin": 109.9,
+   "priceMax": 193.9,
+   "options": [
+    {
+     "name": "צבע גוף",
+     "values": [
+      "לבן",
+      "שחור"
+     ]
+    },
+    {
+     "name": "גוון אור",
+     "values": [
+      "אור חם 3000K",
+      "אור קר 6500K"
+     ]
+    },
+    {
+     "name": "כמות",
+     "values": [
+      "יחידה אחת",
+      "זוג"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "לבן": [
+     109.9,
+     111.9,
+     189.9,
+     193.9
+    ],
+    "שחור": [
+     109.9,
+     111.9,
+     189.9,
+     193.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_37PM_1.png?v=1785611851",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_47PM_7.png?v=1785692873",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_37PM_4.png?v=1785611851",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_38PM_6.png?v=1785611851",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_37PM_2.png?v=1785611851",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_10_16_37PM_3.png?v=1785611851",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/3_f980b44a-5262-4ec7-acb8-99e39ffdefc3.jpg?v=1785611939",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/6_86375a80-58c9-4a8b-8a3c-67bfd049ed35.jpg?v=1785611956"
+   ],
+   "mediaCount": 8,
+   "homeCardLine": "לשימוש פנימי באזור יבש",
+   "descFirst": "קיר רגיל יכול להפוך לאלמנט עיצובישתי אלומות אור שמוסיפות לחלל עומק, שקט וסטייל\nמנורת ה־Up & Down מפזרת אור כלפי מעלה ומטה ויוצרת על הקיר אפקט אדריכלי נקי. במקום גוף תאורה שתופס את כל תשומת הלב, מתקבל אור שמחמיא לחלל ומשד"
+  },
+  "modern-led-wall-light-indoor-outdoor": {
+   "title": "מנורת קיר LED מודרנית – גרסאות לפנים או לחוץ",
+   "collection": "solar-wall-lights",
+   "type": "תאורת קיר",
+   "variants": 8,
+   "priceMin": 99.9,
+   "priceMax": 121.9,
+   "options": [
+    {
+     "name": "צבע גוף",
+     "values": [
+      "לבן",
+      "שחור"
+     ]
+    },
+    {
+     "name": "סוג גוף",
+     "values": [
+      "ABS – לא עמיד למים",
+      "אלומיניום – עמיד למים"
+     ]
+    },
+    {
+     "name": "גוון אור",
+     "values": [
+      "אור חם 3000K",
+      "אור קר 6500K"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "לבן": [
+     99.9,
+     101.9,
+     119.9,
+     121.9
+    ],
+    "שחור": [
+     99.9,
+     101.9,
+     119.9,
+     121.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_45PM_1.png?v=1785692716",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_48PM_3.png?v=1785610205",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_48PM_5.png?v=1785610205",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_49PM_6.png?v=1785610205",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_48PM_1.png?v=1785610205",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_49_48PM_4.png?v=1785610205"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "אותו קו עיצובי — בתוך הבית ומחוצה לואור דו־כיווני שמעניק לכל קיר מראה מדויק ומודרני\nהמנורה יוצרת שתי אלומות אור נקיות שמדגישות את הקיר במקום להאיר אותו בצורה שטוחה. בחרו גרסה פנימית לחללים יבשים או גרסת אלומיניום עמידה ל"
+  },
+  "waterproof-led-wall-light-ip65-6w-12w": {
+   "title": "מנורת קיר LED עמידה למים IP65 – ‏6W/12W",
+   "collection": "solar-wall-lights",
+   "type": "תאורת קיר",
+   "variants": 8,
+   "priceMin": 219.9,
+   "priceMax": 252.9,
+   "options": [
+    {
+     "name": "צבע גוף",
+     "values": [
+      "לבן",
+      "שחור"
+     ]
+    },
+    {
+     "name": "עוצמה",
+     "values": [
+      "6W",
+      "12W"
+     ]
+    },
+    {
+     "name": "גוון אור",
+     "values": [
+      "אור חם 3000K",
+      "אור קר 6000K"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "לבן": [
+     219.9,
+     222.9,
+     249.9,
+     252.9
+    ],
+    "שחור": [
+     219.9,
+     222.9,
+     249.9,
+     252.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_46PM_2.png?v=1785692651",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_21PM_1.png?v=1785609761",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_22PM_6.png?v=1785609761",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_21PM_2.png?v=1785609761",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_22PM_4.png?v=1785609761",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_42_22PM_5.png?v=1785609761"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "חזית הבית נראית אחרת כשהאור מתוכנן נכוןאלומות אור חדות שמעניקות לקיר נוכחות יוקרתית\nמנורת הקיר מאלומיניום מפזרת אור כלפי מעלה ומטה, מדגישה את הטקסטורה של הקיר ויוצרת מראה אדריכלי נקי. היא מתאימה לכניסה, למרפסת, למדרגות ו"
+  },
+  "magnetic-rechargeable-touch-wall-light": {
+   "title": "מנורת קיר נטענת מגנטית עם שליטה במגע",
+   "collection": "solar-wall-lights",
+   "type": "תאורת קיר",
+   "variants": 2,
+   "priceMin": 159.9,
+   "priceMax": 159.9,
+   "options": [
+    {
+     "name": "צבע גוף",
+     "values": [
+      "לבן",
+      "שחור"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "לבן": [
+     159.9
+    ],
+    "שחור": [
+     159.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_46PM_3.png?v=1785692589",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_53PM_4.png?v=1785609133",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_54PM_6.png?v=1785609133",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_52PM_3.png?v=1785609133",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_52PM_1.png?v=1785609133",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_31_52PM_2.png?v=1785609133"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "אור בדיוק במקום שחסר — בלי שקע ובלי חוטיםמנורת קיר שנצמדת, מסתובבת ומותאמת לרגע שלכם\nהמנורה המגנטית הנטענת נותנת לכם תאורה ליד המיטה, במסדרון, במטבח או בפינת העבודה בלי להתחייב לנקודת חשמל קבועה. מצמידים לבסיס, מכוונים א"
+  },
+  "outdoor-bidirectional-led-wall-light-ip65": {
+   "title": "מנורת קיר LED חיצונית דו־כיוונית IP65",
+   "collection": "solar-wall-lights",
+   "type": "תאורת קיר",
+   "variants": 4,
+   "priceMin": 159.9,
+   "priceMax": 162.9,
+   "options": [
+    {
+     "name": "עיצוב",
+     "values": [
+      "דגם A",
+      "דגם B"
+     ]
+    },
+    {
+     "name": "גוון אור",
+     "values": [
+      "אור חם 3000K",
+      "אור לבן 6000K"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "דגם A": [
+     159.9,
+     162.9
+    ],
+    "דגם B": [
+     159.9,
+     162.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_41PM_6.png?v=1785609524",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_08_41_46PM_4.png?v=1785692558",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_41PM_3.png?v=1785609524",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_41PM_4.png?v=1785609524",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_41PM_5.png?v=1785609524",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug1_2026_09_37_40PM_1.png?v=1785609524"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "עמידות IP65 · אור חם 3000K או לבן 6000K",
+   "descFirst": "החזית לא צריכה עוד מנורה רגילהשתי אלומות מדויקות שהופכות את הקיר לחלק המרשים של הבית\nמנורת החוץ השחורה יוצרת אור כלפי מעלה ומטה ומעניקה לכניסה, למרפסת או למעבר מראה חד ומודרני. העיצוב נשאר מינימליסטי — והאור עושה את כל ה"
+  },
+  "solar-garden-spotlight-52-led": {
+   "title": "ספוט סולארי עוצמתי לגינה – 52 LED עם 3 מצבי תאורה",
+   "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+   "type": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "variants": 4,
+   "priceMin": 219.9,
+   "priceMax": 429.9,
+   "options": [
+    {
+     "name": "כמות",
+     "values": [
+      "יחידה אחת",
+      "2 יחידות"
+     ]
+    },
+    {
+     "name": "גוון אור",
+     "values": [
+      "לבן חם",
+      "לבן קר"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "יחידה אחת": [
+     219.9
+    ],
+    "2 יחידות": [
+     429.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_10PM_4.png?v=1785695202",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_10PM_3.png?v=1785695202",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_11PM_5.png?v=1785695202",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_11PM_6.png?v=1785695202",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_09PM_1.png?v=1785695202",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_26_10PM_2.png?v=1785695202"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "52 נורות LED · 3 מצבי עוצמה · עד כ־15/10/6 שעות",
+   "descFirst": "העצים, השבילים והחזית לא צריכים להיעלם בלילה52 נורות LED שממקדות את האור בדיוק במקום שרוצים להבליט\nהספוט הסולארי העוצמתי יוצר נקודת אור ברורה על עץ, קיר, שביל או פינת גינה. במקום תאורה חלשה שמתפזרת לכל הכיוונים, אתם מכוו"
+  },
+  "solar-security-light-100-led": {
+   "title": "תאורת אבטחה סולארית 100 LED עם חיישן תנועה",
+   "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+   "type": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "variants": 1,
+   "priceMin": 99.9,
+   "priceMax": 99.9,
+   "options": [
+    {
+     "name": "צבע",
+     "values": [
+      "שחור"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "שחור": [
+     99.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_1.png?v=1785696241",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_2.png?v=1785696241",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_3.png?v=1785696240",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_41PM_4.png?v=1785696241",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_42PM_5.png?v=1785696241",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_43_42PM_6.png?v=1785696240"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "100 נורות LED · חיישן PIR · טווח זיהוי כ־6–8 מטרים",
+   "descFirst": "אזור חשוך לא צריך להישאר נקודת חולשה100 נורות LED שנדלקות ברגע שמישהו מתקרב\nתאורת האבטחה הסולארית מוסיפה נראות לכניסה, לשער, לחניה או למעבר צדדי בלי להשאיר אור חזק דולק כל הלילה. חיישן התנועה מפעיל את התאורה לפי המצב שבח"
+  },
+  "modern-solar-path-lights-set": {
+   "title": "סט תאורת שביל סולארית מודרנית בצורת 7 – ‏4/8 יחידות",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 2,
+   "priceMin": 549.9,
+   "priceMax": 999.9,
+   "options": [
+    {
+     "name": "כמות",
+     "values": [
+      "4 יחידות",
+      "8 יחידות"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "4 יחידות": [
+     549.9
+    ],
+    "8 יחידות": [
+     999.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_25PM_6.png?v=1785695578",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_24PM_1.png?v=1785695578",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_24PM_2.png?v=1785695578",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_24PM_3.png?v=1785695578",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_24PM_4.png?v=1785695578",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_32_25PM_5.png?v=1785695578"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "גוון חם 2700K · עמידות IP65 · סט של 4 או 8 יחידות",
+   "descFirst": "השביל הוא הדבר הראשון שרואים בדרך לביתקו אור מודרני שמעניק לגינה מראה של כניסה מעוצבת\nהמנורות בצורת 7 מפנות אור חם כלפי מטה ויוצרות רצף נקי לאורך שבילים, ערוגות ומדשאות. הן לא מסנוורות ולא גונבות את הבמה — הן גורמות לכל "
+  },
+  "solar-floodlight-ip67-remote-timer": {
+   "title": "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED",
+   "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+   "type": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "variants": 3,
+   "priceMin": 199.9,
+   "priceMax": 499.9,
+   "options": [
+    {
+     "name": "דגם",
+     "values": [
+      "72 LED / 100W",
+      "128 LED / 200W",
+      "200 LED / 300W"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "72 LED / 100W": [
+     199.9
+    ],
+    "128 LED / 200W": [
+     329.9
+    ],
+    "200 LED / 300W": [
+     499.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_50PM_5.png?v=1785695956",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_51PM_6.png?v=1785695956",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_50PM_3.png?v=1785695956",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_50PM_4.png?v=1785695956",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_38_48PM_1.png?v=1785695956",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug2_2026_09_47_24PM.png?v=1785696466"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "שטח גדול וחשוך לא חייב תשתית חשמל יקרהפרוז׳קטור סולארי שמאיר רחב — ונשלט מהשלט\nלחצר, לחניה, לכניסה או לאזור עבודה בחוץ: הפאנל הנפרד נטען מהשמש, הפרוז׳קטור מאיר את השטח והשלט מאפשר לקבוע עוצמה וזמן פעולה בלי לגשת לגוף התא"
+  },
+  "decorative-led-net-lights": {
+   "title": "רשת תאורת LED דקורטיבית לחוץ ולגינה – 1.5 עד 12 מטר",
+   "collection": "גרילנדות-ותאורה-דקורטיבית",
+   "type": "גרילנדות ותאורה דקורטיבית",
+   "variants": 30,
+   "priceMin": 109.9,
+   "priceMax": 469.9,
+   "options": [
+    {
+     "name": "גודל",
+     "values": [
+      "1.5×1.5 מ׳ / 96 LED",
+      "3×2 מ׳ / 196 LED",
+      "6×2 מ׳ / 380 LED",
+      "9×2 מ׳ / 580 LED",
+      "12×2 מ׳ / 780 LED",
+      "6×4 מ׳ / 672 LED"
+     ]
+    },
+    {
+     "name": "צבע תאורה",
+     "values": [
+      "לבן חם",
+      "כחול",
+      "RGB צבעוני",
+      "לבן קר",
+      "סגול"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "1.5×1.5 מ׳ / 96 LED": [
+     109.9
+    ],
+    "3×2 מ׳ / 196 LED": [
+     169.9
+    ],
+    "6×2 מ׳ / 380 LED": [
+     269.9
+    ],
+    "9×2 מ׳ / 580 LED": [
+     369.9
+    ],
+    "12×2 מ׳ / 780 LED": [
+     469.9
+    ],
+    "6×4 מ׳ / 672 LED": [
+     339.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_06PM_1.png?v=1785868047",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_07PM_5.png?v=1785868048",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_08PM_6.png?v=1785868047",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_06PM_2.png?v=1785868047",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_07PM_3.png?v=1785868047",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_27_07PM_4.png?v=1785868047"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "חיבור 220V · מ־1.5×1.5 עד 12×2 או 6×4 מטר",
+   "descFirst": "קיר ריק יכול להפוך לרקע של כל האירוערשת אור צפופה שממלאת את החלל באווירה ברגע אחד\nפורסים את הרשת על גדר, קיר או פרגולה ומקבלים מאות נקודות אור מסודרות בלי לתלות כל שרשרת בנפרד. זהו הפתרון המהיר ליצירת רקע מרשים למסיבה, ח"
+  },
+  "led-globe-string-lights": {
+   "title": "גרילנדת כדורי LED דקורטיבית – USB או סוללות",
+   "collection": "גרילנדות-ותאורה-דקורטיבית",
+   "type": "גרילנדות ותאורה דקורטיבית",
+   "variants": 30,
+   "priceMin": 89.9,
+   "priceMax": 179.9,
+   "options": [
+    {
+     "name": "אורך ומספר נורות",
+     "values": [
+      "1.5 מ׳ / 10 נורות",
+      "3 מ׳ / 20 נורות",
+      "6 מ׳ / 40 נורות",
+      "10 מ׳ / 80 נורות",
+      "12 מ׳ / 100 נורות"
+     ]
+    },
+    {
+     "name": "מקור מתח",
+     "values": [
+      "USB",
+      "קופסת סוללות"
+     ]
+    },
+    {
+     "name": "צבע תאורה",
+     "values": [
+      "לבן חם",
+      "לבן קר",
+      "צבעוני"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "1.5 מ׳ / 10 נורות": [
+     89.9
+    ],
+    "3 מ׳ / 20 נורות": [
+     99.9
+    ],
+    "6 מ׳ / 40 נורות": [
+     119.9
+    ],
+    "10 מ׳ / 80 נורות": [
+     169.9
+    ],
+    "12 מ׳ / 100 נורות": [
+     179.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_2.png?v=1785868493",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_3.png?v=1785868492",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_4.png?v=1785868493",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_34PM_5.png?v=1785868493",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_35PM_6.png?v=1785868492",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_34_33PM_1.png?v=1785868492"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "1.5 עד 12 מטר · 10 עד 100 נורות LED · USB או סוללות",
+   "descFirst": "לפעמים כל מה שחסר לפינה הוא אור קטן ונכוןכדורי LED עדינים שהופכים כל חלל לחם, חגיגי ומזמין יותר\nמלפפים סביב מדף, תולים במרפסת, מכניסים לאוהל או מסדרים על שולחן — והחלל מקבל מיד שכבה של אור ואווירה. בלי גוף תאורה כבד ובלי"
+  },
+  "lighted-birch-branches-20-led": {
+   "title": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב הבית",
+   "collection": "גרילנדות-ותאורה-דקורטיבית",
+   "type": "גרילנדות ותאורה דקורטיבית",
+   "variants": 2,
+   "priceMin": 89.9,
+   "priceMax": 89.9,
+   "options": [
+    {
+     "name": "צבע תאורה",
+     "values": [
+      "לבן חם",
+      "לבן קר"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "לבן חם": [
+     89.9
+    ],
+    "לבן קר": [
+     89.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_57PM_4.png?v=1785868815",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_56PM_1.png?v=1785868815",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_57PM_5.png?v=1785868815",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_58PM_6.png?v=1785868815",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_56PM_2.png?v=1785868815",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_39_57PM_3.png?v=1785868815"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "גובה כ־72 ס״מ · 20 נורות LED · לבן חם או לבן קר",
+   "descFirst": "כשהאגרטל נראה ריק והפינה עדיין לא מרגישה שלמהענפי אור שמוסיפים לחלל נוכחות — בלי לתפוס מקום\nענפי הליבנה המוארים הופכים אגרטל פשוט לפריט עיצוב שמושך את העין. ביום הם מוסיפים גובה וטקסטורה; בערב 20 נקודות LED יוצרות אור עד"
+  },
+  "solar-firefly-garden-lights": {
+   "title": "תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות",
+   "collection": "גרילנדות-ותאורה-דקורטיבית",
+   "type": "גרילנדות ותאורה דקורטיבית",
+   "variants": 1,
+   "priceMin": 99.9,
+   "priceMax": 99.9,
+   "options": [
+    {
+     "name": "דגם",
+     "values": [
+      "10 נורות"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "10 נורות": [
+     99.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_04PM_3.png?v=1785869132",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_04PM_4.png?v=1785869132",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_05PM_5.png?v=1785869132",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_05PM_6.png?v=1785869132",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_03PM_1.png?v=1785869132",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_45_04PM_2.png?v=1785869132"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "לא כל תאורת גינה צריכה לעמוד במקוםעשר נקודות אור שמתנדנדות ברוח ונראות כמו גחליליות\nהענפים הגמישים נעים בעדינות ויוצרים אפקט חי שקשה לקבל ממנורת גינה רגילה. בערב הערוגה, הדשא או העציץ מקבלים ניצוצות של אור שמוסיפים קסם ו"
+  },
+  "solar-rope-string-lights": {
+   "title": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED",
+   "collection": "גרילנדות-ותאורה-דקורטיבית",
+   "type": "גרילנדות ותאורה דקורטיבית",
+   "variants": 16,
+   "priceMin": 89.9,
+   "priceMax": 159.9,
+   "options": [
+    {
+     "name": "אורך ומספר נורות",
+     "values": [
+      "7 מ׳ / 50 נורות",
+      "12 מ׳ / 100 נורות",
+      "22 מ׳ / 200 נורות",
+      "32 מ׳ / 300 נורות"
+     ]
+    },
+    {
+     "name": "צבע תאורה",
+     "values": [
+      "לבן חם",
+      "לבן קר",
+      "כחול",
+      "צבעוני"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "7 מ׳ / 50 נורות": [
+     89.9
+    ],
+    "12 מ׳ / 100 נורות": [
+     99.9
+    ],
+    "22 מ׳ / 200 נורות": [
+     119.9
+    ],
+    "32 מ׳ / 300 נורות": [
+     159.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_58PM_1.png?v=1785869537",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_59PM_6.png?v=1785869537",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_59PM_5.png?v=1785869537",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_58PM_2.png?v=1785869537",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_58PM_3.png?v=1785869537",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_51_59PM_4.png?v=1785869537"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "הגינה גדולה מדי לשרשרת קצרה — ורחוקה מדי מהשקעעד 32 מטר של אור סולארי שעוטף את כל החלל\nשרשרת החבל הארוכה מאפשרת להקיף עצים, לעבור לאורך גדר, להדגיש שביל או למלא פרגולה בנקודות אור — בלי כבל מאריך שחוצה את החצר ובלי תלות "
+  },
+  "solar-edison-string-lights": {
+   "title": "גרילנדת נורות אדיסון סולארית – 5 או 8 מטר",
+   "collection": "גרילנדות-ותאורה-דקורטיבית",
+   "type": "גרילנדות ותאורה דקורטיבית",
+   "variants": 2,
+   "priceMin": 139.9,
+   "priceMax": 179.9,
+   "options": [
+    {
+     "name": "אורך ומספר נורות",
+     "values": [
+      "5 מ׳ / 10 נורות",
+      "8 מ׳ / 20 נורות"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "5 מ׳ / 10 נורות": [
+     139.9
+    ],
+    "8 מ׳ / 20 נורות": [
+     179.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_29PM_4.png?v=1785869804",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_29PM_5.png?v=1785869803",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_30PM_6.png?v=1785869803",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_28PM_1.png?v=1785869803",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_28PM_2.png?v=1785869803",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_09_56_29PM_3.png?v=1785869803"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "המרפסת לא צריכה להרגיש כמו עוד שטח בביתנורות אדיסון חמות שמביאות את האווירה של בית קפה אליכם\nתלו את הגרילנדה מעל פינת הישיבה, לאורך הפרגולה או באוהל וקבלו מיד אור חם שמזמין לשבת, לדבר ולהישאר עוד קצת. בלי לחפש שקע ובלי כ"
+  },
+  "solar-crystal-ball-string-lights": {
+   "title": "גרילנדת כדורי קריסטל סולארית – 20 עד 200 נורות",
+   "collection": "גרילנדות-ותאורה-דקורטיבית",
+   "type": "גרילנדות ותאורה דקורטיבית",
+   "variants": 24,
+   "priceMin": 89.9,
+   "priceMax": 179.9,
+   "options": [
+    {
+     "name": "אורך ומספר נורות",
+     "values": [
+      "5 מ׳ / 20 נורות",
+      "6.5 מ׳ / 30 נורות",
+      "9.5 מ׳ / 50 נורות",
+      "11 מ׳ / 60 נורות",
+      "13 מ׳ / 100 נורות",
+      "22 מ׳ / 200 נורות"
+     ]
+    },
+    {
+     "name": "צבע תאורה",
+     "values": [
+      "צהוב",
+      "כחול",
+      "צבעוני",
+      "לבן"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "5 מ׳ / 20 נורות": [
+     89.9
+    ],
+    "6.5 מ׳ / 30 נורות": [
+     89.9
+    ],
+    "9.5 מ׳ / 50 נורות": [
+     99.9
+    ],
+    "11 מ׳ / 60 נורות": [
+     109.9
+    ],
+    "13 מ׳ / 100 נורות": [
+     129.9
+    ],
+    "22 מ׳ / 200 נורות": [
+     179.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_35PM_1.png?v=1785870294",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_38PM_6.png?v=1785870294",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_37PM_4.png?v=1785870294",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_37PM_5.png?v=1785870294",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_36PM_2.png?v=1785870294",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug4_2026_10_04_37PM_3.png?v=1785870294"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "נקודות אור רגילות מאירות — כדורי הקריסטל גם מנצנציםברק עדין שהופך מרפסת, פרגולה או גינה לרקע חגיגי\nהכדורים השקופים שוברים את האור ויוצרים נצנוץ עשיר יותר משרשרת LED רגילה. תולים סביב אזור הישיבה, לאורך גדר או בתוך אוהל ו"
+  },
+  "modern-led-bollard-light-5w-ip65": {
+   "title": "מנורת עמוד LED מודרנית לגינה ולחצר – 5W IP65",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 1,
+   "priceMin": 129.9,
+   "priceMax": 129.9,
+   "options": [
+    {
+     "name": "צבע גוף",
+     "values": [
+      "שחור"
+     ]
+    },
+    {
+     "name": "הספק",
+     "values": [
+      "5W"
+     ]
+    },
+    {
+     "name": "גוון אור",
+     "values": [
+      "אור חם"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "שחור": [
+     129.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_6.png?v=1786209452",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_1.png?v=1786209452",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_2.png?v=1786209452",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_3.png?v=1786209452",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_4.png?v=1786209452",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_17_16PM_5.png?v=1786209453"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "עיצוב נקי. אור שמרגיש יוקרתי.\n הגינה נראית אחרת כשהתאורה מרגישה חלק מהעיצוב\n מנורת עמוד LED מינימליסטית שנועדה להאיר שבילים, כניסות, מדשאות ופינות חוץ בלי להעמיס על המראה. האור החם יוצר תחושה רגועה ומזמינה, בעוד הגוף השח"
+  },
+  "rechargeable-telescopic-camping-lantern": {
+   "title": "פנס קמפינג טלסקופי נטען 360° עם תאורת צד",
+   "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+   "type": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "variants": 1,
+   "priceMin": 189.9,
+   "priceMax": 189.9,
+   "options": [
+    {
+     "name": "צבע",
+     "values": [
+      "כסוף־שחור"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "כסוף־שחור": [
+     189.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_6.png?v=1786209056",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_1.png?v=1786209056",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_2.png?v=1786209056",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_3.png?v=1786209056",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_4.png?v=1786209056",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_10_37PM_5.png?v=1786209056"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "אור אחד. כמה שימושים.\n כשצריך אור אמיתי בשטח — לא רוצים לחפש פתרון אחר לכל מצב\n פנס קמפינג טלסקופי נטען שמשלב פנס קדמי חזק עם תאורת צד רחבה, כך שהוא מתאים גם לחיפוש והארה ממוקדת וגם לתאורה נוחה סביב אוהל, רכב או אזור עבו"
+  },
+  "swaying-solar-path-lights-ip65": {
+   "title": "סט מנורות שביל סולאריות מתנדנדות ברוח – 2/6 יחידות IP65",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 2,
+   "priceMin": 189.9,
+   "priceMax": 329.9,
+   "options": [
+    {
+     "name": "כמות",
+     "values": [
+      "2 יחידות",
+      "6 יחידות"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "2 יחידות": [
+     189.9
+    ],
+    "6 יחידות": [
+     329.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_10PM_4_0f15bfe5-77cb-48ea-a464-421bc917adfb.png?v=1786208660",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_10PM_5_58ae31f7-5782-49c0-a872-708805dbb2c8.png?v=1786208660",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_11PM_6_af560e3d-dedd-4d4b-b286-6fce7de8c06c.png?v=1786208660",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_09PM_1_b6d155b7-61ab-4fa9-bdf7-4b1daf118901.png?v=1786208660",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_10PM_2_24e8b28d-b4f2-4cda-b481-2ad381c5b6b0.png?v=1786208660",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_08_03_10PM_3_1efdddef-686e-4fdf-b399-ac69264e9b3b.png?v=1786208660"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "אור שמכניס תנועה לגינה\n לא עוד נקודת אור קבועה — אלא אפקט שמרגיש חי\n מנורות שביל סולאריות שנעות בעדינות עם הרוח ויוצרות אפקט מרגיע ומיוחד לאורך שבילים, ערוגות, מדשאות ופינות ישיבה. האור החם מדגיש את החוץ בלי להפוך אותו ל"
+  },
+  "powerful-solar-garden-light": {
+   "title": "מנורת גינה סולארית עוצמתית LED – תאורה אוטומטית לחוץ",
+   "collection": "תאורת-שביל-סולארית",
+   "type": "תאורת שביל, עמוד וגינה",
+   "variants": 1,
+   "priceMin": 179.9,
+   "priceMax": 179.9,
+   "options": [
+    {
+     "name": "כמות",
+     "values": [
+      "יחידה אחת"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "יחידה אחת": [
+     179.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_3.png?v=1786208258",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_4.png?v=1786208258",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_5.png?v=1786208258",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_50PM_6.png?v=1786208258",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_1.png?v=1786208258",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_56_49PM_2.png?v=1786208258"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "אור חזק בלי חוטים ובלי חשבון חשמל\n כשהגינה חשוכה מדי — לא חייבים להתחיל פרויקט חשמל\n מנורת גינה סולארית שמיועדת להוסיף אור ברור ונוכחות לחצר, לשביל, למדשאה ולכניסה — בלי להעביר כבלים ובלי לחפש שקע. נטענת במהלך היום ונדלק"
+  },
+  "dual-head-garden-light-10w-ip65": {
+   "title": "מנורת גינה דו־ראשית מתכווננת 180° – ‏10W IP65",
+   "collection": "ספוטים-ופרוז-קטורים-סולאריים",
+   "type": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+   "variants": 1,
+   "priceMin": 189.9,
+   "priceMax": 189.9,
+   "options": [
+    {
+     "name": "צבע גוף",
+     "values": [
+      "שחור"
+     ]
+    },
+    {
+     "name": "הספק",
+     "values": [
+      "10W"
+     ]
+    },
+    {
+     "name": "גוון אור",
+     "values": [
+      "אור חם"
+     ]
+    }
+   ],
+   "firstAxis": {
+    "שחור": [
+     189.9
+    ]
+   },
+   "images": [
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_30PM_1.png?v=1786207196",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_31PM_2.png?v=1786207196",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_31PM_3.png?v=1786207196",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_32PM_4.png?v=1786207196",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_32PM_5.png?v=1786207196",
+    "//cdn.shopify.com/s/files/1/0689/4927/8894/files/ChatGPTImageAug8_2026_07_39_32PM_6.png?v=1786207196"
+   ],
+   "mediaCount": 6,
+   "homeCardLine": "",
+   "descFirst": "שני ראשי אור. שליטה אחת.\n במקום להסתפק בכיוון אחד — מאירים בדיוק את מה שרוצים להדגיש\n מנורת גינה דו־ראשית עם סיבוב של עד 180°, שנועדה לתת יותר שליטה על פיזור האור בחצר, בשביל, ליד קיר, בצמחייה או בכניסה. שני הראשים מאפשר"
+  }
+ }
+}
