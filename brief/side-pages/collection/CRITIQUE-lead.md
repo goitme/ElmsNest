@@ -126,3 +126,31 @@ records the reason so the next engineer does not "improve" it into a lie.
 Deploy verified by checksum, not by length — `checksumMd5 0ea1f284b2befc8dcea5db70d3acf1e0` equals the md5 of
 the local file, so the live section is byte-identical to the repo copy. (The byte count I gave the deploying
 engineer was stale; it caught that and verified harder instead of trusting my number.)
+
+## Two corrections after the three critics reported (2026-09-03)
+
+**1. CREATIVE-06 is refuted — but my own verification was too narrow, which is what invited it.**
+The creative director found `לסרגל המידה` absent from `coll-wall` and `coll-spot` and below the fold on
+`coll-path`, and concluded the LEAD-01 fix reached two of five URLs. It reached all five: the scene is one
+section file with one instance in `templates/collection.json`, so the row cannot ship selectively. The three
+mirrors it grepped were written at 12:48 and 13:18, before the 20:01 deploy. Re-mirrored all three:
+`env2-coll-scene__narrowlink` = 1 on wall, spot and path, 0 Liquid errors.
+**My share of it:** I marked LEAD-01 closed having measured `coll-decor` and `coll-all` only — the two pages I
+asked the deploying engineer to check — and wrote "CLOSED" as though it covered the template. A fix that lands in
+a shared section still has to be measured where the content differs, because the content is what moves it.
+Measured now on four URLs × three viewports:
+
+| URL | 390×844 | 390×664 | 320×844 |
+|---|---|---|---|
+| coll-wall | top 515 · h 44 · in fold | top 375 · in fold | top 515 · in fold |
+| coll-spot | top 515 · h 44 · in fold | top 375 · in fold | top 515 · in fold |
+| coll-path | top 515 · h 44 · in fold | top 375 · in fold | top 515 · in fold |
+| coll-decor | top 515 · h 44 · in fold | top 375 · in fold | top 515 · in fold |
+
+No horizontal overflow at any of the twelve. **LEAD-01 closed on 5/5, this time on evidence that covers them.**
+
+**2. QA-01 is real and I reproduced it independently.** At 390×664 — the iPhone small viewport — the scene's
+pinned lamp tag overlaps the `h1`'s bounding box on `coll-decor`, `coll-spot` and `coll-path` (not on
+`coll-wall`, whose title is two words). The tag is positioned in percentages of the photograph while the type
+block grows upward from the fold, so the shorter the viewport the more they collide. This is the one finding on
+this page an owner would reject on sight, and it goes into the fix round as the first item.
