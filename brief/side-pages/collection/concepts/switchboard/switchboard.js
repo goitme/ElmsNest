@@ -21,18 +21,27 @@
   }
 
   /* ---- 2. the board ------------------------------------------------------ */
-  var board = document.querySelector('[data-board]');
-  if (!board) return;
+  var boards = Array.prototype.slice.call(document.querySelectorAll('[data-board]'));
+  if (!boards.length) return;
+  var board = boards[0];
   var lamps = Array.prototype.slice.call(document.querySelectorAll('.lamp[data-sw]'));
   var boardLamps = Array.prototype.slice.call(board.querySelectorAll('.lamp'));
+  var rungs = Array.prototype.slice.call(document.querySelectorAll('.rung[data-sw]'));
   var switches = Array.prototype.slice.call(document.querySelectorAll('[data-sw-key]'));
   var meterN = document.querySelector('[data-meter-n]');
   var meterT = document.querySelector('[data-meter-total]');
   var meterLab = document.querySelector('[data-meter-label]');
   var resetBtn = document.querySelector('[data-reset]');
-  var spans = (board.getAttribute('data-spans') || '').split('|');
-  var spansM = (board.getAttribute('data-spans-m') || '').split('|');
-  var ars = (board.getAttribute('data-ars') || '').split('|');
+  var plans = boards.map(function (b) {
+    return {
+      el: b,
+      spans: (b.getAttribute('data-spans') || '').split('|'),
+      spansM: (b.getAttribute('data-spans-m') || '').split('|'),
+      ars: (b.getAttribute('data-ars') || '').split('|'),
+      numStart: parseInt(b.getAttribute('data-num-start') || '1', 10),
+      order: Array.prototype.slice.call(b.querySelectorAll('.lamp'))
+    };
+  });
 
   function keysOf(l) { return (l.getAttribute('data-sw') || '').split(' ').filter(Boolean); }
   function groupOf(k) { return k.split('-')[0]; }
@@ -50,6 +59,13 @@
         return groups[g].some(function (k) { return ks.indexOf(k) > -1; });
       });
       if (ok) { l.removeAttribute('data-off'); lit++; } else { l.setAttribute('data-off', ''); }
+    });
+    rungs.forEach(function (r) {
+      var ks = keysOf(r);
+      var ok = gnames.every(function (g) {
+        return groups[g].some(function (k) { return ks.indexOf(k) > -1; });
+      });
+      if (ok) r.removeAttribute('data-off'); else r.setAttribute('data-off', '');
     });
     if (meterN) meterN.textContent = String(lit);
     if (meterLab) meterLab.textContent = active.length ? 'דולקות' : 'כל הלוח דולק';
@@ -87,7 +103,7 @@
     s.addEventListener('mouseenter', function () {
       if (active.length) return;
       var key = s.getAttribute('data-sw-key');
-      lamps.forEach(function (l) {
+      lamps.concat(rungs).forEach(function (l) {
         if (keysOf(l).indexOf(key) === -1) l.setAttribute('data-off', '');
       });
     });
@@ -97,23 +113,23 @@
 
   /* ---- 5. server-side sort, mirrored in the browser ---------------------- */
   function priceOf(l) { return parseFloat(l.getAttribute('data-price') || '0'); }
-  function restamp() {
-    Array.prototype.slice.call(board.querySelectorAll('.lamp')).forEach(function (l, i) {
-      if (spans[i]) l.style.setProperty('--sp', spans[i]);
-      if (spansM[i]) l.style.setProperty('--spm', spansM[i]);
-      if (ars[i]) l.style.setProperty('--ar', ars[i]);
+  function restamp(pl) {
+    Array.prototype.slice.call(pl.el.querySelectorAll('.lamp')).forEach(function (l, i) {
+      if (pl.spans[i]) l.style.setProperty('--sp', pl.spans[i]);
+      if (pl.spansM[i]) l.style.setProperty('--spm', pl.spansM[i]);
+      if (pl.ars[i]) l.style.setProperty('--ar', pl.ars[i]);
       var n = l.querySelector('.lamp__num');
-      if (n) n.textContent = ('0' + (i + numStart)).slice(-2);
+      if (n) n.textContent = ('0' + (i + pl.numStart)).slice(-2);
     });
   }
-  var numStart = parseInt(board.getAttribute('data-num-start') || '1', 10);
-  var order = boardLamps.slice();
   function sortBy(mode) {
-    var list = order.slice();
-    if (mode === 'price-ascending') list.sort(function (a, b) { return priceOf(a) - priceOf(b); });
-    else if (mode === 'price-descending') list.sort(function (a, b) { return priceOf(b) - priceOf(a); });
-    list.forEach(function (l) { board.appendChild(l); });
-    restamp();
+    plans.forEach(function (pl) {
+      var list = pl.order.slice();
+      if (mode === 'price-ascending') list.sort(function (a, b) { return priceOf(a) - priceOf(b); });
+      else if (mode === 'price-descending') list.sort(function (a, b) { return priceOf(b) - priceOf(a); });
+      list.forEach(function (l) { pl.el.appendChild(l); });
+      restamp(pl);
+    });
     document.querySelectorAll('[data-sort]').forEach(function (a) {
       if (a.getAttribute('data-sort') === mode) a.setAttribute('aria-current', 'true');
       else a.removeAttribute('aria-current');
@@ -121,7 +137,7 @@
     var url = new URL(window.location.href);
     if (mode && mode !== 'manual') url.searchParams.set('sort_by', mode); else url.searchParams.delete('sort_by');
     try { history.replaceState(null, '', url.pathname + url.search); } catch (e) {}
-    lightAll(board);
+    lightAll(document);
   }
   document.querySelectorAll('[data-sort]').forEach(function (a) {
     a.addEventListener('click', function (ev) { ev.preventDefault(); sortBy(a.getAttribute('data-sort')); });
