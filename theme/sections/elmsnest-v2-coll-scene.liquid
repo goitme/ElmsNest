@@ -48,9 +48,9 @@
     assign env2_all = true
   endif
 
-    # the per-url row of collection_map, one line per collection:
-    # handle|pin product handle|pin_x|pin_y|pin_x_m|pin_y_m|focus desktop|focus mobile
-    # Fields after the handle are optional; an empty field falls back to the matching setting below.
+  # the per-url row of collection_map, one line per collection:
+  # handle|pin product|pin_x|pin_y|pin_x_m|pin_y_m|focus desktop|focus mobile|card image index
+  # Fields after the handle are optional; an empty field falls back to the matching setting below.
   assign env2_row = ''
   assign env2_maptxt = section.settings.collection_map | default: ''
   if env2_maptxt != blank
@@ -74,10 +74,11 @@
   assign env2_map_ym = env2_mf[5] | default: '' | strip
   assign env2_map_fd = env2_mf[6] | default: '' | strip
   assign env2_map_fm = env2_mf[7] | default: '' | strip
+  assign env2_map_ci = env2_mf[8] | default: '' | strip
 -%}
 {%- liquid
-    # Copy. Every default below is the approved wording of 4.1 and BRIEF 3 for that collection; a merchant
-    # setting overrides it on every url at once, which is why the defaults are resolved per handle here.
+  # Copy. Every default below is the approved wording of 4.1 and BRIEF 3 for that collection; a merchant
+  # setting overrides it on every url at once, which is why the defaults are resolved per handle here.
   assign env2_eyebrow = section.settings.eyebrow | default: ''
   if env2_eyebrow == ''
     if env2_all
@@ -112,9 +113,9 @@
     assign env2_suits = env2_suits_d
   endif
 
-    # The h1 is collection.title and nothing else (4.1 n-n 2). 3.2 asks for a second line in --env2-glow,
-    # so the last N words of the real title are moved to that line. A title with no more words than N
-    # stays whole and stays ink - the glow line is never invented and never a word the shop did not write.
+  # The h1 is collection.title and nothing else (4.1 n-n 2). 3.2 asks for a second line in --env2-glow,
+  # so the last N words of the real title are moved to that line. A title with no more words than N
+  # stays whole and stays ink - the glow line is never invented and never a word the shop did not write.
   assign env2_gw = section.settings.title_glow_words | default: 1 | plus: 0
   assign env2_words = collection.title | strip | split: ' '
   assign env2_wn = env2_words.size
@@ -136,9 +137,9 @@
   endif
 -%}
 {%- liquid
-    # The counts line. products_count, the summed variant count and the price span are read off the
-    # collection, never typed (6.19). collection.products is capped at 50 per page by Shopify and the
-    # catalogue is 27, so the sum is the whole collection; the ledger section owns pagination (3.7).
+  # The counts line. products_count, the summed variant count and the price span are read off the
+  # collection, never typed (6.19). collection.products is capped at 50 per page by Shopify and the
+  # catalogue is 27, so the sum is the whole collection; the ledger section owns pagination (3.7).
   assign env2_nv = 0
   assign env2_lo = 0
   assign env2_hi = 0
@@ -156,16 +157,19 @@
   endfor
   assign env2_lo_s = env2_lo | money_without_currency
   assign env2_hi_s = env2_hi | money_without_currency
-  assign env2_span = env2_lo_s
-  if env2_hi > env2_lo
-    assign env2_span = env2_lo_s | append: '–' | append: env2_hi_s
+  assign env2_span = ''
+  if env2_hi > 0
+    assign env2_span = env2_lo_s
+    if env2_hi > env2_lo
+      assign env2_span = env2_lo_s | append: '–' | append: env2_hi_s
+    endif
   endif
 -%}
 {%- liquid
-    # The pinned product. ONE template, five urls, so a product picker alone cannot answer; the resolution
-    # order is collection_map, then the picker, then an automatic choice: the first available product that
-    # is measured on its own first axis AND has a text-free photograph, then the first available product
-    # with a photograph, then the first available product. The card and the pin name the same lamp.
+  # The pinned product. ONE template, five urls, so a product picker alone cannot answer; the resolution
+  # order is collection_map, then the picker, then an automatic choice: the first available product that
+  # is measured on its own first axis AND has a text-free photograph, then the first available product
+  # with a photograph, then the first available product. The card and the pin name the same lamp.
   assign env2_pin_set = '0'
   assign env2_best = '0'
   assign env2_alt = '0'
@@ -201,9 +205,9 @@
   {%- endif -%}
 {%- endif -%}
 {%- liquid
-    # The axis model of the pinned lamp - the single source of the pin tag's value, the card's axis
-    # caption and the derived per-unit line (CONTRACT-COLL 2). A snippet's assigns do not reach the
-    # caller, so the model is printed and split back.
+  # The axis model of the pinned lamp - the single source of the pin tag's value, the card's axis
+  # caption and the derived per-unit line (CONTRACT-COLL 2). A snippet's assigns do not reach the
+  # caller, so the model is printed and split back.
   assign env2_unit = ''
   assign env2_ulab = ''
   assign env2_min = ''
@@ -252,7 +256,7 @@
   {%- endif -%}
 {%- endif -%}
 {%- liquid
-    # the buy label of the card, derived from the axis the buyer will actually be choosing on.
+  # the buy label of the card, derived from the axis the buyer will actually be choosing on.
   assign env2_act = section.settings.card_action_label | default: ''
   assign env2_axname = ''
   if env2_pin_set == '1'
@@ -274,9 +278,9 @@
     endif
   endif
 
-    # the pin tag: the lamp, then its real value. A measured axis prints the smallest length or quantity
-    # it is sold in; an unmeasured one prints its first real option value when that value is short enough
-    # to be a tag; otherwise the house price rule. 4.1 n-n 4 - real data or no pin.
+  # the pin tag: the lamp, then its real value. A measured axis prints the smallest length or quantity
+  # it is sold in; an unmeasured one prints its first real option value when that value is short enough
+  # to be a tag; otherwise the house price rule. 4.1 n-n 4 - real data or no pin.
   assign env2_pinname = section.settings.pin_label | default: ''
   if env2_pinname == '' and env2_pin_set == '1'
     assign env2_pintitle = env2_pin.title | default: ''
@@ -335,10 +339,10 @@
   assign env2_pxn = env2_px | plus: 0
   assign env2_pxmn = env2_pxm | plus: 0
   if env2_pxn > 45
-    assign env2_pinflip = ' env2-coll-scene__pin--flip'
+    assign env2_pinflip = ' env2-coll-scene__pinwrap--flip'
   endif
   if env2_pxmn > 45
-    assign env2_pinflip = env2_pinflip | append: ' env2-coll-scene__pin--flipm'
+    assign env2_pinflip = env2_pinflip | append: ' env2-coll-scene__pinwrap--flipm'
   endif
   # and how much room the tag actually has on that side. The photograph is full-bleed, so one percent
   # of the frame is one vw and the room can be written as a length the tag can cap itself with - which
@@ -359,6 +363,9 @@
     assign env2_p2 = env2_dp[1] | strip_html | strip
   endif
   assign env2_ci = section.settings.card_image_index | default: 0 | plus: 0
+  if env2_map_ci != ''
+    assign env2_ci = env2_map_ci | plus: 0
+  endif
   assign env2_cimg = ''
   if env2_ci > 0
     assign env2_cimg = env2_ci
@@ -380,12 +387,14 @@
       <span class="env2-coll-scene__wash" aria-hidden="true"></span>
       <span class="env2-coll-scene__veil" aria-hidden="true"></span>
       {%- if env2_pin_set == '1' and env2_hasphoto and env2_pinname != '' and env2_pinval != '' -%}
-      <a class="env2-coll-scene__pin{{ env2_pinflip }}" href="{{ env2_pin.url }}" data-lamp
-         style="--env2-pin-x:{{ env2_px }}%;--env2-pin-y:{{ env2_py }}%;--env2-pin-xm:{{ env2_pxm }}%;--env2-pin-ym:{{ env2_pym }}%;--env2-pin-stem:{{ env2_stem }}px;--env2-pin-room:calc({{ env2_room }}vw - 18px);--env2-pin-room-m:calc({{ env2_roomm }}vw - 18px)">
+      <div class="env2-coll-scene__pinwrap{{ env2_pinflip }}" data-lamp
+           style="--env2-pin-xd:{{ env2_px }}%;--env2-pin-yd:{{ env2_py }}%;--env2-pin-xm:{{ env2_pxm }}%;--env2-pin-ym:{{ env2_pym }}%;--env2-pin-stem-d:{{ env2_stem }}px;--env2-pin-room-d:calc({{ env2_room }}vw - 18px);--env2-pin-room-m:calc({{ env2_roomm }}vw - 18px)">
         <span class="env2-coll-scene__dot" aria-hidden="true"></span>
         <span class="env2-coll-scene__stem" aria-hidden="true"></span>
-        <span class="env2-coll-scene__tag"><span class="env2-coll-scene__tagtext"><span class="env2-coll-scene__tagname">{{ env2_pinname | escape }}</span> <span class="env2-coll-scene__tagsep" aria-hidden="true">·</span> <span class="env2-coll-scene__tagval">{{ env2_pinval }}</span></span></span>
-      </a>
+        <a class="env2-coll-scene__pin" href="{{ env2_pin.url }}">
+          <span class="env2-coll-scene__tag"><span class="env2-coll-scene__tagtext"><span class="env2-coll-scene__tagname">{{ env2_pinname | escape }}</span> <span class="env2-coll-scene__tagsep" aria-hidden="true">·</span> <span class="env2-coll-scene__tagval">{{ env2_pinval }}</span></span></span>
+        </a>
+      </div>
       {%- endif -%}
     </div>
 
@@ -409,9 +418,13 @@
                   when 'span'
                     assign env2_bv = env2_span
                   when 'from'
-                    assign env2_bv = env2_lo | money_without_currency
+                    if env2_hi > 0
+                      assign env2_bv = env2_lo_s
+                    endif
                   when 'to'
-                    assign env2_bv = env2_hi | money_without_currency
+                    if env2_hi > 0
+                      assign env2_bv = env2_hi_s
+                    endif
                   when 'catalogue'
                     assign env2_bv = collection.all_products_count
                 endcase
@@ -423,7 +436,7 @@
           {%- else -%}
             <span class="env2-coll-scene__count"><bdi>{{ collection.products_count }}</bdi> מנורות</span>
             <span class="env2-coll-scene__count"><bdi>{{ env2_nv }}</bdi> וריאציות</span>
-            <span class="env2-coll-scene__count"><bdi>{{ env2_span }}</bdi> ₪</span>
+            {%- if env2_span != '' -%}<span class="env2-coll-scene__count"><bdi>{{ env2_span }}</bdi> ₪</span>{%- endif -%}
           {%- endif -%}
         </p>
       </div>
@@ -470,11 +483,13 @@
    eyebrow and the counts line are read straight off them. Without it the gold eyebrow on a lit garland
    is under 3:1 (3.1, 3.2). It is one gradient, it paints no colour of its own, and it stops at the veil. */
 .env2-coll-scene__wash{position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(2,3,6,.66) 0%,rgba(2,3,6,.3) 22%,rgba(2,3,6,.22) 46%,rgba(7,11,21,.5) 74%,rgba(15,26,47,.66) 100%)}
+  background:linear-gradient(180deg,rgba(2,3,6,.66) 0%,rgba(2,3,6,.32) 22%,rgba(2,3,6,.26) 44%,rgba(7,11,21,.6) 70%,rgba(15,26,47,.8) 100%)}
 /* the two-stop veil over the bottom of the photograph (4.1): the type block and the counts line sit on
    it, and it lands on --env2-sky-2 so the photograph joins the ground with no seam. */
-.env2-coll-scene__veil{position:absolute;inset-inline:0;inset-block-end:0;block-size:34%;pointer-events:none;
-  background:linear-gradient(180deg,rgba(15,26,47,0) 0%,rgba(15,26,47,.72) 62%,#0f1a2f 100%)}
+.env2-coll-scene__veil{position:absolute;inset-inline:0;inset-block-end:0;block-size:46%;pointer-events:none;
+  background:
+    radial-gradient(132% 94% at 100% 100%,rgba(4,7,13,.62) 0%,rgba(4,7,13,0) 62%),
+    linear-gradient(180deg,rgba(15,26,47,0) 0%,rgba(15,26,47,.58) 36%,rgba(15,26,47,.84) 66%,#0f1a2f 100%)}
 .env2-coll-scene__stage--noimg .env2-coll-scene__media{background:
   radial-gradient(120% 80% at 50% 0%,rgba(31,51,87,.55),rgba(2,3,6,0) 70%),#050a14}
 
@@ -482,14 +497,17 @@
   grid-template-columns:minmax(0,1fr) minmax(0,var(--env2-scene-cardw,420px));
   align-items:end;gap:clamp(28px,4vw,72px);min-block-size:100svh;padding-block:clamp(120px,14vh,168px) clamp(56px,7vh,84px)}
 .env2-coll-scene__type{max-inline-size:min(100%,640px)}
-.env2-coll-scene__eyebrow{margin-block-end:clamp(16px,2vh,26px)}
+/* the eyebrow is a flex row whose box would otherwise span the whole column: hugging its own content
+   keeps the 12px gold off the bright half of the photograph (measured 4.36 -> 9+ over decor). */
+.env2-coll-scene__eyebrow{inline-size:max-content;max-inline-size:100%;margin-block-end:clamp(16px,2vh,26px);
+  text-shadow:0 1px 12px rgba(2,3,6,.9)}
 .env2-coll-scene__h1{font-size:clamp(38px,5.8vw,84px);line-height:.98;max-inline-size:22ch;
   text-shadow:0 2px 34px rgba(2,3,6,.75)}
 .env2-coll-scene__h1b{display:block}
 .env2-coll-scene__deck{margin-block-start:clamp(14px,2vh,22px);max-inline-size:38ch;color:var(--env2-ink-2);
   text-shadow:0 1px 18px rgba(2,3,6,.7)}
 .env2-coll-scene__suits{margin:10px 0 0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.5;
-  max-inline-size:42ch;color:var(--env2-mute);text-wrap:pretty;text-shadow:0 1px 18px rgba(2,3,6,.7)}
+  max-inline-size:44ch;color:var(--env2-ink-2);text-wrap:pretty;text-shadow:0 1px 18px rgba(2,3,6,.7)}
 .env2-coll-scene__rule{margin-block-start:clamp(18px,2.6vh,30px)}
 .env2-coll-scene__counts{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin:14px 0 0;
   font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.5;color:var(--env2-ink-2);
@@ -503,25 +521,41 @@
 .env2-coll-scene__card .env2-pdp-card{box-sizing:border-box;inline-size:100%}
 .env2-coll-scene__card .env2-pdp-card__price .env2-price{--env2-price-size:34px}
 .env2-coll-scene__card .env2-pdp-card__title{font-size:clamp(16px,1.3vw,19px)}
+/* elmsnest-v2-core sizes .env2-btn content-box, so the ground snippet's 44px floor lands on the
+   CONTENT box and the small pill comes out 64px tall on desktop and 72px on a phone. Sized from this
+   section's own selector to 3.2's 48px, which is still above the 44px floor. */
+.env2-coll-scene__card .env2-pdp-card__action .env2-btn{box-sizing:border-box;min-block-size:48px}
 
-/* the pin (graft C10): a lit dot, a hairline stem, a gold tag that names the lamp and its real value */
-.env2-coll-scene__pin{position:absolute;z-index:3;inset-inline-start:var(--env2-pin-x,42%);inset-block-start:var(--env2-pin-y,28%);
-  display:block;inline-size:0;text-decoration:none}
-.env2-coll-scene__dot{position:absolute;inset-block-start:-5px;inset-inline-start:-5px;inline-size:10px;block-size:10px;
+/* the pin (graft C10): a lit dot on the lamp, a hairline stem, a gold tag that names the lamp and
+   prints its real value. The DOT never moves - it is on the lamp - but the TAG lands on a fixed band,
+   and the stem simply spans whatever is between them. That is what keeps the tag off the h1 and the
+   eyebrow on every one of the five photographs and both viewports, which a fixed 120px fall does not:
+   measured, the spot and path pins landed on top of the eyebrow at a fixed fall. --env2-pin-stem is
+   still the nominal fall; the band is the ceiling it is clamped to. */
+.env2-coll-scene__pinwrap{position:absolute;inset:0;z-index:3;pointer-events:none;
+  --env2-pin-x:var(--env2-pin-xd,42%);--env2-pin-y:var(--env2-pin-yd,28%);
+  --env2-pin-stem:var(--env2-pin-stem-d,120px);--env2-pin-band:34%;--env2-pin-room:var(--env2-pin-room-d,340px);
+  --env2-pin-top:min(calc(var(--env2-pin-y) + var(--env2-pin-stem)),var(--env2-pin-band))}
+.env2-coll-scene__dot{position:absolute;inset-inline-start:var(--env2-pin-x);inset-block-start:var(--env2-pin-y);
+  inline-size:10px;block-size:10px;margin-inline-start:-5px;margin-block-start:-5px;
   border-radius:50%;background:var(--env2-glow);opacity:calc(.25 + .75*var(--lit,1));
   box-shadow:0 0 0 calc(6px*var(--lit,1)) rgba(255,211,148,.14),0 0 34px calc(10px*var(--lit,1)) rgba(255,196,110,.5);
   transition:opacity .5s,box-shadow .5s}
-.env2-coll-scene__stem{position:absolute;inset-block-start:0;inset-inline-start:0;inline-size:1px;
-  block-size:var(--env2-pin-stem,120px);background:linear-gradient(180deg,rgba(255,211,148,.85),rgba(255,211,148,.28));
+.env2-coll-scene__stem{position:absolute;inset-inline-start:var(--env2-pin-x);
+  inset-block-start:min(var(--env2-pin-y),var(--env2-pin-top));
+  block-size:max(2px,calc(max(var(--env2-pin-y),var(--env2-pin-top)) - min(var(--env2-pin-y),var(--env2-pin-top))));
+  inline-size:1px;background:linear-gradient(180deg,rgba(255,211,148,.85),rgba(255,211,148,.3));
   transform-origin:top;transform:scaleY(var(--lit,1));transition:transform .45s .15s cubic-bezier(.2,.7,.2,1)}
-.env2-coll-scene__tag{position:absolute;inset-block-start:var(--env2-pin-stem,120px);inset-inline-start:0;
+.env2-coll-scene__pin{position:absolute;pointer-events:auto;display:block;inline-size:0;
+  inset-inline-start:var(--env2-pin-x);inset-block-start:var(--env2-pin-top);text-decoration:none}
+.env2-coll-scene__tag{position:absolute;inset-block-start:0;inset-inline-start:0;box-sizing:border-box;
   display:inline-flex;align-items:center;min-block-size:44px;padding-inline:12px;white-space:nowrap;
-  inline-size:max-content;max-inline-size:min(var(--env2-pin-room,340px),340px);
+  inline-size:max-content;max-inline-size:min(var(--env2-pin-room),340px);
   font-family:var(--env2-sans);font-size:11.5px;font-weight:500;letter-spacing:.16em;color:var(--env2-gold);
   border-radius:0;box-shadow:inset 0 1px 0 0 rgba(233,185,110,.55);
-  background:linear-gradient(180deg,rgba(5,8,14,.62),rgba(5,8,14,.32));backdrop-filter:blur(6px);
+  background:linear-gradient(180deg,rgba(5,8,14,.82),rgba(5,8,14,.62));backdrop-filter:blur(6px);
   -webkit-backdrop-filter:blur(6px);opacity:calc(.15 + .85*var(--lit,1));transition:opacity .5s .3s,color .3s}
-.env2-coll-scene__pin--flip .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
+.env2-coll-scene__pinwrap--flip .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
 .env2-coll-scene__pin:hover .env2-coll-scene__tag,
 .env2-coll-scene__pin:focus-visible .env2-coll-scene__tag{color:var(--env2-glow)}
 .env2-coll-scene__tag bdi{letter-spacing:0;font-variant-numeric:tabular-nums}
@@ -545,7 +579,7 @@
 @media (max-width:900px){
   .env2-coll-scene__media{inset-block-end:auto;block-size:var(--env2-scene-hm,78svh)}
   .env2-coll-scene__pic img{object-position:var(--env2-scene-focus-m,50% 50%)}
-  .env2-coll-scene__veil{block-size:52%}
+  .env2-coll-scene__veil{block-size:60%}
   .env2-coll-scene__inner{display:block;min-block-size:0;padding-block:0}
   /* the photograph keeps its 78svh; the type block stops --env2-scene-lift above its foot so the card
      rides the last band of the veil and its buy control lands well inside the 844px fold (4.1 n-n 1).
@@ -566,11 +600,12 @@
   .env2-coll-scene__card .env2-pdp-card__media{display:none}
   .env2-coll-scene__card .env2-pdp-card__price .env2-price{--env2-price-size:30px}
   .env2-coll-scene__card .env2-pdp-card{gap:8px}
-  .env2-coll-scene__pin{inset-inline-start:var(--env2-pin-xm,50%);inset-block-start:var(--env2-pin-ym,24%)}
-  .env2-coll-scene__pin--flip .env2-coll-scene__tag{inset-inline-start:0;inset-inline-end:auto}
-  .env2-coll-scene__pin--flipm .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
+  .env2-coll-scene__pinwrap{--env2-pin-x:var(--env2-pin-xm,50%);--env2-pin-y:var(--env2-pin-ym,24%);
+    --env2-pin-stem:56px;--env2-pin-band:24%;--env2-pin-room:var(--env2-pin-room-m,74vw)}
+  .env2-coll-scene__pinwrap--flip .env2-coll-scene__tag{inset-inline-start:0;inset-inline-end:auto}
+  .env2-coll-scene__pinwrap--flipm .env2-coll-scene__tag{inset-inline-start:auto;inset-inline-end:0}
   /* belt: a long lamp name can never be cut at the frame edge — it wraps inside the tag instead */
-  .env2-coll-scene__tag{white-space:normal;max-inline-size:min(var(--env2-pin-room-m,74vw),300px);
+  .env2-coll-scene__tag{white-space:normal;max-inline-size:min(var(--env2-pin-room),300px);
     padding-block:9px;line-height:1.45}
   .env2-coll-scene__below{display:block;padding-block:30px 40px}
   .env2-coll-scene__next{margin-block-start:18px}
@@ -625,8 +660,8 @@
     { "type": "text", "id": "card_add_label", "label": "טקסט הכפתור כשיש אפשרות אחת", "default": "הוספה לסל" },
     { "type": "checkbox", "id": "show_unit_price", "label": "להציג את המחיר ליחידה מתחת למחיר", "default": true },
     { "type": "header", "content": "לפי קולקציה" },
-    { "type": "text", "id": "fallback_collection", "label": "מזהה הקולקציה שהתמונה שלה משמשת כשאין תמונה", "info": "כתובת /collections/all אינה מחזיקה תמונה משלה.", "default": "גרילנדות-ותאורה-דקורטיבית" },
-    { "type": "textarea", "id": "collection_map", "label": "שורה לכל קולקציה: מזהה|מוצר|רוחב|גובה|רוחב במובייל|גובה במובייל|מיקוד דסקטופ|מיקוד מובייל", "info": "תבנית אחת משרתת את חמש כתובות הקולקציה, ולכן ההבדלים ביניהן נכתבים כאן. שדה ריק חוזר להגדרה שלמעלה.", "default": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|54|22|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|38|34|46|30|50% 50%|50% 52%\nsolar-wall-lights|waterproof-led-wall-light-ip65-6w-12w|56|30|54|26|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|dual-head-garden-light-10w-ip65|46|30|50|26|50% 45%|50% 48%\nall|dual-head-garden-light-10w-ip65|44|28|50|24|50% 45%|50% 48%" }
+    { "type": "text", "id": "fallback_collection", "label": "מזהה הקולקציה שהתמונה שלה משמשת כשאין תמונה", "info": "כתובת /collections/all אינה מחזיקה תמונה משלה.", "default": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|46|24|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|62|26|58|22|50% 50%|50% 52%\nsolar-wall-lights|outdoor-bidirectional-led-wall-light-ip65|70|24|62|22|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|solar-garden-lantern-9-led|46|24|48|22|50% 45%|50% 48%\nall|solar-firefly-garden-lights|44|26|46|24|50% 45%|50% 46%" },
+    { "type": "textarea", "id": "collection_map", "label": "שורה לכל קולקציה: מזהה|מוצר|רוחב|גובה|רוחב במובייל|גובה במובייל|מיקוד דסקטופ|מיקוד מובייל|מספר תמונה", "info": "תבנית אחת משרתת את חמש כתובות הקולקציה, ולכן ההבדלים ביניהן נכתבים כאן. שדה ריק חוזר להגדרה שלמעלה.", "default": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|46|24|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|62|26|58|22|50% 50%|50% 52%\nsolar-wall-lights|outdoor-bidirectional-led-wall-light-ip65|70|24|62|22|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|solar-garden-lantern-9-led|46|24|48|22|50% 45%|50% 48%\nall|solar-firefly-garden-lights|44|26|46|24|50% 45%|50% 46%" }
   ],
   "blocks": [
     {
@@ -659,7 +694,7 @@
         "next_label": "אל הסרגל — לפי מידה",
         "next_anchor": "#env2-coll-ruler",
         "fallback_collection": "גרילנדות-ותאורה-דקורטיבית",
-        "collection_map": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|54|22|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|38|34|46|30|50% 50%|50% 52%\nsolar-wall-lights|waterproof-led-wall-light-ip65-6w-12w|56|30|54|26|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|dual-head-garden-light-10w-ip65|46|30|50|26|50% 45%|50% 48%\nall|dual-head-garden-light-10w-ip65|44|28|50|24|50% 45%|50% 48%"
+        "collection_map": "גרילנדות-ותאורה-דקורטיבית|solar-crystal-ball-string-lights|44|26|46|24|50% 45%|50% 46%\nתאורת-שביל-סולארית|stainless-steel-solar-path-light-ip65|62|26|58|22|50% 50%|50% 52%\nsolar-wall-lights|outdoor-bidirectional-led-wall-light-ip65|70|24|62|22|50% 38%|50% 40%\nספוטים-ופרוז-קטורים-סולאריים|solar-garden-lantern-9-led|46|24|48|22|50% 45%|50% 48%\nall|solar-firefly-garden-lights|44|26|46|24|50% 45%|50% 46%"
       },
       "blocks": [
         { "type": "count", "settings": { "value": "products", "label": "מנורות" } },

@@ -1,0 +1,651 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — THE MEASURE (collection WINNING-SPEC §4.5, "elmsnest-v2-coll-ledger").
+
+  Purpose, in one sentence: answer "I have a six-metre pergola" with ONE row that names every lamp the
+  collection sells at that measure and what each one costs. It is the ruler's table of record — the same
+  instrument seen twice — and it is the screen the ruler's rows link back into.
+
+  ------------------------------------------------------------------ where every number comes from
+  NOTHING here is typed (§4.5 non-negotiable 1, §6.19). Every measure, every price and every per-unit
+  figure is read out of snippets/elmsnest-v2-coll-axis.liquid, which reads them out of
+  product.options_with_values[0] and variant.price. The counts in the copy come from Liquid too
+  (collection.products_count, the number of measured products, the number of rows). The one-page
+  sentence is printed by snippets/elmsnest-v2-coll-paginate.liquid so its wording lives in one file.
+
+  This section does NO price arithmetic. Prices arrive as strings already rounded to the agora
+  (plumbing CONTRACT risk 14); only price_cents is ever used, and only as a sort key.
+
+  ------------------------------------------------------------------ which collection gets a table
+  One template serves all five URLs (§5.1), so the choice is made from the data, never from a handle:
+
+    enabled off                         -> nothing at all is printed, not even the wrapper
+    no products                         -> nothing
+    fewer than two distinct measures    -> nothing (a one-row table is not a table)
+    show_on = auto, and the dominant measured unit does not cover MORE THAN HALF the collection
+                                        -> nothing
+
+  That last test is the honest one, and it resolves exactly to §5.1 and §3.8.5:
+    decor  4 of 7 products measured in metres      -> a 14-row metre table
+    path   5 of 8 products measured in quantity    -> a 6-row quantity table
+    wall   0 of 6                                  -> nothing
+    spot   1 of 6 in quantity, 1 in LED            -> nothing
+    all    6 of 27 in quantity                     -> nothing, which is §3.8.5's "no metre ledger on /all"
+  Set show_on to «always» to print the table wherever two measures exist.
+
+  ------------------------------------------------------------------ area is not a length
+  §4.5 non-negotiable 3. decorative-led-net-lights carries unit 'area', measured '0' and a min/max that
+  are the FIRST DIMENSION ONLY. This file branches on meta[9] (measured) and never on min/max being
+  non-empty, so the net can never take a metre row. It is named in the foot instead, with its real
+  span read off its own option values — which is §4.5 non-negotiable 2: a product measured in another
+  unit is NAMED, never hidden, and never given a row.
+
+  ------------------------------------------------------------------ how the rows are built
+  ONE pass over collection.products asks the parser once per product and prints two flat models
+  (a snippet's own assigns never reach its caller — CONTRACT risk 1 — so every model here is printed
+  and split back):
+    env2_rows   one record per (product, option value) that carries a number, keyed
+                «<number*1000 + 1e8>~<price in agorot + 1e8>» so a plain string sort is a numeric sort,
+                first by measure and then by price, which is the order §4.5's table prints.
+    env2_infos  one record per product, so the foot can name the ones that have no row without asking
+                the parser a second time.
+  The dominant unit is the one the most products are measured in, ties resolved m > qty > led > w > k.
+
+  ------------------------------------------------------------------ no JS, reduced motion
+  There is NO behaviour to lose. Every measure, name, price and per-unit figure is markup; the table
+  reads and buys with scripting disabled, because every product name is a plain link to its product
+  page and the prices are printed, not fetched. §3.3 gives this section NO animation at all — it is a
+  table and it should read like one — so prefers-reduced-motion removes only the link colour fades.
+
+  The one enhancement is the row link. Its href is «#env2-coll-ruler», a real element that really
+  scrolls, so the link works with scripting off; with scripting on the section also checks the ruler's
+  radio for that stop and writes the ruler's own «#len-10» / «#qty-4» hash, which is §4.5's
+  "every row is a link to the ruler at that stop". Stop keys use the CONTRACT risk 12 transform —
+  the number with '.' replaced by '_' — because «#env2-stop-6.5» reads to a CSS parser as the id
+  «env2-stop-6» plus the class «5». Decor's axis really does carry 1.5, 6.5 and 9.5.
+
+  No image, no card and no glyph plate is rendered here, so this section needs no sprite (CONTRACT
+  risk 11) and cannot spend one of §3.1's two scrim surfaces (risk 10). It carries no .env2-btn, so
+  core REPORT §9.1's ink-on-glow anchor cannot appear (risk 9); the link colours are set from
+  «.env2-coll-ledger .env2-coll-ledger__…» at (0,2,0), which outranks «.env2-section a» at (0,1,1).
+{%- endcomment -%}
+
+{%- liquid
+  assign FS = '~~F~~'
+  assign RS = '~~R~~'
+  assign env2_s = section.settings
+  assign env2_c = collection
+  assign env2_count = env2_c.products_count | default: 0
+  assign env2_on = true
+  if env2_s.enabled == false
+    assign env2_on = false
+  endif
+  if env2_count == 0
+    assign env2_on = false
+  endif
+  assign env2_short = true
+  if env2_s.short_titles == false
+    assign env2_short = false
+  endif
+  assign env2_fw = 'אחת,שתיים,שלוש,ארבע,חמש,שש,שבע,שמונה,תשע,עשר,אחת־עשרה,שתים־עשרה,שלוש־עשרה,ארבע־עשרה,חמש־עשרה,שש־עשרה,שבע־עשרה,שמונה־עשרה,תשע־עשרה,עשרים' | split: ','
+  assign env2_perword = env2_s.per_unit_word | default: ''
+-%}
+
+{%- comment -%}
+  PASS 1 — one render of the parser per product, and the two printed models. Fields are plain strings.
+
+  env2_rows record:
+    0 sort key «<measure key>~<price key>»  1 unit  2 number  3 unit_label  4 name  5 url
+    6 number2  7 unit2_label  8 price  9 per_unit  10 per_unit_label  11 value (trimmed at « / »)
+    12 available  13 terminator
+  env2_infos record:
+    0 unit  1 measured  2 is_area  3 how many option values  4 name  5 axis name  6 first value
+    7 the value at the largest number  8 the last value  9 min  10 max  11 unit_label  12 unit_word
+    13 url  14 terminator
+{%- endcomment -%}
+{%- assign env2_rows = '' -%}
+{%- assign env2_infos = '' -%}
+{%- assign env2_n_m = 0 -%}
+{%- assign env2_n_q = 0 -%}
+{%- assign env2_n_l = 0 -%}
+{%- assign env2_n_w = 0 -%}
+{%- assign env2_n_k = 0 -%}
+{%- if env2_on -%}
+  {%- for env2_p in env2_c.products -%}
+    {%- capture env2_ax -%}{%- render 'elmsnest-v2-coll-axis', product: env2_p, per_unit_word: env2_perword -%}{%- endcapture -%}
+    {%- assign env2_recs = env2_ax | split: RS -%}
+    {%- if env2_recs.size > 1 -%}
+      {%- assign env2_m = env2_recs[0] | split: FS -%}
+      {%- assign env2_u = env2_m[3] -%}
+      {%- assign env2_meas = env2_m[9] -%}
+      {%- if env2_meas == '1' -%}
+        {%- case env2_u -%}
+          {%- when 'm' -%}{%- assign env2_n_m = env2_n_m | plus: 1 -%}
+          {%- when 'qty' -%}{%- assign env2_n_q = env2_n_q | plus: 1 -%}
+          {%- when 'led' -%}{%- assign env2_n_l = env2_n_l | plus: 1 -%}
+          {%- when 'w' -%}{%- assign env2_n_w = env2_n_w | plus: 1 -%}
+          {%- when 'k' -%}{%- assign env2_n_k = env2_n_k | plus: 1 -%}
+        {%- endcase -%}
+      {%- endif -%}
+
+      {%- assign env2_nm = env2_p.title | default: '' -%}
+      {%- if env2_short -%}
+        {%- assign env2_nm = env2_nm | split: ' – ' | first -%}
+        {%- assign env2_nm = env2_nm | split: ' — ' | first -%}
+        {%- assign env2_nm = env2_nm | split: ' | ' | first -%}
+        {%- assign env2_nm = env2_nm | split: ' - ' | first -%}
+        {%- assign env2_nm = env2_nm | strip -%}
+      {%- endif -%}
+
+      {%- assign env2_maxn = 0 -%}
+      {%- assign env2_maxv = '' -%}
+      {%- assign env2_firstv = '' -%}
+      {%- assign env2_lastv = '' -%}
+      {%- for env2_rec in env2_recs offset: 1 -%}
+        {%- assign s = env2_rec | split: FS -%}
+        {%- assign env2_v = s[2] | split: ' / ' | first | strip -%}
+        {%- if forloop.first -%}{%- assign env2_firstv = env2_v -%}{%- endif -%}
+        {%- assign env2_lastv = env2_v -%}
+        {%- if s[3] != '' -%}
+          {%- assign env2_nn = s[3] | times: 1000 | round -%}
+          {%- if env2_nn > env2_maxn -%}
+            {%- assign env2_maxn = env2_nn -%}
+            {%- assign env2_maxv = env2_v -%}
+          {%- endif -%}
+        {%- endif -%}
+        {%- if env2_meas == '1' and s[3] != '' and s[4] == env2_u -%}
+          {%- assign env2_k1 = s[3] | times: 1000 | round | plus: 100000000 -%}
+          {%- assign env2_k2 = s[11] | plus: 100000000 -%}
+          {%- capture env2_row -%}{{ env2_k1 }}~{{ env2_k2 }}{{ FS }}{{ env2_u }}{{ FS }}{{ s[3] }}{{ FS }}{{ s[5] }}{{ FS }}{{ env2_nm }}{{ FS }}{{ env2_p.url }}{{ FS }}{{ s[7] }}{{ FS }}{{ s[9] }}{{ FS }}{{ s[10] }}{{ FS }}{{ s[13] }}{{ FS }}{{ s[14] }}{{ FS }}{{ env2_v }}{{ FS }}{{ s[15] }}{{ FS }}e{%- endcapture -%}
+          {%- assign env2_rows = env2_rows | append: RS | append: env2_row -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- capture env2_info -%}{{ env2_u }}{{ FS }}{{ env2_meas }}{{ FS }}{{ env2_m[10] }}{{ FS }}{{ env2_m[7] }}{{ FS }}{{ env2_nm }}{{ FS }}{{ env2_m[2] }}{{ FS }}{{ env2_firstv }}{{ FS }}{{ env2_maxv }}{{ FS }}{{ env2_lastv }}{{ FS }}{{ env2_m[11] }}{{ FS }}{{ env2_m[12] }}{{ FS }}{{ env2_m[4] }}{{ FS }}{{ env2_m[5] }}{{ FS }}{{ env2_p.url }}{{ FS }}{{ env2_m[8] }}{{ FS }}e{%- endcapture -%}
+      {%- assign env2_infos = env2_infos | append: RS | append: env2_info -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- comment -%}
+  The dominant unit: the one the most products are measured in. Ties are resolved in a fixed order
+  m > qty > led > w > k with a strict «greater than», so the answer never depends on iteration order.
+{%- endcomment -%}
+{%- assign env2_unit = '' -%}
+{%- assign env2_unum = 0 -%}
+{%- if env2_n_m > env2_unum -%}{%- assign env2_unit = 'm' -%}{%- assign env2_unum = env2_n_m -%}{%- endif -%}
+{%- if env2_n_q > env2_unum -%}{%- assign env2_unit = 'qty' -%}{%- assign env2_unum = env2_n_q -%}{%- endif -%}
+{%- if env2_n_l > env2_unum -%}{%- assign env2_unit = 'led' -%}{%- assign env2_unum = env2_n_l -%}{%- endif -%}
+{%- if env2_n_w > env2_unum -%}{%- assign env2_unit = 'w' -%}{%- assign env2_unum = env2_n_w -%}{%- endif -%}
+{%- if env2_n_k > env2_unum -%}{%- assign env2_unit = 'k' -%}{%- assign env2_unum = env2_n_k -%}{%- endif -%}
+{%- if env2_s.unit_mode != blank and env2_s.unit_mode != 'auto' -%}
+  {%- assign env2_unit = env2_s.unit_mode -%}
+  {%- assign env2_unum = 0 -%}
+  {%- case env2_unit -%}
+    {%- when 'm' -%}{%- assign env2_unum = env2_n_m -%}
+    {%- when 'qty' -%}{%- assign env2_unum = env2_n_q -%}
+    {%- when 'led' -%}{%- assign env2_unum = env2_n_l -%}
+    {%- when 'w' -%}{%- assign env2_unum = env2_n_w -%}
+    {%- when 'k' -%}{%- assign env2_unum = env2_n_k -%}
+  {%- endcase -%}
+{%- endif -%}
+
+{%- comment -%}
+  The ordered, distinct measures of the dominant unit. The records are sorted as strings on the
+  zero-padded key, so equal measures are adjacent and the cheaper offering of a shared measure comes
+  first — which is the order §4.5's decor table prints 5, 12 and 22.
+{%- endcomment -%}
+{%- assign env2_sorted = env2_rows | remove_first: RS | split: RS | sort -%}
+{%- assign env2_nums = '' -%}
+{%- assign env2_prev = '' -%}
+{%- assign env2_offers = 0 -%}
+{%- for env2_r in env2_sorted -%}
+  {%- assign f = env2_r | split: FS -%}
+  {%- if f[1] == env2_unit -%}
+    {%- assign env2_offers = env2_offers | plus: 1 -%}
+    {%- unless f[2] == env2_prev -%}
+      {%- assign env2_nums = env2_nums | append: ',' | append: f[2] -%}
+      {%- assign env2_prev = f[2] -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign env2_numlist = env2_nums | remove_first: ',' | split: ',' -%}
+
+{%- assign env2_show = false -%}
+{%- if env2_on and env2_unit != '' and env2_numlist.size > 1 -%}
+  {%- assign env2_show = true -%}
+  {%- unless env2_s.show_on == 'always' -%}
+    {%- assign env2_half = env2_unum | times: 2 -%}
+    {%- unless env2_half > env2_count -%}
+      {%- assign env2_show = false -%}
+    {%- endunless -%}
+  {%- endunless -%}
+{%- endif -%}
+
+{%- if env2_show -%}
+{%- liquid
+  assign env2_unit_label = ''
+  assign env2_unit_word = ''
+  for env2_r in env2_sorted
+    assign f = env2_r | split: FS
+    if f[1] == env2_unit and env2_unit_label == ''
+      assign env2_unit_label = f[3]
+    endif
+  endfor
+  assign env2_rowsn = env2_numlist.size
+  assign env2_nword = ''
+  if env2_unum > 0 and env2_unum <= env2_fw.size
+    assign env2_wi = env2_unum | minus: 1
+    assign env2_nword = env2_fw[env2_wi]
+  else
+    capture env2_nword
+      echo '<bdi>'
+      echo env2_unum
+      echo '</bdi>'
+    endcapture
+  endif
+  assign env2_offn = env2_count | minus: env2_unum
+  assign env2_offword = ''
+  if env2_offn > 0 and env2_offn <= env2_fw.size
+    assign env2_wj = env2_offn | minus: 1
+    assign env2_offword = env2_fw[env2_wj]
+  else
+    capture env2_offword
+      echo '<bdi>'
+      echo env2_offn
+      echo '</bdi>'
+    endcapture
+  endif
+  assign env2_perbool = false
+  assign env2_permode = env2_s.show_unit_price | default: 'auto'
+  if env2_permode == 'always'
+    assign env2_perbool = true
+  elsif env2_permode == 'auto' and env2_unit == 'qty'
+    assign env2_perbool = true
+  endif
+  assign env2_linkrows = true
+  if env2_s.link_rows == false
+    assign env2_linkrows = false
+  endif
+  assign env2_h2 = env2_s.heading | default: 'כמה מטר צריך?'
+  unless env2_unit == 'm'
+    assign env2_h2 = env2_s.heading_alt | default: 'כמה מנורות צריך?'
+  endunless
+  assign env2_deck = env2_s.deck
+  unless env2_unit == 'm'
+    assign env2_deck = env2_s.deck_alt
+  endunless
+-%}
+{%- liquid
+  assign env2_unit_word_src = ''
+  assign env2_infolist = env2_infos | remove_first: RS | split: RS
+  for env2_r in env2_infolist
+    assign g = env2_r | split: FS
+    if g[0] == env2_unit and env2_unit_word_src == ''
+      assign env2_unit_word_src = g[12]
+    endif
+  endfor
+  assign env2_unit_word = env2_unit_word_src
+  capture env2_b_n
+    echo '<bdi>'
+    echo env2_unum
+    echo '</bdi>'
+  endcapture
+  capture env2_b_rows
+    echo '<bdi>'
+    echo env2_rowsn
+    echo '</bdi>'
+  endcapture
+  capture env2_b_count
+    echo '<bdi>'
+    echo env2_count
+    echo '</bdi>'
+  endcapture
+  assign env2_deck = env2_deck | escape | replace: '{n_word}', env2_nword | replace: '{n}', env2_b_n | replace: '{rows}', env2_b_rows | replace: '{count}', env2_b_count | replace: '{unit_word}', env2_unit_word
+-%}
+
+<section id="env2-coll-ledger" data-env2-coll-ledger class="env2-section env2-coll env2-coll-ledger" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.48" aria-labelledby="env2-coll-ledger-h2">
+  <div class="env2-stars" aria-hidden="true"></div>
+  <div class="env2-wrap env2-coll-ledger__wrap">
+
+    <div class="env2-coll-ledger__head">
+      <div class="env2-coll-ledger__intro">
+        {%- if env2_s.eyebrow != blank -%}
+          <p class="env2-eyebrow env2-coll-ledger__eyebrow">{{ env2_s.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="env2-h env2-coll-ledger__h2" id="env2-coll-ledger-h2">{{ env2_h2 }}</h2>
+      </div>
+      {%- if env2_deck != blank -%}
+        <p class="env2-lead env2-coll-ledger__deck">{{ env2_deck }}</p>
+      {%- endif -%}
+    </div>
+
+    <ol class="env2-coll-ledger__rows{% if env2_perbool %} env2-coll-ledger__rows--per{% endif %}">
+      {%- for env2_num in env2_numlist -%}
+        {%- assign env2_key = env2_num | replace: '.', '_' -%}
+        <li class="env2-coll-ledger__row">
+          {%- if env2_linkrows -%}
+            <a class="env2-coll-ledger__k" href="#env2-coll-ruler" data-stop="{{ env2_key }}" aria-label="{{ env2_num }} {{ env2_unit_label | escape }} — {{ env2_s.link_label | default: 'לסרגל המידה' | escape }}">
+              <bdi>{{ env2_num }}</bdi><small class="env2-coll-ledger__u">{{ env2_unit_label }}</small>
+            </a>
+          {%- else -%}
+            <b class="env2-coll-ledger__k">
+              <bdi>{{ env2_num }}</bdi><small class="env2-coll-ledger__u">{{ env2_unit_label }}</small>
+            </b>
+          {%- endif -%}
+          <ul class="env2-coll-ledger__offers">
+            {%- for env2_r in env2_sorted -%}
+              {%- assign f = env2_r | split: FS -%}
+              {%- if f[1] == env2_unit and f[2] == env2_num -%}
+                <li class="env2-coll-ledger__o">
+                  <span class="env2-coll-ledger__nm">
+                    <a class="env2-coll-ledger__name" href="{{ f[5] }}">{{ f[4] | escape }}
+                      {%- if f[6] != '' -%}
+                        <span class="env2-coll-ledger__second"><bdi>{{ f[6] }}</bdi> {{ f[7] | escape }}</span>
+                      {%- endif -%}
+                    </a>
+                  </span>
+                  <span class="env2-coll-ledger__price"><bdi>{{ f[8] }}</bdi> ₪</span>
+                  {%- if env2_perbool -%}
+                    {%- if f[9] != '' -%}
+                      <span class="env2-coll-ledger__per"><bdi>≈{{ f[9] }}</bdi> {{ f[10] | escape }}</span>
+                    {%- else -%}
+                      <span class="env2-coll-ledger__per" aria-hidden="true"></span>
+                    {%- endif -%}
+                  {%- endif -%}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </li>
+      {%- endfor -%}
+    </ol>
+
+    {%- comment -%}
+      THE FOOT — §4.5 non-negotiable 2. Every product that has no row is NAMED here, together with what
+      it IS measured by, read off its own axis. Nothing is hidden and nothing is invented: the area
+      product prints its own first and largest option values, a one-model product prints its single
+      value, a product measured in another unit prints that unit's span, and a colour or model axis
+      prints the axis's own name.
+    {%- endcomment -%}
+    {%- assign env2_clauses = '' -%}
+    {%- assign env2_shown = 0 -%}
+    {%- assign env2_hidden = 0 -%}
+    {%- assign env2_footmax = env2_s.foot_max | default: 6 -%}
+    {%- assign env2_infolist2 = env2_infos | remove_first: RS | split: RS -%}
+    {%- for env2_r in env2_infolist2 -%}
+      {%- assign g = env2_r | split: FS -%}
+      {%- unless g[0] == env2_unit and g[1] == '1' -%}
+        {%- if env2_shown < env2_footmax -%}
+          {%- assign env2_shown = env2_shown | plus: 1 -%}
+          {%- comment -%}
+            A measure that leads with a digit is isolated LTR and its unit word is left OUTSIDE the
+            isolate. This is §6.12 measured, not assumed: a bdi with dir auto over "12x2 מ׳" takes its
+            base direction from the first STRONG character, which is the Hebrew מ, so the whole token
+            renders right-to-left and the page prints the rectangle backwards. A pure Hebrew value
+            (צהוב חם) needs no isolate at all and gets none.
+          {%- endcomment -%}
+          {%- assign env2_cl = '' -%}
+          {%- assign env2_dig = '0123456789' -%}
+          {%- assign env2_r6 = g[6] -%}
+          {%- assign env2_h6 = env2_r6 | split: ' ' | first | default: '' -%}
+          {%- assign env2_c6 = env2_h6 | slice: 0 | default: '' -%}
+          {%- capture env2_bv -%}{%- if env2_c6 != '' and env2_dig contains env2_c6 -%}<bdi dir="ltr">{{ env2_h6 | escape }}</bdi>{{ env2_r6 | remove_first: env2_h6 | escape }}{%- else -%}{{ env2_r6 | escape }}{%- endif -%}{%- endcapture -%}
+          {%- assign env2_r7 = g[7] -%}
+          {%- assign env2_h7 = env2_r7 | split: ' ' | first | default: '' -%}
+          {%- assign env2_c7 = env2_h7 | slice: 0 | default: '' -%}
+          {%- capture env2_bmax -%}{%- if env2_c7 != '' and env2_dig contains env2_c7 -%}<bdi dir="ltr">{{ env2_h7 | escape }}</bdi>{{ env2_r7 | remove_first: env2_h7 | escape }}{%- else -%}{{ env2_r7 | escape }}{%- endif -%}{%- endcapture -%}
+          {%- assign env2_r8 = g[8] -%}
+          {%- assign env2_h8 = env2_r8 | split: ' ' | first | default: '' -%}
+          {%- assign env2_c8 = env2_h8 | slice: 0 | default: '' -%}
+          {%- capture env2_blast -%}{%- if env2_c8 != '' and env2_dig contains env2_c8 -%}<bdi dir="ltr">{{ env2_h8 | escape }}</bdi>{{ env2_r8 | remove_first: env2_h8 | escape }}{%- else -%}{{ env2_r8 | escape }}{%- endif -%}{%- endcapture -%}
+          {%- capture env2_bmin2 -%}<bdi dir="ltr">{{ g[9] | escape }}</bdi> {{ g[11] | escape }}{%- endcapture -%}
+          {%- capture env2_bmax2 -%}<bdi dir="ltr">{{ g[10] | escape }}</bdi> {{ g[11] | escape }}{%- endcapture -%}
+          {%- if g[5] == 'Title' or g[6] == 'Default Title' -%}
+            {%- assign env2_cl = env2_s.foot_none | default: '{name} — נמכרת בגרסה אחת' | escape -%}
+          {%- elsif g[2] == '1' -%}
+            {%- assign env2_cl = env2_s.foot_area | default: '{name} — לפי שטח, מ־{min} ועד {max}' | escape -%}
+            {%- assign env2_cl = env2_cl | replace: '{min}', env2_bv | replace: '{max}', env2_bmax -%}
+            {%- unless g[8] == g[7] -%}
+              {%- assign env2_or = env2_s.foot_or | default: 'או {value}' | escape | replace: '{value}', env2_blast -%}
+              {%- assign env2_cl = env2_cl | append: ' ' | append: env2_or -%}
+            {%- endunless -%}
+          {%- elsif g[3] == '1' and g[14] != '0' -%}
+            {%- assign env2_cl = env2_s.foot_single | default: '{name} — דגם אחד: {value}' | escape | replace: '{value}', env2_bv -%}
+          {%- elsif g[3] == '1' -%}
+            {%- assign env2_cl = env2_s.foot_one | default: '{name} — {value}' | escape | replace: '{value}', env2_bv -%}
+          {%- elsif g[1] == '1' -%}
+            {%- assign env2_cl = env2_s.foot_other | default: '{name} — לפי {unit}: {min} עד {max}' | escape -%}
+            {%- assign env2_cl = env2_cl | replace: '{unit}', g[12] | replace: '{min}', env2_bmin2 | replace: '{max}', env2_bmax2 -%}
+          {%- else -%}
+            {%- assign env2_cl = env2_s.foot_plain | default: '{name} — לפי {axis}' | escape -%}
+          {%- endif -%}
+          {%- assign env2_gname = g[4] | escape -%}
+          {%- assign env2_gaxis = g[5] | escape -%}
+          {%- assign env2_cl = env2_cl | replace: '{name}', env2_gname | replace: '{axis}', env2_gaxis -%}
+          {%- assign env2_clauses = env2_clauses | append: '~~C~~' | append: env2_cl -%}
+        {%- else -%}
+          {%- assign env2_hidden = env2_hidden | plus: 1 -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- assign env2_cllist = env2_clauses | remove_first: '~~C~~' | split: '~~C~~' -%}
+
+    <div class="env2-coll-ledger__foot">
+      {%- if env2_cllist.size > 0 -%}
+        <p class="env2-coll-ledger__rest">
+          {%- capture env2_boff -%}<bdi>{{ env2_offn }}</bdi>{%- endcapture -%}
+          {%- assign env2_lead = env2_s.foot_lead | default: '{n_word} הנותרות נמדדות אחרת:' | escape | replace: '{n_word}', env2_offword | replace: '{n}', env2_boff -%}
+          {%- if env2_lead != blank -%}<span class="env2-coll-ledger__restlead">{{ env2_lead }}</span> {% endif -%}
+          {%- for env2_cl in env2_cllist -%}{{ env2_cl }}{%- unless forloop.last -%}; {% endunless -%}{%- endfor -%}.
+          {%- if env2_hidden > 0 -%}
+            {%- capture env2_bhid -%}<bdi>{{ env2_hidden }}</bdi>{%- endcapture -%}
+            {{ ' ' }}{{ env2_s.foot_more | default: 'ועוד {n} מנורות שנמדדות אחרת.' | escape | replace: '{n}', env2_bhid }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="env2-coll-ledger__notes">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <li class="env2-coll-ledger__note" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if env2_s.foot_note != blank -%}
+        <p class="env2-coll-ledger__extra">{{ env2_s.foot_note }}</p>
+      {%- endif -%}
+
+      {%- unless env2_s.show_page_note == false -%}
+        <div class="env2-coll-ledger__page">
+          {% render 'elmsnest-v2-coll-paginate', collection: env2_c, emit: 'note' %}
+        </div>
+      {%- endunless -%}
+    </div>
+
+  </div>
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+.env2-coll-ledger{padding-block:clamp(72px,8vw,120px) clamp(56px,6vw,96px)}
+.env2-coll-ledger__wrap{position:relative;z-index:1}
+.env2-coll-ledger__head{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(20px,3vw,54px);align-items:end;margin-block-end:clamp(26px,3.4vw,46px)}
+.env2-coll-ledger__intro{display:flex;flex-direction:column;gap:14px}
+.env2-coll-ledger__h2{font-size:clamp(34px,4.2vw,60px);line-height:1}
+.env2-coll-ledger__deck{max-width:44ch}
+.env2-coll-ledger__deck bdi{font-variant-numeric:tabular-nums;color:var(--env2-ink)}
+.env2-coll-ledger__rows{list-style:none;margin:0;padding:0;border-block-end:1px solid var(--env2-hair)}
+.env2-coll-ledger__row{display:grid;grid-template-columns:clamp(84px,9vw,132px) minmax(0,1fr);column-gap:clamp(14px,2vw,32px);align-items:start;border-block-start:1px solid var(--env2-hair);min-block-size:56px}
+.env2-coll-ledger__k{display:inline-flex;align-items:baseline;gap:5px;min-block-size:44px;padding-block:12px 8px;font-family:var(--env2-serif);font-weight:500;font-size:clamp(32px,3vw,44px);line-height:1;font-variant-numeric:tabular-nums;text-decoration:none}
+.env2-coll-ledger .env2-coll-ledger__k{color:var(--env2-ink);transition:color .3s}
+.env2-coll-ledger .env2-coll-ledger__k:hover,.env2-coll-ledger .env2-coll-ledger__k:focus-visible{color:var(--env2-glow)}
+.env2-coll-ledger__u{font-family:var(--env2-sans);font-weight:500;font-size:max(.32em,13px);line-height:1;letter-spacing:.1em;color:var(--env2-gold)}
+.env2-coll-ledger__offers{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;padding-block:8px 12px}
+.env2-coll-ledger__o{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name price";column-gap:clamp(12px,1.8vw,30px);align-items:baseline;padding-block:1px}
+.env2-coll-ledger__rows--per .env2-coll-ledger__o{grid-template-columns:minmax(0,1fr) auto clamp(118px,11vw,152px);grid-template-areas:"name price per"}
+.env2-coll-ledger__nm{grid-area:name;display:block;min-inline-size:0}
+.env2-coll-ledger__name{display:inline-flex;align-items:center;flex-wrap:wrap;gap:0 .4em;min-block-size:44px;font-family:var(--env2-sans);font-size:clamp(16px,1.3vw,19px);font-weight:400;line-height:1.3;unicode-bidi:isolate;text-decoration:none}
+.env2-coll-ledger .env2-coll-ledger__name{color:var(--env2-ink);transition:color .3s}
+.env2-coll-ledger .env2-coll-ledger__name:hover,.env2-coll-ledger .env2-coll-ledger__name:focus-visible{color:var(--env2-glow)}
+.env2-coll-ledger__second{font-family:var(--env2-sans);font-weight:300;font-size:15px;color:var(--env2-ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.env2-coll-ledger__price::before{content:"— ";color:var(--env2-mute)}
+.env2-coll-ledger__price{grid-area:price;font-family:var(--env2-serif);font-weight:500;font-size:17px;line-height:1.2;color:var(--env2-glow);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:end}
+.env2-coll-ledger__per{grid-area:per;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.3;color:var(--env2-ink-2);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:end}
+.env2-coll-ledger__foot{margin-block-start:clamp(22px,2.6vw,38px);display:flex;flex-direction:column;gap:12px}
+.env2-coll-ledger__rest{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.6;color:var(--env2-ink-2);max-width:76ch}
+.env2-coll-ledger__restlead{color:var(--env2-ink)}
+.env2-coll-ledger__notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.env2-coll-ledger__note{font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.6;color:var(--env2-ink-2);max-width:76ch}
+.env2-coll-ledger__extra{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.6;color:var(--env2-mute);max-width:76ch}
+.env2-coll-ledger__page{padding-block-start:6px}
+.env2-coll-ledger__page .env2-coll-paginate__note{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.6;color:var(--env2-mute)}
+.env2-coll-ledger__page .env2-coll-paginate__note bdi{font-variant-numeric:tabular-nums}
+@media (max-width:899px){
+  .env2-coll-ledger__head{grid-template-columns:minmax(0,1fr);align-items:start;gap:16px}
+  .env2-coll-ledger__deck{max-width:52ch}
+  .env2-coll-ledger__row{grid-template-columns:minmax(0,1fr);row-gap:2px;padding-block:6px 4px}
+  .env2-coll-ledger__k{padding-block:10px 2px;font-size:clamp(30px,8vw,38px)}
+  .env2-coll-ledger__offers{padding-block:0 12px}
+  .env2-coll-ledger__o{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name price";row-gap:2px;padding-block:2px}
+  .env2-coll-ledger__rows--per .env2-coll-ledger__o{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name price" "per per"}
+  .env2-coll-ledger__name{font-size:16px}
+  .env2-coll-ledger__second{font-size:14px}
+  .env2-coll-ledger__price{font-size:16px}
+  .env2-coll-ledger__per{text-align:start;white-space:normal}
+  .env2-coll-ledger__rest{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-ledger .env2-coll-ledger__k,.env2-coll-ledger .env2-coll-ledger__name{transition:none}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* elmsnest-v2-coll-ledger — the table is complete markup and loses nothing with this file deleted.
+   All this does is turn each measure into the ruler's own stop: the anchor already points at
+   #env2-coll-ruler, a real element that really scrolls with scripting off, and here it also checks
+   that stop's radio and writes the ruler's #len-10 / #qty-4 hash so the narrowed page is shareable.
+   Stop keys carry the '.' -> '_' transform, so 6.5 is 6_5 in the id, the label and the hash. */
+(function () {
+  function init(el) {
+    if (el.__env2CollLedger) return;
+    el.__env2CollLedger = true;
+    var ruler = document.getElementById('env2-coll-ruler');
+    var key = ruler ? (ruler.getAttribute('data-unit-key') || '') : '';
+    el.querySelectorAll('.env2-coll-ledger__k[data-stop]').forEach(function (a) {
+      var stop = a.getAttribute('data-stop') || '';
+      var input = (ruler && /^[A-Za-z0-9_]+$/.test(stop)) ? ruler.querySelector('#env2-stop-' + stop) : null;
+      if (!ruler) { a.removeAttribute('href'); return; }
+      if (!input) return;
+      a.addEventListener('click', function () {
+        input.checked = true;
+        if (!key || !window.history || !history.replaceState) return;
+        /* the anchor's own navigation writes #env2-coll-ruler into the hash after every listener has
+           run, so the ruler's shareable key is written on the next tick, not inside the handler. */
+        setTimeout(function () {
+          try { history.replaceState(null, '', '#' + key + '-' + stop); } catch (err) { /* opaque origin */ }
+        }, 0);
+      });
+    });
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-coll-ledger]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-coll-ledger]')) init(scope);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "טבלת המידות",
+  "tag": "section",
+  "class": "env2-coll-ledger-section",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "להציג את הטבלה", "default": true,
+      "info": "כבוי = הקטע לא מודפס כלל." },
+    { "type": "select", "id": "show_on", "label": "באילו קולקציות",
+      "options": [
+        { "value": "auto", "label": "אוטומטי — רק כשרוב הקולקציה נמדדת" },
+        { "value": "always", "label": "בכל קולקציה שיש בה שתי מידות" }
+      ],
+      "default": "auto",
+      "info": "אוטומטי מדפיס את הטבלה רק כשיותר ממחצית המוצרים נמדדים באותה יחידה — גרילנדות במטרים ושבילים ביחידות. בתאורת קיר, בספוטים ובקטלוג אין יחידה משותפת והטבלה לא מודפסת." },
+    { "type": "select", "id": "unit_mode", "label": "יחידת המדידה",
+      "options": [
+        { "value": "auto", "label": "אוטומטי — היחידה של רוב המוצרים" },
+        { "value": "m", "label": "מטרים" },
+        { "value": "qty", "label": "יחידות" },
+        { "value": "led", "label": "נורות" },
+        { "value": "w", "label": "ואט" },
+        { "value": "k", "label": "קלווין" }
+      ],
+      "default": "auto" },
+    { "type": "header", "content": "הפתיח" },
+    { "type": "text", "id": "eyebrow", "label": "שורת פתיחה", "default": "אחרי המקום — המידה" },
+    { "type": "text", "id": "heading", "label": "כותרת — ציר של אורך", "default": "כמה מטר צריך?" },
+    { "type": "text", "id": "heading_alt", "label": "כותרת — ציר של כמות", "default": "כמה מנורות צריך?" },
+    { "type": "textarea", "id": "deck", "label": "המשפט — ציר של אורך",
+      "default": "{n_word} מהגרילנדות נמכרות לפי אורך. אלה כל האורכים שיש בקולקציה, עם המחיר של כל אחד — לפני שבוחרים.",
+      "info": "{n_word} מספר המוצרים הנמדדים במילים · {n} בספרות · {rows} מספר השורות · {count} מוצרים בקולקציה · {unit_word} שם היחידה." },
+    { "type": "textarea", "id": "deck_alt", "label": "המשפט — ציר של כמות",
+      "default": "{n_word} מהמנורות בקולקציה נמכרות לפי כמות. אלה כל הכמויות שיש, עם המחיר של כל אחת ועם המחיר ליחידה — לפני שבוחרים." },
+    { "type": "header", "content": "השורות" },
+    { "type": "checkbox", "id": "link_rows", "label": "כל שורה מקשרת לסרגל", "default": true,
+      "info": "המספר בכל שורה הופך לקישור אל סרגל המידה. עובד גם בלי JavaScript — הקישור גולל אל הסרגל." },
+    { "type": "text", "id": "link_label", "label": "תיאור הקישור לקורא מסך", "default": "לסרגל המידה" },
+    { "type": "checkbox", "id": "short_titles", "label": "לקצר את שמות המוצרים", "default": true,
+      "info": "חותך את שם המוצר במקף הראשון. כבוי = השם המלא." },
+    { "type": "select", "id": "show_unit_price", "label": "להציג מחיר ליחידה",
+      "options": [
+        { "value": "auto", "label": "אוטומטי — רק בציר של כמות" },
+        { "value": "always", "label": "תמיד" },
+        { "value": "never", "label": "אף פעם" }
+      ],
+      "default": "auto" },
+    { "type": "text", "id": "per_unit_word", "label": "המילה של המחיר ליחידה",
+      "info": "ריק = «₪ למטר» בציר של אורך ו«₪ ליחידה» בציר של כמות. בשבילים אפשר «₪ לנקודת אור»." },
+    { "type": "header", "content": "הערת השוליים" },
+    { "type": "textarea", "id": "foot_lead", "label": "פתיחת ההערה", "default": "{n_word} הנותרות נמדדות אחרת:",
+      "info": "{n_word} מספר המוצרים שאין להם שורה, במילים · {n} בספרות." },
+    { "type": "text", "id": "foot_area", "label": "נוסח למוצר הנמדד בשטח", "default": "{name} — לפי שטח, מ־{min} ועד {max}" },
+    { "type": "text", "id": "foot_or", "label": "תוספת למידה חלופית", "default": "או {value}" },
+    { "type": "text", "id": "foot_single", "label": "נוסח למוצר בדגם אחד", "default": "{name} — דגם אחד: {value}" },
+    { "type": "text", "id": "foot_one", "label": "נוסח למוצר באפשרות אחת", "default": "{name} — {value}" },
+    { "type": "text", "id": "foot_none", "label": "נוסח למוצר בלי ציר", "default": "{name} — נמכרת בגרסה אחת",
+      "info": "מוצר שהציר היחיד שלו הוא «Title» של שופיפיי. אף פעם לא מצטטים את המילה הזאת בעמוד." },
+    { "type": "text", "id": "foot_other", "label": "נוסח למוצר הנמדד ביחידה אחרת", "default": "{name} — לפי {unit}: {min} עד {max}" },
+    { "type": "text", "id": "foot_plain", "label": "נוסח למוצר שאינו נמדד", "default": "{name} — לפי {axis}" },
+    { "type": "range", "id": "foot_max", "label": "כמה מוצרים לנקוב בהערה", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "text", "id": "foot_more", "label": "סיום כשיש עוד", "default": "ועוד {n} מנורות שנמדדות אחרת." },
+    { "type": "textarea", "id": "foot_note", "label": "שורה חופשית בסוף" },
+    { "type": "checkbox", "id": "show_page_note", "label": "להציג את שורת העמוד האחד", "default": true }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "note",
+      "name": "הערה",
+      "settings": [
+        { "type": "paragraph", "content": "שורה נוספת מתחת להערת השוליים. המספרים בטבלה מחושבים מהמוצרים; ההערה הזאת היא המקום היחיד שאפשר לכתוב בו נתון שאינו נמצא בווריאציות." },
+        { "type": "textarea", "id": "text", "label": "הטקסט" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "טבלת המידות",
+      "blocks": [ { "type": "note" } ]
+    }
+  ]
+}
+{% endschema %}

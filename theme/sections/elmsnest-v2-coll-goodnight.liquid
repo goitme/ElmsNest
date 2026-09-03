@@ -1,0 +1,444 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — WINNING-SPEC 4.7 "the way out"  ·  #env2-coll-goodnight  ·  section 7 of 7.
+
+  4.7 in one line: the homepage's closing gesture, reused so the two pages rhyme — לילה טוב in Frank
+  Ruhl Libre 900, OUTLINE ONLY, never filled, over collection.image at 80% opacity under a sky-4
+  gradient at object-position 50% 70%; under it the cross-links as PLAIN ANCHORS ON ONE HAIRLINE —
+  the other places by name, then לכל N המוצרים. On /all the four places instead. It sits directly
+  above the Kalles footer, so it is the last thing on the page and it is a way out, not a wall.
+
+  ---------------------------------------------------------------- the three things it offers
+  1. the other places  - one anchor per sibling collection, its own title and its own count.
+  2. the whole catalogue - לכל N המוצרים, N = collections.all.products_count, never typed.
+  3. the small step    - the licensed photo promise and the mailto call to action, rendered by
+                         snippets/elmsnest-v2-pdp-photo-cta (the ONE file that holds both the
+                         mailto and the wa.me branch, and that strips a channel claim from a label
+                         a merchant types). This file never builds a URL and never writes a label.
+  No newsletter, no social column, no policy list, nothing fixed to a corner: those belong to the
+  Kalles footer directly below, and repeating them here is what makes a page feel like it ended twice.
+
+  ---------------------------------------------------------------- where the places come from
+  Blocks of type place, max four, each a collection picker. The block whose collection IS the
+  collection being viewed is skipped, so decor prints path/wall/spot and /all prints all four -
+  one file, five URLs, no handle hard-coded anywhere.
+  If no block carries a collection (a preset dropped in before the template is configured), the
+  section falls back to the store's own collections list, skips the current one, skips "all", skips
+  the empty ones, and takes at most four. auto_places turns that fallback off.
+  Counts are the collections' own all_products_count. Nothing on this screen is typed: 6.19.
+
+  ---------------------------------------------------------------- the word
+  The word is DECORATIVE and aria-hidden: it is the page's punctuation, not its content, and a
+  screen reader that reads it would announce a farewell as a heading. Its stroke brightens with the
+  lamp (.30 -> .62) and it is never filled - 3.2 and the homepage 4.8 both bar a filled display word
+  at this size. Being outline-only it also cannot be measured for contrast as text, which is right:
+  it carries no information.
+
+  ---------------------------------------------------------------- core REPORT 9.1
+  .env2-section a{color:inherit} is (0,1,1) and outranks .env2-btn{color} (0,1,0), so an ANCHOR
+  styled as the FILLED pill renders ink-on-glow at 1.21:1. There is no filled pill here: the links
+  are plain anchors that set their own colour from this section's own selectors, and the photo call
+  to action is the quiet .env2-link (or the outlined ghost) - never the filled one. Belt: the
+  non-ghost .env2-btn anchor is given the ink colour explicitly, so it can not inherit its way into
+  the bug even if a later hand adds one. Measured in _verify-goodnight.js: 0 failures.
+
+  ---------------------------------------------------------------- no JS / reduced motion
+  Everything is server-rendered text and ordinary anchors. With JavaScript disabled the core leaves
+  --lit at 1, so the garden is at its full 80% and the word is at its bright stroke immediately; every
+  link is a real href and the call to action is a real mailto. JS does exactly one thing: hand the
+  section root to the shared observer so the garden fades up over 2.4s when the page reaches it
+  (3.3, "goodnight - the garden - on arrival"). Reduced motion: lit at once, no transition.
+
+  Plumbing: elmsnest-v2-core (rendered by layout/theme.liquid on every template) supplies the tokens,
+  the fonts, the .env2-* helpers, [data-lamp] and window.env2. The night ground is painted by
+  elmsnest-v2-ground-collection, which elmsnest-v2-coll-scene renders once. This section renders no
+  global, paints no background, reads no option axis and prints no price.
+{%- endcomment -%}
+{%- liquid
+  assign env2_here = ''
+  if collection != blank and collection.handle != blank
+    assign env2_here = collection.handle
+  endif
+
+  comment
+    The places. Blocks first; the store's own list only as a fallback, and only when asked.
+    A block whose collection is the one being viewed is skipped, which is what turns the four
+    places on /all into the other three on a collection page, with no handle typed anywhere.
+  endcomment
+  assign env2_block_n = 0
+  assign env2_seen = ''
+  for block in section.blocks
+    if block.type != 'place'
+      continue
+    endif
+    comment
+      An unset collection picker is nil, and nil is compared through the string it RENDERS rather
+      than as an object: a captured handle is empty for nil, for a deleted collection and for a
+      picker nobody filled in, and it is never empty for a real one. That is one guard for all three.
+    endcomment
+    capture env2_bh
+      echo block.settings.collection.handle
+    endcapture
+    assign env2_bh = env2_bh | strip
+    if env2_bh == blank or env2_bh == env2_here
+      continue
+    endif
+    assign env2_key = '~' | append: env2_bh | append: '~'
+    unless env2_seen contains env2_key
+      assign env2_seen = env2_seen | append: env2_key
+      assign env2_block_n = env2_block_n | plus: 1
+    endunless
+  endfor
+
+  comment
+    The fallback list, built only when not one block carries a collection. It is printed from its own
+    parallel arrays because there is no block behind it to hang shopify_attributes on; the block list
+    above is printed straight off the blocks, so a block and its anchor can never drift apart.
+  endcomment
+  assign env2_place_titles = ''
+  assign env2_place_urls = ''
+  assign env2_place_counts = ''
+  assign env2_fallback_n = 0
+  if env2_block_n == 0 and section.settings.auto_places
+    for env2_c in collections
+      if env2_fallback_n >= 4
+        break
+      endif
+      if env2_c.handle == blank or env2_c.handle == 'all' or env2_c.handle == env2_here
+        continue
+      endif
+      if env2_c.all_products_count == 0
+        continue
+      endif
+      assign env2_place_titles = env2_place_titles | append: env2_c.title | append: '~~F~~'
+      assign env2_place_urls = env2_place_urls | append: env2_c.url | append: '~~F~~'
+      assign env2_place_counts = env2_place_counts | append: env2_c.all_products_count | append: '~~F~~'
+      assign env2_fallback_n = env2_fallback_n | plus: 1
+    endfor
+  endif
+  assign env2_titles = env2_place_titles | split: '~~F~~'
+  assign env2_urls = env2_place_urls | split: '~~F~~'
+  assign env2_counts = env2_place_counts | split: '~~F~~'
+  assign env2_place_n = env2_block_n | plus: env2_fallback_n
+
+  comment
+    The catalogue link. The number is collections.all.products_count and it is never typed: the
+    merchant writes [count] and Liquid substitutes it, wrapped in bdi like every numeral on the page.
+    On /all the visitor is already there, so the link is not printed.
+  endcomment
+  assign env2_all_n = ''
+  if collections.all != blank and collections.all.products_count != blank
+    assign env2_all_n = collections.all.products_count | plus: 0
+  endif
+  assign env2_all_url = section.settings.all_url | default: routes.all_products_collection_url
+  assign env2_all_label = ''
+  unless env2_here == 'all'
+    if env2_all_n != '' and env2_all_n > 0 and env2_all_url != blank and section.settings.all_label != blank
+      assign env2_all_num = '<bdi>' | append: env2_all_n | append: '</bdi>'
+      assign env2_all_label = section.settings.all_label | escape | replace: '[count]', env2_all_num
+    endif
+  endunless
+
+  comment
+    The garden. The four collection.images are the only four in the family with no baked text and no
+    cream ground, 3.6.4 - so the order is the merchant image, then this collection's own image, then
+    the first place's image, which is what gives /all - a collection that owns no image - a
+    photograph instead of a hole.
+    Each candidate is judged by the URL it RENDERS, never by the object: a collection with no image
+    yields nil on Shopify and an empty object elsewhere, and only the rendered url tells the two
+    apart. If the url is empty no img is printed at all and the section is the word on the night.
+  endcomment
+  assign env2_img = section.settings.image
+  capture env2_src
+    echo env2_img | image_url: width: 1800
+  endcapture
+  assign env2_src = env2_src | strip
+  if env2_src == blank and collection != blank
+    assign env2_img = collection.image
+    capture env2_src
+      echo env2_img | image_url: width: 1800
+    endcapture
+    assign env2_src = env2_src | strip
+  endif
+  if env2_src == blank
+    for block in section.blocks
+      if block.type != 'place'
+        continue
+      endif
+      assign env2_img = block.settings.collection.image
+      capture env2_src
+        echo env2_img | image_url: width: 1800
+      endcapture
+      assign env2_src = env2_src | strip
+      if env2_src != blank
+        break
+      endif
+    endfor
+  endif
+  assign env2_pos = section.settings.image_position | default: '50% 70%'
+
+  assign env2_mail_body = 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר.'
+  if collection != blank and collection.title != blank
+    assign env2_mail_body = env2_mail_body | append: ' הקולקציה ששוקלים: ' | append: collection.title
+  endif
+  assign env2_cta_style = section.settings.cta_style | default: 'link'
+-%}
+<section id="env2-coll-goodnight" data-env2-coll-goodnight data-lamp class="env2-section env2-coll env2-coll-goodnight" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.7" aria-label="{{ section.settings.big_word | default: 'לילה טוב' | escape }}">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  {%- if env2_src != blank -%}
+    <div class="env2-coll-goodnight__garden" aria-hidden="true" style="--env2-goodnight-pos:{{ env2_pos }}">
+      <img class="env2-coll-goodnight__img"
+           src="{{ env2_src }}"
+           srcset="{{ env2_img | image_url: width: 900 }} 900w, {{ env2_img | image_url: width: 1400 }} 1400w, {{ env2_img | image_url: width: 1800 }} 1800w, {{ env2_img | image_url: width: 2400 }} 2400w"
+           sizes="100vw" width="1800" height="1013" alt="" loading="lazy" decoding="async">
+    </div>
+  {%- endif -%}
+
+  <div class="env2-wrap env2-coll-goodnight__wrap">
+
+    {%- if section.settings.big_word != blank -%}
+      <p class="env2-coll-goodnight__big" aria-hidden="true">{{ section.settings.big_word | escape }}</p>
+    {%- endif -%}
+
+    {%- if env2_place_n > 0 or env2_all_label != '' -%}
+      <nav class="env2-coll-goodnight__next" aria-label="{{ section.settings.links_label | default: 'להמשיך אל' | escape }}">
+        {%- if section.settings.links_label != blank -%}
+          <span class="env2-kicker env2-coll-goodnight__label">{{ section.settings.links_label | escape }}</span>
+        {%- endif -%}
+
+        {%- if env2_place_n > 0 -%}
+          <ul class="env2-coll-goodnight__places">
+            {%- comment -%}
+              Printed straight off the blocks: the anchor and the block.shopify_attributes it belongs
+              to are written in the same iteration, so a skipped block (the place you are standing in)
+              can never shift a name onto the wrong theme-editor handle.
+            {%- endcomment -%}
+            {%- assign env2_drawn = '' -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type != 'place' -%}{%- continue -%}{%- endif -%}
+              {%- assign env2_bc = block.settings.collection -%}
+              {%- capture env2_bh -%}{{ env2_bc.handle }}{%- endcapture -%}
+              {%- assign env2_bh = env2_bh | strip -%}
+              {%- if env2_bh == blank or env2_bh == env2_here -%}{%- continue -%}{%- endif -%}
+              {%- assign env2_bkey = '~' | append: env2_bh | append: '~' -%}
+              {%- if env2_drawn contains env2_bkey -%}{%- continue -%}{%- endif -%}
+              {%- assign env2_drawn = env2_drawn | append: env2_bkey -%}
+              <li class="env2-coll-goodnight__place" {{ block.shopify_attributes }}>
+                <a class="env2-coll-goodnight__a" href="{{ env2_bc.url | escape }}">
+                  <span class="env2-coll-goodnight__name">{{ block.settings.label | default: env2_bc.title | escape }}</span>
+                  {%- if section.settings.show_counts and env2_bc.all_products_count != blank -%}
+                    <span class="env2-coll-goodnight__n"><bdi>{{ env2_bc.all_products_count }}</bdi></span>
+                  {%- endif -%}
+                </a>
+              </li>
+            {%- endfor -%}
+            {%- comment -%}
+              Bounded by the count the pre-pass produced, not by the array's length: Shopify's split
+              drops a trailing empty field and other engines keep it, and an unbounded loop would
+              print a fourth, empty, hrefless anchor wherever it does not.
+            {%- endcomment -%}
+            {%- for env2_t in env2_titles -%}
+              {%- if forloop.index > env2_fallback_n or env2_t == blank -%}{%- break -%}{%- endif -%}
+              <li class="env2-coll-goodnight__place">
+                <a class="env2-coll-goodnight__a" href="{{ env2_urls[forloop.index0] | escape }}">
+                  <span class="env2-coll-goodnight__name">{{ env2_t | escape }}</span>
+                  {%- if section.settings.show_counts and env2_counts[forloop.index0] != blank -%}
+                    <span class="env2-coll-goodnight__n"><bdi>{{ env2_counts[forloop.index0] }}</bdi></span>
+                  {%- endif -%}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if env2_all_label != '' -%}
+          <a class="env2-coll-goodnight__all" href="{{ env2_all_url | escape }}">{{ env2_all_label }}</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+
+    {%- if section.settings.step_line != blank or section.settings.cta_label != blank -%}
+      <div class="env2-coll-goodnight__step">
+        {%- if section.settings.step_line != blank -%}
+          <p class="env2-coll-goodnight__line">{{ section.settings.step_line | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank -%}
+          <p class="env2-coll-goodnight__cta">
+            {%- render 'elmsnest-v2-pdp-photo-cta',
+                label: section.settings.cta_label,
+                style: env2_cta_style,
+                subject: section.settings.mail_subject,
+                body: env2_mail_body,
+                class: 'env2-coll-goodnight__photo' -%}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- 4.7 the way out: one outlined word over the garden, then two hairlines of plain anchors ----------
+   The seventh and last shape on the page (do-not 20): scene photo+card · ruler numeral+rail ·
+   bands five compositions · span rungs · ledger numbered rows · terms two columns · and this —
+   a display word that is only an outline, with the way onward written under it in ordinary links.
+   The section paints no background: the ground is the pixel-measured body gradient from
+   elmsnest-v2-ground-collection, and the only things this file puts above it are the star layer at
+   the 3.1 depth for this position (.70) and the photograph. */
+.env2-coll-goodnight{padding-block:clamp(96px,11vw,150px) 44px;isolation:isolate;overflow:hidden;min-block-size:clamp(520px,60svh,760px);display:flex;align-items:flex-end}
+.env2-coll-goodnight__wrap{position:relative;z-index:1;inline-size:min(var(--env2-w),100% - 2*var(--env2-gut))}
+
+/* the garden: collection.image at 80% once lit, object-position 50% 70% (4.7), under a sky-4 veil.
+   The veil is heaviest at the top seam — where the terms section above must not be cut by a hard
+   edge — and at the foot, where the links are read; it thins across the middle band the word sits
+   in, so the outline has a garden inside it rather than a flat night. The colour is #020306, which
+   is --env2-sky-4; it is written as rgba here because a gradient stop needs the alpha and the token
+   is a hex. */
+.env2-coll-goodnight__garden{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:calc(.8*var(--lit,1));transition:opacity 2.4s cubic-bezier(.2,.7,.2,1);-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0,#000 22%);mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0,#000 22%)}
+.env2-coll-goodnight__garden::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,3,6,.92) 0,rgba(2,3,6,.46) 26%,rgba(2,3,6,.62) 58%,rgba(2,3,6,.9) 82%,rgba(2,3,6,.95) 100%)}
+.env2-coll-goodnight__img{inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--env2-goodnight-pos,50% 70%);display:block;filter:saturate(1.06) contrast(1.04) brightness(1.08)}
+
+/* the word: outline only, NEVER filled (4.7, 3.2). The 1.5px stroke brightens with the lamp
+   (.30 -> .62) and a faint breath of glow sits behind it. It is aria-hidden — punctuation, not copy. */
+.env2-coll-goodnight__big{margin:0 0 clamp(34px,5vw,68px);font-family:var(--env2-serif);font-weight:900;font-size:clamp(52px,10.5vw,164px);line-height:.86;letter-spacing:.01em;color:transparent;-webkit-text-stroke:1.5px rgba(244,238,227,calc(.3 + .32*var(--lit,1)));text-shadow:0 0 40px rgba(255,211,148,calc(.14*var(--lit,1)));transition:-webkit-text-stroke-color 2.4s .4s,text-shadow 2.4s .4s;white-space:nowrap;user-select:none}
+
+/* hairline 1 — the places and the catalogue, plain anchors on ONE rule (4.7) */
+.env2-coll-goodnight__next{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px clamp(24px,3vw,44px);padding-block-start:18px;border-block-start:1px solid var(--env2-hair)}
+.env2-coll-goodnight__label{flex:none;align-self:center;font-family:var(--env2-sans);font-weight:500;font-size:11.5px;line-height:1.3;letter-spacing:.16em;color:var(--env2-gold)}
+.env2-coll-goodnight__places{flex:1 1 auto;min-inline-size:0;list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 clamp(20px,2.6vw,38px)}
+.env2-coll-goodnight__place{margin:0}
+/* the 44px tap floor (6.13) is bought with padding on BOTH viewports; the rule under the word is a
+   text-decoration so it tracks the glyphs whatever the padding does. */
+.env2-coll-goodnight__a{display:inline-flex;align-items:baseline;gap:9px;padding-block:12px;font-family:var(--env2-sans);font-weight:400;font-size:clamp(16px,1.3vw,19px);line-height:1.4;color:var(--env2-ink);text-decoration:none;transition:color .3s}
+/* the rule goes on the NAME, not on the anchor: a flex container does not pass its text-decoration
+   down to its flex items, so an underline set here would draw nothing — and on mobile, where the row
+   is justified space-between, it would have spanned the gap and read as a hairline, not a link. */
+.env2-coll-goodnight__name{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:rgba(244,238,227,.3);transition:color .3s,text-decoration-color .3s}
+.env2-coll-goodnight__a:hover,.env2-coll-goodnight__a:focus-visible{color:var(--env2-glow)}
+.env2-coll-goodnight__a:hover .env2-coll-goodnight__name,.env2-coll-goodnight__a:focus-visible .env2-coll-goodnight__name{text-decoration-color:var(--env2-glow)}
+/* ink-2, not mute: the count is read off a PHOTOGRAPH, and over a lit bulb in the path scene the
+   mute grey measured 3.72:1 on a phone. Measured again at ink-2 in _verify-goodnight.js. */
+.env2-coll-goodnight__n{font-family:var(--env2-sans);font-weight:300;font-size:14px;color:var(--env2-ink-2);font-variant-numeric:tabular-nums}
+.env2-coll-goodnight__n bdi{unicode-bidi:isolate}
+/* inline-block, never inline-flex: the catalogue label is ONE run of text with a bdi inside it, and a
+   flex container drops the whitespace between its items — לכל 27 המוצרים would set as לכל27המוצרים. */
+/* a.… , not .… : the core's .env2-section a{text-decoration:none} is (0,1,1) and a bare class is
+   (0,1,0), so a rule written the obvious way loses and the catalogue link renders with no underline
+   at all — the same shape of defect as the ink-on-glow anchor in core REPORT 9.1. Measured. */
+.env2-coll-goodnight a.env2-coll-goodnight__all{flex:none;margin-inline-start:auto;display:inline-block;padding-block:12px;font-family:var(--env2-sans);font-weight:500;font-size:clamp(15px,1.2vw,17px);line-height:1.4;color:var(--env2-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:rgba(244,238,227,.4);transition:color .3s,text-decoration-color .3s}
+.env2-coll-goodnight a.env2-coll-goodnight__all:hover,.env2-coll-goodnight a.env2-coll-goodnight__all:focus-visible{color:var(--env2-glow);text-decoration-color:var(--env2-glow)}
+.env2-coll-goodnight__all bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+/* hairline 2 — the small step: the licensed photo promise and the mailto. Quiet by design: it is a
+   step, not the page's call to action, and the page has already made that offer once in 4.6. */
+.env2-coll-goodnight__step{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px clamp(24px,3vw,44px);margin-block-start:4px;padding-block:20px 4px;border-block-start:1px solid var(--env2-hair)}
+.env2-coll-goodnight__line{margin:0;flex:1 1 30ch;min-inline-size:0;font-family:var(--env2-sans);font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:1.6;color:var(--env2-ink-2);max-inline-size:52ch;text-wrap:pretty}
+.env2-coll-goodnight__cta{margin:0;flex:none;line-height:1}
+/* core REPORT 9.1 belt: the ghost sets its own colour, and a filled pill ANCHOR — which nothing here
+   renders — is given the ink explicitly so it can never inherit its way to 1.21:1. */
+.env2-coll-goodnight .env2-btn--ghost,.env2-coll-goodnight .env2-btn--ghost:hover,.env2-coll-goodnight .env2-btn--ghost:focus-visible{color:var(--env2-ink)}
+.env2-coll-goodnight a.env2-btn:not(.env2-btn--ghost){color:var(--env2-btn-ink)}
+.env2-coll-goodnight .env2-btn{min-block-size:48px}
+/* the photo link wears the section's own rule — a text-decoration that tracks the glyphs — instead of
+   the core .env2-link border, which with a 12px tap pad would float as a second hairline under it. */
+.env2-coll-goodnight .env2-link.env2-coll-goodnight__photo{display:inline-flex;align-items:center;min-block-size:44px;padding-block:13px;font-size:15px;color:var(--env2-ink);border-block-end:0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:rgba(244,238,227,.4)}
+.env2-coll-goodnight .env2-link.env2-coll-goodnight__photo:hover,.env2-coll-goodnight .env2-link.env2-coll-goodnight__photo:focus-visible{color:var(--env2-glow);text-decoration-color:var(--env2-glow)}
+
+/* ---------- mobile: the word first and smaller, then the two hairlines stacked, 44px+ everywhere ---------- */
+@media (max-width:900px){
+  .env2-coll-goodnight{padding-block:72px 32px;min-block-size:clamp(460px,72svh,620px)}
+  .env2-coll-goodnight__garden::after{background:linear-gradient(180deg,rgba(2,3,6,.88) 0,rgba(2,3,6,.46) 20%,rgba(2,3,6,.82) 44%,rgba(2,3,6,.93) 70%,rgba(2,3,6,.96) 100%)}
+  .env2-coll-goodnight__big{margin-block-end:30px;font-size:clamp(46px,13vw,64px);line-height:.9}
+  .env2-coll-goodnight__next{gap:2px 20px;padding-block-start:14px}
+  .env2-coll-goodnight__label{flex:1 0 100%;align-self:auto;margin-block-end:6px}
+  .env2-coll-goodnight__places{flex:1 0 100%;flex-direction:column;align-items:stretch;gap:0}
+  .env2-coll-goodnight__a{inline-size:100%;justify-content:space-between;padding-block:14px;font-size:16px}
+  .env2-coll-goodnight a.env2-coll-goodnight__all{flex:1 0 100%;margin-inline-start:0;padding-block:14px;font-size:16px}
+  .env2-coll-goodnight__step{flex-direction:column;align-items:flex-start;gap:12px;padding-block:18px 4px}
+  .env2-coll-goodnight__line{flex:1 0 100%;max-inline-size:none;font-size:15px}
+  .env2-coll-goodnight__cta{flex:1 0 100%}
+  .env2-coll-goodnight__cta .env2-btn{inline-size:100%}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* 4.7 the way out: the section root is the lamp — hand it to the shared observer so the garden
+   fades from 0 to its 80% over 2.4s when the page reaches it (3.3, "goodnight — the garden — on
+   arrival"). That is the whole of this section's JavaScript. Without window.env2, or with JS off
+   entirely, --lit stays 1 and the garden and the word are at full strength from the first paint. */
+(function () {
+  function init(el) {
+    if (el.__env2CollGoodnight) return;
+    el.__env2CollGoodnight = true;
+    if (window.env2 && window.env2.observe) {
+      window.env2.observe(el);
+    } else {
+      if (el.hasAttribute('data-lamp')) el.classList.add('lit');
+      el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+    }
+  }
+  function boot(root) {
+    (root && root.querySelectorAll ? root : document).querySelectorAll('[data-env2-coll-goodnight]').forEach(init);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  else boot(document);
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "לילה טוב",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "הגינה" },
+    { "type": "image_picker", "id": "image", "label": "תמונה (דורסת את תמונת הקולקציה)", "info": "ריק = תמונת הקולקציה הנוכחית. בעמוד כל המוצרים — תמונת הקולקציה הראשונה ברשימה למטה." },
+    { "type": "select", "id": "image_position", "label": "מיקוד התמונה", "default": "50% 70%", "options": [
+      { "value": "50% 30%", "label": "גבוה" },
+      { "value": "50% 50%", "label": "מרכז" },
+      { "value": "50% 70%", "label": "נמוך (ברירת מחדל)" },
+      { "value": "50% 85%", "label": "נמוך מאוד" },
+      { "value": "30% 70%", "label": "לצד ההתחלה" }
+    ] },
+    { "type": "header", "content": "המילה הגדולה" },
+    { "type": "text", "id": "big_word", "label": "המילה (קו מתאר בלבד, דקורטיבית)", "default": "לילה טוב" },
+    { "type": "header", "content": "לאן ממשיכים" },
+    { "type": "text", "id": "links_label", "label": "תווית השורה", "default": "להמשיך אל" },
+    { "type": "checkbox", "id": "show_counts", "label": "להציג את מספר המנורות בכל קולקציה", "default": true },
+    { "type": "checkbox", "id": "auto_places", "label": "אם לא נבחרו קולקציות למטה — להשלים מהחנות", "default": true },
+    { "type": "text", "id": "all_label", "label": "הקישור לקטלוג", "default": "לכל [count] המוצרים ←", "info": "‏[count] מוחלף במספר המוצרים בחנות. לא מוצג בעמוד כל המוצרים." },
+    { "type": "url", "id": "all_url", "label": "יעד הקישור לקטלוג", "info": "ריק = /collections/all" },
+    { "type": "header", "content": "הצעד הקטן" },
+    { "type": "text", "id": "step_line", "label": "השורה", "default": "שולחים תמונה של המקום ואנחנו בודקים התאמה לפני ההזמנה." },
+    { "type": "text", "id": "cta_label", "label": "טקסט הקישור", "default": "לשלוח תמונה של המקום" },
+    { "type": "select", "id": "cta_style", "label": "צורת הקישור", "default": "link", "options": [
+      { "value": "link", "label": "קישור שקט" },
+      { "value": "ghost", "label": "כפתור מתאר" }
+    ] },
+    { "type": "text", "id": "mail_subject", "label": "נושא המייל", "default": "בדיקת התאמה — תמונה של המקום" }
+  ],
+  "blocks": [
+    {
+      "type": "place",
+      "name": "מקום",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "קולקציה" },
+        { "type": "text", "id": "label", "label": "שם חלופי", "info": "ריק = שם הקולקציה." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "לילה טוב",
+      "blocks": [
+        { "type": "place" },
+        { "type": "place" },
+        { "type": "place" },
+        { "type": "place" }
+      ]
+    }
+  ]
+}
+{% endschema %}

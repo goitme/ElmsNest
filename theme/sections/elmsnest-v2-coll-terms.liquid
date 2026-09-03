@@ -1,0 +1,363 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — WINNING-SPEC 4.6 "the four numbers"  ·  #env2-coll-terms  ·  section 6 of 7.
+
+  4.6 in one line: the PDP's terms ledger, lifted onto the collection page as a 2-COLUMN HAIRLINE
+  LEDGER — never four boxes. The shape the winner gets wrong on mobile is a 2x2 bordered grid
+  (evening shot-mobile.png, slice 4); this file cannot draw one: the ledger is a two-column grid
+  (numeral | term) with four full-width rows on hairlines, and under 900px it is one column.
+
+  ---------------------------------------------------------------- the copy, and where it comes from
+  The four numbers are the LICENSED consumer wording, verbatim from 4.6 and identical to the PDP's
+  4.6 and to the homepage terms strip. No new claim is written here and no product field is read, so
+  this section renders correctly and identically on all five collection URLs:
+
+    0     - 4 -  משלוח לנקודת איסוף — חינם. עד הבית 29.90 ₪.
+    8-17  - 4 -  ימי עסקים לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח. ייתכן משלוח ממחסן מחוץ לישראל.
+    14    - 4 -  יום לביטול מקבלת המוצר, לפי חוק הגנת הצרכן. דמי ביטול עד 5% או 100 ₪ — הנמוך מביניהם.
+    1     - 4 -  תמונה — שולחים תמונה של המקום ואנחנו בודקים התאמה לפני ההזמנה.
+
+  Each row is numeral + unit + a bold licensed headline + the licensed sentence, so the 4.6 string
+  reads back in its own order once the layout supplies the space between the numeral and the words.
+
+  ---------------------------------------------------------------- the ONE number that is Liquid
+  Everything above is store terms, not catalogue data, so nothing above may be derived. The one
+  figure on this screen that IS the collection's own is the deck's count, and it is never typed:
+  the merchant writes [count] and Liquid substitutes collection.products_count (7 / 8 / 6 / 6 / 27),
+  wrapped in bdi like every other numeral on the page. When there is no collection in scope, or it
+  is empty, the count sentence is not printed at all — deck_no_count is used instead, so the page can
+  never say "0 המנורות". This is the whole of 6.19 that applies to a section of licensed wording.
+
+  ---------------------------------------------------------------- the photo link (4.6 mailto rule)
+  settings.whatsapp_number is empty, so the call to action is a mailto and the word for the other
+  channel can not appear: this file never builds the URL and never writes the label — it renders
+  snippets/elmsnest-v2-pdp-photo-cta with style 'ghost', the one place both branches live, which
+  strips any such claim from a label a merchant types. The prefilled body names the COLLECTION
+  (the PDP names the product), which is the second and last thing Liquid contributes here.
+  The note sits beside it, as 4.6 asks: כאשר מידע אינו מאומת, איננו מציגים אותו כעובדה.
+
+  ---------------------------------------------------------------- core REPORT 9.1
+  The core's .env2-section a{color:inherit} is (0,1,1) and outranks .env2-btn{color} (0,1,0), so an
+  ANCHOR styled as the filled pill renders ink-on-glow at 1.21:1. There is no filled pill in this
+  section: the only control is the outlined ghost, and its colour is set from this section's own
+  (0,2,0) selector so it can not inherit anything else. Measured in _verify-terms.js: 0 failures.
+
+  ---------------------------------------------------------------- bidi
+  Every digit-leading token of a headline, a sentence or the deck is wrapped in bdi at render time,
+  so "1–3" never flips to "3–1" inside a Hebrew sentence and "8–17" keeps its order. The wrapper
+  splits on spaces and never inside a token, so a slash pair stays inside ONE bdi (6.17). It runs
+  ONCE over the deck and all four rows joined, which is why the model is built and split below.
+
+  ---------------------------------------------------------------- no JS / reduced motion
+  Everything is server-rendered text. With JavaScript disabled the four numerals are lit (the core
+  sets --lit:1 unless html.env2-js), every licensed sentence is present, and the two link kinds are
+  ordinary anchors — the ghost is a mailto and the foot links are plain hrefs. JS does exactly one
+  thing: light the four numerals in reading order, 120ms apart (3.3). That is why the rows are
+  data-lamp="manual" — the core's shared observer skips manual lamps, except under reduced motion,
+  where it lights all four at once with no transition.
+
+  Plumbing: elmsnest-v2-core (rendered by layout/theme.liquid on every template) supplies the
+  tokens, the fonts, the .env2-* helpers and window.env2. The night ground is painted by
+  elmsnest-v2-ground-collection, which elmsnest-v2-coll-scene renders once. This section renders no
+  global, paints no background, owns no image, reads no option axis and prints no price.
+{%- endcomment -%}
+{%- liquid
+  assign digits = '0123456789'
+  assign line_blocks = section.blocks | where: 'type', 'number'
+
+  assign env2_count = 0
+  if collection != blank and collection.products_count != blank
+    assign env2_count = collection.products_count | plus: 0
+  endif
+
+  assign env2_deck_src = section.settings.deck
+  if env2_count < 1 or env2_deck_src == blank
+    assign env2_deck_src = section.settings.deck_no_count
+  endif
+  assign env2_count_txt = env2_count | append: ''
+  assign env2_deck_src = env2_deck_src | default: '' | replace: '[count]', env2_count_txt
+
+  # ONE bidi pass over the deck and all four rows: deck ~~R~~ headline ~~F~~ sentence ~~R~~ …
+  # Built with append rather than literal text so Shopify's whitespace trimming can not eat the
+  # separators, and every piece is escaped before a bdi is injected into it.
+  assign env2_src = env2_deck_src | strip
+  for env2_b in line_blocks
+    assign env2_src = env2_src | append: ' ~~R~~ ' | append: env2_b.settings.headline | append: ' ~~F~~ ' | append: env2_b.settings.sub
+  endfor
+  assign env2_out = ''
+  assign env2_words = env2_src | strip | escape | split: ' '
+  for w in env2_words
+    assign c = w | slice: 0, 1
+    if c != blank and digits contains c
+      assign tok = '<bdi>' | append: w | append: '</bdi>'
+    else
+      assign tok = w
+    endif
+    if forloop.first
+      assign env2_out = tok
+    else
+      assign env2_out = env2_out | append: ' ' | append: tok
+    endif
+  endfor
+  assign env2_out = env2_out | replace: '</bdi> ₪', '</bdi>&nbsp;₪' | replace: '</bdi> %', '</bdi>&nbsp;%'
+  assign env2_parts = env2_out | split: '~~R~~'
+  assign env2_deck = env2_parts[0] | strip
+
+  assign env2_mail_body = 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר.'
+  if collection != blank and collection.title != blank
+    assign env2_mail_body = env2_mail_body | append: ' הקולקציה ששוקלים: ' | append: collection.title
+  endif
+-%}
+<section id="env2-coll-terms" data-env2-coll-terms class="env2-section env2-coll env2-coll-terms" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.55"{% if section.settings.heading != blank %} aria-labelledby="env2-coll-terms-h2"{% endif %}>
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-coll-terms__wrap">
+    <div class="env2-coll-terms__head">
+      <div class="env2-coll-terms__title">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="env2-eyebrow env2-coll-terms__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 id="env2-coll-terms-h2" class="env2-h env2-coll-terms__h2">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if env2_deck != '' -%}
+        <p class="env2-coll-terms__deck">{{ env2_deck }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if line_blocks.size > 0 -%}
+      <ol class="env2-coll-terms__ledger" data-env2-coll-terms-ledger>
+        {%- for block in line_blocks -%}
+          {%- liquid
+            assign env2_pair = env2_parts[forloop.index] | default: '' | split: '~~F~~'
+            assign env2_head = env2_pair[0] | default: '' | strip
+            assign env2_sub = env2_pair[1] | default: '' | strip
+          -%}
+          <li class="env2-coll-terms__line" data-lamp="manual" {{ block.shopify_attributes }}>
+            <div class="env2-coll-terms__t">
+              {%- if block.settings.numeral != blank or block.settings.unit != blank -%}
+                <span class="env2-coll-terms__n">
+                  {%- if block.settings.numeral != blank -%}
+                    <bdi class="env2-coll-terms__num">{{ block.settings.numeral }}</bdi>
+                  {%- endif -%}
+                  {%- if block.settings.unit != blank -%}
+                    <small class="env2-coll-terms__unit">{{ block.settings.unit }}</small>
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+              {%- if env2_head != '' -%}
+                <b class="env2-coll-terms__b">{{ env2_head }}</b>
+              {%- endif -%}
+            </div>
+            {%- if env2_sub != '' -%}
+              <p class="env2-coll-terms__p">{{ env2_sub }}</p>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank or section.settings.cta_note != blank -%}
+      <div class="env2-coll-terms__act">
+        {%- if section.settings.cta_label != blank -%}
+          <p class="env2-coll-terms__cta">
+            {%- render 'elmsnest-v2-pdp-photo-cta',
+                label: section.settings.cta_label,
+                style: 'ghost',
+                subject: section.settings.mail_subject,
+                body: env2_mail_body,
+                class: 'env2-coll-terms__btn' -%}
+          </p>
+        {%- endif -%}
+        {%- if section.settings.cta_note != blank -%}
+          <p class="env2-coll-terms__note">{{ section.settings.cta_note }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.foot_links != blank -%}
+      <nav class="env2-coll-terms__foot" aria-label="עמודי מדיניות">{{ section.settings.foot_links }}</nav>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+/* ---------- 4.6 collection terms: a 2-COLUMN hairline ledger — numeral | term ----------
+   Two columns, four full-width rows, hairlines between; never four boxes, never a 2x2 grid, and
+   never a horizontally scrolling table on a phone. The section paints no background: the ground is
+   the pixel-measured body gradient from elmsnest-v2-ground-collection (3.1) and the only thing this
+   file puts above it is the star layer, at the 3.1 depth for this position (.55). */
+.env2-coll-terms{padding-block:120px 96px}
+.env2-coll-terms__wrap{position:relative;z-index:1}
+
+/* head: eyebrow + h2 at the start, the deck at the end, bottoms aligned. The deck is Hebrew body
+   copy, so it is NOT text-align:end — in RTL that is flush-left and puts the ragged edge on the
+   side the eye returns to; justify-self does the placing instead. */
+/* the head runs the ledger's own two tracks, so the deck sits exactly over the sentence column */
+.env2-coll-terms__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,42ch);align-items:end;gap:24px clamp(28px,4vw,72px);margin-block-end:48px}
+.env2-coll-terms__title{min-width:0}
+.env2-coll-terms__eyebrow{margin-block-end:20px}
+.env2-coll-terms__h2.env2-h{font-size:clamp(30px,4.2vw,60px);max-width:16ch}
+.env2-coll-terms__deck{justify-self:start;max-width:42ch;margin:0 0 .3em;font-family:var(--env2-sans);font-weight:300;font-size:clamp(16px,1.4vw,20px);line-height:1.55;color:var(--env2-ink-2);text-wrap:balance}
+.env2-coll-terms__deck bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+/* the ledger: a hairline above every row and ONE continuous rule closing it, so it stays closed
+   whether the merchant keeps four numbers, three, or two. */
+/* The ledger's TWO columns are "the number and what it is" at the start and "the sentence" at the
+   end, on one shared baseline, four full-width rows on hairlines. Not four boxes, not a 2x2 grid
+   (4.6), and not a table that has to scroll sideways on a phone: under 900px it is one column. */
+.env2-coll-terms__ledger{list-style:none;margin:0;padding:0;border-block-end:1px solid var(--env2-hair)}
+.env2-coll-terms__line{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,42ch);gap:14px clamp(28px,4vw,72px);align-items:baseline;margin:0;padding-block:32px;border-block-start:1px solid var(--env2-hair)}
+
+/* the numeral: FRL 500 tabular, glow, unit at .32em in ink-2. --lit is 0 only while html.env2-js
+   has not lit this row yet; no JS and reduced motion are both 1, so it is never dim there. */
+.env2-coll-terms__n{flex:none;min-inline-size:244px;white-space:nowrap;font-family:var(--env2-serif);font-weight:500;font-size:clamp(46px,4.6vw,68px);line-height:.92;letter-spacing:-.02em;color:var(--env2-glow);font-variant-numeric:tabular-nums;text-shadow:0 0 34px rgba(255,211,148,.22);opacity:calc(.34 + .66*var(--lit,1));transition:opacity 1.1s cubic-bezier(.2,.7,.2,1)}
+.env2-coll-terms__num{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.env2-coll-terms__unit{display:inline;font-family:var(--env2-serif);font-weight:400;font-size:.32em;line-height:1;letter-spacing:0;color:var(--env2-ink-2);margin-inline-start:.26em;text-shadow:none}
+
+/* the term: the licensed headline, then the licensed sentence. 18px / 15px, both above the 13px
+   caption floor; the sentence is the legal wording and is never shortened. */
+.env2-coll-terms__t{min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px clamp(20px,2.4vw,34px)}
+.env2-coll-terms__b{min-width:0;flex:1 1 20ch;font-family:var(--env2-sans);font-weight:500;font-size:18px;line-height:1.4;color:var(--env2-ink)}
+.env2-coll-terms__p{margin:0;min-width:0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.6;color:var(--env2-ink-2)}
+.env2-coll-terms__b bdi,.env2-coll-terms__p bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+/* the call to action, in the numeral column, with the note beside it (4.6). The control is the
+   OUTLINED ghost and its colour is set from this (0,2,0) selector, which outranks the core's
+   .env2-section a{color:inherit} (0,1,1) — core REPORT 9.1. 48px tall, the 3.2 target. */
+.env2-coll-terms__act{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,42ch);gap:16px clamp(28px,4vw,72px);align-items:center;padding-block:30px;border-block-end:1px solid var(--env2-hair)}
+.env2-coll-terms__cta{margin:0;line-height:1}
+.env2-coll-terms .env2-btn--ghost{color:var(--env2-ink);min-block-size:48px}
+.env2-coll-terms .env2-btn--ghost:hover,.env2-coll-terms .env2-btn--ghost:focus-visible{color:var(--env2-ink)}
+.env2-coll-terms__note{margin:0;min-width:0;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.6;color:var(--env2-mute)}
+
+/* foot: the policy pages, quiet, hairline-underlined. 14px — the 3.2 floor for an
+   information-bearing line, not the 12.5px the v1 footer strip used for the same nav. */
+.env2-coll-terms__foot{margin-block-start:26px;font-family:var(--env2-sans);font-weight:400;font-size:14px;line-height:1.7;color:var(--env2-mute)}
+.env2-coll-terms__foot p{margin:0}
+/* The 44px tap-target floor (6.13) is bought with padding on BOTH viewports — a policy link is a
+   link a thumb has to hit. A border-block-end would then float 12px under the word instead of
+   underlining it, so the rule is a text-decoration, which tracks the glyphs whatever the padding. */
+.env2-coll-terms__foot a{display:inline-block;color:inherit;padding-block:12px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgba(143,149,163,.55);transition:color .3s,text-decoration-color .3s}
+.env2-coll-terms__foot a:hover,.env2-coll-terms__foot a:focus-visible{color:var(--env2-glow);text-decoration-color:var(--env2-glow)}
+
+/* ---------- mobile: one column, four rows, no 2x2 grid, 44px+ tap targets ---------- */
+@media (max-width:900px){
+  .env2-coll-terms{padding-block:72px 56px}
+  .env2-coll-terms__head{grid-template-columns:1fr;gap:14px;margin-block-end:28px}
+  .env2-coll-terms__eyebrow{margin-block-end:14px}
+  .env2-coll-terms__h2.env2-h{max-width:none}
+  .env2-coll-terms__deck{justify-self:start;max-width:none;margin-block-end:0;font-size:16px;text-wrap:pretty}
+  .env2-coll-terms__line{grid-template-columns:1fr;gap:12px;padding-block:26px}
+  .env2-coll-terms__n{min-inline-size:0;font-size:46px}
+  .env2-coll-terms__t{gap:10px}
+  .env2-coll-terms__b{flex:1 1 100%;font-size:17px}
+  .env2-coll-terms__act{grid-template-columns:1fr;gap:14px;padding-block:26px}
+  .env2-coll-terms__cta .env2-btn{inline-size:100%}
+  .env2-coll-terms__foot{line-height:1.5}
+  .env2-coll-terms__foot a{padding-block:13px}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* 4.6 motion (3.3): "the four numerals, in reading order, 120 ms stagger" — the ONLY thing this
+   file does. The section is complete without it: every word is server-rendered and the core sets
+   --lit:1 whenever html.env2-js is absent or reduced motion is on, so the numerals are lit and the
+   ledger is readable. The rows are [data-lamp="manual"] so the core's shared observer leaves the
+   stagger here (it still lights all four at once under reduced motion, which is what 3.3 asks for).
+   Ends with the CONTRACT's env2.observe fallback line. */
+(function () {
+  function init(el) {
+    if (el.__env2CollTerms) return;
+    el.__env2CollTerms = true;
+
+    var lines = Array.prototype.slice.call(el.querySelectorAll('[data-lamp="manual"]'));
+    var lightLine = function (l) {
+      if (!l || l.classList.contains('lit')) return;
+      if (window.env2 && window.env2.light) { window.env2.light(l); } else { l.classList.add('lit'); }
+    };
+    var lightAll = function (stagger) {
+      lines.forEach(function (l, i) {
+        if (stagger) { window.setTimeout(function () { lightLine(l); }, i * 120); } else { lightLine(l); }
+      });
+    };
+    var rm = (window.env2 && window.env2.rm) ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    if (!lines.length) {
+      /* nothing to stagger */
+    } else if (rm || !('IntersectionObserver' in window)) {
+      lightAll(false);
+    } else {
+      var target = el.querySelector('[data-env2-coll-terms-ledger]') || el;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var tall = en.boundingClientRect.top < window.innerHeight * 0.6;
+          if (en.isIntersecting && (en.intersectionRatio >= 0.25 || tall)) {
+            lightAll(true);
+            io.disconnect();
+          }
+        });
+      }, { threshold: [0, 0.25, 0.6], rootMargin: '0px 0px -6%' });
+      io.observe(target);
+    }
+
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-coll-terms]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-coll-terms]')) init(scope);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "לפני שקונים",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "כותרת עליונה קטנה", "default": "אחרי הבחירה — התנאים" },
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "ארבעה מספרים, לפני שמשלמים." },
+    { "type": "textarea", "id": "deck", "label": "שורת פתיחה (בצד השני של הכותרת)", "default": "לא אותיות קטנות. אותם תנאים לכל [count] המנורות בקולקציה.", "info": "[count] מוחלף במספר המוצרים בקולקציה, אוטומטית. אין להקליד מספר." },
+    { "type": "textarea", "id": "deck_no_count", "label": "שורת פתיחה כשאין קולקציה", "default": "לא אותיות קטנות. אותם תנאים לכל המנורות בחנות.", "info": "מוצגת במקום השורה שלמעלה כשהעמוד אינו עמוד קולקציה, או שהקולקציה ריקה." },
+    { "type": "header", "content": "התמונה של המקום" },
+    { "type": "text", "id": "cta_label", "label": "טקסט הכפתור", "default": "לשלוח תמונה של המקום" },
+    { "type": "text", "id": "mail_subject", "label": "נושא המייל", "default": "בדיקת התאמה — תמונה של המקום" },
+    { "type": "textarea", "id": "cta_note", "label": "ההערה שלצד הכפתור", "default": "כאשר מידע אינו מאומת, איננו מציגים אותו כעובדה." },
+    { "type": "header", "content": "תחתית" },
+    { "type": "richtext", "id": "foot_links", "label": "קישורי מדיניות בתחתית", "default": "<p><a href=\"/pages/shipping-delivery\">משלוחים ואספקה</a> · <a href=\"/pages/processing-time\">זמני טיפול</a> · <a href=\"/policies/refund-policy\">מדיניות ביטולים</a> · <a href=\"/pages/help-faq\">שאלות נפוצות</a></p>", "info": "פסקה אחת עם הקישורים לעמודי המדיניות, מופרדים בנקודה." }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "number",
+      "name": "מספר",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "numeral", "label": "המספר הגדול", "default": "14", "info": "לדוגמה: 0 · 8–17 · 14 · 1" },
+        { "type": "text", "id": "unit", "label": "יחידה (מוצגת קטן ליד המספר)", "default": "יום" },
+        { "type": "text", "id": "headline", "label": "השורה המודגשת", "default": "לביטול מקבלת המוצר, לפי חוק הגנת הצרכן." },
+        { "type": "textarea", "id": "sub", "label": "משפט ההסבר", "default": "דמי ביטול עד 5% או 100 ₪ — הנמוך מביניהם.", "info": "מספרים וטווחים (למשל 1–3) נשמרים בכיוון הנכון אוטומטית. זהו נוסח משפטי — אין לקצר אותו." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest v2 — לפני שקונים",
+      "blocks": [
+        { "type": "number", "settings": { "numeral": "0", "unit": "₪", "headline": "משלוח לנקודת איסוף — חינם.", "sub": "עד הבית 29.90 ₪." } },
+        { "type": "number", "settings": { "numeral": "8–17", "unit": "ימי עסקים", "headline": "לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.", "sub": "ייתכן משלוח ממחסן מחוץ לישראל." } },
+        { "type": "number", "settings": { "numeral": "14", "unit": "יום", "headline": "לביטול מקבלת המוצר, לפי חוק הגנת הצרכן.", "sub": "דמי ביטול עד 5% או 100 ₪ — הנמוך מביניהם." } },
+        { "type": "number", "settings": { "numeral": "1", "unit": "תמונה", "headline": "שולחים תמונה של המקום ואנחנו בודקים התאמה לפני ההזמנה.", "sub": "" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

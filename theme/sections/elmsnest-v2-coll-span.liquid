@@ -1,0 +1,693 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — the FOURTEEN-TIMES SCREEN (collection WINNING-SPEC §4.4,
+  "elmsnest-v2-coll-span"). One screen that dissolves a 69.90 - 999.90 span into an honest sentence:
+  the expensive lamp is not a better lamp, it is a set of eight.
+
+  ---------------------------------------------------------------- what is derived, and from where
+  NOTHING in this section is typed (§6.19). Every figure comes from the collection itself:
+    the span and the ratio        product.price_min / product.price_max across collection.products
+    the axis of every rung        snippets/elmsnest-v2-coll-axis.liquid (plumbing CONTRACT §2)
+    every per-unit figure         the parser's stop field 13 — variant price divided by the number of
+                                  units in that value, rounded to the agora. This section NEVER does
+                                  price arithmetic itself: prices are strings already rounded
+                                  (CONTRACT risk 14) and only price_cents is ever added or compared.
+    the three band counts         counted in Liquid over the same rows
+    the copy's numbers            the settings hold {ratio} {ratio_word} {units} {units_word} {price}
+                                  and {value} placeholders; Liquid substitutes them, so the shipped
+                                  default deck renders EXACTLY §4.4's verbatim sentence on the path
+                                  collection and stays true on any other collection.
+
+  ---------------------------------------------------------------- when it renders, and when it does not
+  §4.4 ships this screen on path, spot and /all and keeps it off decor and wall. One template serves
+  all five URLs (§5.1), so the choice cannot be a per-URL setting — it is made from the data:
+
+    enabled            off  -> nothing at all is printed, not even the section wrapper
+    fewer than 2 products   -> nothing
+    no span (min = max)     -> nothing
+    show_on = auto     and no product in the collection is measured in QUANTITY -> nothing
+
+  That last test is the honest one: this screen exists to say "the expensive one is a set of N", a
+  sentence only a quantity axis can support. It resolves to path (5 quantity products), spot (1) and
+  /all — and to nothing on decor (metres and one area) and wall (colours). Set show_on to «always» to
+  print it on a collection with no quantity axis; the deck then falls back to deck_alt, which names
+  the expensive variant instead of counting units.
+
+  ---------------------------------------------------------------- the ladder (C6, switchboard)
+  One rung per product, ordered by price_min ascending. Liquid cannot sort a product list by a
+  computed key, so PASS 1 prints one delimited record per product and the records are sorted as
+  strings on a zero-padded price key — the same printed-model convention the plumbing uses because
+  a snippet's assigns never reach its caller (CONTRACT §2.1, risk 1).
+
+  Each rung: the title and its axis caption, a bar SOLID from 0 to price_min and a HAIRLINE onward to
+  price_max on one shared LINEAR scale to the collection's maximum (§4.4 n-n 3 — a log scale would
+  flatter the expensive set), the entry price, and for a quantity axis the per-unit figure at the
+  smallest and the largest stop. Rungs are grouped under three price band headers that are HEADERS,
+  not controls (§6.1 — this page has no toolbar); their counts come from Liquid.
+
+  The closing columns are one hairline table per unit stop (unit_stops, default «4,8»), each row a
+  product that really sells at that quantity — an EXACT match on the option value, never the nearest
+  one (§4.4 n-n 2). A quantity product that matches no column prints its own stops instead
+  («נמכרת ב־2 או ב־6 בלבד»), which is how swaying-solar-path-lights-ip65 stays honest.
+
+  ---------------------------------------------------------------- no-JS / reduced motion
+  There is no behaviour here. No control, no toggle, no script-built number: every rung, bar, price
+  and per-unit figure is markup, and the bars read at their full length with scripting disabled
+  because the core's --lit is 1 until html.env2-js dims it. The only thing JavaScript adds is the
+  cheapest-first fill (70 ms stagger, capped 900 ms). Under prefers-reduced-motion the transitions
+  are off and every bar is drawn at once. Nothing is lost, nothing is unreadable, nothing is unbuyable
+  — the rung titles are plain links to the product pages.
+
+  No image, no glyph plate and no card is rendered here, so this section needs no sprite (CONTRACT
+  risk 11) and cannot spend one of §3.1's two scrim surfaces (risk 10). It carries no .env2-btn, so
+  core REPORT §9.1's ink-on-glow anchor cannot appear (risk 9).
+{%- endcomment -%}
+
+{%- liquid
+  assign FS = '~~F~~'
+  assign RS = '~~R~~'
+  assign IS = '^'
+  assign ES = ';'
+  assign env2_s = section.settings
+  assign env2_c = collection
+  assign env2_on = true
+  if env2_s.enabled == false
+    assign env2_on = false
+  endif
+  assign env2_perword = env2_s.per_unit_word | default: '₪ לנקודה'
+  assign env2_unitnoun = env2_s.unit_noun | default: 'נקודות'
+  assign env2_stoplist = env2_s.unit_stops | default: '4,8' | replace: ' ', '' | split: ','
+  assign env2_mw = 'אחד,שניים,שלושה,ארבעה,חמישה,שישה,שבעה,שמונה,תשעה,עשרה,אחד־עשר,שנים־עשר,שלושה־עשר,ארבעה־עשר,חמישה־עשר,שישה־עשר,שבעה־עשר,שמונה־עשר,תשעה־עשר,עשרים' | split: ','
+  assign env2_fw = 'אחת,שתיים,שלוש,ארבע,חמש,שש,שבע,שמונה,תשע,עשר,אחת־עשרה,שתים־עשרה' | split: ','
+-%}
+
+{%- paginate env2_c.products by 50 -%}
+
+{%- comment -%}
+  PASS 1 — one printed record per product. This is the only place the axis parser is asked, and the
+  only place any number is computed. Fields, all of them plain strings:
+    0 sort key (price_min in agorot + 100000000, so a string sort is a numeric sort)
+    1 handle · 2 url · 3 title
+    4 unit · 5 measured · 6 price_min cents · 7 price_max cents · 8 price_varies
+    9 axis name · 10 min number · 11 max number · 12 unit label · 13 how many option values
+    14 first value · 15 second value
+    16 per-unit at the cheapest-per-unit stop · 17 at the dearest · 18 the per-unit noun
+    19 the stops that match unit_stops, «number^price^per_unit» joined by «;»
+    20 every stop number of a quantity axis, joined by «;»
+    21 the terminator, so no real field is ever last
+{%- endcomment -%}
+{%- assign env2_rows = '' -%}
+{%- assign env2_min_c = 0 -%}
+{%- assign env2_max_c = 0 -%}
+{%- assign env2_qty_n = 0 -%}
+{%- assign env2_top_units = '' -%}
+{%- assign env2_top_per = '' -%}
+{%- assign env2_top_value = '' -%}
+{%- assign env2_n = 0 -%}
+{%- for env2_p in env2_c.products -%}
+  {%- capture env2_ax -%}{%- render 'elmsnest-v2-coll-axis', product: env2_p -%}{%- endcapture -%}
+  {%- assign env2_recs = env2_ax | split: RS -%}
+  {%- if env2_recs.size > 1 -%}
+    {%- assign env2_m = env2_recs[0] | split: FS -%}
+    {%- assign env2_u = env2_m[3] -%}
+    {%- assign env2_meas = env2_m[9] -%}
+    {%- assign env2_pmin = env2_p.price_min | plus: 0 -%}
+    {%- assign env2_pmax = env2_p.price_max | plus: 0 -%}
+    {%- assign env2_n = env2_n | plus: 1 -%}
+    {%- if env2_min_c == 0 or env2_pmin < env2_min_c -%}{%- assign env2_min_c = env2_pmin -%}{%- endif -%}
+    {%- if env2_meas == '1' and env2_u == 'qty' -%}{%- assign env2_qty_n = env2_qty_n | plus: 1 -%}{%- endif -%}
+
+    {%- comment -%}
+      The stops of this product: the per-unit extremes, the exact matches for the closing columns,
+      and the dearest option value — which is what the resolution line is about.
+    {%- endcomment -%}
+    {%- assign env2_perlo = '' -%}
+    {%- assign env2_perhi = '' -%}
+    {%- assign env2_perlo_c = 0 -%}
+    {%- assign env2_perhi_c = 0 -%}
+    {%- assign env2_hits = '' -%}
+    {%- assign env2_qnums = '' -%}
+    {%- assign env2_v1 = '' -%}
+    {%- assign env2_v2 = '' -%}
+    {%- assign env2_top_c = 0 -%}
+    {%- assign env2_top_n = '' -%}
+    {%- assign env2_top_p = '' -%}
+    {%- assign env2_top_v = '' -%}
+    {%- for env2_rec in env2_recs offset: 1 -%}
+      {%- assign s = env2_rec | split: FS -%}
+      {%- if forloop.index == 1 -%}{%- assign env2_v1 = s[2] -%}{%- endif -%}
+      {%- if forloop.index == 2 -%}{%- assign env2_v2 = s[2] -%}{%- endif -%}
+      {%- assign env2_sc = s[11] | plus: 0 -%}
+      {%- if env2_sc > env2_top_c -%}
+        {%- assign env2_top_c = env2_sc -%}
+        {%- assign env2_top_n = s[3] -%}
+        {%- assign env2_top_p = s[13] -%}
+        {%- assign env2_top_v = s[2] -%}
+      {%- endif -%}
+      {%- if s[13] != '' -%}
+        {%- assign env2_pc = s[13] | replace: ',', '' | times: 100 | round -%}
+        {%- if env2_perlo_c == 0 or env2_pc < env2_perlo_c -%}
+          {%- assign env2_perlo_c = env2_pc -%}{%- assign env2_perlo = s[13] -%}
+        {%- endif -%}
+        {%- if env2_pc > env2_perhi_c -%}
+          {%- assign env2_perhi_c = env2_pc -%}{%- assign env2_perhi = s[13] -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- if s[3] != '' and s[4] == 'qty' -%}
+        {%- assign env2_qnums = env2_qnums | append: s[3] | append: ES -%}
+        {%- assign env2_sn = s[3] | plus: 0.0 -%}
+        {%- for env2_st in env2_stoplist -%}
+          {%- assign env2_want = env2_st | plus: 0.0 -%}
+          {%- if env2_want > 0 and env2_sn == env2_want and s[13] != '' -%}
+            {%- assign env2_hits = env2_hits | append: s[3] | append: IS | append: s[10] | append: IS | append: s[13] | append: ES -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if env2_pmax > env2_max_c -%}
+      {%- assign env2_max_c = env2_pmax -%}
+      {%- assign env2_top_value = env2_top_v -%}
+      {%- assign env2_top_per = '' -%}
+      {%- assign env2_top_units = '' -%}
+      {%- if env2_u == 'qty' and env2_meas == '1' -%}
+        {%- assign env2_top_units = env2_top_n -%}
+        {%- assign env2_top_per = env2_top_p -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- assign env2_key = 100000000 | plus: env2_pmin -%}
+    {%- assign env2_varies = '0' -%}
+    {%- if env2_pmax > env2_pmin -%}{%- assign env2_varies = '1' -%}{%- endif -%}
+    {%- assign env2_plabel = env2_m[6] -%}
+    {%- if env2_u == 'qty' -%}{%- assign env2_plabel = env2_perword -%}{%- endif -%}
+    {%- capture env2_row -%}{{ env2_key }}{{ FS }}{{ env2_m[1] }}{{ FS }}{{ env2_p.url }}{{ FS }}{{ env2_p.title }}{{ FS }}{{ env2_u }}{{ FS }}{{ env2_meas }}{{ FS }}{{ env2_pmin }}{{ FS }}{{ env2_pmax }}{{ FS }}{{ env2_varies }}{{ FS }}{{ env2_m[2] }}{{ FS }}{{ env2_m[11] }}{{ FS }}{{ env2_m[12] }}{{ FS }}{{ env2_m[4] }}{{ FS }}{{ env2_m[18] }}{{ FS }}{{ env2_v1 }}{{ FS }}{{ env2_v2 }}{{ FS }}{{ env2_perlo }}{{ FS }}{{ env2_perhi }}{{ FS }}{{ env2_plabel }}{{ FS }}{{ env2_hits }}{{ FS }}{{ env2_qnums }}{{ FS }}e{%- endcapture -%}
+    {%- if env2_rows == '' -%}
+      {%- assign env2_rows = env2_row -%}
+    {%- else -%}
+      {%- assign env2_rows = env2_rows | append: RS | append: env2_row -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%}
+  The four gates of §4.4. A collection with no span, or with no quantity axis to explain one, is not
+  a fourteen-times screen and this section prints absolutely nothing on it.
+{%- endcomment -%}
+{%- assign env2_render = env2_on -%}
+{%- if env2_n < 2 or env2_max_c <= env2_min_c or env2_min_c == 0 -%}{%- assign env2_render = false -%}{%- endif -%}
+{%- if env2_s.show_on != 'always' and env2_qty_n == 0 -%}{%- assign env2_render = false -%}{%- endif -%}
+
+{%- if env2_render -%}
+  {%- liquid
+    assign env2_ratio = env2_max_c | divided_by: env2_min_c
+    assign env2_ri = env2_ratio | minus: 1
+    assign env2_ratio_word = env2_ratio
+    if env2_ratio > 0 and env2_ratio < 21
+      assign env2_ratio_word = env2_mw[env2_ri]
+    endif
+    assign env2_units_word = env2_top_units
+    if env2_top_units != ''
+      assign env2_ui = env2_top_units | plus: 0 | minus: 1
+      if env2_ui >= 0 and env2_ui < 12
+        assign env2_units_word = env2_fw[env2_ui]
+      endif
+    endif
+    assign env2_b1 = env2_s.band_1_max | default: 150 | times: 100
+    assign env2_b2 = env2_s.band_2_max | default: 350 | times: 100
+    if env2_b2 <= env2_b1
+      assign env2_b2 = env2_b1
+    endif
+    assign env2_list = env2_rows | split: RS | sort
+    assign env2_c1 = 0
+    assign env2_c2 = 0
+    assign env2_c3 = 0
+    assign env2_span_c = env2_max_c
+    if env2_span_c < 1
+      assign env2_span_c = 1
+    endif
+  -%}
+  {%- for env2_r in env2_list -%}
+    {%- assign r = env2_r | split: FS -%}
+    {%- assign env2_pc = r[6] | plus: 0 -%}
+    {%- if env2_pc <= env2_b1 -%}{%- assign env2_c1 = env2_c1 | plus: 1 -%}
+    {%- elsif env2_pc <= env2_b2 -%}{%- assign env2_c2 = env2_c2 | plus: 1 -%}
+    {%- else -%}{%- assign env2_c3 = env2_c3 | plus: 1 -%}{%- endif -%}
+  {%- endfor -%}
+
+  {%- capture env2_ratio_tag -%}<bdi>{{ env2_ratio }}</bdi>{%- endcapture -%}
+  {%- capture env2_units_tag -%}<bdi>{{ env2_top_units }}</bdi>{%- endcapture -%}
+  {%- capture env2_per_tag -%}<bdi>{{ env2_top_per }}</bdi>{%- endcapture -%}
+  {%- capture env2_value_tag -%}<bdi>{{ env2_top_value | escape }}</bdi>{%- endcapture -%}
+
+  {%- assign env2_eyebrow = env2_s.eyebrow | default: 'אותה קולקציה, פי {ratio_word}' | replace: '{ratio_word}', env2_ratio_word | replace: '{ratio}', env2_ratio -%}
+  {%- if env2_top_units != '' -%}
+    {%- assign env2_deck = env2_s.deck -%}
+  {%- else -%}
+    {%- assign env2_deck = env2_s.deck_alt -%}
+  {%- endif -%}
+  {%- assign env2_deck = env2_deck | replace: '{ratio_word}', env2_ratio_word | replace: '{ratio}', env2_ratio_tag | replace: '{units_word}', env2_units_word | replace: '{units}', env2_units_tag | replace: '{value}', env2_value_tag | replace: '{price}', env2_per_tag -%}
+  {%- assign env2_res = '' -%}
+  {%- if env2_top_units != '' and env2_top_per != '' and env2_s.resolution_line != blank -%}
+    {%- assign env2_res = env2_s.resolution_line | replace: '{units_word}', env2_units_word | replace: '{units}', env2_units_tag | replace: '{price}', env2_per_tag | replace: '{ratio}', env2_ratio_tag -%}
+  {%- endif -%}
+
+<section id="env2-coll-span" data-env2-coll-span class="env2-section env2-coll env2-coll-span" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.42" aria-label="{{ env2_s.heading | default: 'כמה מנורות צריך?' | escape }}">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  <div class="env2-wrap env2-coll-span__wrap">
+    <header class="env2-coll-span__head">
+      <div class="env2-coll-span__intro">
+        {%- if env2_eyebrow != blank -%}<p class="env2-eyebrow env2-coll-span__eyebrow">{{ env2_eyebrow }}</p>{%- endif -%}
+        {%- if env2_s.heading != blank -%}<h2 class="env2-h env2-coll-span__h2">{{ env2_s.heading }}</h2>{%- endif -%}
+        {%- if env2_deck != blank -%}<p class="env2-lead env2-coll-span__deck">{{ env2_deck }}</p>{%- endif -%}
+      </div>
+      {%- if env2_res != blank -%}
+        <p class="env2-coll-span__res">{{ env2_res }}</p>
+      {%- endif -%}
+    </header>
+
+    <div class="env2-coll-span__scale">
+      <span class="env2-coll-span__scalelabel">{{ env2_s.scale_label | default: 'סולם ליניארי' }}</span>
+      <span class="env2-coll-span__scalefig"><bdi>{{ env2_min_c | money_without_currency }}–{{ env2_max_c | money_without_currency }}</bdi> ₪</span>
+    </div>
+
+    <div class="env2-coll-span__ladder">
+      {%- assign env2_i = 0 -%}
+      {%- assign env2_bandi = 0 -%}
+      {%- for env2_band in (1..3) -%}
+        {%- liquid
+          assign env2_bn = 0
+          if env2_band == 1
+            assign env2_bn = env2_c1
+            capture env2_blabel
+              echo 'עד <bdi>'
+              echo env2_s.band_1_max | default: 150
+              echo '</bdi> ₪'
+            endcapture
+          elsif env2_band == 2
+            assign env2_bn = env2_c2
+            capture env2_blabel
+              echo '<bdi>'
+              echo env2_s.band_1_max | default: 150
+              echo '–'
+              echo env2_s.band_2_max | default: 350
+              echo '</bdi> ₪'
+            endcapture
+          else
+            assign env2_bn = env2_c3
+            capture env2_blabel
+              echo 'מעל <bdi>'
+              echo env2_s.band_2_max | default: 350
+              echo '</bdi> ₪'
+            endcapture
+          endif
+        -%}
+        {%- if env2_bn > 0 -%}
+          {%- assign env2_blk = section.blocks[env2_bandi] -%}
+          {%- assign env2_bandi = env2_bandi | plus: 1 -%}
+          {%- comment -%}
+            An absent block, and an empty setting on a present one, both have to leave the computed
+            label standing. A missing block prints as the empty string in every engine, so the
+            override is decided on the PRINTED value and never on a nil comparison.
+          {%- endcomment -%}
+          {%- capture env2_ovr -%}{{ env2_blk.settings.label }}{%- endcapture -%}
+          {%- capture env2_note -%}{{ env2_blk.settings.note }}{%- endcapture -%}
+          {%- capture env2_battr -%}{{ env2_blk.shopify_attributes }}{%- endcapture -%}
+          {%- assign env2_ovr = env2_ovr | strip -%}
+          {%- assign env2_note = env2_note | strip -%}
+          {%- if env2_ovr != '' -%}{%- assign env2_blabel = env2_ovr -%}{%- endif -%}
+          <section class="env2-coll-span__band" data-band="{{ env2_band }}" {{ env2_battr | strip }}>
+            <div class="env2-coll-span__bandhead">
+              <h3 class="env2-coll-span__bandlabel">{{ env2_blabel }}</h3>
+              <p class="env2-coll-span__bandn"><bdi>{{ env2_bn }}</bdi> {{ env2_s.count_noun | default: 'מנורות' }}</p>
+            </div>
+            {%- if env2_note != '' -%}
+              <p class="env2-coll-span__bandnote">{{ env2_note }}</p>
+            {%- endif -%}
+            <ol class="env2-coll-span__rungs">
+              {%- for env2_r in env2_list -%}
+                {%- assign r = env2_r | split: FS -%}
+                {%- assign env2_pc = r[6] | plus: 0 -%}
+                {%- assign env2_in = false -%}
+                {%- if env2_band == 1 and env2_pc <= env2_b1 -%}{%- assign env2_in = true -%}{%- endif -%}
+                {%- if env2_band == 2 and env2_pc > env2_b1 and env2_pc <= env2_b2 -%}{%- assign env2_in = true -%}{%- endif -%}
+                {%- if env2_band == 3 and env2_pc > env2_b2 -%}{%- assign env2_in = true -%}{%- endif -%}
+                {%- if env2_in -%}
+                  {%- liquid
+                    assign env2_xc = r[7] | plus: 0
+                    assign env2_a10 = env2_pc | times: 1000 | divided_by: env2_span_c
+                    assign env2_b10 = env2_xc | times: 1000 | divided_by: env2_span_c
+                    assign env2_w10 = env2_b10 | minus: env2_a10
+                    assign env2_ai = env2_a10 | divided_by: 10
+                    assign env2_af = env2_a10 | modulo: 10
+                    assign env2_bi = env2_b10 | divided_by: 10
+                    assign env2_bf = env2_b10 | modulo: 10
+                    assign env2_wi = env2_w10 | divided_by: 10
+                    assign env2_wf = env2_w10 | modulo: 10
+                    assign env2_del = env2_i | times: 70
+                    if env2_del > 900
+                      assign env2_del = 900
+                    endif
+                    assign env2_i = env2_i | plus: 1
+                  -%}
+                  <li class="env2-coll-span__rung" data-lamp data-handle="{{ r[1] }}"
+                      style="--env2-span-a:{{ env2_ai }}.{{ env2_af }}%;--env2-span-b:{{ env2_bi }}.{{ env2_bf }}%;--env2-span-w:{{ env2_wi }}.{{ env2_wf }}%;--env2-span-d:{{ env2_del }}ms">
+                    <div class="env2-coll-span__name">
+                      <a href="{{ r[2] }}">{{ r[3] }}</a>
+                    </div>
+                    {%- comment -%}
+                      The axis caption. Shopify gives a product with no real options the placeholder
+                      axis «Title» whose one value is «Default Title» — neither is a fact about the
+                      lamp and neither is Hebrew, so both are dropped and the caption is not printed
+                      at all when nothing true is left to say.
+                    {%- endcomment -%}
+                    {%- assign env2_axn = r[9] -%}
+                    {%- if env2_axn == 'Title' -%}{%- assign env2_axn = '' -%}{%- endif -%}
+                    {%- capture env2_axcap -%}
+                      {%- if r[5] == '1' and r[10] != '' -%}
+                        {%- if r[10] == r[11] -%}
+                          <bdi>{{ r[10] }}</bdi>&nbsp;{{ r[12] | escape }}
+                        {%- else -%}
+                          <bdi>{{ r[10] }}–{{ r[11] }}</bdi>&nbsp;{{ r[12] | escape }}
+                        {%- endif -%}
+                      {%- elsif r[13] != '' and r[13] != '0' and r[14] != 'Default Title' -%}
+                        {%- assign env2_nv = r[13] | plus: 0 -%}
+                        {%- if env2_nv > 2 -%}
+                          <bdi>{{ env2_nv }}</bdi>&nbsp;{{ env2_s.options_noun | default: 'אפשרויות' }}
+                        {%- else -%}
+                          <bdi>{{ r[14] | escape }}</bdi>
+                          {%- if r[15] != '' -%}<span class="env2-coll-span__sep"> · </span><bdi>{{ r[15] | escape }}</bdi>{%- endif -%}
+                        {%- endif -%}
+                      {%- endif -%}
+                    {%- endcapture -%}
+                    {%- assign env2_axcap = env2_axcap | strip -%}
+                    {%- if env2_axn != '' or env2_axcap != '' -%}
+                      <p class="env2-coll-span__axis">
+                        {{- env2_axn | escape -}}
+                        {%- if env2_axn != '' and env2_axcap != '' -%}<span class="env2-coll-span__sep"> · </span>{%- endif -%}
+                        {{- env2_axcap -}}
+                      </p>
+                    {%- endif -%}
+                    <div class="env2-coll-span__bar" aria-hidden="true">
+                      <span class="env2-coll-span__track"></span>
+                      <span class="env2-coll-span__solid"></span>
+                      {%- if r[8] == '1' -%}
+                        <span class="env2-coll-span__thin"></span>
+                        <span class="env2-coll-span__cap"></span>
+                      {%- endif -%}
+                    </div>
+                    <div class="env2-coll-span__figs">
+                      <p class="env2-coll-span__from">
+{%- if r[8] == '1' -%}<span class="env2-coll-span__fromword">{{ env2_s.from_word | default: 'מ־' }}</span>{%- endif -%}<span class="env2-price"><bdi>{{ env2_pc | money_without_currency }}</bdi> ₪</span>
+                      </p>
+                      {%- if r[8] == '1' -%}
+                        <p class="env2-coll-span__to">{{ env2_s.to_word | default: 'עד' }} <bdi>{{ env2_xc | money_without_currency }}</bdi> ₪</p>
+                      {%- endif -%}
+                      {%- if env2_s.show_unit_price != false and r[4] == 'qty' and r[16] != '' -%}
+                        <p class="env2-coll-span__per">
+                          {%- if r[16] == r[17] -%}
+                            <bdi>≈{{ r[16] }}</bdi> {{ r[18] | escape }}
+                          {%- else -%}
+                            <bdi>≈{{ r[16] }}–{{ r[17] }}</bdi> {{ r[18] | escape }}
+                          {%- endif -%}
+                        </p>
+                      {%- endif -%}
+                    </div>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ol>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%}
+      The closing columns. A product is listed at a quantity only when it really sells that exact
+      option value (§4.4 n-n 2); the rows are ordered by the price AT that quantity, so the per-unit
+      column reads down. A quantity product that matches no column at all gets its own honest note.
+    {%- endcomment -%}
+    {%- assign env2_tblc = 0 -%}
+    {%- capture env2_tables -%}
+      {%- for env2_st in env2_stoplist -%}
+        {%- assign env2_want = env2_st | plus: 0.0 -%}
+        {%- if env2_want > 0 -%}
+          {%- assign env2_col = '' -%}
+          {%- for env2_r in env2_list -%}
+            {%- assign r = env2_r | split: FS -%}
+            {%- assign env2_hits = r[19] | split: ES -%}
+            {%- for env2_h in env2_hits -%}
+              {%- assign h = env2_h | split: IS -%}
+              {%- assign env2_hn = h[0] | plus: 0.0 -%}
+              {%- if env2_hn == env2_want -%}
+                {%- assign env2_hc = h[1] | replace: ',', '' | replace: '.', '' | plus: 0 -%}
+                {%- assign env2_hk = 100000000 | plus: env2_hc -%}
+                {%- capture env2_one -%}{{ env2_hk }}{{ IS }}{{ r[3] }}{{ IS }}{{ r[2] }}{{ IS }}{{ h[1] }}{{ IS }}{{ h[2] }}{{ IS }}{{ r[18] }}{%- endcapture -%}
+                {%- if env2_col == '' -%}
+                  {%- assign env2_col = env2_one -%}
+                {%- else -%}
+                  {%- assign env2_col = env2_col | append: RS | append: env2_one -%}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endfor -%}
+          {%- if env2_col != '' -%}
+            {%- assign env2_cols = env2_col | split: RS | sort -%}
+            {%- assign env2_tblc = env2_tblc | plus: 1 -%}
+            <table class="env2-coll-span__tbl">
+              <caption class="env2-coll-span__cap2">{{ env2_s.at_word | default: 'ב־' }}<bdi>{{ env2_st }}</bdi> {{ env2_unitnoun }}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">{{ env2_s.col_lamp | default: 'המנורה' }}</th>
+                  <th scope="col">{{ env2_s.col_price | default: 'מחיר' }}</th>
+                  <th scope="col">{{ env2_perword }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for env2_cr in env2_cols -%}
+                  {%- assign cr = env2_cr | split: IS -%}
+                  <tr>
+                    <th scope="row"><a href="{{ cr[2] }}">{{ cr[1] }}</a></th>
+                    <td><span class="env2-price"><bdi>{{ cr[3] }}</bdi> ₪</span></td>
+                    <td class="env2-coll-span__cell-per"><bdi>≈{{ cr[4] }}</bdi></td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- comment -%}
+        The products that sell by quantity but at none of the quantities above — printed, never
+        dropped (§6.6 carries the same principle for the ruler's rows).
+      {%- endcomment -%}
+      {%- assign env2_notes = '' -%}
+      {%- for env2_r in env2_list -%}
+        {%- assign r = env2_r | split: FS -%}
+        {%- if env2_tblc > 0 and r[4] == 'qty' and r[5] == '1' and r[19] == '' and r[20] != '' -%}
+          {%- assign env2_qn = r[20] | split: ES -%}
+          {%- assign env2_line = '' -%}
+          {%- for env2_q in env2_qn -%}
+            {%- if env2_q != '' -%}
+              {%- capture env2_qp -%}{{ env2_s.at_word | default: 'ב־' }}<bdi>{{ env2_q }}</bdi>{%- endcapture -%}
+              {%- if env2_line == '' -%}
+                {%- assign env2_line = env2_qp -%}
+              {%- else -%}
+                {%- assign env2_or = env2_s.or_word | default: 'או' -%}
+                {%- assign env2_line = env2_line | append: ' ' | append: env2_or | append: ' ' | append: env2_qp -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- capture env2_one -%}<li class="env2-coll-span__note"><a href="{{ r[2] }}">{{ r[3] }}</a> — {{ env2_s.sold_only | default: 'נמכרת' }} {{ env2_line | strip }} {{ env2_s.only_word | default: 'בלבד' }}</li>{%- endcapture -%}
+          {%- assign env2_notes = env2_notes | append: env2_one -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if env2_notes != '' -%}
+        <ul class="env2-coll-span__notes">{{ env2_notes }}</ul>
+      {%- endif -%}
+    {%- endcapture -%}
+    {%- assign env2_tt = env2_tables | strip -%}
+    {%- if env2_tt != '' -%}
+      <div class="env2-coll-span__close">{{ env2_tables }}</div>
+    {%- endif -%}
+
+    {%- if env2_s.foot_note != blank -%}
+      <p class="env2-coll-span__foot">{{ env2_s.foot_note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+{%- endpaginate -%}
+
+{% stylesheet %}
+.env2-coll-span{padding-block:clamp(72px,8vw,120px) clamp(56px,6vw,96px)}
+.env2-coll-span__wrap{position:relative;z-index:1}
+.env2-coll-span__head{display:grid;grid-template-columns:minmax(0,34ch) minmax(0,1fr);gap:clamp(22px,3vw,54px);align-items:end}
+.env2-coll-span__intro{display:flex;flex-direction:column;gap:16px}
+.env2-coll-span__h2{font-size:clamp(30px,4.2vw,60px);line-height:1}
+.env2-coll-span__deck{max-width:34ch}
+.env2-coll-span__deck bdi{font-variant-numeric:tabular-nums;color:var(--env2-ink)}
+.env2-coll-span__res{margin:0;font-family:var(--env2-serif);font-weight:500;font-size:clamp(20px,2.2vw,34px);line-height:1.16;color:var(--env2-glow);text-wrap:balance;padding-inline-start:clamp(0px,2vw,28px);border-inline-start:1px solid var(--env2-hair)}
+.env2-coll-span__res bdi{font-variant-numeric:tabular-nums}
+.env2-coll-span__scale{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-block:clamp(34px,4vw,64px) 0;padding-block-end:10px;border-block-end:1px solid var(--env2-hair)}
+.env2-coll-span__scalelabel{font-size:11.5px;font-weight:500;letter-spacing:.16em;color:var(--env2-gold)}
+.env2-coll-span__scalefig{font-family:var(--env2-serif);font-weight:500;font-size:15px;font-variant-numeric:tabular-nums;color:var(--env2-ink-2)}
+.env2-coll-span__band{display:block;margin-block-start:clamp(26px,3vw,44px)}
+.env2-coll-span__bandhead{display:flex;align-items:baseline;gap:14px;padding-block-end:8px}
+.env2-coll-span__bandlabel{margin:0;font-family:var(--env2-sans);font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--env2-ink);text-transform:none}
+.env2-coll-span__bandlabel bdi{font-variant-numeric:tabular-nums}
+.env2-coll-span__bandn{margin:0;font-size:13px;color:var(--env2-mute)}
+.env2-coll-span__bandn bdi{font-variant-numeric:tabular-nums}
+.env2-coll-span__bandnote{margin:0 0 6px;font-size:13px;color:var(--env2-ink-2);max-width:52ch}
+.env2-coll-span__rungs{list-style:none;margin:0;padding:0}
+.env2-coll-span__rung{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.35fr) minmax(150px,.62fr);grid-template-areas:"name bar figs" "axis bar figs";column-gap:clamp(16px,2.2vw,34px);row-gap:2px;align-items:center;padding-block:6px 12px;border-block-start:1px solid var(--env2-hair)}
+.env2-coll-span__name{grid-area:name;display:flex;align-items:flex-end;min-block-size:44px}
+.env2-coll-span__name a{display:flex;align-items:flex-end;min-block-size:44px;font-size:clamp(16px,1.3vw,19px);font-weight:400;line-height:1.24;color:var(--env2-ink);unicode-bidi:isolate;transition:color .3s}
+.env2-coll-span__name a:hover,.env2-coll-span__name a:focus-visible{color:var(--env2-glow)}
+.env2-coll-span__axis{grid-area:axis;margin:0;font-size:14px;font-weight:300;line-height:1.35;color:var(--env2-ink-2)}
+.env2-coll-span__axis bdi{font-variant-numeric:tabular-nums}
+.env2-coll-span__sep{color:var(--env2-mute)}
+.env2-coll-span__bar{grid-area:bar;position:relative;block-size:26px;inline-size:100%}
+.env2-coll-span__track{position:absolute;inset-block-start:50%;inset-inline:0;block-size:1px;background:var(--env2-hair);transform:translateY(-50%)}
+.env2-coll-span__solid{position:absolute;inset-block-start:50%;inset-inline-start:0;block-size:5px;min-inline-size:4px;transform:translateY(-50%);background:linear-gradient(to left,var(--env2-glow),var(--env2-gold));box-shadow:0 0 18px -4px rgba(255,211,148,.6);inline-size:calc(var(--env2-span-a,0%) * var(--lit,1));transition:inline-size .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--env2-span-d,0ms)}
+.env2-coll-span__thin{position:absolute;inset-block-start:50%;inset-inline-start:var(--env2-span-a,0%);block-size:1px;transform:translateY(-50%);background:var(--env2-glow);opacity:.55;inline-size:calc(var(--env2-span-w,0%) * var(--lit,1));transition:inline-size .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--env2-span-d,0ms)}
+.env2-coll-span__cap{position:absolute;inset-block-start:50%;inset-inline-start:var(--env2-span-b,0%);margin-inline-start:-1px;block-size:13px;inline-size:1px;transform:translateY(-50%);background:var(--env2-glow);opacity:calc(.55 * var(--lit,1));transition:opacity .5s;transition-delay:var(--env2-span-d,0ms)}
+.env2-coll-span__figs{grid-area:figs;display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:end}
+.env2-coll-span__from{margin:0;display:flex;align-items:baseline;gap:.2em}
+.env2-coll-span__from .env2-price{--env2-price-size:22px}
+.env2-coll-span__fromword{font-family:var(--env2-sans);font-weight:400;font-size:13px;color:var(--env2-ink-2)}
+.env2-coll-span__to{margin:0;font-size:13px;color:var(--env2-mute);font-variant-numeric:tabular-nums}
+.env2-coll-span__per{margin:0;font-size:14px;font-weight:300;color:var(--env2-ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.env2-coll-span__close{margin-block-start:clamp(40px,5vw,72px);margin-inline-start:auto;inline-size:min(100%,760px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(22px,3vw,44px)}
+.env2-coll-span__tbl{inline-size:100%;border-collapse:collapse}
+.env2-coll-span__cap2{caption-side:top;text-align:start;padding-block-end:10px;font-family:var(--env2-sans);font-size:11.5px;font-weight:500;letter-spacing:.16em;color:var(--env2-gold)}
+.env2-coll-span__cap2 bdi{font-variant-numeric:tabular-nums}
+.env2-coll-span__tbl th,.env2-coll-span__tbl td{text-align:start;vertical-align:baseline;padding-block:12px;padding-inline:0 12px;border-block-start:1px solid var(--env2-hair);font-weight:400}
+.env2-coll-span__tbl thead th{padding-block:0 8px;border-block-start:0;font-size:11.5px;font-weight:500;letter-spacing:.16em;color:var(--env2-mute)}
+.env2-coll-span__tbl tbody th{font-size:15px;font-weight:400;color:var(--env2-ink);line-height:1.3}
+.env2-coll-span__tbl tbody th a{display:flex;align-items:center;min-block-size:44px;color:var(--env2-ink);unicode-bidi:isolate;transition:color .3s}
+.env2-coll-span__tbl tbody th a:hover,.env2-coll-span__tbl tbody th a:focus-visible{color:var(--env2-glow)}
+.env2-coll-span__tbl td{white-space:nowrap}
+.env2-coll-span__tbl .env2-price{--env2-price-size:17px}
+.env2-coll-span__cell-per{font-family:var(--env2-sans);font-size:15px;font-weight:300;color:var(--env2-ink-2);font-variant-numeric:tabular-nums}
+.env2-coll-span__notes{list-style:none;margin:0;padding:0;grid-column:1/-1}
+.env2-coll-span__note{font-size:14px;font-weight:300;color:var(--env2-ink-2);padding-block:8px;border-block-start:1px solid var(--env2-hair)}
+.env2-coll-span__note a{display:inline-flex;align-items:center;min-block-size:44px;color:var(--env2-ink);unicode-bidi:isolate}
+.env2-coll-span__note a:hover,.env2-coll-span__note a:focus-visible{color:var(--env2-glow)}
+.env2-coll-span__note bdi{font-variant-numeric:tabular-nums}
+.env2-coll-span__foot{margin:clamp(30px,3.4vw,52px) 0 0;font-size:14px;font-weight:300;line-height:1.5;color:var(--env2-mute);max-width:62ch}
+@media (max-width:899px){
+  .env2-coll-span__head{grid-template-columns:minmax(0,1fr);align-items:start}
+  .env2-coll-span__res{padding-inline-start:0;padding-block-start:14px;border-inline-start:0;border-block-start:1px solid var(--env2-hair)}
+  .env2-coll-span__rung{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name figs" "axis figs" "bar bar";min-block-size:72px;row-gap:4px;padding-block:10px 18px}
+  .env2-coll-span__bar{block-size:14px;margin-block:8px 2px}
+  .env2-coll-span__per{white-space:normal}
+  .env2-coll-span__figs{align-self:start}
+  .env2-coll-span__from .env2-price{--env2-price-size:20px}
+  .env2-coll-span__close{inline-size:100%;grid-template-columns:minmax(0,1fr)}
+  .env2-coll-span__tbl th,.env2-coll-span__tbl td{padding-inline:0 8px}
+  .env2-coll-span__tbl tbody th{font-size:14px}
+  .env2-coll-span__cell-per{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-span__solid,.env2-coll-span__thin,.env2-coll-span__cap,.env2-coll-span__name a,.env2-coll-span__tbl tbody th a{transition:none}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* elmsnest-v2-coll-span — there is no behaviour to lose here.
+   Every rung, bar, price and per-unit figure is markup, and the bars are drawn at full length with
+   this file deleted (the core's --lit is 1 until html.env2-js dims it). All this does is hand the
+   rungs to the shared lamp observer so they fill cheapest-first, and light them itself if the core
+   bundle is missing — the CONTRACT's closing fallback line. */
+(function () {
+  function init(el) {
+    if (el.__env2CollSpan) return;
+    el.__env2CollSpan = true;
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-coll-span]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-coll-span]')) init(scope);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "פער המחירים",
+  "tag": "section",
+  "class": "env2-coll-span-section",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "להציג את המסך", "default": true,
+      "info": "כבוי = הקטע לא מודפס כלל." },
+    { "type": "select", "id": "show_on", "label": "באילו קולקציות",
+      "options": [
+        { "value": "auto", "label": "אוטומטי — רק כשיש ציר כמות" },
+        { "value": "always", "label": "בכל קולקציה שיש בה פער" }
+      ],
+      "default": "auto",
+      "info": "אוטומטי מדפיס את המסך רק בקולקציה שנמכרת בה מנורה לפי כמות — שבילים, ספוטים והקטלוג. בגרילנדות ובתאורת הקיר אין ציר כזה והמסך לא מודפס." },
+    { "type": "header", "content": "הפתיח" },
+    { "type": "text", "id": "eyebrow", "label": "שורת פתיחה", "default": "אותה קולקציה, פי {ratio_word}",
+      "info": "{ratio_word} = היחס במילים, {ratio} = בספרות. שניהם מחושבים מהמחירים." },
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "כמה מנורות צריך?" },
+    { "type": "textarea", "id": "deck", "label": "המשפט",
+      "default": "המוצר היקר בקולקציה עולה פי {ratio} מהזול — לא כי הוא מנורה טובה יותר, אלא כי הוא סט של {units} יחידות.",
+      "info": "{ratio} היחס · {units} מספר היחידות בווריאציה היקרה · {price} המחיר ליחידה." },
+    { "type": "textarea", "id": "deck_alt", "label": "המשפט כשאין ציר כמות",
+      "default": "המוצר היקר בקולקציה עולה פי {ratio} מהזול. הווריאציה היקרה שלו היא {value} — זה ההפרש.",
+      "info": "{value} = הערך של הווריאציה היקרה ביותר." },
+    { "type": "textarea", "id": "resolution_line", "label": "שורת הפתרון",
+      "default": "{units_word} מנורות לאורך הדרך, {price} ₪ כל אחת.",
+      "info": "{units_word} מספר היחידות במילים · {price} המחיר ליחידה. ריקה = לא מודפסת." },
+    { "type": "header", "content": "הסולם" },
+    { "type": "text", "id": "scale_label", "label": "תווית הסולם", "default": "סולם ליניארי" },
+    { "type": "range", "id": "band_1_max", "label": "גבול הפס הראשון", "min": 0, "max": 1000, "step": 10, "unit": "₪", "default": 150 },
+    { "type": "range", "id": "band_2_max", "label": "גבול הפס השני", "min": 0, "max": 1000, "step": 10, "unit": "₪", "default": 350 },
+    { "type": "text", "id": "count_noun", "label": "שם המוצרים בספירה", "default": "מנורות" },
+    { "type": "text", "id": "from_word", "label": "המילה שלפני מחיר הכניסה", "default": "מ־" },
+    { "type": "text", "id": "to_word", "label": "המילה שלפני המחיר המרבי", "default": "עד" },
+    { "type": "text", "id": "options_noun", "label": "שם האפשרויות בכיתוב הציר", "default": "אפשרויות" },
+    { "type": "header", "content": "העמודה הסוגרת" },
+    { "type": "checkbox", "id": "show_unit_price", "label": "להציג מחיר ליחידה", "default": true },
+    { "type": "text", "id": "unit_stops", "label": "הכמויות שמשווים", "default": "4,8",
+      "info": "רשימה מופרדת בפסיקים. מוצר מופיע בעמודה רק אם הוא באמת נמכר בכמות הזאת." },
+    { "type": "text", "id": "unit_noun", "label": "שם היחידה ברבים", "default": "נקודות" },
+    { "type": "text", "id": "per_unit_word", "label": "המילה של המחיר ליחידה", "default": "₪ לנקודה" },
+    { "type": "text", "id": "at_word", "label": "המילה שלפני הכמות", "default": "ב־" },
+    { "type": "text", "id": "or_word", "label": "המילה שבין כמויות", "default": "או" },
+    { "type": "text", "id": "sold_only", "label": "פתיחת הערת הכמויות", "default": "נמכרת" },
+    { "type": "text", "id": "only_word", "label": "סיום הערת הכמויות", "default": "בלבד" },
+    { "type": "text", "id": "col_lamp", "label": "כותרת עמודת המנורה", "default": "המנורה" },
+    { "type": "text", "id": "col_price", "label": "כותרת עמודת המחיר", "default": "מחיר" },
+    { "type": "textarea", "id": "foot_note", "label": "הערת סיום",
+      "default": "המחיר ליחידה מחושב מהמחיר של הווריאציה חלקי מספר היחידות שבה. אינו מחיר קטלוגי." }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "band",
+      "name": "פס מחיר",
+      "settings": [
+        { "type": "paragraph", "content": "הפסים והמוצרים שבהם מחושבים מהמחירים של הקולקציה. הבלוק הזה משנה רק את הכיתוב של הפס שבאותו מקום בסדר." },
+        { "type": "text", "id": "label", "label": "כותרת הפס", "info": "ריק = הכותרת המחושבת מהגבולות." },
+        { "type": "text", "id": "note", "label": "שורה מתחת לכותרת" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "פער המחירים",
+      "blocks": [ { "type": "band" }, { "type": "band" }, { "type": "band" } ]
+    }
+  ]
+}
+{% endschema %}

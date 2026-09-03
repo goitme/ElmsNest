@@ -1,0 +1,1070 @@
+{%- comment -%}
+  ElmsNest v2 COLLECTION — the WALK (collection WINNING-SPEC §4.3, "elmsnest-v2-coll-bands").
+
+  The desire half of the page. Every product of the collection appears in exactly ONE band, and each
+  band is composed differently, so the page is never one grid scrolled four times. The bands are the
+  RULER's bands — measurements the shop actually holds — never an invented station taxonomy (§1
+  disagreement 5, §6.8). Nothing is typed: every count, every length, every quantity, every price and
+  every per-unit figure comes from snippets/elmsnest-v2-coll-axis.liquid and from product.price_min.
+
+  ---------------------------------------------------------------- how the bands are computed
+  PASS 1 walks collection.products once and prints a compact row per product
+  handle^unit^measured^is_area^max_number^price_min_cents^type, plus the set of handles that own a
+  text-free photograph (elmsnest-v2-pdp-image, emit:'no_clean').
+
+  The mode is then resolved from the DATA, never from the handle:
+    more than one product.type   -> places   the four doors of /collections/all (§3.8.3); product.type
+                                             maps 1:1 to the four collections, so it is a real field
+    2+ products measured in m    -> length   decor
+    2+ products measured in qty  -> count    path
+    otherwise                    -> price    wall and spot, which own no shared numeric axis (§3.4)
+
+  length / count: the measured products are sorted by their MAXIMUM reach and split into three bands
+  by index, so no band is ever empty and every label is a real pair of numbers; then one band for the
+  products not measured in that unit, and one for the product measured by AREA (§4.5 n-n 3 — the net
+  is never drawn as a length). price: three bands by entry price. places: one band per type.
+
+  A band with no products is never emitted. The sum of the band counts is asserted against
+  collection.products_count in Liquid and printed in the last band's foot (§4.3 n-n 5).
+
+  ---------------------------------------------------------------- the five compositions (§4.3)
+    pair   two cards on a hairline, no photo band, staggered widths      small scale
+    scene  a full-bleed photograph with up to two pins, the scrim card
+           riding its bottom edge                                        enormous
+    quote  a pull quote at 46px with one small 260px card, 3:1           tiny vs huge
+    dip    an unequal photographic diptych, 1.15fr / .85fr               medium
+    wide   a wide low band with the card overlaid at its start edge      wide vs short
+  No band may repeat another band's composition; that is enforced in Liquid, and a composition that
+  needs a photograph is never handed to a band that has none. Four equal boxes are impossible here:
+  every row staggers 300 / 210 / 260 px and 1/1.05 · 1/1.4 · 1/.9 (§4.3 n-n 4, §6.3).
+
+  ---------------------------------------------------------------- what this section reuses
+    elmsnest-v2-pdp-card    the SAME card as the PDP, with the four additive params of the plumbing
+                            CONTRACT §6: variant:'scene' (the scrim, used ONCE here — the scene
+                            section owns the other one, §3.1), axis_caption, unit_price_line and
+                            glyph:'auto' for the fifteen poster-only products.
+    elmsnest-v2-coll-glyph  the sprite, rendered ONCE before any plate (CONTRACT §4, risk 11).
+    elmsnest-v2-coll-axis   the parser — the single source of every number (CONTRACT §2).
+  The kicker is printed on the FIRST card of the section only, never down a column (CONTRACT risk 13).
+
+  ---------------------------------------------------------------- no-JS / reduced motion
+  Everything is markup. The cards' add-to-cart is a real POST form, the pins are plain links, and the
+  bands need no scripting at all. With JS disabled the only loss is the lamp reveal: every photo, halo
+  and glyph plate renders lit. Under prefers-reduced-motion the same, with transitions off.
+{%- endcomment -%}
+
+{%- liquid
+  assign FS = '~~F~~'
+  assign RS = '~~R~~'
+  assign env2_s = section.settings
+  assign env2_c = collection
+  assign env2_count = env2_c.products_count | default: 0
+-%}
+
+{%- paginate env2_c.products by 50 -%}
+
+{%- comment -%}
+  PASS 1 — one row per product, and the clean-photograph set. This is the only place the axis parser
+  and the image resolver are asked about every product; everything below reads these strings.
+{%- endcomment -%}
+{%- assign env2_rows = '' -%}
+{%- assign env2_clean = '|' -%}
+{%- assign env2_types = '' -%}
+{%- assign env2_seen_t = '|' -%}
+{%- assign env2_n_m = 0 -%}
+{%- assign env2_n_q = 0 -%}
+{%- for env2_p in env2_c.products -%}
+  {%- capture env2_ax -%}{%- render 'elmsnest-v2-coll-axis', product: env2_p -%}{%- endcapture -%}
+  {%- assign env2_recs = env2_ax | split: RS -%}
+  {%- assign env2_u = '' -%}
+  {%- assign env2_meas = '0' -%}
+  {%- assign env2_area = '0' -%}
+  {%- assign env2_maxn = '' -%}
+  {%- if env2_recs.size > 1 -%}
+    {%- assign env2_m = env2_recs[0] | split: FS -%}
+    {%- assign env2_u = env2_m[3] -%}
+    {%- assign env2_meas = env2_m[9] -%}
+    {%- assign env2_area = env2_m[10] -%}
+    {%- assign env2_maxn = env2_m[12] -%}
+  {%- endif -%}
+  {%- if env2_meas == '1' and env2_u == 'm' -%}{%- assign env2_n_m = env2_n_m | plus: 1 -%}{%- endif -%}
+  {%- if env2_meas == '1' and env2_u == 'qty' -%}{%- assign env2_n_q = env2_n_q | plus: 1 -%}{%- endif -%}
+  {%- capture env2_nc -%}{%- render 'elmsnest-v2-pdp-image', product: env2_p, emit: 'no_clean' -%}{%- endcapture -%}
+  {%- assign env2_nc = env2_nc | strip -%}
+  {%- if env2_nc == '0' -%}{%- assign env2_clean = env2_clean | append: env2_p.handle | append: '|' -%}{%- endif -%}
+  {%- assign env2_t = env2_p.type | default: '' | remove: '|' | remove: '^' | strip -%}
+  {%- if env2_t != '' -%}
+    {%- assign env2_tk = '|' | append: env2_t | append: '|' -%}
+    {%- unless env2_seen_t contains env2_tk -%}
+      {%- assign env2_seen_t = env2_seen_t | append: env2_t | append: '|' -%}
+      {%- assign env2_types = env2_types | append: '~~T~~' | append: env2_t -%}
+    {%- endunless -%}
+  {%- endif -%}
+  {%- assign env2_pc = env2_p.price_min | default: 0 -%}
+  {%- assign env2_pcx = env2_p.price_max | default: env2_pc -%}
+  {%- assign env2_rows = env2_rows | append: '~~P~~' | append: env2_p.handle | append: '^' | append: env2_u | append: '^' | append: env2_meas | append: '^' | append: env2_area | append: '^' | append: env2_maxn | append: '^' | append: env2_pc | append: '^' | append: env2_pcx | append: '^' | append: env2_t -%}
+{%- endfor -%}
+{%- assign env2_rowlist = env2_rows | remove_first: '~~P~~' | split: '~~P~~' -%}
+{%- assign env2_tlist = env2_types | remove_first: '~~T~~' | split: '~~T~~' -%}
+
+{%- comment -%}
+  The order of the place bands on a catalogue page is a merchant list of product types, never a
+  hard-coded taxonomy. A type the list does not name keeps its own place at the end.
+{%- endcomment -%}
+{%- assign env2_porder = section.settings.place_order | default: '' -%}
+{%- if env2_porder != '' -%}
+  {%- assign env2_pl = env2_porder | split: ',' -%}
+  {%- assign env2_t2 = '' -%}
+  {%- assign env2_tseen = '|' -%}
+  {%- for env2_pt in env2_pl -%}
+    {%- assign env2_pt = env2_pt | strip -%}
+    {%- for env2_t in env2_tlist -%}
+      {%- if env2_t == env2_pt -%}
+        {%- assign env2_tk = '|' | append: env2_t | append: '|' -%}
+        {%- unless env2_tseen contains env2_tk -%}
+          {%- assign env2_tseen = env2_tseen | append: env2_t | append: '|' -%}
+          {%- assign env2_t2 = env2_t2 | append: '~~T~~' | append: env2_t -%}
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+  {%- for env2_t in env2_tlist -%}
+    {%- assign env2_tk = '|' | append: env2_t | append: '|' -%}
+    {%- unless env2_tseen contains env2_tk -%}
+      {%- assign env2_tseen = env2_tseen | append: env2_t | append: '|' -%}
+      {%- assign env2_t2 = env2_t2 | append: '~~T~~' | append: env2_t -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- assign env2_tlist = env2_t2 | remove_first: '~~T~~' | split: '~~T~~' -%}
+{%- endif -%}
+
+{%- comment -%} Resolve the mode from the data, and the words the bands are labelled in. {%- endcomment -%}
+{%- liquid
+  assign env2_mode = env2_s.band_mode | default: 'auto'
+  if env2_mode == 'auto'
+    if env2_tlist.size > 1
+      assign env2_mode = 'places'
+    elsif env2_n_m >= 2
+      assign env2_mode = 'length'
+    elsif env2_n_q >= 2
+      assign env2_mode = 'count'
+    else
+      assign env2_mode = 'price'
+    endif
+  endif
+
+  assign env2_unit = ''
+  assign env2_ulabel = ''
+  assign env2_cap = ''
+  assign env2_offlabel = env2_s.off_label | default: ''
+  if env2_mode == 'length'
+    assign env2_unit = 'm'
+    assign env2_ulabel = env2_s.unit_token | default: 'מ׳'
+    assign env2_cap = 'לפי האורך המרבי'
+    if env2_offlabel == ''
+      assign env2_offlabel = 'לא נמדד במטרים'
+    endif
+  elsif env2_mode == 'count'
+    assign env2_unit = 'qty'
+    assign env2_ulabel = env2_s.unit_token | default: 'נקודות'
+    assign env2_cap = 'לפי הכמות המרבית'
+    if env2_offlabel == ''
+      assign env2_offlabel = 'נמכרות ביחידה'
+    endif
+  elsif env2_mode == 'price'
+    assign env2_cap = 'לפי מחיר הכניסה'
+  endif
+  assign env2_arealabel = env2_s.area_label | default: 'נמדדת לפי שטח'
+  assign env2_restlabel = env2_s.rest_label | default: 'שאר הקולקציה'
+  assign env2_perword = env2_s.per_unit_word | default: ''
+  if env2_perword == '' and env2_mode == 'count'
+    assign env2_perword = '₪ לנקודת אור'
+  endif
+  assign env2_maxbands = env2_s.max_bands | default: 5
+-%}
+
+{%- comment -%}
+  STEP A — the buckets. Each band is one record: label^kind^handles^capline. A bucket that ends up
+  with no product is never appended, so an empty band cannot reach the page.
+{%- endcomment -%}
+{%- assign env2_bk = '' -%}
+
+{%- if env2_mode == 'places' -%}
+  {%- assign env2_tcap = env2_maxbands -%}
+  {%- if env2_tlist.size > env2_maxbands -%}
+    {%- assign env2_tcap = env2_maxbands | minus: 1 -%}
+  {%- endif -%}
+  {%- assign env2_taken = '|' -%}
+  {%- for env2_t in env2_tlist limit: env2_tcap -%}
+    {%- assign env2_taken = env2_taken | append: env2_t | append: '|' -%}
+    {%- assign env2_hs = '|' -%}
+    {%- for env2_r in env2_rowlist -%}
+      {%- assign env2_f = env2_r | split: '^' -%}
+      {%- if env2_f[7] == env2_t -%}
+        {%- assign env2_hs = env2_hs | append: env2_f[0] | append: '|' -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if env2_hs != '|' -%}
+      {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_t | append: '^place^' | append: env2_hs | append: '^' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign env2_hs = '|' -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_f = env2_r | split: '^' -%}
+    {%- assign env2_tk = '|' | append: env2_f[7] | append: '|' -%}
+    {%- unless env2_taken contains env2_tk -%}
+      {%- assign env2_hs = env2_hs | append: env2_f[0] | append: '|' -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- if env2_hs != '|' -%}
+    {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_restlabel | append: '^rest^' | append: env2_hs | append: '^' -%}
+  {%- endif -%}
+
+{%- elsif env2_mode == 'length' or env2_mode == 'count' -%}
+  {%- assign env2_toks = '' -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_f = env2_r | split: '^' -%}
+    {%- if env2_f[2] == '1' and env2_f[1] == env2_unit and env2_f[3] != '1' -%}
+      {%- assign env2_n100 = env2_f[4] | times: 100 | round -%}
+      {%- assign env2_z = 100000000 | plus: env2_n100 -%}
+      {%- assign env2_zs = env2_z | append: '' | slice: 1, 8 -%}
+      {%- assign env2_toks = env2_toks | append: ',' | append: env2_zs | append: '~' | append: env2_f[4] | append: '~' | append: env2_f[0] -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign env2_sortl = env2_toks | remove_first: ',' | split: ',' | sort -%}
+  {%- assign env2_mn = env2_sortl.size -%}
+  {%- assign env2_cut1 = env2_mn | plus: 2 | divided_by: 3 -%}
+  {%- assign env2_cut2 = env2_mn | times: 2 | plus: 2 | divided_by: 3 -%}
+  {%- for env2_bi in (1..3) -%}
+    {%- if env2_bi == 1 -%}
+      {%- assign env2_lo = 0 -%}{%- assign env2_hi = env2_cut1 -%}
+    {%- elsif env2_bi == 2 -%}
+      {%- assign env2_lo = env2_cut1 -%}{%- assign env2_hi = env2_cut2 -%}
+    {%- else -%}
+      {%- assign env2_lo = env2_cut2 -%}{%- assign env2_hi = env2_mn -%}
+    {%- endif -%}
+    {%- assign env2_hs = '|' -%}
+    {%- assign env2_bmin = '' -%}
+    {%- assign env2_bmax = '' -%}
+    {%- for env2_tk in env2_sortl -%}
+      {%- if forloop.index0 >= env2_lo and forloop.index0 < env2_hi -%}
+        {%- assign env2_pr = env2_tk | split: '~' -%}
+        {%- if env2_bmin == '' -%}{%- assign env2_bmin = env2_pr[1] -%}{%- endif -%}
+        {%- assign env2_bmax = env2_pr[1] -%}
+        {%- assign env2_hs = env2_hs | append: env2_pr[2] | append: '|' -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if env2_hs != '|' -%}
+      {%- capture env2_lab -%}
+        {%- if env2_bmin == env2_bmax -%}
+          <bdi>{{ env2_bmax }}</bdi> {{ env2_ulabel }}
+        {%- elsif env2_bi == 1 -%}
+          עד <bdi>{{ env2_bmax }}</bdi> {{ env2_ulabel }}
+        {%- elsif env2_bi == 3 -%}
+          <bdi>{{ env2_bmin }}</bdi> {{ env2_ulabel }} ומעלה
+        {%- else -%}
+          <bdi>{{ env2_bmin }}–{{ env2_bmax }}</bdi> {{ env2_ulabel }}
+        {%- endif -%}
+      {%- endcapture -%}
+      {%- assign env2_lab = env2_lab | strip -%}
+      {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_lab | append: '^reach^' | append: env2_hs | append: '^' | append: env2_cap -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign env2_hs = '|' -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_f = env2_r | split: '^' -%}
+    {%- unless env2_f[3] == '1' -%}
+      {%- unless env2_f[2] == '1' and env2_f[1] == env2_unit -%}
+        {%- assign env2_hs = env2_hs | append: env2_f[0] | append: '|' -%}
+      {%- endunless -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- if env2_hs != '|' -%}
+    {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_offlabel | append: '^off^' | append: env2_hs | append: '^' -%}
+  {%- endif -%}
+  {%- assign env2_hs = '|' -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_f = env2_r | split: '^' -%}
+    {%- if env2_f[3] == '1' -%}
+      {%- assign env2_hs = env2_hs | append: env2_f[0] | append: '|' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if env2_hs != '|' -%}
+    {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_arealabel | append: '^area^' | append: env2_hs | append: '^' -%}
+  {%- endif -%}
+
+{%- else -%}
+  {%- assign env2_toks = '' -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_f = env2_r | split: '^' -%}
+    {%- assign env2_z = 100000000 | plus: env2_f[5] -%}
+    {%- assign env2_zs = env2_z | append: '' | slice: 1, 8 -%}
+    {%- assign env2_toks = env2_toks | append: ',' | append: env2_zs | append: '~' | append: env2_f[5] | append: '~' | append: env2_f[0] -%}
+  {%- endfor -%}
+  {%- assign env2_sortl = env2_toks | remove_first: ',' | split: ',' | sort -%}
+  {%- assign env2_mn = env2_sortl.size -%}
+  {%- assign env2_cut1 = env2_mn | plus: 2 | divided_by: 3 -%}
+  {%- assign env2_cut2 = env2_mn | times: 2 | plus: 2 | divided_by: 3 -%}
+  {%- for env2_bi in (1..3) -%}
+    {%- if env2_bi == 1 -%}
+      {%- assign env2_lo = 0 -%}{%- assign env2_hi = env2_cut1 -%}
+    {%- elsif env2_bi == 2 -%}
+      {%- assign env2_lo = env2_cut1 -%}{%- assign env2_hi = env2_cut2 -%}
+    {%- else -%}
+      {%- assign env2_lo = env2_cut2 -%}{%- assign env2_hi = env2_mn -%}
+    {%- endif -%}
+    {%- assign env2_hs = '|' -%}
+    {%- assign env2_bmin = '' -%}
+    {%- assign env2_bmax = '' -%}
+    {%- for env2_tk in env2_sortl -%}
+      {%- if forloop.index0 >= env2_lo and forloop.index0 < env2_hi -%}
+        {%- assign env2_pr = env2_tk | split: '~' -%}
+        {%- if env2_bmin == '' -%}{%- assign env2_bmin = env2_pr[1] -%}{%- endif -%}
+        {%- assign env2_bmax = env2_pr[1] -%}
+        {%- assign env2_hs = env2_hs | append: env2_pr[2] | append: '|' -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if env2_hs != '|' -%}
+      {%- capture env2_lab -%}
+        {%- if env2_bmin == env2_bmax -%}
+          <bdi>{{ env2_bmin | money_without_currency }}</bdi> ₪
+        {%- elsif env2_bi == 1 -%}
+          עד <bdi>{{ env2_bmax | money_without_currency }}</bdi> ₪
+        {%- elsif env2_bi == 3 -%}
+          מ־<bdi>{{ env2_bmin | money_without_currency }}</bdi> ₪ ומעלה
+        {%- else -%}
+          <bdi>{{ env2_bmin | money_without_currency }}–{{ env2_bmax | money_without_currency }}</bdi> ₪
+        {%- endif -%}
+      {%- endcapture -%}
+      {%- assign env2_lab = env2_lab | strip -%}
+      {%- assign env2_bk = env2_bk | append: '~~B~~' | append: env2_lab | append: '^price^' | append: env2_hs | append: '^' | append: env2_cap -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- comment -%}
+  STEP B — per band: the count, the price span, whether it owns a photograph, and its composition.
+  A composition is used at most once on the page, and scene and wide are only handed to a band that
+  has a text-free photograph to carry them.
+{%- endcomment -%}
+{%- assign env2_blist = env2_bk | remove_first: '~~B~~' | split: '~~B~~' -%}
+{%- assign env2_order = 'pair,scene,quote,dip,wide' | split: ',' -%}
+{%- assign env2_free = 'pair,quote,dip' | split: ',' -%}
+{%- assign env2_shot = 'scene,wide' | split: ',' -%}
+
+{%- comment -%}
+  Which bands own a text-free photograph, and how many do not. A composition that needs a photograph
+  is never handed to a band without one, and the count below keeps the greedy choice from spending
+  the three photo-less compositions on photo bands and stranding the last band with a scene it cannot
+  draw. That is the only reason this pre-pass exists.
+{%- endcomment -%}
+{%- assign env2_pf = '' -%}
+{%- assign env2_npl = 0 -%}
+{%- for env2_b in env2_blist -%}
+  {%- if forloop.index > env2_maxbands -%}{%- break -%}{%- endif -%}
+  {%- assign env2_f = env2_b | split: '^' -%}
+  {%- assign env2_hs = env2_f[2] -%}
+  {%- assign env2_ph = '0' -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_g = env2_r | split: '^' -%}
+    {%- assign env2_hk = '|' | append: env2_g[0] | append: '|' -%}
+    {%- if env2_hs contains env2_hk -%}
+      {%- if env2_clean contains env2_hk -%}{%- assign env2_ph = '1' -%}{%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if section.blocks.size > forloop.index0 -%}
+    {%- assign env2_wblk = section.blocks[forloop.index0] -%}
+    {%- if env2_wblk.settings.scene_image -%}{%- assign env2_ph = '1' -%}{%- endif -%}
+  {%- endif -%}
+  {%- if env2_ph == '0' -%}{%- assign env2_npl = env2_npl | plus: 1 -%}{%- endif -%}
+  {%- assign env2_pf = env2_pf | append: env2_ph -%}
+{%- endfor -%}
+
+{%- assign env2_used = '|' -%}
+{%- assign env2_bands = '' -%}
+{%- assign env2_sum = 0 -%}
+{%- assign env2_nfree = 3 -%}
+{%- assign env2_pldone = 0 -%}
+{%- for env2_b in env2_blist -%}
+  {%- if forloop.index > env2_maxbands -%}{%- break -%}{%- endif -%}
+  {%- assign env2_bi0 = forloop.index0 -%}
+  {%- assign env2_f = env2_b | split: '^' -%}
+  {%- assign env2_hs = env2_f[2] -%}
+  {%- assign env2_photo = env2_pf | slice: env2_bi0, 1 -%}
+  {%- assign env2_n = 0 -%}
+  {%- assign env2_min = 0 -%}
+  {%- assign env2_max = 0 -%}
+  {%- for env2_r in env2_rowlist -%}
+    {%- assign env2_g = env2_r | split: '^' -%}
+    {%- assign env2_hk = '|' | append: env2_g[0] | append: '|' -%}
+    {%- if env2_hs contains env2_hk -%}
+      {%- assign env2_n = env2_n | plus: 1 -%}
+      {%- assign env2_cents = env2_g[5] | plus: 0 -%}
+      {%- assign env2_centx = env2_g[6] | plus: 0 -%}
+      {%- if env2_min == 0 -%}{%- assign env2_min = env2_cents -%}{%- endif -%}
+      {%- if env2_cents < env2_min -%}{%- assign env2_min = env2_cents -%}{%- endif -%}
+      {%- if env2_centx > env2_max -%}{%- assign env2_max = env2_centx -%}{%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign env2_sum = env2_sum | plus: env2_n -%}
+
+  {%- comment -%}
+    The composition. A merchant choice wins when it is free and drawable; otherwise the band takes its
+    place in the default rhythm; otherwise the first composition that is still free and drawable. No
+    composition is ever used twice, which is non-negotiable 1 of this section.
+  {%- endcomment -%}
+  {%- assign env2_want = '' -%}
+  {%- if section.blocks.size > env2_bi0 -%}
+    {%- assign env2_wblk = section.blocks[env2_bi0] -%}
+    {%- assign env2_want = env2_wblk.settings.composition | default: '' -%}
+    {%- if env2_want == 'auto' -%}{%- assign env2_want = '' -%}{%- endif -%}
+  {%- endif -%}
+  {%- if env2_want == '' -%}
+    {%- assign env2_want = env2_order[env2_bi0] | default: 'pair' -%}
+  {%- endif -%}
+
+  {%- assign env2_pool = env2_order -%}
+  {%- if env2_photo == '0' -%}
+    {%- assign env2_pool = env2_free -%}
+  {%- else -%}
+    {%- assign env2_pleft = env2_npl | minus: env2_pldone -%}
+    {%- if env2_pleft >= env2_nfree -%}{%- assign env2_pool = env2_shot -%}{%- endif -%}
+  {%- endif -%}
+
+  {%- assign env2_okwant = false -%}
+  {%- for env2_o in env2_pool -%}
+    {%- if env2_o == env2_want -%}{%- assign env2_okwant = true -%}{%- endif -%}
+  {%- endfor -%}
+  {%- assign env2_wk = '|' | append: env2_want | append: '|' -%}
+  {%- if env2_used contains env2_wk -%}{%- assign env2_okwant = false -%}{%- endif -%}
+  {%- unless env2_okwant -%}
+    {%- assign env2_want = '' -%}
+    {%- for env2_o in env2_pool -%}
+      {%- assign env2_ok = '|' | append: env2_o | append: '|' -%}
+      {%- unless env2_used contains env2_ok -%}
+        {%- assign env2_want = env2_o -%}
+        {%- break -%}
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- if env2_want == '' -%}
+      {%- for env2_o in env2_order -%}
+        {%- assign env2_ok = '|' | append: env2_o | append: '|' -%}
+        {%- unless env2_used contains env2_ok -%}
+          {%- assign env2_want = env2_o -%}
+          {%- break -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if env2_want == '' -%}{%- assign env2_want = 'pair' -%}{%- endif -%}
+  {%- endunless -%}
+  {%- assign env2_used = env2_used | append: env2_want | append: '|' -%}
+  {%- unless env2_want == 'scene' or env2_want == 'wide' -%}
+    {%- assign env2_nfree = env2_nfree | minus: 1 -%}
+  {%- endunless -%}
+  {%- if env2_photo == '0' -%}{%- assign env2_pldone = env2_pldone | plus: 1 -%}{%- endif -%}
+  {%- assign env2_cap2 = env2_f[3] | default: '' -%}
+  {%- assign env2_bands = env2_bands | append: '~~B~~' | append: env2_f[0] | append: '^' | append: env2_f[1] | append: '^' | append: env2_hs | append: '^' | append: env2_cap2 | append: '^' | append: env2_want | append: '^' | append: env2_n | append: '^' | append: env2_min | append: '^' | append: env2_max | append: '^' | append: env2_photo -%}
+{%- endfor -%}
+{%- assign env2_bandlist = env2_bands | remove_first: '~~B~~' | split: '~~B~~' -%}
+
+{%- assign env2_kicked = false -%}
+
+<section id="env2-coll-bands" data-env2-coll-bands class="env2-section env2-coll env2-coll-bands" dir="rtl" style="scroll-margin-top:90px;--env2-stars:.34" aria-label="{{ env2_s.eyebrow | default: 'תחנות הערב' | escape }}">
+  <div class="env2-stars" aria-hidden="true"></div>
+
+  {%- comment -%} the glyph sprite, ONCE, before any plate can be drawn (CONTRACT §4, risk 11) {%- endcomment -%}
+  {% render 'elmsnest-v2-coll-glyph', sprite: true %}
+  {% render 'elmsnest-v2-pdp-card', css: true %}
+
+  {%- if env2_s.eyebrow != blank or env2_s.deck != blank -%}
+    <div class="env2-wrap env2-coll-bands__head">
+      {%- if env2_s.eyebrow != blank -%}<p class="env2-eyebrow env2-coll-bands__eyebrow">{{ env2_s.eyebrow }}</p>{%- endif -%}
+      {%- if env2_s.deck != blank -%}<p class="env2-lead env2-coll-bands__deck">{{ env2_s.deck }}</p>{%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- for env2_b in env2_bandlist -%}
+    {%- assign env2_f = env2_b | split: '^' -%}
+    {%- assign env2_label = env2_f[0] -%}
+    {%- assign env2_kind = env2_f[1] -%}
+    {%- assign env2_hs = env2_f[2] -%}
+    {%- assign env2_capline = env2_f[3] | default: '' -%}
+    {%- assign env2_comp = env2_f[4] -%}
+    {%- assign env2_n = env2_f[5] | plus: 0 -%}
+    {%- assign env2_min = env2_f[6] | plus: 0 -%}
+    {%- assign env2_max = env2_f[7] | plus: 0 -%}
+    {%- assign env2_num = forloop.index -%}
+    {%- assign env2_last = forloop.last -%}
+    {%- assign env2_bi0 = forloop.index0 -%}
+
+    {%- comment -%} the optional per-band block: copy and pickers only, never the membership {%- endcomment -%}
+    {%- assign env2_hasblk = false -%}
+    {%- assign env2_blabel = '' -%}
+    {%- assign env2_bquote = '' -%}
+    {%- assign env2_bimg = nil -%}
+    {%- assign env2_bidx = 0 -%}
+    {%- assign env2_baction = '' -%}
+    {%- assign env2_bpin1 = nil -%}
+    {%- assign env2_bpin2 = nil -%}
+    {%- assign env2_bx1 = 38 -%}
+    {%- assign env2_by1 = 30 -%}
+    {%- assign env2_bx2 = 68 -%}
+    {%- assign env2_by2 = 52 -%}
+    {%- assign env2_bpicks = '|' -%}
+    {%- if section.blocks.size > env2_bi0 -%}
+      {%- assign env2_blk = section.blocks[env2_bi0] -%}
+      {%- assign env2_hasblk = true -%}
+      {%- assign env2_blabel = env2_blk.settings.label | default: '' -%}
+      {%- assign env2_bquote = env2_blk.settings.quote | default: '' -%}
+      {%- assign env2_bimg = env2_blk.settings.scene_image -%}
+      {%- assign env2_bidx = env2_blk.settings.card_image_index | default: 0 -%}
+      {%- assign env2_baction = env2_blk.settings.card_action_label | default: '' -%}
+      {%- assign env2_bpin1 = env2_blk.settings.pin_1_product -%}
+      {%- assign env2_bpin2 = env2_blk.settings.pin_2_product -%}
+      {%- assign env2_bx1 = env2_blk.settings.pin_1_x | default: 38 -%}
+      {%- assign env2_by1 = env2_blk.settings.pin_1_y | default: 30 -%}
+      {%- assign env2_bx2 = env2_blk.settings.pin_2_x | default: 68 -%}
+      {%- assign env2_by2 = env2_blk.settings.pin_2_y | default: 52 -%}
+      {%- for env2_i in (1..3) -%}
+        {%- if env2_i == 1 -%}{%- assign env2_pk = env2_blk.settings.product_1 -%}
+        {%- elsif env2_i == 2 -%}{%- assign env2_pk = env2_blk.settings.product_2 -%}
+        {%- else -%}{%- assign env2_pk = env2_blk.settings.product_3 -%}{%- endif -%}
+        {%- if env2_pk -%}
+          {%- assign env2_pkh = '|' | append: env2_pk.handle | append: '|' -%}
+          {%- if env2_hs contains env2_pkh -%}{%- assign env2_bpicks = env2_bpicks | append: env2_pk.handle | append: '|' -%}{%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if env2_blabel != '' -%}{%- assign env2_label = env2_blabel -%}{%- endif -%}
+
+    {%- comment -%}
+      The band's own pin products and its photograph: the first two members, and the first member that
+      owns a text-free frame. A merchant picker wins over both. No object survives into the next band.
+    {%- endcomment -%}
+    {%- assign env2_pin1 = nil -%}
+    {%- assign env2_pin2 = nil -%}
+    {%- assign env2_photop = nil -%}
+    {%- assign env2_p1on = false -%}
+    {%- assign env2_p2on = false -%}
+    {%- assign env2_phon = false -%}
+    {%- for env2_p in env2_c.products -%}
+      {%- assign env2_hk = '|' | append: env2_p.handle | append: '|' -%}
+      {%- if env2_hs contains env2_hk -%}
+        {%- if env2_p1on == false -%}
+          {%- assign env2_pin1 = env2_p -%}{%- assign env2_p1on = true -%}
+        {%- elsif env2_p2on == false -%}
+          {%- assign env2_pin2 = env2_p -%}{%- assign env2_p2on = true -%}
+        {%- endif -%}
+        {%- if env2_phon == false and env2_clean contains env2_hk -%}
+          {%- assign env2_photop = env2_p -%}{%- assign env2_phon = true -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if env2_bpin1 -%}{%- assign env2_pin1 = env2_bpin1 -%}{%- assign env2_p1on = true -%}{%- endif -%}
+    {%- if env2_bpin2 -%}{%- assign env2_pin2 = env2_bpin2 -%}{%- assign env2_p2on = true -%}{%- endif -%}
+
+    {%- assign env2_photosrc = nil -%}
+    {%- assign env2_photoalt = '' -%}
+    {%- if env2_bimg -%}
+      {%- assign env2_photosrc = env2_bimg -%}
+      {%- assign env2_photoalt = env2_bimg.alt | default: env2_label | strip_html -%}
+    {%- elsif env2_phon -%}
+      {%- capture env2_pi -%}{%- render 'elmsnest-v2-pdp-image', product: env2_photop, slot: 'context' -%}{%- endcapture -%}
+      {%- assign env2_pi = env2_pi | strip | plus: 0 -%}
+      {%- assign env2_photosrc = env2_photop.images[env2_pi] -%}
+      {%- assign env2_photoalt = env2_photop.title -%}
+    {%- endif -%}
+    {%- unless env2_photosrc -%}
+      {%- if env2_comp == 'scene' -%}{%- assign env2_comp = 'pair' -%}{%- endif -%}
+      {%- if env2_comp == 'wide' -%}{%- assign env2_comp = 'pair' -%}{%- endif -%}
+    {%- endunless -%}
+
+    {%- comment -%} the pull quote: the merchant's line, or one derived from this band's real span {%- endcomment -%}
+    {%- assign env2_quote = env2_bquote -%}
+    {%- if env2_quote == '' -%}{%- assign env2_quote = env2_s.quote | default: '' -%}{%- endif -%}
+    {%- assign env2_qderived = false -%}
+    {%- if env2_comp == 'quote' and env2_quote == '' -%}{%- assign env2_qderived = true -%}{%- endif -%}
+
+    <article class="env2-coll-bands__band env2-coll-bands__band--{{ env2_comp }}" id="env2-band-{{ env2_num }}" data-kind="{{ env2_kind }}" data-cards="{{ env2_n }}"{% if env2_hasblk %} {{ env2_blk.shopify_attributes }}{% endif %}>
+      <div class="env2-wrap env2-coll-bands__bandhead">
+        <p class="env2-coll-bands__num" aria-hidden="true"><bdi>{% if env2_num < 10 %}0{% endif %}{{ env2_num }}</bdi></p>
+        <div class="env2-coll-bands__bandtitle">
+          <h2 class="env2-h env2-coll-bands__h2">{{ env2_label }}</h2>
+          {%- unless env2_qderived -%}
+            <p class="env2-coll-bands__facts">
+              {%- if env2_n == 1 -%}מנורה אחת{%- else -%}<bdi>{{ env2_n }}</bdi> מנורות{% endif %} · מ־<bdi>{{ env2_min | money_without_currency }}</bdi> ₪
+              {%- if env2_capline != '' %} · {{ env2_capline }}{% endif -%}
+            </p>
+          {%- endunless -%}
+        </div>
+      </div>
+
+      {%- if env2_comp == 'quote' -%}
+        <div class="env2-wrap env2-coll-bands__body env2-coll-bands__body--quote">
+          <blockquote class="env2-coll-bands__quote">
+            {%- if env2_qderived -%}
+              {%- if env2_n == 1 -%}דגם אחד בפס הזה{%- else -%}<bdi>{{ env2_n }}</bdi> דגמים בפס הזה{%- endif -%}, מ־<bdi>{{ env2_min | money_without_currency }}</bdi> ₪ ועד <bdi>{{ env2_max | money_without_currency }}</bdi> ₪.
+            {%- else -%}
+              {{ env2_quote }}
+            {%- endif -%}
+          </blockquote>
+      {%- elsif env2_comp == 'scene' -%}
+        <div class="env2-coll-bands__body env2-coll-bands__body--scene">
+          <figure class="env2-coll-bands__fig env2-coll-bands__fig--scene" data-lamp>
+            <picture>
+              <source media="(max-width:900px)" srcset="{{ env2_photosrc | image_url: width: 1000 }}">
+              <img src="{{ env2_photosrc | image_url: width: 1800 }}"
+                   srcset="{{ env2_photosrc | image_url: width: 900 }} 900w, {{ env2_photosrc | image_url: width: 1400 }} 1400w, {{ env2_photosrc | image_url: width: 1800 }} 1800w"
+                   sizes="100vw" alt="{{ env2_photoalt | escape }}" width="1800" height="1013"
+                   {% if env2_num == 1 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+            </picture>
+            <span class="env2-coll-bands__tint" aria-hidden="true"></span>
+            <span class="env2-coll-bands__veil" aria-hidden="true"></span>
+            {%- if env2_s.show_pins != false -%}
+              {%- for env2_i in (1..2) -%}
+                {%- if env2_i == 1 -%}
+                  {%- assign env2_pp = env2_pin1 -%}{%- assign env2_pon = env2_p1on -%}
+                  {%- assign env2_px = env2_bx1 -%}{%- assign env2_py = env2_by1 -%}
+                {%- else -%}
+                  {%- assign env2_pp = env2_pin2 -%}{%- assign env2_pon = env2_p2on -%}
+                  {%- assign env2_px = env2_bx2 -%}{%- assign env2_py = env2_by2 -%}
+                {%- endif -%}
+                {%- if env2_pon -%}
+                  {%- capture env2_pax -%}{%- render 'elmsnest-v2-coll-axis', product: env2_pp -%}{%- endcapture -%}
+                  {%- assign env2_prc = env2_pax | split: RS -%}
+                  {%- assign env2_pval = '' -%}
+                  {%- if env2_prc.size > 1 -%}
+                    {%- assign env2_pst = env2_prc[1] | split: FS -%}
+                    {%- assign env2_pval = env2_pst[2] -%}
+                    {%- if env2_pval == 'Default Title' -%}{%- assign env2_pval = '' -%}{%- endif -%}
+                  {%- endif -%}
+                  <a class="env2-coll-bands__pin" href="{{ env2_pp.url }}" style="--env2-pin-x:{{ env2_px }}%;--env2-pin-y:{{ env2_py }}%;--env2-pin-stem:{{ env2_s.pin_stem | default: 110 }}px">
+                    <span class="env2-coll-bands__pindot" aria-hidden="true"></span>
+                    <span class="env2-coll-bands__pinstem" aria-hidden="true"></span>
+                    <span class="env2-coll-bands__pintag">
+                      <b class="env2-kicker env2-coll-bands__pinname">{{ env2_pp.title }}</b>
+                      {%- if env2_pval != '' -%}<i class="env2-coll-bands__pinval">{{ env2_pval }}</i>{%- endif -%}
+                    </span>
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </figure>
+      {%- elsif env2_comp == 'wide' -%}
+        <div class="env2-coll-bands__body env2-coll-bands__body--wide">
+          <div class="env2-wrap env2-coll-bands__widegrid">
+            <figure class="env2-coll-bands__fig env2-coll-bands__fig--wide" data-lamp>
+              <img src="{{ env2_photosrc | image_url: width: 1600 }}"
+                   srcset="{{ env2_photosrc | image_url: width: 900 }} 900w, {{ env2_photosrc | image_url: width: 1600 }} 1600w"
+                   sizes="(max-width:900px) 100vw, 76vw" alt="{{ env2_photoalt | escape }}"
+                   width="1600" height="686" loading="lazy">
+              <span class="env2-coll-bands__tint" aria-hidden="true"></span>
+              <span class="env2-coll-bands__edge" aria-hidden="true"></span>
+            </figure>
+      {%- else -%}
+        <div class="env2-wrap env2-coll-bands__body env2-coll-bands__body--{{ env2_comp }}">
+      {%- endif -%}
+
+      {%- comment -%}
+        The cards. One flow, one loop; the composition is CSS. The first card of a scene band is the
+        scrim card (variant:'scene') and it is the ONLY one on this page — the scene section owns the
+        other of the two the ground allows (§3.1, CONTRACT risk 10). Products a merchant picked are
+        rendered first; membership itself is computed, never picked, so the exactly-once rule holds.
+      {%- endcomment -%}
+      <div class="env2-coll-bands__cards env2-coll-bands__cards--{{ env2_comp }}">
+        {%- assign env2_ci = 0 -%}
+        {%- for env2_pass in (1..2) -%}
+          {%- for env2_p in env2_c.products -%}
+            {%- assign env2_hk = '|' | append: env2_p.handle | append: '|' -%}
+            {%- unless env2_hs contains env2_hk -%}{%- continue -%}{%- endunless -%}
+            {%- assign env2_ispick = false -%}
+            {%- if env2_bpicks contains env2_hk -%}{%- assign env2_ispick = true -%}{%- endif -%}
+            {%- if env2_pass == 1 and env2_ispick == false -%}{%- continue -%}{%- endif -%}
+            {%- if env2_pass == 2 and env2_ispick -%}{%- continue -%}{%- endif -%}
+
+            {%- capture env2_cax -%}{%- render 'elmsnest-v2-coll-axis', product: env2_p, per_unit_word: env2_perword -%}{%- endcapture -%}
+            {%- assign env2_crecs = env2_cax | split: RS -%}
+            {%- assign env2_caxis = '' -%}
+            {%- assign env2_cunit = '' -%}
+            {%- assign env2_cact = '' -%}
+            {%- if env2_crecs.size > 1 -%}
+              {%- assign env2_cm = env2_crecs[0] | split: FS -%}
+              {%- assign env2_cfirst = env2_crecs[1] | split: FS -%}
+              {%- assign env2_clasti = env2_crecs.size | minus: 1 -%}
+              {%- assign env2_clast = env2_crecs[env2_clasti] | split: FS -%}
+              {%- assign env2_v1 = env2_cfirst[2] -%}
+              {%- assign env2_v2 = env2_clast[2] -%}
+              {%- if env2_v1 != 'Default Title' -%}
+                {%- if env2_clasti > 1 and env2_v2 != env2_v1 -%}
+                  {%- capture env2_caxis -%}{{ env2_v1 }} · {{ env2_v2 }}{%- endcapture -%}
+                {%- else -%}
+                  {%- assign env2_caxis = env2_v1 -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- comment -%}
+                the derived per-unit figure, at the CHEAPEST value on the axis, so it belongs to the
+                same variant the card's own price rule prints. The snippet does the arithmetic and the
+                caller prefixes the tilde INSIDE the bdi (CONTRACT §3.5 rule 1).
+              {%- endcomment -%}
+              {%- if env2_s.show_unit_price != false -%}
+                {%- assign env2_bestc = 0 -%}
+                {%- assign env2_bestu = '' -%}
+                {%- assign env2_bestl = '' -%}
+                {%- for env2_rec in env2_crecs offset: 1 -%}
+                  {%- assign env2_st = env2_rec | split: FS -%}
+                  {%- assign env2_pu = env2_st[13] | default: '' -%}
+                  {%- if env2_pu != '' -%}
+                    {%- assign env2_cc = env2_st[11] | plus: 0 -%}
+                    {%- if env2_bestc == 0 or env2_cc < env2_bestc -%}
+                      {%- assign env2_bestc = env2_cc -%}
+                      {%- assign env2_bestu = env2_pu -%}
+                      {%- assign env2_bestl = env2_st[14] -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- if env2_bestu != '' -%}
+                  {%- capture env2_cunit -%}<bdi>≈{{ env2_bestu }}</bdi> {{ env2_bestl }}{%- endcapture -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if env2_cm[3] == 'm' -%}
+                {%- assign env2_cact = 'לבחירת אורך' -%}
+              {%- elsif env2_cm[3] == 'qty' -%}
+                {%- assign env2_cact = 'לבחירת כמות' -%}
+              {%- elsif env2_cm[2] contains 'צבע' or env2_cm[2] contains 'גוון' -%}
+                {%- assign env2_cact = 'לבחירת גוון' -%}
+              {%- else -%}
+                {%- assign env2_cact = 'לבחירת דגם' -%}
+              {%- endif -%}
+            {%- endif -%}
+            {%- if env2_baction != '' -%}{%- assign env2_cact = env2_baction -%}{%- endif -%}
+            {%- if env2_s.action_label != blank -%}{%- assign env2_cact = env2_s.action_label -%}{%- endif -%}
+
+            {%- assign env2_mod = env2_ci | modulo: 3 -%}
+            {%- assign env2_cw = 300 -%}
+            {%- assign env2_car = '1/1.05' -%}
+            {%- if env2_mod == 1 -%}
+              {%- assign env2_cw = 210 -%}{%- assign env2_car = '1/1.4' -%}
+            {%- elsif env2_mod == 2 -%}
+              {%- assign env2_cw = 260 -%}{%- assign env2_car = '1/.9' -%}
+            {%- endif -%}
+            {%- assign env2_cvar = '' -%}
+            {%- if env2_comp == 'scene' and env2_ci == 0 -%}
+              {%- assign env2_cvar = 'scene' -%}{%- assign env2_cw = 400 -%}{%- assign env2_car = '1/.9' -%}
+            {%- elsif env2_comp == 'quote' and env2_ci == 0 -%}
+              {%- assign env2_cw = 260 -%}{%- assign env2_car = '1/1.4' -%}
+            {%- elsif env2_comp == 'wide' and env2_ci == 0 -%}
+              {%- assign env2_cw = 320 -%}{%- assign env2_car = '1/1.05' -%}
+            {%- elsif env2_comp == 'dip' -%}
+              {%- assign env2_car = '1/1.05' -%}
+              {%- assign env2_mod2 = env2_ci | modulo: 2 -%}
+              {%- if env2_mod2 == 1 -%}{%- assign env2_car = '1/1.4' -%}{%- endif -%}
+            {%- endif -%}
+            {%- assign env2_ck = 'none' -%}
+            {%- if env2_kicked == false and env2_s.show_kicker != false -%}
+              {%- assign env2_ck = '' -%}
+              {%- assign env2_kicked = true -%}
+            {%- endif -%}
+
+            <div class="env2-coll-bands__cell">
+              {% render 'elmsnest-v2-pdp-card', product: env2_p, width: env2_cw, aspect: env2_car,
+                       image_index: env2_bidx, kicker: env2_ck, action_label: env2_cact,
+                       axis_caption: env2_caxis, unit_price_line: env2_cunit,
+                       variant: env2_cvar, glyph: 'auto' %}
+            </div>
+            {%- assign env2_ci = env2_ci | plus: 1 -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if env2_comp == 'wide' -%}</div>{%- endif -%}
+      </div>
+
+      {%- if env2_last and env2_s.show_assert != false -%}
+        <div class="env2-wrap env2-coll-bands__foot">
+          <p class="env2-coll-bands__assert">
+            {%- if env2_sum == env2_count -%}
+              <bdi>{{ env2_sum }}</bdi> מנורות {% if env2_bandlist.size == 1 %}בפס אחד{% else %}ב־<bdi>{{ env2_bandlist.size }}</bdi> פסים{% endif %} — כל מנורה בקולקציה מופיעה בפס אחד בדיוק.
+            {%- else -%}
+              <bdi>{{ env2_sum }}</bdi> מתוך <bdi>{{ env2_count }}</bdi> המנורות בקולקציה מופיעות בפסים שלמעלה.
+            {%- endif -%}
+          </p>
+          {%- if env2_s.foot_note != blank -%}<p class="env2-coll-bands__footnote">{{ env2_s.foot_note }}</p>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </article>
+  {%- endfor -%}
+
+  {%- if env2_bandlist.size == 0 -%}
+    <div class="env2-wrap env2-coll-bands__foot">
+      <p class="env2-coll-bands__assert">אין מוצרים להצגה בקולקציה הזאת.</p>
+    </div>
+  {%- endif -%}
+</section>
+{%- endpaginate -%}
+
+{% stylesheet %}
+/* ElmsNest v2 collection — §4.3 the walk. Five compositions, no grid, radius 0, logical properties
+   only. Nothing here paints a page background: the ground is elmsnest-v2-ground-collection, rendered
+   once by the scene section (§3.1). Shared classes are only SIZED from these selectors, never
+   restyled (plumbing CONTRACT §0). */
+.env2-coll-bands{padding-block:clamp(72px,9vw,120px) clamp(56px,7vw,96px);position:relative}
+.env2-coll-bands__head{margin-block-end:clamp(28px,3vw,48px)}
+.env2-coll-bands__deck{margin-block:14px 0}
+
+.env2-coll-bands__band{position:relative;margin-block-end:clamp(64px,8vw,132px)}
+.env2-coll-bands__band:last-child{margin-block-end:0}
+.env2-coll-bands__bandhead{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;
+  gap:clamp(16px,2vw,32px);padding-block-start:clamp(20px,2.4vw,34px);
+  border-block-start:1px solid var(--env2-hair);margin-block-end:clamp(22px,2.6vw,40px)}
+.env2-coll-bands__num{margin:0;font-family:var(--env2-serif);font-weight:900;line-height:.9;
+  font-size:clamp(56px,6.6vw,96px);color:var(--env2-gold);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em}
+.env2-coll-bands__bandtitle{min-inline-size:0}
+.env2-coll-bands__h2{margin:0;font-size:clamp(30px,4.2vw,60px);line-height:1}
+.env2-coll-bands__facts{margin-block:12px 0;font-family:var(--env2-sans);font-weight:300;
+  font-size:15px;line-height:1.5;color:var(--env2-ink-2)}
+
+/* ---- the cards row: never four equal cells (§4.3 n-n 4) ---- */
+.env2-coll-bands__cards{display:flex;flex-wrap:wrap;align-items:flex-end;
+  gap:clamp(20px,2.6vw,44px) clamp(18px,2.4vw,40px)}
+.env2-coll-bands__cell{display:flex;align-items:flex-end;min-inline-size:0}
+.env2-coll-bands__cards .env2-pdp-card__axis,
+.env2-coll-bands__cards .env2-pdp-card__unit{font-size:14px}
+
+/* 01 pair — cards on a hairline, the quiet opening. Three unequal columns, never four in a row and
+   never equal cells (§6.3): the card keeps its own staggered width inside its column. */
+.env2-coll-bands__body--pair .env2-coll-bands__cards{padding-block-start:clamp(18px,2vw,30px);
+  border-block-start:1px solid var(--env2-hair)}
+.env2-coll-bands__cards--pair,.env2-coll-bands__cards--scene{display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(0,.82fr) minmax(0,1.06fr);
+  align-items:end;justify-items:start}
+
+/* 02 scene — a full-bleed photograph, up to two pins, the scrim card riding the bottom edge */
+.env2-coll-bands__body--scene{position:relative}
+.env2-coll-bands__fig{position:relative;margin:0;display:block;overflow:hidden;border-radius:0}
+.env2-coll-bands__fig--scene{inline-size:100%;block-size:min(62svh,620px)}
+.env2-coll-bands__fig img{inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 46%;
+  display:block;border-radius:0;filter:brightness(calc(.26 + .42*var(--lit,1))) saturate(.9);
+  transition:filter 1.6s cubic-bezier(.22,.61,.36,1)}
+/* §3.6.4 — the multiply veil that keeps a bright interior (the birch) off the night page. It is on
+   every figure, not only that one, because a merchant image can be anything. */
+.env2-coll-bands__tint{position:absolute;inset:0;background:var(--env2-sky-4);
+  mix-blend-mode:multiply;opacity:.46;pointer-events:none}
+.env2-coll-bands__veil{position:absolute;inset-inline:0;inset-block-end:0;block-size:56%;
+  background:linear-gradient(180deg,rgba(2,3,6,0) 0%,rgba(4,7,14,.72) 58%,rgba(2,3,6,.96) 100%);
+  pointer-events:none}
+.env2-coll-bands__body--scene .env2-coll-bands__cards{position:relative;z-index:2;
+  margin-block-start:min(-120px,-8vw);
+  inline-size:min(var(--env2-w,1240px),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-coll-bands__cards--scene .env2-coll-bands__cell:first-child{grid-column:3;justify-self:end}
+.env2-coll-bands__body--scene .env2-pdp-card--scene{--env2-pdp-card-w:400px}
+
+/* the pin — dot, hairline stem, gold tag; the tag prints the lamp and its own real value (C10) */
+/* the pin box has NO width, so the dot sits exactly on the merchant's per-cent and the tag hangs
+   symmetrically under it; the position is clamped and the tag capped so a tag can never be cut by
+   the figure's inline edge. */
+.env2-coll-bands__pin{position:absolute;inset-inline-start:clamp(11%,var(--env2-pin-x,38%),89%);
+  inset-block-start:var(--env2-pin-y,30%);z-index:3;display:flex;flex-direction:column;
+  align-items:center;inline-size:0;text-decoration:none;color:var(--env2-ink)}
+.env2-coll-bands__pindot{inline-size:9px;block-size:9px;border-radius:50%;background:var(--env2-glow);
+  box-shadow:0 0 0 6px rgba(255,211,148,.16),0 0 34px 10px rgba(255,211,148,.30);
+  opacity:var(--lit,1);transition:opacity .5s ease}
+.env2-coll-bands__pinstem{inline-size:1px;block-size:var(--env2-pin-stem,110px);
+  background:linear-gradient(180deg,rgba(255,211,148,.75),rgba(244,238,227,.22));
+  transform-origin:50% 0;transform:scaleY(var(--lit,1));
+  transition:transform .45s cubic-bezier(.2,.7,.2,1) .15s}
+.env2-coll-bands__pintag{display:flex;flex-direction:column;gap:3px;justify-content:center;
+  min-block-size:44px;padding-inline:14px;padding-block:9px;background:rgba(5,8,14,.72);
+  backdrop-filter:blur(6px);border-radius:0;opacity:var(--lit,1);transition:opacity .4s ease .25s;
+  max-inline-size:20vw}
+.env2-coll-bands__pinname{display:block;color:var(--env2-gold);max-inline-size:20ch;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;font-size:11.5px}
+.env2-coll-bands__pinval{display:block;font-family:var(--env2-sans);font-style:normal;font-weight:400;
+  font-size:13px;line-height:1.2;color:var(--env2-ink);white-space:nowrap}
+.env2-coll-bands__pin:hover .env2-coll-bands__pinname{color:var(--env2-glow)}
+.env2-coll-bands__pin:focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+
+/* 03 quote — a pull quote at 46px beside one small card, 3:1 */
+.env2-coll-bands__body--quote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);
+  gap:clamp(24px,3vw,52px);align-items:center}
+.env2-coll-bands__quote{grid-column:2;margin:0;font-family:var(--env2-serif);font-weight:400;
+  font-size:clamp(26px,3.4vw,46px);line-height:1.2;letter-spacing:-.01em;color:var(--env2-ink);
+  text-wrap:balance;max-inline-size:22ch}
+.env2-coll-bands__cards--quote{grid-column:1;grid-row:1;flex-direction:column;align-items:flex-start}
+
+/* 04 dip — an unequal photographic diptych, never two equal squares */
+.env2-coll-bands__cards--dip{display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(20px,2.6vw,44px);align-items:end}
+.env2-coll-bands__cards--dip .env2-coll-bands__cell{inline-size:100%}
+.env2-coll-bands__cards--dip .env2-pdp-card{inline-size:100%}
+.env2-coll-bands__band[data-cards="1"] .env2-coll-bands__cards--dip{grid-template-columns:auto minmax(0,1fr)}
+.env2-coll-bands__band[data-cards="1"] .env2-coll-bands__cards--dip .env2-pdp-card{inline-size:var(--env2-pdp-card-w,280px)}
+
+/* 05 wide — a wide low band with the card overlaid at its start edge */
+.env2-coll-bands__widegrid{display:grid;grid-template-columns:minmax(0,1fr);align-items:center}
+.env2-coll-bands__fig--wide{grid-column:1;grid-row:1;inline-size:100%;
+  block-size:clamp(190px,20vw,280px)}
+.env2-coll-bands__fig--wide img{object-position:50% 50%}
+.env2-coll-bands__edge{position:absolute;inset-block:0;inset-inline-start:0;inline-size:74%;
+  background:linear-gradient(270deg,rgba(2,3,6,.97) 0%,rgba(4,7,14,.82) 46%,rgba(2,3,6,0) 100%);
+  pointer-events:none}
+.env2-coll-bands__cards--wide{grid-column:1;grid-row:1;align-self:center;position:relative;z-index:2;
+  max-inline-size:72%;padding-inline-start:clamp(6px,1.4vw,24px)}
+
+@media (max-width:900px){
+  .env2-coll-bands__bandhead{grid-template-columns:minmax(0,1fr);gap:6px}
+  .env2-coll-bands__facts{font-size:14px}
+  .env2-coll-bands__cards{gap:26px 18px}
+  .env2-coll-bands__cell{inline-size:100%}
+  .env2-coll-bands__cell .env2-pdp-card{inline-size:100%;max-inline-size:100%}
+  .env2-coll-bands__body--pair .env2-coll-bands__cards,
+  .env2-coll-bands__cards--dip{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+  .env2-coll-bands__fig--scene{block-size:52svh}
+  .env2-coll-bands__body--scene .env2-coll-bands__cards{display:grid;grid-template-columns:minmax(0,1fr);
+    margin-block-start:-56px}
+  .env2-coll-bands__cards--scene .env2-coll-bands__cell:first-child{grid-column:1;justify-self:stretch}
+  .env2-coll-bands__body--scene .env2-pdp-card--scene{--env2-pdp-card-w:100%}
+  .env2-coll-bands__body--quote{grid-template-columns:minmax(0,1fr);gap:20px}
+  .env2-coll-bands__quote{grid-column:1;grid-row:1;max-inline-size:none}
+  .env2-coll-bands__cards--quote{grid-column:1;grid-row:2;display:grid;
+    grid-template-columns:minmax(0,1fr)}
+  .env2-coll-bands__widegrid{grid-template-columns:minmax(0,1fr)}
+  .env2-coll-bands__fig--wide{grid-column:1;grid-row:1;aspect-ratio:16/9}
+  .env2-coll-bands__cards--wide{grid-column:1;grid-row:2;padding-inline-start:0;
+    margin-block-start:-40px;display:grid;grid-template-columns:minmax(0,1fr)}
+  .env2-coll-bands__pin{inset-inline-start:clamp(23%,var(--env2-pin-x,38%),77%)}
+  .env2-coll-bands__pintag{max-inline-size:42vw}
+  .env2-coll-bands__pinname{max-inline-size:100%}
+  .env2-coll-bands__pinval{font-size:13px}
+  .env2-coll-bands__pinstem{block-size:min(var(--env2-pin-stem,110px),74px)}
+}
+
+.env2-coll-bands__foot{margin-block-start:clamp(28px,3vw,48px);padding-block-start:20px;
+  border-block-start:1px solid var(--env2-hair)}
+.env2-coll-bands__assert,.env2-coll-bands__footnote{margin:0;font-family:var(--env2-sans);
+  font-weight:300;font-size:14px;line-height:1.6;color:var(--env2-mute)}
+.env2-coll-bands__footnote{margin-block-start:8px}
+
+/* §3.6.4 — the off-scale and area bands are where the spec allows an interior frame (the birch) to
+   ship, and only under a --env2-sky-4 multiply veil. It is applied to every card photograph in those
+   two bands rather than to one handle, so the rule survives a merchant adding a lamp. */
+.env2-coll-bands__band[data-kind="off"] .env2-pdp-card__ph::after,
+.env2-coll-bands__band[data-kind="area"] .env2-pdp-card__ph::after{content:"";position:absolute;
+  inset:0;background:var(--env2-sky-4);mix-blend-mode:multiply;opacity:.34;pointer-events:none}
+
+/* core REPORT §9.1 — an anchor styled as the filled pill inherits ink from .env2-section a and lands
+   at 1.21:1. The card only ships ghost anchors, but this keeps a future one legible either way. */
+.env2-coll-bands a.env2-btn:not(.env2-btn--ghost){color:var(--env2-btn-ink)}
+.env2-coll-bands .env2-btn--sm{min-block-size:44px}
+
+@media (prefers-reduced-motion:reduce){
+  .env2-coll-bands__fig img,.env2-coll-bands__pindot,
+  .env2-coll-bands__pinstem,.env2-coll-bands__pintag{transition:none}
+}
+{% endstylesheet %}
+
+{% javascript %}
+/* elmsnest-v2-coll-bands — there is no behaviour here to lose.
+   Every band, every price, every add-to-cart form and every pin is markup, so the walk is complete
+   and buyable with this file deleted or with scripting disabled. All this does is hand the section's
+   photographs, halos and glyph plates to the shared lamp observer, and light them itself if the core
+   bundle is missing — the CONTRACT's closing fallback line. */
+(function () {
+  function init(el) {
+    if (el.__env2CollBands) return;
+    el.__env2CollBands = true;
+    window.env2 ? env2.observe(el) : el.querySelectorAll('[data-lamp]').forEach(function (l) { l.classList.add('lit'); });
+  }
+  function boot(root) {
+    var scope = (root && root.querySelectorAll) ? root : document;
+    scope.querySelectorAll('[data-env2-coll-bands]').forEach(init);
+    if (scope !== document && scope.matches && scope.matches('[data-env2-coll-bands]')) init(scope);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { boot(document); });
+  } else {
+    boot(document);
+  }
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target || document); });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "תחנות הערב",
+  "tag": "section",
+  "class": "env2-coll-bands-section",
+  "settings": [
+    { "type": "header", "content": "הפתיח" },
+    { "type": "text", "id": "eyebrow", "label": "שורת פתיחה", "default": "תחנות הערב" },
+    { "type": "text", "id": "deck", "label": "שורת הסבר", "info": "ריק = לא מודפסת." },
+    { "type": "header", "content": "חלוקת הפסים" },
+    { "type": "select", "id": "band_mode", "label": "לפי מה מחלקים",
+      "options": [
+        { "value": "auto", "label": "אוטומטי — לפי הנתונים" },
+        { "value": "length", "label": "אורך (מטרים)" },
+        { "value": "count", "label": "כמות (נקודות אור)" },
+        { "value": "price", "label": "מחיר כניסה" },
+        { "value": "places", "label": "מקומות (סוג המוצר)" }
+      ],
+      "default": "auto",
+      "info": "אוטומטי בוחר מקומות כשיש יותר מסוג מוצר אחד, אחרת אורך או כמות כששני מוצרים ומעלה נמדדים בהם, אחרת מחיר." },
+    { "type": "range", "id": "max_bands", "label": "מספר הפסים המרבי", "min": 3, "max": 5, "step": 1, "default": 5 },
+    { "type": "text", "id": "place_order", "label": "סדר המקומות", "info": "רשימת «סוג» מופרדת בפסיקים, לעמוד הקטלוג. ריק = הסדר שבו המוצרים מופיעים." },
+    { "type": "text", "id": "unit_token", "label": "יחידת המידה בכותרת הפס", "info": "ריק = מ׳ באורך, נקודות בכמות." },
+    { "type": "text", "id": "off_label", "label": "כותרת הפס שאינו נמדד ביחידה", "info": "ריק = «לא נמדד במטרים» / «נמכרות ביחידה»." },
+    { "type": "text", "id": "area_label", "label": "כותרת הפס הנמדד בשטח", "default": "נמדדת לפי שטח" },
+    { "type": "text", "id": "rest_label", "label": "כותרת פס השארית", "default": "שאר הקולקציה" },
+    { "type": "header", "content": "הכרטיסים" },
+    { "type": "checkbox", "id": "show_unit_price", "label": "להציג מחיר ליחידה", "default": true },
+    { "type": "text", "id": "per_unit_word", "label": "המילה של המחיר ליחידה", "info": "ריק = ₪ למטר / ₪ ליחידה. בשבילים: ₪ לנקודת אור." },
+    { "type": "checkbox", "id": "show_kicker", "label": "להציג את שם המקום על הכרטיס הראשון", "default": true },
+    { "type": "text", "id": "action_label", "label": "תווית הכפתור", "info": "ריק = לבחירת אורך / כמות / גוון / דגם, לפי ציר המוצר." },
+    { "type": "header", "content": "הצילום והסימון" },
+    { "type": "checkbox", "id": "show_pins", "label": "להציג סימוני מנורה על הצילום", "default": true },
+    { "type": "range", "id": "pin_stem", "label": "אורך הקו מהנקודה לתווית", "min": 60, "max": 200, "step": 10, "unit": "px", "default": 110 },
+    { "type": "header", "content": "הסיום" },
+    { "type": "text", "id": "quote", "label": "משפט הפתיחה של פס הציטוט", "info": "ריק = משפט שנגזר מהמחירים של אותו פס." },
+    { "type": "checkbox", "id": "show_assert", "label": "להדפיס את שורת הסיכום", "default": true },
+    { "type": "text", "id": "foot_note", "label": "הערת סיום" }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "band",
+      "name": "פס",
+      "settings": [
+        { "type": "paragraph", "content": "הפסים והמוצרים שבהם מחושבים מהקולקציה. הבלוק הזה משנה רק את הכיתוב והצילום של הפס באותו מקום בסדר." },
+        { "type": "text", "id": "label", "label": "כותרת הפס", "info": "ריק = הכותרת המחושבת." },
+        { "type": "select", "id": "composition", "label": "הרכב",
+          "options": [
+            { "value": "auto", "label": "אוטומטי" },
+            { "value": "pair", "label": "שני כרטיסים על קו" },
+            { "value": "scene", "label": "צילום מלא עם סימונים" },
+            { "value": "quote", "label": "ציטוט גדול וכרטיס קטן" },
+            { "value": "dip", "label": "דיפטיך לא שווה" },
+            { "value": "wide", "label": "פס רחב ונמוך" }
+          ],
+          "default": "auto",
+          "info": "הרכב שכבר נלקח בפס אחר יוחלף אוטומטית — שני פסים לא יכולים להיראות אותו דבר." },
+        { "type": "image_picker", "id": "scene_image", "label": "צילום הפס", "info": "ריק = הצילום הנקי הראשון של מוצר בפס." },
+        { "type": "text", "id": "quote", "label": "הציטוט" },
+        { "type": "product", "id": "pin_1_product", "label": "מנורה מסומנת 1" },
+        { "type": "range", "id": "pin_1_x", "label": "מיקום 1 לרוחב", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 38 },
+        { "type": "range", "id": "pin_1_y", "label": "מיקום 1 לגובה", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 30 },
+        { "type": "product", "id": "pin_2_product", "label": "מנורה מסומנת 2" },
+        { "type": "range", "id": "pin_2_x", "label": "מיקום 2 לרוחב", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 68 },
+        { "type": "range", "id": "pin_2_y", "label": "מיקום 2 לגובה", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 52 },
+        { "type": "product", "id": "product_1", "label": "מוצר ראשון בפס" },
+        { "type": "product", "id": "product_2", "label": "מוצר שני בפס" },
+        { "type": "product", "id": "product_3", "label": "מוצר שלישי בפס" },
+        { "type": "range", "id": "card_image_index", "label": "תמונת הכרטיס", "min": 0, "max": 6, "step": 1, "default": 0, "info": "0 = הבחירה האוטומטית." },
+        { "type": "text", "id": "card_action_label", "label": "תווית הכפתור בפס" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "ElmsNest v2 — תחנות הערב" }
+  ]
+}
+{% endschema %}

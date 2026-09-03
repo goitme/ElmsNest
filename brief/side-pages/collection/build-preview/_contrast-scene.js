@@ -64,6 +64,24 @@ const TARGETS = [
       }
       console.log('  ' + vname + '  (worst / median contrast against the real pixels behind the text)');
       rows.forEach(r => console.log('    ' + (parseFloat(r[1]) < 4.5 ? '!! ' : '   ') + r[0].padEnd(15) + ' worst ' + r[1] + '  median ' + r[2] + '  ' + r[3]));
+      // do-not 10: no cream, beige or brown surface anywhere above the footer — INCLUDING a photograph
+      // whose own ground is cream. Sampled off the rendered pixels, not off the file.
+      for (const [sel, label] of [['.env2-coll-scene__pic', 'scene photograph'], ['.env2-pdp-card__ph', 'card image']]) {
+        const r0 = await p.evaluate(s2 => { const el = document.querySelector(s2); if (!el) return null;
+          const r = el.getBoundingClientRect(); if (!r.width || !r.height) return null;
+          return { x: Math.max(0, Math.round(r.left)), y: Math.max(0, Math.round(r.top + scrollY)), w: Math.round(r.width), h: Math.round(r.height) }; }, sel);
+        if (!r0) continue;
+        const buf2 = await p.screenshot({ clip: { x: r0.x, y: r0.y, width: r0.w, height: r0.h }, fullPage: true });
+        const st = await reader.evaluate(async (d) => { const img = new Image(); img.src = d; await img.decode();
+          const c = document.getElementById('c'); c.width = 64; c.height = 64; const g = c.getContext('2d');
+          g.drawImage(img, 0, 0, 64, 64); const data = g.getImageData(0, 0, 64, 64).data;
+          let cream = 0, sum = 0, n = 0;
+          for (let i = 0; i < data.length; i += 4) { const r = data[i], gg = data[i+1], b = data[i+2];
+            sum += .2126*r + .7152*gg + .0722*b; n++;
+            if (r > 185 && gg > 170 && b > 145 && (Math.max(r,gg,b) - Math.min(r,gg,b)) < 70) cream++; }
+          return { lum: Math.round(sum/n), cream: Math.round(cream/n*100) }; }, 'data:image/png;base64,' + buf2.toString('base64'));
+        console.log('    ' + (st.cream > 12 ? '!! ' : '   ') + label.padEnd(15) + ' mean luminance ' + st.lum + '  cream pixels ' + st.cream + '%');
+      }
       await ctx.close();
     }
   }

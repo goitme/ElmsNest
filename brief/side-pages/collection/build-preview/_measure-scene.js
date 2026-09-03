@@ -22,8 +22,10 @@ const PROBE = () => {
     price: box(q('.env2-pdp-card__price')),
     cta: box(cta),
     ctaText: cta ? cta.textContent.trim() : null,
-    pin: box(q('.env2-coll-scene__pin .env2-coll-scene__tag')),
+    pin: box(q('.env2-coll-scene__tag')),
     below: box(q('.env2-coll-scene__below')),
+    eyebrow: box(q('.env2-coll-scene__eyebrow')),
+    tag: box(q('.env2-coll-scene__tag')),
     pageH: px(document.body.scrollHeight),
     horiz: document.documentElement.scrollWidth > document.documentElement.clientWidth,
   };
@@ -87,6 +89,7 @@ const PROBE = () => {
       console.log(`    h1 bottom ${o.h1.b} ${inFold(o.h1.b)} · counts bottom ${o.counts ? o.counts.b : '-'} ${inFold(o.counts && o.counts.b)}`);
       console.log(`    price bottom ${o.price ? o.price.b : '-'} ${inFold(o.price && o.price.b)} · CTA "${o.ctaText}" bottom ${o.cta ? o.cta.b : '-'} ${inFold(o.cta && o.cta.b)}`);
       console.log(`    card ${o.card ? o.card.w + 'x' + o.card.h + ' @' + o.card.t : '-'} · pin ${o.pin ? o.pin.w + 'x' + o.pin.h + ' @' + o.pin.t : 'none'}`);
+      if (o.tag && o.eyebrow) console.log(`    tag bottom ${o.tag.b} vs eyebrow top ${o.eyebrow.t} -> ${o.tag.b < o.eyebrow.t - 8 ? 'clear by ' + (o.eyebrow.t - o.tag.b) : '!! OVERLAP'}`);
       if (o.small.length) console.log('    !! tap targets <44px: ' + JSON.stringify(o.small));
       if (o.tiny.length) console.log('    !! font-size <13px: ' + JSON.stringify(o.tiny));
       if (o.cream.length) console.log('    !! cream surface: ' + JSON.stringify(o.cream));
