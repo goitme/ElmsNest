@@ -510,6 +510,11 @@
 /* ElmsNest v2 collection — 4.1 the gate. Every selector is .env2-coll-scene__…, nothing here restyles
    a core class, and no section paints a background: the only surface is the scrim card (3.1). */
 .env2-coll-scene{padding-block:0;overflow-x:clip}
+/* the photograph's mobile height is derived, never consumed raw: --env2-scene-hm is the merchant's own
+   setting (image_height_mobile, inline on the section root) and --env2-scene-h is what the mobile block
+   actually measures with, so a very narrow viewport can scale the merchant's number PROPORTIONALLY in
+   one place instead of the layout being re-authored around a second constant. */
+.env2-coll-scene{--env2-scene-h:var(--env2-scene-hm,78svh)}
 .env2-coll-scene__stage{position:relative;isolation:isolate}
 .env2-coll-scene__media{position:absolute;inset:0;z-index:0;overflow:hidden;background:#05070c}
 .env2-coll-scene__pic{display:block;position:absolute;inset:0}
@@ -638,7 +643,7 @@
 .env2-coll-scene__next .env2-link::before{content:"";position:absolute;inset:-11px -8px}
 
 @media (max-width:900px){
-  .env2-coll-scene__media{inset-block-end:auto;block-size:var(--env2-scene-hm,78svh)}
+  .env2-coll-scene__media{inset-block-end:auto;block-size:var(--env2-scene-h)}
   .env2-coll-scene__pic img{object-position:var(--env2-scene-focus-m,50% 50%)}
   .env2-coll-scene__veil{block-size:60%}
   .env2-coll-scene__inner{display:block;min-block-size:0;padding-block:0}
@@ -647,7 +652,7 @@
      Measured with the widest card in the catalogue (the wall pair, whose title wraps to three lines
      and whose price is a range): 788px at 390 and 776px at 360. */
   .env2-coll-scene__type{box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;
-    max-inline-size:100%;min-block-size:calc(var(--env2-scene-hm,78svh) - var(--env2-scene-lift,84px));
+    max-inline-size:100%;min-block-size:calc(var(--env2-scene-h) - var(--env2-scene-lift,84px));
     padding-block:76px 14px}
   /* ---- QA-01 (blocker) --------------------------------------------------------------------------
      The tag was pinned at a per-cent of the PHOTOGRAPH while the type block's content is bottom-set
@@ -668,8 +673,8 @@
      short viewports where the overlap was.                                                        */
   .env2-coll-scene{--env2-scene-tagres:72px;
     --env2-scene-tagtop:clamp(72px,
-      calc(var(--env2-pin-ymn,24) * var(--env2-scene-hm,78svh) / 100),
-      max(72px,calc(var(--env2-scene-hm,78svh) - 400px)))}
+      calc(var(--env2-pin-ymn,24) * var(--env2-scene-h) / 100),
+      max(72px,calc(var(--env2-scene-h) - 400px)))}
   .env2-coll-scene--pinned .env2-coll-scene__type{
     padding-block-start:max(76px,calc(var(--env2-scene-tagtop) + var(--env2-scene-tagres)))}
   .env2-coll-scene__h1{max-inline-size:16ch}
@@ -696,6 +701,16 @@
     padding-block:9px;line-height:1.45}
   .env2-coll-scene__below{display:block;padding-block:30px 40px}
   .env2-coll-scene__next{margin-block-start:18px}
+}
+/* ---- QA-02 (regression from the QA-01 fix) -------------------------------------------------------
+   Reserving the tag's band above the type block pushed the buy control 26-68px below a 568px fold on
+   four of the five collections. The copy is not the thing to cut and the tag is not going back over
+   the h1, so at 320-360 the PHOTOGRAPH gives up the room instead: --env2-scene-h is the merchant's own
+   image_height_mobile scaled by .8 (78svh -> 62.4svh, ~89px at 568), which the media box, the type
+   block's min-height and the tag's pin band all read, so the whole scene scales together and the
+   merchant's setting is still the number in charge. Wider phones are untouched.                  */
+@media (max-width:360px){
+  .env2-coll-scene{--env2-scene-h:calc(var(--env2-scene-hm,78svh) * .8)}
 }
 @media (prefers-reduced-motion:reduce){
   .env2-coll-scene__dot,.env2-coll-scene__stem,.env2-coll-scene__tag{transition:none}
