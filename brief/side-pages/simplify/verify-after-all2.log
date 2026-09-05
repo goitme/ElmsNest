@@ -1,0 +1,22 @@
+mirror collection-all … ok
+collection-all-m-js screens=7.94/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-all-s-js screens=10.03/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-all-d-js screens=5.16/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-all-m-nojs screens=7.94/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-all-s-nojs screens=10.03/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-all-d-nojs screens=5.16/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+reduced-motion {"card":true,"elementsWithTransition":0}
+node:internal/errors:540
+      throw error;
+      ^
+
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at Object.join (node:path:1354:7)
+    at Server.<anonymous> (/home/user/ElmsNest/brief/side-pages/simplify/verify-mirror.js:54:18)
+    at Server.emit (node:events:519:28)
+    at parserOnIncoming (node:_http_server:1186:12)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+
+Node.js v22.22.2
