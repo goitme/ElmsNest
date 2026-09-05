@@ -9,41 +9,6 @@
  */
 {
   "sections": {
-    "main_heading_zHKQUU": {
-      "type": "main-heading",
-      "blocks": {
-        "heading_liquid_zak73V": {
-          "type": "_heading_liquid",
-          "settings": {
-            "text": "{{ page_title }}",
-            "line_height": "hdt-lh-1",
-            "font_family": "hdt-font-1",
-            "text_size": "2xl",
-            "text_color": "hdt-s-text",
-            "italic": false,
-            "uppercase": true,
-            "font_size_text_lg": 16,
-            "font_size_text": 14,
-            "letter_spacing_text": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "heading_liquid_zak73V"
-      ],
-      "settings": {
-        "use_dynamic_source": false,
-        "color_scheme": "scheme-env2-night",
-        "bg_overlay": 0,
-        "space_item": 0,
-        "mg": "",
-        "mg_mb": "",
-        "pd": "50px,,50px,",
-        "pd_mb": "50px,,50px,",
-        "image": ""
-      }
-    },
     "main-cart": {
       "type": "main-cart",
       "blocks": {
@@ -130,15 +95,9 @@
         "pd": "70px,,50px,",
         "pd_mb": "70px,,50px,"
       }
-    },
-    "elmsnest_cart_guidance": {
-      "type": "elmsnest-cart-guidance",
-      "settings": {}
     }
   },
   "order": [
-    "main_heading_zHKQUU",
-    "main-cart",
-    "elmsnest_cart_guidance"
+    "main-cart"
   ]
 }
