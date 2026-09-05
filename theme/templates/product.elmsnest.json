@@ -258,7 +258,7 @@
     "ens_pdp_facts": {
       "type": "elmsnest-s-pdp-facts",
       "settings": {
-        "heading": "מה שכדאי לדעת",
+        "heading": "",
         "bullets_heading": "פרטים שכדאי לדעת",
         "specs_heading": "פרטים טכניים",
         "max_rows": 10,

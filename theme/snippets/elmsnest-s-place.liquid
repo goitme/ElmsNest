@@ -6,7 +6,7 @@
     emit: 'word'       -> the place word (שביל / קיר / גינה / מרפסת)
     emit: 'yes'        -> the infinitive suits-phrase, so the caller's "מתאים כדי {yes}" parses
     emit: 'no'         -> the full licensed sentence (coll-scene lines 98-107), possibly blank
-    emit: 'collection' -> the matched collection handle (callers do collections[handle])
+    emit: 'collection' -> the matched collection handle (callers look it up in product.collections)
   Usage: {% render 'elmsnest-s-place', product: product, emit: 'yes' %}
          {% render 'elmsnest-s-place', collection: collection, emit: 'word' %}
 

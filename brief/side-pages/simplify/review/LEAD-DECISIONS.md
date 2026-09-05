@@ -28,3 +28,9 @@ Everything else in the five files is mechanical and is applied as written.
 | pdp-facts `{{ heading }}` / `{{ more_label }}` output unescaped | **Apply** `| escape` on both, AND set the template heading to `""` (already decided above). | Both halves: the heading goes, and the code path stays safe for any future value. |
 | pdp-facts bidi: the fixed code list misses 3000K, 6W, 120°, AA, Up/Down … (11 products) | Same as the major above: **whole-token wrap**, using the `elmsnest-v2-terms.liquid` word loop as the model. | Two reviewers, same root cause; one fix. |
 | coll-header «כל המוצרים» pill `data-ens-place="all"` | **Apply**: drop the attribute from that pill. | Two reviewers agree; the four collection pills keep it. |
+
+## After the fixer and the re-review (2026-09-05)
+
+- The three `<bdi>` wraps (footer_about, footer_bottom, header note_mobile) were approved above and not applied by the fixer; **applied by the lead**, `header-group.json` added to the deploy order and to SPEC §10.
+- The contact line's raw `&` in the mailto: the re-reviewer listed it as lead-approved. It was not — the skeptic **refuted** it (a bare `&body=` is not an ambiguous ampersand; every sibling caller of the same builder prints it the same way). Left as is.
+- `elmsnest-s-pdp-facts.liquid` at 13,293 bytes after the bidi rewrite (the token loop written twice): **accepted** — "≤ 12 KB" is a smallness guideline with no runtime meaning, and a de-duplicating refactor before the first deploy is a risk the round does not need. The nested-`<bdi>` note on digit-led ranges is checked on the real render (§11 bdi count), not in the abstract.

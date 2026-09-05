@@ -172,7 +172,6 @@
     {{ content_for_header }}
     {%- comment -%} ElmsNest v2 core (tokens, type, lamps, window.env2): AFTER content_for_header so it follows the section {% stylesheet %} bundle, as the base did when the hero rendered it (CONTRACT: base helpers win over single-class section rules). Fonts are rendered above, after css-variables. {%- endcomment -%}
     {%- render 'elmsnest-v2-core' -%}
-    {%- comment -%} ElmsNest simplify round (2026-09-05): night skin for the stock Kalles components (cards, collection grid, product form, sticky bar, cart drawer). After core so its tokens exist. {%- endcomment -%}
     {%- render 'elmsnest-s-skin' -%}
     {%- endunless -%}
   </head>

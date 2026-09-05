@@ -22,8 +22,27 @@
       assign ens_qty_i = forloop.index0
     endif
   endfor
+  assign ens_any = false
+  for ens_v in product.variants
+    if ens_len_i > -1
+      assign ens_raw = ens_v.options[ens_len_i] | default: '' | strip
+      assign ens_m = ens_raw | split: 'מ' | first | strip | plus: 0
+      if ens_m > 0
+        assign ens_any = true
+      endif
+    elsif ens_qty_i > -1
+      assign ens_raw = ens_v.options[ens_qty_i] | default: '' | strip
+      assign ens_q = ens_raw | split: ' ' | first | plus: 0
+      if ens_raw == 'זוג'
+        assign ens_q = 2
+      endif
+      if ens_q > 1
+        assign ens_any = true
+      endif
+    endif
+  endfor
 -%}
-{%- if ens_len_i > -1 or ens_qty_i > -1 -%}
+{%- if ens_any -%}
 {%- assign ens_sel = product.selected_or_first_available_variant -%}
 <style>
 .ens-unit{display:block;margin:-4px 0 10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:13px;line-height:1.5;color:#c9c4b8;direction:rtl;text-align:start}

@@ -4,18 +4,20 @@
   The collection is the elmsnest-s-place match for the product (menu order, skips `sale`);
   {yes} is the licensed infinitive from the same snippet. No match → nothing renders.
   Rendered from a `_liquid` block: {% render 'elmsnest-s-pdp-kicker', product: product %}
-  Reads only `product` and the global `collections`. No place word, no numeral (owner answer 4).
+  Reads only `product`. No place word, no numeral (owner answer 4).
 {%- endcomment -%}
 {%- capture ens_kicker_handle -%}{%- render 'elmsnest-s-place', product: product, emit: 'collection' -%}{%- endcapture -%}
 {%- capture ens_kicker_yes -%}{%- render 'elmsnest-s-place', product: product, emit: 'yes' -%}{%- endcapture -%}
 {%- assign ens_kicker_handle = ens_kicker_handle | strip -%}
 {%- assign ens_kicker_yes = ens_kicker_yes | strip -%}
 {%- if ens_kicker_handle != '' -%}
-{%- assign ens_kicker_coll = collections[ens_kicker_handle] -%}
+{%- assign ens_kicker_coll = blank -%}{%- for ens_c in product.collections -%}{%- if ens_c.handle == ens_kicker_handle -%}{%- assign ens_kicker_coll = ens_c -%}{%- break -%}{%- endif -%}{%- endfor -%}
 {%- if ens_kicker_coll.title != blank -%}
 <style>
 .hdt-rte p.ens-kicker,p.ens-kicker{margin:0 0 6px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:13px;line-height:1.5;color:#c9c4b8;direction:rtl;text-align:start}
-.hdt-rte a.ens-kicker__link,a.ens-kicker__link{color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;transition:color .3s,border-color .3s}
+.hdt-rte a.ens-kicker__link,a.ens-kicker__link{position:relative;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;transition:color .3s,border-color .3s}
+/* 44 px tap height without moving the underline off the text: the hit area is the pseudo-element */
+.ens-kicker__link::before{content:"";position:absolute;inset-block:-15px;inset-inline:-6px}
 .hdt-rte a.ens-kicker__link:hover,.hdt-rte a.ens-kicker__link:focus-visible,a.ens-kicker__link:hover,a.ens-kicker__link:focus-visible{color:#ffd394;border-color:#ffd394;text-decoration:none}
 @media (prefers-reduced-motion:reduce){a.ens-kicker__link{transition:none} }
 </style>

@@ -39,6 +39,7 @@
   endif
   assign list = items | split: RS
   assign latin = 'IP68,IP67,IP66,IP65,IP55,IP54,IP44,IP20,LED,USB,PIR,RGB,ABS,mAh,220V' | split: ','
+  assign latin_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
   assign giant = ''
   assign gsub = ''
   for raw in list offset: 1
@@ -154,10 +155,30 @@
   assign more_label = section.settings.more_label | default: 'כל מה שכתוב על המוצר'
   assign giant_bdi = '<bdi dir="ltr">' | append: giant | append: '</bdi>'
 -%}
+{%- comment -%} P6: every Latin/number token in ONE ltr isolate (whole tokens, adjacent ones merged), then the en-dash range isolator {%- endcomment -%}
 {%- assign gsub_html = '' -%}
 {%- if giant != '' -%}
-{%- capture gsub_html -%}{%- render 'elmsnest-v2-bdi-range', text: gsub -%}{%- endcapture -%}
-{%- assign gsub_html = gsub_html | strip | replace: '<bdi>', '<bdi dir="ltr">' | replace: giant, giant_bdi -%}
+{%- liquid
+  assign words = gsub | strip | split: ' '
+  for w in words
+    assign c = w | slice: 0, 1
+    if c != blank and latin_chars contains c
+      assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+    elsif w == '&' or w == '&amp;' or w == '+' or w == '/'
+      assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+    else
+      assign tok = w
+    endif
+    if forloop.first
+      assign gsub_html = tok
+    else
+      assign gsub_html = gsub_html | append: ' ' | append: tok
+    endif
+  endfor
+  assign gsub_html = gsub_html | replace: '</bdi> <bdi dir="ltr">', ' '
+-%}
+{%- capture gsub_html -%}{%- render 'elmsnest-v2-bdi-range', text: gsub_html -%}{%- endcapture -%}
+{%- assign gsub_html = gsub_html | strip | replace: '<bdi>', '<bdi dir="ltr">' -%}
 {%- endif -%}
 <style>
 .ens-facts{position:relative;background:transparent;color:#f4eee3;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:300;font-size:16px;line-height:1.55;direction:rtl;text-align:start;overflow-x:clip;padding-block:clamp(36px,6vw,72px) clamp(28px,5vw,56px)}
@@ -190,7 +211,7 @@
 </style>
 <section class="ens-facts" id="ens-facts" dir="rtl"{% if heading != '' %} aria-labelledby="ens-facts-h"{% endif %}>
   <div class="ens-facts__wrap">
-    {%- if heading != '' -%}<h2 class="ens-facts__h" id="ens-facts-h">{{ heading }}</h2>{%- endif -%}
+    {%- if heading != '' -%}<h2 class="ens-facts__h" id="ens-facts-h">{{ heading | escape }}</h2>{%- endif -%}
     {%- if giant != '' or row_list.size > 1 -%}
     <div class="ens-facts__grid">
       {%- if giant != '' -%}
@@ -204,16 +225,28 @@
         {%- for rec in row_list offset: 1 -%}
           {%- assign f = rec | split: FS -%}
           {%- if f.size < 2 -%}{%- continue -%}{%- endif -%}
-          {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: f[1] -%}{%- endcapture -%}
           {%- liquid
-            assign v = v | strip | replace: '<bdi>', '<bdi dir="ltr">'
-            for code in latin
-              if v contains code
-                assign wrapped = '<bdi dir="ltr">' | append: code | append: '</bdi>'
-                assign v = v | replace: code, wrapped
+            assign words = f[1] | strip | split: ' '
+            assign v = ''
+            for w in words
+              assign c = w | slice: 0, 1
+              if c != blank and latin_chars contains c
+                assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+              elsif w == '&' or w == '&amp;' or w == '+' or w == '/'
+                assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+              else
+                assign tok = w
+              endif
+              if forloop.first
+                assign v = tok
+              else
+                assign v = v | append: ' ' | append: tok
               endif
             endfor
+            assign v = v | replace: '</bdi> <bdi dir="ltr">', ' '
           -%}
+          {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: v -%}{%- endcapture -%}
+          {%- assign v = v | strip | replace: '<bdi>', '<bdi dir="ltr">' -%}
           <div class="ens-facts__row{% if f[0] == blank %} ens-facts__row--wide{% endif %}">
             {%- if f[0] != blank -%}<dt class="ens-facts__dt">{{ f[0] }}</dt>{%- endif -%}
             <dd class="ens-facts__dd">{{ v }}</dd>
@@ -225,7 +258,7 @@
     {%- endif -%}
     {%- if product.description != blank -%}
     <details class="ens-facts__more">
-      <summary class="ens-facts__summary">{{ more_label }}</summary>
+      <summary class="ens-facts__summary">{{ more_label | escape }}</summary>
       <div class="ens-facts__desc">{{ product.description }}</div>
     </details>
     {%- endif -%}
@@ -238,7 +271,7 @@
   "tag": "section",
   "class": "ens-facts-section hdt-section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "כותרת", "default": "מה שכדאי לדעת" },
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "" },
     { "type": "text", "id": "bullets_heading", "label": "כותרת הבולטים בתיאור", "default": "פרטים שכדאי לדעת" },
     { "type": "text", "id": "specs_heading", "label": "כותרת שורת המפרט", "default": "פרטים טכניים" },
     { "type": "range", "id": "max_rows", "label": "מקסימום שורות", "min": 3, "max": 14, "step": 1, "default": 10 },

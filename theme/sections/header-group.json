@@ -13,7 +13,7 @@
             "menu_categories": "",
             "only_click_icon": false,
             "header_mobile_colors": "scheme-env2-night",
-            "note_mobile": "<span class=\"hdt-flex hdt-flex-col hdt-text-base\" style=\"line-height:24px\"><span>צריכים עזרה?</span><span>אימייל: <b>info@elmsnest.com</b></span></span>"
+            "note_mobile": "<span class=\"hdt-flex hdt-flex-col hdt-text-base\" style=\"line-height:24px\"><span>צריכים עזרה?</span><span>אימייל: <b><bdi dir=\"ltr\">info@elmsnest.com</bdi></b></span></span>"
           },
           "blocks": {}
         }

@@ -13,7 +13,7 @@ ORDER=[
  'sections/elmsnest-s-collections.liquid','sections/elmsnest-s-products.liquid','sections/elmsnest-s-fit.liquid','sections/elmsnest-s-terms.liquid',
  'sections/elmsnest-s-coll-header.liquid','sections/elmsnest-s-guide-strip.liquid','sections/elmsnest-s-pdp-facts.liquid','sections/elmsnest-v2-hero.liquid',
  # 3 layout / settings / footer
- 'layout/theme.liquid','config/settings_data.json','sections/footer-group.json',
+ 'layout/theme.liquid','config/settings_data.json','sections/footer-group.json','sections/header-group.json',
  # 4 templates
  'templates/index.json','templates/collection.json','templates/product.elmsnest.json',
 ]

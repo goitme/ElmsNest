@@ -61,8 +61,8 @@ joined forms (§5.2). Terms only in the licensed wording (§5.3, copied byte-for
 (product counts, price ranges) are allowed. Buttons: the stock Kalles labels («הוסיפו להזמנה» on
 the PDP form and sticky bar) and our one gold pill «לכל המוצרים». Text links use the ל־ infinitive
 form only: «לשלוח תמונה של המקום ←», «למדריך לבחירת תאורה ←», «לכל התנאים ←», «כל מה שכתוב על
-המוצר». Cards carry NO button and no overlay control — the whole card is the link. Headings carry
-no terminal period. No «+» and no «;» in storefront Hebrew. Guillemets «» in this spec are notation,
+המוצר». Cards carry NO button and no overlay control — the whole card is the link. Section headings carry
+no terminal period (the two-line hero sentence «כשהשמש יורדת, / הגינה נדלקת.» kept by §6.1 is exempt). No «+» and no «;» in storefront Hebrew. Guillemets «» in this spec are notation,
 never typed into defaults.
 
 P5 **Length.** Mobile 390×844, footer included: home ≤ 6 screens, collection ≤ 8 for 27 products,
@@ -191,7 +191,7 @@ calling `render 'card-product1', card_product: p, section_id: section.id, sizes:
    Template settings: `show_card: false`, `note_title: ""`, `note_text: ""` (the section hides an
    empty note), `cta_secondary_label: ""` (hidden when blank), `cta_primary_label: "לכל המוצרים"`,
    `cta_primary_link: "/collections/all"`, `lead: "מנורות שביל, קיר, גינה ומרפסת. קטגוריה אחת בלבד — ואם מוצר לא מתאים למקום שלכם, נגיד את זה לפני שתזמינו."`
-   (menu order), keep eyebrow/headline/`show_sun_rail`. ~1 screen.
+   (menu order), keep eyebrow/headline/`show_sun_rail` (the headline keeps its terminal period; P4 exempts it). ~1 screen.
 2. `elmsnest-s-collections` (new, name «ElmsNest S — קולקציות») — heading «איפה צריך אור?». 2×2 grid
    (mobile) / 4-across (desktop) of tiles: `collection.image` (object-fit cover, 4/5, per-block
    `object_position` text setting, default «50% 50%», wall tile «0% 50%»), the Shopify title (Frank
@@ -317,11 +317,11 @@ New (≤ 12 KB each): `snippets/elmsnest-s-skin.liquid`, `elmsnest-s-place.liqui
 `sections/elmsnest-s-collections.liquid`, `elmsnest-s-products.liquid`, `elmsnest-s-fit.liquid`,
 `elmsnest-s-terms.liquid`, `elmsnest-s-coll-header.liquid`, `elmsnest-s-guide-strip.liquid`,
 `elmsnest-s-pdp-facts.liquid`.
-Edited (from the DEV-THEME bodies): `sections/elmsnest-v2-hero.liquid` (one setting),
+Edited (from the DEV-THEME bodies): `sections/elmsnest-v2-hero.liquid` (one setting + the two editor labels of the secondary button, which no longer name the messenger),
 `layout/theme.liquid` (one render line after core), `sections/footer-group.json` (four collection
 labels = Shopify titles in menu order; © link stays `/#env2-terms` (kept alive by 5.3) or →
 /pages/shipping-delivery; photo link label «לשלוח תמונה של המקום» with the same mailto as 5.4;
-«כתבו לנו: info@elmsnest.com» unchanged), `config/settings_data.json` (two keys only:
+«כתבו לנו: info@elmsnest.com» unchanged except the P6 `<bdi>` on the address and on «ElmsNest © 2026»; `sections/header-group.json` likewise gets the P6 `<bdi>` on the address in `note_mobile` — its only edit), `config/settings_data.json` (two keys only:
 `"show_ultra_btn": false, "show_secondary_image": false`), `templates/index.json`,
 `templates/collection.json`, `templates/product.elmsnest.json`.
 Untouched: `templates/customers/*`, all Kalles files, locales, the old env2 sections.

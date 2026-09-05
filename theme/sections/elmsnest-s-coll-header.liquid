@@ -3,7 +3,7 @@
   Renders the collection ground ONCE, then: the collection photograph (~40vh, veiled to #020306 at its
   foot) · h1 = the Shopify title · meta line (place word · N מוצרים · price range) · deck line
   («מתאים כדי {yes} · {no}», per-place collections only) · the FILTER ROW (plain links, 44px pills,
-  current one gold, data-ens-place on each) · the native SORT form (four options, works with ?sort_by=
+  current one gold, data-ens-place on each of the four collection pills) · the native SORT form (four options, works with ?sort_by=
   and no JS). Nothing is typed here but the four collection handles; every word comes from Shopify or
   from snippets/elmsnest-s-place (emit: word | yes | no). No lamps, no reveal, no sales counts.
   The section root paints #020306 so the veil, the pills and the grid below share one night surface.
@@ -86,7 +86,7 @@
   </div>
   <div class="env2-wrap ens-ch__tools">
     <nav class="ens-ch__filter" aria-label="קולקציות">
-      <a class="ens-ch__pill" href="{{ routes.all_products_collection_url }}" data-ens-place="all"{% if ens_all %} aria-current="page"{% endif %}>{{ ens_all_title | escape }}</a>
+      <a class="ens-ch__pill" href="{{ routes.all_products_collection_url }}"{% if ens_all %} aria-current="page"{% endif %}>{{ ens_all_title | escape }}</a>
       {%- for ens_h in ens_handles -%}
         {%- assign ens_c = collections[ens_h] -%}
         {%- if ens_c.title != blank -%}

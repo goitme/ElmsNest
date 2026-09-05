@@ -15,8 +15,10 @@
 <style>
 .hdt-rte p.ens-terms-line,p.ens-terms-line{margin:10px 0 0;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:13px;line-height:1.6;color:#c9c4b8;direction:rtl;text-align:start}
 .ens-terms-line bdi{unicode-bidi:isolate}
-.hdt-rte a.ens-terms-line__link,a.ens-terms-line__link{display:inline-block;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;margin-inline-start:6px;white-space:nowrap;transition:color .3s,border-color .3s}
+.hdt-rte a.ens-terms-line__link,a.ens-terms-line__link{position:relative;display:inline-block;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;margin-inline-start:6px;white-space:nowrap;transition:color .3s,border-color .3s}
 .hdt-rte a.ens-terms-line__link:hover,.hdt-rte a.ens-terms-line__link:focus-visible,a.ens-terms-line__link:hover,a.ens-terms-line__link:focus-visible{color:#ffd394;border-color:#ffd394;text-decoration:none}
+/* 44 px tap height without moving the underline off the text: the hit area is the pseudo-element */
+.ens-terms-line__link::before{content:"";position:absolute;inset-block:-11px;inset-inline:-6px}
 @media (prefers-reduced-motion:reduce){a.ens-terms-line__link{transition:none} }
 </style>
 <p class="ens-terms-line" dir="rtl">משלוח חינם לנקודת איסוף · אספקה משוערת <bdi dir="ltr">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר <a class="ens-terms-line__link" href="/pages/shipping-delivery">לכל התנאים <span aria-hidden="true">&#8592;</span></a></p>

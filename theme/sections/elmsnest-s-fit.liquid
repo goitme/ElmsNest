@@ -5,10 +5,10 @@
   Foot: the guide link, then the contact line (snippets/elmsnest-s-contact) — the only
   photo promise in the body of the home. data-ens-place carries the handle for §11.
 {%- endcomment -%}
-<section id="ens-fit" class="env2-section ens-fit" dir="rtl" aria-labelledby="ens-fit-h2" style="scroll-margin-top:90px">
+<section class="env2-section ens-fit" dir="rtl"{% if section.settings.heading != blank %} aria-labelledby="ens-fit-h2-{{ section.id }}"{% else %} aria-label="מתי כן, ומתי לא"{% endif %} style="scroll-margin-top:90px">
   <div class="env2-wrap">
     {%- if section.settings.heading != blank -%}
-    <h2 id="ens-fit-h2" class="env2-h ens-fit__h2">{{ section.settings.heading | escape }}</h2>
+    <h2 id="ens-fit-h2-{{ section.id }}" class="env2-h ens-fit__h2">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
     <ul class="ens-fit__rows" role="list">
       {%- for block in section.blocks -%}

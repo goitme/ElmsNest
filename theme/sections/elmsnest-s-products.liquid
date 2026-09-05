@@ -26,9 +26,6 @@
     {%- endif -%}
   {%- else -%}
     {%- assign ens_list = section.settings.product_list -%}
-    {%- if ens_list.count == 0 or ens_list == blank -%}
-      {%- assign ens_list = collections.all.products -%}
-    {%- endif -%}
     {%- for p in ens_list limit: 4 -%}
       {%- render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'portrait', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false -%}
       {%- assign ens_n = ens_n | plus: 1 -%}
@@ -36,7 +33,7 @@
   {%- endif -%}
 {%- endcapture -%}
 {%- if ens_n > 0 -%}
-<section id="ens-products-{{ section.id }}" class="env2-section ens-prod" dir="rtl" aria-labelledby="ens-prod-h2-{{ section.id }}" style="scroll-margin-top:90px">
+<section id="ens-products-{{ section.id }}" class="env2-section ens-prod" dir="rtl"{% if section.settings.heading != blank %} aria-labelledby="ens-prod-h2-{{ section.id }}"{% endif %} style="scroll-margin-top:90px">
   <div class="env2-wrap">
     {%- if section.settings.heading != blank -%}
     <h2 id="ens-prod-h2-{{ section.id }}" class="env2-h ens-prod__h2">{{ section.settings.heading | escape }}</h2>

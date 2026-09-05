@@ -5,18 +5,18 @@
   The whole tile is the link. data-ens-place carries the handle for the §11 order test.
   Tokens come from elmsnest-v2-core (global); this file only adds ens-coll-* rules.
 {%- endcomment -%}
-<section id="ens-collections" class="env2-section ens-coll" dir="rtl" aria-labelledby="ens-coll-h2" style="scroll-margin-top:90px">
+<section class="env2-section ens-coll" dir="rtl"{% if section.settings.heading != blank %} aria-labelledby="ens-coll-h2-{{ section.id }}"{% else %} aria-label="איפה צריך אור"{% endif %} style="scroll-margin-top:90px">
   <div class="env2-wrap">
     {%- if section.settings.heading != blank -%}
-    <h2 id="ens-coll-h2" class="env2-h ens-coll__h2">{{ section.settings.heading | escape }}</h2>
+    <h2 id="ens-coll-h2-{{ section.id }}" class="env2-h ens-coll__h2">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
     <ul class="ens-coll__grid" role="list">
       {%- for block in section.blocks -%}
         {%- liquid
           assign col = block.settings.collection
-          assign img = col.image | default: col.featured_image
+          assign img = col.image
           assign op = block.settings.object_position | default: '50% 50%' | strip | escape
-          assign alt = img.alt | default: col.title | default: '' | escape
+          assign alt = img.alt | default: col.title | default: ''
         -%}
         {%- if col != blank -%}
         <li class="ens-coll__item" {{ block.shopify_attributes }}>
