@@ -1,0 +1,110 @@
+{%- comment -%}
+  ElmsNest S — when yes, when not (SIMPLIFY SPEC §6.4). Home only.
+  Four rows on hairlines in the main-menu order; every word of the pair comes from
+  snippets/elmsnest-s-place (emit word / yes / no) so the licensed copy lives in one file.
+  Foot: the guide link, then the contact line (snippets/elmsnest-s-contact) — the only
+  photo promise in the body of the home. data-ens-place carries the handle for §11.
+{%- endcomment -%}
+<section id="ens-fit" class="env2-section ens-fit" dir="rtl" aria-labelledby="ens-fit-h2" style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    {%- if section.settings.heading != blank -%}
+    <h2 id="ens-fit-h2" class="env2-h ens-fit__h2">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <ul class="ens-fit__rows" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign col = block.settings.collection
+          capture ens_word
+            render 'elmsnest-s-place', collection: col, emit: 'word'
+          endcapture
+          capture ens_yes
+            render 'elmsnest-s-place', collection: col, emit: 'yes'
+          endcapture
+          capture ens_no
+            render 'elmsnest-s-place', collection: col, emit: 'no'
+          endcapture
+          assign ens_word = ens_word | strip
+          assign ens_yes = ens_yes | strip
+          assign ens_no = ens_no | strip
+        -%}
+        {%- if col != blank and ens_word != blank -%}
+        <li class="ens-fit__row" data-ens-place="{{ col.handle }}" {{ block.shopify_attributes }}>
+          <span class="ens-fit__place">{{ ens_word }}</span>
+          {%- if ens_yes != blank -%}
+          <span class="ens-fit__yes">מתאים כדי {{ ens_yes }}</span>
+          {%- endif -%}
+          {%- if ens_no != blank -%}
+          <span class="ens-fit__no">{{ ens_no }}</span>
+          {%- endif -%}
+        </li>
+        {%- elsif request.design_mode -%}
+        <li class="ens-fit__row ens-fit__row--empty" {{ block.shopify_attributes }}>בחרו אחת מארבע הקולקציות בהגדרות הבלוק</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+    <div class="ens-fit__foot">
+      {%- if section.settings.guide_label != blank -%}
+      <a class="env2-link ens-fit__guide" href="{{ section.settings.guide_link | default: '/pages/guide-garden-lighting' }}">{{ section.settings.guide_label | escape }}</a>
+      {%- endif -%}
+      <div class="ens-fit__contact">{% render 'elmsnest-s-contact' %}</div>
+    </div>
+  </div>
+</section>
+
+<style>
+.ens-fit{padding-block:48px 40px;margin:0}
+.ens-fit__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 18px}
+.ens-fit__rows{list-style:none;margin:0;padding:0;border-block-end:1px solid #1f1e1d}
+.ens-fit__row{display:grid;grid-template-columns:minmax(0,1fr);gap:4px 24px;padding-block:16px;border-block-start:1px solid #1f1e1d;margin:0}
+.ens-fit__row--empty{font-size:13px;color:var(--env2-ink-2)}
+.ens-fit__place{font-family:var(--env2-serif);font-weight:700;font-size:22px;line-height:1.1;color:var(--env2-gold)}
+.ens-fit__yes{font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.5;color:var(--env2-ink)}
+.ens-fit__no{font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.5;color:var(--env2-ink-2)}
+.ens-fit__foot{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:14px 32px;margin-block-start:22px}
+.ens-fit__guide{color:var(--env2-ink)}
+.ens-fit__guide:hover,.ens-fit__guide:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow)}
+.ens-fit__contact{min-width:0;flex:1 1 320px}
+@media (min-width:901px){
+  .ens-fit{padding-block:72px 56px}
+  .ens-fit__h2.env2-h{margin-block-end:26px}
+  .ens-fit__row{grid-template-columns:7em minmax(0,1fr) minmax(0,1.15fr);align-items:baseline;padding-block:20px}
+  .ens-fit__place{font-size:26px}
+  .ens-fit__foot{margin-block-start:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-fit a{transition:none}
+}
+</style>
+
+{% schema %}
+{
+  "name": "ElmsNest S — מתי לא",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "מתי כן, ומתי לא" },
+    { "type": "text", "id": "guide_label", "label": "קישור למדריך — טקסט", "default": "למדריך לבחירת תאורה ←" },
+    { "type": "url", "id": "guide_link", "label": "קישור למדריך — יעד", "default": "/pages/guide-garden-lighting" }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "place",
+      "name": "מקום",
+      "limit": 4,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "קולקציה", "info": "מילת המקום ומשפטי מתאים/לא מתאים נלקחים מהקולקציה (elmsnest-s-place)." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest S — מתי לא",
+      "blocks": [
+        { "type": "place", "settings": { "collection": "תאורת-שביל-סולארית" } },
+        { "type": "place", "settings": { "collection": "solar-wall-lights" } },
+        { "type": "place", "settings": { "collection": "ספוטים-ופרוז-קטורים-סולאריים" } },
+        { "type": "place", "settings": { "collection": "גרילנדות-ותאורה-דקורטיבית" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

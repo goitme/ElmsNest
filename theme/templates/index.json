@@ -13,400 +13,118 @@
       "type": "elmsnest-v2-hero",
       "settings": {
         "product": "stainless-steel-solar-path-light-ip65",
+        "show_card": false,
         "bg_image_index": 1,
         "bg_image_index_mobile": 1,
-        "card_image_index": 4,
-        "card_kicker": "המנורה שבתמונה · שביל",
-        "card_title_override": "",
-        "note_title": "השעה הכחולה",
-        "note_text": "הדקות שבין השקיעה ללילה. הדף הזה מחשיך איתן, וכל מנורה נדלקת כשמגיעים אליה.",
+        "note_title": "",
+        "note_text": "",
         "eyebrow": "תאורת חוץ, לפי המקום",
         "heading_line1": "כשהשמש יורדת,",
         "heading_line2": "הגינה נדלקת.",
-        "lead": "מנורות שביל, קיר, מרפסת וגינה. קטגוריה אחת בלבד — ואם מוצר לא מתאים למקום שלכם, נגיד את זה לפני שתזמינו.",
-        "cta_primary_label": "לארבע הקולקציות",
-        "cta_primary_link": "#env2-places",
-        "cta_secondary_label": "לשלוח תמונה של המקום",
-        "whatsapp_url": "",
+        "lead": "מנורות שביל, קיר, גינה ומרפסת. קטגוריה אחת בלבד — ואם מוצר לא מתאים למקום שלכם, נגיד את זה לפני שתזמינו.",
+        "cta_primary_label": "לכל המוצרים",
+        "cta_primary_link": "/collections/all",
+        "cta_secondary_label": "",
         "show_sun_rail": true
       }
     },
-    "env2_first_lit": {
-      "type": "elmsnest-v2-first-lit",
+    "ens_collections": {
+      "type": "elmsnest-s-collections",
       "blocks": {
-        "big_wall": {
-          "type": "product",
-          "settings": {
-            "product": "outdoor-bidirectional-led-wall-light-ip65",
-            "image_index": 1,
-            "kicker": "קיר · להאיר נקודה מסוימת",
-            "button_label": "לבחירת גוון",
-            "variant_note": "",
-            "object_position": "50% 50%"
-          }
-        },
-        "small_path": {
-          "type": "product",
-          "settings": {
-            "product": "powerful-solar-garden-light",
-            "image_index": 4,
-            "kicker": "שביל · לראות את הדרך",
-            "button_label": "לבחירת דגם",
-            "variant_note": "",
-            "object_position": "50% 0"
-          }
-        },
-        "small_terrace": {
-          "type": "product",
-          "settings": {
-            "product": "solar-edison-string-lights",
-            "image_index": 4,
-            "kicker": "מרפסת · ליצור אווירה",
-            "button_label": "לבחירת אורך",
-            "variant_note": "5 או 8 מטר",
-            "object_position": "50% 50%"
-          }
-        },
-        "small_garden": {
-          "type": "product",
-          "settings": {
-            "product": "solar-firefly-garden-lights",
-            "image_index": 4,
-            "kicker": "גינה · הארה ממוקדת של עץ או ערוגה",
-            "button_label": "לבחירת דגם",
-            "variant_note": "",
-            "object_position": "50% 0"
-          }
-        }
-      },
-      "block_order": ["big_wall", "small_path", "small_terrace", "small_garden"],
-      "settings": {
-        "eyebrow": "01 · נדלקים עכשיו",
-        "heading": "מה שנדלק ראשון",
-        "intro": "ארבעה מוצרים מארבעת המקומות. כל אחד נדלק כשהוא נכנס למסך — כמו בגינה, כשמתחיל להחשיך."
-      }
-    },
-    "env2_places": {
-      "type": "elmsnest-v2-places",
-      "blocks": {
-        "place_path": {
-          "type": "place",
+        "coll_path": {
+          "type": "collection",
           "settings": {
             "collection": "תאורת-שביל-סולארית",
-            "title_short": "שביל",
-            "subtitle": "שביל, עמוד וגינה",
-            "aspect": "5/4",
-            "lift": 0,
             "object_position": "50% 50%"
           }
         },
-        "place_wall": {
-          "type": "place",
+        "coll_wall": {
+          "type": "collection",
           "settings": {
             "collection": "solar-wall-lights",
-            "title_short": "קיר",
-            "subtitle": "תאורת קיר",
-            "aspect": "3/4.6",
-            "lift": 60,
             "object_position": "0% 50%"
           }
         },
-        "place_garden": {
-          "type": "place",
+        "coll_garden": {
+          "type": "collection",
           "settings": {
             "collection": "ספוטים-ופרוז-קטורים-סולאריים",
-            "title_short": "גינה",
-            "subtitle": "ספוטים, פרוז׳קטורים וניידים",
-            "aspect": "4/3.2",
-            "lift": 24,
             "object_position": "50% 50%"
           }
         },
-        "place_terrace": {
-          "type": "place",
+        "coll_terrace": {
+          "type": "collection",
           "settings": {
             "collection": "גרילנדות-ותאורה-דקורטיבית",
-            "title_short": "מרפסת",
-            "subtitle": "גרילנדות ותאורה דקורטיבית",
-            "aspect": "3/4.1",
-            "lift": 100,
             "object_position": "50% 50%"
           }
         }
       },
-      "block_order": ["place_path", "place_wall", "place_garden", "place_terrace"],
+      "block_order": ["coll_path", "coll_wall", "coll_garden", "coll_terrace"],
       "settings": {
-        "heading": "ארבעה מקומות. קטגוריה אחת.",
-        "intro": "אנחנו לא חנות תאורה. אנחנו חנות תאורת חוץ — ומתאימים כל מוצר למקום שבו הוא יעמוד.",
-        "all_label": "לכל [count] המוצרים",
-        "all_link": "/collections/all"
+        "heading": "איפה צריך אור?"
       }
     },
-    "env2_switch": {
-      "type": "elmsnest-v2-switch",
+    "ens_products": {
+      "type": "elmsnest-s-products",
+      "settings": {
+        "heading": "מה שנדלק ראשון",
+        "source": "list",
+        "product_list": [
+          "outdoor-bidirectional-led-wall-light-ip65",
+          "powerful-solar-garden-light",
+          "solar-edison-string-lights",
+          "solar-firefly-garden-lights"
+        ]
+      }
+    },
+    "ens_fit": {
+      "type": "elmsnest-s-fit",
       "blocks": {
-        "sw_path": {
+        "fit_path": {
           "type": "place",
           "settings": {
-            "title": "שביל, מדרגות ומעברים",
-            "title_short": "שביל",
-            "suits": "לראות את הדרך",
-            "not_suits": "המקום כמעט אינו מקבל אור יום",
-            "product": "stainless-steel-solar-path-light-ip65",
-            "image_index": 2,
-            "object_position": "45% 50%",
-            "mirror": true,
             "collection": "תאורת-שביל-סולארית"
           }
         },
-        "sw_wall": {
+        "fit_wall": {
           "type": "place",
           "settings": {
-            "title": "כניסה, קיר וחזית",
-            "title_short": "קיר",
-            "suits": "להאיר נקודה מסוימת",
-            "not_suits": "נדרש אור חזק וקבוע לאורך כל הלילה",
-            "product": "modern-led-wall-light-6w-up-down",
-            "image_index": 1,
-            "object_position": "50% 50%",
             "collection": "solar-wall-lights"
           }
         },
-        "sw_terrace": {
+        "fit_garden": {
           "type": "place",
           "settings": {
-            "title": "מרפסת ופינת ישיבה",
-            "title_short": "מרפסת",
-            "suits": "ליצור אווירה",
-            "not_suits": "צריך אור חזק — זו אינה מטרתה",
-            "product": "solar-crystal-ball-string-lights",
-            "image_index": 3,
-            "object_position": "50% 50%",
-            "collection": "גרילנדות-ותאורה-דקורטיבית"
-          }
-        },
-        "sw_garden": {
-          "type": "place",
-          "settings": {
-            "title": "הדגשת אזור בגינה",
-            "title_short": "גינה",
-            "suits": "הארה ממוקדת של עץ או ערוגה",
-            "not_suits": "נדרשת התקנה מיוחדת או חיבור קבוע",
-            "product": "solar-firefly-garden-lights",
-            "image_index": 3,
-            "object_position": "50% 20%",
             "collection": "ספוטים-ופרוז-קטורים-סולאריים"
           }
-        }
-      },
-      "block_order": ["sw_path", "sw_wall", "sw_terrace", "sw_garden"],
-      "settings": {
-        "eyebrow": "02 · לפני שקונים",
-        "heading_before": "אנחנו נגיד לכם גם מתי",
-        "heading_no": "לא.",
-        "lead": "לכל מקום יש מנורה שמתאימה לו, ומצב שבו היא לא תעבוד. גררו את הקו — וראו מתי האור נשאר כבוי.",
-        "label_yes": "מתאים כדי",
-        "label_no": "לא מתאים כש־",
-        "hint_dark": "לא נדלק. זו הנקודה.",
-        "helper": "גררו את הקו · או בחרו מקום",
-        "default_split": 62,
-        "toggle_on_label": "דולק",
-        "toggle_off_label": "כבוי",
-        "quote": "\"כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.\"",
-        "quote_cite": "מתוך \"מי אנחנו\"",
-        "guide_label": "למדריך המלא לבחירת תאורה לגינה ←",
-        "guide_link": "/pages/guide-garden-lighting",
-        "photo_line": "",
-        "whatsapp_label": "",
-        "whatsapp_url": ""
-      }
-    },
-    "env2_night_wall": {
-      "type": "elmsnest-v2-night-wall",
-      "settings": {
-        "product": "waterproof-led-wall-light-ip65-6w-12w",
-        "image_index": 4,
-        "object_position": "30% 50%",
-        "object_position_mobile": "45% 50%",
-        "eyebrow": "03 · הלילה",
-        "heading_line1": "הלילה כבר כאן.",
-        "heading_line2": "קיר אחד מספיק.",
-        "kicker": "קיר · LED",
-        "title_override": "",
-        "button_label": "לבחירת הספק",
-        "companion_product": "magnetic-rechargeable-touch-wall-light",
-        "companion_prefix": "גם לקיר:"
-      }
-    },
-    "env2_atmosphere": {
-      "type": "elmsnest-v2-atmosphere",
-      "blocks": {
-        "hang_rope": {
-          "type": "product",
-          "settings": {
-            "product": "solar-rope-string-lights",
-            "image_index": 3,
-            "button_label": "לבחירת אורך",
-            "width": 240,
-            "hang": 60,
-            "x": 15,
-            "aspect": "4/3",
-            "object_position": "50% 100%"
-          }
         },
-        "hang_crystal": {
-          "type": "product",
+        "fit_terrace": {
+          "type": "place",
           "settings": {
-            "product": "solar-crystal-ball-string-lights",
-            "image_index": 1,
-            "button_label": "לבחירת אורך",
-            "width": 300,
-            "hang": 0,
-            "x": 50,
-            "aspect": "1/1.1",
-            "object_position": "50% 50%"
-          }
-        },
-        "hang_birch": {
-          "type": "product",
-          "settings": {
-            "product": "lighted-birch-branches-20-led",
-            "image_index": 1,
-            "tone_down": true,
-            "button_label": "לבחירה",
-            "width": 200,
-            "hang": 120,
-            "x": 82,
-            "aspect": "1/1.4",
-            "object_position": "50% 50%"
+            "collection": "גרילנדות-ותאורה-דקורטיבית"
           }
         }
       },
-      "block_order": ["hang_rope", "hang_crystal", "hang_birch"],
+      "block_order": ["fit_path", "fit_wall", "fit_garden", "fit_terrace"],
       "settings": {
-        "eyebrow": "04 · מרפסת ופינת ישיבה",
-        "word": "אווירה",
-        "fill_collection": "גרילנדות-ותאורה-דקורטיבית",
-        "sub": "גרילנדות ותאורה דקורטיבית: אור חם בגובה העיניים — כדי לשבת, לא כדי לקרוא.",
-        "reach_label": "לכל המוצרים, לפי מקום",
-        "reach_link": "#env2-places"
+        "heading": "מתי כן, ומתי לא",
+        "guide_label": "למדריך לבחירת תאורה ←",
+        "guide_link": "/pages/guide-garden-lighting"
       }
     },
-    "env2_terms": {
-      "type": "elmsnest-v2-terms",
-      "blocks": {
-        "line_shipping": {
-          "type": "line",
-          "settings": {
-            "number": "0",
-            "unit": "₪",
-            "title": "משלוח לנקודת איסוף — חינם.",
-            "text": "משלוח עד הבית: 29.90 ₪.",
-            "link_label": "",
-            "link_url": ""
-          }
-        },
-        "line_delivery": {
-          "type": "line",
-          "settings": {
-            "number": "8–17",
-            "unit": "ימי עסקים",
-            "title": "מרגע ההזמנה עד הדלת.",
-            "text": "1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן אנחנו כותבים את זה כאן, ולא מגלים אחרי.",
-            "link_label": "",
-            "link_url": ""
-          }
-        },
-        "line_cancel": {
-          "type": "line",
-          "settings": {
-            "number": "14",
-            "unit": "יום",
-            "title": "ביטול עסקה לפי חוק הגנת הצרכן.",
-            "text": "עד 14 יום מקבלת המוצר. דמי ביטול עד 5% ממחיר העסקה או 100 ₪ — הנמוך מביניהם.",
-            "link_label": "",
-            "link_url": ""
-          }
-        },
-        "line_photo": {
-          "type": "line",
-          "settings": {
-            "number": "1",
-            "unit": "תמונה",
-            "title": "שלחו תמונה של המקום.",
-            "text": "נבדוק התאמה לפני שתזמינו — ואם המוצר לא מתאים, נגיד.",
-            "link_label": "לשליחת תמונה",
-            "link_url": ""
-          }
-        },
-        "link_shipping": {
-          "type": "link",
-          "settings": {
-            "label": "משלוחים ואספקה",
-            "url": "/pages/shipping-delivery"
-          }
-        },
-        "link_processing": {
-          "type": "link",
-          "settings": {
-            "label": "זמני טיפול",
-            "url": "/pages/processing-time"
-          }
-        },
-        "link_faq": {
-          "type": "link",
-          "settings": {
-            "label": "שאלות נפוצות",
-            "url": "/pages/help-faq"
-          }
-        },
-        "link_why_solar": {
-          "type": "link",
-          "settings": {
-            "label": "למה תאורה סולארית",
-            "url": "/pages/why-solar-lighting"
-          }
-        }
-      },
-      "block_order": [
-        "line_shipping",
-        "line_delivery",
-        "line_cancel",
-        "line_photo",
-        "link_shipping",
-        "link_processing",
-        "link_faq",
-        "link_why_solar"
-      ],
+    "ens_terms": {
+      "type": "elmsnest-s-terms",
       "settings": {
-        "eyebrow": "05 · לפני שמזמינים",
-        "heading": "ארבעה מספרים שכדאי לדעת",
-        "intro": "לא אותיות קטנות. אותיות גדולות, במקום גלוי, לפני שמשלמים."
-      }
-    },
-    "env2_goodnight": {
-      "type": "elmsnest-v2-goodnight",
-      "settings": {
-        "collection": "גרילנדות-ותאורה-דקורטיבית",
-        "line": "שלחו תמונה של המקום — נבדוק התאמה לפני ההזמנה.",
-        "whatsapp_label": "וואטסאפ",
-        "whatsapp_url": "",
-        "big_word": "לילה טוב",
-        "strip_text": "משלוח חינם לנקודת איסוף · 8–17 ימי עסקים · ביטול תוך 14 יום לפי חוק הגנת הצרכן · לתנאים המלאים ←",
-        "strip_link": "#env2-terms",
-        "instagram_url": "",
-        "tiktok_url": ""
+        "heading": "שלושה מספרים שכדאי לדעת"
       }
     }
   },
   "order": [
     "env2_hero",
-    "env2_first_lit",
-    "env2_places",
-    "env2_switch",
-    "env2_night_wall",
-    "env2_atmosphere",
-    "env2_terms",
-    "env2_goodnight"
+    "ens_collections",
+    "ens_products",
+    "ens_fit",
+    "ens_terms"
   ]
 }

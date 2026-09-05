@@ -1,0 +1,102 @@
+{%- comment -%}
+  ElmsNest S — one product grid (SIMPLIFY SPEC §6.3 + §5.5). Stock Kalles card-product1,
+  skinned by elmsnest-s-skin. Two sources:
+    list    — the four products picked in the section (home).
+    related — the PDP: the product's place collection via elmsnest-s-place emit:'collection'
+              (menu order, skips `sale`), minus the current product, first 4.
+  The index template never loads product-styles, so the two card assets are loaded here.
+  No lamps, no scroll animation (the grid is a plain div, not the Kalles reveal element), no card buttons.
+{%- endcomment -%}
+{{ 'product-card.css' | asset_url | stylesheet_tag }}{{ 'collection-products.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign ens_source = section.settings.source | default: 'list'
+  assign ens_n = 0
+-%}
+{%- capture ens_cards -%}
+  {%- if ens_source == 'related' -%}
+    {%- capture ens_handle -%}{%- render 'elmsnest-s-place', product: product, emit: 'collection' -%}{%- endcapture -%}
+    {%- assign ens_handle = ens_handle | strip -%}
+    {%- if ens_handle != blank -%}
+      {%- for p in collections[ens_handle].products -%}
+        {%- if p.id == product.id -%}{%- continue -%}{%- endif -%}
+        {%- if ens_n >= 4 -%}{%- break -%}{%- endif -%}
+        {%- render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'portrait', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false -%}
+        {%- assign ens_n = ens_n | plus: 1 -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign ens_list = section.settings.product_list -%}
+    {%- if ens_list.count == 0 or ens_list == blank -%}
+      {%- assign ens_list = collections.all.products -%}
+    {%- endif -%}
+    {%- for p in ens_list limit: 4 -%}
+      {%- render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'portrait', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false -%}
+      {%- assign ens_n = ens_n | plus: 1 -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+{%- if ens_n > 0 -%}
+<section id="ens-products-{{ section.id }}" class="env2-section ens-prod" dir="rtl" aria-labelledby="ens-prod-h2-{{ section.id }}" style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    {%- if section.settings.heading != blank -%}
+    <h2 id="ens-prod-h2-{{ section.id }}" class="env2-h ens-prod__h2">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <div class="hdt-collection-products hdt-row-grid hdt-grid-cols-2 md:hdt-grid-cols-2 lg:hdt-grid-cols-4 hdt-ratio--portrait ens-prod__grid">
+      {{ ens_cards }}
+    </div>
+  </div>
+</section>
+{%- elsif request.design_mode -%}
+<section class="env2-section ens-prod" dir="rtl">
+  <div class="env2-wrap"><p class="ens-prod__empty">{% if ens_source == 'related' %}אין מוצרים נוספים באותה קולקציה.{% else %}בחרו ארבעה מוצרים בהגדרות הסקשן.{% endif %}</p></div>
+</section>
+{%- endif -%}
+
+<style>
+.ens-prod{padding-block:48px 40px;margin:0}
+.ens-prod__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 22px}
+/* Kalles .hdt-row-grid reads --spacing-x / --spacing-y (base.css:1577); main-collection sets them from space_items */
+.ens-prod__grid{--spacing-x:10px;--spacing-y:26px}
+.ens-prod__empty{margin:0;font-size:13px;color:var(--env2-ink-2)}
+@media (min-width:901px){
+  .ens-prod{padding-block:72px 56px}
+  .ens-prod__h2.env2-h{margin-block-end:32px}
+  .ens-prod__grid{--spacing-x:14px;--spacing-y:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-prod .hdt-card-product,.ens-prod .hdt-card-product img{transition:none;animation:none}
+}
+</style>
+
+{% schema %}
+{
+  "name": "ElmsNest S — מוצרים",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "מה שנדלק ראשון" },
+    {
+      "type": "select", "id": "source", "label": "מקור המוצרים",
+      "options": [
+        { "value": "list", "label": "רשימה קבועה (עמוד הבית)" },
+        { "value": "related", "label": "מאותה קולקציה (עמוד מוצר)" }
+      ],
+      "default": "list"
+    },
+    { "type": "product_list", "id": "product_list", "label": "ארבעת המוצרים בעמוד הבית", "limit": 4 }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest S — מוצרים",
+      "settings": {
+        "heading": "מה שנדלק ראשון",
+        "source": "list",
+        "product_list": [
+          "outdoor-bidirectional-led-wall-light-ip65",
+          "powerful-solar-garden-light",
+          "solar-edison-string-lights",
+          "solar-firefly-garden-lights"
+        ]
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -9,379 +9,273 @@
  */
 {
   "sections": {
-    "pdp_stage": {
-      "type": "elmsnest-v2-pdp-stage",
-      "settings": {
-        "stage_device": "auto",
-        "object_position_desktop": "50% 45%",
-        "object_position_mobile": "50% 50%",
-        "price_axis_option": "auto",
-        "show_rail": true,
-        "quantity_steps": "1,2,3,4,6,8",
-        "quantity_unit_one": "יחידה",
-        "quantity_unit": "יחידות",
-        "quantity_label_one": "יחידה אחת",
-        "add_label": "הוספה לסל",
-        "terms_strip": "משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר.",
-        "terms_link_label": "כל המספרים",
-        "photo_intro": "לפני שמזמינים אפשר",
-        "mailto_subject": "בדיקת התאמה למקום",
-        "show_buybar": true,
-        "hero_image_index": 0,
-        "thumb_image_index": 0,
-        "heading_map": "solar-crystal-ball-string-lights|הערב מתחיל|מהכדור הראשון.\nstainless-steel-solar-path-light-ip65|הדרך הביתה|נדלקת לבד.\nwaterproof-led-wall-light-ip65-6w-12w|קיר אחד.|שתי אלומות."
-      }
-    },
-    "pdp_fit": {
-      "type": "elmsnest-v2-pdp-fit",
-      "settings": {
-        "eyebrow": "02 · מתי כן, ומתי לא",
-        "eyebrow_choose": "02 · איך בוחרים נכון",
-        "lead": "לכל מקום יש תפקיד שהתאורה ממלאת — ומצב שבו היא לא. העבירו את המתג ותראו.",
-        "lead_choose": "לכל מקום יש תפקיד שהתאורה ממלאת. מה שכתוב כאן על הבחירה מגיע מתיאור המוצר עצמו.",
-        "suits_label": "מתאים כדי",
-        "notfit_label": "לא מתאים כש־",
-        "notfit_source": "auto",
-        "refusal_line": "לא נדלק. זו הנקודה.",
-        "show_string": true,
-        "string_shape": "auto",
-        "show_solar_question": true,
-        "solar_question": "כמה שמש המקום מקבל ביום?",
-        "solar_yes": "שמש במשך היום",
-        "solar_no": "כמעט אינו מקבל אור יום",
-        "solar_answer": "הפאנל נטען מהשמש והתאורה נדלקת עם החשכה. אם המקום כמעט אינו מקבל אור יום — זה לא המוצר.",
-        "choose_source": "advice",
-        "choose_note": "מתוך תיאור המוצר",
-        "foot_lead": "לא בטוחים?",
-        "mailto_subject": "בדיקת התאמה למקום"
-      }
-    },
-    "pdp_night": {
-      "type": "elmsnest-v2-pdp-night",
-      "settings": {
-        "eyebrow": "03 · בלילה",
-        "heading": "מקרוב,",
-        "lead_source": "description",
-        "big_image_index": 0,
-        "big_aspect": "4/3",
-        "small_image_index": 0,
-        "small_aspect": "1/1.15",
-        "caption_small": "מקרוב",
-        "show_scale": true,
-        "scale_note": "לפי גודל האזור שמדדתם.",
-        "note": "התמונות להמחשה."
-      }
-    },
-    "pdp_ledger": {
-      "type": "elmsnest-v2-pdp-ledger",
-      "settings": {
-        "eyebrow": "04 · מה מקבלים",
-        "price_axis_option": "auto",
-        "show_per_unit": true,
-        "add_label": "הוספה לסל",
-        "chosen_label": "הבחירה שלכם",
-        "quantity_steps": "1,2,3,4,6,8",
-        "quantity_unit_one": "יחידה",
-        "quantity_unit": "יחידות",
-        "js_note": "לחיצה על שורה מדליקה אותה בבמה למעלה."
-      },
+    "main-product": {
+      "type": "main-product",
       "blocks": {
-        "row_a5": {
-          "type": "row",
+        "group_product_9RYttB": {
+          "type": "_group-product",
           "settings": {
-            "label": "5 מ׳ / 20 נורות",
-            "handle": "solar-crystal-ball-string-lights",
-            "use_caption": "לפינת ישיבה קטנה או לשולחן אחד"
-          }
+            "colors_by_block": false,
+            "color_scheme": ""
+          },
+          "blocks": {
+            "ens_ground": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-v2-ground-product' %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "ens_kicker": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-s-pdp-kicker', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "product_title_ehRqkq": {
+              "type": "_product-title",
+              "settings": {
+                "txt_tr_pr": "none",
+                "tag": "h1",
+                "heading_size": "h_custom",
+                "font_size_heading_lg": 38,
+                "font_size_heading": 28,
+                "font_weight": "semibold",
+                "letter_spacing_heading": 0
+              },
+              "blocks": {}
+            },
+            "product_price_ens": {
+              "type": "_product-price",
+              "settings": {
+                "label_onsale_style": "none"
+              },
+              "blocks": {}
+            },
+            "ens_unit": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-s-pdp-unit', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "product_variant_picker_XNdArY": {
+              "type": "_product-variant-picker",
+              "settings": {
+                "color_picker_type": "block",
+                "color_size": "medium",
+                "picker_type": "block",
+                "size_chart_source": "page",
+                "size_chart_page": ""
+              },
+              "blocks": {}
+            },
+            "ens_noscript": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "<noscript><select name=\"id\" form=\"product-form-main-product{{ product.id }}\" aria-label=\"גרסה\">{% for v in product.variants %}<option value=\"{{ v.id }}\"{% if v.id == product.selected_or_first_available_variant.id %} selected{% endif %}>{{ v.title }} – {{ v.price | money }}</option>{% endfor %}</select></noscript>",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "product_buy_button_aPmAbD": {
+              "type": "_product-buy-button",
+              "settings": {
+                "show_quantity_selector": true,
+                "show_dynamic_checkout": false,
+                "show_gift_card_recipient": false,
+                "show_wishlist": false,
+                "color_wishlist": "#b88a3b",
+                "color_hover_wishlist": "#e8ded0",
+                "color_active_wishlist": "#e81e1e",
+                "show_compare": false,
+                "color_compare": "#e8ded0",
+                "color_hover_compare": "#56cfe1",
+                "color_active_compare": "#e81e1e",
+                "ani": "none",
+                "time": 6,
+                "btn_transform": "",
+                "btn_style": "",
+                "btn_fullwidth": true
+              },
+              "blocks": {}
+            },
+            "ens_terms_line": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-s-pdp-terms-line', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            },
+            "ens_notfor": {
+              "type": "_liquid",
+              "settings": {
+                "option_type": "liquid",
+                "page": "",
+                "text": "{% render 'elmsnest-s-pdp-notfor', product: product %}",
+                "hidden_br_mobile": false,
+                "hidden_on_mobile": false,
+                "ffamily": "",
+                "text_size": "base",
+                "font_weight": "normal",
+                "text_color": "hdt-s-text",
+                "font_size_text_lg": 16,
+                "font_size_text": 14,
+                "letter_spacing_text": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "ens_ground",
+            "ens_kicker",
+            "product_title_ehRqkq",
+            "product_price_ens",
+            "ens_unit",
+            "product_variant_picker_XNdArY",
+            "ens_noscript",
+            "product_buy_button_aPmAbD",
+            "ens_terms_line",
+            "ens_notfor"
+          ]
         },
-        "row_a65": {
-          "type": "row",
+        "main-product-sidebar": {
+          "type": "_product_sidebar",
+          "static": true,
           "settings": {
-            "label": "6.5 מ׳ / 30 נורות",
-            "handle": "solar-crystal-ball-string-lights",
-            "use_caption": "אותו מחיר, מטר וחצי יותר"
-          }
+            "color_scheme": "",
+            "space": 50,
+            "last_order": false
+          },
+          "blocks": {}
         },
-        "row_a95": {
-          "type": "row",
+        "main-product-medias": {
+          "type": "_product-medias",
+          "static": true,
           "settings": {
-            "label": "9.5 מ׳ / 50 נורות",
-            "handle": "solar-crystal-ball-string-lights",
-            "use_caption": "לאורך גדר או מעקה"
-          }
-        },
-        "row_a11": {
-          "type": "row",
-          "settings": {
-            "label": "11 מ׳ / 60 נורות",
-            "handle": "solar-crystal-ball-string-lights",
-            "use_caption": "מסגרת לפרגולה"
-          }
-        },
-        "row_a13": {
-          "type": "row",
-          "settings": {
-            "label": "13 מ׳ / 100 נורות",
-            "handle": "solar-crystal-ball-string-lights",
-            "use_caption": "כמעט פי שניים נורות לאותו מרחק"
-          }
-        },
-        "row_a22": {
-          "type": "row",
-          "settings": {
-            "label": "22 מ׳ / 200 נורות",
-            "handle": "solar-crystal-ball-string-lights",
-            "use_caption": "קישוט של חלל שלם"
-          }
-        },
-        "row_b1": {
-          "type": "row",
-          "settings": {
-            "label": "1",
-            "handle": "stainless-steel-solar-path-light-ip65",
-            "use_caption": "יחידה אחת מאירה נקודה"
-          }
-        },
-        "row_b2": {
-          "type": "row",
-          "settings": {
-            "label": "2",
-            "handle": "stainless-steel-solar-path-light-ip65",
-            "use_caption": "משני צידי כניסה"
-          }
-        },
-        "row_b3": {
-          "type": "row",
-          "settings": {
-            "label": "3",
-            "handle": "stainless-steel-solar-path-light-ip65",
-            "use_caption": "שורה קצרה"
-          }
-        },
-        "row_b4": {
-          "type": "row",
-          "settings": {
-            "label": "4",
-            "handle": "stainless-steel-solar-path-light-ip65",
-            "use_caption": "לאורך שביל"
-          }
-        },
-        "row_b6": {
-          "type": "row",
-          "settings": {
-            "label": "6",
-            "handle": "stainless-steel-solar-path-light-ip65",
-            "use_caption": "מהשער אל הדלת"
-          }
-        },
-        "row_b8": {
-          "type": "row",
-          "settings": {
-            "label": "8",
-            "handle": "stainless-steel-solar-path-light-ip65",
-            "use_caption": "מסביב למדשאה"
-          }
-        },
-        "row_c63": {
-          "type": "row",
-          "settings": {
-            "label": "6W / אור חם 3000K",
-            "handle": "waterproof-led-wall-light-ip65-6w-12w",
-            "use_caption": "אפקט עדין וממוקד"
-          }
-        },
-        "row_c66": {
-          "type": "row",
-          "settings": {
-            "label": "6W / אור קר 6000K",
-            "handle": "waterproof-led-wall-light-ip65-6w-12w",
-            "use_caption": "עדין, בגוון לבן וחד"
-          }
-        },
-        "row_c123": {
-          "type": "row",
-          "settings": {
-            "label": "12W / אור חם 3000K",
-            "handle": "waterproof-led-wall-light-ip65-6w-12w",
-            "use_caption": "נוכחות חזקה יותר על שטח גדול"
-          }
-        },
-        "row_c126": {
-          "type": "row",
-          "settings": {
-            "label": "12W / אור קר 6000K",
-            "handle": "waterproof-led-wall-light-ip65-6w-12w",
-            "use_caption": "חזק, בגוון לבן וחד"
-          }
+            "media_box_size": 50,
+            "desktop_media_layout": "thumbnail_left",
+            "media_size": "medium",
+            "mobile_media_layout": "thumbnails",
+            "show_first_media": true,
+            "use_select_varaint_change_media": false,
+            "enable_media_autoplay": false,
+            "enable_video_looping": false,
+            "enable_thumb_efect": true,
+            "image_ratio": "adapt_image",
+            "image_size": true,
+            "image_zoom": "zoom_lightbox",
+            "enable_lightbox_icon": false,
+            "image_zoom_type": "external",
+            "zoom_level": 2,
+            "max_zoom_lightbox": 3,
+            "navUI": true,
+            "nav_style": "outline",
+            "nav_shape": "default",
+            "nav_size": "small",
+            "nav_hide_mobile": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "row_a5",
-        "row_a65",
-        "row_a95",
-        "row_a11",
-        "row_a13",
-        "row_a22",
-        "row_b1",
-        "row_b2",
-        "row_b3",
-        "row_b4",
-        "row_b6",
-        "row_b8",
-        "row_c63",
-        "row_c66",
-        "row_c123",
-        "row_c126"
-      ]
-    },
-    "pdp_facts": {
-      "type": "elmsnest-v2-pdp-facts",
+        "group_product_9RYttB"
+      ],
       "settings": {
-        "eyebrow": "05 · מה שכדאי לדעת",
-        "question": "ומה יכול להשתבש?",
-        "deck": "מה שכתוב כאן — נכון. מה שלא ידוע — לא כתוב.",
-        "source": "description_bullets",
-        "max_rows": 10,
+        "product_list_fbt": [],
+        "sticky_atc": true,
+        "hdt_layout_atc_mob": "hdt_layout_atc_mob_default",
+        "hdt_show_sticky_atc": "hdt_show_scrolls_outside_the_scope_of_the_form",
+        "ani": "none",
+        "time": 6,
+        "btn_transform": "",
+        "btn_style": "",
+        "colors_by_section": true,
+        "color_scheme": "scheme-env2-night",
+        "background_opacity": 1,
+        "fullwidth": false,
+        "mg": "",
+        "mg_mb": "",
+        "pd": "30px,,40px,",
+        "pd_mb": "22px,,30px,"
+      }
+    },
+    "ens_pdp_facts": {
+      "type": "elmsnest-s-pdp-facts",
+      "settings": {
+        "heading": "מה שכדאי לדעת",
         "bullets_heading": "פרטים שכדאי לדעת",
         "specs_heading": "פרטים טכניים",
-        "giant_source": "auto",
-        "show_unknown_row": true,
-        "unknown_row_label": "מה שלא כתוב",
-        "show_full_description": true,
+        "max_rows": 10,
         "more_label": "כל מה שכתוב על המוצר"
       }
     },
-    "pdp_terms": {
-      "type": "elmsnest-v2-pdp-terms",
+    "ens_related": {
+      "type": "elmsnest-s-products",
       "settings": {
-        "eyebrow": "06 · אחרי הלחיצה",
-        "heading": "ארבעה מספרים, לפני שמשלמים.",
-        "deck": "לא אותיות קטנות. אותיות גדולות, במקום גלוי, ליד הכפתור.",
-        "foot_links": "<p><a href=\"/pages/shipping-delivery\">משלוחים ואספקה</a> · <a href=\"/pages/processing-time\">זמני טיפול</a> · <a href=\"/policies/refund-policy\">מדיניות ביטולים</a> · <a href=\"/pages/help-faq\">שאלות נפוצות</a></p>"
-      },
-      "blocks": {
-        "n_shipping": {
-          "type": "number",
-          "settings": {
-            "numeral": "0",
-            "unit": "₪",
-            "headline": "משלוח לנקודת איסוף — חינם.",
-            "sub": "שליח עד הבית: 29.90 ₪."
-          }
-        },
-        "n_days": {
-          "type": "number",
-          "settings": {
-            "numeral": "8–17",
-            "unit": "",
-            "headline": "ימי עסקים מרגע ההזמנה ועד הדלת.",
-            "sub": "1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל."
-          }
-        },
-        "n_cancel": {
-          "type": "number",
-          "settings": {
-            "numeral": "14",
-            "unit": "יום",
-            "headline": "ביטול עסקה לפי חוק הגנת הצרכן.",
-            "sub": "עד 14 יום מקבלת המוצר. דמי ביטול עד 5% ממחיר העסקה או 100 ₪ — הנמוך מביניהם."
-          }
-        },
-        "n_photo": {
-          "type": "number",
-          "settings": {
-            "numeral": "1",
-            "unit": "תמונה",
-            "headline": "שלחו תמונה של המקום — נבדוק התאמה לפני שתזמינו.",
-            "sub": "ואם המוצר לא מתאים, נגיד את זה.",
-            "link_label": "לשלוח תמונה של המקום"
-          }
-        }
-      },
-      "block_order": [
-        "n_shipping",
-        "n_days",
-        "n_cancel",
-        "n_photo"
-      ]
-    },
-    "pdp_ask": {
-      "type": "elmsnest-v2-pdp-ask",
-      "settings": {
-        "show_photo": true,
-        "photo_index": 0,
-        "eyebrow": "07 · למה כאן",
-        "heading_line1": "עוד לא בטוחים?",
-        "heading_line2": "לא חייבים.",
-        "lead": "אמרנו למעלה מתי היא לא מתאימה. המפרט בעברית, ומה שלא ידוע — לא כתוב.",
-        "lead_choose": "אמרנו למעלה איך בוחרים נכון. המפרט בעברית, ומה שלא ידוע — לא כתוב.",
-        "lead_step": "ולפני שמזמינים יש למי לשלוח תמונה",
-        "lead_mode": "auto",
-        "show_start_small": true,
-        "start_small_target": "first_row",
-        "mailto_subject": "בדיקת התאמה למקום"
-      },
-      "blocks": {
-        "q_about": {
-          "type": "quote",
-          "settings": {
-            "text": "«כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.»",
-            "cite": "מתוך «מי אנחנו»",
-            "link_label": "מי אנחנו",
-            "link_url": "/pages/about-us"
-          }
-        }
-      },
-      "block_order": [
-        "q_about"
-      ]
-    },
-    "pdp_related": {
-      "type": "elmsnest-v2-pdp-related",
-      "settings": {
-        "auto_fill": true
-      },
-      "blocks": {
-        "card_1": {
-          "type": "card",
-          "settings": {
-            "card_width": 300,
-            "card_aspect": "1/1.05",
-            "card_image_index": 0
-          }
-        },
-        "card_2": {
-          "type": "card",
-          "settings": {
-            "card_width": 210,
-            "card_aspect": "1/1.4",
-            "card_image_index": 0
-          }
-        },
-        "card_3": {
-          "type": "card",
-          "settings": {
-            "card_width": 260,
-            "card_aspect": "1/.9",
-            "card_image_index": 0
-          }
-        }
-      },
-      "block_order": [
-        "card_1",
-        "card_2",
-        "card_3"
-      ]
+        "heading": "עוד לאותו מקום",
+        "source": "related"
+      }
     }
   },
   "order": [
-    "pdp_stage",
-    "pdp_fit",
-    "pdp_night",
-    "pdp_ledger",
-    "pdp_facts",
-    "pdp_terms",
-    "pdp_ask",
-    "pdp_related"
+    "main-product",
+    "ens_pdp_facts",
+    "ens_related"
   ]
 }

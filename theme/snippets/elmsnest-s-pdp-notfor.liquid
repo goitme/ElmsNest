@@ -1,0 +1,18 @@
+{%- comment -%}
+  ElmsNest S — PDP not-for + contact (SIMPLIFY §8.2 item 9). On a hairline under the buy box:
+  the licensed «לא מתאים …» sentence from elmsnest-s-place (emit:'no' — solar-gated, so blank on a
+  220V / rechargeable product in the path / wall / spot collections), then the contact line
+  (elmsnest-s-contact) with the product named in the mail body. This is the ONLY
+  «תמונה של המקום» in the PDP body (P2). Nothing here is typed.
+  Rendered from a `_liquid` block: {% render 'elmsnest-s-pdp-notfor', product: product %}
+{%- endcomment -%}
+{%- capture ens_notfor_no -%}{%- render 'elmsnest-s-place', product: product, emit: 'no' -%}{%- endcapture -%}
+{%- assign ens_notfor_no = ens_notfor_no | strip -%}
+<style>
+.ens-notfor{margin:18px 0 0;padding-block-start:16px;border-block-start:1px solid #1f1e1d;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:16px;line-height:1.55;color:#c9c4b8;direction:rtl;text-align:start}
+.hdt-rte p.ens-notfor__no,p.ens-notfor__no{margin:0 0 10px;font-size:16px;line-height:1.55;color:#f4eee3;max-width:46ch}
+</style>
+<div class="ens-notfor" dir="rtl">
+  {%- if ens_notfor_no != '' -%}<p class="ens-notfor__no">{{ ens_notfor_no }}</p>{%- endif -%}
+  {%- render 'elmsnest-s-contact', product: product -%}
+</div>

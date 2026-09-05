@@ -1,0 +1,96 @@
+{%- comment -%}
+  ElmsNest S — collection tiles (SIMPLIFY SPEC §6.2). Home only.
+  One heading, four tiles in the main-menu order: image (collection.image, 4/5 cover),
+  the Shopify title, the product count. No place word, no numerals, no lamps, no reveal.
+  The whole tile is the link. data-ens-place carries the handle for the §11 order test.
+  Tokens come from elmsnest-v2-core (global); this file only adds ens-coll-* rules.
+{%- endcomment -%}
+<section id="ens-collections" class="env2-section ens-coll" dir="rtl" aria-labelledby="ens-coll-h2" style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    {%- if section.settings.heading != blank -%}
+    <h2 id="ens-coll-h2" class="env2-h ens-coll__h2">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <ul class="ens-coll__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign col = block.settings.collection
+          assign img = col.image | default: col.featured_image
+          assign op = block.settings.object_position | default: '50% 50%' | strip | escape
+          assign alt = img.alt | default: col.title | default: '' | escape
+        -%}
+        {%- if col != blank -%}
+        <li class="ens-coll__item" {{ block.shopify_attributes }}>
+          <a class="ens-coll__tile" href="{{ col.url }}" data-ens-place="{{ col.handle }}" style="--ens-op:{{ op }}">
+            <span class="ens-coll__ph">
+              {%- if img != blank -%}
+                {{ img | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900,1200', sizes: '(min-width:901px) 25vw, 50vw', alt: alt }}
+              {%- endif -%}
+            </span>
+            <span class="ens-coll__t">{{ col.title | escape }}</span>
+            <span class="ens-coll__n"><bdi dir="ltr">{{ col.products_count }}</bdi> מוצרים</span>
+          </a>
+        </li>
+        {%- elsif request.design_mode -%}
+        <li class="ens-coll__item ens-coll__item--empty" {{ block.shopify_attributes }}>בחרו קולקציה בהגדרות הבלוק</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<style>
+.ens-coll{padding-block:56px 40px;margin:0}
+.ens-coll__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 22px}
+.ens-coll__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 10px}
+.ens-coll__item{min-width:0;margin:0}
+.ens-coll__item--empty{font-size:13px;color:var(--env2-ink-2);border:1px dashed var(--env2-hair-btn);padding:16px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;text-align:center}
+.ens-coll__tile{display:block;color:inherit;text-decoration:none}
+.ens-coll__ph{display:block;position:relative;aspect-ratio:4/5;overflow:hidden;background:#05070c;border:1px solid #1f1e1d;border-radius:0}
+/* crop per block (index.json: 0% 50% on the wall tile); an admin focal point written inline by image_tag still wins */
+.ens-coll__ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+.ens-coll__t{display:block;margin-block-start:12px;font-family:var(--env2-serif);font-weight:700;font-size:20px;line-height:1.25;color:var(--env2-ink);text-wrap:pretty}
+.ens-coll__n{display:block;margin-block-start:4px;font-family:var(--env2-sans);font-weight:300;font-size:13px;line-height:1.4;color:var(--env2-ink-2)}
+.ens-coll__tile:hover .ens-coll__t,.ens-coll__tile:focus-visible .ens-coll__t{color:var(--env2-glow)}
+.ens-coll__tile:focus-visible{outline:2px solid var(--env2-gold);outline-offset:4px}
+@media (min-width:901px){
+  .ens-coll{padding-block:88px 56px}
+  .ens-coll__h2.env2-h{margin-block-end:32px}
+  .ens-coll__grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  .ens-coll__t{font-size:22px;margin-block-start:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-coll__tile,.ens-coll__t,.ens-coll__ph img{transition:none}
+}
+</style>
+
+{% schema %}
+{
+  "name": "ElmsNest S — קולקציות",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "איפה צריך אור?" }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "קולקציה",
+      "limit": 4,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "קולקציה", "info": "התמונה, השם, המספר והקישור נלקחים מהקולקציה." },
+        { "type": "text", "id": "object_position", "label": "מיקום החיתוך (object-position)", "default": "50% 50%", "info": "לדוגמה 0% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest S — קולקציות",
+      "blocks": [
+        { "type": "collection", "settings": { "collection": "תאורת-שביל-סולארית", "object_position": "50% 50%" } },
+        { "type": "collection", "settings": { "collection": "solar-wall-lights", "object_position": "0% 50%" } },
+        { "type": "collection", "settings": { "collection": "ספוטים-ופרוז-קטורים-סולאריים", "object_position": "50% 50%" } },
+        { "type": "collection", "settings": { "collection": "גרילנדות-ותאורה-דקורטיבית", "object_position": "50% 50%" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,101 @@
+{%- comment -%}
+  ElmsNest S — PDP per-unit caption (SIMPLIFY §8.2 item 5). One muted 13 px line under the price:
+    option name contains «אורך»           → metres = the leading number before «מ׳» / «מטר»
+                                            → «≈ X ₪ למטר»
+    option named «כמות», leading int > 1   → «X ₪ ליחידה» («≈» only when the split is not exact);
+    (or the value «זוג» = 2)                 «יחידה אחת» / «1 יחידה» → nothing
+    anything else                          → nothing (the container is not rendered at all)
+  Every variant's line is pre-rendered server-side — the maths stay in Liquid, in cents:
+  price_cents / metres, then divided_by: 100.0 | round: 2, padded to two decimals. The script only
+  swaps the visible line on the theme's own `variant:change` event, dispatched on
+  form.hdt-main-product-form by hdt-variant-picker (wiring copied from elmsnest-pdp-unit-price).
+  Never repeats the full variant price: the price block above already shows it.
+  Rendered from a `_liquid` block: {% render 'elmsnest-s-pdp-unit', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign ens_len_i = -1
+  assign ens_qty_i = -1
+  for ens_opt in product.options_with_values
+    if ens_len_i < 0 and ens_opt.name contains 'אורך'
+      assign ens_len_i = forloop.index0
+    elsif ens_qty_i < 0 and ens_opt.name == 'כמות'
+      assign ens_qty_i = forloop.index0
+    endif
+  endfor
+-%}
+{%- if ens_len_i > -1 or ens_qty_i > -1 -%}
+{%- assign ens_sel = product.selected_or_first_available_variant -%}
+<style>
+.ens-unit{display:block;margin:-4px 0 10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:13px;line-height:1.5;color:#c9c4b8;direction:rtl;text-align:start}
+.ens-unit__line{display:block}
+.ens-unit__line[hidden]{display:none}
+.ens-unit bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+</style>
+<div class="ens-unit" id="ens-unit-{{ product.id }}" dir="rtl">
+{%- for ens_v in product.variants -%}
+  {%- liquid
+    assign ens_per = 0
+    assign ens_approx = false
+    assign ens_unit = ''
+    if ens_len_i > -1
+      assign ens_raw = ens_v.options[ens_len_i] | default: '' | strip
+      assign ens_m = ens_raw | split: 'מ' | first | strip | plus: 0
+      if ens_m > 0
+        assign ens_per = ens_v.price | times: 1.0 | divided_by: ens_m
+        assign ens_approx = true
+        assign ens_unit = 'למטר'
+      endif
+    elsif ens_qty_i > -1
+      assign ens_raw = ens_v.options[ens_qty_i] | default: '' | strip
+      assign ens_q = ens_raw | split: ' ' | first | plus: 0
+      if ens_raw == 'זוג'
+        assign ens_q = 2
+      endif
+      if ens_q > 1
+        assign ens_per = ens_v.price | times: 1.0 | divided_by: ens_q
+        assign ens_rem = ens_v.price | modulo: ens_q
+        if ens_rem != 0
+          assign ens_approx = true
+        endif
+        assign ens_unit = 'ליחידה'
+      endif
+    endif
+    if ens_per > 0
+      assign ens_amt = ens_per | divided_by: 100.0 | round: 2 | append: ''
+      assign ens_parts = ens_amt | split: '.'
+      if ens_parts.size < 2
+        assign ens_amt = ens_amt | append: '.00'
+      elsif ens_parts[1].size == 1
+        assign ens_amt = ens_amt | append: '0'
+      endif
+    endif
+  -%}
+  <span class="ens-unit__line" data-en-variant="{{ ens_v.id }}"{% unless ens_v.id == ens_sel.id %} hidden{% endunless %}>{% if ens_per > 0 %}{% if ens_approx %}≈ {% endif %}<bdi dir="ltr">{{ ens_amt }} ₪</bdi> {{ ens_unit }}{% endif %}</span>
+{%- endfor -%}
+</div>
+<script>
+(function () {
+  var root = document.getElementById('ens-unit-{{ product.id }}');
+  if (!root) return;
+  function wire() {
+    var scope = root.closest('.shopify-section') || document;
+    var form = scope.querySelector('form.hdt-main-product-form');
+    if (!form) return;
+    form.addEventListener('variant:change', function (e) {
+      var v = e.detail && e.detail.variant;
+      var lines = root.querySelectorAll('[data-en-variant]');
+      Array.prototype.forEach.call(lines, function (el) { el.hidden = true; });
+      if (v && v.id) {
+        var line = root.querySelector('[data-en-variant="' + v.id + '"]');
+        if (line) line.hidden = false;
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wire);
+  } else {
+    wire();
+  }
+})();
+</script>
+{%- endif -%}

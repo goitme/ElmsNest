@@ -1,0 +1,249 @@
+{%- comment -%}
+  ElmsNest S — PDP facts (SIMPLIFY §8.2 item 2). Static outlined numeral = the IP code when the
+  product's OWN bullets carry one, captioned by that bullet verbatim; a hairline <dl> from the same
+  bullets (elmsnest-v2-pdp-facts chain); the description behind <details>. No variant table, no lamp.
+{%- endcomment -%}
+{%- if product != blank -%}
+{%- liquid
+  assign RS = '~~R~~'
+  assign FS = '~~F~~'
+  assign desc = product.description | default: ''
+  assign items = ''
+  assign chunk = desc
+  assign head_mark = section.settings.bullets_heading | default: 'פרטים שכדאי לדעת'
+  if head_mark != '' and desc contains head_mark
+    assign chunk = desc | split: head_mark | last
+  endif
+  if chunk contains '<li'
+    assign ulchunk = chunk | split: '</ul>' | first
+    assign lis = ulchunk | split: '<li'
+    for li in lis offset: 1
+      assign t = li | prepend: '<li' | strip_html | strip
+      if t != ''
+        assign items = items | append: RS | append: t
+      endif
+    endfor
+  endif
+  assign spec_mark = section.settings.specs_heading | default: 'פרטים טכניים'
+  if items == '' and spec_mark != '' and desc contains spec_mark
+    assign runchunk = desc | split: spec_mark | last | split: '</p>' | first | strip_html | strip
+    if runchunk contains ' · '
+      assign specs = runchunk | split: ' · '
+      for sp in specs
+        assign t = sp | strip
+        if t != ''
+          assign items = items | append: RS | append: t
+        endif
+      endfor
+    endif
+  endif
+  assign list = items | split: RS
+  assign latin = 'IP68,IP67,IP66,IP65,IP55,IP54,IP44,IP20,LED,USB,PIR,RGB,ABS,mAh,220V' | split: ','
+  assign giant = ''
+  assign gsub = ''
+  for raw in list offset: 1
+    assign t = raw | strip
+    for code in latin
+      if code contains 'IP' and t contains code
+        assign giant = code
+        assign gsub = t
+        break
+      endif
+    endfor
+    if giant != ''
+      break
+    endif
+  endfor
+  assign rows = ''
+  assign row_count = 0
+  assign max_rows = section.settings.max_rows | default: 10
+  assign prev_label = ''
+  for raw in list offset: 1
+    if row_count >= max_rows
+      break
+    endif
+    assign t = raw | strip
+    if t == '' or t == gsub
+      continue
+    endif
+    assign lab = ''
+    assign val = t
+    if t contains ': '
+      assign maybe = t | split: ':' | first | strip
+      if maybe.size > 1 and maybe.size < 19
+        assign lab = maybe
+        assign val = t | remove_first: maybe | remove_first: ':' | strip
+      endif
+    endif
+    if lab == ''
+      assign tt = t | replace: 'עמידות', '~'
+      if t contains 'IP'
+        assign lab = 'עמידות'
+      elsif tt contains 'מצבי' or tt contains 'מצבים'
+        assign lab = 'מצבי תאורה'
+      elsif tt contains 'שעות עבודה' or tt contains 'זמן עבודה' or tt contains 'עבודה כ' or tt contains 'שעות תאורה' or tt contains 'שעות לפי' or tt contains 'שעות בהתאם'
+        assign lab = 'זמן עבודה'
+      elsif tt contains 'טעינה'
+        assign lab = 'טעינה'
+      elsif tt contains 'לומן'
+        assign lab = 'בהירות'
+      elsif tt contains 'חיישן' or tt contains 'PIR' or tt contains 'זיהוי'
+        assign lab = 'חיישן'
+      elsif tt contains 'התקנה' or tt contains 'נעיצה' or tt contains 'הרכבה' or tt contains 'מדבקות' or tt contains 'ברגים'
+        assign lab = 'התקנה'
+      elsif tt contains 'מידות' or tt contains 'ס״מ' or tt contains 'גובה' or tt contains 'קוטר'
+        assign lab = 'מידות'
+      elsif tt contains 'מטר' or tt contains 'מ׳'
+        assign lab = 'אורך'
+      elsif tt contains 'נורות' or tt contains 'נקודות אור'
+        assign lab = 'נורות'
+      elsif tt contains 'נירוסטה' or tt contains 'אלומיניום' or tt contains 'ABS' or tt contains 'גוף' or tt contains 'ענפים'
+        assign lab = 'חומר הגוף'
+      elsif tt contains 'חיבור' or tt contains '220V' or tt contains 'סוללות'
+        assign lab = 'חיבור'
+      elsif tt contains 'W'
+        assign lab = 'עוצמה'
+      elsif tt contains 'K'
+        assign lab = 'גוון אור'
+      elsif tt contains 'שחור' or tt contains 'חום'
+        assign lab = 'צבע הגוף'
+      elsif tt contains 'צהוב' or tt contains 'כחול' or tt contains 'צבעוני' or tt contains 'לבן' or tt contains 'גוון'
+        assign lab = 'צבע האור'
+      elsif tt contains 'שלט' or tt contains 'טיימר' or tt contains 'מגע' or tt contains 'עמעום'
+        assign lab = 'שליטה'
+      elsif tt contains 'אוטומטי' or tt contains 'הדלקה' or tt contains 'הפעלה'
+        assign lab = 'הפעלה'
+      elsif tt contains 'סיבוב' or tt contains 'הטיה' or tt contains 'מתכוונן' or tt contains 'זווית'
+        assign lab = 'כיוון'
+      elsif tt contains 'יחידות' or tt contains 'זוג'
+        assign lab = 'כמות'
+      elsif tt contains 'מתאימה' or tt contains 'מתאים' or tt contains 'לשימוש'
+        assign lab = 'מיקום'
+      endif
+      if lab != ''
+        assign probe = lab | append: ' '
+        assign headcut = val | slice: 0, probe.size
+        if headcut == probe
+          assign rest = val | remove_first: probe | strip
+          assign restfirst = rest | slice: 0, 1
+          unless rest.size < 2 or restfirst == 'ו' or rest contains lab
+            assign val = rest
+          endunless
+        endif
+      endif
+    endif
+    if val == ''
+      continue
+    endif
+    assign lastch = val | slice: -1, 1
+    if lastch == '.'
+      assign cut = val.size | minus: 1
+      assign val = val | slice: 0, cut
+    endif
+    if lab != '' and lab == prev_label
+      assign shown = ''
+    else
+      assign shown = lab
+    endif
+    assign prev_label = lab
+    assign rows = rows | append: RS | append: shown | append: FS | append: val
+    assign row_count = row_count | plus: 1
+  endfor
+  assign row_list = rows | split: RS
+  assign heading = section.settings.heading | default: '' | strip
+  assign more_label = section.settings.more_label | default: 'כל מה שכתוב על המוצר'
+  assign giant_bdi = '<bdi dir="ltr">' | append: giant | append: '</bdi>'
+-%}
+{%- assign gsub_html = '' -%}
+{%- if giant != '' -%}
+{%- capture gsub_html -%}{%- render 'elmsnest-v2-bdi-range', text: gsub -%}{%- endcapture -%}
+{%- assign gsub_html = gsub_html | strip | replace: '<bdi>', '<bdi dir="ltr">' | replace: giant, giant_bdi -%}
+{%- endif -%}
+<style>
+.ens-facts{position:relative;background:transparent;color:#f4eee3;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:300;font-size:16px;line-height:1.55;direction:rtl;text-align:start;overflow-x:clip;padding-block:clamp(36px,6vw,72px) clamp(28px,5vw,56px)}
+.ens-facts__wrap{width:min(1240px,100% - 2*clamp(20px,4vw,64px));margin-inline:auto}
+.ens-facts bdi{unicode-bidi:isolate}
+.ens-facts :focus-visible{outline:2px solid #ffd394;outline-offset:4px}
+.ens-facts__h{font-family:var(--env2-serif,'Frank Ruhl Libre',serif);font-weight:700;font-size:24px;line-height:1.1;margin:0 0 22px;color:#f4eee3}
+.ens-facts__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.ens-facts__num{margin:0;display:grid;gap:12px;justify-items:start}
+.ens-facts__giant{font-family:var(--env2-serif,'Frank Ruhl Libre',serif);font-weight:900;font-size:clamp(88px,24vw,120px);line-height:.9;color:transparent;-webkit-text-stroke:1.5px #e9b96e;direction:ltr}
+.ens-facts__cap{font-size:15px;line-height:1.55;color:#c9c4b8;max-width:38ch}
+.ens-facts__dl{margin:0;border-block-end:1px solid #1f1e1d}
+.ens-facts__row{display:grid;grid-template-columns:minmax(0,1fr);gap:3px;border-block-start:1px solid #1f1e1d;padding-block:12px}
+.ens-facts__dt{margin:0;font-weight:400;font-size:13px;line-height:1.5;color:#c9c4b8}
+.ens-facts__dd{margin:0;font-weight:300;font-size:16px;line-height:1.55;color:#f4eee3}
+.ens-facts__more{margin-block-start:28px;border-block-start:1px solid #1f1e1d}
+.ens-facts__summary{display:flex;align-items:center;gap:10px;min-height:48px;padding-block:12px;font-weight:400;font-size:15px;line-height:1.5;color:#c9c4b8;cursor:pointer;list-style:none;transition:color .3s}
+.ens-facts__summary::-webkit-details-marker{display:none}
+.ens-facts__summary::after{content:"";width:9px;height:9px;border-inline-start:1px solid currentColor;border-block-end:1px solid currentColor;transform:rotate(-45deg);transition:transform .3s;margin-block-end:3px}
+.ens-facts__summary:hover{color:#f4eee3}
+.ens-facts__more[open] .ens-facts__summary::after{transform:rotate(135deg);margin-block-end:-3px}
+.ens-facts__desc{padding-block:6px 24px;max-width:78ch;color:#c9c4b8}
+@media (min-width:901px){
+  .ens-facts__grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px 64px;align-items:start}
+  .ens-facts__giant{font-size:clamp(120px,13vw,200px)}
+  .ens-facts__row{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline}
+  .ens-facts__row--wide{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.ens-facts *,.ens-facts *::after{transition:none!important;animation:none!important} }
+</style>
+<section class="ens-facts" id="ens-facts" dir="rtl"{% if heading != '' %} aria-labelledby="ens-facts-h"{% endif %}>
+  <div class="ens-facts__wrap">
+    {%- if heading != '' -%}<h2 class="ens-facts__h" id="ens-facts-h">{{ heading }}</h2>{%- endif -%}
+    {%- if giant != '' or row_list.size > 1 -%}
+    <div class="ens-facts__grid">
+      {%- if giant != '' -%}
+      <p class="ens-facts__num">
+        <span class="ens-facts__giant" aria-hidden="true">{{ giant_bdi }}</span>
+        <span class="ens-facts__cap">{{ gsub_html }}</span>
+      </p>
+      {%- endif -%}
+      {%- if row_list.size > 1 -%}
+      <dl class="ens-facts__dl">
+        {%- for rec in row_list offset: 1 -%}
+          {%- assign f = rec | split: FS -%}
+          {%- if f.size < 2 -%}{%- continue -%}{%- endif -%}
+          {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: f[1] -%}{%- endcapture -%}
+          {%- liquid
+            assign v = v | strip | replace: '<bdi>', '<bdi dir="ltr">'
+            for code in latin
+              if v contains code
+                assign wrapped = '<bdi dir="ltr">' | append: code | append: '</bdi>'
+                assign v = v | replace: code, wrapped
+              endif
+            endfor
+          -%}
+          <div class="ens-facts__row{% if f[0] == blank %} ens-facts__row--wide{% endif %}">
+            {%- if f[0] != blank -%}<dt class="ens-facts__dt">{{ f[0] }}</dt>{%- endif -%}
+            <dd class="ens-facts__dd">{{ v }}</dd>
+          </div>
+        {%- endfor -%}
+      </dl>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+    {%- if product.description != blank -%}
+    <details class="ens-facts__more">
+      <summary class="ens-facts__summary">{{ more_label }}</summary>
+      <div class="ens-facts__desc">{{ product.description }}</div>
+    </details>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "ElmsNest S — נתונים",
+  "tag": "section",
+  "class": "ens-facts-section hdt-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "כותרת", "default": "מה שכדאי לדעת" },
+    { "type": "text", "id": "bullets_heading", "label": "כותרת הבולטים בתיאור", "default": "פרטים שכדאי לדעת" },
+    { "type": "text", "id": "specs_heading", "label": "כותרת שורת המפרט", "default": "פרטים טכניים" },
+    { "type": "range", "id": "max_rows", "label": "מקסימום שורות", "min": 3, "max": 14, "step": 1, "default": 10 },
+    { "type": "text", "id": "more_label", "label": "תווית התיאור המלא", "default": "כל מה שכתוב על המוצר" }
+  ],
+  "presets": [ { "name": "ElmsNest S — נתונים" } ]
+}
+{% endschema %}
