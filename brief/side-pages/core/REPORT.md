@@ -355,7 +355,20 @@ Deliberately left as-is by §B/§D — the old Kalles sections stay, they only s
 
 Each of these would change something this round is told to protect, so they are reported rather than patched.
 
-1. **`<a class="env2-btn">` loses its ink colour — homepage, pre-existing.** In `elmsnest-v2-core`,
+1. **~~`<a class="env2-btn">` loses its ink colour — homepage, pre-existing.~~ CLOSED [round 3, 2026-09-05].**
+   Re-measured across the whole store before touching it: **exactly one element rendered the bug** — the homepage
+   hero's primary CTA "לארבע הקולקציות", cream `rgb(244,238,227)` on the amber fill, **1.21:1**
+   (`core/hero-cta-before.png`). Every other `env2-btn` anchor in the store is `--ghost` and measured 17.36–17.86:1,
+   and the product page's own filled anchor ("להתחיל מ־5 מטר — 89.90 ₪") already measured 13.24:1, so the report's
+   framing was right but its blast radius was one button. Fixed in the core with the two (0,2,1) rules it proposed;
+   deployed (checksum `420c9994e18ecc64b071ae38b6090ffa`). After: **13.24:1**, and the button's bounding box is
+   identical to the pixel — `x 224.67 y 563.05 w 145.33 h 42.80` before and after (`core/hero-cta-after.png`).
+   **This is a change to the homepage while its verdict is pending, and it was made deliberately**: the owner is
+   being asked to judge a page whose primary call to action could not be read. Round 0 deferred it as "fixing it
+   would change the homepage"; a 1.21:1 CTA is a defect, not a design decision, and leaving it in place would have
+   corrupted the judgement we are waiting for. Original note follows.
+
+   **`<a class="env2-btn">` loses its ink colour — homepage, pre-existing.** In `elmsnest-v2-core`,
    `.env2-section a{color:inherit}` (specificity 0,1,1) beats `.env2-btn{color:var(--env2-btn-ink)}` (0,1,0), so an
    anchor button renders `#f4eee3` on the `#ffd394` fill — **1.21:1**. Visible on the homepage hero
    ("לארבע הקולקציות"). `<button class="env2-btn">` is unaffected. The CONTRACT says the class "works on `<a>` and
