@@ -8,7 +8,20 @@ import re,os,subprocess,hashlib,sys
 from urllib.parse import urljoin
 url,out=sys.argv[1],sys.argv[2]
 os.makedirs(out+"/a",exist_ok=True)
-html=subprocess.run(["curl","-sSL","--max-time","60","-c",out+"/cj.txt","-b",out+"/cj.txt",url],capture_output=True,text=True).stdout
+import time
+# 2026-09-05: Shopify's bot shield answers a burst of ~250 asset fetches with HTTP 429 "Verifying your connection..."
+# for every request that follows, page or asset, for some minutes. So: a short pause between fetches, and on a 429
+# (or a 9 KB "Verifying your connection" body) wait and retry instead of writing the challenge page as the mirror.
+PAUSE=float(os.environ.get("ENV2_MIRROR_PAUSE","0.15"))
+def fetch(args,text=True):
+    for attempt in range(6):
+        r=subprocess.run(["curl","-sSL","--max-time","60","-w","\n__HTTP__%{http_code}"]+args,capture_output=True,text=text)
+        body,_,code=r.stdout.rpartition("\n__HTTP__") if text else (r.stdout,None,"")
+        if text and (code.strip()=="429" or "Verifying your connection" in body[:4000]):
+            wait=20*(attempt+1); print(f"mirror: 429 from the store, waiting {wait}s (attempt {attempt+1}/6)",file=sys.stderr); time.sleep(wait); continue
+        time.sleep(PAUSE); return body if text else r
+    raise SystemExit("mirror: still 429 after six attempts — the store is throttling this box; try later")
+html=fetch(["-c",out+"/cj.txt","-b",out+"/cj.txt",url])
 urls=set()
 for m in re.finditer(r'(?:src|href)="([^"]+)"',html): urls.add(m.group(1))
 for m in re.finditer(r'srcset="([^"]+)"',html):
@@ -27,7 +40,11 @@ for u in sel:
     name="a/"+hashlib.md5(full.encode()).hexdigest()+ext
     p=out+"/"+name
     if not os.path.exists(p):
-        r=subprocess.run(["curl","-sSL","--max-time","40","-o",p,full],capture_output=True)
+        r=subprocess.run(["curl","-sSL","--max-time","40","-o",p,"-w","%{http_code}",full],capture_output=True,text=True)
+        if r.stdout.strip()=="429":
+            print("mirror: 429 on an asset, waiting 20s",file=sys.stderr); time.sleep(20)
+            r=subprocess.run(["curl","-sSL","--max-time","40","-o",p,"-w","%{http_code}",full],capture_output=True,text=True)
+        time.sleep(PAUSE)
         if r.returncode!=0 or not os.path.exists(p) or os.path.getsize(p)==0: continue
     mapping[u]=name
 # google fonts css → also fetch the woff2 it references
