@@ -39,6 +39,12 @@ for u in sel:
     ext=re.search(r'\.(css|js|png|jpe?g|webp|svg|gif|woff2?|ico)',full).group(0)
     name="a/"+hashlib.md5(full.encode()).hexdigest()+ext
     p=out+"/"+name
+    # shared asset cache across mirrors: the same Kalles CSS/JS/fonts are fetched by every page, and the store's bot
+    # shield counts requests, not pages. Cache hits cost the store nothing. ENV2_MIRROR_CACHE=0 disables it.
+    CACHE=os.environ.get("ENV2_MIRROR_CACHE","/home/user/ElmsNest/brief/.mirror-cache")
+    cp=os.path.join(CACHE,os.path.basename(name)) if CACHE!="0" else None
+    if cp and os.path.exists(cp) and os.path.getsize(cp)>0 and not os.path.exists(p):
+        import shutil; shutil.copyfile(cp,p)
     if not os.path.exists(p):
         r=subprocess.run(["curl","-sSL","--max-time","40","-o",p,"-w","%{http_code}",full],capture_output=True,text=True)
         if r.stdout.strip()=="429":
@@ -46,6 +52,8 @@ for u in sel:
             r=subprocess.run(["curl","-sSL","--max-time","40","-o",p,"-w","%{http_code}",full],capture_output=True,text=True)
         time.sleep(PAUSE)
         if r.returncode!=0 or not os.path.exists(p) or os.path.getsize(p)==0: continue
+        if cp and r.stdout.strip()=="200":
+            os.makedirs(CACHE,exist_ok=True); import shutil; shutil.copyfile(p,cp)
     mapping[u]=name
 # google fonts css → also fetch the woff2 it references
 for u,name in list(mapping.items()):
