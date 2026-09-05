@@ -90,3 +90,43 @@ cart button. Everything below is read by theme JS and must survive verbatim:
 | `<wrapp-remove-item-oncart data-index>` | remove |
 
 Everything else in the section — order, wording, type, spacing, what is shown and what is not — is ours.
+
+## The acceptance harness and the baseline it records
+
+`brief/side-pages/cart/verify.js <mirror>/index.html <label> [--drawer]` — serves the mirror, optionally opens the
+drawer through the theme's own element, and prints one JSON line per viewport (390×844, 360×640, 320×568, 1440×900)
+with every number this round is judged on. Three of its readings were wrong on the first pass and were fixed against
+the screenshots before this baseline was recorded: `a[href*="/products/"]` matched the **image** anchor, which never
+overflows, so truncation read `false` on titles that are visibly cut (now the title is selected explicitly); the
+terms check read `document.body`, which on a drawer render is *the page behind it* (now scoped to the open dialog);
+and the "largest rival control" was the product photograph (photo links are now counted separately, as **exits**).
+
+**Baseline, the drawer as it is today** (identical at all four viewports except the void):
+
+```
+dom=0.99 vs 'צפה בעגלת הקניות'   exits=2   trunc=[True,True]   removes=[1,2]
+tracked=[{'צפה בעגלת הקניות','3px'},{'תשלום','3px'}]   under44=10   terms=0/4
+void=288 (390×844) · 84 (360×640) · 12 (320×568) · 343 (1440×900)
+```
+
+`dom=0.99` is the twin-button defect as a number: the checkout control and the link that leaves the cart are the
+same size to within one percent. `terms=0/4` is finding 9. `removes=[1,2]` is finding 2, and it appears on the
+second line only because that is the line at quantity 1.
+
+**Baseline, the cart page as it is today:**
+
+```
+390×844   checkout t932 b980 108×48   BELOW THE FOLD BY 136   dom=0.58   exits=5  under44=25  terms=3/4  doc 2544
+360×640   checkout t932 b980 108×48   BELOW THE FOLD BY 340   dom=0.68   exits=5  under44=25  terms=3/4  doc 2567
+320×568   checkout t988 b1036 108×48  BELOW THE FOLD BY 468   dom=0.65   exits=5  under44=23  terms=3/4  doc 2683
+1440×900  checkout t795 b843 108×48   inside                  dom=0.73   exits=5  under44=33  terms=3/4  doc 1791
+```
+
+The rival that beats the checkout button on every viewport is **a product title link** — on the cart page the
+largest thing a decided buyer can press is a route back out of the cart. Five such exits per two-item cart.
+
+**One thing was checked and found NOT to be broken.** `brief/side-pages/core/REPORT.md` §9.2 leaves
+`--en-error-text` (145 33 42, 1.8:1 on the night ground) open, and the cart is the one surface that renders an
+error (`הכמות שבחרת אינה זמינה`, on every line). Measured: the message computes `rgb(201,196,184)` on `rgb(2,3,6)` —
+**11.86:1**. Kalles styles it from `--color-foreground2`, not from the semantic token, so §9.2 stays correctly
+deferred and the rebuild is free to choose its own error treatment rather than inheriting a broken one.
