@@ -48,6 +48,7 @@ function mirror(name, p) {
   return dir;
 }
 function serve(root) {
+  if (!root) throw new Error('serve(): no mirror directory');
   const srv = http.createServer((req, res) => {
     let p = decodeURIComponent(req.url.split('?')[0]);
     if (p.startsWith('/__fonts/')) { const f = path.join(FONT_DIR, p.slice(9)); if (fs.existsSync(f)) { res.writeHead(200, { 'Content-Type': 'font/woff2', 'Access-Control-Allow-Origin': '*' }); return fs.createReadStream(f).pipe(res); } res.writeHead(404); return res.end(); }
@@ -151,7 +152,7 @@ async function audit(page, name, vw, vh) {
     report['reduced-motion'] = await page.evaluate(() => { const c = document.querySelector('.hdt-card-product'); if (!c) return { card: false }; const all = [c, ...c.querySelectorAll('*')].filter(e => { const cs = getComputedStyle(e); return cs.display !== 'none' && cs.visibility !== 'hidden'; }).map(e => getComputedStyle(e).transitionDuration).filter(d => d && d !== '0s'); return { card: true, elementsWithTransition: all.length }; });
     console.log('reduced-motion', JSON.stringify(report['reduced-motion'])); await ctx.close(); srv.close(); }
   // hybrid: variant pill → price + sticky id on the MIRROR; then the POST and the drawer section through curl
-  try { const { srv, port } = await serve(dirs['pdp-rope']);
+  try { if (!dirs['pdp-rope']) throw new Error('no mirror for pdp-rope (not in this run)'); const { srv, port } = await serve(dirs['pdp-rope']);
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, locale: 'he-IL' });
     await ctx.route(/^https?:\/\//, r => /127\.0\.0\.1:/.test(r.request().url()) ? r.continue() : r.abort());
     const page = await ctx.newPage(); await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'load', timeout: 60000 }); await page.waitForTimeout(2500);

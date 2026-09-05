@@ -128,8 +128,8 @@
     "overTarget": false
   },
   "collection-all-m-js": {
-    "docH": 6879,
-    "screens": 8.15,
+    "docH": 6702,
+    "screens": 7.94,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -155,11 +155,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 644
+        "h": 610
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 5164
+        "h": 5020
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -190,137 +190,137 @@
       {
         "handle": "led-globe-string-lights",
         "file": "f2a525b91ec29683dbeadf5c0032054b.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-crystal-ball-string-lights",
         "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-edison-string-lights",
         "file": "310423a276bf59f45f49896a6dbaee79.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "dual-head-garden-light-10w-ip65",
         "file": "fe1b72661e8d023a2379a86adea7357d.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "outdoor-bidirectional-led-wall-light-ip65",
         "file": "2e9797fa58898bd08fbcba2e70c94844.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-wall-light-6w-up-down",
         "file": "70805727a619f97fd45650cd952a5f19.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-wall-light-indoor-outdoor",
         "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "waterproof-led-wall-light-ip65-6w-12w",
         "file": "413fa809e8b71b787625182e0cb84293.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "magnetic-rechargeable-touch-wall-light",
         "file": "8ef1347100c73113003bedfff9ed80e4.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-wall-light-motion-sensor-ip65",
         "file": "fc423e25af1e303a68779053be6fd509.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-garden-spotlight-52-led",
         "file": "6511017003c622473819256ca9a2cfdb.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "lighted-birch-branches-20-led",
         "file": "3e781d5808d365c2aa5cb2320647f102.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-garden-lantern-9-led",
         "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "rechargeable-telescopic-camping-lantern",
         "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-floodlight-ip67-remote-timer",
         "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "decorative-led-net-lights",
         "file": "271acd6c1f13e8201c38d81acfbfc304.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-rope-string-lights",
         "file": "778db49533c03fa825429f1d5cb684ac.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-security-light-100-led",
         "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-firefly-garden-lights",
         "file": "3adceaa935b7462e17f5662132d46fdf.png",
-        "w": 171
+        "w": 176
       }
     ],
     "cardsNotFeatured": [
@@ -377,9 +377,10 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
-    "overTarget": true
+    "overTarget": false
   },
   "collection-path-m-js": {
     "docH": 3222,
@@ -993,8 +994,8 @@
     "overTarget": true
   },
   "collection-all-s-js": {
-    "docH": 6587,
-    "screens": 10.29,
+    "docH": 6418,
+    "screens": 10.03,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1020,11 +1021,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 614
+        "h": 588
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 4901
+        "h": 4758
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -1055,137 +1056,137 @@
       {
         "handle": "led-globe-string-lights",
         "file": "f2a525b91ec29683dbeadf5c0032054b.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-crystal-ball-string-lights",
         "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-edison-string-lights",
         "file": "310423a276bf59f45f49896a6dbaee79.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "dual-head-garden-light-10w-ip65",
         "file": "fe1b72661e8d023a2379a86adea7357d.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "outdoor-bidirectional-led-wall-light-ip65",
         "file": "2e9797fa58898bd08fbcba2e70c94844.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-wall-light-6w-up-down",
         "file": "70805727a619f97fd45650cd952a5f19.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-wall-light-indoor-outdoor",
         "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "waterproof-led-wall-light-ip65-6w-12w",
         "file": "413fa809e8b71b787625182e0cb84293.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "magnetic-rechargeable-touch-wall-light",
         "file": "8ef1347100c73113003bedfff9ed80e4.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-wall-light-motion-sensor-ip65",
         "file": "fc423e25af1e303a68779053be6fd509.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-garden-spotlight-52-led",
         "file": "6511017003c622473819256ca9a2cfdb.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "lighted-birch-branches-20-led",
         "file": "3e781d5808d365c2aa5cb2320647f102.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-garden-lantern-9-led",
         "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "rechargeable-telescopic-camping-lantern",
         "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-floodlight-ip67-remote-timer",
         "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "decorative-led-net-lights",
         "file": "271acd6c1f13e8201c38d81acfbfc304.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-rope-string-lights",
         "file": "778db49533c03fa825429f1d5cb684ac.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-security-light-100-led",
         "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-firefly-garden-lights",
         "file": "3adceaa935b7462e17f5662132d46fdf.png",
-        "w": 156
+        "w": 161
       }
     ],
     "cardsNotFeatured": [
@@ -1242,6 +1243,7 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": true
@@ -1858,8 +1860,8 @@
     "overTarget": false
   },
   "collection-all-d-js": {
-    "docH": 4667,
-    "screens": 5.19,
+    "docH": 4640,
+    "screens": 5.16,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1885,11 +1887,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 518
+        "h": 482
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 3493
+        "h": 3501
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -1920,137 +1922,137 @@
       {
         "handle": "led-globe-string-lights",
         "file": "f2a525b91ec29683dbeadf5c0032054b.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-crystal-ball-string-lights",
         "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-edison-string-lights",
         "file": "310423a276bf59f45f49896a6dbaee79.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "dual-head-garden-light-10w-ip65",
         "file": "fe1b72661e8d023a2379a86adea7357d.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "outdoor-bidirectional-led-wall-light-ip65",
         "file": "2e9797fa58898bd08fbcba2e70c94844.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-wall-light-6w-up-down",
         "file": "70805727a619f97fd45650cd952a5f19.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-wall-light-indoor-outdoor",
         "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "waterproof-led-wall-light-ip65-6w-12w",
         "file": "413fa809e8b71b787625182e0cb84293.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "magnetic-rechargeable-touch-wall-light",
         "file": "8ef1347100c73113003bedfff9ed80e4.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-wall-light-motion-sensor-ip65",
         "file": "fc423e25af1e303a68779053be6fd509.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-garden-spotlight-52-led",
         "file": "6511017003c622473819256ca9a2cfdb.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "lighted-birch-branches-20-led",
         "file": "3e781d5808d365c2aa5cb2320647f102.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-garden-lantern-9-led",
         "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "rechargeable-telescopic-camping-lantern",
         "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-floodlight-ip67-remote-timer",
         "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "decorative-led-net-lights",
         "file": "271acd6c1f13e8201c38d81acfbfc304.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-rope-string-lights",
         "file": "778db49533c03fa825429f1d5cb684ac.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-security-light-100-led",
         "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-firefly-garden-lights",
         "file": "3adceaa935b7462e17f5662132d46fdf.png",
-        "w": 268
+        "w": 279
       }
     ],
     "cardsNotFeatured": [
@@ -2107,6 +2109,7 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
@@ -2723,8 +2726,8 @@
     "overTarget": false
   },
   "collection-all-m-nojs": {
-    "docH": 6879,
-    "screens": 8.15,
+    "docH": 6702,
+    "screens": 7.94,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2750,11 +2753,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 644
+        "h": 610
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 5164
+        "h": 5020
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -2785,137 +2788,137 @@
       {
         "handle": "led-globe-string-lights",
         "file": "f2a525b91ec29683dbeadf5c0032054b.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-crystal-ball-string-lights",
         "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-edison-string-lights",
         "file": "310423a276bf59f45f49896a6dbaee79.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "dual-head-garden-light-10w-ip65",
         "file": "fe1b72661e8d023a2379a86adea7357d.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "outdoor-bidirectional-led-wall-light-ip65",
         "file": "2e9797fa58898bd08fbcba2e70c94844.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-wall-light-6w-up-down",
         "file": "70805727a619f97fd45650cd952a5f19.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-wall-light-indoor-outdoor",
         "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "waterproof-led-wall-light-ip65-6w-12w",
         "file": "413fa809e8b71b787625182e0cb84293.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "magnetic-rechargeable-touch-wall-light",
         "file": "8ef1347100c73113003bedfff9ed80e4.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-wall-light-motion-sensor-ip65",
         "file": "fc423e25af1e303a68779053be6fd509.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-garden-spotlight-52-led",
         "file": "6511017003c622473819256ca9a2cfdb.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "lighted-birch-branches-20-led",
         "file": "3e781d5808d365c2aa5cb2320647f102.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-garden-lantern-9-led",
         "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "rechargeable-telescopic-camping-lantern",
         "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-floodlight-ip67-remote-timer",
         "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "decorative-led-net-lights",
         "file": "271acd6c1f13e8201c38d81acfbfc304.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-rope-string-lights",
         "file": "778db49533c03fa825429f1d5cb684ac.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-security-light-100-led",
         "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "solar-firefly-garden-lights",
         "file": "3adceaa935b7462e17f5662132d46fdf.png",
-        "w": 171
+        "w": 176
       }
     ],
     "cardsNotFeatured": [
@@ -2972,9 +2975,10 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
-    "overTarget": true
+    "overTarget": false
   },
   "collection-path-m-nojs": {
     "docH": 3222,
@@ -3588,8 +3592,8 @@
     "overTarget": true
   },
   "collection-all-s-nojs": {
-    "docH": 6587,
-    "screens": 10.29,
+    "docH": 6418,
+    "screens": 10.03,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3615,11 +3619,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 614
+        "h": 588
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 4901
+        "h": 4758
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -3650,137 +3654,137 @@
       {
         "handle": "led-globe-string-lights",
         "file": "f2a525b91ec29683dbeadf5c0032054b.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-crystal-ball-string-lights",
         "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-edison-string-lights",
         "file": "310423a276bf59f45f49896a6dbaee79.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "dual-head-garden-light-10w-ip65",
         "file": "fe1b72661e8d023a2379a86adea7357d.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "outdoor-bidirectional-led-wall-light-ip65",
         "file": "2e9797fa58898bd08fbcba2e70c94844.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-wall-light-6w-up-down",
         "file": "70805727a619f97fd45650cd952a5f19.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-wall-light-indoor-outdoor",
         "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "waterproof-led-wall-light-ip65-6w-12w",
         "file": "413fa809e8b71b787625182e0cb84293.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "magnetic-rechargeable-touch-wall-light",
         "file": "8ef1347100c73113003bedfff9ed80e4.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-wall-light-motion-sensor-ip65",
         "file": "fc423e25af1e303a68779053be6fd509.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-garden-spotlight-52-led",
         "file": "6511017003c622473819256ca9a2cfdb.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "lighted-birch-branches-20-led",
         "file": "3e781d5808d365c2aa5cb2320647f102.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-garden-lantern-9-led",
         "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "rechargeable-telescopic-camping-lantern",
         "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-floodlight-ip67-remote-timer",
         "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "decorative-led-net-lights",
         "file": "271acd6c1f13e8201c38d81acfbfc304.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-rope-string-lights",
         "file": "778db49533c03fa825429f1d5cb684ac.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-security-light-100-led",
         "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "solar-firefly-garden-lights",
         "file": "3adceaa935b7462e17f5662132d46fdf.png",
-        "w": 156
+        "w": 161
       }
     ],
     "cardsNotFeatured": [
@@ -3837,6 +3841,7 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": true
@@ -4453,8 +4458,8 @@
     "overTarget": false
   },
   "collection-all-d-nojs": {
-    "docH": 4667,
-    "screens": 5.19,
+    "docH": 4640,
+    "screens": 5.16,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4480,11 +4485,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 518
+        "h": 482
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 3493
+        "h": 3501
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -4515,137 +4520,137 @@
       {
         "handle": "led-globe-string-lights",
         "file": "f2a525b91ec29683dbeadf5c0032054b.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-crystal-ball-string-lights",
         "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-edison-string-lights",
         "file": "310423a276bf59f45f49896a6dbaee79.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "dual-head-garden-light-10w-ip65",
         "file": "fe1b72661e8d023a2379a86adea7357d.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "outdoor-bidirectional-led-wall-light-ip65",
         "file": "2e9797fa58898bd08fbcba2e70c94844.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-wall-light-6w-up-down",
         "file": "70805727a619f97fd45650cd952a5f19.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-wall-light-indoor-outdoor",
         "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "waterproof-led-wall-light-ip65-6w-12w",
         "file": "413fa809e8b71b787625182e0cb84293.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "magnetic-rechargeable-touch-wall-light",
         "file": "8ef1347100c73113003bedfff9ed80e4.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-wall-light-motion-sensor-ip65",
         "file": "fc423e25af1e303a68779053be6fd509.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-garden-spotlight-52-led",
         "file": "6511017003c622473819256ca9a2cfdb.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "lighted-birch-branches-20-led",
         "file": "3e781d5808d365c2aa5cb2320647f102.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-garden-lantern-9-led",
         "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "rechargeable-telescopic-camping-lantern",
         "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-floodlight-ip67-remote-timer",
         "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "decorative-led-net-lights",
         "file": "271acd6c1f13e8201c38d81acfbfc304.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-rope-string-lights",
         "file": "778db49533c03fa825429f1d5cb684ac.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-security-light-100-led",
         "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "solar-firefly-garden-lights",
         "file": "3adceaa935b7462e17f5662132d46fdf.png",
-        "w": 268
+        "w": 279
       }
     ],
     "cardsNotFeatured": [
@@ -4702,6 +4707,7 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
@@ -5191,28 +5197,9 @@
   },
   "reduced-motion": {
     "card": true,
-    "elementsWithTransition": 3
+    "elementsWithTransition": 0
   },
   "pdp-variant-sync": {
-    "before": {
-      "mainId": "48880936190126",
-      "stickyId": "48880936190126",
-      "price": ""
-    },
-    "clicked": null,
-    "after": {
-      "mainId": "48880936190126",
-      "stickyId": "48880936190126",
-      "price": ""
-    },
-    "idsAgree": true,
-    "priceChanged": false,
-    "live": {
-      "postedId": "48880936190126",
-      "addStatus": "ok",
-      "lineTitle": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED - 7 מ׳ / 50 נורות / לבן חם",
-      "drawerHasVariant": true,
-      "drawerHasLineItem": true
-    }
+    "error": "no mirror for pdp-rope (not in this run)"
   }
 }
