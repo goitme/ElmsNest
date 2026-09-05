@@ -44,3 +44,20 @@ file; the fetched body is.
 3. A `richtext` setting refuses the `<bdi>` tag (footer_about, footer_bottom).
 4. A `richtext` setting refuses `data-*` attributes on `<a>` (the four footer `data-ens-place` markers).
 The header group's `note_mobile` is an HTML setting and accepted its `<bdi>`.
+
+## Second pass (after the first verification), 2026-09-05 ~15:55 UTC
+
+| file | remote bytes | remote md5 | why |
+|---|---|---|---|
+| `templates/collection.json` | 1784 | `3a6e2e1fb8571895df5f1212b8bd3481` | `space_items` "x" → "15": /all measured 8.15 screens against 8; 13 row gaps × 15 px saved |
+| `snippets/elmsnest-s-skin.liquid` | 11977 | `8942a1278987878ee57cb92919d2ba18` | reduced-motion block `!important` (three Kalles card children kept a transition; all `display:none`, harmless, now silent) |
+
+First verification, 390×844 JS on (before → after / target): home 10.32 → **5.18** / 6 · /collections/all 25.76 → **8.15** / 8 ·
+path collection 17.98 → **3.82** / 8 · rope PDP 10.25 → **4.38** / 6 · path PDP 10.37 → **4.25** / 6 · deck PDP 9.89 → **4.18** / 6.
+Zero glyph plates, zero Liquid errors, zero WhatsApp, one main form + one sticky form + one quantity input + a
+`<noscript>` select per PDP, terms strip once on the home and none on collections, one terms line per PDP, one photo
+line + one mailto per page body + one in the footer, the four collections in the same order in tiles / fit rows /
+filter row / header / footer, 27/27 featured images on /all (checked on the live HTML; the mirror renames files), the
+live add-to-cart reached the drawer with the chosen variant, and Shopify's own render of the rope light's second
+variant carries its own price (99.90) and form id — the server half of the pill switch. Three verify.json readings
+were harness artefacts and are recorded as such in SPEC §11.

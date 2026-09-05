@@ -19,9 +19,10 @@ const REPO = '/home/user/ElmsNest';
 const OUT = process.argv[2] || path.join(__dirname, 'verify-out');
 const FEAT = process.argv[3] && !process.argv[3].startsWith('--') ? JSON.parse(fs.readFileSync(process.argv[3], 'utf8')) : null;
 const NO_MIRROR = process.argv.includes('--no-mirror');
+const ONLY = (process.argv.find(a => a.startsWith('--pages=')) || '').slice(8).split(',').filter(Boolean);  // --pages=a,b re-runs a subset; verify.json is merged, not replaced
 fs.mkdirSync(OUT, { recursive: true });
 const T = '154726400174', BASE = 'https://elmsnest.com';
-const PAGES = [
+const ALL_PAGES = [
   { name: 'home', path: '/', target: 6 },
   { name: 'collection-all', path: '/collections/all', target: 8 },
   { name: 'collection-path', path: '/collections/%D7%AA%D7%90%D7%95%D7%A8%D7%AA-%D7%A9%D7%91%D7%99%D7%9C-%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA', target: 8 },
@@ -29,6 +30,7 @@ const PAGES = [
   { name: 'pdp-path', path: '/products/stainless-steel-solar-path-light-ip65', target: 6 },
   { name: 'pdp-deck', path: '/products/waterproof-solar-deck-step-lights', target: 6 },
 ];
+const PAGES = ONLY.length ? ALL_PAGES.filter(p => ONLY.includes(p.name)) : ALL_PAGES;
 const VIEWS = [['m', 390, 844], ['s', 360, 640], ['d', 1366, 900]];
 const url = p => `${BASE}${p}${p.includes('?') ? '&' : '?'}preview_theme_id=${T}`;
 const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.woff': 'font/woff', '.gif': 'image/gif', '.ico': 'image/x-icon', '.json': 'application/json' };
@@ -109,7 +111,8 @@ async function audit(page, name, vw, vh) {
   }, { name, vh, FEAT });
 }
 (async () => {
-  const report = {};
+  const prevPath = path.join(OUT, 'verify.json');
+  const report = (ONLY.length && fs.existsSync(prevPath)) ? JSON.parse(fs.readFileSync(prevPath, 'utf8')) : {};
   const dirs = {};
   const failedMirrors = [];
   for (const p of PAGES) {
