@@ -1,0 +1,10 @@
+mirror home … ok
+mirror collection-all … ok
+mirror collection-path … ok
+mirror pdp-rope … ok
+mirror pdp-path … ok
+mirror pdp-deck … ok
+home-m-js screens=10.32/6 forms=3 main=0 sticky=0 mailto=3 photo=3 terms=1/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+collection-all-m-js screens=25.76/8 forms=9 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=16/16 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+collection-path-m-js screens=1/8 forms=0 main=0 sticky=0 mailto=0 photo=0 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+pdp-rope-m-js screens=1/6 forms=0 main=0 sticky=0 mailto=0 photo=0 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
