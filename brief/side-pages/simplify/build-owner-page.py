@@ -20,6 +20,18 @@ def jpg(path, width=390, q=78):
 def shot(dirname, name):
     p = f'{SIM}/{dirname}/{name}'
     return jpg(p) if os.path.exists(p) else ''
+CART = '/home/user/ElmsNest/brief/side-pages/cart'
+def shot_abs(p): return jpg(p) if os.path.exists(p) else ''
+def cart_num(state, vw='390x844'):
+    p = f'{CART}/verify-after/{state}.jsonl'
+    if not os.path.exists(p): return {}
+    for line in open(p, encoding='utf-8'):
+        line = line.strip()
+        if not line.startswith('{'): continue
+        try: d = json.loads(line)
+        except Exception: continue
+        if str(d.get('viewport', d.get('vp', ''))).replace(' ', '') in (vw, vw.replace('x', '×')): return d
+    return {}
 
 PAGES = [('home', 'الرئيسية', 6), ('collection-all', 'كل المنتجات (27)', 8), ('collection-path', 'كولكشن الشباك', 8),
          ('pdp-rope', 'منتج: حبل إضاءة (16 خياراً)', 6), ('pdp-path', 'منتج: مصباح شباك (خيار واحد)', 6), ('pdp-deck', 'منتج: إضاءة درج (4 خيارات)', 6)]
@@ -36,6 +48,31 @@ drawer_html = f'<figure class="drawer"><img src="{drawer}" alt="" loading="lazy"
 ba = [('home', 'الرئيسية'), ('collection-all', 'كل المنتجات')]
 ba_html = ''.join(f'<div class="pair"><figure class="old"><img src="{shot("verify-before", k + "-m-js-full.png")}" alt="" loading="lazy"><figcaption><b>قبل</b>{sc(B,k)} شاشة</figcaption></figure><figure class="new"><img src="{shot("verify-after", k + "-m-js-full.png")}" alt="" loading="lazy"><figcaption><b>بعد</b>{sc(A,k)} شاشة</figcaption></figure><h3>{t}</h3></div>' for k, t in ba)
 
+cd_b, cd_a = shot_abs(f'{CART}/shots/drawer-full-mobile.png'), shot_abs(f'{CART}/verify-after/drawer-full-mobile.png')
+cp_b, cp_a = shot_abs(f'{CART}/shots/cart-full-mobile-fold.png'), shot_abs(f'{CART}/verify-after/cart-full-mobile-fold.png')
+nd, npg = cart_num('drawer-full'), cart_num('cart-full', '360x640')
+def cn(d, k, dflt='—'):
+    v = d.get(k, dflt)
+    if k == 'terms' and isinstance(v, dict): return f"{sum(1 for x in v.values() if x)} من {len(v)}"
+    if k == 'insideFold' and isinstance(v, bool): return 'نعم' if v else 'لا'
+    return v if not isinstance(v, (list, dict)) else json.dumps(v, ensure_ascii=False)
+cart_html = ''
+if cd_a or cp_a:
+    cart_html = f'''<section id="cart"><div class="wrap">
+<p class="eyebrow">جولة السلة</p><h2>الدرج وصفحة السلة، قبل وبعد</h2>
+<p>الدرج ملك Kalles وجافاسكربته تعيد رسمه بعد كل إضافة، فلم يُستبدل — عُدّل من الداخل بما أثبتته المفاهيم الخمسة معاً. قِيس قبل وبعد على أربعة أحجام شاشة.</p>
+<div class="pair"><figure class="old"><img src="{cd_b}" alt="" loading="lazy"><figcaption><b>قبل</b>اسم مقطوع، سلّتا حذف، زرّان متطابقان، فراغ 288 بكسل، لا كلمة عن الشحن</figcaption></figure><figure class="new"><img src="{cd_a}" alt="" loading="lazy"><figcaption><b>بعد</b>الاسم كاملاً، الخيار بالذهبي، سلّة واحدة، سطر الشروط فوق المجموع، زر الدفع وحده كبير</figcaption></figure><h3>الدرج</h3></div>
+<div class="pair"><figure class="old"><img src="{cp_b}" alt="" loading="lazy"><figcaption><b>قبل</b>زر الدفع تحت الطيّة بـ340 بكسل على 360×640</figcaption></figure><figure class="new"><img src="{cp_a}" alt="" loading="lazy"><figcaption><b>بعد</b>زر الدفع فوق القائمة على الهاتف، وسطر الشروط نفسه</figcaption></figure><h3>صفحة السلة</h3></div>
+<div class="tablewrap"><table class="nums"><thead><tr><th>القياس (الدرج، 390×844)</th><th>قبل</th><th>بعد</th></tr></thead><tbody>
+<tr><th>هيمنة زر الدفع على أكبر عنصر منافس</th><td>0.99</td><td>{cn(nd,'dominance')}</td></tr>
+<tr><th>أسماء مقطوعة</th><td>[true, true]</td><td>{cn(nd,'truncated')}</td></tr>
+<tr><th>أزرار حذف لكل سطر</th><td>[1, 2]</td><td>{cn(nd,'removes')}</td></tr>
+<tr><th>عناصر تحت 44 بكسل</th><td>10</td><td>{cn(nd,'under44')}</td></tr>
+<tr><th>الفراغ فوق المجموع (بكسل)</th><td>288</td><td>{cn(nd,'voidAboveSubtotal')}</td></tr>
+<tr><th>شروط ظاهرة</th><td>0 من 4</td><td>{cn(nd,'terms')}</td></tr>
+<tr><th>زر الدفع داخل الطيّة في صفحة السلة (360×640)</th><td>لا (340 بكسل تحتها)</td><td>{cn(npg,'insideFold')}</td></tr>
+</tbody></table></div>
+</div></section>'''
 if CRIT:
     crit_html = CRIT['html']
 else:
@@ -87,7 +124,7 @@ footer{{padding:40px 0 60px;color:var(--mute);font-size:13px;border-top:1px soli
 <p class="lede">الصفحات الثلاث بعد حكمك في اليوم نفسه: النظرة الليلية بقيت، والتعقيد ذهب. الرئيسية من عشر شاشات إلى خمس، الكتالوج من ستٍّ وعشرين إلى ثمانٍ، صفحة المنتج من عشر إلى أربع — على قوالب Kalles الأصلية التي يعرفها كل مشترٍ، بصورة المنتج الأصلية في كل مكان.</p>
 <blockquote>«صممتها تصميم بصري جميل جداً لكنه معقد ومش زابط للمتجر… هدفي كان نعطي افضل تصميم بصري لكن يكون بسيط للعميل»<small>حكمك، 2026-09-05 — وهو الموجز الذي بُنيت عليه هذه الجولة كلها</small></blockquote>
 </div></header>
-<nav class="toc"><div class="wrap"><ul><li><a href="#numbers">الأرقام</a></li><li><a href="#flow">رحلة الهاتف</a></li><li><a href="#ba">قبل وبعد</a></li><li><a href="#answers">أجوبتك الخمسة</a></li><li><a href="#critique">النقد</a></li><li><a href="#admin">ما بقي لك</a></li><li><a href="#process">كيف جرى</a></li></ul></div></nav>
+<nav class="toc"><div class="wrap"><ul><li><a href="#numbers">الأرقام</a></li><li><a href="#flow">رحلة الهاتف</a></li><li><a href="#ba">قبل وبعد</a></li><li><a href="#cart">السلة</a></li><li><a href="#answers">أجوبتك الخمسة</a></li><li><a href="#critique">النقد</a></li><li><a href="#admin">ما بقي لك</a></li><li><a href="#process">كيف جرى</a></li></ul></div></nav>
 
 <section id="numbers"><div class="wrap">
 <p class="eyebrow">القياس</p><h2>كم شاشة هاتف تحتاج كل صفحة</h2>
@@ -108,6 +145,7 @@ footer{{padding:40px 0 60px;color:var(--mute);font-size:13px;border-top:1px soli
 <p class="eyebrow">المقارنة</p><h2>الصفحة نفسها، قبل وبعد</h2>
 {ba_html}
 </div></section>
+{cart_html}
 
 <section id="answers"><div class="wrap">
 <p class="eyebrow">ما قلتَه</p><h2>أجوبتك الخمسة، وكيف نُفّذت</h2>
