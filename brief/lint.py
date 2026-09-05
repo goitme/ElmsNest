@@ -201,7 +201,25 @@ def check_collection_template():
 
 for tj in sorted(glob.glob(root+'/templates/*.json')+glob.glob(root+'/templates/customers/*.json')+glob.glob(root+'/sections/*-group.json')):
     check_template(tj)
-check_pdp_template()
-check_collection_template()
+# 2026-09-05, owner verdict (brief/side-pages/simplify/OWNER-ANSWERS-2026-09-05.md): the env2 PDP and collection
+# compositions were rejected as too complex to shop, and SIMPLIFY SPEC §7/§8 puts the stock Kalles main-collection /
+# main-product back into the templates. The round-1/round-2 template checks above are therefore retired when a template
+# carries the stock section, and replaced by the SIMPLIFY contract: the stock key must be present with the stock type.
+def _template(path):
+    try: return json.loads(strip_header(open(os.path.join(root,'templates',path),encoding='utf-8').read()))
+    except Exception: return None
+_pdp=_template('product.elmsnest.json'); _coll=_template('collection.json')
+if _pdp and 'main-product' in _pdp.get('sections',{}):
+    if _pdp['sections']['main-product'].get('type')!='main-product':
+        err('templates/product.elmsnest.json','SIMPLIFY §8: section key "main-product" must be type main-product')
+    if _pdp.get('order',[None])[0]!='main-product':
+        err('templates/product.elmsnest.json','SIMPLIFY §8: main-product must be first in order')
+else:
+    check_pdp_template()
+if _coll and 'main-collection' in _coll.get('sections',{}):
+    if _coll['sections']['main-collection'].get('type')!='main-collection':
+        err('templates/collection.json','SIMPLIFY §7: section key "main-collection" must be type main-collection')
+else:
+    check_collection_template()
 print('LINT', 'FAIL' if bad else 'OK', f'({bad} issues)')
 sys.exit(1 if bad else 0)
