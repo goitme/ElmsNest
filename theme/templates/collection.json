@@ -28,7 +28,7 @@
         "col_dk": "4",
         "col_tb": "3",
         "col_mb": "2",
-        "space_items": "x",
+        "space_items": "15",
         "pagination_type": "links",
         "enable_progressbar": false,
         "paginate_pos": "center",
