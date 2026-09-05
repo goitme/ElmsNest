@@ -61,3 +61,25 @@ filter row / header / footer, 27/27 featured images on /all (checked on the live
 live add-to-cart reached the drawer with the chosen variant, and Shopify's own render of the rope light's second
 variant carries its own price (99.90) and form id — the server half of the pill switch. Three verify.json readings
 were harness artefacts and are recorded as such in SPEC §11.
+
+## Third pass (critique fixes + round-3 cart), 2026-09-05 ~17:35 UTC
+
+13 files, one `themeFilesUpsert` each, every one `userErrors: []`. Remote md5 = local md5 of the body without its
+trailing newline (the block string drops it), except the two Kalles cart sections, which carry no trailing newline
+and match byte for byte.
+
+| file | remote bytes | remote md5 | why |
+|---|---|---|---|
+| `snippets/elmsnest-s-skin.liquid` | 14758 | `f7515e47cc556885ec0b0ecc359136a4` | 3-line 16 px card titles; sr-only «מחיר מבצע» hidden; no-JS thumbnail rail; §6 cart patch (title wraps, variant gold, unit line, void, view-cart text link, empty-state grid, disabled minus, 44 px controls, page checkout) |
+| `snippets/elmsnest-s-pdp-terms-line.liquid` | 3802 | `2c329dcaee8c92b77c1e028ba30b8c3f` | door price «עד הבית 29.90 ₪»; sticky-sync resolves the main form by class (the old id never existed) |
+| `sections/elmsnest-s-products.liquid` | 4676 | `8a2a623eb981b357da932a109402a02b` | square cards (home grid, PDP related) |
+| `sections/elmsnest-s-coll-header.liquid` | 12190 | `fdd435a641fd9c8c6dffa335069953a9` | «מיון» label; «סדר החנות»; chevron down; 30svh at ≤400 px |
+| `sections/elmsnest-s-pdp-facts.liquid` | 15186 | `44b0b057ef37cafb590c85babe940fb8` | `<dl>` skips option-value rows; IP caption without the code; disclosure chevron down/up |
+| `sections/elmsnest-v2-hero.liquid` | 16531 | `dc6e796922c8de38bb8b70ff26ff3ef2` | mobile h1 clamp(40px,11.5vw,56px); lead default |
+| `templates/index.json` | 3931 | `ef96a1edc3210551efad7d4999408fb3` | lead without «קטגוריה אחת בלבד» |
+| `templates/collection.json` | 1781 | `fa5691870b128037524cb5499e4095bd` | `image_ratio: square` |
+| `templates/product.elmsnest.json` | 9657 | `d3170ce6594d3a600786eb434133764e` | `mobile_media_layout: fraction`; noscript select on the real form id, only when variants > 1 |
+| `snippets/item-cart.liquid` | 7211 | `1aa1ca8c09ec1995ff358023a33470ca` | round 3: full title, line total + unit line, one remove control |
+| `sections/cart-drawer.liquid` | 54533 | `fc51615cf5df6da2424e51777ace2f51` | round 3: terms line above the subtotal, view-cart text link, four-collection empty state |
+| `sections/main-cart.liquid` | 53365 | `150a2f374e0acd7a13f96844b13e8ada` | round 3: footer first on phones, terms line, no-JS quantity links, one remove control, four-collection empty state |
+| `templates/cart.json` | 2910 | `ed03e92dcb90d05a9f3cc5c2dc7328f7` | round 3: heading band and guidance boxes dropped |
