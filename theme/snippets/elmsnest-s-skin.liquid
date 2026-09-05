@@ -1,0 +1,123 @@
+{%- comment -%}
+  ElmsNest S skin (SIMPLIFY spec 5.1): one plain <style>, rendered by layout/theme.liquid right after
+  elmsnest-v2-core, dressing the STOCK Kalles 5.4.2 card-product1, main-collection toolbar, main-product
+  buy box + sticky bar, the stored .elms-sales description and the cart drawer in the night language.
+  Tokens come from elmsnest-v2-core (--env2-*) and elmsnest-v2-fonts (--env2-serif/--env2-sans).
+  Cascade: product-card.css, collection-products.css, hdt-sticky-atc.css and hdt-cart-drawer.css load
+  in <body> AFTER this file, so every rule wins by specificity, never by order. No Liquid below.
+{%- endcomment -%}
+<style id="ens-skin">
+:root{--ens-card:#05070c;--ens-hair:#1f1e1d}
+
+/* ---- 1. cards: snippets/card-product1 ---- */
+hdt-card-product.hdt-card-product{background:var(--ens-card);border:1px solid var(--ens-hair);border-radius:0}
+.hdt-card-product .hdt-card-product__media-wrapp{border-radius:0}
+hdt-card-product.hdt-card-product .hdt-card-product__media::before{content:none}
+hdt-card-product.hdt-card-product .hdt-card-product__info{padding:12px 14px 16px;text-align:start}
+hdt-card-product.hdt-card-product .hdt-card-product__info .hdt-price__list{justify-content:flex-start}
+.hdt-card-product .hdt-card-product__info h3{margin:0 0 6px}
+.hdt-card-product h3 .hdt-card-product__title{font-family:var(--env2-serif);font-weight:700;font-size:17px;line-height:1.3;letter-spacing:0;text-transform:none;color:var(--env2-ink);--line-clamp-count:2}
+.hdt-card-product h3 .hdt-card-product__title:is(:hover,:focus-visible){color:var(--env2-glow)}
+.hdt-card-product hdt-price.hdt-price,
+.hdt-card-product hdt-price.hdt-price .hdt-money{font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.4;letter-spacing:0;color:var(--env2-gold)}
+.hdt-card-product hdt-price.hdt-price-item--range{white-space:nowrap}
+/* P4: the whole card is the link. The widget (card-product1.liquid:73-92) holds the button groups and badges. */
+hdt-card-product.hdt-card-product :is(.hdt-card-product__widget,.hdt-product-btns,.hdt-badge__wrapp,.hdt-badge,.hdt-card-product__btn-ultra,hdt-variant-option,.hdt-scrolling-badge),
+hdt-compare-at-price.hdt-compare-at-price{display:none}
+/* forced: base.css:2126 shows .hdt-card-product__media--hover with display:block !important under (pointer:fine) */
+hdt-card-product.hdt-card-product .hdt-card-product__media--hover{display:none!important}
+/* forced: base.css:1782 starts grid cards at opacity 0 (main-collection.liquid:218 hard-codes reveal-on-scroll)
+   and global.min.js animates them in; a WAAPI animation overrides normal declarations, not !important ones. */
+hdt-reval-items[reveal-on-scroll=true] .hdt-card-product{opacity:1!important;transform:none!important}
+
+/* ---- 2. collection toolbar (main-collection.liquid:167); our sort select replaces it ---- */
+div.hdt-shop-control{display:none}
+
+/* ---- 3. main-product buy box ---- */
+/* title: blocks/_product-title.liquid:16-19 (tag h1 per template) */
+body .hdt-product-info__item.hdt-product__title :is(h1,h2){margin:0;font-family:var(--env2-serif);font-weight:700;font-size:28px;line-height:32px;letter-spacing:0;text-transform:none;text-wrap:balance;color:var(--env2-ink)}
+@media (min-width:901px){body .hdt-product-info__item.hdt-product__title :is(h1,h2){font-size:38px;line-height:1.1}}
+/* price: blocks/_product-price.liquid:23 → snippets/price.liquid:111 */
+.hdt-product-info__item.hdt-product__price hdt-price.hdt-price,
+.hdt-product-info__item.hdt-product__price hdt-price.hdt-price .hdt-money{font-family:var(--env2-sans);font-weight:500;font-size:26px;line-height:1.2;letter-spacing:0;color:var(--env2-gold)}
+/* variant pills: blocks/_product-variant-picker.liquid:108-113 → snippets/product-variant-options label.is-type-block */
+.hdt-variant-picker .hdt-product-form__label{margin-block-end:8px;font-family:var(--env2-sans);font-size:13px;font-weight:500;letter-spacing:0;color:var(--env2-ink-2)}
+.hdt-variant-picker .hdt-product-form__label [update-value]{color:var(--env2-ink)}
+.hdt-variant-picker .hdt-product-form__values{gap:8px}
+.hdt-variant-picker .hdt-product-form__values .hdt-product-form_value{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border:1px solid var(--env2-hair-btn);border-radius:0;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-size:15px;line-height:1.2}
+.hdt-variant-picker .hdt-product-form__values .hdt-product-form_value:hover{border-color:var(--env2-gold)}
+/* forced: theme.css:3573-3574 paints the checked pill's border-color and color with !important */
+.hdt-variant-picker .hdt-product-form__values input[type=radio]:checked+.hdt-product-form_value{background:var(--env2-gold);border-color:var(--env2-gold)!important;color:var(--env2-btn-ink)!important}
+/* quantity stepper: snippets/quantity-selector.liquid:29-41 (inside hdt-buy-buttons) */
+.hdt-product-form__buttons .hdt-product-form__top-buttons{gap:10px;flex-wrap:wrap}
+/* forced: theme.css:2771 `.hdt-product-form__quantity .hdt-quantity-wrapp{border-radius:var(--radius-button) !important}` */
+.hdt-product-form__buttons .hdt-product-form__quantity .hdt-quantity-wrapp{width:128px;min-width:128px;height:52px;border:1px solid var(--env2-hair-btn);border-radius:0!important;background:transparent}
+.hdt-product-form__buttons .hdt-product-form__quantity button{height:50px;line-height:50px;color:var(--env2-ink);background:transparent}
+.hdt-product-form__buttons .hdt-product-form__quantity input[type=number]{height:50px;color:var(--env2-ink);background:transparent;font-family:var(--env2-sans);font-size:16px;font-weight:500}
+/* buy button (_product-buy-button.liquid:85) + sticky twin (main-product.liquid:135): gold pill, 52px */
+.hdt-product-form__buttons .hdt-product-form__submit.hdt-btn,
+.hdt-sticky-btn-atc .hdt-sticky-atc__submit.hdt-btn{min-height:52px;padding-block:8px;border:0;border-radius:999px;background:var(--env2-gold);color:var(--env2-btn-ink);font-family:var(--env2-sans);font-weight:500;font-size:16px;letter-spacing:0;text-transform:none;box-shadow:none}
+.hdt-product-form__buttons .hdt-product-form__submit.hdt-btn{width:100%;flex:1 1 auto}
+.hdt-product-form__buttons .hdt-product-form__submit.hdt-btn:is(:hover,:focus-visible),
+.hdt-sticky-btn-atc .hdt-sticky-atc__submit.hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);border-color:var(--env2-glow);color:var(--env2-btn-ink)}
+
+/* ---- 4. sticky bar: main-product.liquid:59-149 + assets/hdt-sticky-atc.css ---- */
+hdt-sticky-btn-atc.hdt-sticky-btn-atc{background:var(--ens-card);border-block-start:1px solid var(--ens-hair);box-shadow:none;color:var(--env2-ink)}
+/* one quantity control per page (P2): the sticky form keeps its hidden id + submit only */
+.hdt-sticky-btn-atc .hdt-sticky-atc__qty-selector{display:none}
+.hdt-sticky-btn-atc .hdt-sticky-atc__img,
+.hdt-sticky-btn-atc .hdt-sticky-atc__img img{border-radius:0}
+.hdt-sticky-btn-atc .hdt-sticky-atc__title{font-family:var(--env2-serif);font-weight:700;font-size:16px;color:var(--env2-ink)}
+.hdt-sticky-btn-atc .hdt-money,
+.hdt-sticky-btn-atc .hdt-sticky-atc__product-monney{color:var(--env2-gold)}
+.hdt-sticky-btn-atc .hdt-sticky-atc__variant-price button[tag-select]{min-height:44px;background:transparent;border:1px solid var(--env2-hair-btn);border-radius:999px;color:var(--env2-ink);font-family:var(--env2-sans);font-size:14px}
+/* elmsnest-v2-ground-product.liquid:44-46 (rendered in-body, AFTER this skin) still reserves 78px for the
+   removed env2 buy bar; `:root` lifts specificity past its `html body.hdt-page-type-product`. */
+@media (max-width:900px){html:root body.hdt-page-type-product{--env2-pdp-bar-h:0px;padding-block-end:0}}
+
+/* ---- 5. the stored description (div.elms-sales) inside <details> in elmsnest-s-pdp-facts ----
+   Its own <style> lands AFTER this skin, so `details` lifts every rule one step above it; the card colours
+   everything through --dark/--muted/--paper/--cream/--gold, so those are re-pointed on the root first. */
+details .elms-sales{--paper:transparent;--cream:transparent;--gold:var(--env2-gold);--gold-dark:var(--env2-gold);--dark:var(--env2-ink);--muted:var(--env2-ink-2);background:transparent;border:0;border-radius:0;box-shadow:none;color:inherit;font-family:inherit;padding:0;overflow:visible}
+details .elms-sales *{font-family:inherit;text-align:start}
+details .elms-sales :is(.elms-sales__hero,.elms-sales__body,.elms-sales__lead,.elms-sales__promise,.elms-sales__story,.elms-sales__choice,.elms-sales__benefits article){margin:0;padding:0;max-width:none;background:none;border:0;border-radius:0;box-shadow:none}
+details .elms-sales :is(.elms-sales__cta,.elms-sales__specs,.elms-sales__kicker){display:none}
+details .elms-sales h2{margin:0 0 8px;font-size:22px;line-height:1.25;font-weight:700;letter-spacing:0}
+details .elms-sales h3{margin:14px 0 4px;font-size:17px;line-height:1.3;font-weight:700}
+details .elms-sales :is(p,span,b,strong){font-size:15px;line-height:1.7}
+details .elms-sales :is(.elms-sales__promise,.elms-sales__story,.elms-sales__choice){margin-block-start:12px}
+details .elms-sales .elms-sales__benefits{display:block;margin:12px 0 0}
+details .elms-sales .elms-sales__benefits article{padding-block:10px;border-block-start:1px solid var(--ens-hair)}
+
+/* ---- 6. cart drawer: sections/cart-drawer.liquid (#CartDrawer = line 30) + hdt-cart-drawer.css ---- */
+#CartDrawer{background:var(--ens-card);color:var(--env2-ink);font-family:var(--env2-sans)}
+hdt-cart-drawer .hdt-dialog-cart-action{background:var(--ens-card);color:var(--env2-ink)}
+#CartDrawer .hdt-dialog-drawer__header{border-block-end:1px solid var(--ens-hair)}
+#CartDrawer .hdt-mini-cart__header-title{font-family:var(--env2-serif);font-weight:700;font-size:20px;color:var(--env2-ink)}
+#CartDrawer :is(.hdt-dialog-btn__close,.hdt-mini-cart__remove,.hdt-mini-cart__tool button){color:var(--env2-ink)}
+#CartDrawer .hdt-mini-cart__item{border-block-end:1px solid var(--ens-hair)}
+#CartDrawer :is(.hdt-mini-cart__img,.hdt-mini-cart__img-placeholder){border-radius:0;background:var(--ens-card)}
+#CartDrawer .hdt-mini-cart__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal;font-family:var(--env2-serif);font-weight:700;font-size:16px;line-height:1.3;color:var(--env2-ink)}
+#CartDrawer :is(.hdt-mini-cart__meta-variant,.hdt-text-secondary,.hdt-cart-tax){color:var(--env2-ink-2)}
+#CartDrawer :is(.hdt-mini-cart__price .hdt-price,.hdt-mini-cart__value){color:var(--env2-gold)}
+#CartDrawer .hdt-quantity-cart-item{border:1px solid var(--env2-hair-btn);border-radius:0;background:transparent}
+#CartDrawer .hdt-quantity-cart-item :is(button,input){color:var(--env2-ink);background:transparent}
+#CartDrawer .hdt-mini-cart__tool_btn{background:transparent;border:1px solid var(--env2-hair-btn);color:var(--env2-ink)}
+#CartDrawer .hdt-mini-cart__bottom{border-block-start:1px solid var(--ens-hair);box-shadow:none}
+#CartDrawer :is(.hdt-mini-cart__btn-checkout,.hdt-mini-cart__emty-button).hdt-btn{min-height:52px;border:0;border-radius:999px;background:var(--env2-gold);color:var(--env2-btn-ink);font-family:var(--env2-sans);font-weight:500;font-size:16px;letter-spacing:0;text-transform:none}
+#CartDrawer :is(.hdt-mini-cart__btn-checkout,.hdt-mini-cart__emty-button).hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);color:var(--env2-btn-ink)}
+#CartDrawer .hdt-mini-cart__btn-viewcart.hdt-btn{min-height:48px;border:1px solid var(--env2-hair-btn);border-radius:999px;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:500;font-size:15px;letter-spacing:0;text-transform:none}
+#CartDrawer .hdt-mini-cart__btn-viewcart.hdt-btn:is(:hover,:focus-visible){border-color:var(--env2-gold);color:var(--env2-glow)}
+
+/* ---- 7. reduced motion (P6) ---- */
+@media (prefers-reduced-motion:reduce){
+  hdt-card-product.hdt-card-product,
+  hdt-card-product.hdt-card-product *,
+  hdt-sticky-btn-atc.hdt-sticky-btn-atc,
+  body .hdt-product-info__item.hdt-product__title :is(h1,h2),
+  .hdt-variant-picker .hdt-product-form__values .hdt-product-form_value,
+  .hdt-product-form__buttons .hdt-product-form__quantity button,
+  #CartDrawer,
+  #CartDrawer *{transition:none;animation:none}
+}
+</style>

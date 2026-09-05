@@ -193,3 +193,50 @@ contract — **360x640 must stay inside the fold; any change that pushes it out 
 Owner page generator: `brief/side-pages/collection/build-owner-page.py`.
 **Next: round 3, cart drawer + cart page** (the drawer is the primary post-ATC experience per OWNER-NOTES), then
 search + 404, then the content pages, then policies. The card and the core are done, so each round is shorter.
+
+## 7.5 Round 3 — SIMPLIFY (2026-09-05): built, NOT reviewed, NOT deployed — handed to the next session
+
+Owner verdict of 2026-09-05 on the env2 pages (verbatim in `brief/side-pages/simplify/OWNER-ANSWERS-2026-09-05.md`):
+beautiful but too complex to shop, sections duplicated, product photos replaced by glyph plates. Measured
+(`brief/side-pages/simplify/audits.txt`, four auditors on real screenshots): home 10.3 / collection 25.8 /
+PDP 10.2 mobile screens; 27 products listed ≈74× on /all; 16 of 27 cards were SVG plates; 3 add-to-cart
+forms + a gold link on one PDP; terms twice per page. Owner's five binding answers: dark night look kept but
+simplified · featured image everywhere now · keep the email photo CTA (no WhatsApp) · Shopify titles + place
+sub-line, four collections primary, one order (menu order) · cookie banner can be shrunk (owner admin action).
+
+**Spec:** `brief/side-pages/simplify/SPEC.md` (v2, after three adversarial critiques in `SPEC-CRITIQUE.txt`;
+31 defects resolved). Structure: stock Kalles `main-product` / `main-collection` / `card-product1` skinned in
+the night language + small `elmsnest-s-*` sections. Home 5 sections, collection 3, PDP 3. Targets ≤6 / ≤8 / ≤6
+screens. Verification script: `brief/side-pages/simplify/verify.js` (+ `featured.json`). Deploy procedure:
+`brief/side-pages/simplify/DEPLOY.md` (order matters; one file per `themeFilesUpsert` call; block strings).
+
+**State of `theme/` in this commit (all written by the build workflow, 6 engineers, disjoint files):**
+- NEW snippets: `elmsnest-s-skin`, `-place`, `-contact`, `-terms`, `-pdp-kicker`, `-pdp-unit`,
+  `-pdp-terms-line`, `-pdp-notfor`. NEW sections: `elmsnest-s-collections`, `-products` (list + related
+  modes), `-fit`, `-terms`, `-coll-header`, `-guide-strip`, `-pdp-facts`.
+- EDITED from the dev-theme bodies (baseline copies in `brief/side-pages/simplify/dev-theme-baseline/`):
+  `sections/elmsnest-v2-hero.liquid` (one `show_card` setting), `layout/theme.liquid` (one render line for
+  the skin after core), `config/settings_data.json` (two keys: `show_ultra_btn:false`,
+  `show_secondary_image:false`), `sections/footer-group.json` (collection labels = Shopify titles in menu
+  order, photo link → mailto), `templates/index.json`, `templates/collection.json`,
+  `templates/product.elmsnest.json` (all three parse; orders verified).
+- **NOT done:** the contract review (`review:contract` agent was killed three times by session restarts —
+  never completed) and the fixer. **Nothing of this round is on the dev theme** except one placeholder
+  snippet `snippets/elmsnest-s-contact.liquid` (a Liquid comment, written 2026-09-05 to test the deploy path;
+  the real file in `theme/` replaces it).
+- The dev theme 154726400174 otherwise still renders the rejected env2 pages. Live theme = 154652737710
+  (Homepage v3, light paper) — untouched; publishing anything is the owner's separate decision.
+
+**Exact next steps for whoever continues (in order):**
+1. Review every `elmsnest-s-*` file and the three templates against SPEC §2/§5–§8/§10 (the reviewer prompt is
+   in `brief/side-pages/workflows/simplify-build.js` if you want to rerun it) — fix, don't rewrite.
+2. Deploy per `DEPLOY.md` (snippets → sections → layout/settings/footer → templates). `userErrors` must be `[]`.
+3. Run `verify.js` on the real preview (`NODE_PATH=$(npm root -g) node verify.js <out> featured.json`),
+   read `verify.json` and the fold screenshots; fix until every §11 check passes (screens ≤ targets, 27/27
+   featured images, 1 main form + 1 sticky form, 1 «תמונה של המקום» per page, 0 «איור», 0 WhatsApp, etc.).
+4. One adversarial critique of the real render (first-time shopper + QA), fix, re-verify.
+5. Owner artifact: mobile screenshots of the whole flow home → collection → PDP → drawer, before/after
+   numbers, and the owner admin actions of SPEC §9 (cookie banner, menu «קולקציות» → /collections/all,
+   compare-at cleanup, images content sheet). Then HANDOFF §7.6, commit, push.
+Do not run two sessions against the same dev theme: this round was handed over precisely because a second
+session («تصميم الصفحات الجانبية») was opened in parallel.

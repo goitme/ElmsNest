@@ -99,8 +99,6 @@
     "hidden_compare": false,
     "pick_mode": "first_available",
     "hide_sold_out": true,
-    "show_ultra_btn": false,
-    "show_secondary_image": false,
     "empty_cart_link": "shopify://collections",
     "free_ship_pr": "",
     "free_ship_pr_fast": "",

@@ -1,0 +1,98 @@
+{%- comment -%}
+  ElmsNest S — the place map (SIMPLIFY SPEC §5.2). One snippet maps a collection (or a product's
+  first matching collection) to the four env2-licensed forms and prints ONE of them as plain text.
+
+  Input:  product OR collection, plus emit.
+    emit: 'word'       -> the place word (שביל / קיר / גינה / מרפסת)
+    emit: 'yes'        -> the infinitive suits-phrase, so the caller's "מתאים כדי {yes}" parses
+    emit: 'no'         -> the full licensed sentence (coll-scene lines 98-107), possibly blank
+    emit: 'collection' -> the matched collection handle (callers do collections[handle])
+  Usage: {% render 'elmsnest-s-place', product: product, emit: 'yes' %}
+         {% render 'elmsnest-s-place', collection: collection, emit: 'word' %}
+
+  Product: the first of product.collections that matches, in the main-menu order
+  (path -> wall -> spot -> decor); the 'sale' collection is not in the map, so it is skipped.
+  No match -> prints nothing.
+
+  Solar gate (P4): for a PRODUCT in the path / wall / spot collections, emit 'no' prints nothing
+  unless the product is solar. The test is copied from sections/elmsnest-v2-pdp-fit.liquid
+  lines 98-112: custom.power_source == 'סולארי'; when that metafield is unwritten, the product's
+  own title + description must contain 'סולארי'. The decor pair is a statement about purpose, so
+  it is ungated. Collections are never gated (home rows and collection headers speak of the
+  collection).
+
+  Output is text and nothing else: every tag is whitespace-trimmed and the value is echoed.
+{%- endcomment -%}
+{%- liquid
+  assign ens_h = ''
+  assign ens_gate = false
+
+  if product != blank
+    assign ens_hs = product.collections | map: 'handle'
+    if ens_hs contains 'תאורת-שביל-סולארית'
+      assign ens_h = 'תאורת-שביל-סולארית'
+    elsif ens_hs contains 'solar-wall-lights'
+      assign ens_h = 'solar-wall-lights'
+    elsif ens_hs contains 'ספוטים-ופרוז-קטורים-סולאריים'
+      assign ens_h = 'ספוטים-ופרוז-קטורים-סולאריים'
+    elsif ens_hs contains 'גרילנדות-ותאורה-דקורטיבית'
+      assign ens_h = 'גרילנדות-ותאורה-דקורטיבית'
+    endif
+    assign ens_gate = true
+  elsif collection != blank
+    assign ens_h = collection.handle | default: ''
+  endif
+
+  assign ens_word = ''
+  assign ens_yes = ''
+  assign ens_no = ''
+  if ens_h == 'תאורת-שביל-סולארית'
+    assign ens_word = 'שביל'
+    assign ens_yes = 'לראות את הדרך'
+    assign ens_no = 'לא מתאים כשהמקום כמעט אינו מקבל אור יום.'
+  elsif ens_h == 'solar-wall-lights'
+    assign ens_word = 'קיר'
+    assign ens_yes = 'להאיר נקודה מסוימת'
+    assign ens_no = 'לא מתאים כשנדרש אור חזק וקבוע לאורך כל הלילה.'
+  elsif ens_h == 'ספוטים-ופרוז-קטורים-סולאריים'
+    assign ens_word = 'גינה'
+    assign ens_yes = 'להאיר עץ או ערוגה'
+    assign ens_no = 'לא מתאים כשנדרשת התקנה מיוחדת או חיבור קבוע.'
+  elsif ens_h == 'גרילנדות-ותאורה-דקורטיבית'
+    assign ens_word = 'מרפסת'
+    assign ens_yes = 'ליצור אווירה'
+    assign ens_no = 'לא מתאים אם צריך אור חזק — זו אינה מטרתה.'
+    assign ens_gate = false
+  else
+    assign ens_h = ''
+    assign ens_gate = false
+  endif
+
+  if ens_gate
+    # solar test, copied from sections/elmsnest-v2-pdp-fit.liquid lines 98-112 (three states)
+    assign ens_pwr = product.metafields.custom.power_source | default: '' | strip
+    assign ens_solar = false
+    if ens_pwr == 'סולארי'
+      assign ens_solar = true
+    elsif ens_pwr == ''
+      assign ens_hay = product.description | strip_html | append: ' ' | append: product.title
+      if ens_hay contains 'סולארי'
+        assign ens_solar = true
+      endif
+    endif
+    unless ens_solar
+      assign ens_no = ''
+    endunless
+  endif
+
+  assign ens_emit = emit | default: 'word'
+  if ens_emit == 'yes'
+    echo ens_yes
+  elsif ens_emit == 'no'
+    echo ens_no
+  elsif ens_emit == 'collection'
+    echo ens_h
+  else
+    echo ens_word
+  endif
+-%}

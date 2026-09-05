@@ -118,7 +118,6 @@
       </div>
     </div>
 
-    {%- if section.settings.show_card -%}
     {%- if product != blank -%}
     <article class="env2-hero__card" data-lamp>
       <a class="env2-ph env2-hero__ph" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
@@ -139,7 +138,6 @@
     <article class="env2-hero__card env2-hero__card--empty">
       <p class="env2-hero__empty">בחרו מוצר בהגדרות הסקשן — הוא יופיע כאן עם מחיר וכפתור קנייה, והתמונה שלו תהיה רקע ההירו.</p>
     </article>
-    {%- endif -%}
     {%- endif -%}
   </div>
 </section>
@@ -224,7 +222,6 @@ document.querySelectorAll('[data-env2-hero]').forEach(function(el){
   "settings": [
     { "type": "header", "content": "המוצר שבתמונה" },
     { "type": "product", "id": "product", "label": "מוצר (התמונה שלו היא הרקע, והוא נמכר בכרטיס)" },
-    { "type": "checkbox", "id": "show_card", "label": "להציג את כרטיס המוצר בהירו", "default": false },
     { "type": "range", "id": "bg_image_index", "label": "תמונת רקע — מספר תמונה במוצר (דסקטופ)", "min": 1, "max": 4, "step": 1, "default": 1 },
     { "type": "range", "id": "bg_image_index_mobile", "label": "תמונת רקע — מספר תמונה במוצר (מובייל)", "min": 1, "max": 4, "step": 1, "default": 1 },
     { "type": "image_picker", "id": "bg_image", "label": "תמונת רקע — החלפה ידנית (דסקטופ)" },

@@ -1,0 +1,35 @@
+{%- comment -%}
+  ElmsNest S — PDP terms line (SIMPLIFY §8.2 item 8). ONE 13 px muted line under the buy button —
+  the PDP's only statement of the consumer terms — then «לכל התנאים ←» to /pages/shipping-delivery.
+  Wording licensed by the inventory (elmsnest-pdp-facts «אספקה משוערת: 8–17 ימי עסקים»,
+  elmsnest-pdp-trust «ניתן לבטל עסקה עד 14 יום מקבלת המוצר», coll_terms rows 0 ₪ / 8–17 / 14).
+  The range sits in one <bdi dir="ltr"> (P6). Root class .ens-terms-line (§11 counts it = 1).
+
+  The same snippet carries the sticky-bar sync: Kalles renders a SECOND /cart/add form for the
+  sticky bar (id form-product-sticky{{ product.id }}) whose hidden variant id nothing rewrites when a
+  pill changes; this copies the chosen id there on the main form's `variant:change`. The main form
+  (product-form-main-product{{ product.id }}) precedes this block in the DOM; the sticky form is
+  rendered after the blocks and is looked up lazily, at event time.
+  Rendered from a `_liquid` block: {% render 'elmsnest-s-pdp-terms-line', product: product %}
+{%- endcomment -%}
+<style>
+.hdt-rte p.ens-terms-line,p.ens-terms-line{margin:10px 0 0;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:13px;line-height:1.6;color:#c9c4b8;direction:rtl;text-align:start}
+.ens-terms-line bdi{unicode-bidi:isolate}
+.hdt-rte a.ens-terms-line__link,a.ens-terms-line__link{display:inline-block;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;margin-inline-start:6px;white-space:nowrap;transition:color .3s,border-color .3s}
+.hdt-rte a.ens-terms-line__link:hover,.hdt-rte a.ens-terms-line__link:focus-visible,a.ens-terms-line__link:hover,a.ens-terms-line__link:focus-visible{color:#ffd394;border-color:#ffd394;text-decoration:none}
+@media (prefers-reduced-motion:reduce){a.ens-terms-line__link{transition:none} }
+</style>
+<p class="ens-terms-line" dir="rtl">משלוח חינם לנקודת איסוף · אספקה משוערת <bdi dir="ltr">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר <a class="ens-terms-line__link" href="/pages/shipping-delivery">לכל התנאים <span aria-hidden="true">&#8592;</span></a></p>
+{%- if product != blank -%}
+<script>
+(function () {
+  var main = document.forms['product-form-main-product{{ product.id }}'];
+  if (!main) return;
+  main.addEventListener('variant:change', function (e) {
+    var f = document.forms['form-product-sticky{{ product.id }}'];
+    var input = f && f.querySelector('input[name="id"]');
+    if (input && e.detail && e.detail.variant) input.value = e.detail.variant.id;
+  });
+})();
+</script>
+{%- endif -%}

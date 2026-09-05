@@ -1,0 +1,43 @@
+{%- comment -%}
+  ElmsNest S — the terms strip (SIMPLIFY SPEC §5.3, HOME only, §6.5). One heading and the three
+  consumer numbers from snippets/elmsnest-s-terms.liquid, on hairlines. Mobile budget: at most half
+  a 390x844 screen, footer excluded.
+
+  The root keeps id="env2-terms" and data-env2-terms so the footer's existing /#env2-terms link
+  and the verify.js count (#env2-terms = 1 on the home, 0 elsewhere) keep working.
+  Tokens and fonts come from elmsnest-v2-core (rendered by layout/theme.liquid). Nothing animates.
+{%- endcomment -%}
+<section id="env2-terms" class="ens-terms" data-env2-terms{% if section.settings.heading != blank %} aria-labelledby="ens-terms-h2-{{ section.id }}"{% else %} aria-label="תנאי הקנייה"{% endif %} style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    {%- if section.settings.heading != blank -%}
+      <h2 id="ens-terms-h2-{{ section.id }}" class="ens-terms__h2">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- render 'elmsnest-s-terms' -%}
+  </div>
+</section>
+<style>
+.ens-terms{position:relative;padding-block:56px 48px;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;direction:rtl;text-align:start;overflow-x:clip}
+.ens-terms__h2{margin:0 0 18px;font-family:var(--env2-serif);font-weight:700;font-size:clamp(24px,2.4vw,30px);line-height:1.1;letter-spacing:-.01em;color:var(--env2-ink);text-wrap:balance}
+@media (max-width:900px){
+  .ens-terms{padding-block:24px 28px}
+  .ens-terms__h2{margin-bottom:12px}
+}
+</style>
+{% schema %}
+{
+  "name": "ElmsNest S — מספרים",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "כותרת",
+      "default": "שלושה מספרים שכדאי לדעת"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest S — מספרים"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,175 @@
+{%- comment -%}
+  ElmsNest S — collection header (SIMPLIFY spec §7.1). First section of templates/collection.json.
+  Renders the collection ground ONCE, then: the collection photograph (~40vh, veiled to #020306 at its
+  foot) · h1 = the Shopify title · meta line (place word · N מוצרים · price range) · deck line
+  («מתאים כדי {yes} · {no}», per-place collections only) · the FILTER ROW (plain links, 44px pills,
+  current one gold, data-ens-place on each) · the native SORT form (four options, works with ?sort_by=
+  and no JS). Nothing is typed here but the four collection handles; every word comes from Shopify or
+  from snippets/elmsnest-s-place (emit: word | yes | no). No lamps, no reveal, no sales counts.
+  The section root paints #020306 so the veil, the pills and the grid below share one night surface.
+{%- endcomment -%}
+{%- render 'elmsnest-v2-ground-collection' -%}
+{%- liquid
+  assign ens_all = false
+  if collection.handle == 'all'
+    assign ens_all = true
+  endif
+  assign ens_all_title = section.settings.all_title | default: 'כל המוצרים'
+  if ens_all
+    assign ens_title = ens_all_title
+    assign ens_img = section.settings.all_image
+    if ens_img == blank
+      assign ens_img = collections['גרילנדות-ותאורה-דקורטיבית'].image
+    endif
+    assign ens_action = routes.all_products_collection_url
+  else
+    assign ens_title = collection.title
+    assign ens_img = collection.image
+    assign ens_action = collection.url
+  endif
+  assign ens_sort = collection.sort_by | default: collection.default_sort_by
+  assign ens_handles = 'תאורת-שביל-סולארית,solar-wall-lights,ספוטים-ופרוז-קטורים-סולאריים,גרילנדות-ותאורה-דקורטיבית' | split: ','
+  assign ens_n = collection.products_count | default: 0
+  assign ens_min = 0
+  assign ens_max = 0
+  assign ens_first = true
+  for ens_p in collection.products
+    if ens_first
+      assign ens_min = ens_p.price_min
+      assign ens_max = ens_p.price_max
+      assign ens_first = false
+    else
+      if ens_p.price_min < ens_min
+        assign ens_min = ens_p.price_min
+      endif
+      if ens_p.price_max > ens_max
+        assign ens_max = ens_p.price_max
+      endif
+    endif
+  endfor
+  assign ens_lo = ens_min | money_without_currency
+  assign ens_hi = ens_max | money_without_currency
+  if ens_min == ens_max
+    assign ens_range = ens_lo
+  else
+    assign ens_range = ens_lo | append: '–' | append: ens_hi
+  endif
+-%}
+{%- capture ens_word -%}{%- unless ens_all -%}{%- render 'elmsnest-s-place', collection: collection, emit: 'word' -%}{%- endunless -%}{%- endcapture -%}
+{%- capture ens_yes -%}{%- unless ens_all -%}{%- render 'elmsnest-s-place', collection: collection, emit: 'yes' -%}{%- endunless -%}{%- endcapture -%}
+{%- capture ens_no -%}{%- unless ens_all -%}{%- render 'elmsnest-s-place', collection: collection, emit: 'no' -%}{%- endunless -%}{%- endcapture -%}
+{%- assign ens_word = ens_word | strip -%}
+{%- assign ens_yes = ens_yes | strip -%}
+{%- assign ens_no = ens_no | strip -%}
+<div class="env2-section ens-ch" dir="rtl" data-ens-coll-header>
+  <div class="ens-ch__hero">
+    <div class="ens-ch__pic{% if ens_img == blank %} ens-ch__pic--none{% endif %}" aria-hidden="true">
+      {%- if ens_img != blank -%}
+      <img src="{{ ens_img | image_url: width: 1600 }}"
+           srcset="{{ ens_img | image_url: width: 800 }} 800w, {{ ens_img | image_url: width: 1200 }} 1200w, {{ ens_img | image_url: width: 1600 }} 1600w, {{ ens_img | image_url: width: 2200 }} 2200w"
+           sizes="100vw" width="{{ ens_img.width | default: 1600 }}" height="{{ ens_img.height | default: 1000 }}"
+           loading="eager" fetchpriority="high" decoding="async" alt="">
+      {%- endif -%}
+    </div>
+    <span class="ens-ch__veil" aria-hidden="true"></span>
+    <div class="env2-wrap ens-ch__text">
+      <h1 class="env2-h ens-ch__h1">{{ ens_title | escape }}</h1>
+      <p class="ens-ch__meta">
+        {%- if ens_word != '' -%}<span>{{ ens_word }}</span><span class="ens-ch__dot" aria-hidden="true"> · </span>{%- endif -%}
+        <span><bdi>{{ ens_n }}</bdi> מוצרים</span>
+        {%- if ens_n > 0 -%}<span class="ens-ch__dot" aria-hidden="true"> · </span><span><bdi dir="ltr">{{ ens_range }}</bdi> ₪</span>{%- endif -%}
+      </p>
+      {%- if ens_yes != '' -%}
+      <p class="ens-ch__deck">מתאים כדי {{ ens_yes }}{% if ens_no != '' %} <span class="ens-ch__dot" aria-hidden="true">·</span> {{ ens_no }}{% endif %}</p>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="env2-wrap ens-ch__tools">
+    <nav class="ens-ch__filter" aria-label="קולקציות">
+      <a class="ens-ch__pill" href="{{ routes.all_products_collection_url }}" data-ens-place="all"{% if ens_all %} aria-current="page"{% endif %}>{{ ens_all_title | escape }}</a>
+      {%- for ens_h in ens_handles -%}
+        {%- assign ens_c = collections[ens_h] -%}
+        {%- if ens_c.title != blank -%}
+      <a class="ens-ch__pill" href="{{ ens_c.url }}" data-ens-place="{{ ens_h }}"{% if collection.handle == ens_h %} aria-current="page"{% endif %}>{{ ens_c.title | escape }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+    <form class="ens-ch__sort" method="get" action="{{ ens_action }}">
+      <span class="ens-ch__select">
+        <select name="sort_by" aria-label="מיון" onchange="this.form.submit()">
+          <option value="manual"{% if ens_sort == 'manual' %} selected{% endif %}>מומלץ</option>
+          <option value="price-ascending"{% if ens_sort == 'price-ascending' %} selected{% endif %}>מחיר: מהנמוך לגבוה</option>
+          <option value="price-descending"{% if ens_sort == 'price-descending' %} selected{% endif %}>מחיר: מהגבוה לנמוך</option>
+          <option value="title-ascending"{% if ens_sort == 'title-ascending' %} selected{% endif %}>א–ב</option>
+        </select>
+      </span>
+      <noscript><button type="submit" class="ens-ch__pill ens-ch__pill--btn">מיון</button></noscript>
+    </form>
+  </div>
+</div>
+<style>
+/* ElmsNest S — collection header. Logical properties only (a Sense RTL app flips physical ones).
+   Radius 0 everywhere except the pills (999px). Tokens from snippets/elmsnest-v2-core. */
+.ens-ch{background:#020306;padding-block:0 26px}
+/* the photograph block: the transparent Kalles header (70px / 60px) sits over its top edge (the
+   section wrapper carries section-allow-transparent, so Kalles pulls it up under the bar); the
+   text block is bottom-aligned on the veil, never under the bar. */
+.ens-ch__hero{position:relative;isolation:isolate;display:grid;align-content:end;
+  min-block-size:calc(40vh + var(--header-height,60px));min-block-size:calc(40svh + var(--header-height,60px));
+  padding-block:calc(var(--header-height,60px) + 32px) 22px}
+.ens-ch__pic{position:absolute;inset:0;z-index:-2;overflow:hidden;background:#05070c}
+.ens-ch__pic img{inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 45%;display:block;filter:brightness(.74) saturate(.9)}
+.ens-ch__pic--none{background:radial-gradient(120% 80% at 50% 0%,rgba(31,51,87,.55),rgba(2,3,6,0) 70%),#050a14}
+/* one veil: a light wash at the top so the header's cream logo reads on a bright photograph, and a
+   full landing on #020306 at the foot so the h1 and the meta line sit on night, not on the picture. */
+.ens-ch__veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,3,6,.6) 0%,rgba(2,3,6,.16) 24%,rgba(2,3,6,.2) 46%,rgba(2,3,6,.78) 76%,#020306 100%)}
+.ens-ch__text{position:relative}
+.ens-ch__h1{font-size:clamp(32px,4.2vw,52px);line-height:1.02;margin:0}
+.ens-ch__meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin:12px 0 0;font-size:14px;line-height:1.4;color:var(--env2-ink-2)}
+.ens-ch__dot{color:var(--env2-mute)}
+.ens-ch__deck{margin:10px 0 0;max-inline-size:62ch;font-size:16px;line-height:1.5;color:var(--env2-ink)}
+/* filter row + sort: one wrapping row; pills start at the inline-start edge (the right, in RTL),
+   the sort sits at the inline-end edge and drops to its own line on narrow screens. */
+.ens-ch__tools{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 20px;margin-block-start:18px}
+.ens-ch__filter{display:flex;flex-wrap:wrap;gap:8px;flex:1 1 auto;min-inline-size:0}
+/* .ens-ch .ens-ch__pill = (0,2,0): beats the core's .env2-section a{color:inherit} (0,1,1), which
+   would otherwise paint cream ink on the gold current pill. */
+.ens-ch .ens-ch__pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-inline-size:100%;margin:0;padding:8px 18px;
+  border:1px solid var(--env2-hair-btn);border-radius:999px;background:transparent;color:var(--env2-ink);
+  font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;text-align:center;text-decoration:none;cursor:pointer;
+  transition:border-color .2s,color .2s,background-color .2s}
+.ens-ch .ens-ch__pill:hover,.ens-ch .ens-ch__pill:focus-visible{border-color:var(--env2-glow);color:var(--env2-glow)}
+.ens-ch .ens-ch__pill[aria-current="page"],.ens-ch .ens-ch__pill[aria-current="page"]:hover,.ens-ch .ens-ch__pill[aria-current="page"]:focus-visible{background:var(--env2-gold);border-color:var(--env2-gold);color:var(--env2-btn-ink)}
+.ens-ch__sort{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin:0}
+.ens-ch__select{position:relative;display:inline-block}
+.ens-ch__select::after{content:"";position:absolute;inset-block-start:50%;inset-inline-end:17px;inline-size:8px;block-size:8px;margin-block-start:-6px;
+  border-inline-end:1px solid var(--env2-ink-2);border-block-end:1px solid var(--env2-ink-2);transform:rotate(45deg);pointer-events:none}
+.ens-ch .ens-ch__select select{appearance:none;-webkit-appearance:none;min-height:44px;margin:0;padding-block:8px;padding-inline:18px 40px;
+  border:1px solid var(--env2-hair-btn);border-radius:999px;background:transparent;background-image:none;box-shadow:none;color:var(--env2-ink);
+  font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;cursor:pointer}
+.ens-ch .ens-ch__select select:hover,.ens-ch .ens-ch__select select:focus-visible{border-color:var(--env2-glow)}
+.ens-ch .ens-ch__select option{background:#05070c;color:var(--env2-ink)}
+@media (max-width:900px){
+  .ens-ch__h1{font-size:32px}
+  .ens-ch__tools{margin-block-start:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-ch .ens-ch__pill,.ens-ch .ens-ch__select select{transition:none}
+}
+</style>
+{% schema %}
+{
+  "name": "ElmsNest S — כותרת",
+  "tag": "section",
+  "class": "ens-coll-header-section section-allow-transparent hdt-section",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "image_picker", "id": "all_image", "label": "תמונת הכותרת בעמוד כל המוצרים", "info": "ריק = תמונת קולקציית הגרילנדות." },
+    { "type": "text", "id": "all_title", "label": "כותרת עמוד כל המוצרים", "default": "כל המוצרים" }
+  ],
+  "presets": [
+    { "name": "ElmsNest S — כותרת" }
+  ]
+}
+{% endschema %}

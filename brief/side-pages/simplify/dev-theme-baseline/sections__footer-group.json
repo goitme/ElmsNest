@@ -107,7 +107,7 @@
             "links": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/collections/תאורת-שביל-סולארית\">תאורת שביל, עמוד וגינה</a></p><p><a href=\"/collections/solar-wall-lights\">תאורת קיר</a></p><p><a href=\"/collections/ספוטים-ופרוז-קטורים-סולאריים\">ספוטים, פרוז׳קטורים ותאורה ניידת</a></p><p><a href=\"/collections/גרילנדות-ותאורה-דקורטיבית\">גרילנדות ותאורה דקורטיבית</a></p>",
+                "text": "<p><a href=\"/collections/תאורת-שביל-סולארית\">שביל, עמוד וגינה</a></p><p><a href=\"/collections/solar-wall-lights\">תאורת קיר</a></p><p><a href=\"/collections/ספוטים-ופרוז-קטורים-סולאריים\">ספוטים ופרוז׳קטורים</a></p><p><a href=\"/collections/גרילנדות-ותאורה-דקורטיבית\">גרילנדות ודקורטיבי</a></p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",
@@ -209,7 +209,7 @@
             "links": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/pages/contact-us\">עמוד יצירת קשר</a></p><p><a href=\"mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%E2%80%94%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D&amp;body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%9E%D7%A6%D7%A8%D7%A3%2F%D7%AA%20%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%94%D7%9E%D7%A7%D7%95%D7%9D%20%D7%A9%D7%A8%D7%95%D7%A6%D7%99%D7%9D%20%D7%9C%D7%94%D7%90%D7%99%D7%A8.\">לשלוח תמונה של המקום</a></p>",
+                "text": "<p><a href=\"/pages/contact-us\">עמוד יצירת קשר</a></p><p><a href=\"/pages/contact-us\">לשליחת תמונה של המקום</a></p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",

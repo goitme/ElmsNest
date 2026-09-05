@@ -1,0 +1,37 @@
+{%- comment -%}
+  ElmsNest S — the contact line (SIMPLIFY SPEC §5.4). Exactly ONE per page body, plus the footer's
+  own mailto: the licensed sentence "לא בטוחים? נבדוק התאמה לפני שתזמינו." followed by the link
+  "לשלוח תמונה של המקום ←" on a hairline underline, 44 px tap height.
+
+  Usage: {% render 'elmsnest-s-contact' %}                      (home fit block, collection strip)
+         {% render 'elmsnest-s-contact', product: product %}    (PDP not-for block)
+
+  href = snippets/elmsnest-v2-photo-url.liquid, the theme's ONE mailto builder. Subject = the
+  builder's default. Body = "שלום, מצרף/ת תמונה של המקום שרוצים להאיר." and, only when a product is
+  given, " המוצר ששוקלים: {title}" is appended (the logic of elmsnest-v2-pdp-photo-cta). The line
+  never names a channel; the phrase "תמונה של המקום" occurs once, in the link label (the body is
+  URL-encoded, so it does not count as page text).
+
+  Output: one <style> (tokens from elmsnest-v2-core) and one <p class="ens-contact">.
+{%- endcomment -%}
+{%- liquid
+  assign ens_body = 'שלום, מצרף/ת תמונה של המקום שרוצים להאיר.'
+  if product != blank
+    assign ens_body = ens_body | append: ' המוצר ששוקלים: ' | append: product.title
+  endif
+-%}
+{%- capture ens_href -%}{%- render 'elmsnest-v2-photo-url', body: ens_body -%}{%- endcapture -%}
+{%- assign ens_href = ens_href | strip -%}
+<style>
+.ens-contact{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;color:var(--env2-ink-2);direction:rtl;text-align:start}
+.ens-contact__a{position:relative;display:inline-block;padding-block:2px;font-weight:500;color:var(--env2-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em;text-decoration-color:var(--env2-hair-btn);transition:color .3s,text-decoration-color .3s}
+/* 44 px tap height without moving the underline off the text: the hit area is the pseudo-element */
+.ens-contact__a::before{content:"";position:absolute;inset-block:-10px;inset-inline:-6px}
+.ens-contact__a:hover,.ens-contact__a:focus-visible{color:var(--env2-glow);text-decoration-color:var(--env2-glow)}
+.ens-contact__a:focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.ens-contact__arrow{display:inline-block;margin-inline-start:.35em}
+@media (prefers-reduced-motion:reduce){
+  .ens-contact__a{transition:none}
+}
+</style>
+<p class="ens-contact">לא בטוחים? נבדוק התאמה לפני שתזמינו. <a class="ens-contact__a" href="{{ ens_href }}">לשלוח תמונה של המקום<span class="ens-contact__arrow" aria-hidden="true">←</span></a></p>

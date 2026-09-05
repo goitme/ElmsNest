@@ -1,0 +1,53 @@
+{%- comment -%}
+  ElmsNest S — guide strip (SIMPLIFY spec §7.3). Last section of templates/collection.json, before the
+  footer. One hairline block: the question, the link to the guide, then the contact line rendered by
+  snippets/elmsnest-s-contact — the only photo promise in the collection body; this file itself
+  prints no copy of its own. No terms (footer links suffice), no counts, no lamps, nothing animates.
+{%- endcomment -%}
+<div class="env2-section ens-gs" dir="rtl" data-ens-guide-strip>
+  <div class="env2-wrap ens-gs__wrap">
+    <div class="ens-gs__row">
+      {%- if section.settings.heading != blank -%}
+      <h2 class="env2-h ens-gs__h">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.link_label != blank -%}
+      <a class="env2-link ens-gs__link" href="{{ section.settings.link_url | default: '/pages/guide-garden-lighting' }}">{{ section.settings.link_label | escape }}</a>
+      {%- endif -%}
+    </div>
+    <div class="ens-gs__contact">
+      {%- render 'elmsnest-s-contact' -%}
+    </div>
+  </div>
+</div>
+<style>
+/* ElmsNest S — guide strip. Logical properties only; radius 0; tokens from elmsnest-v2-core. */
+.ens-gs{padding-block:8px 44px}
+.ens-gs__wrap{border-block-start:1px solid var(--env2-hair);padding-block-start:26px}
+.ens-gs__row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px}
+.ens-gs__h{font-size:clamp(24px,2.2vw,30px);line-height:1.1;margin:0}
+/* the link keeps the core's .env2-link hairline underline; the 44px tap box is the core's own ::before belt */
+.ens-gs .ens-gs__link{font-size:15px}
+.ens-gs__contact{margin-block-start:16px;font-size:15px;line-height:1.55;color:var(--env2-ink-2)}
+@media (max-width:900px){
+  .ens-gs{padding-block:4px 36px}
+  .ens-gs__h{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-gs .ens-gs__link{transition:none}
+}
+</style>
+{% schema %}
+{
+  "name": "ElmsNest S — מדריך",
+  "tag": "section",
+  "class": "ens-guide-strip-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "השאלה", "default": "כמה אור צריך המקום?" },
+    { "type": "text", "id": "link_label", "label": "טקסט הקישור למדריך", "default": "למדריך לבחירת תאורה ←" },
+    { "type": "url", "id": "link_url", "label": "יעד הקישור למדריך", "default": "/pages/guide-garden-lighting" }
+  ],
+  "presets": [
+    { "name": "ElmsNest S — מדריך" }
+  ]
+}
+{% endschema %}
