@@ -1,3 +1,8 @@
 mirror home … ok
 mirror collection-all … ok
-mirror collection-path … 
+mirror collection-path … ok
+mirror pdp-rope … mirror: 429 from the store, waiting 20s (attempt 1/6)
+mirror: 429 from the store, waiting 40s (attempt 2/6)
+ok
+mirror pdp-path … ok
+mirror pdp-deck … mirror: 429 from the store, waiting 20s (attempt 1/6)
