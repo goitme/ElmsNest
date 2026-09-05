@@ -1,6 +1,6 @@
 {%- comment -%}
   ElmsNest S — collection header (SIMPLIFY spec §7.1). First section of templates/collection.json.
-  Renders the collection ground ONCE, then: the collection photograph (~40vh, veiled to #020306 at its
+  Renders the collection ground ONCE, then: the collection photograph (~36vh, veiled to #020306 at its
   foot) · h1 = the Shopify title · meta line (place word · N מוצרים · price range) · deck line
   («מתאים כדי {yes} · {no}», per-place collections only) · the FILTER ROW (plain links, 44px pills,
   current one gold, data-ens-place on each of the four collection pills) · the native SORT form (four options, works with ?sort_by=
@@ -115,7 +115,7 @@
    section wrapper carries section-allow-transparent, so Kalles pulls it up under the bar); the
    text block is bottom-aligned on the veil, never under the bar. */
 .ens-ch__hero{position:relative;isolation:isolate;display:grid;align-content:end;
-  min-block-size:calc(40vh + var(--header-height,60px));min-block-size:calc(40svh + var(--header-height,60px));
+  min-block-size:calc(36vh + var(--header-height,60px));min-block-size:calc(36svh + var(--header-height,60px));
   padding-block:calc(var(--header-height,60px) + 32px) 22px}
 .ens-ch__pic{position:absolute;inset:0;z-index:-2;overflow:hidden;background:#05070c}
 .ens-ch__pic img{inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 45%;display:block;filter:brightness(.74) saturate(.9)}

@@ -42,7 +42,7 @@
         "background_opacity": 1,
         "section_layout": "container",
         "pd": ",,30px,",
-        "pd_mb": ",,22px,"
+        "pd_mb": ",,4px,"
       }
     },
     "ens_guide_strip": {

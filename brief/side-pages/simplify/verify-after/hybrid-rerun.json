@@ -1,0 +1,27 @@
+{
+  "before": {
+    "mainId": "48880936190126",
+    "stickyId": "48880936190126",
+    "price": "89.90 ₪",
+    "unit": "≈ 12.84 ₪ למטר",
+    "checked": [
+      "7 מ׳ / 50 נורות",
+      "לבן חם"
+    ]
+  },
+  "clicked": "12 מ׳ / 100 נורות",
+  "after": {
+    "mainId": "48880936190126",
+    "stickyId": "48880936190126",
+    "price": "89.90 ₪",
+    "unit": "≈ 12.84 ₪ למטר",
+    "checked": [
+      "12 מ׳ / 100 נורות",
+      "לבן חם"
+    ]
+  },
+  "idsAgree": true,
+  "idChanged": false,
+  "priceChanged": false,
+  "unitChanged": false
+}
