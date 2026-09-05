@@ -17,3 +17,14 @@ so the fixer's diff can be checked against a decision made before it, not ration
 | pdp-facts `<dd>` bidi tokenisation (the one MAJOR) | **Apply the whole-token wrap**, then LINT and render-check the two products the reviewer named (`waterproof-solar-deck-step-lights` 800mAh, `magnetic-rechargeable-touch-wall-light` 1200mAh) after deploy. | A Liquid rewrite of ~10 lines is the one fix that can break the file; it gets its own check. |
 
 Everything else in the five files is mechanical and is applied as written.
+
+## Added after the interfaces reviewer returned (7 findings, 1 major)
+
+| finding | decision | why |
+|---|---|---|
+| footer «קולקציות» links carry no `data-ens-place` (MAJOR) | **Apply**: add `data-ens-place="<handle>"` to the four anchors in `footer-group.json`. | §11's order test names the footer as the fifth place; without the attribute the footer is invisible to the test and "the same order everywhere" cannot be proven. Labels and order are already right. |
+| header-group.json `note_mobile` «אימייל: info@elmsnest.com» without `<bdi>`; footer_bottom «ElmsNest © 2026» | **Apply** the `<bdi dir="ltr">` wraps in both group files. | Same P6 rule as the footer_about line; the header group is ours (P2). |
+| elmsnest-s-collections: `alt` escaped twice (`| escape` then `image_tag`) | **Apply**: drop the `| escape`. | Latent double-escaping; one-token fix. |
+| pdp-facts `{{ heading }}` / `{{ more_label }}` output unescaped | **Apply** `| escape` on both, AND set the template heading to `""` (already decided above). | Both halves: the heading goes, and the code path stays safe for any future value. |
+| pdp-facts bidi: the fixed code list misses 3000K, 6W, 120°, AA, Up/Down … (11 products) | Same as the major above: **whole-token wrap**, using the `elmsnest-v2-terms.liquid` word loop as the model. | Two reviewers, same root cause; one fix. |
+| coll-header «כל המוצרים» pill `data-ens-place="all"` | **Apply**: drop the attribute from that pill. | Two reviewers agree; the four collection pills keep it. |
