@@ -6,7 +6,7 @@ was NOT part of this round and stays at `420c9994e18ecc64b071ae38b6090ffa` (the 
 
 | file | local bytes | remote bytes | remote md5 | local match |
 |---|---|---|---|---|
-| `config/settings_data.json` | 13575 | 9336 | `0306b35e516bce1e94afe3f95512662b` | MISMATCH |
+| `config/settings_data.json` | 13575 | 9336 | `0306b35e516bce1e94afe3f95512662b` | content-identical; Shopify's own serialization |
 | `layout/theme.liquid` | 11550 | 11550 | `2d26f6a1f210ab572219938c85d383d3` | as-is |
 | `sections/elmsnest-s-coll-header.liquid` | 11189 | 11188 | `223d626e6b00b0e2b5135b19685cf78d` | no-trailing-nl |
 | `sections/elmsnest-s-collections.liquid` | 5456 | 5455 | `04ec623451d75df624c60b6d60d0ce83` | no-trailing-nl |
@@ -30,7 +30,12 @@ was NOT part of this round and stays at `420c9994e18ecc64b071ae38b6090ffa` (the 
 | `templates/index.json` | 3969 | 3968 | `d3e3ca695a54aa37d8fe2ccb18ece84b` | no-trailing-nl |
 | `templates/product.elmsnest.json` | 9611 | 9610 | `c05e8d5737988631fad627b932f0b62b` | no-trailing-nl |
 
-Mismatches: **1**.
+Mismatches: **0 in content, 1 in serialization.** `config/settings_data.json` is the one file Shopify re-serialises on
+save: it reports 9,336 bytes and a checksum that no standard JSON serialisation of the local file reproduces (2/4-space,
+compact, sorted, with and without the header comment — all tried). The stored body was fetched back in full and read:
+key for key the same JSON — `show_ultra_btn: false`, `show_secondary_image: false`, the `scheme-env2-night` scheme, the
+two sense-rtl app blocks and the `custom_css` are all there. The checksum column is therefore not a proof for this one
+file; the fetched body is.
 
 ## Four Shopify rules learned on the way (each bounced a file once, fixed, re-sent)
 
