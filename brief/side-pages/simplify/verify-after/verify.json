@@ -1,0 +1,5218 @@
+{
+  "home-m-js": {
+    "docH": 4368,
+    "screens": 5.18,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 844
+      },
+      {
+        "id": "template--21567616057518__ens_collections",
+        "h": 761
+      },
+      {
+        "id": "template--21567616057518__ens_products",
+        "h": 829
+      },
+      {
+        "id": "template--21567616057518__ens_fit",
+        "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_terms",
+        "h": 397
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 168
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית",
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "collection-all-m-js": {
+    "docH": 6879,
+    "screens": 8.15,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 644
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 5164
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 27,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 171
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 171
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 171
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 171
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 171
+      },
+      {
+        "handle": "waterproof-led-wall-light-ip65-6w-12w",
+        "file": "413fa809e8b71b787625182e0cb84293.png",
+        "w": 171
+      },
+      {
+        "handle": "magnetic-rechargeable-touch-wall-light",
+        "file": "8ef1347100c73113003bedfff9ed80e4.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 171
+      },
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 171
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 171
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 171
+      },
+      {
+        "handle": "lighted-birch-branches-20-led",
+        "file": "3e781d5808d365c2aa5cb2320647f102.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 171
+      },
+      {
+        "handle": "rechargeable-telescopic-camping-lantern",
+        "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-floodlight-ip67-remote-timer",
+        "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
+        "w": 171
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-rope-string-lights",
+        "file": "778db49533c03fa825429f1d5cb684ac.png",
+        "w": 171
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 171
+      }
+    ],
+    "cardsNotFeatured": [
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png",
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "dual-head-garden-light-10w-ip65:fe1b72661e8d023a2379a86adea7357d.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "modern-led-wall-light-6w-up-down:70805727a619f97fd45650cd952a5f19.png",
+      "modern-led-wall-light-indoor-outdoor:6c5bd5572c8cbcf2084084bb57608bc8.png",
+      "waterproof-led-wall-light-ip65-6w-12w:413fa809e8b71b787625182e0cb84293.png",
+      "magnetic-rechargeable-touch-wall-light:8ef1347100c73113003bedfff9ed80e4.png",
+      "solar-wall-light-motion-sensor-ip65:fc423e25af1e303a68779053be6fd509.png",
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "solar-garden-spotlight-52-led:6511017003c622473819256ca9a2cfdb.png",
+      "lighted-birch-branches-20-led:3e781d5808d365c2aa5cb2320647f102.png",
+      "solar-garden-lantern-9-led:c23253c6361c2e98a94f12e3cbcf041d.png",
+      "rechargeable-telescopic-camping-lantern:80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+      "solar-floodlight-ip67-remote-timer:df10ef2fb10fcb3eedf3703aa08ffe22.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "solar-rope-string-lights:778db49533c03fa825429f1d5cb684ac.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "solar-security-light-100-led:d4caf48ebfa145cb868bc7c5636d35b5.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כל המוצרים"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-m-js": {
+    "docH": 3222,
+    "screens": 3.82,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 644
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 1507
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 8,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 171
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 171
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 171
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 171
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 171
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 171
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "pdp-rope-m-js": {
+    "docH": 3698,
+    "screens": 4.38,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1305
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 656
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 829
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 168
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 168
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
+    ],
+    "atcTop": 1082,
+    "atcInFold": false,
+    "smallTaps": 8,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-path-m-js": {
+    "docH": 3584,
+    "screens": 4.25,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1123
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 723
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 829
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 900,
+    "atcInFold": false,
+    "smallTaps": 1,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-deck-m-js": {
+    "docH": 3525,
+    "screens": 4.18,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1159
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 628
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 829
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 168
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 936,
+    "atcInFold": false,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "home-s-js": {
+    "docH": 4108,
+    "screens": 6.42,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 640
+      },
+      {
+        "id": "template--21567616057518__ens_collections",
+        "h": 723
+      },
+      {
+        "id": "template--21567616057518__ens_products",
+        "h": 791
+      },
+      {
+        "id": "template--21567616057518__ens_fit",
+        "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_terms",
+        "h": 415
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 153
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית",
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-s-js": {
+    "docH": 6587,
+    "screens": 10.29,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 614
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 4901
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 27,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 156
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 156
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 156
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 156
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 156
+      },
+      {
+        "handle": "waterproof-led-wall-light-ip65-6w-12w",
+        "file": "413fa809e8b71b787625182e0cb84293.png",
+        "w": 156
+      },
+      {
+        "handle": "magnetic-rechargeable-touch-wall-light",
+        "file": "8ef1347100c73113003bedfff9ed80e4.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 156
+      },
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 156
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 156
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 156
+      },
+      {
+        "handle": "lighted-birch-branches-20-led",
+        "file": "3e781d5808d365c2aa5cb2320647f102.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 156
+      },
+      {
+        "handle": "rechargeable-telescopic-camping-lantern",
+        "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-floodlight-ip67-remote-timer",
+        "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
+        "w": 156
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-rope-string-lights",
+        "file": "778db49533c03fa825429f1d5cb684ac.png",
+        "w": 156
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 156
+      }
+    ],
+    "cardsNotFeatured": [
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png",
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "dual-head-garden-light-10w-ip65:fe1b72661e8d023a2379a86adea7357d.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "modern-led-wall-light-6w-up-down:70805727a619f97fd45650cd952a5f19.png",
+      "modern-led-wall-light-indoor-outdoor:6c5bd5572c8cbcf2084084bb57608bc8.png",
+      "waterproof-led-wall-light-ip65-6w-12w:413fa809e8b71b787625182e0cb84293.png",
+      "magnetic-rechargeable-touch-wall-light:8ef1347100c73113003bedfff9ed80e4.png",
+      "solar-wall-light-motion-sensor-ip65:fc423e25af1e303a68779053be6fd509.png",
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "solar-garden-spotlight-52-led:6511017003c622473819256ca9a2cfdb.png",
+      "lighted-birch-branches-20-led:3e781d5808d365c2aa5cb2320647f102.png",
+      "solar-garden-lantern-9-led:c23253c6361c2e98a94f12e3cbcf041d.png",
+      "rechargeable-telescopic-camping-lantern:80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+      "solar-floodlight-ip67-remote-timer:df10ef2fb10fcb3eedf3703aa08ffe22.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "solar-rope-string-lights:778db49533c03fa825429f1d5cb684ac.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "solar-security-light-100-led:d4caf48ebfa145cb868bc7c5636d35b5.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כל המוצרים"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-s-js": {
+    "docH": 3117,
+    "screens": 4.87,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 614
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 1432
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 8,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 156
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 156
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 156
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 156
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 156
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 156
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "pdp-rope-s-js": {
+    "docH": 3618,
+    "screens": 5.65,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1267
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 651
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 791
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 153
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 153
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
+    ],
+    "atcTop": 1044,
+    "atcInFold": false,
+    "smallTaps": 8,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-path-s-js": {
+    "docH": 3504,
+    "screens": 5.47,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1086
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 791
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 863,
+    "atcInFold": false,
+    "smallTaps": 1,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-deck-s-js": {
+    "docH": 3445,
+    "screens": 5.38,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1121
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 623
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 791
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 153
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 898,
+    "atcInFold": false,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "home-d-js": {
+    "docH": 3695,
+    "screens": 4.11,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 900
+      },
+      {
+        "id": "template--21567616057518__ens_collections",
+        "h": 662
+      },
+      {
+        "id": "template--21567616057518__ens_products",
+        "h": 703
+      },
+      {
+        "id": "template--21567616057518__ens_fit",
+        "h": 539
+      },
+      {
+        "id": "template--21567616057518__ens_terms",
+        "h": 442
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 298
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית",
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "collection-all-d-js": {
+    "docH": 4667,
+    "screens": 5.19,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 518
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 3493
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 158
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 27,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 268
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 268
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 268
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 268
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 268
+      },
+      {
+        "handle": "waterproof-led-wall-light-ip65-6w-12w",
+        "file": "413fa809e8b71b787625182e0cb84293.png",
+        "w": 268
+      },
+      {
+        "handle": "magnetic-rechargeable-touch-wall-light",
+        "file": "8ef1347100c73113003bedfff9ed80e4.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 268
+      },
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 268
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 268
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 268
+      },
+      {
+        "handle": "lighted-birch-branches-20-led",
+        "file": "3e781d5808d365c2aa5cb2320647f102.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 268
+      },
+      {
+        "handle": "rechargeable-telescopic-camping-lantern",
+        "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-floodlight-ip67-remote-timer",
+        "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
+        "w": 268
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-rope-string-lights",
+        "file": "778db49533c03fa825429f1d5cb684ac.png",
+        "w": 268
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 268
+      }
+    ],
+    "cardsNotFeatured": [
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png",
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "dual-head-garden-light-10w-ip65:fe1b72661e8d023a2379a86adea7357d.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "modern-led-wall-light-6w-up-down:70805727a619f97fd45650cd952a5f19.png",
+      "modern-led-wall-light-indoor-outdoor:6c5bd5572c8cbcf2084084bb57608bc8.png",
+      "waterproof-led-wall-light-ip65-6w-12w:413fa809e8b71b787625182e0cb84293.png",
+      "magnetic-rechargeable-touch-wall-light:8ef1347100c73113003bedfff9ed80e4.png",
+      "solar-wall-light-motion-sensor-ip65:fc423e25af1e303a68779053be6fd509.png",
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "solar-garden-spotlight-52-led:6511017003c622473819256ca9a2cfdb.png",
+      "lighted-birch-branches-20-led:3e781d5808d365c2aa5cb2320647f102.png",
+      "solar-garden-lantern-9-led:c23253c6361c2e98a94f12e3cbcf041d.png",
+      "rechargeable-telescopic-camping-lantern:80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+      "solar-floodlight-ip67-remote-timer:df10ef2fb10fcb3eedf3703aa08ffe22.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "solar-rope-string-lights:778db49533c03fa825429f1d5cb684ac.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "solar-security-light-100-led:d4caf48ebfa145cb868bc7c5636d35b5.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כל המוצרים"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "collection-path-d-js": {
+    "docH": 2229,
+    "screens": 2.48,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 518
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 1055
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 158
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 8,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 268
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 268
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 268
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 268
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 268
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 268
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "pdp-rope-d-js": {
+    "docH": 2527,
+    "screens": 2.81,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 800
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 703
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 298
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 298
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
+    ],
+    "atcTop": 600,
+    "atcInFold": true,
+    "smallTaps": 8,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-path-d-js": {
+    "docH": 2397,
+    "screens": 2.66,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 670
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 703
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 470,
+    "atcInFold": true,
+    "smallTaps": 1,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-deck-d-js": {
+    "docH": 2383,
+    "screens": 2.65,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 706
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 455
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 703
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 298
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 506,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "home-m-nojs": {
+    "docH": 4368,
+    "screens": 5.18,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 844
+      },
+      {
+        "id": "template--21567616057518__ens_collections",
+        "h": 761
+      },
+      {
+        "id": "template--21567616057518__ens_products",
+        "h": 829
+      },
+      {
+        "id": "template--21567616057518__ens_fit",
+        "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_terms",
+        "h": 397
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 168
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית",
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "collection-all-m-nojs": {
+    "docH": 6879,
+    "screens": 8.15,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 644
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 5164
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 27,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 171
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 171
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 171
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 171
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 171
+      },
+      {
+        "handle": "waterproof-led-wall-light-ip65-6w-12w",
+        "file": "413fa809e8b71b787625182e0cb84293.png",
+        "w": 171
+      },
+      {
+        "handle": "magnetic-rechargeable-touch-wall-light",
+        "file": "8ef1347100c73113003bedfff9ed80e4.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 171
+      },
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 171
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 171
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 171
+      },
+      {
+        "handle": "lighted-birch-branches-20-led",
+        "file": "3e781d5808d365c2aa5cb2320647f102.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 171
+      },
+      {
+        "handle": "rechargeable-telescopic-camping-lantern",
+        "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-floodlight-ip67-remote-timer",
+        "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
+        "w": 171
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-rope-string-lights",
+        "file": "778db49533c03fa825429f1d5cb684ac.png",
+        "w": 171
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 171
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 171
+      }
+    ],
+    "cardsNotFeatured": [
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png",
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "dual-head-garden-light-10w-ip65:fe1b72661e8d023a2379a86adea7357d.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "modern-led-wall-light-6w-up-down:70805727a619f97fd45650cd952a5f19.png",
+      "modern-led-wall-light-indoor-outdoor:6c5bd5572c8cbcf2084084bb57608bc8.png",
+      "waterproof-led-wall-light-ip65-6w-12w:413fa809e8b71b787625182e0cb84293.png",
+      "magnetic-rechargeable-touch-wall-light:8ef1347100c73113003bedfff9ed80e4.png",
+      "solar-wall-light-motion-sensor-ip65:fc423e25af1e303a68779053be6fd509.png",
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "solar-garden-spotlight-52-led:6511017003c622473819256ca9a2cfdb.png",
+      "lighted-birch-branches-20-led:3e781d5808d365c2aa5cb2320647f102.png",
+      "solar-garden-lantern-9-led:c23253c6361c2e98a94f12e3cbcf041d.png",
+      "rechargeable-telescopic-camping-lantern:80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+      "solar-floodlight-ip67-remote-timer:df10ef2fb10fcb3eedf3703aa08ffe22.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "solar-rope-string-lights:778db49533c03fa825429f1d5cb684ac.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "solar-security-light-100-led:d4caf48ebfa145cb868bc7c5636d35b5.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כל המוצרים"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-m-nojs": {
+    "docH": 3222,
+    "screens": 3.82,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 644
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 1507
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 8,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 171
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 171
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 171
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 171
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 171
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 171
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 171
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "pdp-rope-m-nojs": {
+    "docH": 3502,
+    "screens": 4.15,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1108
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 656
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 829
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 168
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 168
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
+    ],
+    "atcTop": 885,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-path-m-nojs": {
+    "docH": 3534,
+    "screens": 4.19,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1073
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 723
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 829
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 850,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-deck-m-nojs": {
+    "docH": 3474,
+    "screens": 4.12,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1108
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 628
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 829
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 168
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 885,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "home-s-nojs": {
+    "docH": 4108,
+    "screens": 6.42,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 640
+      },
+      {
+        "id": "template--21567616057518__ens_collections",
+        "h": 723
+      },
+      {
+        "id": "template--21567616057518__ens_products",
+        "h": 791
+      },
+      {
+        "id": "template--21567616057518__ens_fit",
+        "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_terms",
+        "h": 415
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 153
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית",
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-s-nojs": {
+    "docH": 6587,
+    "screens": 10.29,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 614
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 4901
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 27,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 156
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 156
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 156
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 156
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 156
+      },
+      {
+        "handle": "waterproof-led-wall-light-ip65-6w-12w",
+        "file": "413fa809e8b71b787625182e0cb84293.png",
+        "w": 156
+      },
+      {
+        "handle": "magnetic-rechargeable-touch-wall-light",
+        "file": "8ef1347100c73113003bedfff9ed80e4.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 156
+      },
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 156
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 156
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 156
+      },
+      {
+        "handle": "lighted-birch-branches-20-led",
+        "file": "3e781d5808d365c2aa5cb2320647f102.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 156
+      },
+      {
+        "handle": "rechargeable-telescopic-camping-lantern",
+        "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-floodlight-ip67-remote-timer",
+        "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
+        "w": 156
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-rope-string-lights",
+        "file": "778db49533c03fa825429f1d5cb684ac.png",
+        "w": 156
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 156
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 156
+      }
+    ],
+    "cardsNotFeatured": [
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png",
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "dual-head-garden-light-10w-ip65:fe1b72661e8d023a2379a86adea7357d.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "modern-led-wall-light-6w-up-down:70805727a619f97fd45650cd952a5f19.png",
+      "modern-led-wall-light-indoor-outdoor:6c5bd5572c8cbcf2084084bb57608bc8.png",
+      "waterproof-led-wall-light-ip65-6w-12w:413fa809e8b71b787625182e0cb84293.png",
+      "magnetic-rechargeable-touch-wall-light:8ef1347100c73113003bedfff9ed80e4.png",
+      "solar-wall-light-motion-sensor-ip65:fc423e25af1e303a68779053be6fd509.png",
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "solar-garden-spotlight-52-led:6511017003c622473819256ca9a2cfdb.png",
+      "lighted-birch-branches-20-led:3e781d5808d365c2aa5cb2320647f102.png",
+      "solar-garden-lantern-9-led:c23253c6361c2e98a94f12e3cbcf041d.png",
+      "rechargeable-telescopic-camping-lantern:80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+      "solar-floodlight-ip67-remote-timer:df10ef2fb10fcb3eedf3703aa08ffe22.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "solar-rope-string-lights:778db49533c03fa825429f1d5cb684ac.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "solar-security-light-100-led:d4caf48ebfa145cb868bc7c5636d35b5.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כל המוצרים"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-s-nojs": {
+    "docH": 3117,
+    "screens": 4.87,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 614
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 1432
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 193
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 8,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 156
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 156
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 156
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 156
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 156
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 156
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 156
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "pdp-rope-s-nojs": {
+    "docH": 3422,
+    "screens": 5.35,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1071
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 651
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 791
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 153
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 153
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
+    ],
+    "atcTop": 848,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-path-s-nojs": {
+    "docH": 3454,
+    "screens": 5.4,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1035
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 791
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 812,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-deck-s-nojs": {
+    "docH": 3394,
+    "screens": 5.3,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1071
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 623
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 791
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 153
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 848,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "home-d-nojs": {
+    "docH": 3695,
+    "screens": 4.11,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 900
+      },
+      {
+        "id": "template--21567616057518__ens_collections",
+        "h": 662
+      },
+      {
+        "id": "template--21567616057518__ens_products",
+        "h": 703
+      },
+      {
+        "id": "template--21567616057518__ens_fit",
+        "h": 539
+      },
+      {
+        "id": "template--21567616057518__ens_terms",
+        "h": 442
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 298
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית",
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "collection-all-d-nojs": {
+    "docH": 4667,
+    "screens": 5.19,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 518
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 3493
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 158
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 27,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-edison-string-lights",
+        "file": "310423a276bf59f45f49896a6dbaee79.png",
+        "w": 268
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 268
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 268
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 268
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 268
+      },
+      {
+        "handle": "waterproof-led-wall-light-ip65-6w-12w",
+        "file": "413fa809e8b71b787625182e0cb84293.png",
+        "w": 268
+      },
+      {
+        "handle": "magnetic-rechargeable-touch-wall-light",
+        "file": "8ef1347100c73113003bedfff9ed80e4.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 268
+      },
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 268
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 268
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 268
+      },
+      {
+        "handle": "lighted-birch-branches-20-led",
+        "file": "3e781d5808d365c2aa5cb2320647f102.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 268
+      },
+      {
+        "handle": "rechargeable-telescopic-camping-lantern",
+        "file": "80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-floodlight-ip67-remote-timer",
+        "file": "df10ef2fb10fcb3eedf3703aa08ffe22.png",
+        "w": 268
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-rope-string-lights",
+        "file": "778db49533c03fa825429f1d5cb684ac.png",
+        "w": 268
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 268
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 268
+      }
+    ],
+    "cardsNotFeatured": [
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png",
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-edison-string-lights:310423a276bf59f45f49896a6dbaee79.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "dual-head-garden-light-10w-ip65:fe1b72661e8d023a2379a86adea7357d.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+      "outdoor-bidirectional-led-wall-light-ip65:2e9797fa58898bd08fbcba2e70c94844.png",
+      "modern-led-wall-light-6w-up-down:70805727a619f97fd45650cd952a5f19.png",
+      "modern-led-wall-light-indoor-outdoor:6c5bd5572c8cbcf2084084bb57608bc8.png",
+      "waterproof-led-wall-light-ip65-6w-12w:413fa809e8b71b787625182e0cb84293.png",
+      "magnetic-rechargeable-touch-wall-light:8ef1347100c73113003bedfff9ed80e4.png",
+      "solar-wall-light-motion-sensor-ip65:fc423e25af1e303a68779053be6fd509.png",
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "solar-garden-spotlight-52-led:6511017003c622473819256ca9a2cfdb.png",
+      "lighted-birch-branches-20-led:3e781d5808d365c2aa5cb2320647f102.png",
+      "solar-garden-lantern-9-led:c23253c6361c2e98a94f12e3cbcf041d.png",
+      "rechargeable-telescopic-camping-lantern:80d82ed5c2f73c4d57441fa16e9ea5a2.png",
+      "solar-floodlight-ip67-remote-timer:df10ef2fb10fcb3eedf3703aa08ffe22.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "solar-rope-string-lights:778db49533c03fa825429f1d5cb684ac.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "solar-security-light-100-led:d4caf48ebfa145cb868bc7c5636d35b5.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כל המוצרים"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "collection-path-d-nojs": {
+    "docH": 2229,
+    "screens": 2.48,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__ens_coll_header",
+        "h": 518
+      },
+      {
+        "id": "template--21567615565998__main-collection",
+        "h": 1055
+      },
+      {
+        "id": "template--21567615565998__ens_guide_strip",
+        "h": 158
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 8,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 268
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 268
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 268
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 268
+      },
+      {
+        "handle": "powerful-solar-garden-light",
+        "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
+        "w": 268
+      },
+      {
+        "handle": "swaying-solar-path-lights-ip65",
+        "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+        "w": 268
+      },
+      {
+        "handle": "modern-led-bollard-light-5w-ip65",
+        "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
+        "w": 268
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png",
+      "powerful-solar-garden-light:f6bcb1deff05cee3655afa8816d12c8c.png",
+      "swaying-solar-path-lights-ip65:15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
+      "modern-led-bollard-light-5w-ip65:4bab5fdfdc82c6d8ff9aa9191f79daca.png"
+    ],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 8,
+    "overTarget": false
+  },
+  "pdp-rope-d-nojs": {
+    "docH": 2382,
+    "screens": 2.65,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 655
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 703
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 298
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 298
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "solar-crystal-ball-string-lights:d39c9d8c3279413014e9dd735e03cc2f.png",
+      "solar-firefly-garden-lights:3adceaa935b7462e17f5662132d46fdf.png",
+      "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
+      "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
+    ],
+    "atcTop": 456,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-path-d-nojs": {
+    "docH": 2347,
+    "screens": 2.61,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 620
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 703
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 420,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-deck-d-nojs": {
+    "docH": 2333,
+    "screens": 2.59,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 655
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 455
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 703
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 298
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "cardsNotFeatured": [
+      "stainless-steel-solar-path-light-ip65:92cd5d18b49372714eb3ffec32482de7.png",
+      "retro-solar-path-lights-set:37b5989c14f17e548566a20003d47543.png",
+      "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
+      "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
+    ],
+    "atcTop": 456,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "reduced-motion": {
+    "card": true,
+    "elementsWithTransition": 3
+  },
+  "pdp-variant-sync": {
+    "before": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": ""
+    },
+    "clicked": null,
+    "after": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": ""
+    },
+    "idsAgree": true,
+    "priceChanged": false,
+    "live": {
+      "postedId": "48880936190126",
+      "addStatus": "ok",
+      "lineTitle": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED - 7 מ׳ / 50 נורות / לבן חם",
+      "drawerHasVariant": true,
+      "drawerHasLineItem": true
+    }
+  }
+}

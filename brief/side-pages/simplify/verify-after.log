@@ -5,3 +5,45 @@ ok
 mirror collection-all … ok
 mirror collection-path … ok
 mirror pdp-rope … mirror: 429 from the store, waiting 20s (attempt 1/6)
+ok
+mirror pdp-path … ok
+mirror pdp-deck … ok
+home-m-js screens=5.18/6 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=1/0 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+collection-all-m-js screens=8.15/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-path-m-js screens=3.82/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=8 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=8
+pdp-rope-m-js screens=4.38/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+pdp-path-m-js screens=4.25/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=4
+pdp-deck-m-js screens=4.18/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+home-s-js screens=6.42/6 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=1/0 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+collection-all-s-js screens=10.29/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-path-s-js screens=4.87/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=8 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=8
+pdp-rope-s-js screens=5.65/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+pdp-path-s-js screens=5.47/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=4
+pdp-deck-s-js screens=5.38/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+home-d-js screens=4.11/6 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=1/0 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+collection-all-d-js screens=5.19/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-path-d-js screens=2.48/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=8 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=8
+pdp-rope-d-js screens=2.81/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+pdp-path-d-js screens=2.66/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=4
+pdp-deck-d-js screens=2.65/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+home-m-nojs screens=5.18/6 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=1/0 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+collection-all-m-nojs screens=8.15/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-path-m-nojs screens=3.82/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=8 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=8
+pdp-rope-m-nojs screens=4.15/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+pdp-path-m-nojs screens=4.19/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=4
+pdp-deck-m-nojs screens=4.12/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+home-s-nojs screens=6.42/6 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=1/0 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+collection-all-s-nojs screens=10.29/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-path-s-nojs screens=4.87/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=8 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=8
+pdp-rope-s-nojs screens=5.35/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+pdp-path-s-nojs screens=5.4/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=4
+pdp-deck-s-nojs screens=5.3/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+home-d-nojs screens=4.11/6 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=1/0 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+collection-all-d-nojs screens=5.19/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=27 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=27
+collection-path-d-nojs screens=2.48/8 forms=0 main=0 sticky=0 mailto=1 photo=1 terms=0/0 glyph=0/0 wa=0 cards=8 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=8
+pdp-rope-d-nojs screens=2.65/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+pdp-path-d-nojs screens=2.61/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=4
+pdp-deck-d-nojs screens=2.59/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4
+reduced-motion {"card":true,"elementsWithTransition":3}
+pdp-variant-sync {"before":{"mainId":"48880936190126","stickyId":"48880936190126","price":""},"clicked":null,"after":{"mainId":"48880936190126","stickyId":"48880936190126","price":""},"idsAgree":true,"priceChanged":false,"live":{"postedId":"48880936190126","addStatus":"ok","lineTitle":"שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED - 7 מ׳ / 50 נורות / לבן חם","drawerHasVariant":true,"drawerHasLineItem":true}}
+wrote brief/side-pages/simplify/verify-after/verify.json
