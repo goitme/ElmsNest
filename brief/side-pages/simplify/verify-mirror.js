@@ -42,7 +42,7 @@ function mirror(name, p) {
   const dir = path.join(OUT, 'mirrors', name);
   if (NO_MIRROR && fs.existsSync(path.join(dir, 'index.html'))) return dir;
   fs.mkdirSync(dir, { recursive: true });
-  execFileSync('python3', [`${REPO}/brief/mirror.py`, url(p), dir], { stdio: 'ignore', timeout: 300000 });
+  execFileSync('python3', [`${REPO}/brief/mirror.py`, url(p), dir], { stdio: ['ignore', 'ignore', 'inherit'], timeout: 900000 });
   return dir;
 }
 function serve(root) {
@@ -110,10 +110,17 @@ async function audit(page, name, vw, vh) {
 (async () => {
   const report = {};
   const dirs = {};
-  for (const p of PAGES) { process.stdout.write(`mirror ${p.name} … `); dirs[p.name] = mirror(p.name, p.path); console.log('ok'); }
+  const failedMirrors = [];
+  for (const p of PAGES) {
+    process.stdout.write(`mirror ${p.name} … `);
+    try { dirs[p.name] = mirror(p.name, p.path); console.log('ok'); }
+    catch (e) { console.log('FAILED (' + String(e.message).slice(0, 80) + ')'); failedMirrors.push(p.name); report[`mirror-${p.name}`] = { error: 'mirror failed: ' + String(e.message).slice(0, 160) }; }
+  }
+  if (failedMirrors.length) console.log('pages skipped because their mirror failed (store 429 or network): ' + failedMirrors.join(', '));
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-sandbox'] });
   for (const js of [true, false]) for (const [vk, w, h] of VIEWS) for (const p of PAGES) {
     const key = `${p.name}-${vk}-${js ? 'js' : 'nojs'}`;
+    if (!dirs[p.name]) { report[key] = { error: 'no mirror' }; continue; }
     const { srv, port } = await serve(dirs[p.name]);
     const ctx = await b.newContext({ viewport: { width: w, height: h }, javaScriptEnabled: js, locale: 'he-IL', deviceScaleFactor: 1, isMobile: w < 500, hasTouch: w < 500 });
     const faces = fontFaceCss(port);
@@ -133,7 +140,7 @@ async function audit(page, name, vw, vh) {
     await ctx.close(); srv.close();
   }
   // reduced motion: no transitions on cards (collection-all, mobile, JS on)
-  { const { srv, port } = await serve(dirs['collection-all']);
+  if (dirs['collection-all']) { const { srv, port } = await serve(dirs['collection-all']);
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, locale: 'he-IL', reducedMotion: 'reduce' });
     await ctx.route(/^https?:\/\//, r => /127\.0\.0\.1:/.test(r.request().url()) ? r.continue() : r.abort());
     const page = await ctx.newPage(); await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'load', timeout: 60000 }); await page.waitForTimeout(1500);
