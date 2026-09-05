@@ -1,0 +1,79 @@
+[
+ {
+  "from": "page",
+  "line": 106,
+  "selector": "#hdt-page-cart .hdt-main-cart__button-checkout.hdt-btn",
+  "newRule": "#hdt-page-cart .hdt-main-cart__button-checkout.hdt-btn{width:100%;min-height:52px;border:0;border-radius:999px;background:var(--env2-gold);color:var(--env2-btn-ink);font-family:var(--env2-sans);font-weight:500;font-size:16px;letter-spacing:0;text-transform:none}",
+  "why": "C7: the btn_checkout block schema (main-cart.liquid L469-…) has no full_width setting (L243 reads block.settings.full_width but no such setting exists, and lint checks template settings against the schema), so the cart page's checkout button needs a skin rule. New rule — insert after line 105 (the drawer checkout hover rule), i.e. at line 106, still inside §6. Same fill, btn-ink, 52 px, no letter-spacing as line 104's drawer rule, plus width:100% for the full column; the button markup <button form=\"{{ form_id }}\" type=\"submit\" name=\"checkout\"> is unchanged. The #hdt-page-cart prefix mirrors line 104's #CartDrawer shape so it beats Kalles' .hdt-btn/.hdt-btn--size-m rules regardless of load order (hdt-main-cart.css is loaded from the section body, after the skin)."
+ },
+ {
+  "from": "page",
+  "line": 107,
+  "selector": "#hdt-page-cart .hdt-main-cart__button-checkout.hdt-btn:is(:hover,:focus-visible)",
+  "newRule": "#hdt-page-cart .hdt-main-cart__button-checkout.hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);color:var(--env2-btn-ink)}",
+  "why": "C7 companion: the hover/focus state, identical to line 105's drawer rule so the two checkout buttons behave the same. Insert directly after the rule above (line 107)."
+ },
+ {
+  "from": "drawer",
+  "line": 97,
+  "selector": "#CartDrawer .hdt-mini-cart__title",
+  "newRule": "#CartDrawer .hdt-mini-cart__title{white-space:normal;font-family:var(--env2-serif);font-weight:700;font-size:16px;line-height:1.3;color:var(--env2-ink)}",
+  "why": "D4: drop display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical so the full name wraps (trunc=false); everything else on the line kept verbatim. Kalles' own .hdt-mini-cart__title{width:100%} stays."
+ },
+ {
+  "from": "drawer",
+  "line": 98,
+  "selector": "#CartDrawer :is(.hdt-mini-cart__meta-variant,.hdt-text-secondary,.hdt-cart-tax)",
+  "newRule": "#CartDrawer :is(.hdt-text-secondary,.hdt-cart-tax){color:var(--env2-ink-2)}\n#CartDrawer .hdt-mini-cart__meta-variant{color:var(--env2-gold);font-size:13px;line-height:1.4;margin-block-start:2px}",
+  "why": "D5: split of line 98 into two lines. The variant rule MUST come second: the variant div also carries .hdt-text-secondary and both selectors are (1,1,0), so source order decides the gold."
+ },
+ {
+  "from": "drawer",
+  "line": 100,
+  "selector": "#CartDrawer .hdt-mini-cart__unit",
+  "newRule": "#CartDrawer .hdt-mini-cart__unit{font-family:var(--env2-sans);font-size:12px;line-height:1.4;color:var(--env2-ink-2)}",
+  "why": "D6: insert as a new line directly after current line 99 (the price/gold rule) — the 12 px «N ₪ ליחידה» mute line under the line total."
+ },
+ {
+  "from": "drawer",
+  "line": 103,
+  "selector": "#CartDrawer .hdt-mini-cart__main",
+  "newRule": "#CartDrawer .hdt-mini-cart__main{flex:0 1 auto;min-block-size:0;overflow:auto}\n#CartDrawer .hdt-mini-cart__sroll{position:static;max-block-size:100%;overflow:auto}",
+  "why": "D3 void: insert as two new lines after current line 103 (the .hdt-mini-cart__bottom rule). hdt-cart-drawer.css has .hdt-mini-cart__main{flex:1 1 auto} inside cart-items-component.hdt-mini-cart__wrap{flex:1 1 auto;height:100%} — that is the stretch. But the scroll div .hdt-mini-cart__sroll carries Kalles' .hdt-full-width-link{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2} (base css) and .hdt-mini-cart [data-hdt-scroll-me]{overflow:auto}, so with flex:0 alone main would collapse to 0 px (its only child is absolute). position:static gives main its content height; flex:0 1 auto + min-block-size:0 lets it shrink when lines exceed the space; max-block-size:100% keeps [data-hdt-scroll-me] as the scroller, and overflow:auto on main is the fallback if the percentage does not resolve (dialog is max-height:100dvh, not height). No theme JS references data-hdt-scroll-me or .hdt-mini-cart__sroll (grepped the mirror JS)."
+ },
+ {
+  "from": "drawer",
+  "line": 106,
+  "selector": "#CartDrawer .hdt-mini-cart__btn-viewcart.hdt-btn",
+  "newRule": "#CartDrawer .hdt-mini-cart__btn-viewcart{display:flex;width:max-content;max-width:100%;margin-inline:auto;min-height:44px;padding:13px 6px;border:0;border-radius:0;background:transparent;color:var(--env2-ink-2);font-family:var(--env2-sans);font-weight:500;font-size:14px;line-height:1.3;letter-spacing:0;text-transform:none;text-decoration:underline;text-decoration-color:var(--env2-hair-btn);text-underline-offset:4px}",
+  "why": "D2: replaces line 106. The <a> no longer has .hdt-btn, so the selector drops it. Centred text link (block flex, max-content width, auto inline margins), 44 px tap box via 13 px padding (+min-height guard), ink-2, no pill, no border. letter-spacing:0/text-transform:none are still needed: hdt-cart-drawer.css keeps .hdt-mini-cart__btn-viewcart,.hdt-mini-cart__btn-checkout{font-size:1.1rem;letter-spacing:.3rem;text-transform:uppercase} on the bare class. The hairline underline is drawn with text-decoration (hair-btn colour, 4 px offset) instead of .env2-link's border-bottom so it stays under the text inside the padded 44 px box; border:0 also zeroes that border-bottom. Kalles' .hdt-mini-cart__btn-viewcart{margin-top:2rem} is left in place (margin-inline only)."
+ },
+ {
+  "from": "drawer",
+  "line": 107,
+  "selector": "#CartDrawer .hdt-mini-cart__btn-viewcart.hdt-btn:is(:hover,:focus-visible)",
+  "newRule": "#CartDrawer .hdt-mini-cart__btn-viewcart:is(:hover,:focus-visible){color:var(--env2-glow);text-decoration-color:var(--env2-glow)}",
+  "why": "D2: replaces line 107 — glow on hover/focus for the text link; no border-color any more."
+ },
+ {
+  "from": "drawer",
+  "line": 107,
+  "selector": "#CartDrawer .ens-cart-empty",
+  "newRule": "#CartDrawer .ens-cart-empty{display:grid;gap:14px;justify-items:center;margin-block-start:18px}",
+  "why": "D8: new line after the (new) 107. One link per line, centred. Beats Kalles' .hdt-mini-cart__emty>*+*{margin-top:2.4rem} (0,1,0) with the 18 px the spec asks for."
+ },
+ {
+  "from": "drawer",
+  "line": 107,
+  "selector": "#CartDrawer .hdt-quantity-cart-item button:disabled",
+  "newRule": "#CartDrawer .hdt-quantity-cart-item button:disabled{opacity:.35;cursor:default}",
+  "why": "RECOMMENDED, not in the D-list: the visual half of D7. Kalles has no rule for a disabled stepper button and skin line 101 forces color:var(--env2-ink) on it, so the disabled minus at qty 1 would look identical to the live one. Kalles' validateQtyRules only toggles a .disabled class (no rule for it either); the disabled attribute stops the click handler. Lead's call."
+ },
+ {
+  "from": "drawer",
+  "line": 107,
+  "selector": "#CartDrawer .ens-cart-terms .ens-terms-line",
+  "newRule": "#CartDrawer .ens-cart-terms .ens-terms-line{margin-block-start:0}",
+  "why": "RECOMMENDED, not in the D-list: the snippet's own p.ens-terms-line{margin:10px 0 0} (written for the PDP, under a button) adds 10 px on top of .hdt-mini-cart__bottom-wrap's 2rem padding, i.e. 10 px of the measured void. Lead's call."
+ }
+]
