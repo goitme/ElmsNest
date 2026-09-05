@@ -1,0 +1,685 @@
+{
+ "judges": [
+  {
+   "lens": "Israeli shopper, 390×844 phone, first purchase from this store, drawer just opened — the three leaks weighted hardest",
+   "scores": [
+    {
+     "key": "window",
+     "leaks": 8,
+     "store": 8,
+     "narrow": 8,
+     "honesty": 8,
+     "empty": 9,
+     "total": 8.1,
+     "best": "Every one of the three answers is on the first screen with zero scrolls, and the pay control (y770–826, 56px, 315 wide) is the lowest and brightest object on the panel — my thumb lands on it without moving my hand. Measured under44=0 and trunc=[false,false] at 390/360/320.",
+     "worst": "On the quantity-1 line it prints 89.90 ₪ and then 89.90 ₪ ליחידה directly beneath it — the same number twice, on the exact line slip and threestep suppress it. And the largest rival control in the drawer is the product-title link, i.e. the biggest thing I can press after the button is a route out of the cart.",
+     "violations": [
+      "per-unit row not suppressed at quantity 1 (89.90 ₪ printed above 89.90 ₪ ליחידה) — a number restated as if it were a second fact",
+      "cart page defers the terms ledger below the checkout button behind a מה שכדאי לדעת link (shot-cart-mobile: first screen is subtotal + button only), the one surface where meters and threestep put terms above it",
+      "whole concept leans on backdrop-filter; the admitted fallback is the fixed-alpha dim the inventory called invisible on a black page"
+     ]
+    },
+    {
+     "key": "threestep",
+     "leaks": 9,
+     "store": 7,
+     "narrow": 7,
+     "honesty": 9,
+     "empty": 8,
+     "total": 8,
+     "best": "The only drawer that names the two unasked questions out loud in Hebrew — 02 מה יעלה לקבל את זה — and then answers all three approved terms, headline AND sub including דמי ביטול עד 5% או 100 ₪, in one hairline ledger at y394–514, with the pay button at y637–696 carrying the amount. One tap, zero scrolls, and I read the cancellation clause on the way to the button.",
+     "worst": "The cart page is where it slips: 23 controls under 44px (two 36px in-cart product-title links, a 14px לשלוח תמונה link, the rest footer nav) and the checkout button 81px below the fold at 320×568.",
+     "violations": [
+      "cart page: 23 controls under the 44px minimum (constraint 4), including two 36px product-title links inside the line items and a 14px mailto link",
+      "cart page checkout 81px below the fold at 320×568 (the 360×640 contract is met at t578)",
+      "empty-state terms line compresses the approved copy: משלוח לנקודת איסוף — חינם. 14 יום לביטול מקבלת המוצר. drops the 0 ₪ numeral and לפי חוק הגנת הצרכן"
+     ]
+    },
+    {
+     "key": "slip",
+     "leaks": 7,
+     "store": 10,
+     "narrow": 7,
+     "honesty": 7,
+     "empty": 8,
+     "total": 7.85,
+     "best": "Leak 1 is answered better than anywhere else in the round: שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם — לשביל. in the serif with the literal title and variant printed underneath. I recognise my own decision instead of auditing it, and the count spelled in words catches a wrong quantity by reading. Highest checkout dominance measured (2.19/2.00/1.75/2.67) and under44=0 everywhere.",
+     "worst": "On the phone the pinned bar carries only 0 ₪ and the reassuring half of the 14-day line. I measured the 8–17 ימי עסקים row at y764–786 — that is exactly where the checkout button sits, so it is occluded — and דמי ביטול עד 5% או 100 ₪ at y866, off screen. terms=3/4 is a DOM count, not something I can see. I do not know when the lamps arrive, or what cancelling costs, without scrolling.",
+     "violations": [
+      "drawer at 390×844: the 8–17 delivery row (y764) is behind the pinned bar/button and the cancellation fee cap (y866) is below the viewport — the answers exist in the DOM but not on the screen",
+      "cart page has no /cart/change?line= quantity links; − and + are name=\"minus\"/\"plus\" submit buttons that do nothing without JS, so the no-JS path is type-a-number-and-press-עדכון only (INVENTORY-DRAWER 'what the rebuild must therefore provide')",
+      "the authored sentence needs Hebrew gendered numerals and plural agreement from Liquid; a wrong case/when branch prints broken Hebrew about what the buyer just bought"
+     ]
+    },
+    {
+     "key": "meters",
+     "leaks": 8,
+     "store": 9,
+     "narrow": 6,
+     "honesty": 6,
+     "empty": 9,
+     "total": 7.75,
+     "best": "תרומה למידה: 5 מטר · 20 נורות against 2 מנורות · בלי מידת אורך is the sharpest 'did I pick 5 m or 9.5 m' device in the round, and the lit-wire-versus-bare-ground-line rail is the one image here that could not be pasted into a shoe shop. All three terms with both halves sit directly above the button, and the empty state's חוט ריק — 0 מטר · 0 נורות · 0 מנורות is the most concept-true screen of the five.",
+     "worst": "The basket headline 5 מטר · 20 נורות · 2 מנורות is the thing BRIEF §5.1 explicitly rules out, and it is the whole opening block. Underneath it I measured the two product-title links at 34px (390/360) — under the touch minimum, and they navigate out of the cart — and at 320×568 the pay button is 14px below the fold. Lowest dominance of the five (1.18): מעבר לתשלום and לעגלה המלאה are not far enough apart.",
+     "violations": [
+      "derived light-measure used as a basket headline in both drawer and cart page — BRIEF §5.1: 'may be used per line … and never as a basket headline'",
+      "two product-title links at 34px height (40px at 1440), under the 44px minimum (constraint 4)",
+      "drawer checkout 14px below the fold at 320×568",
+      "227px void still visible between the last line and the terms ledger at 1440×900 — the hole this round exists to fill"
+     ]
+    },
+    {
+     "key": "paydesk",
+     "leaks": 5,
+     "store": 7,
+     "narrow": 9,
+     "honesty": 7,
+     "empty": 8,
+     "total": 6.8,
+     "best": "The most robust markup in the set: native <details>, no JS anywhere, under44=0, /cart/change links on the cart page, checkout t308 at 320×568, and the only scrim that visibly darkens and blurs the page behind. The three terms sit verbatim with their subs directly under the button — the right numbers in the right place.",
+     "worst": "In the state the drawer actually opens in, I cannot tell which lamp or which variant is in the basket — just 2 מנורות · 3 יחידות and two 38px thumbnails. That is leak 1 unanswered at a glance, and it costs a tap to fix; when I take that tap the terms ledger disappears, so I can never see צהוב חם and the cancellation clause at the same time. Worse for a thumb: the pay button is at y189–245, the top of an 844px screen, so the single most important control is the least reachable thing on the phone.",
+     "violations": [
+      "default drawer state shows no product name and no variant — leak 1 is not closed until the buyer taps (paydesk's own note concedes the folded state is what almost every buyer sees)",
+      "the three approved terms are hidden by CSS whenever the proof list is open (.desk:has(+ .basket[open]) .terms) — hiding the cancellation row while the buyer is checking their variant is the behaviour this round exists to end",
+      "pay control at y189 on a 390×844 phone: outside the thumb arc, requiring a hand shuffle to press"
+     ]
+    }
+   ],
+   "ranking": [
+    "window",
+    "threestep",
+    "slip",
+    "meters",
+    "paydesk"
+   ],
+   "grafts": [
+    {
+     "from": "slip",
+     "device": "The double line: an authored Hebrew sentence in Frank Ruhl Libre (שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם — לשביל.) with the literal product.title + variant.title in Heebo 300 directly beneath it, never truncated.",
+     "why": "It is the only device in the round that makes me recognise my decision rather than verify it, and it is the honest way to put the serif on a cart line without putting a Liquid title there. The record line underneath is also the fallback when the Hebrew conjugation branch misfires."
+    },
+    {
+     "from": "threestep",
+     "device": "Band 02 — the three approved terms as one hairline ledger, numeral + headline + sub, occupying the strip between the last line item and the pay button (measured y394→514, button y637).",
+     "why": "It is the placement that makes 'what will this cost and when' and 'can I get out' unavoidable on the way to the thumb, without a scroll, and it fills the 288–343px void with the answer instead of shrinking it."
+    },
+    {
+     "from": "threestep",
+     "device": "Suppressing the ליחידה row at quantity 1, so a qty-1 line prints exactly one number.",
+     "why": "Window prints 89.90 ₪ above 89.90 ₪ ליחידה, which reads as two facts and is one. slip and meters get this right too; it should be a rule in the winner, not a preference."
+    },
+    {
+     "from": "meters",
+     "device": "The per-line contribution row with an explicit honest null — תרומה למידה: 5 מטר · 20 נורות versus 2 מנורות · בלי מידת אורך — used per line only, never summed into a basket headline.",
+     "why": "This is the one lighting-store-only idea that survives DERIVED-DATA §5.1 intact: it catches the 5 m / 9.5 m mistake on the exact line where the mistake was made, and it names what it cannot measure instead of guessing."
+    },
+    {
+     "from": "window",
+     "device": "The real scrim (alpha plus backdrop brightness reduction) and the lit sill under the subtotal with the glow rising out of the checkout button.",
+     "why": "Finding 1 of the inventory is that a correct scrim does no work on a black page; window and paydesk are the only two whose renders visibly separate panel from page, and window's is the one that also carries the hierarchy at 324px."
+    },
+    {
+     "from": "paydesk",
+     "device": "The native <details> proof-fold, kept as an addition for baskets past three or four lines — never as the drawer's opening state, and never with the terms hidden while it is open.",
+     "why": "On a five-line basket every other concept becomes a scroller; a JS-free fold is the right escape valve. The lesson from paydesk is the inverse of its default: fold the list only after the buyer has already been shown the names and variants."
+    }
+   ],
+   "summary": "I opened all five with my thumb resting at about y700 on a 390×844 screen, and the question I asked each was the same: without moving my hand or my eye, do I know which lamp, what it costs to deliver, when it comes, and how I get out? Threestep and window answer all four on the first screen with zero scrolls — threestep literally captions the questions (01 מה בחרת · 02 מה יעלה לקבל את זה · 03 תשלום) and prints all three approved terms with both halves, including דמי ביטול עד 5% או 100 ₪, at y394–514 with the 59px button at y637; window does the same with the ledger at y527–800 and puts its 56px button at y770, the most thumb-reachable control in the round. Slip has by far the best answer to leak 1 — שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם — לשביל. over the literal title, and the highest measured checkout dominance (2.19) — but I measured its 8–17 ימי עסקים row at y764, directly behind the pinned button, and the cancellation fee cap at y866, off screen: its terms=3/4 is a DOM count, and on the phone the shop tells me it is free to a pickup point and that I have 14 days, and says nothing about when the lamps arrive or what cancelling costs until I scroll. Meters has the only picture in the set that no other shop could use — the lit wire against the bare ground line, and תרומה למידה per line — but its opening block is the basket headline BRIEF §5.1 forbids, its two product-title links measure 34px, and at 320×568 the pay button falls 14px below the fold. Paydesk is the one I would not pay through: the drawer opens folded at 2 מנורות · 3 יחידות with two 38px thumbnails, so I cannot see that צהוב חם is in the basket at all without a tap, that tap makes the terms vanish, and its pay button sits at y189 — the far top of the phone, the one place my thumb cannot reach. Counting taps: one to pay in slip, meters, threestep and window; three in paydesk (unfold to check the variant, re-fold to re-read the cancellation clause, then pay), and every one of the five puts a ≥52px pill under the thumb except paydesk, which puts it under the eyebrow. I would pay through threestep and window without hesitating, through meters after squinting past the headline, and through slip only after one scroll to find out when it arrives — which is precisely the scroll this round was convened to remove."
+  },
+  {
+   "lens": "Creative director who rejected round 1 as \"from the nineties, everything repeated\" — judging the 324px column as a typographic problem before a layout problem, from the renders first: does the still contain an idea only a lighting store could have, does the drawer separate from the night page behind it, does it belong to the same store as the finished product and collection pages, and is the empty state a composition or a placeholder.",
+   "scores": [
+    {
+     "key": "slip",
+     "leaks": 8,
+     "store": 9,
+     "narrow": 8,
+     "honesty": 8,
+     "empty": 9,
+     "total": 8.35,
+     "best": "The only drawer that solves 324px as TYPE. Three voices in one column — an authored serif sentence with the chosen variant lit in glow (\"שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם — לשביל.\"), the literal record beneath it in Heebo 300, and the line total in FRL glow. Quantity spelled in words means a wrong count is caught by reading, not auditing. dom=2.19/2.00/1.75/2.67 — the highest checkout dominance of the five — under44=0 on both files at all four viewports, exits=2, and the desktop cart page (checkout t426, ledger in the SAME column as the button, all four numbers) is genuinely at the level of the finished collection page.",
+     "worst": "In the drawer only TWO terms are pinned: 8–17 ימי עסקים and the cancellation fee cap «עד 5% או 100 ₪» both live inside the נ.ב. INSIDE the scroll body (drawer.html:243–249), so the answer to \"when does it come\" is scroll-gated on the primary surface. Worse, the mobile-fold still shows the honesty sentence «המחירים כוללים מע״מ. עלות המשלוח נבחרת…» clipped mid-line by the scroll mask — the one sentence doing the honest work is half-legible at the fold. And the +/− are `name=\"minus\"/\"plus\"` submits that post nothing Shopify reads: no-JS quantity depends on typing in the field and pressing עדכון.",
+     "violations": [
+      "Drawer pins only 2 of 3 terms — 8–17 ימי עסקים and the cancellation fee cap sit inside the scrolling נ.ב. (BRIEF §1 leak 2/3: the moment they are worth most is the moment before paying)",
+      "Honesty/refusal line rendered clipped mid-sentence by the scroll boundary at 390×844 (visible in shot-mobile-fold.png)",
+      "cart.html +/− are `<button type=\"submit\" name=\"minus\"|\"plus\">` — inert with JS off; INVENTORY-DRAWER prescribes `/cart/change?line=&quantity=` links",
+      "Designer-declared: Liquid Hebrew conjugation (~40 lines of case/when + numeral table) is the round's largest correctness hazard — a wrong branch prints broken Hebrew"
+     ]
+    },
+    {
+     "key": "window",
+     "leaks": 8,
+     "store": 8,
+     "narrow": 8,
+     "honesty": 8,
+     "empty": 8,
+     "total": 8,
+     "best": "The only concept that answers \"does the drawer separate from the night page\" with a visible YES. On shot-desktop the page behind is genuinely darkened and blurred and the panel is a lifted, lit surface; each line is a plate with its own falloff, the subtotal sits on a lit sill with a halo, the checkout is measurably the brightest object. That is the store's own logic (light carries hierarchy) doing the work layout cannot do at 324px. exits=0 on BOTH files — the only concept with no route out of the cart competing with the button. trunc=[false,false] measured, under44=0, checkout t324 at 390/360/320 on the cart page. The empty state — a gold four-pane window with a floor reflection and «האור כבר דולק. חסר רק המקום.» — is the only MADE image in any empty state.",
+     "worst": "It prints «89.90 ₪ ליחידה» directly under «89.90 ₪» on the qty-1 line — on both drawer and cart page, visible in shot-mobile.png at y≈760 — the exact redundancy NOTE.md claims to suppress, at the one spot the concept says it fixed. The load-bearing scrim is backdrop-filter with no `@supports not (backdrop-filter)` block shipped, so where it is unsupported the concept degrades back to the invisible-scrim defect the inventory named. On the desktop cart a ~200px empty lighter panel sits under the checkout card — the void the round exists to kill, reappearing on the fallback page. Typographically the panel is the most ordinary of the top three: Heebo titles, no display voice inside the column.",
+     "violations": [
+      "Prints per-unit price identical to the line total on a quantity-1 line (drawer + cart), contradicting its own NOTE.md",
+      "No `@supports not (backdrop-filter)` fallback for the scrim the whole concept rests on (designer-declared, not shipped)",
+      "Desktop cart: empty ~200px panel below the checkout card; terms reachable only via a «מה שכדאי לדעת» anchor rather than beside the button",
+      "Empty-state graphic reads uncomfortably as the Microsoft Windows logo; the four places are an uncaptioned bare list"
+     ]
+    },
+    {
+     "key": "meters",
+     "leaks": 7,
+     "store": 8,
+     "narrow": 5,
+     "honesty": 6,
+     "empty": 7,
+     "total": 6.75,
+     "best": "The single most lighting-specific image in the round, and it survives at 324px: a rail where the string light's twenty bulbs hang on a lit wire (individually countable in the still) and the two path lights stand as marks on a bare ground line, because they have no length. On the desktop cart it becomes a full-width «סרגל המידה של הסל». Nothing here could be pasted into a shoe shop. The per-line «תרומה למידה: 5 מטר · 20 נורות» vs «2 מנורות · בלי מידת אורך» is the best leak-1 invention of the five — it actually catches a buyer who picked 5 m instead of 9.5 m.",
+     "worst": "It fronts the drawer AND the cart page with the derived basket headline BRIEF §5.1 rules out in terms — «a derived light-measure may be used per line … and NEVER as a basket headline» — and the brief instructs judges to score what is left when the headline is removed. Remove it and what remains is a competent, ordinary drawer with a bordered stepper box and an icon bin. Measured: drawer checkout falls BELOW THE FOLD by 14px at 320×568; product title links measure 34px on mobile, 40px on desktop, against the 44px minimum; drawer dominance 1.18 at every viewport — the twin-button defect (baseline 0.99) is only half-fixed, the checkout is within 18% of «לעגלה המלאה».",
+     "violations": [
+      "Derived light-measure used as a basket headline on both surfaces — direct contravention of BRIEF §5.1's explicit ruling",
+      "Drawer checkout below the fold by 14px at 320×568 (measured, verify.js)",
+      "Product title tap targets 34px mobile / 40px desktop — constraint #4 (44px minimum) unmet on the primary surface",
+      "Drawer checkout dominance 1.18 at all four viewports — constraint #5 (single dominant control) only marginally satisfied",
+      "Mock header uses a UI-kit cart/magnifier/house icon set rather than the store's typographic header"
+     ]
+    },
+    {
+     "key": "threestep",
+     "leaks": 8,
+     "store": 5,
+     "narrow": 5,
+     "honesty": 9,
+     "empty": 6,
+     "total": 6.55,
+     "best": "The best-delivered answer to leaks 2 and 3: band 02 is a spine, not a footnote — all three terms with headline AND sub, in the collection §4.6 ledger shape (big glow numeral over a tiny unit), measured y386→540 with checkout at y641 at 390×844, and the cancellation row carrying «עד 5% או 100 ₪» sits last, immediately above the pay control. The NOTE is the most rigorous of the five: it names its own 154px fixed tax per drawer open and explicitly refuses to build the version that would hide a row, because the row that would hide is the cancellation row.",
+     "worst": "It is the concept a competitor could paste into a shoe shop. 01 / 02 / 03 numbered bands is a checkout-funnel cliché; nothing in the still is about light. And on shot-desktop the panel is very nearly the same black as the page behind it — the inventory's finding 1 (\"a black panel on a black page\") survives here more than anywhere else. Measured on the cart page: 23 controls under 44px against a baseline of 25 — product titles 36px, the mailto CTA 14px, the entire footer 29px — so constraint #4 is essentially unfixed on the fallback surface; `ref=\"closeButton\"` is absent from the drawer; and the cart checkout falls 81px below the fold at 320×568.",
+     "violations": [
+      "Cart page: 23 controls under 44px (baseline 25) — constraint #4 largely unaddressed on the no-JS surface",
+      "`ref=\"closeButton\"` missing from drawer.html — constraint #1, the Kalles contract element the theme's close handler queries",
+      "Cart checkout 81px below the fold at 320×568",
+      "Drawer panel does not visually separate from the night page on desktop — the round's finding 1 unremedied",
+      "No lighting-specific idea in the still; the numbered-band device is category-generic"
+     ]
+    },
+    {
+     "key": "paydesk",
+     "leaks": 6,
+     "store": 6,
+     "narrow": 8,
+     "honesty": 7,
+     "empty": 5,
+     "total": 6.4,
+     "best": "The genuine fifth answer, and technically the most robust surface in the round: checkout top edge at y189 / y187 / y205 / y197 — the highest and most reliably in-fold control of the five at every viewport including 320×568 — under44=0, trunc=false, native `<details>` so the fold needs no JS at all, `/cart/change?line=` link steppers and zero `updates[]` on the cart page. The desktop cart is clean and correctly labelled («סך הכל לשורה», «169.90 ₪ × 2»).",
+     "worst": "It defers the one thing BRIEF §1 says the drawer owes first. In the still the drawer proves nothing — «2 מנורות · 3 יחידות» and two 38px thumbnails — and the full name, variant and photo are behind a tap. Worse, the CSS `.desk:has(+ .basket[open]) .terms` HIDES the terms whenever the proof list is open, so proof and terms are never on screen together and leak 3 disappears at exactly the moment a buyer opens the list to check. On desktop the sheet stops at ~660px and the lower third of the column is bare dimmed page, which reads unfinished rather than deliberate. 6 exits on the cart page, against a baseline of 5. The empty state is the thinnest of the five — a numbered list and a text link, no glow pill, no terms, no image.",
+     "violations": [
+      "Leak 1 unanswered in the still — the drawer's default state shows no product name, variant or full price proof (BRIEF §1.1: \"the first thing the drawer owes is proof that the right lamp is in the basket\")",
+      "Terms (leaks 2 and 3) hidden by CSS whenever the basket list is open — the cancellation clause is unreachable at the moment of checking",
+      "Cart page exits=6 against a baseline of 5 — routes out of the cart increased, not reduced",
+      "Prints «89.90 ₪ × 1» on a quantity-1 line",
+      "Empty state closest to a placeholder: no pill CTA, no terms, no composed image"
+     ]
+    }
+   ],
+   "ranking": [
+    "slip",
+    "window",
+    "meters",
+    "threestep",
+    "paydesk"
+   ],
+   "grafts": [
+    {
+     "from": "window",
+     "device": "The scrim that actually works — alpha PLUS backdrop brightness reduction, the panel as a genuinely lighter lit surface with a lit frame edge and outward shadow, the subtotal on a lit sill and the checkout as the single brightest object — shipped WITH the `@supports not (backdrop-filter)` block window declared and did not build.",
+     "why": "slip's panel separates by hue; window's separates by LIGHT, which is the store's own logic and the only visible answer to the inventory's finding 1. It costs slip nothing typographically and fixes the one thing its desktop still does not fully assert."
+    },
+    {
+     "from": "threestep",
+     "device": "Band 02 as a spine: all THREE terms pinned above the checkout button with headline AND sub, in the collection §4.6 hairline-ledger shape (glow numeral over a tiny Heebo unit), never as boxes.",
+     "why": "This closes slip's only real leak gap. Today slip scroll-gates 8–17 ימי עסקים and the cancellation fee cap inside the נ.ב.; threestep proves all three fit above the button at 390 and 360 with the checkout still at y641. The fee cap is the half that costs money and must not be one scroll away."
+    },
+    {
+     "from": "meters",
+     "device": "The per-line contribution row with its micro-glyph — «תרומה למידה: 5 מטר · 20 נורות» beside «2 מנורות · בלי מידת אורך» — attached to the line, never summed into a basket headline.",
+     "why": "This is precisely what BRIEF §5.1 licenses and meters overreached past: the measure is true where the buyer can see the variant they chose. It is the round's best catch for a buyer who picked 5 m instead of 9.5 m, and it survives a wall-light-only basket by printing the honest negative."
+    },
+    {
+     "from": "meters",
+     "device": "The empty-state measure at zero — «חוט ריק — 0 מטר · 0 נורות · 0 מנורות» — and the four places captioned by what each is measured in (נמדד במטרים ובנורות / נמדד במנורות).",
+     "why": "It turns the empty cart into the same instrument as the full one instead of a different screen, and the captions make the four places (שביל · קיר · גינה · מרפסת) teach the catalogue rather than just link to it. Draw the empty rail; meters left it as words, which is where its own idea was weakest."
+    },
+    {
+     "from": "paydesk",
+     "device": "The cart page's link steppers — `/cart/change?line=N&quantity=N±1` with zero `updates[]` — plus the explicit «סך הכל לשורה» label and the «169.90 ₪ × 2» arithmetic notation.",
+     "why": "slip's `name=\"minus\"/\"plus\"` submits are inert with JS off; paydesk's links are the answer INVENTORY-DRAWER itself prescribes and let the stepper stop being a bordered box. The labelled arithmetic makes the record line auditable without the buyer multiplying — but suppress it at quantity 1 rather than printing «89.90 ₪ × 1»."
+    },
+    {
+     "from": "window",
+     "device": "exits=0 — the product title is type, not a link; the photo is a stamp, not a route back to the catalogue.",
+     "why": "window is the only concept measuring zero competing exits on both surfaces, against a baseline of 5 product-title links out of a two-item cart. A decided buyer should not find that the largest pressable thing on the page is a way back into the store."
+    }
+   ],
+   "summary": "Judged from the stills, only two of these five treat 324px as a typographic problem, and slip is the one that wins it: its drawer is the only column with three distinct voices — an authored serif sentence with the chosen variant lit in glow («…באור צהוב חם — לשביל.»), the literal product record beneath it in Heebo 300, and the line total in Frank Ruhl Libre — where every other concept sets a 14px sans title over a stepper and calls it hierarchy. That earns it dom=2.19/2.00/1.75/2.67, under44=0 on both files at all four viewports, and a desktop cart page (checkout t426, all four numbers in a hairline ledger in the SAME column as the button) that plainly belongs to the store that shipped the collection and product pages. window is the one that answers my second question: on shot-desktop the page behind is genuinely darkened and the panel is a lifted, lit surface with each line a plate and the subtotal on a haloed sill — the drawer separates because it is lit, not because it is outlined, which is the only argument this store should be making; it also measures exits=0, the only concept that stops offering a decided buyer a way back out. meters has the best single image in the round — a rail where twenty bulbs hang countable on a lit wire and two path lights stand on a bare ground line because they have no length — but it hangs that image on the basket headline BRIEF §5.1 rules out in terms, and the brief tells me to score what is left when the headline goes: a bordered stepper, an icon bin, a 34px title tap target, and a drawer checkout 14px below the fold at 320×568. threestep answers leaks 2 and 3 better than anyone (all three terms with subs above the button, cancellation last) and reasons more honestly than anyone, but its 01/02/03 bands are a funnel cliché that would paste into a shoe shop, its desktop panel is still a black panel on a black page, and its cart page carries 23 controls under 44px against a baseline of 25. paydesk is the boldest structural bet and the most robust file — checkout at y189 in every viewport, no JS needed for the fold — but it folds away the one thing the brief says the drawer owes first, and its CSS hides the terms whenever the proof list is open, so the cancellation clause vanishes at exactly the moment a buyer opens the list to check. Two visible defects deserve naming because both sit at the spot their NOTE claims to have fixed: window prints «89.90 ₪ ליחידה» directly under «89.90 ₪» on the quantity-1 line, and slip's honesty sentence is clipped mid-line by the scroll mask at the fold. Build slip, graft window's scrim and lit-sill hierarchy and threestep's three-row pinned ledger into it so no term is ever a scroll away, take meters' per-line «תרומה למידה» without its headline, and replace slip's dead minus/plus submits with paydesk's `/cart/change` links."
+  },
+  {
+   "lens": "brand-guardian",
+   "scores": [
+    {
+     "key": "slip",
+     "leaks": 9,
+     "store": 10,
+     "narrow": 7,
+     "honesty": 9,
+     "empty": 9,
+     "total": 8.85,
+     "best": "The double-writing of every line — an authored Hebrew sentence in Frank Ruhl Libre (\"שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם — לשביל.\") with the literal product.title + variant.title in Heebo 300 directly beneath it, never truncated. In the mobile drawer shot the buyer reads their own decision and can still audit it; quantity spelled in words means a wrong count is caught by reading, not by counting. Nothing else in the set answers leak 1 twice over.",
+     "worst": "On the primary surface the cancellation FEE CAP is behind a scroll. The pinned pair above checkout carries only \"0 ₪ … עד הבית 29.90 ₪.\" and the 14-day headline; \"דמי ביטול עד 5% או 100 ₪ — הנמוך מביניהם.\" and the whole 8–17 row live in the נ.ב., which in the 390 render is a heading with its rows below the fold. Leak 3's expensive half is therefore not what is read before pressing.",
+     "violations": [
+      "cart.html steppers are <button type=\"submit\" name=\"minus\"/\"plus\"> — Shopify's POST /cart honours only updates[], so without JS both controls submit and change nothing (a silent no-op). The separate \"עדכון הפתק אחרי שינוי כמות\" submit does satisfy INVENTORY-DRAWER's no-JS requirement, but the ± are dead where the other four concepts use /cart/change links.",
+      "Designer's own admission: at 320×568 the note scrolls before the second line is fully visible."
+     ]
+    },
+    {
+     "key": "window",
+     "leaks": 9,
+     "store": 8,
+     "narrow": 7,
+     "honesty": 10,
+     "empty": 9,
+     "total": 8.45,
+     "best": "The 288–343px hole is not shrunk, it is occupied by the answer: in the mobile drawer the terms ledger sits exactly where the void was, with the cancellation fee cap as the last thing above the button. And the cart page's ledger is introduced by \"ארבעה מספרים, ואין חמישי.\" — the refusal to invent a fifth term printed on the page as a design element. Strongest honesty writing in the set.",
+     "worst": "The concept's load-bearing device is the one that degrades worst. Where backdrop-filter is unsupported the scrim falls back to rgba(2,3,6,.62) — precisely the fixed-alpha dim INVENTORY-DRAWER finding 1 called arithmetically real and visually nil on a black page. The idea named in the concept sentence is then largely gone.",
+     "violations": [
+      "Line items render as filled raised plates rather than hairline-separated rows — against WINNING-SPEC §3.3/§6 \"hairlines not boxes\" and \"the only card surface is the scrim\".",
+      "cart desktop render carries a hard-edged black rectangle hanging ~200px below the summary sill (visible in shot-cart-desktop) — an unfinished shadow/plate.",
+      "Qty-1 line prints \"89.90 ₪\" and \"89.90 ₪ ליחידה\" — the same number twice in a 324px panel."
+     ]
+    },
+    {
+     "key": "paydesk",
+     "leaks": 6,
+     "store": 8,
+     "narrow": 8,
+     "honesty": 8,
+     "empty": 9,
+     "total": 7.4,
+     "best": "Leak 2 and 3 are answered at the exact moment they are worth most: in the folded drawer the total, one pill button, and then all three terms with BOTH subs sit in a single unscrolled screen, thumb already over the button. The cart page repeats it with 4/4 in the same column as checkout (shot-cart-desktop).",
+     "worst": "The default drawer answers leak 1 with nothing. shot-mobile-1 shows no product name at all — only two 38px thumbnails and \"2 מנורות · 3 יחידות\" — and the brief calls proof-of-the-right-lamp the first thing the drawer owes. Worse, opening the list to get that proof HIDES the terms (.desk:has(+ .basket[open]) .terms), so the buyer can never see the lamp and the cancellation clause on the same screen.",
+     "violations": [
+      "\"2 מנורות\" describes a basket whose second line is a גרילנדה — a small invented categorisation of a product type the store itself distinguishes (its own footer nav separates גרילנדות ודקורטיבי from תאורת קיר).",
+      "Qty-1 line prints \"89.90 ₪ ליחידה\" beneath \"89.90 ₪\"."
+     ]
+    },
+    {
+     "key": "threestep",
+     "leaks": 7.5,
+     "store": 6,
+     "narrow": 8,
+     "honesty": 7,
+     "empty": 8,
+     "total": 7.23,
+     "best": "Band 02 is the spine rather than a footnote: in shot-mobile-1 the three approved terms with their subs sit between the items and the button, and shot-cart-mobile-1 puts the identical strip above a checkout that is inside the fold at 360×640 against a y=932 baseline. It also refused the derived headline for the right stated reason (§5.1).",
+     "worst": "It is the concept a competitor could paste into a shoe shop. \"01 מה בחרת · 02 מה יעלה · 03 תשלום\" is a generic numbered-wizard device, the cart header is icons with no ElmsNest wordmark (shot-cart-mobile-1), and nothing in the composition is specific to light. BRIEF §6 names exactly this as failure.",
+     "violations": [
+      "Drawer empty state rewrites approved term 3 as \"משלוח לנקודת איסוף — חינם. 14 יום לביטול מקבלת המוצר.\" — the numeral 0 ₪ is dropped and \"לפי חוק הגנת הצרכן\" is cut. §3 says verbatim, do not rewrite.",
+      "Cart page full state carries 3/4 terms; the 1 תמונה term appears only in the empty state."
+     ]
+    },
+    {
+     "key": "meters",
+     "leaks": 6.5,
+     "store": 8,
+     "narrow": 7,
+     "honesty": 6,
+     "empty": 7,
+     "total": 6.98,
+     "best": "The per-line contribution row — \"תרומה למידה: 5 מטר · 20 נורות\" against \"2 מנורות · בלי מידת אורך\", each with a micro-glyph of the same rail — is the single best answer in the set to \"did I pick 5 m or 9.5 m\", and it prints the ABSENCE of a measure rather than hiding it. That is the form §5.1 actually licenses.",
+     "worst": "The concept is built on the form the brief rules out. \"5 מטר · 20 נורות · 2 מנורות\" opens the drawer AND the cart page as a basket headline, and NOTE.md never engages with §5.1. On the two biggest families in the catalogue (path lights, wall lights — none of the three measures) the rail is a bare wire under a lonely lamp count, and the designer says so.",
+     "violations": [
+      "BRIEF §5.1: \"a derived light-measure may be used per line … and never as a basket headline\". meters uses it as the basket headline on both surfaces and as the empty-state readout (\"חוט ריק — 0 מטר · 0 נורות · 0 מנורות\").",
+      "Cart header drops the ElmsNest wordmark for a generic house icon (shot-cart-desktop) — the one surface where the store's name should be unmistakable.",
+      "Desktop drawer still shows visible dead space between the last line and the terms ledger (shot-desktop) — the defect the round exists to remove."
+     ]
+    }
+   ],
+   "ranking": [
+    "slip",
+    "window",
+    "paydesk",
+    "threestep",
+    "meters"
+   ],
+   "grafts": [
+    {
+     "from": "threestep / window / paydesk",
+     "device": "The cancellation fee cap printed in the same block as the 14-day promise, immediately above the pay control",
+     "why": "slip's pinned pair currently carries the reassuring half of leak 3 and leaves \"דמי ביטול עד 5% או 100 ₪ — הנמוך מביניהם.\" in the נ.ב., below the fold in the 390 drawer render. Add the sub to the pinned row so the expensive half is the last thing read before pressing — this is the behaviour BRIEF §1.3 exists to end."
+    },
+    {
+     "from": "meters",
+     "device": "The per-line contribution row with its micro-glyph — «תרומה למידה: 5 מטר · 20 נורות» vs «2 מנורות · בלי מידת אורך»",
+     "why": "Per line is exactly where §5.1 permits the light measure, and naming the absence is the honest degradation the brief demands. slip's RECORD line already carries the raw variant title; this turns it into a checkable quantity without ever becoming a basket headline."
+    },
+    {
+     "from": "window",
+     "device": "«ארבעה מספרים, ואין חמישי.» as the standfirst over the cart-page terms ledger, plus the explicit refusal sentence about shipping cost",
+     "why": "slip already refuses to invent a shipping number; window states the refusal as visible copy. It converts an internal rule into brand voice and inoculates the page against a future fifth term."
+    },
+    {
+     "from": "paydesk",
+     "device": "Four real place photographs (שביל · קיר · גינה · מרפסת) as the cart-page empty state",
+     "why": "slip's empty state is a text-only place list. paydesk's photographic version (shot-cart-mobile-3) is the only empty state in the set that reads as an invitation in a lighting store rather than as a menu, and it satisfies BRIEF §7.7 without a single claim."
+    },
+    {
+     "from": "window",
+     "device": "A real scrim — alpha plus backdrop brightness reduction, wrapped in @supports with a raised-opacity fallback",
+     "why": "slip inherits INVENTORY-DRAWER finding 1: rgba(2,3,6,.5) over #020306 dims nothing. Take window's device but ship the @supports fallback window itself only proposes, so the separation does not depend on backdrop-filter."
+    },
+    {
+     "from": "meters / window / paydesk",
+     "device": "Quantity ± rendered as <a href=\"/cart/change?line=n&quantity=q±1\"> links",
+     "why": "slip's cart-page ± are type=\"submit\" name=\"minus\"/\"plus\", which POST /cart ignores — silent no-ops without JS. The link form is what INVENTORY-DRAWER explicitly recommends, works with JS off, and lets Kalles enhance in place."
+    }
+   ],
+   "summary": "Nothing in the five carries a banned device: I found no free-shipping progress bar, no threshold, no countdown or urgency copy, no badge, strikethrough or -N% (the only \"-6%/-8%/-10%\" strings in the files are radial-gradient positions), no stars, no review counts, no \"trusted by\", no WhatsApp, no fifth term, and no image from the WINNING-SPEC §3.6 never-use list — all five are zero-JS, radius-0 except pills, and carry the approved sentences verbatim once tag joins are normalised. The one substantive rule breach is meters: BRIEF §5.1 says the derived light-measure \"may be used per line … and never as a basket headline\", and meters opens both the drawer and the cart page with «5 מטר · 20 נורות · 2 מנורות» as exactly that headline, never engaging the ruling — its own note concedes a basket of three wall lights would print «3 מנורות» over a bare wire. A second, smaller breach is threestep's drawer empty state, which rewrites approved term 3 down to \"14 יום לביטול מקבלת המוצר.\" and drops \"לפי חוק הגנת הצרכן\". slip wins on the two heaviest criteria: shot-mobile-1 shows every line written twice — the serif sentence with the chosen variant lit in glow, the untruncated product.title + variant.title beneath it — so the display face carries authored prose and never a product title, and shot-cart-desktop shows all four numbers with both subs as a hairline two-column ledger sitting in the same column as the checkout button, under an ElmsNest wordmark that makes it unmistakably the same store as the homepage and PDP. Its defects are real but reparable: the cancellation fee cap and the 8–17 row sit in the נ.ב. below the fold in the drawer render, and the cart-page ± are type=submit name=\"minus\"/\"plus\", which POST /cart ignores — dead controls without JS where the other four use /cart/change links. window is the closest rival and the most honest document of the five (\"ארבעה מספרים, ואין חמישי\" over the ledger, plus an explicit refusal to print a final shipping number), but it leans its whole idea on backdrop-filter whose stated fallback is the very fixed-alpha dim the inventory called invisible on a black page, its line plates read as cards against \"hairlines not boxes\", and shot-cart-desktop carries an unfinished black rectangle under the summary sill. paydesk answers leaks 2 and 3 better than anyone — terms with both subs directly under the button, 4/4 on the cart page, the richest empty state — but its default drawer shows no product name at all, and opening the list to get that proof hides the terms, so it fails the leak the brief calls the drawer's first duty; threestep answers all three but its 01/02/03 bands and wordmark-less header are precisely the drawer a competitor could paste into a shoe shop."
+  },
+  {
+   "lens": "conversion — does the design get a decided buyer paid: checkout dominance and thumb reachability, competing controls, invitations to leave the flow, whether reassurance lands before the decision, and whether anything creates new doubt",
+   "scores": [
+    {
+     "key": "slip",
+     "leaks": 8,
+     "store": 10,
+     "narrow": 6,
+     "honesty": 8,
+     "empty": 9,
+     "total": 8.2,
+     "best": "The drawer fold at 390×844 is the only one of the five where the buyer's own decision is written back to them in a sentence they can check by reading — 'שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם' with the count spelled in words, so a wrong quantity is caught without auditing a number — and the two pinned rows (0 ₪ / 14 יום) sit between the basket and a 354×58 glow pill that carries the price on its face. Drawer dominance 2.19/2.00/1.75/2.67 is the highest in the round, and the only rival is a demoted underlined text link.",
+     "worst": "The cart page puts the checkout at t370 and every one of the four terms BELOW it, so on the fallback surface the reassurance arrives after the press; and directly under that button in the fold sits 'להמשיך להסתכל', a link to /collections/all — an invitation to leave placed at the exact moment of maximum intent. Every line is also written twice (sentence + record), which is ~90px per line of the same fact re-read by a buyer who has already decided.",
+     "violations": [
+      "Cart-page steppers are <button type=\"submit\" name=\"minus\"/\"plus\"> with no /cart/change fallback — with JS off, pressing − submits the unchanged quantity, so the control appears to work and does nothing; INVENTORY-DRAWER §'The no-JS cart page' requires a visible no-JS way to change a quantity",
+      "320×568: void=-252 — the note scrolls before the second line is fully visible (designer-acknowledged)",
+      "An exit link (/collections/all, 'להמשיך להסתכל') sits inside the phone fold immediately below the cart-page checkout button",
+      "Liquid gender/number conjugation risk: a wrong case/when branch prints broken Hebrew in the drawer's LARGEST type (19–30px FRL in glow) — new doubt of the worst kind for a store with one order"
+     ]
+    },
+    {
+     "key": "meters",
+     "leaks": 7,
+     "store": 10,
+     "narrow": 6,
+     "honesty": 10,
+     "empty": 9,
+     "total": 8.05,
+     "best": "The three approved numbers are a hairline ledger sitting directly on top of the subtotal-and-button block in the drawer fold — 0 ₪ / 8–17 ימי עסקים / 14 יום with the cancellation fee cap printed, not just the reassuring half — so the finger cannot reach the pill without crossing all three. It is also the only cart page in the round with zero product links in the full state: the mailto photo CTA is the sole exit.",
+     "worst": "The first ~400px of the drawer — 'כמה אור אספת', the lit rail, two captions and a three-line disclaimer ('למנורת השביל אין אורך — היא נספרת, לא נמדדת') — answers none of the three questions for a decided buyer, and the per-line 'תרומה למידה' row restates the variant a third time within 500px. Drawer dominance is 1.18, the weakest margin over the largest rival of the five.",
+     "violations": [
+      "Product-title anchors measure 34px in the drawer at 320/360/390 (40px at 1440) — under the 44px minimum (BRIEF §7.4) and a route out of the flow",
+      "Bordered stepper rectangle plus a trash-can glyph — 'hairlines not boxes' (§6) and the icon repeats the baseline's control language rather than replacing it",
+      "Cart document 4393px at 390 and 4635px at 320 — the tallest of the five, against a 2544px baseline",
+      "Drawer dominance 1.18 at every viewport: the 'לעגלה המלאה' exit is nearly as large a target as the pay control"
+     ]
+    },
+    {
+     "key": "threestep",
+     "leaks": 8.5,
+     "store": 7,
+     "narrow": 5,
+     "honesty": 8,
+     "empty": 8,
+     "total": 7.33,
+     "best": "The only concept that structurally guarantees terms-before-button on BOTH surfaces: band 02 is measured y386→540 with checkout at y641 in the drawer, and on the cart page the ledger is y392→520 with the button at t578/t606 — both inside the fold at 360×640 and 390×844. Nothing can be paid for before shipping, delivery window and the cancellation fee (with its 5%/100 ₪ cap) have been passed. The drawer is also the leanest: one rival control, zero product exits.",
+     "worst": "Its single rival to the pay control is captioned 'לפתוח את עגלת הקניות ולבדוק שוב' — literally 'and check again' — which manufactures doubt in the last line read before the press. On the cart page the product TITLE becomes a 36px link (an exit under the touch minimum) and a full four-column site footer adds ~12 more 29px exits, reinstating the exact baseline defect the inventory named: the largest thing a decided buyer can press is a route out of the cart.",
+     "violations": [
+      "Cart checkout falls BELOW the fold by 81px at 320×568 — the only concept of the five that does (insideFold:false, t593 b649)",
+      "Product-title anchors 38px in the drawer at 320/360/390 and 36px/23px on the cart page — under the 44px minimum, and exits",
+      "Drawer is missing ref=\"closeButton\" — a verbatim element of the Kalles contract (§7.1)",
+      "Bordered stepper rectangle — §6 'hairlines not boxes'",
+      "The /cart link copy invites re-verification at the pay moment",
+      "Cart page renders the full site footer: ~12 exit links, all under 44px"
+     ]
+    },
+    {
+     "key": "window",
+     "leaks": 6,
+     "store": 9,
+     "narrow": 6,
+     "honesty": 9,
+     "empty": 8,
+     "total": 7.25,
+     "best": "The desktop drawer shot is the round's proof that the inventory's finding 1 is fixable: the collection page behind genuinely recedes — dimmed and blurred — so the panel reads as a raised lit surface rather than a black rectangle on a black page, and the pay pill is unambiguously the brightest object on screen. The cart checkout sits at t324 at 390, 360 AND 320 against a y932 baseline.",
+     "worst": "The qty-1 line renders '89.90 ₪' with '89.90 ₪ ליחידה' stacked directly beneath it — the same number twice, visible in both the mobile and desktop drawer shots — which contradicts the concept's own NOTE and invites a buyer to wonder whether they are being charged twice. On the cart page the four terms are hidden behind a 'מה שכדאי לדעת' jump link and 'להמשך בחירה' sits ABOVE the checkout block inside the fold, so the fallback surface answers leaks 2 and 3 only after the decision and offers an exit before it.",
+     "violations": [
+      "Qty-1 line prints the unit price and the line total as identical numbers ('89.90 ₪' / '89.90 ₪ ליחידה') — the redundancy the round exists to remove, and a source of new doubt",
+      "Cart page defers all four approved numbers behind a 'מה שכדאי לדעת' anchor link — reassurance after the decision on the no-JS fallback surface",
+      "'להמשך בחירה' (/collections/all) sits above the checkout block in the cart fold",
+      "The drawer's largest rival control is a product-title link to the PDP (dominance 1.77/1.62/1.42/1.79 measured against it) — the baseline's exit-beats-checkout pattern, only narrower",
+      "Separation depends on backdrop-filter; the documented fallback is rgba(2,3,6,.62), the exact fixed-alpha dim the inventory called invisible on a black page"
+     ]
+    },
+    {
+     "key": "paydesk",
+     "leaks": 5,
+     "store": 6,
+     "narrow": 8,
+     "honesty": 7,
+     "empty": 6,
+     "total": 6.15,
+     "best": "The best raw geometry in the round: the cart-page checkout top edge is y308 at 390, 360 and 320 alike, with dominance 1.82/1.81/1.38 — the checkout is nearly twice the area of anything else on the page, and the drawer opens with the total and the pill as its first two objects. The fold mechanism is a native <details>, so it needs no JavaScript at all.",
+     "worst": "It answers leak 1 only if the buyer taps: the drawer opens showing '2 מנורות · 3 יחידות' and two 38px thumbnails, so the proof that the right variant is in the basket is folded away — and when the buyer opens it to check, the terms are removed by the :has() rule, so proof and reassurance are never on screen together. The three terms also sit BELOW the pay control in the drawer, the only concept where reassurance is read after the decision on the primary surface, and the cart page carries 'להוסיף עוד מנורה ←' — a cross-sell inside a cart.",
+     "violations": [
+      "Drawer terms sit below the pay control — reassurance arrives after the decision on the primary surface",
+      "Opening the basket removes the terms (.desk:has(+ .basket[open]) .terms), so the verification state is the one state with no shipping or cancellation information",
+      "Leak 1 is unanswered in the default state; the variant proof costs a deliberate tap",
+      "'להוסיף עוד מנורה ←' on the cart page is a cross-sell — BRIEF §1: 'Neither is a place to start a new argument'",
+      "exitLinks=6 on the cart page (the most of the five) and four product links inside the drawer, on both the folded and unfolded stages",
+      "Empty state's only call to action is a small gold text link ('כל 27 המוצרים ←') — no dominant control at all",
+      "Desktop panel occupies only the top ~62% of the viewport, leaving ~340px of empty ground below it — the baseline's 343px void re-expressed as a short sheet"
+     ]
+    }
+   ],
+   "ranking": [
+    "slip",
+    "meters",
+    "threestep",
+    "window",
+    "paydesk"
+   ],
+   "grafts": [
+    {
+     "from": "threestep",
+     "device": "Band 02 — the four-number hairline ledger placed ABOVE the checkout button in the same column, on the cart page as well as the drawer (measured y392→520 with the button at t578 at 360×640)",
+     "why": "slip's cart page puts the checkout at t370 and all four terms below it, so on the no-JS fallback surface the reassurance arrives after the press. threestep is the only concept that guarantees terms-before-button on both surfaces; lift that ordering onto slip's cart page without moving the button out of the fold."
+    },
+    {
+     "from": "meters",
+     "device": "Quantity steppers rendered as /cart/change?line=N&quantity=Q±1 links plus the explicit 'עדכון כמויות' submit and its one-line explanation that it works in a script-blocking browser",
+     "why": "slip's cart steppers are type=\"submit\" name=\"minus\"/\"plus\" with no link fallback: with JS off, pressing − submits the unchanged quantity — a control that looks live and does nothing. The link form behaves identically with and without JS and is what INVENTORY-DRAWER prescribes."
+    },
+    {
+     "from": "meters",
+     "device": "Neutral wording on the drawer's secondary link — 'לעגלה המלאה'",
+     "why": "The single rival to the pay control must not tell a decided buyer to re-verify. threestep's 'לפתוח את עגלת הקניות ולבדוק שוב' is the last line read before the press and manufactures doubt; keep slip's link demoted and neutrally captioned, never phrased as an invitation to check again."
+    },
+    {
+     "from": "window",
+     "device": "The real scrim: alpha plus backdrop brightness reduction and blur, with an @supports not (backdrop-filter) block that raises the opacity",
+     "why": "window's desktop shot is the only one where the page behind genuinely recedes, which is the direct fix for INVENTORY-DRAWER finding 1 ('a correct scrim does no work here'). A drawer that visibly separates from the page removes the ambiguity about which surface the buyer is acting on."
+    },
+    {
+     "from": "meters",
+     "device": "The per-line light measure printed ONLY where the variant title already carries it, plus the cart-page refusal sentence naming what is not measured",
+     "why": "It is the one thing only a lighting store can say, it costs one line, and it is true per line. Take the positive half only — never print 'בלי מידת אורך' on a path light, which spends a row to say nothing — and keep meters' refusal copy, which is the round's strongest honesty asset."
+    },
+    {
+     "from": "paydesk",
+     "device": "The discipline of putting nothing above the checkout but the sum, and no exit link anywhere in the cart-page fold (checkout t308, dominance 1.82 at 390)",
+     "why": "slip's cart fold currently carries 'להמשיך להסתכל' directly beneath the pay button, and window puts 'להמשך בחירה' above it. Demote every /collections link below the item list so the fold contains the sum, the terms and the button — nothing that routes a decided buyer back out."
+    }
+   ],
+   "summary": "Judged on whether a decided buyer gets paid, four of the five already win the round outright against the baseline — every one puts a 52–58px glow pill inside the phone fold on both surfaces against a y932 cart-page baseline, and every one kills the twin-button defect — so the ranking turns on attention cost and on invitations to leave. slip wins because its drawer fold at 390×844 is the only screen that lets a buyer verify their choice by reading rather than auditing ('שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם' with the count spelled in words), it pins 0 ₪ and 14 יום between the basket and the button so checkout cannot be reached without passing them, and it posts the round's highest dominance (2.19/2.00/1.75/2.67) with the only rival demoted to an underlined text link. meters is a close second and the most honest page in the round, but it spends the first ~400px of the drawer on a rail, two captions and a three-line disclaimer that answer none of the three questions, its title anchors are 34px exits, and its cart document runs to 4393px. threestep is the leanest composition and the only concept whose terms ledger is structurally guaranteed to be read before the button on both surfaces (y386→540 above a y641 checkout in the drawer; y392→520 above t578 on the cart) — but its cart checkout falls 81px below the fold at 320×568, its product titles become 36–38px exits, a full site footer adds a dozen more, and its one rival control is captioned 'ולבדוק שוב', which tells the buyer to doubt in the last line before paying. window has the best scrim in the round — its desktop shot is the only one where the page behind genuinely recedes — but the render shows '89.90 ₪' stacked over '89.90 ₪ ליחידה' on the qty-1 line, the same number twice, and its cart page hides all four terms behind a 'מה שכדאי לדעת' link while placing 'להמשך בחירה' above the button, so reassurance lands after the decision and an exit lands before it. paydesk has the strongest geometry of all (checkout at y308 at every phone width, dominance 1.82) and the weakest job: it folds away the proof that the right variant is in the basket, and the CSS that hides the terms when that fold is opened means proof and reassurance are never on screen together — then its cart page offers 'להוסיף עוד מנורה', a cross-sell, in the one place the brief says no new argument may start. Build slip, graft threestep's terms-above-button ordering onto its cart page, replace its JS-only steppers with meters' /cart/change links, and delete 'להמשיך להסתכל' from the fold."
+  },
+  {
+   "lens": "Shopify engineer building the winner in sections/cart-drawer.liquid + sections/main-cart.liquid: what survives the Kalles contract, what Liquid can actually compute, what works with JS off at 324px, and what the core already paints.",
+   "scores": [
+    {
+     "key": "slip",
+     "leaks": 9,
+     "store": 9,
+     "narrow": 6,
+     "honesty": 9,
+     "empty": 9,
+     "total": 8.4,
+     "best": "The two-voice line is the only answer in the round that makes the variant the SUBJECT rather than a footnote: shot-mobile-1 shows «שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם — לשביל.» at 19px serif with צהוב חם in glow, and the literal product.title + variant.title in Heebo 300 directly under it, unclipped and wrapping. Both leaks-1 defects (ellipsis, grey 13px variant) die at once, and the cart page puts subtotal+button at t370 above everything (shot-cart-mobile-1) with the ledger in the same column as the button on desktop.",
+     "worst": "The sentence must be written by Liquid, and Liquid cannot inflect Hebrew. «מנורות … סולאריות» is a per-product plural adjective, not a product.type lookup, and the garland line in the render («וגרילנדה אחת של כדורי קריסטל — 5 מ׳ ובה 20 נורות בצהוב») is hand-parsed from a 3-part slash variant title; the 30-variant net light («1.5×1.5 מ׳ / 96 LED / צהוב») has no prose form. Separately, its cart page is the only one that ignored the inventory's own no-JS prescription: ± are type=submit name=\"minus\"/\"plus\", inert without JS.",
+     "violations": [
+      "cart.html ± are submit buttons, not /cart/change links — with JS off they re-post the unchanged updates[] and do nothing; only typing a number plus the עדכון submit works (INVENTORY 'the no-JS cart page' explicitly prescribes the link form)",
+      "no item.error_message treatment; an error contradicting an authored sentence is the worst failure mode of the five",
+      "the serif sentence asserts what is in the basket — a wrong Liquid branch misdescribes the cart, not merely labels it awkwardly",
+      "no 30-variant or 8-line state shown"
+     ]
+    },
+    {
+     "key": "window",
+     "leaks": 8,
+     "store": 9,
+     "narrow": 8,
+     "honesty": 9,
+     "empty": 8,
+     "total": 8.35,
+     "best": "The only concept whose desktop render proves its own claim: in shot-desktop-1 the catalogue behind is genuinely dimmed and blurred while the panel reads as a lighter, lit surface — against slip's and meters' desktop shots where the page behind is still fully legible. The terms ledger occupies the 288–343px hole exactly (shot-mobile-2), is the flex-grower with space-evenly so slack becomes air between hairlines rather than a void, and the empty state's lit window mullion is the best single image in the round.",
+     "worst": "At quantity 1 the render prints «89.90 ₪» with «89.90 ₪ ליחידה» beneath it — the same number twice, the noise slip and threestep deliberately suppress. And on the cart page the qty-1 minus is href=/cart/change?line=2&quantity=0 sitting beside a הסרה מהעגלה link to the same URL: the baseline's two-identical-deletes defect returns as two links.",
+     "violations": [
+      "cart.html qty-1 minus links to quantity=0 → two removes on the qty-1 line (baseline finding #2 reintroduced)",
+      "duplicate per-unit row at quantity 1",
+      "updates[] input present but no name=\"update\" submit — a typed quantity cannot be applied without checking out",
+      "leans on backdrop-filter; @supports fallback is described in NOTE.md but not in the file",
+      "no item.error_message treatment"
+     ]
+    },
+    {
+     "key": "threestep",
+     "leaks": 8,
+     "store": 6,
+     "narrow": 9,
+     "honesty": 9,
+     "empty": 8,
+     "total": 7.8,
+     "best": "The safest build in the round and the cleanest no-JS stepper: ± are /cart/change links and at quantity 1 the minus is an inert <span class=\"dis\">−</span>, so removes=[1,1] is true with scripting off and nothing can be deleted by mis-tapping a minus. Band 02 is the collection §4.6 ledger verbatim with both subs, measured y386→540 against a checkout at y641 — read before the finger arrives, no scroll. It also refuses the derived headline in writing, citing DERIVED-DATA.",
+     "worst": "01/02/03 numbered bands are a checkout-wizard idiom a competitor could paste into a shoe shop; the store shows through only in borrowed parts (the gold variant line, the terms ledger). And the cart page in shot-cart-mobile-1 is the drawer again at page width — the 'let me look at this properly' surface adds nothing the drawer did not already say.",
+     "violations": [
+      "drawer <dialog> is missing ref=\"dialog\", scroll-lock and ref=\"closeButton\" — three contract attributes theme JS reads",
+      "no name=\"update\" submit; a typed quantity has no way to be applied",
+      "no item.error_message treatment",
+      "cart page is a re-render of the drawer rather than a fuller document"
+     ]
+    },
+    {
+     "key": "meters",
+     "leaks": 7,
+     "store": 8,
+     "narrow": 8,
+     "honesty": 6,
+     "empty": 7,
+     "total": 7.35,
+     "best": "The most complete no-JS cart page of the five — /cart/change links for ±, a live input[name=\"updates[]\"] between them, AND a visible <button name=\"update\">עדכון כמויות</button>, which is all three things the inventory says the rebuild must provide. The per-line «תרומה למידה: 5 מטר · 20 נורות» vs «2 מנורות · בלי מידת אורך» is the honest, per-line form of the light measure that DERIVED-DATA actually permits, and the rail glyph is the most literally-lighting drawing in the round.",
+     "worst": "Its load-bearing idea is the thing the brief forbids. shot-mobile-1 opens on «5 מטר · 20 נורות · 2 מנורות» as the basket headline; BRIEF §5.1 rules a light-measure may be used per line 'and never as a basket headline' and instructs judges to score what is left when the headline is removed — what is left is a competent list with a contribution line and a bordered Kalles stepper. The empty state then prints «חוט ריק — 0 מטר · 0 נורות · 0 מנורות», a measure of nothing.",
+     "violations": [
+      "basket headline derived from variant.title in both drawer and cart page — direct breach of the binding DERIVED-DATA §5.1 ruling repeated in BRIEF §5.1",
+      "empty state prints a zero light-measure",
+      "cart.html qty-1 minus carries aria-disabled=\"true\" but a live href to quantity=0 — aria-disabled does not block navigation, so a no-JS click deletes the line",
+      "no item.error_message treatment"
+     ]
+    },
+    {
+     "key": "paydesk",
+     "leaks": 5,
+     "store": 6,
+     "narrow": 7,
+     "honesty": 8,
+     "empty": 7,
+     "total": 6.15,
+     "best": "The only O(1) drawer: shot-mobile-1's folded state is identical whether the basket holds 1 line or 8, with the total, one pill and all three terms above the fold at every size, and the <details> fold is native so it opens with JS off. Checkout top edge y=308 at both 360×640 and 320×568 is the highest of the five.",
+     "worst": "It answers leak 1 by hiding it. The state a buyer lands in after add-to-cart shows no product name at all — only «2 מנורות · 3 יחידות» and two 38px thumbnails — when the brief's first demand is proof that the right lamp is in the basket. Worse, shot-mobile-2 shows that opening the proof removes the terms: .desk:has(+ .basket[open]) .terms drops the ledger to 0/4 in exactly the state where the buyer is checking carefully. The two leaks are never plugged at the same moment.",
+     "violations": [
+      "default drawer state prints no product title — fights BRIEF §1 leak 1, which the drawer exists to plug",
+      "terms hidden whenever the basket is open (terms=3/4 folded, 0/4 unfolded)",
+      "cart.html has no input[name=\"updates[]\"] anywhere — a contract element dropped and no typed-quantity path",
+      "qty-1 minus links to quantity=0 beside a הסרה link to the same URL → two removes",
+      "no item.error_message treatment"
+     ]
+    }
+   ],
+   "ranking": [
+    "slip",
+    "window",
+    "threestep",
+    "meters",
+    "paydesk"
+   ],
+   "grafts": [
+    {
+     "from": "slip",
+     "device": "The two-voice line: an authored serif sentence with the chosen variant lit in glow, and directly beneath it the literal product.title + variant.title in Heebo 300 with overflow-wrap:anywhere, never truncated.",
+     "why": "It is the only construction that answers leak 1 twice, and the second voice is what makes the first safe to build: if the Liquid sentence falls to its generic branch, the record line still carries the exact title and variant. Build the sentence as a template — gendered numeral word from a 1–10 table (else «{{ n }} יחידות»), a plural noun per product.type (≈8 authored strings), the variant title, and the place kicker the card already computes — and never let it be the only place a title appears."
+    },
+    {
+     "from": "threestep",
+     "device": "At quantity 1 the minus is an inert <span>, not a link and not a button; remove is a single word (הסרה) elsewhere on the row.",
+     "why": "window, paydesk and meters all point the qty-1 minus at /cart/change?quantity=0, which reinstates the baseline's two-identical-deletes defect as two links and lets a no-JS mis-tap delete a line. An inert span is the only version where removes=[1,1] is true with scripting off. meters' disabled attribute on the drawer's <button name=\"minus\"> is the same fix for the JS surface."
+    },
+    {
+     "from": "meters",
+     "device": "The complete no-JS cart stepper: <a href=\"/cart/change?line=n&quantity=q−1\">−</a> · <input name=\"updates[]\" data-index data-max> · <a href=\"…q+1\">+</a>, plus a visible <button type=\"submit\" name=\"update\">.",
+     "why": "It is the only one of the five that satisfies all three of INVENTORY's no-JS requirements at once — change a quantity, stay on the page, and keep updates[] for Kalles' JS to enhance in place. slip's submit-button steppers are inert without JS; threestep and window have the links but no update submit; paydesk dropped updates[] entirely. This is the shape main-cart.liquid ships."
+    },
+    {
+     "from": "window",
+     "device": "The surface: a scrim that is alpha plus a backdrop brightness reduction with an @supports not (backdrop-filter) block that raises opacity; a panel genuinely lighter than the page; and the terms ledger as the flex-grower with space-evenly.",
+     "why": "The desktop renders settle it — window's page behind is visibly dimmed while slip's and meters' are fully legible, which is finding #1 of the inventory actually fixed rather than restated. Making the ledger the grower is also the structural cure for the 288–343px void: on a 1-line basket the slack becomes air between hairlines, and on an 8-line basket the ledger compresses before the button does."
+    },
+    {
+     "from": "slip",
+     "device": "Suppress the per-unit row when quantity == 1: print the line total alone, and «169.90 ₪ ליחידה» only where 1 × price and the total differ.",
+     "why": "window and paydesk both render «89.90 ₪» above «89.90 ₪ ליחידה» on the garland line — the same number printed twice on the narrowest surface in the store. One {%- if item.quantity > 1 -%} removes it, and the rule generalises: never print an arithmetic step that cannot differ from its result."
+    },
+    {
+     "from": "window",
+     "device": "Empty state: the lit window-mullion glyph with «האור כבר דולק. חסר רק המקום.», over slip's four-place hairline ledger (שביל · קיר · גינה · מרפסת, each with the place it lights, rows ≥56px, flexed to fill) and one pill «לקטלוג — 27 מנורות».",
+     "why": "Together they are the two halves the brief asks for — an invitation, not an error screen, in the store's own vocabulary — and they replace the stock Kalles grey cart-with-an-✕ with a drawing only a lighting shop can use. meters' and paydesk's numbered place lists and meters' «0 מטר · 0 נורות» are the versions to leave behind."
+    }
+   ],
+   "summary": "Judged from the renders, slip (8.40) and window (8.35) are a photo finish and the build should be slip's composition on window's surface. slip's shot-mobile-1 is the only image in the round where the thing the buyer chose two clicks ago is the largest coloured object on the line — «באור צהוב חם» in glow inside a 19px serif sentence, with the full product.title and variant.title unclipped in Heebo directly beneath — which kills the ellipsis and the grey-13px-variant defects simultaneously, and its cart page puts subtotal and button at t370 with the four-number ledger in the same column as the button instead of three boxes below it. window's desktop shot proves the one claim nobody else can: the catalogue behind is genuinely dimmed and blurred, while slip's and meters' desktop renders leave the page behind fully legible — inventory finding #1 fixed rather than described. On the derived-number question the answer is settled and costs no metafield: DERIVED-DATA gives working Liquid that pulls metres and bulbs out of variant.title with split on 'מ׳'/'נורות' while excluding the '×' area case, but only per line — meters puts «5 מטר · 20 נורות · 2 מנורות» at the head of the drawer and the head of the cart page, which is the one thing §5.1 forbids, and scored on what remains it drops to fourth. The no-JS ranking inverts the aesthetic one: meters is the only cart page carrying links plus updates[] plus a visible עדכון submit, threestep is the only one whose qty-1 minus cannot delete a line (window, paydesk and meters all point it at quantity=0 beside a הסרה to the same URL, reinstating the baseline's twin-bin defect), and slip is the weakest — its ± are type=submit name=\"minus\", inert with scripting off, so it must adopt meters' link stepper verbatim. paydesk (6.15) is last on the criterion that carries 35 points: shot-mobile-1 shows a drawer that names no product at all by default, and shot-mobile-2 shows the terms ledger disappearing the moment the basket is opened, so leak 1 and leaks 2–3 are never answered in the same state — though its <details> fold is the right emergency device for an 8-line basket, where slip's two-voice lines are the most verbose in the set and window's ledger is the first thing squeezed. Stress cases the mockups all dodge: a 30-variant title («1.5×1.5 מ׳ / 96 LED / צהוב») has no prose form, so slip's sentence must degrade to a template whose failure mode is a flat label rather than broken Hebrew; a 1-item basket makes threestep's fixed 154px band 02 and meters' rail apparatus disproportionate while window's space-evenly ledger absorbs it; and not one of the five renders item.error_message, even though the inventory measured it at 11.86:1 and handed the treatment to the rebuild — the winner owes it a hairline row inside the line, not a red band. Finally, much less of this is new CSS than it looks: elmsnest-v2-core.liquid already ships the sky/gold/glow/hair/scrim tokens, .env2-btn (the glow pill, 44px on mobile), .env2-btn--ghost, .env2-link with its ::before touch inflation, .env2-hair, .env2-eyebrow, .env2-h, .env2-serif and .env2-price, and elmsnest-v2-coll-terms.liquid already ships the numeral+unit+headline+sub hairline ledger every concept prints — so the genuinely new work in the two sections is the panel surface, the line-item grid, the /cart/change stepper, and slip's sentence."
+  }
+ ],
+ "designs": [
+  {
+   "key": "meters",
+   "idea": "The basket is measured in light rather than in SKUs: the drawer opens with one derived, checkable line — «5 מטר · 20 נורות · 2 מנורות» — drawn as a rail where bulbs hang on a lit wire because they have a length and lamps stand on a bare ground line because they do not, and every item prints the share it contributed.",
+   "weakest": "The measure is only as interesting as the basket: this one has a single measurable line, so the rail carries one lit span and two standing marks — a basket of three wall lights would print «3 מנורות» over a bare wire, which is honest but visually thin, and on a one-item basket the top block is a lot of apparatus for one number. I refused to pad it (no invented scale, no \"typical garden\" reference), so on the smallest baskets the drawer's opening block has to earn its space with type alone.",
+   "heights": "drawer.html — desktop: height=1801px horizontal-overflow=false js-errors=0 · mobile: height=1689px horizontal-overflow=false js-errors=0. cart.html — desktop: height=2666px horizontal-overflow=false js-errors=0 · mobile: height=4393px horizontal-overflow=false js-errors=0. (Each file is two full screens plus an <hr>; the drawer stages are 100vh each.) Measured separately: cart-page checkout button top edge y=410 at 360×640, y=413 at 390×844, y=430 at 320×568 (today: y=932) — inside the fold at all three; drawer scroll body 610px into 610px at 390×844, i.e. zero dead space; every control ≥44px, checkout 52px in the drawer and 56px on the cart page."
+  },
+  {
+   "key": "slip",
+   "idea": "The cart is not a table of rows but a short note the shop writes back to you — a Hebrew sentence in Frank Ruhl Libre saying what you just chose (\"שתי מנורות שביל סולאריות מנירוסטה, באור צהוב חם — לשביל.\") with the numbers under it as a quiet ledger, so the buyer recognises their own decision instead of auditing a spreadsheet; the cart page is the same note, longer, on headed paper.",
+   "weakest": "The sentence must be written by Liquid, and Liquid does not conjugate Hebrew: \"שתי מנורות שביל\" needs a gendered numeral and a plural agreeing with product.type, \"גרילנדה אחת\" the feminine — roughly 40 lines of case/when over ~8 product types plus a numeral table for 1–10 with a \"{{n}} יחידות\" fallback, and a wrong branch produces broken Hebrew rather than a merely awkward label, which a generic table can never do. Mitigated in the markup (the record line always carries the literal title and variant, and the sign-off falls back to cart.item_count, which needs no grammar) but it is the real cost of the idea. Secondary: at 320×568 the note scrolls before the second line is fully visible — below the brief's 324px floor, but real on an old phone.",
+   "heights": "drawer.html — desktop: height=1801px horizontal-overflow=false js-errors=0 · mobile: height=1689px horizontal-overflow=false js-errors=0\ncart.html — desktop: height=2558px horizontal-overflow=false js-errors=0 · mobile: height=3460px horizontal-overflow=false js-errors=0\n(each file carries both states, separated by the <hr>)\n\nAlso run through brief/side-pages/cart/verify.js — drawer at 390×844 / 360×640 / 320×568 / 1440×900: dom=2.19/2.00/1.75/2.67 (baseline 0.99), removes=[1,1] (baseline [1,2]), under44=0 (baseline 10), tracked=0 (baseline 2×3px), terms=3/4 (baseline 0/4), void=-59/-263/-339/32 (baseline 288/84/12/343). Cart page, full state measured alone: checkout t370 b428, inside the fold at ALL FOUR viewports including 360×640 (baseline t932, 340px below the fold there), dom=2.19/2.01/1.76/2.35 with the mailto ghost as the rival rather than a product link, exits=2 (baseline 5), under44=0 (baseline 25), terms=4/4, doc 2030px at 390 (baseline 2544) and 1339px at 1440 (baseline 1791). Whole-file cart dominance reads 0.53–0.91 only because the harness measures the empty state below the <hr> at the same time and picks an empty-state place link as the rival."
+  },
+  {
+   "key": "threestep",
+   "idea": "The drawer is a countdown, not a container: three numbered bands in one fixed column — 01 מה בחרת · 02 מה יעלה לקבל את זה · 03 תשלום — sized so a two- or three-item basket never scrolls, so the two questions the buyer has not asked out loud are answered above the button and the button is then the only thing left to do.",
+   "weakest": "Band 02 is a fixed ~154px tax on every drawer open regardless of basket size, and on a 640px-tall viewport it is what pushes the item list into scrolling (~99px). A version that hid a row until the items were scrolled would fit more comfortably — but the row that would get hidden is the cancellation row, and hiding it is exactly the behaviour this brief exists to end, so I did not build it.",
+   "heights": "shot.js — drawer.html: desktop height=1801px horizontal-overflow=false js-errors=0 · mobile height=1689px horizontal-overflow=false js-errors=0. cart.html: desktop height=2049px horizontal-overflow=false js-errors=0 · mobile height=2387px horizontal-overflow=false js-errors=0. Drawer internals: 390×844 panel 351, items 89→357, terms 386→540, checkout 641→700 (319×59), link 700→744, foot 93 · 360×640 panel 324, terms 303→445, checkout 536→590 (292×54), foot 0 · 1440×900 panel 420, terms 404→569, checkout 675→738 (388×63), foot 110. Cart checkout button: 390×844 t606 b662 · 360×640 t578 b634 (inside the fold) · 1440×900 t439 b503."
+  },
+  {
+   "key": "window",
+   "idea": "The cart is where the light comes on: the page behind genuinely darkens (alpha scrim plus backdrop brightness reduction, because alpha alone does nothing on a black page) and the drawer opens as a raised, lit surface whose glow rises out of the checkout button — each line a small lit plate with its own falloff, the subtotal haloed, the pay control the single brightest object on screen — so at 324px material and light carry the hierarchy that layout cannot.",
+   "weakest": "The concept leans on backdrop-filter. Where it is unsupported the scrim degrades to rgba(2,3,6,.62) — the fixed-alpha dim the inventory correctly called invisible on a black page. The panel still separates because it is genuinely lighter than the page and keeps its lit frame edge and outward shadow, but roughly a third of the separation is gone; the honest mitigation is an @supports not (backdrop-filter) block that raises the opacity and accepts a heavier-curtain reading. Second: at 320px the panel is 288px and the name runs to four lines — nothing breaks (overflow=false, under44=0) but a five-line basket scrolls the terms ledger out of view (the sill and its button stay pinned).",
+   "heights": "drawer: desktop height=1802px horizontal-overflow=false js-errors=0 · mobile height=1690px horizontal-overflow=false js-errors=0. cart: desktop height=2571px horizontal-overflow=false js-errors=0 · mobile height=3601px horizontal-overflow=false js-errors=0. (Each file is two full viewport stages plus the <hr>.) Separately audited at 360×640 and 320×568: drawer panel 324px / 288px, checkout 56px, under44=0, trunc=[false,false], overflow=false; cart checkout top edge y=324 at both — inside the fold at 360×640 against a baseline of y=932 — height 58px, under44=0, overflow=false. Cart document 1800px per state for two products, against the current 2544px."
+  },
+  {
+   "key": "paydesk",
+   "idea": "The drawer opens at the checkout rather than at the list — the total and one pill button are the top of the panel, the basket is folded into a single honest line (\"2 מנורות · 3 יחידות\" with the two product photographs) that opens in one tap for proof, and the cart page is the exact inverse with everything unfolded by default.",
+   "weakest": "On a phone the unfolded list still scrolls once the basket passes three lines, and the terms are hidden while it is open — so a buyer who wants to read the cancellation clause and stare at line four must close the list to do it. Both are one tap apart and the folded state is what almost every buyer sees, but on a five-line basket the drawer becomes a scroller like any other.",
+   "heights": "drawer.html: desktop height=2783px horizontal-overflow=false js-errors=0 · mobile height=2615px horizontal-overflow=false js-errors=0. cart.html: desktop height=2246px horizontal-overflow=false js-errors=0 · mobile height=3254px horizontal-overflow=false js-errors=0. (Each file holds several full states in one document — drawer.html has three stages, cart.html two.) Separately measured: checkout top edge y=308px at both 360×640 and 320×568 (inside the fold by 274 and 202, vs today's y=932); drawer panel 324px at 360 and 288px at 320; zero controls under 44px at 360 and 320."
+  }
+ ]
+}
