@@ -93,7 +93,7 @@ async function audit(page, name, vw, vh) {
     if (FEAT) res.cardsNotFeatured = res.cardImgs.filter(c => c.handle && FEAT[c.handle] && !decodeURIComponent(c.file).startsWith(FEAT[c.handle].replace(/\.[a-z]+$/i, ''))).map(c => c.handle + ':' + c.file);
     const atc = q('form[action*="/cart/add"] [name="add"], form[action*="/cart/add"] button[type="submit"]').filter(vis)[0];
     if (atc) { const r = atc.getBoundingClientRect(); res.atcTop = Math.round(r.top + window.scrollY); res.atcInFold = (r.top + window.scrollY + r.height) <= vh; }
-    res.smallTaps = q('main a, main button, main input, main select').filter(vis).filter(el => { const r = el.getBoundingClientRect(); return r.height < 40 && r.width < 40; }).length;
+    res.smallTaps = q('main a, main button, main input, main select').filter(vis).filter(el => !el.classList.contains('sr-only') && !(el.type === 'radio' && document.querySelector(`label[for="${el.id}"]`))).filter(el => { const r = el.getBoundingClientRect(); return r.height < 40 && r.width < 40; }).length;
     res.pillsUnder44 = q('.hdt-variant-option button, .hdt-variant-option label, [class*="variant"] label, [class*="pill"]').filter(vis).filter(el => el.getBoundingClientRect().height < 44).length;
     res.h1 = q('h1').map(h => h.textContent.trim()).filter(Boolean);
     res.placeOrder = q('[data-ens-place]').filter(vis).map(e => e.getAttribute('data-ens-place'));
@@ -101,8 +101,9 @@ async function audit(page, name, vw, vh) {
     res.footerOrder = q('.shopify-section-group-footer-group a[href*="/collections/"]').map(a => decodeURIComponent(a.getAttribute('href')).split('/collections/')[1].split(/[?#/]/)[0]).filter((h, i, arr) => h && h !== 'all' && arr.indexOf(h) === i);
     // every en-dash range in <main> text must sit inside a <bdi>
     const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT); const bare = []; let n;
-    while ((n = walker.nextNode())) { if (/\d\s?–\s?\d/.test(n.nodeValue) && !n.parentElement.closest('bdi') && !n.parentElement.closest('script,style,noscript')) bare.push(n.nodeValue.trim().slice(0, 40)); }
-    res.rangesOutsideBdi = bare.slice(0, 8); res.rangesOutsideBdiCount = bare.length;
+    const bareDesc = [];
+    while ((n = walker.nextNode())) { if (/\d\s?–\s?\d/.test(n.nodeValue) && !n.parentElement.closest('bdi') && !n.parentElement.closest('script,style,noscript')) { (n.parentElement.closest('details') ? bareDesc : bare).push(n.nodeValue.trim().slice(0, 40)); } }
+    res.rangesOutsideBdi = bare.slice(0, 8); res.rangesOutsideBdiCount = bare.length; res.rangesInRawDescription = bareDesc.length;
     res.cardTransition = cards[0] ? getComputedStyle(cards[0]).transitionDuration : null;
     return res;
   }, { name, vh, FEAT });
@@ -144,18 +145,18 @@ async function audit(page, name, vw, vh) {
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, locale: 'he-IL', reducedMotion: 'reduce' });
     await ctx.route(/^https?:\/\//, r => /127\.0\.0\.1:/.test(r.request().url()) ? r.continue() : r.abort());
     const page = await ctx.newPage(); await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'load', timeout: 60000 }); await page.waitForTimeout(1500);
-    report['reduced-motion'] = await page.evaluate(() => { const c = document.querySelector('.hdt-card-product'); if (!c) return { card: false }; const all = [c, ...c.querySelectorAll('*')].map(e => getComputedStyle(e).transitionDuration).filter(d => d && d !== '0s'); return { card: true, elementsWithTransition: all.length }; });
+    report['reduced-motion'] = await page.evaluate(() => { const c = document.querySelector('.hdt-card-product'); if (!c) return { card: false }; const all = [c, ...c.querySelectorAll('*')].filter(e => { const cs = getComputedStyle(e); return cs.display !== 'none' && cs.visibility !== 'hidden'; }).map(e => getComputedStyle(e).transitionDuration).filter(d => d && d !== '0s'); return { card: true, elementsWithTransition: all.length }; });
     console.log('reduced-motion', JSON.stringify(report['reduced-motion'])); await ctx.close(); srv.close(); }
   // hybrid: variant pill → price + sticky id on the MIRROR; then the POST and the drawer section through curl
   try { const { srv, port } = await serve(dirs['pdp-rope']);
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, locale: 'he-IL' });
     await ctx.route(/^https?:\/\//, r => /127\.0\.0\.1:/.test(r.request().url()) ? r.continue() : r.abort());
     const page = await ctx.newPage(); await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'load', timeout: 60000 }); await page.waitForTimeout(2500);
-    const before = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: ((document.querySelector('.hdt-price .hdt-money, .hdt-product-price .hdt-money, [class*="price"] .hdt-money') || {}).textContent || '').trim() }));
+    const before = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: ([...document.querySelectorAll('.hdt-product__price .hdt-money, .hdt-price .hdt-money')].map(e => e.textContent.trim()).filter(Boolean)[0] || '') }));
     // click the second value of the first option (a pill/radio/label)
-    const clicked = await page.evaluate(() => { const opts = [...document.querySelectorAll('form.hdt-main-product-form input[type="radio"], .hdt-variant-option input[type="radio"]')]; if (opts.length < 2) return null; const target = opts.find(o => !o.checked) || opts[1]; const lab = document.querySelector(`label[for="${target.id}"]`) || target; lab.click(); return target.value; });
+    const clicked = await page.evaluate(() => { const opts = [...document.querySelectorAll('.hdt-product-info__item input[type="radio"][name], hdt-variant-picker input[type="radio"][name], form.hdt-main-product-form input[type="radio"]')]; if (opts.length < 2) return null; const target = opts.find(o => !o.checked && o.name === opts[0].name) || opts[1]; const lab = document.querySelector(`label[for="${target.id}"]`) || target; lab.click(); return target.value; });
     await page.waitForTimeout(1200);
-    const after = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: ((document.querySelector('.hdt-price .hdt-money, .hdt-product-price .hdt-money, [class*="price"] .hdt-money') || {}).textContent || '').trim() }));
+    const after = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: ([...document.querySelectorAll('.hdt-product__price .hdt-money, .hdt-price .hdt-money')].map(e => e.textContent.trim()).filter(Boolean)[0] || '') }));
     let live = null;
     try {
       const jar = path.join(OUT, 'jar.txt'); try { fs.unlinkSync(jar); } catch (e) {}
