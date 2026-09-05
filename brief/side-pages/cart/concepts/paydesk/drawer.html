@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest — הקופה · מגירת העגלה</title>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<style>
+:root{
+  --sky-1:#1f3357; --sky-2:#0f1a2f; --sky-3:#070b15; --sky-4:#020306;
+  --ink:#f4eee3; --ink-2:#c9c4b8; --mute:#8f95a3;
+  --gold:#e9b96e; --glow:#ffd394; --btn-ink:#1a1206;
+  --hair:rgba(244,238,227,.12); --hair-2:rgba(244,238,227,.25); --hair-3:rgba(244,238,227,.45);
+  --serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;
+  --sans:"Heebo","Assistant",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--sky-4)}
+body{margin:0;background:var(--sky-4);color:var(--ink);font-family:var(--sans);font-weight:300;
+  font-size:15px;line-height:1.55;letter-spacing:0;-webkit-font-smoothing:antialiased}
+img{max-inline-size:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;letter-spacing:0}
+input{font:inherit;color:inherit}
+bdi{font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+
+/* ---------------- capture captions (not part of the design) ---------------- */
+.cap{font-size:11px;color:var(--mute);padding:10px 16px 0;margin:0}
+hr.sep{border:0;border-block-start:1px solid var(--hair);margin:0}
+
+/* ---------------- the stage: drawer open over a page ---------------- */
+.stage{position:relative;block-size:844px;overflow:hidden;isolation:isolate}
+@media (min-width:1000px){.stage{block-size:900px}}
+
+/* the page behind — context only, not designed */
+.behind{position:absolute;inset:0;overflow:hidden;
+  background:linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 34%,var(--sky-3) 70%,var(--sky-4) 100%)}
+.behind-in{padding-inline:clamp(16px,4vw,56px)}
+.bbar{block-size:70px;display:flex;align-items:center;justify-content:space-between;
+  border-block-end:1px solid var(--hair)}
+.bmark{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--gold)}
+.bnav{display:flex;gap:16px;color:var(--mute);font-size:13px}
+@media (max-width:640px){.bnav{display:none}}
+.behind h2{font-family:var(--serif);font-weight:700;font-size:clamp(34px,6vw,64px);line-height:.98;
+  margin:38px 0 8px;max-inline-size:14ch}
+.behind h2 em{font-style:normal;color:var(--glow)}
+.behind .lead{color:var(--ink-2);max-inline-size:38ch;margin:0 0 30px;font-size:15px}
+.bcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:18px;max-inline-size:940px}
+@media (min-width:1000px){.bcards{grid-template-columns:repeat(4,1fr);gap:26px;max-inline-size:1080px}
+  .behind h2{margin-block-start:56px}}
+.bcards figure{margin:0}
+.bcards img{aspect-ratio:4/3;object-fit:cover;inline-size:100%}
+.bcards figcaption{font-size:13.5px;color:var(--ink-2);margin-block-start:10px}
+.bcards b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;color:var(--glow);margin-block-start:3px}
+
+/* the scrim — a separation that can actually be seen */
+.scrim{position:absolute;inset:0;background:rgba(2,3,6,.72);
+  backdrop-filter:blur(4px) saturate(.75);-webkit-backdrop-filter:blur(4px) saturate(.75)}
+
+/* ---------------- the pay desk itself ---------------- */
+hdt-cart-drawer{display:block}
+dialog{
+  position:absolute;inset-block-start:0;inset-block-end:auto;inset-inline-end:0;inset-inline-start:auto;
+  margin:0;padding:0;border:0;color:var(--ink);
+  inline-size:min(90vw,420px);block-size:auto;max-block-size:100%;max-inline-size:none;
+  display:flex;flex-direction:column;
+  background:
+    radial-gradient(125% 58% at 50% -10%, rgba(255,211,148,.16), rgba(255,211,148,0) 64%),
+    linear-gradient(180deg,#101a2e 0%,#0a1120 48%,#05080f 100%);
+  box-shadow:0 0 0 1px rgba(233,185,110,.32), 0 26px 90px 18px rgba(0,0,0,.86);
+  overflow:hidden}
+@media (min-width:1000px){dialog{inline-size:440px}}
+dialog::backdrop{background:transparent}
+
+.pd-head{display:flex;align-items:center;justify-content:space-between;
+  padding-inline:var(--pad);padding-block:10px 0}
+dialog{--pad:20px}
+@media (min-width:1000px){dialog{--pad:26px}}
+.eyebrow{margin:0;font-size:12px;font-weight:500;color:var(--gold)}
+.eyebrow::before{content:"";display:inline-block;inline-size:26px;block-size:1px;
+  background:var(--gold);vertical-align:middle;margin-inline-end:8px;opacity:.8}
+.pd-close{inline-size:44px;block-size:44px;display:grid;place-items:center;color:var(--ink-2);
+  margin-inline-end:-10px}
+.pd-close svg{inline-size:17px;block-size:17px}
+
+/* the desk: total + button, the decision, sized as the decision */
+.desk{padding-inline:var(--pad);padding-block:14px 0}
+.tot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+  border-block-end:1px solid var(--hair-2);padding-block-end:10px}
+.tot-lbl{font-size:13px;color:var(--ink-2);padding-block-end:9px}
+.tot-num{font-family:var(--serif);font-weight:500;color:var(--glow);line-height:1;
+  font-size:clamp(40px,10.8vw,50px);white-space:nowrap}
+.tot-note{margin:9px 0 0;font-size:12.5px;color:var(--mute);line-height:1.45}
+.pay{display:flex;align-items:center;justify-content:center;inline-size:100%;min-block-size:56px;
+  margin-block-start:14px;border-radius:999px;background:var(--glow);color:var(--btn-ink);
+  font-weight:500;font-size:17px;box-shadow:0 8px 34px rgba(255,211,148,.22);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.pay:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,211,148,.32)}
+
+/* the reassurance line — the four approved numbers, three of them, verbatim */
+.terms{list-style:none;margin:18px 0 0;padding:0;border-block-start:1px solid var(--hair)}
+.terms li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;
+  padding-block:9px;border-block-end:1px solid var(--hair)}
+.terms b{font-family:var(--serif);font-weight:500;font-size:15px;color:var(--gold);white-space:nowrap}
+.terms span{font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.terms i{font-style:normal;color:var(--mute)}
+
+/* the basket, collapsed to one honest line */
+.basket{margin-block-start:2px;border-block-end:1px solid var(--hair)}
+.basket>summary{list-style:none;display:flex;align-items:center;gap:12px;cursor:pointer;
+  min-block-size:60px;padding-inline:var(--pad);padding-block:8px}
+.basket>summary::-webkit-details-marker{display:none}
+.thumbs{display:flex;flex:0 0 auto}
+.thumbs img{inline-size:38px;block-size:38px;object-fit:cover;
+  box-shadow:0 0 0 1px rgba(2,3,6,.9)}
+.thumbs img+img{margin-inline-start:-11px}
+.sum-txt{flex:1 1 auto;min-inline-size:0}
+.sum-txt b{display:block;font-weight:400;font-size:14.5px;color:var(--ink)}
+.sum-txt i{font-style:normal;font-size:12px;color:var(--mute)}
+.chev{flex:0 0 auto;inline-size:26px;block-size:26px;display:grid;place-items:center;color:var(--gold);
+  transition:transform .25s}
+details[open]>summary .chev{transform:rotate(180deg)}
+details[open]>summary{border-block-end:1px solid var(--hair)}
+details[open]>summary .sum-txt i{color:var(--gold)}
+
+/* the panel never outgrows the viewport: the list is the part that gives */
+dialog>form{display:flex;flex-direction:column;min-block-size:0;flex:0 1 auto}
+.desk{flex:0 0 auto}
+.basket{display:flex;flex-direction:column;min-block-size:0;flex:0 1 auto}
+.basket>summary{flex:0 0 auto}
+.lines{list-style:none;margin:0;padding:0;flex:1 1 auto;min-block-size:0;
+  max-block-size:max(160px,min(calc(100vh - 400px),480px));overflow-y:auto;overscroll-behavior:contain}
+/* when the buyer asks for the proof, the reassurance yields the room to it —
+   one tap back and it returns. No JS: :has() + [open]. */
+.desk:has(+ .basket[open]) .terms{display:none}
+.desk:has(+ .basket[open]){padding-block-end:14px}
+details::details-content{display:flex;flex-direction:column;min-block-size:0}
+hdt-line-item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;
+  padding-inline:var(--pad);padding-block:16px;border-block-end:1px solid var(--hair)}
+hdt-line-item:last-child{border-block-end:0}
+.ph img{inline-size:72px;block-size:86px;object-fit:cover}
+@media (max-width:370px){.ph img{inline-size:62px;block-size:76px}}
+.li-name{display:block;min-block-size:44px;padding-block-start:2px;font-size:14.5px;line-height:1.4;
+  color:var(--ink);font-weight:400}
+.li-var{margin:6px 0 0;display:inline-block;font-size:12.5px;color:var(--glow);
+  border-block-end:1px solid rgba(255,211,148,.4);padding-block-end:2px}
+.li-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-block-start:12px}
+hdt-quantity-wrapp{display:flex;align-items:center;border:1px solid var(--hair-2)}
+hdt-quantity-wrapp button{inline-size:44px;block-size:44px;display:grid;place-items:center;
+  color:var(--ink-2);font-size:17px}
+hdt-quantity-wrapp button:hover{color:var(--glow)}
+hdt-quantity-wrapp input{inline-size:34px;block-size:44px;text-align:center;background:transparent;
+  border:0;border-inline:1px solid var(--hair);font-size:15px;font-variant-numeric:tabular-nums;
+  -moz-appearance:textfield}
+hdt-quantity-wrapp input::-webkit-outer-spin-button,
+hdt-quantity-wrapp input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.li-money{text-align:end}
+.li-tot{display:block;font-family:var(--serif);font-weight:500;font-size:20px;color:var(--glow);
+  white-space:nowrap;line-height:1.1}
+.li-unit{display:block;font-size:11.5px;color:var(--mute);margin-block-start:2px;white-space:nowrap}
+wrapp-remove-item-oncart{display:block}
+wrapp-remove-item-oncart button,.rm{display:inline-flex;align-items:center;min-block-size:44px;
+  font-size:12.5px;color:var(--mute);border-block-end:1px solid transparent}
+wrapp-remove-item-oncart button:hover,.rm:hover{color:var(--ink-2);border-block-end-color:var(--hair-2)}
+
+.pd-foot{flex:0 0 auto;padding-inline:var(--pad);padding-block:4px 12px;display:flex;justify-content:center;
+  border-block-start:1px solid var(--hair)}
+.pd-foot a{display:inline-flex;align-items:center;min-block-size:44px;font-size:13px;color:var(--ink-2)}
+.pd-foot a span{border-block-end:1px solid var(--hair-2);padding-block-end:3px}
+.pd-foot a:hover{color:var(--glow)}
+
+/* ---------------- empty ---------------- */
+.empty{padding-inline:var(--pad);padding-block:18px 0}
+.empty h3{font-family:var(--serif);font-weight:700;font-size:clamp(30px,8vw,36px);line-height:1.04;
+  margin:0 0 10px}
+.empty h3 em{font-style:normal;color:var(--glow)}
+.empty p.lead{margin:0 0 18px;font-size:14px;color:var(--ink-2);max-inline-size:30ch}
+.places{list-style:none;margin:0;padding:0;border-block-start:1px solid var(--hair)}
+.places li{border-block-end:1px solid var(--hair)}
+.places a{display:flex;align-items:center;gap:14px;min-block-size:52px}
+.places .n{font-family:var(--serif);font-weight:900;font-size:22px;color:transparent;line-height:1;
+  -webkit-text-stroke:1px var(--hair-3);inline-size:24px}
+.places a:hover .n{color:var(--glow);-webkit-text-stroke:0}
+.places .w{font-size:15px}
+.places .s{margin-inline-start:auto;font-size:12px;color:var(--mute)}
+.empty-all{padding-inline:var(--pad);padding-block:14px 18px}
+.empty-all a{display:inline-flex;align-items:center;min-block-size:44px;font-size:13.5px;color:var(--gold)}
+.empty-all a span{border-block-end:1px solid rgba(233,185,110,.45);padding-block-end:3px}
+</style>
+</head>
+<body>
+
+<p class="cap">1 · המגירה פתוחה — הקופה, הסל מקופל (ברירת המחדל)</p>
+<section class="stage">
+  <div class="behind" aria-hidden="true">
+    <div class="behind-in">
+      <div class="bbar"><span class="bmark">ElmsNest</span>
+        <nav class="bnav"><span>דף הבית</span><span>קולקציות</span><span>מדריך לבחירה</span><span>מי אנחנו</span></nav>
+      </div>
+      <h2>ארבעה מקומות.<br><em>קטגוריה אחת.</em></h2>
+      <p class="lead">עשרים ושבע מנורות, לפי הסדר שבו נדלק הערב.</p>
+      <div class="bcards">
+        <figure><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="">
+          <figcaption>מנורת שביל סולארית מנירוסטה<b><bdi>169.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="">
+          <figcaption>גרילנדת כדורי קריסטל סולארית<b>מ־<bdi>89.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/outdoor-bidirectional-led-wall-light-ip65-0.jpg" alt="">
+          <figcaption>מנורת קיר דו־כיוונית<b><bdi>159.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-edison-string-lights-3.jpg" alt="">
+          <figcaption>גרילנדת אדיסון סולארית<b>מ־<bdi>99.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-firefly-garden-lights-3.jpg" alt="">
+          <figcaption>תאורת גחליליות סולארית<b><bdi>99.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg" alt="">
+          <figcaption>מנורת קיר אטומה<b><bdi>219.90</bdi>–<bdi>252.90</bdi> ₪</b></figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <hdt-cart-drawer id="cart-drawer" ref="hdt-cart" section-id="cart-drawer" data-count="3" data-total-price="42970">
+    <dialog id="CartDrawer" ref="dialog" pos="right" scroll-lock open>
+
+      <div class="pd-head">
+        <p class="eyebrow">הקופה</p>
+        <button class="pd-close" type="button" ref="closeButton" aria-controls="CartDrawer" aria-label="סגירה">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+        </button>
+      </div>
+
+      <form action="/cart" id="cart-drawer-form" method="POST">
+        <div class="desk">
+          <div class="tot">
+            <span class="tot-lbl">סכום ביניים</span>
+            <span class="tot-num"><bdi>429.70</bdi> ₪</span>
+          </div>
+          <p class="tot-note">כולל מיסים. את אופן המשלוח בוחרים בתשלום.</p>
+          <button type="submit" name="checkout" class="pay">מעבר לתשלום</button>
+
+          <ul class="terms">
+            <li><b><bdi>0</bdi> ₪</b><span>משלוח לנקודת איסוף — חינם. <i>עד הבית <bdi>29.90</bdi> ₪.</i></span></li>
+            <li><b><bdi>8–17</bdi> ימי עסקים</b><span>לאספקה: <bdi>1–3</bdi> ימי טיפול ו־<bdi>7–14</bdi> ימי משלוח. <i>ייתכן משלוח ממחסן מחוץ לישראל.</i></span></li>
+            <li><b><bdi>14</bdi> יום</b><span>לביטול מקבלת המוצר, לפי חוק הגנת הצרכן. <i>דמי ביטול עד <bdi>5%</bdi> או <bdi>100</bdi> ₪ — הנמוך מביניהם.</i></span></li>
+          </ul>
+        </div>
+
+        <details class="basket">
+          <summary>
+            <span class="thumbs">
+              <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="">
+              <img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="">
+            </span>
+            <span class="sum-txt">
+              <b><bdi>2</bdi> מנורות · <bdi>3</bdi> יחידות</b>
+              <i>לפתיחת הפירוט המלא</i>
+            </span>
+            <span class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
+
+          <ul class="lines">
+            <li>
+              <hdt-line-item>
+                <a class="ph" href="/products/stainless-steel-solar-path-light-ip65" tabindex="-1" aria-hidden="true">
+                  <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt=""></a>
+                <div>
+                  <a class="li-name" href="/products/stainless-steel-solar-path-light-ip65">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית <bdi>IP65</bdi></a>
+                  <span class="li-var">צהוב חם</span>
+                  <div class="li-row">
+                    <hdt-quantity-wrapp>
+                      <button type="button" name="minus" aria-label="הפחתת כמות">−</button>
+                      <input name="updates[]" data-index="1" data-max="99" value="2" inputmode="numeric" aria-label="כמות">
+                      <button type="button" name="plus" aria-label="הוספת כמות">+</button>
+                    </hdt-quantity-wrapp>
+                    <span class="li-money">
+                      <span class="li-tot"><bdi>339.80</bdi> ₪</span>
+                      <span class="li-unit"><bdi>169.90</bdi> ₪ ליחידה</span>
+                    </span>
+                  </div>
+                  <wrapp-remove-item-oncart data-index="1"><button type="button">הסרה מהעגלה</button></wrapp-remove-item-oncart>
+                </div>
+              </hdt-line-item>
+            </li>
+            <li>
+              <hdt-line-item>
+                <a class="ph" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+                  <img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt=""></a>
+                <div>
+                  <a class="li-name" href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – <bdi>20</bdi> עד <bdi>200</bdi> נורות</a>
+                  <span class="li-var"><bdi>5</bdi> מ׳ / <bdi>20</bdi> נורות / צהוב</span>
+                  <div class="li-row">
+                    <hdt-quantity-wrapp>
+                      <button type="button" name="minus" aria-label="הפחתת כמות">−</button>
+                      <input name="updates[]" data-index="2" data-max="99" value="1" inputmode="numeric" aria-label="כמות">
+                      <button type="button" name="plus" aria-label="הוספת כמות">+</button>
+                    </hdt-quantity-wrapp>
+                    <span class="li-money">
+                      <span class="li-tot"><bdi>89.90</bdi> ₪</span>
+                      <span class="li-unit"><bdi>89.90</bdi> ₪ ליחידה</span>
+                    </span>
+                  </div>
+                  <wrapp-remove-item-oncart data-index="2"><button type="button">הסרה מהעגלה</button></wrapp-remove-item-oncart>
+                </div>
+              </hdt-line-item>
+            </li>
+          </ul>
+        </details>
+      </form>
+
+      <div class="pd-foot"><a href="/cart"><span>לעגלה המלאה</span></a></div>
+    </dialog>
+  </hdt-cart-drawer>
+</section>
+
+<hr class="sep">
+<p class="cap">2 · אותה מגירה, הסל פתוח — הוכחה בהקשה אחת</p>
+<section class="stage">
+  <div class="behind" aria-hidden="true">
+    <div class="behind-in">
+      <div class="bbar"><span class="bmark">ElmsNest</span>
+        <nav class="bnav"><span>דף הבית</span><span>קולקציות</span><span>מדריך לבחירה</span><span>מי אנחנו</span></nav>
+      </div>
+      <h2>ארבעה מקומות.<br><em>קטגוריה אחת.</em></h2>
+      <p class="lead">עשרים ושבע מנורות, לפי הסדר שבו נדלק הערב.</p>
+      <div class="bcards">
+        <figure><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="">
+          <figcaption>מנורת שביל סולארית מנירוסטה<b><bdi>169.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="">
+          <figcaption>גרילנדת כדורי קריסטל סולארית<b>מ־<bdi>89.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/outdoor-bidirectional-led-wall-light-ip65-0.jpg" alt="">
+          <figcaption>מנורת קיר דו־כיוונית<b><bdi>159.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-edison-string-lights-3.jpg" alt="">
+          <figcaption>גרילנדת אדיסון סולארית<b>מ־<bdi>99.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-firefly-garden-lights-3.jpg" alt="">
+          <figcaption>תאורת גחליליות סולארית<b><bdi>99.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg" alt="">
+          <figcaption>מנורת קיר אטומה<b><bdi>219.90</bdi>–<bdi>252.90</bdi> ₪</b></figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <hdt-cart-drawer section-id="cart-drawer-2" data-count="3" data-total-price="42970">
+    <dialog id="CartDrawerOpen" pos="right" scroll-lock open>
+      <div class="pd-head">
+        <p class="eyebrow">הקופה</p>
+        <button class="pd-close" type="button" aria-controls="CartDrawerOpen" aria-label="סגירה">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+        </button>
+      </div>
+      <form action="/cart" id="cart-drawer-form-2" method="POST">
+        <div class="desk">
+          <div class="tot">
+            <span class="tot-lbl">סכום ביניים</span>
+            <span class="tot-num"><bdi>429.70</bdi> ₪</span>
+          </div>
+          <p class="tot-note">כולל מיסים. את אופן המשלוח בוחרים בתשלום.</p>
+          <button type="submit" name="checkout" class="pay">מעבר לתשלום</button>
+          <ul class="terms">
+            <li><b><bdi>0</bdi> ₪</b><span>משלוח לנקודת איסוף — חינם. <i>עד הבית <bdi>29.90</bdi> ₪.</i></span></li>
+            <li><b><bdi>8–17</bdi> ימי עסקים</b><span>לאספקה: <bdi>1–3</bdi> ימי טיפול ו־<bdi>7–14</bdi> ימי משלוח. <i>ייתכן משלוח ממחסן מחוץ לישראל.</i></span></li>
+            <li><b><bdi>14</bdi> יום</b><span>לביטול מקבלת המוצר, לפי חוק הגנת הצרכן. <i>דמי ביטול עד <bdi>5%</bdi> או <bdi>100</bdi> ₪ — הנמוך מביניהם.</i></span></li>
+          </ul>
+        </div>
+        <details class="basket" open>
+          <summary>
+            <span class="thumbs">
+              <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="">
+              <img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="">
+            </span>
+            <span class="sum-txt">
+              <b><bdi>2</bdi> מנורות · <bdi>3</bdi> יחידות</b>
+              <i>לסגירת הפירוט</i>
+            </span>
+            <span class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <ul class="lines">
+            <li>
+              <hdt-line-item>
+                <a class="ph" href="/products/stainless-steel-solar-path-light-ip65" tabindex="-1" aria-hidden="true">
+                  <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt=""></a>
+                <div>
+                  <a class="li-name" href="/products/stainless-steel-solar-path-light-ip65">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית <bdi>IP65</bdi></a>
+                  <span class="li-var">צהוב חם</span>
+                  <div class="li-row">
+                    <hdt-quantity-wrapp>
+                      <button type="button" name="minus" aria-label="הפחתת כמות">−</button>
+                      <input name="updates[]" data-index="1" data-max="99" value="2" inputmode="numeric" aria-label="כמות">
+                      <button type="button" name="plus" aria-label="הוספת כמות">+</button>
+                    </hdt-quantity-wrapp>
+                    <span class="li-money">
+                      <span class="li-tot"><bdi>339.80</bdi> ₪</span>
+                      <span class="li-unit"><bdi>169.90</bdi> ₪ ליחידה</span>
+                    </span>
+                  </div>
+                  <wrapp-remove-item-oncart data-index="1"><button type="button">הסרה מהעגלה</button></wrapp-remove-item-oncart>
+                </div>
+              </hdt-line-item>
+            </li>
+            <li>
+              <hdt-line-item>
+                <a class="ph" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+                  <img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt=""></a>
+                <div>
+                  <a class="li-name" href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – <bdi>20</bdi> עד <bdi>200</bdi> נורות</a>
+                  <span class="li-var"><bdi>5</bdi> מ׳ / <bdi>20</bdi> נורות / צהוב</span>
+                  <div class="li-row">
+                    <hdt-quantity-wrapp>
+                      <button type="button" name="minus" aria-label="הפחתת כמות">−</button>
+                      <input name="updates[]" data-index="2" data-max="99" value="1" inputmode="numeric" aria-label="כמות">
+                      <button type="button" name="plus" aria-label="הוספת כמות">+</button>
+                    </hdt-quantity-wrapp>
+                    <span class="li-money">
+                      <span class="li-tot"><bdi>89.90</bdi> ₪</span>
+                      <span class="li-unit"><bdi>89.90</bdi> ₪ ליחידה</span>
+                    </span>
+                  </div>
+                  <wrapp-remove-item-oncart data-index="2"><button type="button">הסרה מהעגלה</button></wrapp-remove-item-oncart>
+                </div>
+              </hdt-line-item>
+            </li>
+          </ul>
+        </details>
+      </form>
+      <div class="pd-foot"><a href="/cart"><span>לעגלה המלאה</span></a></div>
+    </dialog>
+  </hdt-cart-drawer>
+</section>
+
+<hr class="sep">
+<p class="cap">3 · המגירה הריקה</p>
+<section class="stage">
+  <div class="behind" aria-hidden="true">
+    <div class="behind-in">
+      <div class="bbar"><span class="bmark">ElmsNest</span>
+        <nav class="bnav"><span>דף הבית</span><span>קולקציות</span><span>מדריך לבחירה</span><span>מי אנחנו</span></nav>
+      </div>
+      <h2>ארבעה מקומות.<br><em>קטגוריה אחת.</em></h2>
+      <p class="lead">עשרים ושבע מנורות, לפי הסדר שבו נדלק הערב.</p>
+      <div class="bcards">
+        <figure><img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="">
+          <figcaption>מנורת שביל סולארית מנירוסטה<b><bdi>169.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="">
+          <figcaption>גרילנדת כדורי קריסטל סולארית<b>מ־<bdi>89.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/outdoor-bidirectional-led-wall-light-ip65-0.jpg" alt="">
+          <figcaption>מנורת קיר דו־כיוונית<b><bdi>159.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-edison-string-lights-3.jpg" alt="">
+          <figcaption>גרילנדת אדיסון סולארית<b>מ־<bdi>99.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/solar-firefly-garden-lights-3.jpg" alt="">
+          <figcaption>תאורת גחליליות סולארית<b><bdi>99.90</bdi> ₪</b></figcaption></figure>
+        <figure><img src="../../../../assets/img/waterproof-led-wall-light-ip65-6w-12w-3.jpg" alt="">
+          <figcaption>מנורת קיר אטומה<b><bdi>219.90</bdi>–<bdi>252.90</bdi> ₪</b></figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <hdt-cart-drawer section-id="cart-drawer-empty" data-count="0" data-total-price="0">
+    <dialog id="CartDrawerEmpty" pos="right" scroll-lock open>
+      <div class="pd-head">
+        <p class="eyebrow">הקופה</p>
+        <button class="pd-close" type="button" aria-controls="CartDrawerEmpty" aria-label="סגירה">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+        </button>
+      </div>
+      <div class="empty">
+        <h3>הקופה פתוחה,<br><em>העגלה עוד ריקה.</em></h3>
+        <p class="lead">בוחרים מקום אחד, ומדליקים אותו. אפשר להתחיל מכאן:</p>
+        <ul class="places">
+          <li><a href="/collections/path"><span class="n">1</span><span class="w">שביל</span><span class="s">עמוד וגינה</span></a></li>
+          <li><a href="/collections/wall"><span class="n">2</span><span class="w">קיר</span><span class="s">כניסה וחזית</span></a></li>
+          <li><a href="/collections/garden"><span class="n">3</span><span class="w">גינה</span><span class="s">ספוטים ופרוז׳קטורים</span></a></li>
+          <li><a href="/collections/decor"><span class="n">4</span><span class="w">מרפסת</span><span class="s">גרילנדות ודקורטיבי</span></a></li>
+        </ul>
+      </div>
+      <div class="empty-all"><a href="/collections/all">כל <bdi>27</bdi> המוצרים  ←</a></div>
+    </dialog>
+  </hdt-cart-drawer>
+</section>
+
+</body>
+</html>

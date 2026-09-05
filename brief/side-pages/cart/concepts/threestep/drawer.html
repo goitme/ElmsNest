@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest · עגלה — שלושה צעדים</title>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<style>
+:root{
+  --sky0:#4a6a9c;--sky1:#1f3357;--sky2:#0f1a2f;--sky3:#070b15;--sky4:#020306;
+  --ink:#f4eee3;--ink2:#c9c4b8;--mute:#8f95a3;
+  --gold:#e9b96e;--glow:#ffd394;--ember:#f7a24a;--btnink:#1a1206;
+  --hair:rgba(244,238,227,.12);--hair2:rgba(244,238,227,.25);
+  --serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;
+  --sans:"Heebo","Assistant",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--sky4);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--sky4);overflow-x:hidden}
+img{max-inline-size:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;border-radius:0;cursor:pointer}
+input{font:inherit;color:inherit;background:none;border:0;border-radius:0}
+a{color:inherit;text-decoration:none}
+hr{border:0;border-block-start:1px solid var(--hair);margin:0}
+
+/* ---------- the stage: dimmed page + drawer ---------- */
+.stage{position:relative;block-size:100vh;overflow:hidden;
+  background:linear-gradient(180deg,#1f3357 0%,#0f1a2f 38%,#070b15 72%,#020306 100%)}
+.behind{padding:26px 20px;filter:saturate(.9)}
+.behind .kick{font-size:11px;color:var(--gold);margin:0 0 8px}
+.behind h2{font-family:var(--serif);font-weight:700;font-size:clamp(38px,10vw,64px);line-height:.98;margin:0 0 6px}
+.behind .lead{font-size:15px;color:var(--ink2);margin:0 0 22px;max-inline-size:34ch}
+.behind .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-inline-size:900px}
+.behind .card img{aspect-ratio:4/5;object-fit:cover;inline-size:100%}
+.behind .card p{margin:8px 0 0;font-size:14px;color:var(--ink2)}
+.behind .card b{display:block;margin-block-start:4px;font-family:var(--serif);font-weight:500;color:var(--glow);font-size:19px}
+.scrim{position:absolute;inset:0;background:rgba(2,3,6,.74);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+
+/* ---------- the drawer ---------- */
+.dw{position:absolute;inset-block:0;inset-inline-end:0;inline-size:min(90vw,351px);block-size:100%;
+  background:var(--sky3);
+  border-inline-start:1px solid rgba(233,185,110,.34);
+  box-shadow:0 0 90px 18px rgba(0,0,0,.85);
+  display:flex;flex-direction:column;overflow:hidden}
+.dw::before{content:"";position:absolute;inset-block-start:0;inset-inline:0;block-size:1px;background:linear-gradient(90deg,rgba(255,211,148,0),rgba(255,211,148,.5),rgba(255,211,148,0))}
+
+.dw-head{display:flex;align-items:center;justify-content:space-between;
+  padding-inline:16px;padding-block:clamp(5px,.9vh,12px);border-block-end:1px solid var(--hair);flex:0 0 auto}
+.dw-head h2{margin:0;font-family:var(--sans);font-weight:500;font-size:14px;color:var(--ink)}
+.dw-head .cnt{color:var(--mute);font-weight:300}
+.x{inline-size:44px;block-size:44px;display:grid;place-items:center;margin-inline-end:-10px}
+.x svg{inline-size:16px;block-size:16px;stroke:var(--ink2);stroke-width:1.4}
+
+/* step head shared */
+.sh{display:flex;align-items:center;gap:9px;padding-inline:16px;
+  padding-block:clamp(7px,1.1vh,15px) clamp(4px,.6vh,8px);flex:0 0 auto}
+.sh .n{font-family:var(--serif);font-weight:500;font-size:14px;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1}
+.sh .l{font-size:11.5px;font-weight:500;color:var(--gold);line-height:1}
+.sh .r{flex:1;block-size:1px;background:linear-gradient(90deg,rgba(233,185,110,.42),rgba(233,185,110,0))}
+
+/* --- band 1: what you chose --- */
+.items{flex:0 1 auto;overflow-y:auto;min-block-size:0}
+.ln{display:grid;grid-template-columns:64px 1fr;gap:12px;padding-inline:16px;
+  padding-block:clamp(8px,1.3vh,16px);border-block-start:1px solid var(--hair)}
+.ln:first-child{border-block-start:0}
+.ln-col{display:block}
+.ln-ph{display:block;position:relative;inline-size:64px;block-size:64px}
+.ln-ph img{inline-size:64px;block-size:64px;object-fit:cover}
+.ln-ph::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--hair);
+  background:radial-gradient(70% 60% at 50% 60%,rgba(255,211,148,.16),rgba(255,211,148,0) 70%);mix-blend-mode:screen}
+.ln-t{display:block;font-size:14.5px;font-weight:400;line-height:1.3;color:var(--ink);unicode-bidi:isolate}
+.ln-v{margin:5px 0 0;font-size:12px;line-height:1.35;color:var(--gold)}
+.ln-r{display:flex;align-items:center;gap:10px;margin-block-start:7px}
+.ln-p{margin:0;margin-inline-start:auto;text-align:end;line-height:1.1;flex:0 0 auto}
+.ln-each{display:block;font-size:10.5px;color:var(--mute);margin-block-end:2px}
+.ln-tot{display:block;font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.05;color:var(--glow);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--hair2);flex:0 0 auto}
+.qty button{inline-size:44px;block-size:44px;display:grid;place-items:center;font-size:17px;color:var(--ink)}
+.qty button[disabled]{color:rgba(143,149,163,.45);cursor:default}
+.qty input{inline-size:32px;block-size:44px;text-align:center;font-size:15px;font-weight:500;color:var(--ink);
+  font-variant-numeric:tabular-nums;border-inline:1px solid var(--hair)}
+.rm{display:flex;align-items:center;justify-content:center;inline-size:64px;block-size:44px;
+  font-size:11.5px;color:var(--mute);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--hair2)}
+.rm:hover{color:var(--ink2)}
+
+/* --- band 2: the terms --- */
+.terms{flex:0 0 auto;border-block-start:1px solid var(--hair);background:rgba(2,3,6,.5)}
+.tr{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start;
+  padding-inline:16px;padding-block:clamp(6px,1vh,12px);border-block-start:1px solid var(--hair)}
+.tr:first-of-type{border-block-start:0}
+.tr-n{margin:0;text-align:center;line-height:1}
+.tr-n b{display:block;font-family:var(--serif);font-weight:500;font-size:21px;color:var(--glow);font-variant-numeric:tabular-nums}
+.tr-n span{display:block;margin-block-start:3px;font-size:9.5px;color:var(--mute)}
+.tr-x{margin:0;font-size:11.5px;line-height:1.4;color:var(--ink2)}
+.tr-x b{font-weight:500;color:var(--ink)}
+.tr-x i{display:block;font-style:normal;color:var(--mute);margin-block-start:1px}
+
+/* --- band 3: pay --- */
+.pay{flex:0 0 auto;padding:clamp(9px,1.3vh,15px) 16px clamp(6px,.9vh,12px);
+  border-block-start:1px solid rgba(233,185,110,.3);
+  background:linear-gradient(180deg,rgba(255,211,148,.06),rgba(255,211,148,0))}
+.sub{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.sub span{font-size:13px;color:var(--ink2)}
+.sub b{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.4vh,32px);color:var(--glow);
+  font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap}
+.tax{margin:5px 0 0;font-size:11px;color:var(--mute)}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;inline-size:100%;
+  min-block-size:clamp(54px,7vh,68px);margin-block-start:clamp(8px,1.2vh,14px);
+  background:var(--glow);color:var(--btnink);font-weight:500;font-size:17px;border-radius:999px;
+  box-shadow:0 0 0 1px rgba(255,211,148,.5),0 14px 44px rgba(247,162,74,.32);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,211,148,.7),0 18px 54px rgba(247,162,74,.44)}
+.cta bdi{font-family:var(--serif);font-weight:500;font-size:19px;font-variant-numeric:tabular-nums}
+.alt{display:flex;align-items:center;justify-content:center;block-size:44px;
+  font-size:12.5px;color:var(--ink2);text-decoration:underline;text-underline-offset:4px;
+  text-decoration-color:var(--hair2)}
+.alt:hover{color:var(--glow)}
+.foot{flex:1 1 auto;min-block-size:0;position:relative;
+  background:radial-gradient(132% 100% at 50% -6%,rgba(255,211,148,.34),rgba(255,211,148,.12) 40%,rgba(255,211,148,0) 78%)}
+
+/* --- empty --- */
+.mt{flex:0 0 auto;padding:clamp(16px,4.6vh,46px) 16px 4px}
+.mt h3{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(26px,6.4vw,32px);line-height:1.02;color:var(--ink)}
+.mt h3 em{font-style:normal;color:var(--glow)}
+.mt p{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--ink2);max-inline-size:30ch}
+.places{flex:0 0 auto;padding-block-start:6px}
+.pl{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px;
+  min-block-size:clamp(56px,9.6vh,92px);padding-inline:16px;border-block-start:1px solid var(--hair)}
+.pl .num{font-family:var(--serif);font-weight:900;font-size:26px;line-height:1;color:transparent;
+  -webkit-text-stroke:1px rgba(233,185,110,.55);font-variant-numeric:tabular-nums}
+.pl:hover .num{color:var(--glow);-webkit-text-stroke:0}
+.pl b{font-weight:400;font-size:16px;color:var(--ink)}
+.pl i{font-style:normal;font-size:12px;color:var(--mute)}
+.pl .ar{color:var(--gold);font-size:15px}
+.emptypay{flex:0 0 auto;padding:clamp(14px,2.4vh,26px) 16px 12px;border-block-start:1px solid rgba(233,185,110,.3);
+  background:linear-gradient(180deg,rgba(255,211,148,.05),rgba(255,211,148,0))}
+.ghost{display:flex;align-items:center;justify-content:center;inline-size:100%;min-block-size:56px;
+  border-radius:999px;box-shadow:inset 0 0 0 1px rgba(233,185,110,.5);color:var(--glow);font-size:16px;font-weight:500}
+.ghost:hover{background:rgba(255,211,148,.08)}
+.emptynote{margin:10px 0 0;font-size:11.5px;color:var(--mute);text-align:center}
+
+@media (min-width:1024px){
+  .dw{inline-size:min(90vw,420px)}
+  .ln-t{font-size:17px}
+  .tr-x{font-size:12.5px}
+  .behind .cards{grid-template-columns:repeat(4,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. DRAWER, FULL ============ -->
+<section class="stage">
+  <div class="behind" aria-hidden="true">
+    <p class="kick">ערב אחד · כל החנות</p>
+    <h2>קטלוג</h2>
+    <p class="lead">עשרים ושבע מנורות, לפי הסדר שבו נדלק הערב.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg" alt="">
+        <p>מנורת שביל סולארית מנירוסטה<b><bdi>169.90 ₪</bdi></b></p>
+      </div>
+      <div class="card">
+        <img src="../../../../assets/img/solar-crystal-ball-string-lights-2.jpg" alt="">
+        <p>גרילנדת כדורי קריסטל סולארית<b><bdi>89.90 ₪</bdi></b></p>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <hdt-cart-drawer class="dw" id="cart-drawer" data-count="3" data-total-price="42970">
+   <dialog id="CartDrawer" class="dw" open pos="right" style="position:absolute;inset-block:0;inset-inline:0;margin:0;padding:0;border:0;background:transparent;box-shadow:none;max-inline-size:none;max-block-size:none;display:flex;flex-direction:column">
+
+    <div class="dw-head">
+      <h2>העגלה שלך <span class="cnt">· <bdi>3</bdi> פריטים</span></h2>
+      <button class="x" type="button" aria-label="סגירת העגלה" aria-controls="CartDrawer">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor"/></svg>
+      </button>
+    </div>
+
+    <!-- STEP 01 -->
+    <div class="sh"><span class="n">01</span><span class="l">מה בחרת</span><span class="r"></span></div>
+    <div class="items">
+
+      <hdt-line-item class="ln">
+        <div class="ln-col">
+          <a class="ln-ph" href="#" tabindex="-1" aria-hidden="true">
+            <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt="" width="64" height="64">
+          </a>
+          <wrapp-remove-item-oncart data-index="1">
+            <button type="button" class="rm">הסרה</button>
+          </wrapp-remove-item-oncart>
+        </div>
+        <div class="ln-b">
+          <a class="ln-t" href="#">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית <bdi>IP65</bdi></a>
+          <p class="ln-v">צהוב חם</p>
+          <div class="ln-r">
+            <hdt-quantity-wrapp class="qty">
+              <button type="button" name="minus" aria-label="הפחתת כמות">−</button>
+              <input name="updates[]" data-index="1" data-max="99" value="2" inputmode="numeric" aria-label="כמות">
+              <button type="button" name="plus" aria-label="הוספת כמות">+</button>
+            </hdt-quantity-wrapp>
+            <p class="ln-p"><span class="ln-each"><bdi>169.90 ₪</bdi> ליחידה</span><span class="ln-tot"><bdi>339.80 ₪</bdi></span></p>
+          </div>
+        </div>
+      </hdt-line-item>
+
+      <hdt-line-item class="ln">
+        <div class="ln-col">
+          <a class="ln-ph" href="#" tabindex="-1" aria-hidden="true">
+            <img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt="" width="64" height="64">
+          </a>
+          <wrapp-remove-item-oncart data-index="2">
+            <button type="button" class="rm">הסרה</button>
+          </wrapp-remove-item-oncart>
+        </div>
+        <div class="ln-b">
+          <a class="ln-t" href="#">גרילנדת כדורי קריסטל סולארית – <bdi>20</bdi> עד <bdi>200</bdi> נורות</a>
+          <p class="ln-v"><bdi>5 מ׳</bdi> / <bdi>20</bdi> נורות / צהוב</p>
+          <div class="ln-r">
+            <hdt-quantity-wrapp class="qty">
+              <button type="button" name="minus" aria-label="הפחתת כמות" disabled>−</button>
+              <input name="updates[]" data-index="2" data-max="99" value="1" inputmode="numeric" aria-label="כמות">
+              <button type="button" name="plus" aria-label="הוספת כמות">+</button>
+            </hdt-quantity-wrapp>
+            <p class="ln-p"><span class="ln-tot"><bdi>89.90 ₪</bdi></span></p>
+          </div>
+        </div>
+      </hdt-line-item>
+
+    </div>
+
+    <!-- STEP 02 -->
+    <div class="sh"><span class="n">02</span><span class="l">מה יעלה לקבל את זה</span><span class="r"></span></div>
+    <div class="terms">
+      <div class="tr">
+        <p class="tr-n"><b><bdi>0</bdi></b><span>₪</span></p>
+        <p class="tr-x"><b>משלוח לנקודת איסוף — חינם.</b><i>עד הבית <bdi>29.90 ₪</bdi>.</i></p>
+      </div>
+      <div class="tr">
+        <p class="tr-n"><b><bdi>8–17</bdi></b><span>ימי עסקים</span></p>
+        <p class="tr-x"><b>לאספקה: <bdi>1–3</bdi> ימי טיפול ו־<bdi>7–14</bdi> ימי משלוח.</b><i>ייתכן משלוח ממחסן מחוץ לישראל.</i></p>
+      </div>
+      <div class="tr">
+        <p class="tr-n"><b><bdi>14</bdi></b><span>יום</span></p>
+        <p class="tr-x"><b>לביטול מקבלת המוצר, לפי חוק הגנת הצרכן.</b><i>דמי ביטול עד <bdi>5%</bdi> או <bdi>100 ₪</bdi> — הנמוך מביניהם.</i></p>
+      </div>
+    </div>
+
+    <!-- STEP 03 -->
+    <div class="sh"><span class="n">03</span><span class="l">תשלום</span><span class="r"></span></div>
+    <form class="pay" action="/cart" id="CartDrawer-Form" method="POST">
+      <div class="sub"><span>סכום ביניים</span><b><bdi>429.70 ₪</bdi></b></div>
+      <p class="tax">כולל מיסים · אופן המשלוח נבחר בעמוד התשלום</p>
+      <button type="submit" name="checkout" class="cta">מעבר לתשלום <bdi>429.70 ₪</bdi></button>
+      <a class="alt" href="/cart">לפתוח את עגלת הקניות ולבדוק שוב</a>
+    </form>
+    <div class="foot" aria-hidden="true"></div>
+
+   </dialog>
+  </hdt-cart-drawer>
+</section>
+
+<hr>
+
+<!-- ============ 2. DRAWER, EMPTY ============ -->
+<section class="stage">
+  <div class="behind" aria-hidden="true">
+    <p class="kick">ערב אחד · כל החנות</p>
+    <h2>קטלוג</h2>
+    <p class="lead">עשרים ושבע מנורות, לפי הסדר שבו נדלק הערב.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-1.jpg" alt="">
+        <p>מנורת שביל סולארית מנירוסטה<b><bdi>169.90 ₪</bdi></b></p>
+      </div>
+      <div class="card">
+        <img src="../../../../assets/img/solar-crystal-ball-string-lights-2.jpg" alt="">
+        <p>גרילנדת כדורי קריסטל סולארית<b><bdi>89.90 ₪</bdi></b></p>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <hdt-cart-drawer class="dw" id="cart-drawer-empty" data-count="0" data-total-price="0">
+   <dialog id="CartDrawerEmpty" class="dw" open pos="right" style="position:absolute;inset-block:0;inset-inline:0;margin:0;padding:0;border:0;background:transparent;box-shadow:none;max-inline-size:none;max-block-size:none;display:flex;flex-direction:column">
+
+    <div class="dw-head">
+      <h2>העגלה שלך <span class="cnt">· ריקה</span></h2>
+      <button class="x" type="button" aria-label="סגירת העגלה" aria-controls="CartDrawerEmpty">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor"/></svg>
+      </button>
+    </div>
+
+    <div class="mt">
+      <h3>עוד לא בחרת<br><em>מה נדלק אצלך.</em></h3>
+      <p>בחנות עשרים ושבע מנורות. הן מסודרות לפי המקום שהן מאירות — משם הכי קל להתחיל.</p>
+    </div>
+
+    <div class="sh"><span class="n">01</span><span class="l">מאיפה מתחילים</span><span class="r"></span></div>
+    <nav class="places">
+      <a class="pl" href="/collections/path"><span class="num">1</span><span><b>שביל</b> <i>עמוד וגינה</i></span><span class="ar">←</span></a>
+      <a class="pl" href="/collections/wall"><span class="num">2</span><span><b>קיר</b> <i>כניסה וחזית</i></span><span class="ar">←</span></a>
+      <a class="pl" href="/collections/garden"><span class="num">3</span><span><b>גינה</b> <i>ספוטים והצפה</i></span><span class="ar">←</span></a>
+      <a class="pl" href="/collections/decor"><span class="num">4</span><span><b>מרפסת</b> <i>גרילנדות ודקורטיבי</i></span><span class="ar">←</span></a>
+    </nav>
+
+    <div class="emptypay">
+      <a class="ghost" href="/collections/all"><span>לכל <bdi>27</bdi> המוצרים</span></a>
+      <p class="emptynote">משלוח לנקודת איסוף — חינם. <bdi>14</bdi> יום לביטול מקבלת המוצר.</p>
+    </div>
+    <div class="foot" aria-hidden="true"></div>
+
+   </dialog>
+  </hdt-cart-drawer>
+</section>
+
+</body>
+</html>

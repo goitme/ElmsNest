@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest — הקופה · עמוד העגלה</title>
+<link rel="stylesheet" href="../../../../assets/fonts.css">
+<style>
+:root{
+  --sky-1:#1f3357; --sky-2:#0f1a2f; --sky-3:#070b15; --sky-4:#020306;
+  --ink:#f4eee3; --ink-2:#c9c4b8; --mute:#8f95a3;
+  --gold:#e9b96e; --glow:#ffd394; --btn-ink:#1a1206;
+  --hair:rgba(244,238,227,.12); --hair-2:rgba(244,238,227,.25); --hair-3:rgba(244,238,227,.45);
+  --serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;
+  --sans:"Heebo","Assistant",system-ui,sans-serif;
+  --gut:clamp(18px,4vw,64px);
+}
+*{box-sizing:border-box}
+html{background:var(--sky-4)}
+body{margin:0;background:var(--sky-4);color:var(--ink);font-family:var(--sans);font-weight:300;
+  font-size:15px;line-height:1.55;letter-spacing:0;-webkit-font-smoothing:antialiased}
+img{max-inline-size:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;letter-spacing:0}
+input{font:inherit;color:inherit}
+bdi{font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.cap{font-size:11px;color:var(--mute);padding:10px 16px 0;margin:0}
+hr.sep{border:0;border-block-start:1px solid var(--hair);margin:0}
+
+/* ---------- header strip (context only — not designed) ---------- */
+.head{block-size:70px;display:flex;align-items:center;justify-content:space-between;
+  padding-inline:var(--gut);border-block-end:1px solid var(--hair);background:var(--sky-3)}
+.head .mark{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--gold)}
+.head nav{display:flex;gap:18px;color:var(--mute);font-size:13px}
+@media (max-width:760px){.head nav{display:none}}
+.head .bag{font-size:13px;color:var(--ink-2)}
+
+/* ---------- the page ---------- */
+.page{background:linear-gradient(180deg,var(--sky-2) 0%,var(--sky-3) 42%,var(--sky-4) 100%)}
+.wrap{inline-size:min(1240px,100% - 2*var(--gut));margin-inline:auto;padding-block:26px 60px}
+.title{margin:0 0 4px;font-size:12px;font-weight:500;color:var(--gold)}
+.title::before{content:"";display:inline-block;inline-size:28px;block-size:1px;background:var(--gold);
+  vertical-align:middle;margin-inline-end:9px;opacity:.8}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,5.4vw,58px);line-height:1;
+  margin:0 0 20px}
+h1 em{font-style:normal;color:var(--glow)}
+
+.grid{display:flex;flex-direction:column;gap:0}
+@media (min-width:1000px){
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) 396px;gap:56px;align-items:start}
+}
+
+/* ---------- the desk (total + the one button + the four numbers) ---------- */
+.desk-col{order:-1;margin-block-end:34px}
+@media (min-width:1000px){.desk-col{order:0;margin-block-end:0;position:sticky;inset-block-start:24px}}
+.desk{border-block-start:1px solid var(--hair-2);padding-block-start:14px}
+.tot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.tot-lbl{font-size:13.5px;color:var(--ink-2);padding-block-end:9px}
+.tot-num{font-family:var(--serif);font-weight:500;color:var(--glow);line-height:1;
+  font-size:clamp(40px,10vw,54px);white-space:nowrap}
+.tot-note{margin:10px 0 0;font-size:12.5px;color:var(--mute);line-height:1.45;
+  border-block-start:1px solid var(--hair);padding-block-start:10px}
+.pay{display:flex;align-items:center;justify-content:center;inline-size:100%;min-block-size:58px;
+  margin-block-start:16px;border-radius:999px;background:var(--glow);color:var(--btn-ink);
+  font-weight:500;font-size:17px;box-shadow:0 8px 34px rgba(255,211,148,.22);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.pay:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,211,148,.32)}
+
+.terms{list-style:none;margin:22px 0 0;padding:0;border-block-start:1px solid var(--hair)}
+.terms li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:baseline;
+  padding-block:11px;border-block-end:1px solid var(--hair)}
+.terms b{font-family:var(--serif);font-weight:500;font-size:16px;color:var(--gold);white-space:nowrap}
+.terms span{font-size:13px;line-height:1.5;color:var(--ink-2)}
+.terms i{font-style:normal;color:var(--mute)}
+.photo-cta{display:inline-flex;align-items:center;min-block-size:44px;margin-block-start:4px;
+  font-size:13px;color:var(--glow)}
+.photo-cta span{border-block-end:1px solid rgba(255,211,148,.45);padding-block-end:3px}
+.disclaim{margin:12px 0 0;font-size:11.5px;color:var(--mute);line-height:1.5}
+
+/* ---------- the basket, unfolded — this is what the page is for ---------- */
+.items-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  border-block-end:1px solid var(--hair-2);padding-block-end:9px}
+.items-head h2{font-family:var(--serif);font-weight:500;font-size:20px;margin:0;color:var(--ink)}
+.items-head p{margin:0;font-size:13px;color:var(--mute)}
+.lines{list-style:none;margin:0;padding:0}
+.line{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding-block:20px;
+  border-block-end:1px solid var(--hair)}
+@media (min-width:1000px){.line{grid-template-columns:auto minmax(0,1fr) auto;gap:24px;padding-block:26px}}
+.ph img{inline-size:84px;block-size:104px;object-fit:cover}
+@media (min-width:1000px){.ph img{inline-size:118px;block-size:144px}}
+@media (max-width:370px){.ph img{inline-size:72px;block-size:90px}}
+.li-name{display:block;min-block-size:44px;padding-block-start:2px;font-size:15px;line-height:1.4;
+  color:var(--ink);font-weight:400}
+@media (min-width:1000px){.li-name{font-size:17px}}
+.li-var{margin:8px 0 0;display:inline-block;font-size:12.5px;color:var(--glow);
+  border-block-end:1px solid rgba(255,211,148,.4);padding-block-end:2px}
+.li-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-block-start:14px}
+.qty{display:flex;align-items:center;border:1px solid var(--hair-2)}
+.qty a{inline-size:44px;block-size:44px;display:grid;place-items:center;color:var(--ink-2);font-size:17px}
+.qty a:hover{color:var(--glow)}
+.qty .n{inline-size:40px;block-size:44px;display:grid;place-items:center;
+  border-inline:1px solid var(--hair);font-size:15px;font-variant-numeric:tabular-nums}
+.rm{display:inline-flex;align-items:center;min-block-size:44px;font-size:12.5px;color:var(--mute)}
+.rm span{border-block-end:1px solid transparent;padding-block-end:3px}
+.rm:hover{color:var(--ink-2)}.rm:hover span{border-block-end-color:var(--hair-2)}
+.li-money{margin-block-start:14px}
+@media (min-width:1000px){.li-money{margin-block-start:0;text-align:end;align-self:center}}
+.li-tot{display:block;font-family:var(--serif);font-weight:500;font-size:24px;color:var(--glow);
+  line-height:1.1;white-space:nowrap}
+.li-unit{display:block;font-size:12px;color:var(--mute);margin-block-start:3px;white-space:nowrap}
+.li-lbl{display:block;font-size:11.5px;color:var(--mute);margin-block-end:2px}
+
+.basket-foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding-block:16px;font-size:13.5px;color:var(--ink-2)}
+.basket-foot a{display:inline-flex;align-items:center;min-block-size:44px;color:var(--gold)}
+.basket-foot a span{border-block-end:1px solid rgba(233,185,110,.4);padding-block-end:3px}
+
+/* ---------- empty ---------- */
+.empty h1{max-inline-size:16ch}
+.empty .lead{margin:0 0 26px;font-size:16px;color:var(--ink-2);max-inline-size:42ch}
+.places{list-style:none;margin:0;padding:0;display:grid;gap:16px;
+  grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:1000px){.places{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}}
+.places a{display:block;min-block-size:44px}
+.places img{aspect-ratio:4/5;object-fit:cover;inline-size:100%;
+  filter:brightness(.82) saturate(.9);transition:filter .5s}
+.places a:hover img{filter:brightness(1) saturate(1)}
+.pl-row{display:flex;align-items:baseline;gap:9px;margin-block-start:11px}
+.pl-n{font-family:var(--serif);font-weight:900;font-size:20px;color:transparent;line-height:1;
+  -webkit-text-stroke:1px var(--hair-3)}
+.places a:hover .pl-n{color:var(--glow);-webkit-text-stroke:0}
+.pl-w{font-size:16px}
+.pl-s{display:block;font-size:12px;color:var(--mute);margin-block-start:2px}
+.empty-all{margin-block-start:28px;padding-block-start:18px;border-block-start:1px solid var(--hair)}
+.empty-all a{display:inline-flex;align-items:center;min-block-size:44px;font-size:14px;color:var(--gold)}
+.empty-all a span{border-block-end:1px solid rgba(233,185,110,.45);padding-block-end:3px}
+
+/* ---------- footer (context only — not designed) ---------- */
+.foot{background:var(--sky-4);border-block-start:1px solid var(--hair);padding-block:38px 26px}
+.foot-in{inline-size:min(1240px,100% - 2*var(--gut));margin-inline:auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px}
+.foot h3{font-size:12px;font-weight:500;color:var(--gold);margin:0 0 10px}
+.foot ul{list-style:none;margin:0;padding:0;font-size:13px;color:var(--mute);line-height:2}
+.foot .copy{inline-size:min(1240px,100% - 2*var(--gut));margin:26px auto 0;padding-block-start:16px;
+  border-block-start:1px solid var(--hair);font-size:12px;color:var(--mute)}
+</style>
+</head>
+<body>
+
+<p class="cap">1 · /cart — הכול פרוש כברירת מחדל</p>
+<header class="head">
+  <span class="mark">ElmsNest</span>
+  <nav><span>דף הבית</span><span>קולקציות</span><span>מדריך לבחירה</span><span>מי אנחנו</span><span>יצירת קשר</span></nav>
+  <span class="bag">העגלה · <bdi>3</bdi></span>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <p class="title">הקופה</p>
+    <h1>ההזמנה שלך.</h1>
+
+    <form action="/cart" method="POST" id="CartPage-Form">
+      <div class="grid">
+
+        <section class="items">
+          <div class="items-head">
+            <h2>הפריטים</h2>
+            <p><bdi>2</bdi> מנורות · <bdi>3</bdi> יחידות</p>
+          </div>
+          <ul class="lines">
+            <li class="line">
+              <a class="ph" href="/products/stainless-steel-solar-path-light-ip65" tabindex="-1" aria-hidden="true">
+                <img src="../../../../assets/img/stainless-steel-solar-path-light-ip65-0.jpg" alt=""></a>
+              <div>
+                <a class="li-name" href="/products/stainless-steel-solar-path-light-ip65">מנורת שביל סולארית מנירוסטה – תאורה אוטומטית <bdi>IP65</bdi></a>
+                <span class="li-var">צהוב חם</span>
+                <div class="li-row">
+                  <span class="qty">
+                    <a href="/cart/change?line=1&amp;quantity=1" aria-label="הפחתת כמות">−</a>
+                    <span class="n"><bdi>2</bdi></span>
+                    <a href="/cart/change?line=1&amp;quantity=3" aria-label="הוספת כמות">+</a>
+                  </span>
+                  <a class="rm" href="/cart/change?line=1&amp;quantity=0"><span>הסרה מהעגלה</span></a>
+                </div>
+              </div>
+              <div class="li-money">
+                <span class="li-lbl">סך הכל לשורה</span>
+                <span class="li-tot"><bdi>339.80</bdi> ₪</span>
+                <span class="li-unit"><bdi>2</bdi> × <bdi>169.90</bdi> ₪</span>
+              </div>
+            </li>
+            <li class="line">
+              <a class="ph" href="/products/solar-crystal-ball-string-lights" tabindex="-1" aria-hidden="true">
+                <img src="../../../../assets/img/solar-crystal-ball-string-lights-0.jpg" alt=""></a>
+              <div>
+                <a class="li-name" href="/products/solar-crystal-ball-string-lights">גרילנדת כדורי קריסטל סולארית – <bdi>20</bdi> עד <bdi>200</bdi> נורות</a>
+                <span class="li-var"><bdi>5</bdi> מ׳ / <bdi>20</bdi> נורות / צהוב</span>
+                <div class="li-row">
+                  <span class="qty">
+                    <a href="/cart/change?line=2&amp;quantity=0" aria-label="הפחתת כמות">−</a>
+                    <span class="n"><bdi>1</bdi></span>
+                    <a href="/cart/change?line=2&amp;quantity=2" aria-label="הוספת כמות">+</a>
+                  </span>
+                  <a class="rm" href="/cart/change?line=2&amp;quantity=0"><span>הסרה מהעגלה</span></a>
+                </div>
+              </div>
+              <div class="li-money">
+                <span class="li-lbl">סך הכל לשורה</span>
+                <span class="li-tot"><bdi>89.90</bdi> ₪</span>
+                <span class="li-unit"><bdi>1</bdi> × <bdi>89.90</bdi> ₪</span>
+              </div>
+            </li>
+          </ul>
+          <div class="basket-foot">
+            <span>כל שינוי כמות נשמר מיד.</span>
+            <a href="/collections/all"><span>להוסיף עוד מנורה ←</span></a>
+          </div>
+        </section>
+
+        <aside class="desk-col">
+          <div class="desk">
+            <div class="tot">
+              <span class="tot-lbl">סכום ביניים</span>
+              <span class="tot-num"><bdi>429.70</bdi> ₪</span>
+            </div>
+            <p class="tot-note">כולל מיסים. את אופן המשלוח בוחרים בתשלום.</p>
+            <button type="submit" name="checkout" form="CartPage-Form" class="pay">מעבר לתשלום</button>
+
+            <ul class="terms">
+              <li><b><bdi>0</bdi> ₪</b><span>משלוח לנקודת איסוף — חינם. <i>עד הבית <bdi>29.90</bdi> ₪.</i></span></li>
+              <li><b><bdi>8–17</bdi> ימי עסקים</b><span>לאספקה: <bdi>1–3</bdi> ימי טיפול ו־<bdi>7–14</bdi> ימי משלוח. <i>ייתכן משלוח ממחסן מחוץ לישראל.</i></span></li>
+              <li><b><bdi>14</bdi> יום</b><span>לביטול מקבלת המוצר, לפי חוק הגנת הצרכן. <i>דמי ביטול עד <bdi>5%</bdi> או <bdi>100</bdi> ₪ — הנמוך מביניהם.</i></span></li>
+              <li><b><bdi>1</bdi> תמונה</b><span>שולחים תמונה של המקום ואנחנו בודקים התאמה לפני ההזמנה.<br>
+                <a class="photo-cta" href="mailto:info@elmsnest.com?subject=%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%94%D7%AA%D7%90%D7%9E%D7%94&amp;body=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94"><span>לשלוח תמונה של המקום ←</span></a></span></li>
+            </ul>
+            <p class="disclaim">כאשר מידע אינו מאומת, איננו מציגים אותו כעובדה.</p>
+          </div>
+        </aside>
+
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div><h3>קולקציות</h3><ul><li>שביל, עמוד וגינה</li><li>תאורת קיר</li><li>ספוטים ופרוז׳קטורים</li><li>גרילנדות ודקורטיבי</li></ul></div>
+    <div><h3>מידע</h3><ul><li>מדריך לבחירת תאורה לגינה</li><li>למה תאורה סולארית</li><li>משלוחים ואספקה</li><li>שאלות נפוצות</li></ul></div>
+    <div><h3>יצירת קשר</h3><ul><li>info@elmsnest.com</li><li>עמוד יצירת קשר</li><li>לשליחת תמונה של המקום</li></ul></div>
+  </div>
+  <div class="copy">© <bdi>2026</bdi> ElmsNest · תנאי משלוח וביטול</div>
+</footer>
+
+<hr class="sep">
+<p class="cap">2 · /cart — ריקה</p>
+<header class="head">
+  <span class="mark">ElmsNest</span>
+  <nav><span>דף הבית</span><span>קולקציות</span><span>מדריך לבחירה</span><span>מי אנחנו</span><span>יצירת קשר</span></nav>
+  <span class="bag">העגלה · <bdi>0</bdi></span>
+</header>
+
+<main class="page">
+  <div class="wrap empty">
+    <p class="title">הקופה</p>
+    <h1>הקופה פתוחה,<br><em>העגלה עוד ריקה.</em></h1>
+    <p class="lead">בוחרים מקום אחד ומדליקים אותו. ארבעה מקומות, עשרים ושבע מנורות.</p>
+    <ul class="places">
+      <li><a href="/collections/path"><img src="../../../../assets/img/collection-path.jpg" alt="">
+        <span class="pl-row"><span class="pl-n">1</span><span class="pl-w">שביל<span class="pl-s">עמוד וגינה</span></span></span></a></li>
+      <li><a href="/collections/wall"><img src="../../../../assets/img/collection-wall.jpg" alt="">
+        <span class="pl-row"><span class="pl-n">2</span><span class="pl-w">קיר<span class="pl-s">כניסה וחזית</span></span></span></a></li>
+      <li><a href="/collections/spot"><img src="../../../../assets/img/collection-spot.jpg" alt="">
+        <span class="pl-row"><span class="pl-n">3</span><span class="pl-w">גינה<span class="pl-s">ספוטים ופרוז׳קטורים</span></span></span></a></li>
+      <li><a href="/collections/decor"><img src="../../../../assets/img/collection-decor.jpg" alt="">
+        <span class="pl-row"><span class="pl-n">4</span><span class="pl-w">מרפסת<span class="pl-s">גרילנדות ודקורטיבי</span></span></span></a></li>
+    </ul>
+    <div class="empty-all"><a href="/collections/all"><span>כל <bdi>27</bdi> המוצרים ←</span></a></div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div><h3>קולקציות</h3><ul><li>שביל, עמוד וגינה</li><li>תאורת קיר</li><li>ספוטים ופרוז׳קטורים</li><li>גרילנדות ודקורטיבי</li></ul></div>
+    <div><h3>מידע</h3><ul><li>מדריך לבחירת תאורה לגינה</li><li>למה תאורה סולארית</li><li>משלוחים ואספקה</li><li>שאלות נפוצות</li></ul></div>
+    <div><h3>יצירת קשר</h3><ul><li>info@elmsnest.com</li><li>עמוד יצירת קשר</li><li>לשליחת תמונה של המקום</li></ul></div>
+  </div>
+  <div class="copy">© <bdi>2026</bdi> ElmsNest · תנאי משלוח וביטול</div>
+</footer>
+
+</body>
+</html>
