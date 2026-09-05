@@ -55,7 +55,7 @@
             "footer_about": {
               "type": "text",
               "settings": {
-                "text": "<p>שאלות על מוצר או על התאמה למקום? כתבו לנו: <bdi dir=\"ltr\">info@elmsnest.com</bdi></p>",
+                "text": "<p>שאלות על מוצר או על התאמה למקום? כתבו לנו: info@elmsnest.com</p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",
@@ -107,7 +107,7 @@
             "links": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/collections/תאורת-שביל-סולארית\" data-ens-place=\"תאורת-שביל-סולארית\">תאורת שביל, עמוד וגינה</a></p><p><a href=\"/collections/solar-wall-lights\" data-ens-place=\"solar-wall-lights\">תאורת קיר</a></p><p><a href=\"/collections/ספוטים-ופרוז-קטורים-סולאריים\" data-ens-place=\"ספוטים-ופרוז-קטורים-סולאריים\">ספוטים, פרוז׳קטורים ותאורה ניידת</a></p><p><a href=\"/collections/גרילנדות-ותאורה-דקורטיבית\" data-ens-place=\"גרילנדות-ותאורה-דקורטיבית\">גרילנדות ותאורה דקורטיבית</a></p>",
+                "text": "<p><a href=\"/collections/תאורת-שביל-סולארית\">תאורת שביל, עמוד וגינה</a></p><p><a href=\"/collections/solar-wall-lights\">תאורת קיר</a></p><p><a href=\"/collections/ספוטים-ופרוז-קטורים-סולאריים\">ספוטים, פרוז׳קטורים ותאורה ניידת</a></p><p><a href=\"/collections/גרילנדות-ותאורה-דקורטיבית\">גרילנדות ותאורה דקורטיבית</a></p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",
@@ -282,7 +282,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p><bdi dir=\"ltr\">ElmsNest © 2026</bdi> · <a href=\"/#env2-terms\">תנאי משלוח וביטול</a></p>",
+                "text": "<p>ElmsNest © 2026 · <a href=\"/#env2-terms\">תנאי משלוח וביטול</a></p>",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",

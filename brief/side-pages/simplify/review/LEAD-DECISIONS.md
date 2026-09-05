@@ -34,3 +34,14 @@ Everything else in the five files is mechanical and is applied as written.
 - The three `<bdi>` wraps (footer_about, footer_bottom, header note_mobile) were approved above and not applied by the fixer; **applied by the lead**, `header-group.json` added to the deploy order and to SPEC §10.
 - The contact line's raw `&` in the mailto: the re-reviewer listed it as lead-approved. It was not — the skeptic **refuted** it (a bare `&body=` is not an ambiguous ampersand; every sibling caller of the same builder prints it the same way). Left as is.
 - `elmsnest-s-pdp-facts.liquid` at 13,293 bytes after the bidi rewrite (the token loop written twice): **accepted** — "≤ 12 KB" is a smallness guideline with no runtime meaning, and a de-duplicating refactor before the first deploy is a risk the round does not need. The nested-`<bdi>` note on digit-led ranges is checked on the real render (§11 bdi count), not in the abstract.
+
+## Learned at deploy time (2026-09-05): what Kalles' rich-text settings refuse
+
+Shopify validated `sections/footer-group.json` on upsert and refused it twice: *"Tag '<bdi>' is not permitted"* and
+*"Attribute 'data-ens-place=…' is not permitted on tag '<a>'"*. A `richtext` setting admits only a fixed tag/attribute
+list. So, **reversed by the lead**: the two footer `<bdi>` wraps and the four `data-ens-place` markers on the footer
+collection links. The bidi algorithm resolves a trailing LTR run (`info@elmsnest.com`, `ElmsNest © 2026`) correctly on
+its own, so P6 loses nothing visible; the §11 order test reads the footer's order from the collection links' `href`s
+in DOM order (`footerOrder` in verify-mirror.js) instead of from `data-ens-place`. The header's `note_mobile` is an HTML
+setting and **kept its `<bdi>`** (accepted by the same validator). Also learned: a `url` setting may not carry a page
+path as default, and a `text` setting may not carry an empty default — three sections bounced on those and were fixed.

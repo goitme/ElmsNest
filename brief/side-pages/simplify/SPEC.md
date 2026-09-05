@@ -321,7 +321,7 @@ Edited (from the DEV-THEME bodies): `sections/elmsnest-v2-hero.liquid` (one sett
 `layout/theme.liquid` (one render line after core), `sections/footer-group.json` (four collection
 labels = Shopify titles in menu order; © link stays `/#env2-terms` (kept alive by 5.3) or →
 /pages/shipping-delivery; photo link label «לשלוח תמונה של המקום» with the same mailto as 5.4;
-«כתבו לנו: info@elmsnest.com» unchanged except the P6 `<bdi>` on the address and on «ElmsNest © 2026»; `sections/header-group.json` likewise gets the P6 `<bdi>` on the address in `note_mobile` — its only edit), `config/settings_data.json` (two keys only:
+«כתבו לנו: info@elmsnest.com» unchanged — Shopify's richtext validator refuses `<bdi>` and `data-*` attributes there, so P6 and the `data-ens-place` markers do not apply to the footer; the order test reads the footer links' hrefs; `sections/header-group.json` gets the P6 `<bdi>` on the address in `note_mobile` (an HTML setting) — its only edit), `config/settings_data.json` (two keys only:
 `"show_ultra_btn": false, "show_secondary_image": false`), `templates/index.json`,
 `templates/collection.json`, `templates/product.elmsnest.json`.
 Untouched: `templates/customers/*`, all Kalles files, locales, the old env2 sections.
