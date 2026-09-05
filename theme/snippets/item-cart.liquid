@@ -34,7 +34,7 @@
   <div class="hdt-mini-cart__info hdt-s-text hdt-relative hdt-oh">
     <a href="{{ item.url }}" data-no-instant class="hdt-mini-cart__title hdt-block hdt-s-text hdt-font-medium">{{ item.product.title }}</a>
     {%- unless item.product.has_only_default_variant -%}<div class="hdt-mini-cart__meta-variant hdt-text-secondary hdt-text-sm hdt-font-normal hdt-block">{{ item.variant.title | escape }}</div>{%- endunless -%}
-    {%- if item.quantity > 1 -%}<div class="hdt-mini-cart__price">{%- render 'line-item-price', line_item: item, price_class: 'hdt-price-wrapp', get_total: true -%}</div><div class="hdt-mini-cart__unit hdt-text-secondary"><span class="hdt-money">{{ item.final_price | money }}</span> ליחידה</div>{%- else -%}<div class="hdt-mini-cart__price">{%- render 'line-item-price', line_item: item, price_class: 'hdt-price-wrapp' -%}</div>{%- endif -%}
+    {%- if item.quantity > 1 -%}<div class="hdt-mini-cart__price">{%- render 'line-item-price', line_item: item, price_class: 'hdt-price-wrapp', get_total: true -%}</div><div class="hdt-mini-cart__unit hdt-text-secondary"><bdi dir="ltr"><span class="hdt-money">{{ item.final_price | money }}</span></bdi> ליחידה</div>{%- else -%}<div class="hdt-mini-cart__price">{%- render 'line-item-price', line_item: item, price_class: 'hdt-price-wrapp' -%}</div>{%- endif -%}
     {%- if item.properties.size != 0 -%}
       <ul class="hdt-mini-cart_meta_propertyList">
         {%- for property in item.properties -%}

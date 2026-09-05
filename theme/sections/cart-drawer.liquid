@@ -29,8 +29,7 @@
 <hdt-cart-drawer detect-adm-se-evt section-id="{{ section.id }}" ref="hdt-cart" data-count="{{ cart.item_count | minus: has_protect_product }}" data-total-price="{{ cart.total_price | money }}" class="hdt-contents">
   <dialog id="CartDrawer" ref="dialog" class="hdt-dialog hdt-dialog-drawer hdt-dialog-drawer--cart hdt-mini-cart" scroll-lock pos="right" {%- if section.settings.colors_by_section %} color-scheme="{{ section.settings.color_scheme }}"{% endif %}>
     <div class="hdt-dialog-drawer__header">
-      {%- assign ens_count = cart.item_count | minus: has_protect_product -%}
-      <h3 class="hdt-mini-cart__header-title hdt-text-lg hdt-font-medium">{{ 'sections.cart.title' | t }}{% if cart_items != empty %} · {% if ens_count == 1 %}פריט אחד{% else %}<bdi dir="ltr">{{ ens_count }}</bdi> פריטים{% endif %}{% endif %}</h3>
+      <h3 class="hdt-mini-cart__header-title hdt-text-lg hdt-font-medium">{{ 'sections.cart.title' | t }}</h3>
       <button ref="closeButton" class="hdt-s-text hdt-dialog-btn__close" aria-controls="CartDrawer" aria-label="{{ 'accessibility.close' | t | escape }}">{%- render 'icon' with 'close' -%}</button>
     </div>
     <div class="hdt-dialog-drawer__inner">
@@ -49,7 +48,9 @@
                   {%- assign ens_handles = 'תאורת-שביל-סולארית,solar-wall-lights,ספוטים-ופרוז-קטורים-סולאריים,גרילנדות-ותאורה-דקורטיבית' | split: ',' -%}
                   {%- for h in ens_handles -%}
                     {%- assign c = collections[h] -%}
-                    {%- if c != blank -%}<a class="env2-link" href="{{ c.url }}" data-ens-place="{{ h }}">{{ c.title | escape }}</a>{%- endif -%}
+                    {%- if c != blank %}
+                      <a class="env2-link" href="{{ c.url }}" data-ens-place="{{ h }}">{{ c.title | escape }}</a>
+                    {%- endif -%}
                   {%- endfor -%}
                 </nav>
               </div>

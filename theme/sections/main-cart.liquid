@@ -25,7 +25,7 @@
 {{ 'hdt-main-cart.css' | asset_url | stylesheet_tag }}
 {% style %}
   {% render 'spacing-vars', box: section %}
-  @media (max-width:767px){ hdt-main-cart .hdt-container{display:flex;flex-direction:column} hdt-main-cart .hdt-page-cart__footer{order:-1} }
+  @media (max-width:767px){ hdt-main-cart .hdt-container{display:flex;flex-direction:column} hdt-main-cart .hdt-page-cart__footer{order:-1;margin-block:0 3rem} }
 {% endstyle %}
 <hdt-main-cart ref="hdt-cart" section-id="{{ section.id }}"  data-count="{{ cart.item_count | minus: has_protect_product }}" data-total-price="{{ cart.total_price | money | strip_html }}" main-content class="hdt-block hdt-page-cart hdt-section-spacing hdt-section-spacing-{{ section.id }} hdt-s-gradient" id="hdt-page-cart" color-scheme="{{ section.settings.color_scheme }}">
   <div class="hdt-container">
@@ -39,7 +39,7 @@
               {%- for ens_handle in ens_cart_collections -%}
                 {%- assign ens_collection = collections[ens_handle] -%}
                 {%- if ens_collection != blank %}
-                  <a class="env2-link" href="{{ ens_collection.url }}" data-ens-place="{{ ens_handle }}">{{ ens_collection.title }}</a>
+                  <a class="env2-link" href="{{ ens_collection.url }}" data-ens-place="{{ ens_handle }}">{{ ens_collection.title | escape }}</a>
                 {%- endif -%}
               {%- endfor -%}
             </nav>

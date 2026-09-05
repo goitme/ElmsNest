@@ -31,7 +31,7 @@ unanimously and what the harness measured on every concept:
 | checkout dominant, the exit demoted | threestep, window, paydesk, meters | the skin already does 52 px gold vs 48 px ghost; the ghost «צפה בעגלת הקניות» becomes a **text link** (`.env2-link`), so `dom` measures ≥ 1.8 |
 | the terms before the button, verbatim | threestep, window, slip, meters (3 of 4 numbers) | **one line** above the subtotal — the PDP's own `elmsnest-s-pdp-terms-line` wording, which the buyer has just read on the product page: «משלוח חינם לנקודת איסוף · אספקה משוערת 8–17 ימי עסקים · ביטול עד 14 יום מקבלת המוצר» — rendered by the same snippet so it is written once (P2) |
 | the void above the subtotal filled | all five | the terms line takes the space; the list no longer flexes to fill |
-| no basket headline of metres | threestep, window, paydesk, slip (and `DERIVED-DATA.md`) | nothing derived above the list; `cart.item_count` in the header title only («העגלה שלך · 3 פריטים») |
+| no basket headline of metres | threestep, window, paydesk, slip (and `DERIVED-DATA.md`) | nothing derived above the list. **Built, then dropped by the lead:** the count in the header title («העגלה שלך · 3 פריטים») — Kalles' JS re-renders only `cart-items-component` after an add, so the h3 would show a stale count after the first in-page add. The title stays «העגלה שלך»; the count lives where Kalles keeps it, on the header badge. |
 
 What is **refused**: slip's serif recognition sentence (authored copy per line — invention the owner rejected);
 window's lifted surface and halos (material invention); meters' rail (a device whose headline is blank on 22 of 27
