@@ -1,0 +1,2520 @@
+{
+  "home-m": {
+    "title": "ElmsNest | תאורת חוץ סולארית לגינה ולמרפסת",
+    "docH": 8710,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 12,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_hero",
+        "type": "STYLE",
+        "heading": "כשהשמש יורדת,הגינה נדלקת.",
+        "top": -1,
+        "height": 844,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_first_lit",
+        "type": "env2-section env2-first",
+        "heading": "מה שנדלק ראשון",
+        "top": 843,
+        "height": 1536,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_places",
+        "type": "env2-section env2-places",
+        "heading": "ארבעה מקומות. קטגוריה אחת.",
+        "top": 2379,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_switch",
+        "type": "env2-section env2-switch",
+        "heading": "אנחנו נגיד לכם גם מתי לא.",
+        "top": 3176,
+        "height": 1138,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_night_wall",
+        "type": "env2-section env2-wall",
+        "heading": "הלילה כבר כאן.קיר אחד מספיק.",
+        "top": 4315,
+        "height": 981,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_atmosphere",
+        "type": "env2-section env2-atm",
+        "heading": "אווירה",
+        "top": 5296,
+        "height": 920,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_terms",
+        "type": "env2-section env2-terms",
+        "heading": "ארבעה מספרים שכדאי לדעת",
+        "top": 6215,
+        "height": 1182,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_goodnight",
+        "type": "env2-section env2-goodnight",
+        "heading": "",
+        "top": 7397,
+        "height": 464,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 7861,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8658,
+        "height": 52,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 8710,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8710,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 11,
+    "links": 58,
+    "inputs": 1,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_4.png",
+        "w": 390,
+        "h": 844,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_58PM_1.png",
+        "w": 106,
+        "h": 117,
+        "alt": ""
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_37_41PM_6.png",
+        "w": 357,
+        "h": 446,
+        "alt": "מנורת קיר LED חיצונית דו־כיוונית IP65"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_50PM_6.png",
+        "w": 163,
+        "h": 144,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_56_28PM_1.png",
+        "w": 122,
+        "h": 129,
+        "alt": "גרילנדת נורות אדיסון סולארית – 5 או 8 מט"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_05PM_6.png",
+        "w": 184,
+        "h": 154,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "thway_stake_light_installed_41768c9e-1393-483f-bbb8-d4a432cdb5f5_0.png",
+        "w": 247,
+        "h": 308,
+        "alt": "תאורת שביל, עמוד וגינה"
+      },
+      {
+        "src": "modern_exterior_wall_warm_g_892144ba-5c87-4d2d-b58d-60e168b0cbb9_3.png",
+        "w": 199,
+        "h": 292,
+        "alt": "תאורת קיר"
+      },
+      {
+        "src": "illuminating_a_home_garden__fda15a86-c920-4892-a6a6-3c55edb4c411_0.png",
+        "w": 255,
+        "h": 229,
+        "alt": "ספוטים, פרוז׳קטורים ותאורה ניידת"
+      },
+      {
+        "src": "e_string_lights_in_a_home_g_b1972f25-2ec8-4e4d-b253-015693b651da_3.png",
+        "w": 207,
+        "h": 276,
+        "alt": "גרילנדות ותאורה דקורטיבית"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 390,
+        "h": 488,
+        "alt": ""
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 390,
+        "h": 488,
+        "alt": "שביל, מדרגות ומעברים — לראות את הדרך · מ"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_42_21PM_2.png",
+        "w": 398,
+        "h": 534,
+        "alt": "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_5.png",
+        "w": 262,
+        "h": 197,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_10_04_35PM_1.png",
+        "w": 204,
+        "h": 224,
+        "alt": "גרילנדת כדורי קריסטל סולארית – 20 עד 200"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_39_57PM_4.png",
+        "w": 173,
+        "h": 243,
+        "alt": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב "
+      },
+      {
+        "src": "e_string_lights_in_a_home_g_b1972f25-2ec8-4e4d-b253-015693b651da_3.png",
+        "w": 390,
+        "h": 334,
+        "alt": ""
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 64,
+        "h": 64,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 1,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "מה שנדלק ראשון",
+      "ארבעה מקומות. קטגוריה אחת.",
+      "אנחנו נגיד לכם גם מתי לא.",
+      "הלילה כבר כאן.קיר אחד מספיק.",
+      "אווירה",
+      "ארבעה מספרים שכדאי לדעת"
+    ],
+    "viewportH": 844,
+    "screens": 10.3
+  },
+  "collection-all-m": {
+    "title": "קטלוג – ElmsNest",
+    "docH": 21743,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1243,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_scene",
+        "type": "STYLE",
+        "heading": "קטלוג",
+        "top": -1,
+        "height": 737,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_ruler",
+        "type": "env2-section env2-coll env2-coll-ruler",
+        "heading": "כמה אור? שלוש יחידות מידה.",
+        "top": 736,
+        "height": 1834,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_bands",
+        "type": "env2-section env2-coll env2-coll-bands",
+        "heading": "גרילנדות ותאורה דקורטיבית",
+        "top": 2570,
+        "height": 11644,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_span",
+        "type": "env2-section env2-coll env2-coll-span",
+        "heading": "כמה מנורות צריך?",
+        "top": 14213,
+        "height": 4852,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_ledger",
+        "type": "",
+        "heading": "",
+        "top": 19066,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_terms",
+        "type": "env2-section env2-coll env2-coll-terms",
+        "heading": "ארבעה מספרים, לפני שמשלמים.",
+        "top": 19066,
+        "height": 1221,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_goodnight",
+        "type": "env2-section env2-coll env2-coll-goodnight",
+        "heading": "",
+        "top": 20286,
+        "height": 608,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 20894,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 21691,
+        "height": 52,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 21743,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 21743,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 13,
+    "links": 152,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "e_string_lights_in_a_home_g_b1972f25-2ec8-4e4d-b253-015693b651da_3.png",
+        "w": 390,
+        "h": 658,
+        "alt": "גרילנדות ותאורה דקורטיבית"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_10_04_35PM_1.png",
+        "w": 144,
+        "h": 201,
+        "alt": "גרילנדת כדורי קריסטל סולארית – 20 עד 200"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_56_28PM_1.png",
+        "w": 195,
+        "h": 175,
+        "alt": "גרילנדת נורות אדיסון סולארית – 5 או 8 מט"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_39_57PM_4.png",
+        "w": 144,
+        "h": 151,
+        "alt": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_05PM_6.png",
+        "w": 195,
+        "h": 204,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_5.png",
+        "w": 390,
+        "h": 439,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_5.png",
+        "w": 357,
+        "h": 500,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_4.png",
+        "w": 357,
+        "h": 375,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_39_30PM_1.png",
+        "w": 195,
+        "h": 204,
+        "alt": "מנורת גינה דו־ראשית מתכווננת 180° – ‏10W"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_37_41PM_6.png",
+        "w": 350,
+        "h": 190,
+        "alt": "מנורת קיר LED חיצונית דו־כיוונית IP65"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_37_41PM_6.png",
+        "w": 257,
+        "h": 270,
+        "alt": "מנורת קיר LED חיצונית דו־כיוונית IP65"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_10_16_37PM_1.png",
+        "w": 257,
+        "h": 360,
+        "alt": "מנורת קיר LED מודרנית 6W עם תאורת Up & D"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_49_48PM_1.png",
+        "w": 257,
+        "h": 231,
+        "alt": "מנורת קיר LED מודרנית – גרסאות לפנים או "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_42_21PM_1.png",
+        "w": 257,
+        "h": 270,
+        "alt": "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+      },
+      {
+        "src": "thway_stake_light_installed_41768c9e-1393-483f-bbb8-d4a432cdb5f5_0.png",
+        "w": 390,
+        "h": 608,
+        "alt": ""
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 64,
+        "h": 64,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 16,
+    "h1": [
+      "קטלוג"
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות",
+      "כמה אור? שלוש יחידות מידה.",
+      "גרילנדות ותאורה דקורטיבית",
+      "תאורת שביל, עמוד וגינה",
+      "ספוטים, פרוז׳קטורים ותאורה ניידת",
+      "תאורת קיר",
+      "כמה מנורות צריך?",
+      "ארבעה מספרים, לפני שמשלמים."
+    ],
+    "viewportH": 844,
+    "screens": 25.8
+  },
+  "pdp-rope-m": {
+    "title": "שרשרת חבל סולארית עד 300 LED | ElmsNest",
+    "docH": 8650,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 311,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_stage",
+        "type": "STYLE",
+        "heading": "הערב מתחילמהאור הראשון.",
+        "top": -1,
+        "height": 844,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_fit",
+        "type": "env2-section env2-pdp-fit",
+        "heading": "«זה יתאים למרפסת שלי?»",
+        "top": 843,
+        "height": 1107,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_night",
+        "type": "env2-section env2-pdp-night",
+        "heading": "מקרוב, הנורה היא האור.",
+        "top": 1950,
+        "height": 1071,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ledger",
+        "type": "env2-section env2-pdp-ledger",
+        "heading": "ארבעה אורכים. הצבע לא משנה את המחיר.",
+        "top": 3021,
+        "height": 1037,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_facts",
+        "type": "env2-section env2-pdp-facts",
+        "heading": "«⁠ומה יכול להשתבש?⁠»",
+        "top": 4058,
+        "height": 959,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_terms",
+        "type": "env2-section env2-pdp-terms",
+        "heading": "ארבעה מספרים, לפני שמשלמים.",
+        "top": 5017,
+        "height": 1190,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ask",
+        "type": "env2-section env2-pdp-ask env2-pdp-ask--photo",
+        "heading": "עוד לא בטוחים?לא חייבים.",
+        "top": 6207,
+        "height": 734,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_related",
+        "type": "STYLE",
+        "heading": "עוד שלושה שיוצרים אווירה",
+        "top": 6941,
+        "height": 782,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 7723,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8520,
+        "height": 52,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 8572,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8572,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 12,
+    "links": 43,
+    "inputs": 6,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_58PM_1.png",
+        "w": 390,
+        "h": 844,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_58PM_1.png",
+        "w": 398,
+        "h": 298,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_6.png",
+        "w": 278,
+        "h": 320,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_6.png",
+        "w": 390,
+        "h": 734,
+        "alt": ""
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_10_04_35PM_1.png",
+        "w": 247,
+        "h": 259,
+        "alt": "גרילנדת כדורי קריסטל סולארית – 20 עד 200"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_05PM_6.png",
+        "w": 214,
+        "h": 300,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_39_57PM_4.png",
+        "w": 247,
+        "h": 222,
+        "alt": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב "
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 64,
+        "h": 64,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 2,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "«זה יתאים למרפסת שלי?»",
+      "מקרוב, הנורה היא האור.",
+      "ארבעה אורכים. הצבע לא משנה את המחיר.",
+      "«⁠ומה יכול להשתבש?⁠»",
+      "ארבעה מספרים, לפני שמשלמים.",
+      "עוד לא בטוחים?לא חייבים.",
+      "עוד שלושה שיוצרים אווירה"
+    ],
+    "viewportH": 844,
+    "screens": 10.2
+  },
+  "pdp-path-m": {
+    "title": "מנורת שביל סולארית מנירוסטה | ElmsNest",
+    "docH": 8750,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_stage",
+        "type": "STYLE",
+        "heading": "הדרך הביתהנדלקת לבד.",
+        "top": -1,
+        "height": 844,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_fit",
+        "type": "env2-section env2-pdp-fit",
+        "heading": "«זה יתאים לשביל שלי?»",
+        "top": 843,
+        "height": 1058,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_night",
+        "type": "env2-section env2-pdp-night",
+        "heading": "מקרוב, ולאורך כל הדרך.",
+        "top": 1901,
+        "height": 1052,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ledger",
+        "type": "env2-section env2-pdp-ledger",
+        "heading": "כמה נקודות אור בדרך הביתה.",
+        "top": 2953,
+        "height": 1149,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_facts",
+        "type": "env2-section env2-pdp-facts",
+        "heading": "«⁠ומה יכול להשתבש?⁠»",
+        "top": 4103,
+        "height": 1031,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_terms",
+        "type": "env2-section env2-pdp-terms",
+        "heading": "ארבעה מספרים, לפני שמשלמים.",
+        "top": 5133,
+        "height": 1190,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ask",
+        "type": "env2-section env2-pdp-ask env2-pdp-ask--photo",
+        "heading": "עוד לא בטוחים?לא חייבים.",
+        "top": 6323,
+        "height": 734,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_related",
+        "type": "STYLE",
+        "heading": "עוד אחד לשביל",
+        "top": 7057,
+        "height": 766,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 7823,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8621,
+        "height": 52,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 8672,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8672,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 14,
+    "links": 39,
+    "inputs": 4,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_4.png",
+        "w": 390,
+        "h": 844,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_58PM_1.png",
+        "w": 398,
+        "h": 298,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 278,
+        "h": 320,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 390,
+        "h": 734,
+        "alt": ""
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_5.png",
+        "w": 247,
+        "h": 259,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 64,
+        "h": 64,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 2,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "«זה יתאים לשביל שלי?»",
+      "מקרוב, ולאורך כל הדרך.",
+      "כמה נקודות אור בדרך הביתה.",
+      "«⁠ומה יכול להשתבש?⁠»",
+      "ארבעה מספרים, לפני שמשלמים.",
+      "עוד לא בטוחים?לא חייבים.",
+      "עוד אחד לשביל"
+    ],
+    "viewportH": 844,
+    "screens": 10.4
+  },
+  "cart-m": {
+    "title": "ההזמנה שלך – ElmsNest",
+    "docH": 2299,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615402158__main_heading_zHKQUU",
+        "type": "STYLE",
+        "heading": "ההזמנה שלך",
+        "top": 60,
+        "height": 120,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615402158__main-cart",
+        "type": "LINK",
+        "heading": "העגלה שלך ריקה",
+        "top": 180,
+        "height": 683,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615402158__elmsnest_cart_guidance",
+        "type": "en-cart-guide",
+        "heading": "לפני שממשיכים לתשלום",
+        "top": 863,
+        "height": 587,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 1450,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 2247,
+        "height": 52,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "STYLE",
+        "heading": "",
+        "top": 2299,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 2299,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 4,
+    "links": 20,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 64,
+        "h": 64,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 1,
+    "h1": [
+      "ההזמנה שלך"
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "לפני שממשיכים לתשלום"
+    ],
+    "viewportH": 844,
+    "screens": 2.7
+  },
+  "search-m": {
+    "title": "חיפוש: 13 תוצאות עבור \"solar\" – ElmsNest",
+    "docH": 3371,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616876718__main_heading_xYyUyq",
+        "type": "STYLE",
+        "heading": "חיפוש: 13 תוצאות עבור \"solar\"",
+        "top": 60,
+        "height": 80,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616876718__main-search",
+        "type": "LINK",
+        "heading": "מנורות סולאריות למדרגות ולדק באור חם – 1/4/8/12 יחידות",
+        "top": 180,
+        "height": 2342,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 2522,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 3319,
+        "height": 52,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 3371,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 3371,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 13,
+    "links": 53,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_08_41_47PM_6.png",
+        "w": 173,
+        "h": 220,
+        "alt": "מנורות סולאריות למדרגות ולדק באור חם – 1"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_09_21_08PM_2.png",
+        "w": 173,
+        "h": 220,
+        "alt": "מנורות סולאריות למדרגות ולדק באור חם – 1"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_3.png",
+        "w": 173,
+        "h": 220,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_4.png",
+        "w": 173,
+        "h": 220,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "PTImageAug8_2026_08_03_10PM_4_0f15bfe5-77cb-48ea-a464-421bc917adfb.png",
+        "w": 173,
+        "h": 220,
+        "alt": "סט מנורות שביל סולאריות מתנדנדות ברוח – "
+      },
+      {
+        "src": "PTImageAug8_2026_08_03_10PM_5_58ae31f7-5782-49c0-a872-708805dbb2c8.png",
+        "w": 173,
+        "h": 220,
+        "alt": "סט מנורות שביל סולאריות מתנדנדות ברוח – "
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_07_24_15PM_5.png",
+        "w": 173,
+        "h": 220,
+        "alt": "פנס סולארי לגינה 9 LED | עמיד למים ומתכו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_07_24_15PM_6.png",
+        "w": 173,
+        "h": 220,
+        "alt": "פנס סולארי לגינה 9 LED | עמיד למים ומתכו"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_26_10PM_4.png",
+        "w": 173,
+        "h": 220,
+        "alt": "ספוט סולארי עוצמתי לגינה – 52 LED עם 3 מ"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_26_10PM_3.png",
+        "w": 173,
+        "h": 220,
+        "alt": "ספוט סולארי עוצמתי לגינה – 52 LED עם 3 מ"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_09_38_57PM_2.png",
+        "w": 173,
+        "h": 220,
+        "alt": "סט מנורות שביל סולאריות רטרו באור חם – 2"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_09_38_57PM_3.png",
+        "w": 173,
+        "h": 220,
+        "alt": "סט מנורות שביל סולאריות רטרו באור חם – 2"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_38_50PM_5.png",
+        "w": 173,
+        "h": 220,
+        "alt": "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_38_51PM_6.png",
+        "w": 173,
+        "h": 220,
+        "alt": "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72"
+      },
+      {
+        "src": "age_Jul_28_2026_08_00_45_PM_2_4324c9b8-fe70-47dc-af8a-9b91fd784207.png",
+        "w": 173,
+        "h": 220,
+        "alt": "מנורת קיר סולארית LED עם חיישן תנועה – ע"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_08_41_47PM_5.png",
+        "w": 173,
+        "h": 220,
+        "alt": "מנורת קיר סולארית LED עם חיישן תנועה – ע"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_58PM_1.png",
+        "w": 173,
+        "h": 220,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_6.png",
+        "w": 173,
+        "h": 220,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "ps://elmsnest.com/cdn/shop/files/ChatGPTImageJul26_2026_07_52_49PM.png",
+        "w": 173,
+        "h": 220,
+        "alt": "תאורה סולארית עמידה למים לדק ולמדרגות"
+      },
+      {
+        "src": "ps://elmsnest.com/cdn/shop/files/ChatGPTImageJul26_2026_07_57_23PM.png",
+        "w": 173,
+        "h": 220,
+        "alt": "תאורה סולארית עמידה למים לדק ולמדרגות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_32_25PM_6.png",
+        "w": 173,
+        "h": 220,
+        "alt": "סט תאורת שביל סולארית מודרנית בצורת 7 – "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_32_24PM_1.png",
+        "w": 173,
+        "h": 220,
+        "alt": "סט תאורת שביל סולארית מודרנית בצורת 7 – "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_04PM_3.png",
+        "w": 173,
+        "h": 220,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_04PM_4.png",
+        "w": 173,
+        "h": 220,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_43_41PM_1.png",
+        "w": 173,
+        "h": 220,
+        "alt": "תאורת אבטחה סולארית 100 LED עם חיישן תנו"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_43_41PM_2.png",
+        "w": 173,
+        "h": 220,
+        "alt": "תאורת אבטחה סולארית 100 LED עם חיישן תנו"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 64,
+        "h": 64,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 0,
+    "h1": [
+      "חיפוש: 13 תוצאות עבור \"solar\""
+    ],
+    "h2": [
+      "העדפות קובצי Cookie"
+    ],
+    "viewportH": 844,
+    "screens": 4
+  },
+  "notfound-m": {
+    "title": "404 לא נמצא – ElmsNest",
+    "docH": 1445,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615074478__main",
+        "type": "STYLE",
+        "heading": "עמוד לא נמצא",
+        "top": 60,
+        "height": 536,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 596,
+        "height": 797,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1394,
+        "height": 52,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 1445,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1445,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 4,
+    "links": 19,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 64,
+        "h": 64,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 0,
+    "h1": [
+      "עמוד לא נמצא"
+    ],
+    "h2": [
+      "העדפות קובצי Cookie"
+    ],
+    "viewportH": 844,
+    "screens": 1.7
+  },
+  "home-d": {
+    "title": "ElmsNest | תאורת חוץ סולארית לגינה ולמרפסת",
+    "docH": 8413,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 656,
+        "height": 70,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_hero",
+        "type": "STYLE",
+        "heading": "כשהשמש יורדת,הגינה נדלקת.",
+        "top": -1,
+        "height": 900,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_first_lit",
+        "type": "env2-section env2-first",
+        "heading": "מה שנדלק ראשון",
+        "top": 899,
+        "height": 1204,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_places",
+        "type": "env2-section env2-places",
+        "heading": "ארבעה מקומות. קטגוריה אחת.",
+        "top": 2103,
+        "height": 963,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_switch",
+        "type": "env2-section env2-switch",
+        "heading": "אנחנו נגיד לכם גם מתי לא.",
+        "top": 3066,
+        "height": 971,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_night_wall",
+        "type": "env2-section env2-wall",
+        "heading": "הלילה כבר כאן.קיר אחד מספיק.",
+        "top": 4037,
+        "height": 900,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_atmosphere",
+        "type": "env2-section env2-atm",
+        "heading": "אווירה",
+        "top": 4937,
+        "height": 1395,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_terms",
+        "type": "env2-section env2-terms",
+        "heading": "ארבעה מספרים שכדאי לדעת",
+        "top": 6332,
+        "height": 1142,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616057518__env2_goodnight",
+        "type": "env2-section env2-goodnight",
+        "heading": "",
+        "top": 7473,
+        "height": 490,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 7964,
+        "height": 390,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8354,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 8413,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8413,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 12,
+    "links": 63,
+    "inputs": 1,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_4.png",
+        "w": 1366,
+        "h": 900,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_58PM_1.png",
+        "w": 135,
+        "h": 148,
+        "alt": ""
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_37_41PM_6.png",
+        "w": 639,
+        "h": 799,
+        "alt": "מנורת קיר LED חיצונית דו־כיוונית IP65"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_50PM_6.png",
+        "w": 224,
+        "h": 197,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_56_28PM_1.png",
+        "w": 173,
+        "h": 182,
+        "alt": "גרילנדת נורות אדיסון סולארית – 5 או 8 מט"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_05PM_6.png",
+        "w": 265,
+        "h": 223,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "thway_stake_light_installed_41768c9e-1393-483f-bbb8-d4a432cdb5f5_0.png",
+        "w": 413,
+        "h": 330,
+        "alt": "תאורת שביל, עמוד וגינה"
+      },
+      {
+        "src": "modern_exterior_wall_warm_g_892144ba-5c87-4d2d-b58d-60e168b0cbb9_3.png",
+        "w": 253,
+        "h": 388,
+        "alt": "תאורת קיר"
+      },
+      {
+        "src": "illuminating_a_home_garden__fda15a86-c920-4892-a6a6-3c55edb4c411_0.png",
+        "w": 346,
+        "h": 277,
+        "alt": "ספוטים, פרוז׳קטורים ותאורה ניידת"
+      },
+      {
+        "src": "e_string_lights_in_a_home_g_b1972f25-2ec8-4e4d-b253-015693b651da_3.png",
+        "w": 226,
+        "h": 310,
+        "alt": "גרילנדות ותאורה דקורטיבית"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 747,
+        "h": 560,
+        "alt": ""
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 747,
+        "h": 560,
+        "alt": "שביל, מדרגות ומעברים — לראות את הדרך · מ"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_42_21PM_2.png",
+        "w": 1644,
+        "h": 918,
+        "alt": "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_5.png",
+        "w": 274,
+        "h": 205,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_10_04_35PM_1.png",
+        "w": 306,
+        "h": 337,
+        "alt": "גרילנדת כדורי קריסטל סולארית – 20 עד 200"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_39_57PM_4.png",
+        "w": 204,
+        "h": 286,
+        "alt": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב "
+      },
+      {
+        "src": "e_string_lights_in_a_home_g_b1972f25-2ec8-4e4d-b253-015693b651da_3.png",
+        "w": 1366,
+        "h": 383,
+        "alt": ""
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 72,
+        "h": 72,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 1,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "מה שנדלק ראשון",
+      "ארבעה מקומות. קטגוריה אחת.",
+      "אנחנו נגיד לכם גם מתי לא.",
+      "הלילה כבר כאן.קיר אחד מספיק.",
+      "אווירה",
+      "ארבעה מספרים שכדאי לדעת"
+    ],
+    "viewportH": 900,
+    "screens": 9.3
+  },
+  "collection-all-d": {
+    "title": "קטלוג – ElmsNest",
+    "docH": 16471,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 240,
+        "height": 70,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_scene",
+        "type": "STYLE",
+        "heading": "קטלוג",
+        "top": -1,
+        "height": 900,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_ruler",
+        "type": "env2-section env2-coll env2-coll-ruler",
+        "heading": "כמה אור? שלוש יחידות מידה.",
+        "top": 899,
+        "height": 1220,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_bands",
+        "type": "env2-section env2-coll env2-coll-bands",
+        "heading": "גרילנדות ותאורה דקורטיבית",
+        "top": 2119,
+        "height": 8722,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_span",
+        "type": "env2-section env2-coll env2-coll-span",
+        "heading": "כמה מנורות צריך?",
+        "top": 10840,
+        "height": 3620,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_ledger",
+        "type": "",
+        "heading": "",
+        "top": 14460,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_terms",
+        "type": "env2-section env2-coll env2-coll-terms",
+        "heading": "ארבעה מספרים, לפני שמשלמים.",
+        "top": 14460,
+        "height": 1022,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615565998__coll_goodnight",
+        "type": "env2-section env2-coll env2-coll-goodnight",
+        "heading": "",
+        "top": 15482,
+        "height": 540,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 16022,
+        "height": 390,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 16411,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 16471,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 16471,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 12,
+    "links": 162,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "e_string_lights_in_a_home_g_b1972f25-2ec8-4e4d-b253-015693b651da_3.png",
+        "w": 1366,
+        "h": 900,
+        "alt": "גרילנדות ותאורה דקורטיבית"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_05PM_6.png",
+        "w": 375,
+        "h": 270,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_10_04_35PM_1.png",
+        "w": 214,
+        "h": 300,
+        "alt": "גרילנדת כדורי קריסטל סולארית – 20 עד 200"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_56_28PM_1.png",
+        "w": 265,
+        "h": 239,
+        "alt": "גרילנדת נורות אדיסון סולארית – 5 או 8 מט"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_39_57PM_4.png",
+        "w": 306,
+        "h": 321,
+        "alt": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_05PM_6.png",
+        "w": 306,
+        "h": 321,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_5.png",
+        "w": 1366,
+        "h": 558,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_5.png",
+        "w": 214,
+        "h": 300,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_4.png",
+        "w": 306,
+        "h": 321,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_39_30PM_1.png",
+        "w": 706,
+        "h": 742,
+        "alt": "מנורת גינה דו־ראשית מתכווננת 180° – ‏10W"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_37_41PM_6.png",
+        "w": 1240,
+        "h": 273,
+        "alt": "מנורת קיר LED חיצונית דו־כיוונית IP65"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_37_41PM_6.png",
+        "w": 326,
+        "h": 343,
+        "alt": "מנורת קיר LED חיצונית דו־כיוונית IP65"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_10_16_37PM_1.png",
+        "w": 214,
+        "h": 300,
+        "alt": "מנורת קיר LED מודרנית 6W עם תאורת Up & D"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_49_48PM_1.png",
+        "w": 265,
+        "h": 239,
+        "alt": "מנורת קיר LED מודרנית – גרסאות לפנים או "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug1_2026_09_42_21PM_1.png",
+        "w": 306,
+        "h": 321,
+        "alt": "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+      },
+      {
+        "src": "thway_stake_light_installed_41768c9e-1393-483f-bbb8-d4a432cdb5f5_0.png",
+        "w": 1366,
+        "h": 540,
+        "alt": ""
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 72,
+        "h": 72,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 16,
+    "h1": [
+      "קטלוג"
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "תאורת גחליליות סולארית לגינה – 10 נורות מתנדנדות",
+      "כמה אור? שלוש יחידות מידה.",
+      "גרילנדות ותאורה דקורטיבית",
+      "תאורת שביל, עמוד וגינה",
+      "ספוטים, פרוז׳קטורים ותאורה ניידת",
+      "תאורת קיר",
+      "כמה מנורות צריך?",
+      "ארבעה מספרים, לפני שמשלמים."
+    ],
+    "viewportH": 900,
+    "screens": 18.3
+  },
+  "pdp-rope-d": {
+    "title": "שרשרת חבל סולארית עד 300 LED | ElmsNest",
+    "docH": 8205,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 70,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_stage",
+        "type": "STYLE",
+        "heading": "הערב מתחילמהאור הראשון.",
+        "top": -1,
+        "height": 900,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_fit",
+        "type": "env2-section env2-pdp-fit",
+        "heading": "«זה יתאים למרפסת שלי?»",
+        "top": 899,
+        "height": 1344,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_night",
+        "type": "env2-section env2-pdp-night",
+        "heading": "מקרוב, הנורה היא האור.",
+        "top": 2243,
+        "height": 1198,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ledger",
+        "type": "env2-section env2-pdp-ledger",
+        "heading": "ארבעה אורכים. הצבע לא משנה את המחיר.",
+        "top": 3442,
+        "height": 967,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_facts",
+        "type": "env2-section env2-pdp-facts",
+        "heading": "«⁠ומה יכול להשתבש?⁠»",
+        "top": 4409,
+        "height": 948,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_terms",
+        "type": "env2-section env2-pdp-terms",
+        "heading": "ארבעה מספרים, לפני שמשלמים.",
+        "top": 5356,
+        "height": 833,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ask",
+        "type": "env2-section env2-pdp-ask env2-pdp-ask--photo",
+        "heading": "עוד לא בטוחים?לא חייבים.",
+        "top": 6190,
+        "height": 718,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_related",
+        "type": "STYLE",
+        "heading": "עוד שלושה שיוצרים אווירה",
+        "top": 6907,
+        "height": 848,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 7755,
+        "height": 390,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8145,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 8205,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8205,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 10,
+    "links": 52,
+    "inputs": 6,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_58PM_1.png",
+        "w": 1366,
+        "h": 900,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_58PM_1.png",
+        "w": 734,
+        "h": 551,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_6.png",
+        "w": 490,
+        "h": 563,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_6.png",
+        "w": 1366,
+        "h": 718,
+        "alt": ""
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_10_04_35PM_1.png",
+        "w": 306,
+        "h": 321,
+        "alt": "גרילנדת כדורי קריסטל סולארית – 20 עד 200"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_05PM_6.png",
+        "w": 214,
+        "h": 300,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_39_57PM_4.png",
+        "w": 265,
+        "h": 239,
+        "alt": "ענפי ליבנה מוארים – 20 נורות LED לעיצוב "
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 72,
+        "h": 72,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 2,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "«זה יתאים למרפסת שלי?»",
+      "מקרוב, הנורה היא האור.",
+      "ארבעה אורכים. הצבע לא משנה את המחיר.",
+      "«⁠ומה יכול להשתבש?⁠»",
+      "ארבעה מספרים, לפני שמשלמים.",
+      "עוד לא בטוחים?לא חייבים.",
+      "עוד שלושה שיוצרים אווירה"
+    ],
+    "viewportH": 900,
+    "screens": 9.1
+  },
+  "pdp-path-d": {
+    "title": "מנורת שביל סולארית מנירוסטה | ElmsNest",
+    "docH": 8089,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 70,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_stage",
+        "type": "STYLE",
+        "heading": "הדרך הביתהנדלקת לבד.",
+        "top": -1,
+        "height": 900,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_fit",
+        "type": "env2-section env2-pdp-fit",
+        "heading": "«זה יתאים לשביל שלי?»",
+        "top": 899,
+        "height": 1247,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_night",
+        "type": "env2-section env2-pdp-night",
+        "heading": "מקרוב, ולאורך כל הדרך.",
+        "top": 2146,
+        "height": 1198,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ledger",
+        "type": "env2-section env2-pdp-ledger",
+        "heading": "כמה נקודות אור בדרך הביתה.",
+        "top": 3344,
+        "height": 1011,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_facts",
+        "type": "env2-section env2-pdp-facts",
+        "heading": "«⁠ומה יכול להשתבש?⁠»",
+        "top": 4355,
+        "height": 948,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_terms",
+        "type": "env2-section env2-pdp-terms",
+        "heading": "ארבעה מספרים, לפני שמשלמים.",
+        "top": 5302,
+        "height": 833,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_ask",
+        "type": "env2-section env2-pdp-ask env2-pdp-ask--photo",
+        "heading": "עוד לא בטוחים?לא חייבים.",
+        "top": 6136,
+        "height": 718,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616745646__pdp_related",
+        "type": "STYLE",
+        "heading": "עוד אחד לשביל",
+        "top": 6853,
+        "height": 786,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 7639,
+        "height": 390,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8029,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 8089,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 8089,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 12,
+    "links": 48,
+    "inputs": 4,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_4.png",
+        "w": 1366,
+        "h": 900,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_58PM_1.png",
+        "w": 734,
+        "h": 551,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 490,
+        "h": 563,
+        "alt": "מנורת שביל סולארית מנירוסטה – תאורה אוטו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_08_49_59PM_5.png",
+        "w": 1366,
+        "h": 718,
+        "alt": ""
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_5.png",
+        "w": 306,
+        "h": 321,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 72,
+        "h": 72,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 2,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "«זה יתאים לשביל שלי?»",
+      "מקרוב, ולאורך כל הדרך.",
+      "כמה נקודות אור בדרך הביתה.",
+      "«⁠ומה יכול להשתבש?⁠»",
+      "ארבעה מספרים, לפני שמשלמים.",
+      "עוד לא בטוחים?לא חייבים.",
+      "עוד אחד לשביל"
+    ],
+    "viewportH": 900,
+    "screens": 9
+  },
+  "cart-d": {
+    "title": "ההזמנה שלך – ElmsNest",
+    "docH": 1789,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 70,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615402158__main_heading_zHKQUU",
+        "type": "STYLE",
+        "heading": "ההזמנה שלך",
+        "top": 70,
+        "height": 120,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615402158__main-cart",
+        "type": "LINK",
+        "heading": "העגלה שלך ריקה",
+        "top": 190,
+        "height": 779,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615402158__elmsnest_cart_guidance",
+        "type": "en-cart-guide",
+        "heading": "לפני שממשיכים לתשלום",
+        "top": 969,
+        "height": 370,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 1339,
+        "height": 390,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1729,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1789,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1789,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 3,
+    "links": 29,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 72,
+        "h": 72,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 1,
+    "h1": [
+      "ההזמנה שלך"
+    ],
+    "h2": [
+      "העדפות קובצי Cookie",
+      "לפני שממשיכים לתשלום"
+    ],
+    "viewportH": 900,
+    "screens": 2
+  },
+  "search-d": {
+    "title": "חיפוש: 13 תוצאות עבור \"solar\" – ElmsNest",
+    "docH": 2623,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 70,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616876718__main_heading_xYyUyq",
+        "type": "STYLE",
+        "heading": "חיפוש: 13 תוצאות עבור \"solar\"",
+        "top": 70,
+        "height": 100,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567616876718__main-search",
+        "type": "LINK",
+        "heading": "מנורות סולאריות למדרגות ולדק באור חם – 1/4/8/12 יחידות",
+        "top": 210,
+        "height": 1963,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 2173,
+        "height": 390,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 2563,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 2623,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 2623,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 15,
+    "links": 62,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_08_41_47PM_6.png",
+        "w": 270,
+        "h": 345,
+        "alt": "מנורות סולאריות למדרגות ולדק באור חם – 1"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_09_21_08PM_2.png",
+        "w": 270,
+        "h": 345,
+        "alt": "מנורות סולאריות למדרגות ולדק באור חם – 1"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_3.png",
+        "w": 270,
+        "h": 345,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug8_2026_07_56_49PM_4.png",
+        "w": 270,
+        "h": 345,
+        "alt": "מנורת גינה סולארית עוצמתית LED – תאורה א"
+      },
+      {
+        "src": "PTImageAug8_2026_08_03_10PM_4_0f15bfe5-77cb-48ea-a464-421bc917adfb.png",
+        "w": 270,
+        "h": 345,
+        "alt": "סט מנורות שביל סולאריות מתנדנדות ברוח – "
+      },
+      {
+        "src": "PTImageAug8_2026_08_03_10PM_5_58ae31f7-5782-49c0-a872-708805dbb2c8.png",
+        "w": 270,
+        "h": 345,
+        "alt": "סט מנורות שביל סולאריות מתנדנדות ברוח – "
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_07_24_15PM_5.png",
+        "w": 270,
+        "h": 345,
+        "alt": "פנס סולארי לגינה 9 LED | עמיד למים ומתכו"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_07_24_15PM_6.png",
+        "w": 270,
+        "h": 345,
+        "alt": "פנס סולארי לגינה 9 LED | עמיד למים ומתכו"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_26_10PM_4.png",
+        "w": 270,
+        "h": 345,
+        "alt": "ספוט סולארי עוצמתי לגינה – 52 LED עם 3 מ"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_26_10PM_3.png",
+        "w": 270,
+        "h": 345,
+        "alt": "ספוט סולארי עוצמתי לגינה – 52 LED עם 3 מ"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_09_38_57PM_2.png",
+        "w": 270,
+        "h": 345,
+        "alt": "סט מנורות שביל סולאריות רטרו באור חם – 2"
+      },
+      {
+        "src": "://elmsnest.com/cdn/shop/files/ChatGPTImageJul28_2026_09_38_57PM_3.png",
+        "w": 270,
+        "h": 345,
+        "alt": "סט מנורות שביל סולאריות רטרו באור חם – 2"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_38_50PM_5.png",
+        "w": 270,
+        "h": 345,
+        "alt": "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_38_51PM_6.png",
+        "w": 270,
+        "h": 345,
+        "alt": "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72"
+      },
+      {
+        "src": "age_Jul_28_2026_08_00_45_PM_2_4324c9b8-fe70-47dc-af8a-9b91fd784207.png",
+        "w": 270,
+        "h": 345,
+        "alt": "מנורת קיר סולארית LED עם חיישן תנועה – ע"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_08_41_47PM_5.png",
+        "w": 270,
+        "h": 345,
+        "alt": "מנורת קיר סולארית LED עם חיישן תנועה – ע"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_58PM_1.png",
+        "w": 270,
+        "h": 345,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_51_59PM_6.png",
+        "w": 270,
+        "h": 345,
+        "alt": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות"
+      },
+      {
+        "src": "ps://elmsnest.com/cdn/shop/files/ChatGPTImageJul26_2026_07_52_49PM.png",
+        "w": 270,
+        "h": 345,
+        "alt": "תאורה סולארית עמידה למים לדק ולמדרגות"
+      },
+      {
+        "src": "ps://elmsnest.com/cdn/shop/files/ChatGPTImageJul26_2026_07_57_23PM.png",
+        "w": 270,
+        "h": 345,
+        "alt": "תאורה סולארית עמידה למים לדק ולמדרגות"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_32_25PM_6.png",
+        "w": 270,
+        "h": 345,
+        "alt": "סט תאורת שביל סולארית מודרנית בצורת 7 – "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_32_24PM_1.png",
+        "w": 270,
+        "h": 345,
+        "alt": "סט תאורת שביל סולארית מודרנית בצורת 7 – "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_04PM_3.png",
+        "w": 270,
+        "h": 345,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug4_2026_09_45_04PM_4.png",
+        "w": 270,
+        "h": 345,
+        "alt": "תאורת גחליליות סולארית לגינה – 10 נורות "
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_43_41PM_1.png",
+        "w": 270,
+        "h": 345,
+        "alt": "תאורת אבטחה סולארית 100 LED עם חיישן תנו"
+      },
+      {
+        "src": "s://elmsnest.com/cdn/shop/files/ChatGPTImageAug2_2026_09_43_41PM_2.png",
+        "w": 270,
+        "h": 345,
+        "alt": "תאורת אבטחה סולארית 100 LED עם חיישן תנו"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 72,
+        "h": 72,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 0,
+    "h1": [
+      "חיפוש: 13 תוצאות עבור \"solar\""
+    ],
+    "h2": [
+      "העדפות קובצי Cookie"
+    ],
+    "viewportH": 900,
+    "screens": 2.9
+  },
+  "notfound-d": {
+    "title": "404 לא נמצא – ElmsNest",
+    "docH": 1110,
+    "bodyBg": "rgb(2, 3, 6)",
+    "secs": [
+      {
+        "id": "shopify-section-sections--21567606587566__header_inline_blocks_xePFbC",
+        "type": "STYLE",
+        "heading": "",
+        "top": 0,
+        "height": 70,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-template--21567615074478__main",
+        "type": "STYLE",
+        "heading": "עמוד לא נמצא",
+        "top": 70,
+        "height": 590,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_KwXhWr",
+        "type": "STYLE",
+        "heading": "קולקציות",
+        "top": 660,
+        "height": 390,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567606390958__footer_bottom",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1050,
+        "height": 60,
+        "visible": true
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__cart-drawer",
+        "type": "LINK",
+        "heading": "העגלה שלך",
+        "top": 1110,
+        "height": 0,
+        "visible": false
+      },
+      {
+        "id": "shopify-section-sections--21567608946862__back_top_RQdR9c",
+        "type": "STYLE",
+        "heading": "",
+        "top": 1110,
+        "height": 0,
+        "visible": false
+      }
+    ],
+    "btns": 3,
+    "links": 28,
+    "inputs": 0,
+    "imgs": [
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 50,
+        "h": 50,
+        "alt": "ElmsNest"
+      },
+      {
+        "src": "https://elmsnest.com/cdn/shop/files/ElmsNest_Logo_Night.png",
+        "w": 72,
+        "h": 72,
+        "alt": "ElmsNest"
+      }
+    ],
+    "bigSvgs": 0,
+    "h1": [
+      "עמוד לא נמצא"
+    ],
+    "h2": [
+      "העדפות קובצי Cookie"
+    ],
+    "viewportH": 900,
+    "screens": 1.2
+  }
+}
