@@ -352,6 +352,6 @@ stainless path (1):
   mailto = 1;
 - the four collection names appear in the same order in the header menu, the home tiles, the hero
   lead, the collection filter row and the footer (`[data-ens-place]` order);
-- every en-dash range inside `<main>` text sits inside a `<bdi>`;
+- every en-dash range inside `<main>` text sits inside a `<bdi>` — except inside the merchant's own description, which `elmsnest-s-pdp-facts` shows verbatim behind `<details>` by design (measured separately as `rangesInRawDescription`); the `sr-only` radios behind the 44 px pills are not tap targets; a `display:none` element cannot animate;
 - reduced-motion: no transitions on `.hdt-card-product`.
 Screenshots of the whole flow (home → collection → PDP → drawer) at 390×844 go into the owner artifact.
