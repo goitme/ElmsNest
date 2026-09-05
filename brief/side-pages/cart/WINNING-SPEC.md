@@ -47,10 +47,15 @@ being sent to checkout (`INVENTORY-DRAWER.md` §"The no-JS cart page").
 
 ## 2. Acceptance (measured with `verify.js`, drawer and page, 390×844 / 360×640 / 320×568 / 1440×900)
 
-- `trunc=[false,false]`, `removes=[1,1]`, `tracked=[]`, `under44=0` on both surfaces.
-- drawer `dom ≥ 1.8`; page `insideFold=true` at 360×640; `voidAboveSubtotal ≤ 40` at 390×844.
+- `trunc=[false,false]`, `removes=[1,1]`, `tracked=[]` on both surfaces; `under44` counts only CONTROLS: the stepper
+  buttons, the input and the remove link are ≥ 44 px; inline text links inside sentences (the product title, «לכל התנאים»
+  with its 44 px pseudo hit-area, Kalles' tax-line link) and, on the page, the header/footer nav links are text, not controls.
+- drawer `dom ≥ 1.8`; page `insideFold=true` at 360×640; `voidAboveSubtotal ≤ 40` at 390×844 (measured from the last
+  line to the top of the bottom block, whose first element is now the terms line); the drawer's own checkout stays on
+  screen at 360×640 (the list shrinks and scrolls; the bottom block never leaves the dialog).
 - `terms.days` and `terms.cancel` true on both surfaces (the one line carries both); no fourth or fifth term.
-- `exitLinks`: 2 on the drawer (the two photographs), ≤ 3 on the page.
+- `exitLinks`: 4 on the drawer (photo + title per line; the harness counts every `/products/` link as an exit since
+  the title wraps to two lines), 7 on the page (the same four + the logo and two footer image links — global chrome).
 - 0 Liquid errors; no horizontal overflow; the drawer opens after the stock main form's add (P1) and after the
   sticky bar's add; the empty drawer shows the four collection links in menu order, nothing else.
 

@@ -1,7 +1,7 @@
 {
   "home-m-js": {
-    "docH": 4368,
-    "screens": 5.18,
+    "docH": 4321,
+    "screens": 5.12,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -35,7 +35,7 @@
       },
       {
         "id": "template--21567616057518__ens_products",
-        "h": 829
+        "h": 781
       },
       {
         "id": "template--21567616057518__ens_fit",
@@ -123,13 +123,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "collection-all-m-js": {
-    "docH": 6702,
-    "screens": 7.94,
+    "docH": 6271,
+    "screens": 7.43,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -155,11 +156,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 610
+        "h": 559
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 5020
+        "h": 4640
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -383,8 +384,8 @@
     "overTarget": false
   },
   "collection-path-m-js": {
-    "docH": 3222,
-    "screens": 3.82,
+    "docH": 2979,
+    "screens": 3.53,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -410,11 +411,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 644
+        "h": 559
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 1507
+        "h": 1348
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -445,42 +446,42 @@
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 171
+        "w": 176
       }
     ],
     "cardsNotFeatured": [
@@ -518,13 +519,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
   },
   "pdp-rope-m-js": {
-    "docH": 3698,
-    "screens": 4.38,
+    "docH": 3318,
+    "screens": 3.93,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -550,15 +552,15 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1305
+        "h": 1266
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
-        "h": 656
+        "h": 362
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 829
+        "h": 781
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -609,9 +611,9 @@
       "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
       "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
     ],
-    "atcTop": 1082,
+    "atcTop": 1043,
     "atcInFold": false,
-    "smallTaps": 8,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
@@ -631,13 +633,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-path-m-js": {
-    "docH": 3584,
-    "screens": 4.25,
+    "docH": 3498,
+    "screens": 4.14,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -653,7 +656,7 @@
     "cartForms": 2,
     "mainProductForms": 1,
     "stickyForms": 1,
-    "noscriptSelect": true,
+    "noscriptSelect": false,
     "qtyInputs": 1,
     "atcButtons": 2,
     "sections": [
@@ -663,7 +666,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1123
+        "h": 1085
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -671,7 +674,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 829
+        "h": 781
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -722,9 +725,9 @@
       "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 900,
+    "atcTop": 862,
     "atcInFold": false,
-    "smallTaps": 1,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
@@ -742,19 +745,16 @@
       "ספוטים-ופרוז-קטורים-סולאריים",
       "גרילנדות-ותאורה-דקורטיבית"
     ],
-    "rangesOutsideBdi": [
-      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
-      "זמן עבודה כ־8–10 שעות",
-      "נעיצה באדמה בעומק כ־5–10 ס״מ"
-    ],
-    "rangesOutsideBdiCount": 3,
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-deck-m-js": {
-    "docH": 3525,
-    "screens": 4.18,
+    "docH": 3439,
+    "screens": 4.07,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -780,7 +780,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1159
+        "h": 1120
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -788,7 +788,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 829
+        "h": 781
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -839,9 +839,9 @@
       "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 936,
+    "atcTop": 897,
     "atcInFold": false,
-    "smallTaps": 4,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "תאורה סולארית עמידה למים לדק ולמדרגות"
@@ -861,13 +861,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "home-s-js": {
-    "docH": 4108,
-    "screens": 6.42,
+    "docH": 4068,
+    "screens": 6.36,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -901,7 +902,7 @@
       },
       {
         "id": "template--21567616057518__ens_products",
-        "h": 791
+        "h": 751
       },
       {
         "id": "template--21567616057518__ens_fit",
@@ -989,13 +990,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": true
   },
   "collection-all-s-js": {
-    "docH": 6418,
-    "screens": 10.03,
+    "docH": 6072,
+    "screens": 9.49,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1021,11 +1023,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 588
+        "h": 550
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 4758
+        "h": 4451
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -1249,8 +1251,8 @@
     "overTarget": true
   },
   "collection-path-s-js": {
-    "docH": 3117,
-    "screens": 4.87,
+    "docH": 2909,
+    "screens": 4.55,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1276,11 +1278,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 614
+        "h": 550
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 1432
+        "h": 1288
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -1311,42 +1313,42 @@
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 156
+        "w": 161
       }
     ],
     "cardsNotFeatured": [
@@ -1384,13 +1386,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
   },
   "pdp-rope-s-js": {
-    "docH": 3618,
-    "screens": 5.65,
+    "docH": 3274,
+    "screens": 5.12,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1416,15 +1419,15 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1267
+        "h": 1257
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
-        "h": 651
+        "h": 357
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 791
+        "h": 751
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -1475,9 +1478,9 @@
       "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
       "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
     ],
-    "atcTop": 1044,
+    "atcTop": 1013,
     "atcInFold": false,
-    "smallTaps": 8,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
@@ -1497,13 +1500,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-path-s-js": {
-    "docH": 3504,
-    "screens": 5.47,
+    "docH": 3454,
+    "screens": 5.4,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1519,7 +1523,7 @@
     "cartForms": 2,
     "mainProductForms": 1,
     "stickyForms": 1,
-    "noscriptSelect": true,
+    "noscriptSelect": false,
     "qtyInputs": 1,
     "atcButtons": 2,
     "sections": [
@@ -1529,7 +1533,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1086
+        "h": 1075
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -1537,7 +1541,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 791
+        "h": 751
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -1588,9 +1592,9 @@
       "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 863,
+    "atcTop": 832,
     "atcInFold": false,
-    "smallTaps": 1,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
@@ -1608,19 +1612,16 @@
       "ספוטים-ופרוז-קטורים-סולאריים",
       "גרילנדות-ותאורה-דקורטיבית"
     ],
-    "rangesOutsideBdi": [
-      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
-      "זמן עבודה כ־8–10 שעות",
-      "נעיצה באדמה בעומק כ־5–10 ס״מ"
-    ],
-    "rangesOutsideBdiCount": 3,
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-deck-s-js": {
-    "docH": 3445,
-    "screens": 5.38,
+    "docH": 3394,
+    "screens": 5.3,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1646,7 +1647,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1121
+        "h": 1111
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -1654,7 +1655,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 791
+        "h": 751
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -1705,9 +1706,9 @@
       "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 898,
+    "atcTop": 867,
     "atcInFold": false,
-    "smallTaps": 4,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "תאורה סולארית עמידה למים לדק ולמדרגות"
@@ -1727,13 +1728,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "home-d-js": {
-    "docH": 3695,
-    "screens": 4.11,
+    "docH": 3618,
+    "screens": 4.02,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1767,7 +1769,7 @@
       },
       {
         "id": "template--21567616057518__ens_products",
-        "h": 703
+        "h": 626
       },
       {
         "id": "template--21567616057518__ens_fit",
@@ -1855,13 +1857,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "collection-all-d-js": {
-    "docH": 4640,
-    "screens": 5.16,
+    "docH": 4133,
+    "screens": 4.59,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1891,7 +1894,7 @@
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 3501
+        "h": 2995
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -2115,8 +2118,8 @@
     "overTarget": false
   },
   "collection-path-d-js": {
-    "docH": 2229,
-    "screens": 2.48,
+    "docH": 2062,
+    "screens": 2.29,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2142,11 +2145,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 518
+        "h": 482
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 1055
+        "h": 923
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -2177,42 +2180,42 @@
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 268
+        "w": 279
       }
     ],
     "cardsNotFeatured": [
@@ -2250,13 +2253,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
   },
   "pdp-rope-d-js": {
-    "docH": 2527,
-    "screens": 2.81,
+    "docH": 2345,
+    "screens": 2.61,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2286,11 +2290,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
-        "h": 505
+        "h": 400
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 703
+        "h": 626
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -2343,7 +2347,7 @@
     ],
     "atcTop": 600,
     "atcInFold": true,
-    "smallTaps": 8,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
@@ -2363,13 +2367,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-path-d-js": {
-    "docH": 2397,
-    "screens": 2.66,
+    "docH": 2320,
+    "screens": 2.58,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2385,7 +2390,7 @@
     "cartForms": 2,
     "mainProductForms": 1,
     "stickyForms": 1,
-    "noscriptSelect": true,
+    "noscriptSelect": false,
     "qtyInputs": 1,
     "atcButtons": 2,
     "sections": [
@@ -2403,7 +2408,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 703
+        "h": 626
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -2456,7 +2461,7 @@
     ],
     "atcTop": 470,
     "atcInFold": true,
-    "smallTaps": 1,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
@@ -2474,19 +2479,16 @@
       "ספוטים-ופרוז-קטורים-סולאריים",
       "גרילנדות-ותאורה-דקורטיבית"
     ],
-    "rangesOutsideBdi": [
-      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
-      "זמן עבודה כ־8–10 שעות",
-      "נעיצה באדמה בעומק כ־5–10 ס״מ"
-    ],
-    "rangesOutsideBdiCount": 3,
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-deck-d-js": {
-    "docH": 2383,
-    "screens": 2.65,
+    "docH": 2306,
+    "screens": 2.56,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2520,7 +2522,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 703
+        "h": 626
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -2573,7 +2575,7 @@
     ],
     "atcTop": 506,
     "atcInFold": true,
-    "smallTaps": 4,
+    "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
       "תאורה סולארית עמידה למים לדק ולמדרגות"
@@ -2593,13 +2595,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "home-m-nojs": {
-    "docH": 4368,
-    "screens": 5.18,
+    "docH": 4321,
+    "screens": 5.12,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2633,7 +2636,7 @@
       },
       {
         "id": "template--21567616057518__ens_products",
-        "h": 829
+        "h": 781
       },
       {
         "id": "template--21567616057518__ens_fit",
@@ -2721,13 +2724,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "collection-all-m-nojs": {
-    "docH": 6702,
-    "screens": 7.94,
+    "docH": 6271,
+    "screens": 7.43,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2753,11 +2757,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 610
+        "h": 559
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 5020
+        "h": 4640
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -2981,8 +2985,8 @@
     "overTarget": false
   },
   "collection-path-m-nojs": {
-    "docH": 3222,
-    "screens": 3.82,
+    "docH": 2979,
+    "screens": 3.53,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3008,11 +3012,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 644
+        "h": 559
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 1507
+        "h": 1348
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -3043,42 +3047,42 @@
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 171
+        "w": 176
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 171
+        "w": 176
       }
     ],
     "cardsNotFeatured": [
@@ -3116,13 +3120,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
   },
   "pdp-rope-m-nojs": {
-    "docH": 3502,
-    "screens": 4.15,
+    "docH": 3101,
+    "screens": 3.67,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3148,15 +3153,15 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1108
+        "h": 1050
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
-        "h": 656
+        "h": 362
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 829
+        "h": 781
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -3207,7 +3212,7 @@
       "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
       "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
     ],
-    "atcTop": 885,
+    "atcTop": 827,
     "atcInFold": false,
     "smallTaps": 0,
     "pillsUnder44": 0,
@@ -3229,13 +3234,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-path-m-nojs": {
-    "docH": 3534,
-    "screens": 4.19,
+    "docH": 3384,
+    "screens": 4.01,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3251,7 +3257,7 @@
     "cartForms": 2,
     "mainProductForms": 1,
     "stickyForms": 1,
-    "noscriptSelect": true,
+    "noscriptSelect": false,
     "qtyInputs": 1,
     "atcButtons": 2,
     "sections": [
@@ -3261,7 +3267,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1073
+        "h": 970
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -3269,7 +3275,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 829
+        "h": 781
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -3320,8 +3326,8 @@
       "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 850,
-    "atcInFold": false,
+    "atcTop": 747,
+    "atcInFold": true,
     "smallTaps": 0,
     "pillsUnder44": 0,
     "h1": [
@@ -3340,19 +3346,16 @@
       "ספוטים-ופרוז-קטורים-סולאריים",
       "גרילנדות-ותאורה-דקורטיבית"
     ],
-    "rangesOutsideBdi": [
-      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
-      "זמן עבודה כ־8–10 שעות",
-      "נעיצה באדמה בעומק כ־5–10 ס״מ"
-    ],
-    "rangesOutsideBdiCount": 3,
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-deck-m-nojs": {
-    "docH": 3474,
-    "screens": 4.12,
+    "docH": 3368,
+    "screens": 3.99,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3378,7 +3381,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1108
+        "h": 1050
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -3386,7 +3389,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 829
+        "h": 781
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -3437,7 +3440,7 @@
       "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 885,
+    "atcTop": 827,
     "atcInFold": false,
     "smallTaps": 0,
     "pillsUnder44": 0,
@@ -3459,13 +3462,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "home-s-nojs": {
-    "docH": 4108,
-    "screens": 6.42,
+    "docH": 4068,
+    "screens": 6.36,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3499,7 +3503,7 @@
       },
       {
         "id": "template--21567616057518__ens_products",
-        "h": 791
+        "h": 751
       },
       {
         "id": "template--21567616057518__ens_fit",
@@ -3587,13 +3591,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": true
   },
   "collection-all-s-nojs": {
-    "docH": 6418,
-    "screens": 10.03,
+    "docH": 6072,
+    "screens": 9.49,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3619,11 +3624,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 588
+        "h": 550
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 4758
+        "h": 4451
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -3847,8 +3852,8 @@
     "overTarget": true
   },
   "collection-path-s-nojs": {
-    "docH": 3117,
-    "screens": 4.87,
+    "docH": 2909,
+    "screens": 4.55,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3874,11 +3879,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 614
+        "h": 550
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 1432
+        "h": 1288
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -3909,42 +3914,42 @@
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 156
+        "w": 161
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 156
+        "w": 161
       }
     ],
     "cardsNotFeatured": [
@@ -3982,13 +3987,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
   },
   "pdp-rope-s-nojs": {
-    "docH": 3422,
-    "screens": 5.35,
+    "docH": 3057,
+    "screens": 4.78,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4014,15 +4020,15 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1071
+        "h": 1040
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
-        "h": 651
+        "h": 357
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 791
+        "h": 751
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -4073,7 +4079,7 @@
       "decorative-led-net-lights:271acd6c1f13e8201c38d81acfbfc304.png",
       "led-globe-string-lights:f2a525b91ec29683dbeadf5c0032054b.png"
     ],
-    "atcTop": 848,
+    "atcTop": 797,
     "atcInFold": false,
     "smallTaps": 0,
     "pillsUnder44": 0,
@@ -4095,13 +4101,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-path-s-nojs": {
-    "docH": 3454,
-    "screens": 5.4,
+    "docH": 3339,
+    "screens": 5.22,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4117,7 +4124,7 @@
     "cartForms": 2,
     "mainProductForms": 1,
     "stickyForms": 1,
-    "noscriptSelect": true,
+    "noscriptSelect": false,
     "qtyInputs": 1,
     "atcButtons": 2,
     "sections": [
@@ -4127,7 +4134,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1035
+        "h": 961
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -4135,7 +4142,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 791
+        "h": 751
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -4186,7 +4193,7 @@
       "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 812,
+    "atcTop": 717,
     "atcInFold": false,
     "smallTaps": 0,
     "pillsUnder44": 0,
@@ -4206,19 +4213,16 @@
       "ספוטים-ופרוז-קטורים-סולאריים",
       "גרילנדות-ותאורה-דקורטיבית"
     ],
-    "rangesOutsideBdi": [
-      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
-      "זמן עבודה כ־8–10 שעות",
-      "נעיצה באדמה בעומק כ־5–10 ס״מ"
-    ],
-    "rangesOutsideBdiCount": 3,
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-deck-s-nojs": {
-    "docH": 3394,
-    "screens": 5.3,
+    "docH": 3324,
+    "screens": 5.19,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4244,7 +4248,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 1071
+        "h": 1040
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -4252,7 +4256,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 791
+        "h": 751
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -4303,7 +4307,7 @@
       "modern-solar-path-lights-set:31312192c73c63f5e54b189018aee0fe.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 848,
+    "atcTop": 797,
     "atcInFold": false,
     "smallTaps": 0,
     "pillsUnder44": 0,
@@ -4325,13 +4329,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "home-d-nojs": {
-    "docH": 3695,
-    "screens": 4.11,
+    "docH": 3618,
+    "screens": 4.02,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4365,7 +4370,7 @@
       },
       {
         "id": "template--21567616057518__ens_products",
-        "h": 703
+        "h": 626
       },
       {
         "id": "template--21567616057518__ens_fit",
@@ -4453,13 +4458,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "collection-all-d-nojs": {
-    "docH": 4640,
-    "screens": 5.16,
+    "docH": 4133,
+    "screens": 4.59,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4489,7 +4495,7 @@
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 3501
+        "h": 2995
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -4713,8 +4719,8 @@
     "overTarget": false
   },
   "collection-path-d-nojs": {
-    "docH": 2229,
-    "screens": 2.48,
+    "docH": 2062,
+    "screens": 2.29,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4740,11 +4746,11 @@
       },
       {
         "id": "template--21567615565998__ens_coll_header",
-        "h": 518
+        "h": 482
       },
       {
         "id": "template--21567615565998__main-collection",
-        "h": 1055
+        "h": 923
       },
       {
         "id": "template--21567615565998__ens_guide_strip",
@@ -4775,42 +4781,42 @@
       {
         "handle": "stainless-steel-solar-path-light-ip65",
         "file": "92cd5d18b49372714eb3ffec32482de7.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "retro-solar-path-lights-set",
         "file": "37b5989c14f17e548566a20003d47543.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-solar-path-lights-set",
         "file": "31312192c73c63f5e54b189018aee0fe.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "waterproof-solar-deck-step-lights",
         "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "warm-solar-step-deck-lights",
         "file": "afb0742999d9e0b77559aa644caba882.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "powerful-solar-garden-light",
         "file": "f6bcb1deff05cee3655afa8816d12c8c.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "swaying-solar-path-lights-ip65",
         "file": "15d5a36cb7eeb981bf153a4c0ab3aaf2.png",
-        "w": 268
+        "w": 279
       },
       {
         "handle": "modern-led-bollard-light-5w-ip65",
         "file": "4bab5fdfdc82c6d8ff9aa9191f79daca.png",
-        "w": 268
+        "w": 279
       }
     ],
     "cardsNotFeatured": [
@@ -4848,13 +4854,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 8,
     "overTarget": false
   },
   "pdp-rope-d-nojs": {
-    "docH": 2382,
-    "screens": 2.65,
+    "docH": 2201,
+    "screens": 2.45,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4884,11 +4891,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
-        "h": 505
+        "h": 400
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 703
+        "h": 626
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -4961,13 +4968,14 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-path-d-nojs": {
-    "docH": 2347,
-    "screens": 2.61,
+    "docH": 2226,
+    "screens": 2.47,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4983,7 +4991,7 @@
     "cartForms": 2,
     "mainProductForms": 1,
     "stickyForms": 1,
-    "noscriptSelect": true,
+    "noscriptSelect": false,
     "qtyInputs": 1,
     "atcButtons": 2,
     "sections": [
@@ -4993,7 +5001,7 @@
       },
       {
         "id": "template--21567616745646__main-product",
-        "h": 620
+        "h": 576
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -5001,7 +5009,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 703
+        "h": 626
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -5052,7 +5060,7 @@
       "waterproof-solar-deck-step-lights:5c9dc9f2fcdde977b43b4709b361f491.png",
       "warm-solar-step-deck-lights:afb0742999d9e0b77559aa644caba882.png"
     ],
-    "atcTop": 420,
+    "atcTop": 376,
     "atcInFold": true,
     "smallTaps": 0,
     "pillsUnder44": 0,
@@ -5072,19 +5080,16 @@
       "ספוטים-ופרוז-קטורים-סולאריים",
       "גרילנדות-ותאורה-דקורטיבית"
     ],
-    "rangesOutsideBdi": [
-      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
-      "זמן עבודה כ־8–10 שעות",
-      "נעיצה באדמה בעומק כ־5–10 ס״מ"
-    ],
-    "rangesOutsideBdiCount": 3,
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
   },
   "pdp-deck-d-nojs": {
-    "docH": 2333,
-    "screens": 2.59,
+    "docH": 2256,
+    "screens": 2.51,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -5118,7 +5123,7 @@
       },
       {
         "id": "template--21567616745646__ens_related",
-        "h": 703
+        "h": 626
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -5191,6 +5196,7 @@
     ],
     "rangesOutsideBdi": [],
     "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
     "cardTransition": "0s",
     "target": 6,
     "overTarget": false
@@ -5203,13 +5209,13 @@
     "before": {
       "mainId": "48880936190126",
       "stickyId": "48880936190126",
-      "price": ""
+      "price": "89.90 ₪"
     },
-    "clicked": null,
+    "clicked": "12 מ׳ / 100 נורות",
     "after": {
       "mainId": "48880936190126",
       "stickyId": "48880936190126",
-      "price": ""
+      "price": "89.90 ₪"
     },
     "idsAgree": true,
     "priceChanged": false,
@@ -5219,34 +5225,6 @@
       "lineTitle": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED - 7 מ׳ / 50 נורות / לבן חם",
       "drawerHasVariant": true,
       "drawerHasLineItem": true
-    },
-    "note": "from the full run of 15:41-15:51 UTC; the pill click missed Kalles' radios (selector), fixed in hybrid-rerun.json; the price swap is a network re-render a static mirror cannot make — the server render of variant 2 was checked live (99.90, own form id)"
-  },
-  "pdp-variant-sync-rerun": {
-    "before": {
-      "mainId": "48880936190126",
-      "stickyId": "48880936190126",
-      "price": "89.90 ₪",
-      "unit": "≈ 12.84 ₪ למטר",
-      "checked": [
-        "7 מ׳ / 50 נורות",
-        "לבן חם"
-      ]
-    },
-    "clicked": "12 מ׳ / 100 נורות",
-    "after": {
-      "mainId": "48880936190126",
-      "stickyId": "48880936190126",
-      "price": "89.90 ₪",
-      "unit": "≈ 12.84 ₪ למטר",
-      "checked": [
-        "12 מ׳ / 100 נורות",
-        "לבן חם"
-      ]
-    },
-    "idsAgree": true,
-    "idChanged": false,
-    "priceChanged": false,
-    "unitChanged": false
+    }
   }
 }

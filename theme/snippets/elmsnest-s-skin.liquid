@@ -111,7 +111,12 @@ hdt-cart-drawer .hdt-dialog-cart-action{background:var(--ens-card);color:var(--e
 #CartDrawer .hdt-quantity-cart-item{border:1px solid var(--env2-hair-btn);border-radius:0;background:transparent}
 #CartDrawer .hdt-quantity-cart-item :is(button,input){color:var(--env2-ink);background:transparent}
 #CartDrawer .hdt-mini-cart__tool_btn{background:transparent;border:1px solid var(--env2-hair-btn);color:var(--env2-ink)}
-#CartDrawer .hdt-mini-cart__bottom{border-block-start:1px solid var(--ens-hair);box-shadow:none}
+#CartDrawer .hdt-mini-cart__bottom{flex:0 0 auto;border-block-start:1px solid var(--ens-hair);box-shadow:none}
+/* the list no longer flexes to fill (void): main takes its content height and SHRINKS when the lines exceed the space, so the
+   bottom block stays on screen and the list scrolls inside it. Kalles' inner is flex:1 1 100% with no min-height, which at
+   360x640 overflowed the (overflow:hidden) dialog and clipped the checkout button; measured on the mirror, fixed by the two lines below. */
+#CartDrawer .hdt-dialog-drawer__inner{display:flex;flex-direction:column;flex:1 1 auto;min-block-size:0}
+#CartDrawer .hdt-mini-cart__wrap{display:flex;flex-direction:column;flex:1 1 auto;min-block-size:0;block-size:auto}
 #CartDrawer .hdt-mini-cart__main{flex:0 1 auto;min-block-size:0;overflow:auto}
 #CartDrawer .hdt-mini-cart__sroll{position:static;max-block-size:100%;overflow:auto}
 #CartDrawer .hdt-mini-cart__btn-checkout.hdt-btn{min-height:52px;border:0;border-radius:999px;background:var(--env2-gold);color:var(--env2-btn-ink);font-family:var(--env2-sans);font-weight:500;font-size:16px;letter-spacing:0;text-transform:none}
@@ -128,6 +133,9 @@ hdt-cart-drawer .hdt-dialog-cart-action{background:var(--ens-card);color:var(--e
 #hdt-page-cart .hdt-main-cart__button-checkout.hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);color:var(--env2-btn-ink)}
 #hdt-page-cart .ens-cart-empty{display:grid;gap:14px;justify-items:center;margin-block-start:18px}
 #hdt-page-cart .ens-cart-qtylink{display:inline-flex;align-items:center;justify-content:center;min-inline-size:44px;min-block-size:44px;color:var(--env2-ink);text-decoration:none;font-size:18px}
+/* empty state: the four collection links are 44 px tall tap targets; Kalles' empty tool row (no note / gift / rates / discount enabled) paints a band of its own — hidden when it has no children */
+#CartDrawer .ens-cart-empty .env2-link,#hdt-page-cart .ens-cart-empty .env2-link{min-block-size:44px;padding-block:10px}
+#CartDrawer .hdt-mini-cart__tool:empty{display:none}
 
 /* ---- 7. reduced motion (P6) ---- */
 @media (prefers-reduced-motion:reduce){
