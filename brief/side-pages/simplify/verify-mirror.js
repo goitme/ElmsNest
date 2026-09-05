@@ -140,15 +140,15 @@ async function audit(page, name, vw, vh) {
     report['reduced-motion'] = await page.evaluate(() => { const c = document.querySelector('.hdt-card-product'); if (!c) return { card: false }; const all = [c, ...c.querySelectorAll('*')].map(e => getComputedStyle(e).transitionDuration).filter(d => d && d !== '0s'); return { card: true, elementsWithTransition: all.length }; });
     console.log('reduced-motion', JSON.stringify(report['reduced-motion'])); await ctx.close(); srv.close(); }
   // hybrid: variant pill → price + sticky id on the MIRROR; then the POST and the drawer section through curl
-  { const { srv, port } = await serve(dirs['pdp-rope']);
+  try { const { srv, port } = await serve(dirs['pdp-rope']);
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, locale: 'he-IL' });
     await ctx.route(/^https?:\/\//, r => /127\.0\.0\.1:/.test(r.request().url()) ? r.continue() : r.abort());
     const page = await ctx.newPage(); await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'load', timeout: 60000 }); await page.waitForTimeout(2500);
-    const before = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: (document.querySelector('form.hdt-main-product-form') && (document.querySelector('.hdt-price .hdt-money, .hdt-product-price .hdt-money, [class*="price"] .hdt-money') || {}).textContent || '').trim() }));
+    const before = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: ((document.querySelector('.hdt-price .hdt-money, .hdt-product-price .hdt-money, [class*="price"] .hdt-money') || {}).textContent || '').trim() }));
     // click the second value of the first option (a pill/radio/label)
     const clicked = await page.evaluate(() => { const opts = [...document.querySelectorAll('form.hdt-main-product-form input[type="radio"], .hdt-variant-option input[type="radio"]')]; if (opts.length < 2) return null; const target = opts.find(o => !o.checked) || opts[1]; const lab = document.querySelector(`label[for="${target.id}"]`) || target; lab.click(); return target.value; });
     await page.waitForTimeout(1200);
-    const after = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: (document.querySelector('.hdt-price .hdt-money, .hdt-product-price .hdt-money, [class*="price"] .hdt-money') || {}).textContent.trim() }));
+    const after = await page.evaluate(() => ({ mainId: (document.querySelector('form.hdt-main-product-form input[name="id"], form.hdt-main-product-form select[name="id"]') || {}).value, stickyId: (document.querySelector('form.hdt-sticky-atc__form input[name="id"]') || {}).value, price: ((document.querySelector('.hdt-price .hdt-money, .hdt-product-price .hdt-money, [class*="price"] .hdt-money') || {}).textContent || '').trim() }));
     let live = null;
     try {
       const jar = path.join(OUT, 'jar.txt'); try { fs.unlinkSync(jar); } catch (e) {}
@@ -159,7 +159,7 @@ async function audit(page, name, vw, vh) {
       live = { postedId: id, addStatus: add.status || 'ok', lineTitle: add.items && add.items[0] && add.items[0].title, drawerHasVariant: drawerHtml.includes(`variant=${id}`) || drawerHtml.includes(String(id)), drawerHasLineItem: /<hdt-line-item/.test(drawerHtml) };
     } catch (e) { live = { error: String(e.message).slice(0, 160) }; }
     report['pdp-variant-sync'] = { before, clicked, after, idsAgree: after.mainId && after.mainId === after.stickyId, priceChanged: before.price !== after.price, live };
-    console.log('pdp-variant-sync', JSON.stringify(report['pdp-variant-sync']).slice(0, 400)); await ctx.close(); srv.close(); }
+    console.log('pdp-variant-sync', JSON.stringify(report['pdp-variant-sync']).slice(0, 400)); await ctx.close(); srv.close(); } catch (e) { report['pdp-variant-sync'] = { error: String(e.message).slice(0, 200) }; console.log('pdp-variant-sync ERROR', String(e.message).slice(0, 160)); }
   fs.writeFileSync(path.join(OUT, 'verify.json'), JSON.stringify(report, null, 2));
   await b.close();
   console.log('wrote', path.join(OUT, 'verify.json'));
