@@ -91,6 +91,20 @@ Derivable and honest: units, distinct lamps, metres and bulb counts parsed out o
 (`מ׳` / `נורות` / `LED` / `יח`), and the place kicker the card already computes.
 **Not available:** shipping cost before checkout, stock levels, delivery date, any rating, any order history.
 
+### 5.1 What is actually derivable — measured after the panel started
+
+`DERIVED-DATA.md` (written 2026-09-05 from the live `products.json`, all 27 products, all 172 variants) contradicts
+the optimism of §1. **Metres appear in the variant title of 5 products of 27** — every one of them a string light.
+**Bulb counts: 7 of 27. Unit counts: 8 of 27.** The two biggest families in the store, path lights and wall lights,
+carry none of the three. And `1.5×1.5 מ׳` on the LED net is an *area*, not a length; summing it into a metre total
+would print a false number.
+
+**The ruling this forces:** a derived light-measure may be used **per line**, where it is true and where the buyer
+can see it in the variant they chose, and **never as a basket headline** — a headline that is blank on most real
+baskets is not an idea, and one that silently drops the wall lights is a lie by omission. A concept whose whole
+answer to leak 1 is the basket headline does not survive contact with this catalogue; judges should score it on
+what is left when the headline is removed. `cart.item_count` needs no parsing and is always true.
+
 ## 6. The bar
 
 The homepage and the product and collection pages. A drawer that a competitor could paste into a shoe shop has
