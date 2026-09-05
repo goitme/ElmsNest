@@ -130,3 +130,20 @@ largest thing a decided buyer can press is a route back out of the cart. Five su
 error (`הכמות שבחרת אינה זמינה`, on every line). Measured: the message computes `rgb(201,196,184)` on `rgb(2,3,6)` —
 **11.86:1**. Kalles styles it from `--color-foreground2`, not from the semantic token, so §9.2 stays correctly
 deferred and the rebuild is free to choose its own error treatment rather than inheriting a broken one.
+
+## The no-JS cart page, as it stands (hard constraint #2)
+
+Rendered in a `javaScriptEnabled:false` context at 390×844:
+
+- **Checkout works.** `<button form="CartPage-Form" type="submit" name="checkout">` — the `form=` attribute, not
+  containment, so it submits `POST /cart` correctly. It is the **only** visible submit belonging to that form.
+- **Remove works.** Two distinct plain links, `/cart/change?line=1&quantity=0` and `?line=2&quantity=0`.
+- **Quantity cannot be changed.** The two `input[name="updates[]"]` are present and editable, but the `+` and `−`
+  are `type="button"` and JS-driven, and the form carries no "update" submit. A buyer without JS who edits a number
+  and presses **תשלום** does get the new quantity applied — and is taken straight to checkout by the same press.
+  There is no way to update the basket and stay on the page.
+
+**What the rebuild must therefore provide:** a visible, no-JS way to change a quantity that does not force checkout.
+The clean answer needs no form at all — render `−` and `+` as links to `/cart/change?line={{ n }}&quantity={{ q ± 1 }}`,
+exactly like the remove control already is, and let Kalles' JS enhance them in place. That also removes the reason
+the current stepper is a bordered box: it can become two hairline targets around a tabular number.
