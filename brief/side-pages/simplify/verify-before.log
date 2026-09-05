@@ -6,3 +6,44 @@ mirror: 429 from the store, waiting 40s (attempt 2/6)
 ok
 mirror pdp-path … ok
 mirror pdp-deck … mirror: 429 from the store, waiting 20s (attempt 1/6)
+mirror: 429 from the store, waiting 40s (attempt 2/6)
+ok
+home-m-js screens=10.32/6 forms=3 main=0 sticky=0 mailto=3 photo=3 terms=1/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+collection-all-m-js screens=25.76/8 forms=9 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=16/16 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+collection-path-m-js screens=17.98/8 forms=4 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=6/6 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+pdp-rope-m-js screens=10.25/6 forms=8 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+pdp-path-m-js screens=10.37/6 forms=10 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=0
+pdp-deck-m-js screens=9.89/6 forms=9 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+home-s-js screens=13.15/6 forms=3 main=0 sticky=0 mailto=3 photo=3 terms=1/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+collection-all-s-js screens=33.23/8 forms=9 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=16/16 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+collection-path-s-js screens=23.31/8 forms=4 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=6/6 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+pdp-rope-s-js screens=13.47/6 forms=8 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+pdp-path-s-js screens=13.5/6 forms=10 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=0
+pdp-deck-s-js screens=12.86/6 forms=9 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+home-d-js screens=9.35/6 forms=3 main=0 sticky=0 mailto=3 photo=3 terms=1/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+collection-all-d-js screens=18.3/8 forms=9 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=16/16 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+collection-path-d-js screens=13.65/8 forms=4 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=6/6 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+pdp-rope-d-js screens=9.12/6 forms=8 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+pdp-path-d-js screens=8.99/6 forms=10 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=0
+pdp-deck-d-js screens=8.76/6 forms=9 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+home-m-nojs screens=10.32/6 forms=3 main=0 sticky=0 mailto=3 photo=3 terms=1/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+collection-all-m-nojs screens=25.76/8 forms=9 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=16/16 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+collection-path-m-nojs screens=17.98/8 forms=4 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=6/6 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+pdp-rope-m-nojs screens=10.26/6 forms=8 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+pdp-path-m-nojs screens=10.48/6 forms=10 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=0
+pdp-deck-m-nojs screens=9.87/6 forms=9 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+home-s-nojs screens=13.15/6 forms=3 main=0 sticky=0 mailto=3 photo=3 terms=1/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+collection-all-s-nojs screens=33.23/8 forms=9 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=16/16 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+collection-path-s-nojs screens=23.31/8 forms=4 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=6/6 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+pdp-rope-s-nojs screens=13.5/6 forms=8 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+pdp-path-s-nojs screens=13.59/6 forms=10 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=0
+pdp-deck-s-nojs screens=12.77/6 forms=9 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+home-d-nojs screens=9.35/6 forms=3 main=0 sticky=0 mailto=3 photo=3 terms=1/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+collection-all-d-nojs screens=18.3/8 forms=9 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=16/16 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+collection-path-d-nojs screens=13.65/8 forms=4 main=0 sticky=0 mailto=2 photo=4 terms=0/0 glyph=6/6 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=1 notFeatured=0
+pdp-rope-d-nojs screens=9.03/6 forms=8 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+pdp-path-d-nojs screens=8.84/6 forms=10 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=3 notFeatured=0
+pdp-deck-d-nojs screens=8.62/6 forms=9 main=0 sticky=0 mailto=4 photo=5 terms=0/0 glyph=0/0 wa=0 cards=0 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=0
+reduced-motion {"card":false}
+pdp-variant-sync {"before":{"price":""},"clicked":null,"after":{"price":""},"priceChanged":false,"live":{"addStatus":"bad_request","drawerHasVariant":false,"drawerHasLineItem":false}}
+wrote brief/side-pages/simplify/verify-before/verify.json

@@ -1,0 +1,3872 @@
+{
+  "home-m-js": {
+    "docH": 8710,
+    "screens": 10.32,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 3,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 3,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 3,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 844
+      },
+      {
+        "id": "template--21567616057518__env2_first_lit",
+        "h": 1536
+      },
+      {
+        "id": "template--21567616057518__env2_places",
+        "h": 797
+      },
+      {
+        "id": "template--21567616057518__env2_switch",
+        "h": 1138
+      },
+      {
+        "id": "template--21567616057518__env2_night_wall",
+        "h": 981
+      },
+      {
+        "id": "template--21567616057518__env2_atmosphere",
+        "h": 920
+      },
+      {
+        "id": "template--21567616057518__env2_terms",
+        "h": 1182
+      },
+      {
+        "id": "template--21567616057518__env2_goodnight",
+        "h": 464
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 737,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-m-js": {
+    "docH": 21743,
+    "screens": 25.76,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 16,
+    "glyphCaption": 16,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 737
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1834
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 11644
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 4852
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 0
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 608
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 673,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "קטלוג"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-m-js": {
+    "docH": 15173,
+    "screens": 17.98,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 6,
+    "glyphCaption": 6,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 4,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 881
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 2073
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 5254
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 2432
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 1857
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 608
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 673,
+    "atcInFold": true,
+    "smallTaps": 7,
+    "pillsUnder44": 7,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "pdp-rope-m-js": {
+    "docH": 8650,
+    "screens": 10.25,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 8,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 844
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1107
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1071
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1037
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 959
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 734
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 782
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 503,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-path-m-js": {
+    "docH": 8750,
+    "screens": 10.37,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 10,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 844
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1058
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1052
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1149
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 1031
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 734
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 766
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 503,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-deck-m-js": {
+    "docH": 8351,
+    "screens": 9.89,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 5,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 844
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1058
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1052
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 775
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 932
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 734
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 840
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 523,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהמקבלת קו אור."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "home-s-js": {
+    "docH": 8417,
+    "screens": 13.15,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 3,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 3,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 3,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 704
+      },
+      {
+        "id": "template--21567616057518__env2_first_lit",
+        "h": 1499
+      },
+      {
+        "id": "template--21567616057518__env2_places",
+        "h": 794
+      },
+      {
+        "id": "template--21567616057518__env2_switch",
+        "h": 1155
+      },
+      {
+        "id": "template--21567616057518__env2_night_wall",
+        "h": 865
+      },
+      {
+        "id": "template--21567616057518__env2_atmosphere",
+        "h": 906
+      },
+      {
+        "id": "template--21567616057518__env2_terms",
+        "h": 1182
+      },
+      {
+        "id": "template--21567616057518__env2_goodnight",
+        "h": 464
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 598,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-s-js": {
+    "docH": 21265,
+    "screens": 33.23,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 16,
+    "glyphCaption": 16,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 550
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1877
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 11185
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 5024
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 0
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 559
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 486,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "קטלוג"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-s-js": {
+    "docH": 14916,
+    "screens": 23.31,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 6,
+    "glyphCaption": 6,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 4,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 724
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 2073
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 5022
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 2589
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 1879
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 561
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 516,
+    "atcInFold": true,
+    "smallTaps": 7,
+    "pillsUnder44": 7,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "pdp-rope-s-js": {
+    "docH": 8623,
+    "screens": 13.47,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 8,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 681
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1102
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1022
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1109
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 977
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 776
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 840
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 386,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-path-s-js": {
+    "docH": 8637,
+    "screens": 13.5,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 10,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 640
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1094
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1003
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1213
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 1049
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 776
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 747
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 346,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-deck-s-js": {
+    "docH": 8232,
+    "screens": 12.86,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 5,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 640
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1094
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1003
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 813
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 951
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 776
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 840
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 366,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהמקבלת קו אור."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "home-d-js": {
+    "docH": 8413,
+    "screens": 9.35,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 3,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 3,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 3,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 900
+      },
+      {
+        "id": "template--21567616057518__env2_first_lit",
+        "h": 1204
+      },
+      {
+        "id": "template--21567616057518__env2_places",
+        "h": 963
+      },
+      {
+        "id": "template--21567616057518__env2_switch",
+        "h": 971
+      },
+      {
+        "id": "template--21567616057518__env2_night_wall",
+        "h": 900
+      },
+      {
+        "id": "template--21567616057518__env2_atmosphere",
+        "h": 1395
+      },
+      {
+        "id": "template--21567616057518__env2_terms",
+        "h": 1142
+      },
+      {
+        "id": "template--21567616057518__env2_goodnight",
+        "h": 490
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 750,
+    "atcInFold": true,
+    "smallTaps": 2,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-d-js": {
+    "docH": 16471,
+    "screens": 18.3,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 16,
+    "glyphCaption": 16,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 900
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1220
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 8722
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 3620
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 0
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1022
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 540
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 770,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "קטלוג"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-d-js": {
+    "docH": 12289,
+    "screens": 13.65,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 6,
+    "glyphCaption": 6,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 4,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 1077
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1335
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 4670
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 1978
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 1219
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1022
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 540
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 770,
+    "atcInFold": true,
+    "smallTaps": 7,
+    "pillsUnder44": 7,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "pdp-rope-d-js": {
+    "docH": 8205,
+    "screens": 9.12,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 8,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 900
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1344
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1198
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 967
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 948
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 833
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 848
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 562,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-path-d-js": {
+    "docH": 8089,
+    "screens": 8.99,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 10,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 900
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1247
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1198
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1011
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 948
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 833
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 786
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 562,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-deck-d-js": {
+    "docH": 7885,
+    "screens": 8.76,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 900
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1247
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1198
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 799
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 894
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 833
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 848
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 583,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהמקבלת קו אור."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "home-m-nojs": {
+    "docH": 8710,
+    "screens": 10.32,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 3,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 3,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 3,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 844
+      },
+      {
+        "id": "template--21567616057518__env2_first_lit",
+        "h": 1536
+      },
+      {
+        "id": "template--21567616057518__env2_places",
+        "h": 797
+      },
+      {
+        "id": "template--21567616057518__env2_switch",
+        "h": 1138
+      },
+      {
+        "id": "template--21567616057518__env2_night_wall",
+        "h": 981
+      },
+      {
+        "id": "template--21567616057518__env2_atmosphere",
+        "h": 920
+      },
+      {
+        "id": "template--21567616057518__env2_terms",
+        "h": 1182
+      },
+      {
+        "id": "template--21567616057518__env2_goodnight",
+        "h": 464
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 737,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-m-nojs": {
+    "docH": 21743,
+    "screens": 25.76,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 16,
+    "glyphCaption": 16,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 737
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1834
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 11644
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 4852
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 0
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 608
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 673,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "קטלוג"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-m-nojs": {
+    "docH": 15173,
+    "screens": 17.98,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 6,
+    "glyphCaption": 6,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 4,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 881
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 2073
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 5254
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 2432
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 1857
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 608
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 673,
+    "atcInFold": true,
+    "smallTaps": 7,
+    "pillsUnder44": 7,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "pdp-rope-m-nojs": {
+    "docH": 8656,
+    "screens": 10.26,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 8,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 7,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 792
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1107
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1071
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1096
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 959
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 734
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 782
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 450,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-path-m-nojs": {
+    "docH": 8849,
+    "screens": 10.48,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 10,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 766
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1058
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1052
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1326
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 1031
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 734
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 766
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 425,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-deck-m-nojs": {
+    "docH": 8332,
+    "screens": 9.87,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 8,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 766
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1058
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1052
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 834
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 932
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 734
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 840
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 445,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהמקבלת קו אור."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "home-s-nojs": {
+    "docH": 8417,
+    "screens": 13.15,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 3,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 3,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 3,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 704
+      },
+      {
+        "id": "template--21567616057518__env2_first_lit",
+        "h": 1499
+      },
+      {
+        "id": "template--21567616057518__env2_places",
+        "h": 794
+      },
+      {
+        "id": "template--21567616057518__env2_switch",
+        "h": 1155
+      },
+      {
+        "id": "template--21567616057518__env2_night_wall",
+        "h": 865
+      },
+      {
+        "id": "template--21567616057518__env2_atmosphere",
+        "h": 906
+      },
+      {
+        "id": "template--21567616057518__env2_terms",
+        "h": 1182
+      },
+      {
+        "id": "template--21567616057518__env2_goodnight",
+        "h": 464
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 598,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-s-nojs": {
+    "docH": 21265,
+    "screens": 33.23,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 16,
+    "glyphCaption": 16,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 550
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1877
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 11185
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 5024
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 0
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 559
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 486,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "קטלוג"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-s-nojs": {
+    "docH": 14916,
+    "screens": 23.31,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 6,
+    "glyphCaption": 6,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 4,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 724
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 2073
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 5022
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 2589
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 1879
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1221
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 561
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 516,
+    "atcInFold": true,
+    "smallTaps": 7,
+    "pillsUnder44": 7,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "pdp-rope-s-nojs": {
+    "docH": 8643,
+    "screens": 13.5,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 8,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 7,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 681
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1102
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1022
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1129
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 977
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 776
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 840
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 386,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-path-s-nojs": {
+    "docH": 8697,
+    "screens": 13.59,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 10,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 562
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1094
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1003
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 1351
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 1049
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 776
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 747
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 268,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-deck-s-nojs": {
+    "docH": 8175,
+    "screens": 12.77,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 8,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 562
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1094
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1003
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 834
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 951
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 1190
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 776
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 840
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 288,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהמקבלת קו אור."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "home-d-nojs": {
+    "docH": 8413,
+    "screens": 9.35,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 3,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 3,
+    "termsStrips": 1,
+    "termsLine": 0,
+    "cartForms": 3,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 3,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616057518__env2_hero",
+        "h": 900
+      },
+      {
+        "id": "template--21567616057518__env2_first_lit",
+        "h": 1204
+      },
+      {
+        "id": "template--21567616057518__env2_places",
+        "h": 963
+      },
+      {
+        "id": "template--21567616057518__env2_switch",
+        "h": 971
+      },
+      {
+        "id": "template--21567616057518__env2_night_wall",
+        "h": 900
+      },
+      {
+        "id": "template--21567616057518__env2_atmosphere",
+        "h": 1395
+      },
+      {
+        "id": "template--21567616057518__env2_terms",
+        "h": 1142
+      },
+      {
+        "id": "template--21567616057518__env2_goodnight",
+        "h": 490
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 750,
+    "atcInFold": true,
+    "smallTaps": 2,
+    "pillsUnder44": 0,
+    "h1": [
+      "כשהשמש יורדת,הגינה נדלקת."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "collection-all-d-nojs": {
+    "docH": 16471,
+    "screens": 18.3,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 16,
+    "glyphCaption": 16,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 9,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 900
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1220
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 8722
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 3620
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 0
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1022
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 540
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 770,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "קטלוג"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "collection-path-d-nojs": {
+    "docH": 12289,
+    "screens": 13.65,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 6,
+    "glyphCaption": 6,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 2,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 4,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 4,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 4,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567615565998__coll_scene",
+        "h": 1077
+      },
+      {
+        "id": "template--21567615565998__coll_ruler",
+        "h": 1335
+      },
+      {
+        "id": "template--21567615565998__coll_bands",
+        "h": 4670
+      },
+      {
+        "id": "template--21567615565998__coll_span",
+        "h": 1978
+      },
+      {
+        "id": "template--21567615565998__coll_ledger",
+        "h": 1219
+      },
+      {
+        "id": "template--21567615565998__coll_terms",
+        "h": 1022
+      },
+      {
+        "id": "template--21567615565998__coll_goodnight",
+        "h": 540
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 770,
+    "atcInFold": true,
+    "smallTaps": 7,
+    "pillsUnder44": 7,
+    "h1": [
+      "תאורת שביל, עמוד וגינה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "ימי טיפול ו־7–14 ימי משלוח."
+    ],
+    "rangesOutsideBdiCount": 1,
+    "cardTransition": null,
+    "target": 8,
+    "overTarget": true
+  },
+  "pdp-rope-d-nojs": {
+    "docH": 8123,
+    "screens": 9.03,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 8,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 6,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 900
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1344
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1198
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 885
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 948
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 833
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 848
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 562,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הערב מתחילמהאור הראשון."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-path-d-nojs": {
+    "docH": 7959,
+    "screens": 8.84,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 10,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 8,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 900
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1247
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1198
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 881
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 948
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 833
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 786
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 562,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהנדלקת לבד."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [
+      "לאחר טעינה טובה בשמש, התאורה יכולה לפעול",
+      "זמן עבודה כ־8–10 שעות",
+      "נעיצה באדמה בעומק כ־5–10 ס״מ"
+    ],
+    "rangesOutsideBdiCount": 3,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "pdp-deck-d-nojs": {
+    "docH": 7755,
+    "screens": 8.62,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 4,
+    "mailtoInFooter": 0,
+    "photoLineInMain": 5,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 9,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 7,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__pdp_stage",
+        "h": 900
+      },
+      {
+        "id": "template--21567616745646__pdp_fit",
+        "h": 1247
+      },
+      {
+        "id": "template--21567616745646__pdp_night",
+        "h": 1198
+      },
+      {
+        "id": "template--21567616745646__pdp_ledger",
+        "h": 669
+      },
+      {
+        "id": "template--21567616745646__pdp_facts",
+        "h": 894
+      },
+      {
+        "id": "template--21567616745646__pdp_terms",
+        "h": 833
+      },
+      {
+        "id": "template--21567616745646__pdp_ask",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__pdp_related",
+        "h": 848
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "cardsNotFeatured": [],
+    "atcTop": 583,
+    "atcInFold": true,
+    "smallTaps": 4,
+    "pillsUnder44": 0,
+    "h1": [
+      "הדרך הביתהמקבלת קו אור."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": true
+  },
+  "reduced-motion": {
+    "card": false
+  },
+  "pdp-variant-sync": {
+    "before": {
+      "price": ""
+    },
+    "clicked": null,
+    "after": {
+      "price": ""
+    },
+    "priceChanged": false,
+    "live": {
+      "addStatus": "bad_request",
+      "drawerHasVariant": false,
+      "drawerHasLineItem": false
+    }
+  }
+}
