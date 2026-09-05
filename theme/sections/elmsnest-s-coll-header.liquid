@@ -3,8 +3,9 @@
   Renders the collection ground ONCE, then: the collection photograph (~36vh, veiled to #020306 at its
   foot) · h1 = the Shopify title · meta line (place word · N מוצרים · price range) · deck line
   («מתאים כדי {yes} · {no}», per-place collections only) · the FILTER ROW (plain links, 44px pills,
-  current one gold, data-ens-place on each of the four collection pills) · the native SORT form (four options, works with ?sort_by=
-  and no JS). Nothing is typed here but the four collection handles; every word comes from Shopify or
+  current one gold, data-ens-place on each of the four collection pills) · the native SORT form (a visible «מיון» label,
+  four options — the manual order is labelled «סדר החנות», true on every collection incl. the automatic /all — works with
+  ?sort_by= and no JS). Nothing is typed here but the four collection handles; every word comes from Shopify or
   from snippets/elmsnest-s-place (emit: word | yes | no). No lamps, no reveal, no sales counts.
   The section root paints #020306 so the veil, the pills and the grid below share one night surface.
 {%- endcomment -%}
@@ -95,9 +96,10 @@
       {%- endfor -%}
     </nav>
     <form class="ens-ch__sort" method="get" action="{{ ens_action }}">
+      <label class="ens-ch__sort-label" for="ens-sort-{{ section.id }}">מיון</label>
       <span class="ens-ch__select">
-        <select name="sort_by" aria-label="מיון" onchange="this.form.submit()">
-          <option value="manual"{% if ens_sort == 'manual' %} selected{% endif %}>מומלץ</option>
+        <select id="ens-sort-{{ section.id }}" name="sort_by" aria-label="מיון" onchange="this.form.submit()">
+          <option value="manual"{% if ens_sort == 'manual' %} selected{% endif %}>סדר החנות</option>
           <option value="price-ascending"{% if ens_sort == 'price-ascending' %} selected{% endif %}>מחיר: מהנמוך לגבוה</option>
           <option value="price-descending"{% if ens_sort == 'price-descending' %} selected{% endif %}>מחיר: מהגבוה לנמוך</option>
           <option value="title-ascending"{% if ens_sort == 'title-ascending' %} selected{% endif %}>א–ב</option>
@@ -142,9 +144,13 @@
 .ens-ch .ens-ch__pill:hover,.ens-ch .ens-ch__pill:focus-visible{border-color:var(--env2-glow);color:var(--env2-glow)}
 .ens-ch .ens-ch__pill[aria-current="page"],.ens-ch .ens-ch__pill[aria-current="page"]:hover,.ens-ch .ens-ch__pill[aria-current="page"]:focus-visible{background:var(--env2-gold);border-color:var(--env2-gold);color:var(--env2-btn-ink)}
 .ens-ch__sort{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin:0}
+.ens-ch__sort-label{font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2)}
 .ens-ch__select{position:relative;display:inline-block}
+/* chevron geometry (the root is dir="rtl"): border-inline-start = the RIGHT edge, so the bordered corner is
+   bottom-right (+1,+1); rotate(45deg) (clockwise, y-down) maps it to (0,+1.41) = DOWN. border-inline-end gave
+   bottom-left (-1,+1) → (-1.41,0) = LEFT, the shape of a back link. Logical properties only (Sense RTL app). */
 .ens-ch__select::after{content:"";position:absolute;inset-block-start:50%;inset-inline-end:17px;inline-size:8px;block-size:8px;margin-block-start:-6px;
-  border-inline-end:1px solid var(--env2-ink-2);border-block-end:1px solid var(--env2-ink-2);transform:rotate(45deg);pointer-events:none}
+  border-inline-start:1px solid var(--env2-ink-2);border-block-end:1px solid var(--env2-ink-2);transform:rotate(45deg);pointer-events:none}
 .ens-ch .ens-ch__select select{appearance:none;-webkit-appearance:none;min-height:44px;margin:0;padding-block:8px;padding-inline:18px 40px;
   border:1px solid var(--env2-hair-btn);border-radius:999px;background:transparent;background-image:none;box-shadow:none;color:var(--env2-ink);
   font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;cursor:pointer}
@@ -153,6 +159,10 @@
 @media (max-width:900px){
   .ens-ch__h1{font-size:32px}
   .ens-ch__tools{margin-block-start:16px}
+}
+@media (max-width:400px){
+  /* small phones (360×640): 30svh instead of 36svh so the first card row reaches into the fold; 390×844 keeps 36svh */
+  .ens-ch__hero{min-block-size:calc(30vh + var(--header-height,60px));min-block-size:calc(30svh + var(--header-height,60px))}
 }
 @media (prefers-reduced-motion:reduce){
   .ens-ch .ens-ch__pill,.ens-ch .ens-ch__select select{transition:none}

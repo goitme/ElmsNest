@@ -103,3 +103,21 @@ All 27 featured images are 1:1 (mirror `width`/`height`), so Kalles' `square` ra
 | honesty 3: «מה שנדלק ראשון» reads as a rank | **Apply**: heading «ארבעה לפתיחה» in `templates/index.json` and the section default. | P4: no popularity claims; the four are an owner pick. |
 | honesty 4 (major, owner-admin): featured frames with a foreign brand (LUMIÈRE) and unbacked numbers | **Owner content task** (the §9 image sheet flags them first). No theme change (P3). | — |
 | honesty 5 (major, owner-admin): `info@elmsnest.com` has no MX record | **Owner action before publishing** (a mailbox for info@). The line stays as the owner chose (answer 3: email). Top of the admin list. | The promise is his to make good; the theme cannot. |
+
+### After the critique's skeptics and fixer (2026-09-05, 17:1x)
+
+- 34 findings → 30 confirmed, 4 refuted (qa 0 «/all 8.15» stale; qa 1 360×640 targets, SPEC already says so; qa 5 drawer shot, exists;
+  owner 2 «four places three times» — the skeptic's reading matches the ruling above; honesty 3 «מה שנדלק ראשון» — no rank on
+  the render, four plain cards; **the heading stays**, my «ארבעה לפתיחה» ruling above is withdrawn as unnecessary).
+- qa 4 (variant sync «unproven») was **worse than unproven**: the sticky-sync script looked up `product-form-main-product<id>`,
+  but Kalles names the form `product-form-<section.id><product.id>`, so the listener never attached, and the noscript
+  `<select form=…>` pointed at the same non-existent id (the JS-off submit would have carried no variant). The fixer resolved
+  the form by class inside the block's own section and rebuilt the noscript `form=` from `section.id` (guarded by
+  `variants.size > 1`). The live pill → sticky-id → drawer check stays an open item for a machine whose browser reaches the store.
+- The fixer applied every other ruling as written (square cards on /all, home and related; 3-line 16 px titles; `fraction`
+  gallery; RTL chevrons; «מיון» label + «סדר החנות»; hero lead and h1 size; door price in the terms line; 30svh at ≤400 px;
+  no-JS thumbnail rail; sr-only «מחיר מבצע» hidden; facts `<dl>` skips option rows; IP caption without the code). Skipped by
+  design: owner 8 (keep the sticky bar), owner 4 (harness, already fixed), the two «betterFix» widenings.
+- SPEC.md lines the edits put out of contract are amended by the lead (fix-log.md «For the lead»).
+- The cart round's skin patch (`brief/side-pages/cart/apply-skin-patch.py`) was applied on top of the fixer's skin; the file is
+  14.8 KB — accepted, as before: the 12 KB figure is a smallness guideline, and §6 now dresses two surfaces.

@@ -20,14 +20,14 @@
       {%- for p in collections[ens_handle].products -%}
         {%- if p.id == product.id -%}{%- continue -%}{%- endif -%}
         {%- if ens_n >= 4 -%}{%- break -%}{%- endif -%}
-        {%- render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'portrait', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false -%}
+        {%- render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'square', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false -%}
         {%- assign ens_n = ens_n | plus: 1 -%}
       {%- endfor -%}
     {%- endif -%}
   {%- else -%}
     {%- assign ens_list = section.settings.product_list -%}
     {%- for p in ens_list limit: 4 -%}
-      {%- render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'portrait', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false -%}
+      {%- render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'square', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false -%}
       {%- assign ens_n = ens_n | plus: 1 -%}
     {%- endfor -%}
   {%- endif -%}
@@ -38,7 +38,7 @@
     {%- if section.settings.heading != blank -%}
     <h2 id="ens-prod-h2-{{ section.id }}" class="env2-h ens-prod__h2">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
-    <div class="hdt-collection-products hdt-row-grid hdt-grid-cols-2 md:hdt-grid-cols-2 lg:hdt-grid-cols-4 hdt-ratio--portrait ens-prod__grid">
+    <div class="hdt-collection-products hdt-row-grid hdt-grid-cols-2 md:hdt-grid-cols-2 lg:hdt-grid-cols-4 hdt-ratio--square ens-prod__grid">
       {{ ens_cards }}
     </div>
   </div>

@@ -3,7 +3,7 @@
 <out>/NN-<name>.graphql so each can be pasted verbatim into the Shopify mutation tool. Refuses any file containing
 the block-string terminator. Prints the ordered list with local sizes and md5 (to compare with Shopify's checksumMd5)."""
 import os,sys,hashlib,json,re
-ROOT='/home/user/ElmsNest/theme'; OUT=sys.argv[1] if len(sys.argv)>1 else '/home/user/ElmsNest/brief/side-pages/simplify/deploy'
+ROOT='/home/user/ElmsNest/theme'; OUT=next((a for a in sys.argv[1:] if not a.startswith('--')), '/home/user/ElmsNest/brief/side-pages/simplify/deploy')
 THEME='gid://shopify/OnlineStoreTheme/154726400174'
 ORDER=[
  # 1 snippets
@@ -16,12 +16,17 @@ ORDER=[
  'layout/theme.liquid','config/settings_data.json','sections/footer-group.json','sections/header-group.json',
  # 4 templates
  'templates/index.json','templates/collection.json','templates/product.elmsnest.json',
+ # 5 round-3 cart (edited Kalles files + template)
+ 'snippets/item-cart.liquid','sections/cart-drawer.liquid','sections/main-cart.liquid','templates/cart.json',
 ]
 os.makedirs(OUT,exist_ok=True)
 for f in os.listdir(OUT):
     if f.endswith('.graphql'): os.remove(os.path.join(OUT,f))
+only=[a.split('=',1)[1].split(',') for a in sys.argv[1:] if a.startswith('--only=')]
+only=set(only[0]) if only else None
 rows=[]
 for i,rel in enumerate(ORDER,1):
+    if only and rel not in only: continue
     p=os.path.join(ROOT,rel); body=open(p,encoding='utf-8').read()
     if '"""' in body: raise SystemExit(f'{rel}: contains \"\"\" — cannot be sent as a block string')
     if rel.endswith('.json'):

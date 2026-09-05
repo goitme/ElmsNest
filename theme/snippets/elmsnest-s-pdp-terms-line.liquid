@@ -2,14 +2,18 @@
   ElmsNest S — PDP terms line (SIMPLIFY §8.2 item 8). ONE 13 px muted line under the buy button —
   the PDP's only statement of the consumer terms — then «לכל התנאים ←» to /pages/shipping-delivery.
   Wording licensed by the inventory (elmsnest-pdp-facts «אספקה משוערת: 8–17 ימי עסקים»,
-  elmsnest-pdp-trust «ניתן לבטל עסקה עד 14 יום מקבלת המוצר», coll_terms rows 0 ₪ / 8–17 / 14).
-  The range sits in one <bdi dir="ltr"> (P6). Root class .ens-terms-line (§11 counts it = 1).
+  elmsnest-pdp-trust «ניתן לבטל עסקה עד 14 יום מקבלת המוצר», coll_terms rows 0 ₪ / 8–17 / 14) and the
+  home strip's own door-price line «עד הבית 29.90 ₪» (elmsnest-s-terms.liquid ens_s1, BRIEF §3) — a shopper who
+  lands on the PDP from a collection or an ad never saw the strip, and the moment before the button is where
+  the door price is asked. The range and the price sit in one <bdi dir="ltr"> each (P6). Root class .ens-terms-line (§11 counts it = 1).
 
   The same snippet carries the sticky-bar sync: Kalles renders a SECOND /cart/add form for the
   sticky bar (id form-product-sticky{{ product.id }}) whose hidden variant id nothing rewrites when a
-  pill changes; this copies the chosen id there on the main form's `variant:change`. The main form
-  (product-form-main-product{{ product.id }}) precedes this block in the DOM; the sticky form is
-  rendered after the blocks and is looked up lazily, at event time.
+  pill changes; this copies the chosen id there on the main form's `variant:change`. The main form's id is
+  product-form-<section.id><product.id> (Kalles main-product.liquid; NOT product-form-main-product<product.id>),
+  so it is resolved by its class .hdt-main-product-form inside this block's own section (the pattern of
+  elmsnest-s-pdp-unit), falling back to the id the sticky bar publishes in its form= attribute. It precedes
+  this block in the DOM; the sticky form is rendered after the blocks and is looked up lazily, at event time.
   Rendered from a `_liquid` block: {% render 'elmsnest-s-pdp-terms-line', product: product %}
 {%- endcomment -%}
 <style>
@@ -21,11 +25,14 @@
 .ens-terms-line__link::before{content:"";position:absolute;inset-block:-11px;inset-inline:-6px}
 @media (prefers-reduced-motion:reduce){a.ens-terms-line__link{transition:none} }
 </style>
-<p class="ens-terms-line" dir="rtl">משלוח חינם לנקודת איסוף · אספקה משוערת <bdi dir="ltr">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר <a class="ens-terms-line__link" href="/pages/shipping-delivery">לכל התנאים <span aria-hidden="true">&#8592;</span></a></p>
+<p class="ens-terms-line" dir="rtl">משלוח חינם לנקודת איסוף · עד הבית <bdi dir="ltr">29.90</bdi> ₪ · אספקה משוערת <bdi dir="ltr">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר <a class="ens-terms-line__link" href="/pages/shipping-delivery">לכל התנאים <span aria-hidden="true">&#8592;</span></a></p>
 {%- if product != blank -%}
 <script>
 (function () {
-  var main = document.forms['product-form-main-product{{ product.id }}'];
+  var here = document.currentScript;
+  var scope = (here && here.closest('.shopify-section')) || document;
+  var main = scope.querySelector('form.hdt-main-product-form');
+  if (!main) { var bar = document.querySelector('hdt-sticky-btn-atc[form]'); main = bar && document.forms[bar.getAttribute('form')]; }
   if (!main) return;
   main.addEventListener('variant:change', function (e) {
     var f = document.forms['form-product-sticky{{ product.id }}'];

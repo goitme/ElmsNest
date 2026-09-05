@@ -104,7 +104,7 @@ the templates (rollback = restore three JSON files). Deleting files is a later c
 - Ink `#f4eee3`, muted `#c9c4b8`, gold `#e9b96e`, glow `#ffd394`, hairline `#1f1e1d`, card ground
   `#05070c`. Radius 0 everywhere except pill buttons (999px).
 - Type: Frank Ruhl Libre 700/900 for display and product titles; Heebo for everything else.
-  Mobile display 30–34 px, section headings 24–26 px, body 16 px, captions 13 px (never below 12.5).
+  Mobile display 30–34 px (the hero's two-line sentence is the exemption: ≈45 px at 390, sized so it stays on two lines), section headings 24–26 px, body 16 px, captions 13 px (never below 12.5).
 - Motion: the hero's dusk darkening (`--env2-p`) and sun rail only. No lamps anywhere (the hero
   card, its only `[data-lamp]`, is off). Nothing else animates on scroll.
 - The dev theme's copies of `elmsnest-v2-hero.liquid`, `elmsnest-v2-core.liquid` and
@@ -118,7 +118,7 @@ One `<style>` block (plain `<style>`, not `{% stylesheet %}`), rendered from `la
 right after `{%- render 'elmsnest-v2-core' -%}`, dressing the STOCK Kalles components in the night
 language. Exact selectors (verified in the critique against Kalles 5.4.2):
 - Cards: `.hdt-card-product{background:#05070c;border:1px solid #1f1e1d;border-radius:0}`; title
-  `.hdt-card-product__title` Frank Ruhl Libre 17/1.3, ink, clamped 2 lines; price `hdt-price.hdt-price`
+  `.hdt-card-product__title` Frank Ruhl Libre 16/1.3, ink, clamped 3 lines (critique: 26 of 27 titles were cut at 2 lines; with square cards the page stays under target); price `hdt-price.hdt-price`
   Heebo 16 gold — the range form «₪69.90 - ₪159.90» is accepted as is (`price_varies_style` "1").
   Hide: `.hdt-card-product .hdt-product-btns, .hdt-card-product .hdt-badge__wrapp, .hdt-card-product
   .hdt-badge, .hdt-card-product__media--hover, .hdt-card-product hdt-variant-option,
@@ -180,8 +180,8 @@ builder's default. Never says a channel name. The phrase «תמונה של המ�
 `elmsnest-s-products`. Any custom section that renders the card MUST load
 `{{ 'product-card.css' | asset_url | stylesheet_tag }}{{ 'collection-products.css' | asset_url | stylesheet_tag }}`
 (the index template never loads `product-styles`) and wrap the cards in
-`<div class="hdt-collection-products hdt-row-grid hdt-grid-cols-2 md:hdt-grid-cols-2 lg:hdt-grid-cols-4 hdt-ratio--portrait">`
-calling `render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'portrait', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false`.
+`<div class="hdt-collection-products hdt-row-grid hdt-grid-cols-2 md:hdt-grid-cols-2 lg:hdt-grid-cols-4 hdt-ratio--square">`
+calling `render 'card-product1', card_product: p, section_id: section.id, sizes: '(min-width:1150px) 25vw, 50vw', image_ratio: 'square', class: 'hdt-pr-style1', btn_wishlist_code: '', show_vendor: false`.
 
 ## 6. HOME — `templates/index.json` (target ≤ 6 screens mobile; estimate ≈ 4.7)
 
@@ -190,7 +190,7 @@ calling `render 'card-product1', card_product: p, section_id: section.id, sizes:
    including the design_mode branch). Keep lines 10–29 (the product still feeds the background).
    Template settings: `show_card: false`, `note_title: ""`, `note_text: ""` (the section hides an
    empty note), `cta_secondary_label: ""` (hidden when blank), `cta_primary_label: "לכל המוצרים"`,
-   `cta_primary_link: "/collections/all"`, `lead: "מנורות שביל, קיר, גינה ומרפסת. קטגוריה אחת בלבד — ואם מוצר לא מתאים למקום שלכם, נגיד את זה לפני שתזמינו."`
+   `cta_primary_link: "/collections/all"`, `lead: "מנורות שביל, קיר, גינה ומרפסת. אם מוצר לא מתאים למקום שלכם, נגיד את זה לפני שתזמינו."` (critique: «קטגוריה אחת בלבד» read as "only one category" above four collections; dropped)
    (menu order), keep eyebrow/headline/`show_sun_rail` (the headline keeps its terminal period; P4 exempts it). ~1 screen.
 2. `elmsnest-s-collections` (new, name «ElmsNest S — קולקציות») — heading «איפה צריך אור?». 2×2 grid
    (mobile) / 4-across (desktop) of tiles: `collection.image` (object-fit cover, 4/5, per-block
@@ -224,12 +224,12 @@ atmosphere, goodnight, the hero card, the hero photo button.
    pills `min-height:44px`, never truncated, right-aligned: «כל המוצרים» (→ /collections/all) + the
    four Shopify titles in menu order, the current one gold-filled; plain `<a>` each. Then the SORT:
    `<form method="get" action="{{ collection.url }}"><select name="sort_by" onchange="this.form.submit()">`
-   with exactly four options — `manual` «מומלץ», `price-ascending` «מחיר: מהנמוך לגבוה»,
+   with a visible «מיון» label and exactly four options — `manual` «סדר החנות» (true on every collection, the automatic /all included), `price-ascending` «מחיר: מהנמוך לגבוה»,
    `price-descending` «מחיר: מהגבוה לנמוך», `title-ascending` «א–ב» — selected =
    `collection.sort_by | default: collection.default_sort_by`, `<noscript><button>מיון</button></noscript>`,
    hairline pill style, `aria-label="מיון"`. ~1 screen.
 2. `main-collection` (stock Kalles), settings: `"product_des":"1","enable_list_default":false,
-   "image_ratio":"portrait","image_size":true,"show_vendor":false,"pr_border":"none",
+   "image_ratio":"square","image_size":true,"show_vendor":false,"pr_border":"none",
    "products_count":28,"col_dk":"4","col_tb":"3","col_mb":"2","space_items":"x",
    "pagination_type":"links","enable_progressbar":false,"paginate_pos":"center","dis_pagination":40,
    "enable_sorting":false,"enable_filtering":false,"enable_num_cols_selector":false,
@@ -248,7 +248,7 @@ coll-terms, coll-goodnight.
 Reminder (HANDOFF §7 / WINNING-SPEC §8.1): the file is `product.elmsnest.json`; all 27 products carry
 `templateSuffix: "elmsnest"`; NEVER touch `templateSuffix` and NEVER write `templates/product.json`.
 The `main-product` section key in the JSON MUST be exactly `main-product` (its form id is
-`product-form-main-product{{ product.id }}` and the sticky form id is `form-product-sticky{{ product.id }}`).
+`product-form-{{ section.id }}{{ product.id }}` — NOT `product-form-main-product<id>`, which the first build assumed and which never existed on the deployed theme — and the sticky form id is `form-product-sticky{{ product.id }}`).
 No breadcrumb section (stock brc-nav-product prints only «בית › product» here).
 
 1. `main-product` (stock). Section settings: `"sticky_atc":true,
@@ -257,7 +257,7 @@ No breadcrumb section (stock brc-nav-product prints only «בית › product» 
    "color_scheme":"scheme-env2-night","background_opacity":1,"fullwidth":false`.
    Static blocks: copy `main-product-sidebar` (`_product_sidebar`, static) and `main-product-medias`
    (`_product-medias`, static) from `brief/inventory/theme-src/templates/product.elmsnest.json`, with
-   `"show_first_media":true,"use_select_varaint_change_media":false,"mobile_media_layout":"thumbnails",
+   `"show_first_media":true,"use_select_varaint_change_media":false,"mobile_media_layout":"fraction",
    "desktop_media_layout":"thumbnail_left","image_ratio":"adapt_image","image_zoom":"zoom_lightbox"`.
    `_group-product` child blocks, in this order and nothing else:
    1. `_liquid` ground: `{% render 'elmsnest-v2-ground-product' %}`.
@@ -274,21 +274,21 @@ No breadcrumb section (stock brc-nav-product prints only «בית › product» 
       the full price. Toggle on `variant:change` dispatched on `form.hdt-main-product-form` (copy lines
       40–64 of `elmsnest-pdp-unit-price.liquid`). Muted, 13 px.
    6. `_product-variant-picker`: `"picker_type":"block","color_picker_type":"block"`.
-      Then a `_liquid` no-JS fallback block: `<noscript><select name="id" form="product-form-main-product{{ product.id }}" aria-label="גרסה">{% for v in product.variants %}<option value="{{ v.id }}"{% if v.id == product.selected_or_first_available_variant.id %} selected{% endif %}>{{ v.title }} – {{ v.price | money }}</option>{% endfor %}</select></noscript>`.
+      Then a `_liquid` no-JS fallback block, only when `product.variants.size > 1`: `<noscript><select name="id" form="product-form-{{ section.id }}{{ product.id }}" aria-label="גרסה">{% for v in product.variants %}<option value="{{ v.id }}"{% if v.id == product.selected_or_first_available_variant.id %} selected{% endif %}>{{ v.title }} – {{ v.price | money }}</option>{% endfor %}</select></noscript>`.
    7. `_product-buy-button`: `"show_quantity_selector":true,"show_dynamic_checkout":false,
       "show_gift_card_recipient":false,"show_wishlist":false,"show_compare":false,"btn_fullwidth":true,
       "btn_style":"","ani":"none"`. Label stays the theme's «הוסיפו להזמנה».
    8. `_liquid` terms line: `{% render 'elmsnest-s-pdp-terms-line' %}` → ONE 13 px muted line:
-      «משלוח חינם לנקודת איסוף · אספקה משוערת <bdi dir="ltr">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר» + «לכל התנאים ←» → /pages/shipping-delivery.
+      «משלוח חינם לנקודת איסוף · עד הבית <bdi dir="ltr">29.90</bdi> ₪ · אספקה משוערת <bdi dir="ltr">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר» + «לכל התנאים ←» → /pages/shipping-delivery.
       The same snippet carries the ≤ 10-line sticky sync script:
-      `document.forms['product-form-main-product{{ product.id }}'].addEventListener('variant:change',function(e){var f=document.forms['form-product-sticky{{ product.id }}'];if(f&&f.id&&e.detail&&e.detail.variant)f.id.value=e.detail.variant.id});`
+      `scope.querySelector('form.hdt-main-product-form').addEventListener('variant:change',function(e){var f=document.forms['form-product-sticky{{ product.id }}'];if(f&&f.id&&e.detail&&e.detail.variant)f.id.value=e.detail.variant.id});`
    9. `_liquid` not-for + contact: `{% render 'elmsnest-s-pdp-notfor', product: product %}` → on a
       hairline: «{no}» (5.2, solar-gated → possibly blank) then the contact line (5.4) with the
       product. The ONLY «תמונה של המקום» in the body.
    ~1.9 screens.
 2. `elmsnest-s-pdp-facts` (new, name «ElmsNest S — נתונים») — the PDP's one signature device: the big
    outlined numeral = the IP code if the product's own bullets contain one (IP65 / IP67), else no
-   numeral; its caption = that bullet, verbatim. Beside/below it a `<dl>` spec table from the bullets
+   numeral; its caption = that bullet with the code token removed (no caption when nothing remains — «עמידות IP65» under a giant «IP65» was the same thing twice). The `<dl>` skips a bullet that repeats the variant picker's option values (owner complaint 2). Beside/below it a `<dl>` spec table from the bullets
    (same fallback chain as `elmsnest-v2-pdp-facts`: `<li>` under «פרטים שכדאי לדעת», else the « · »
    run under «פרטים טכניים»), every Latin/number token in `<bdi>`. Then `<details><summary>כל מה שכתוב
    על המוצר</summary>{{ product.description }}</details>` (skin 5.1 neutralises the card). No variant
@@ -344,7 +344,7 @@ stainless path (1):
 - cards: `img.hdt-card-product__media--main` src = the featured filename (featured.json) 27/27 on
   /all; 0 `svg` ≥ 100×100 inside `.hdt-card-product__media`; 0 `.hdt-card-product form`;
 - PDP: `form.hdt-main-product-form` = 1, `form.hdt-sticky-atc__form` = 1, visible quantity inputs = 1,
-  `noscript select[name=id]` present (JS off: submit reaches /cart with that id); pill change →
+  `noscript select[name=id]` present when `variants.size > 1`, with `form=` naming the real main form (JS off: submit reaches /cart with that id); pill change →
   price updates AND the sticky form's `input[name=id]` equals the chosen variant; clicking the sticky
   button adds the chosen variant (drawer line item id); the drawer opens after the main button;
 - home: terms strip = 1 (`#env2-terms`); collection: terms strip = 0; PDP: `.ens-terms-line` = 1;

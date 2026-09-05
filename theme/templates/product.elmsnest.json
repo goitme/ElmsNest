@@ -109,7 +109,7 @@
               "settings": {
                 "option_type": "liquid",
                 "page": "",
-                "text": "<noscript><select name=\"id\" form=\"product-form-main-product{{ product.id }}\" aria-label=\"גרסה\">{% for v in product.variants %}<option value=\"{{ v.id }}\"{% if v.id == product.selected_or_first_available_variant.id %} selected{% endif %}>{{ v.title }} – {{ v.price | money }}</option>{% endfor %}</select></noscript>",
+                "text": "{% if product.variants.size > 1 %}<noscript><select name=\"id\" form=\"product-form-{{ section.id }}{{ product.id }}\" aria-label=\"גרסה\">{% for v in product.variants %}<option value=\"{{ v.id }}\"{% if v.id == product.selected_or_first_available_variant.id %} selected{% endif %}>{{ v.title }} – {{ v.price | money }}</option>{% endfor %}</select></noscript>{% endif %}",
                 "hidden_br_mobile": false,
                 "hidden_on_mobile": false,
                 "ffamily": "",
@@ -211,7 +211,7 @@
             "media_box_size": 50,
             "desktop_media_layout": "thumbnail_left",
             "media_size": "medium",
-            "mobile_media_layout": "thumbnails",
+            "mobile_media_layout": "fraction",
             "show_first_media": true,
             "use_select_varaint_change_media": false,
             "enable_media_autoplay": false,

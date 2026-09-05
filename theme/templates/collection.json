@@ -20,7 +20,7 @@
       "settings": {
         "product_des": "1",
         "enable_list_default": false,
-        "image_ratio": "portrait",
+        "image_ratio": "square",
         "image_size": true,
         "show_vendor": false,
         "pr_border": "none",

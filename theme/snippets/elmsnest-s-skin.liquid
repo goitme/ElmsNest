@@ -13,7 +13,7 @@ hdt-card-product.hdt-card-product .hdt-card-product__media::before{content:none}
 hdt-card-product.hdt-card-product .hdt-card-product__info{padding:12px 14px 16px;text-align:start}
 hdt-card-product.hdt-card-product .hdt-card-product__info .hdt-price__list{justify-content:flex-start}
 .hdt-card-product .hdt-card-product__info h3{margin:0 0 6px}
-.hdt-card-product h3 .hdt-card-product__title{font-family:var(--env2-serif);font-weight:700;font-size:17px;line-height:1.3;letter-spacing:0;text-transform:none;color:var(--env2-ink);--line-clamp-count:2}
+.hdt-card-product h3 .hdt-card-product__title{font-family:var(--env2-serif);font-weight:700;font-size:16px;line-height:1.3;letter-spacing:0;text-transform:none;color:var(--env2-ink);--line-clamp-count:3}
 .hdt-card-product h3 .hdt-card-product__title:is(:hover,:focus-visible){color:var(--env2-glow)}
 .hdt-card-product hdt-price.hdt-price,
 .hdt-card-product hdt-price.hdt-price .hdt-money{font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.4;letter-spacing:0;color:var(--env2-gold)}
@@ -21,6 +21,10 @@ hdt-card-product.hdt-card-product .hdt-card-product__info .hdt-price__list{justi
 /* P4: the whole card is the link. The widget (card-product1.liquid:73-92) holds the button groups and badges. */
 hdt-card-product.hdt-card-product :is(.hdt-card-product__widget,.hdt-product-btns,.hdt-badge__wrapp,.hdt-badge,.hdt-card-product__btn-ultra,hdt-variant-option,.hdt-scrolling-badge),
 hdt-compare-at-price.hdt-compare-at-price{display:none}
+/* Kalles snippets/price.liquid prefixes the CURRENT price with an sr-only "sale price" label whether or not a
+   compare-at exists; the rule above hides hdt-compare-at-price everywhere, so the label never has a struck price
+   to contrast with. One rule covers cards, the PDP price block, related cards and the cart-drawer line item. */
+hdt-price.hdt-price > .sr-only{display:none}
 /* forced: base.css:2126 shows .hdt-card-product__media--hover with display:block !important under (pointer:fine) */
 hdt-card-product.hdt-card-product .hdt-card-product__media--hover{display:none!important}
 /* forced: base.css:1782 starts grid cards at opacity 0 (main-collection.liquid:218 hard-codes reveal-on-scroll)
@@ -57,6 +61,11 @@ body .hdt-product-info__item.hdt-product__title :is(h1,h2){margin:0;font-family:
 .hdt-product-form__buttons .hdt-product-form__submit.hdt-btn{width:100%;flex:1 1 auto}
 .hdt-product-form__buttons .hdt-product-form__submit.hdt-btn:is(:hover,:focus-visible),
 .hdt-sticky-btn-atc .hdt-sticky-atc__submit.hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);border-color:var(--env2-glow);color:var(--env2-btn-ink)}
+/* no-JS gallery (P3, §11 JS-off): theme.css caps the thumbnail rail's container at max-height:10rem (100px = one thumb)
+   until hdt-slider-thumb upgrades and sets its own height; on phones the same container is a non-wrapping 25% row, so
+   media 5–6 are clipped too. A never-upgraded element (:not(:defined)) lifts the cap and wraps; a defined element never
+   matches, so JS-on is untouched. Specificity (0,4,1) beats Kalles' (0,4,0) rule inside its media query. */
+.hdt-product-media .hdt-product-media__thumb hdt-slider-thumb:not(:defined) .hdt-slider__container{max-height:none;flex-wrap:wrap}
 
 /* ---- 4. sticky bar: main-product.liquid:59-149 + assets/hdt-sticky-atc.css ---- */
 hdt-sticky-btn-atc.hdt-sticky-btn-atc{background:var(--ens-card);border-block-start:1px solid var(--ens-hair);box-shadow:none;color:var(--env2-ink)}
@@ -94,17 +103,31 @@ hdt-cart-drawer .hdt-dialog-cart-action{background:var(--ens-card);color:var(--e
 #CartDrawer :is(.hdt-dialog-btn__close,.hdt-mini-cart__remove,.hdt-mini-cart__tool button){color:var(--env2-ink)}
 #CartDrawer .hdt-mini-cart__item{border-block-end:1px solid var(--ens-hair)}
 #CartDrawer :is(.hdt-mini-cart__img,.hdt-mini-cart__img-placeholder){border-radius:0;background:var(--ens-card)}
-#CartDrawer .hdt-mini-cart__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal;font-family:var(--env2-serif);font-weight:700;font-size:16px;line-height:1.3;color:var(--env2-ink)}
-#CartDrawer :is(.hdt-mini-cart__meta-variant,.hdt-text-secondary,.hdt-cart-tax){color:var(--env2-ink-2)}
+#CartDrawer .hdt-mini-cart__title{white-space:normal;font-family:var(--env2-serif);font-weight:700;font-size:16px;line-height:1.3;color:var(--env2-ink)}
+#CartDrawer :is(.hdt-text-secondary,.hdt-cart-tax){color:var(--env2-ink-2)}
+#CartDrawer .hdt-mini-cart__meta-variant{color:var(--env2-gold);font-size:13px;line-height:1.4;margin-block-start:2px}
 #CartDrawer :is(.hdt-mini-cart__price .hdt-price,.hdt-mini-cart__value){color:var(--env2-gold)}
+#CartDrawer .hdt-mini-cart__unit{font-family:var(--env2-sans);font-size:12px;line-height:1.4;color:var(--env2-ink-2)}
 #CartDrawer .hdt-quantity-cart-item{border:1px solid var(--env2-hair-btn);border-radius:0;background:transparent}
 #CartDrawer .hdt-quantity-cart-item :is(button,input){color:var(--env2-ink);background:transparent}
 #CartDrawer .hdt-mini-cart__tool_btn{background:transparent;border:1px solid var(--env2-hair-btn);color:var(--env2-ink)}
 #CartDrawer .hdt-mini-cart__bottom{border-block-start:1px solid var(--ens-hair);box-shadow:none}
-#CartDrawer :is(.hdt-mini-cart__btn-checkout,.hdt-mini-cart__emty-button).hdt-btn{min-height:52px;border:0;border-radius:999px;background:var(--env2-gold);color:var(--env2-btn-ink);font-family:var(--env2-sans);font-weight:500;font-size:16px;letter-spacing:0;text-transform:none}
-#CartDrawer :is(.hdt-mini-cart__btn-checkout,.hdt-mini-cart__emty-button).hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);color:var(--env2-btn-ink)}
-#CartDrawer .hdt-mini-cart__btn-viewcart.hdt-btn{min-height:48px;border:1px solid var(--env2-hair-btn);border-radius:999px;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:500;font-size:15px;letter-spacing:0;text-transform:none}
-#CartDrawer .hdt-mini-cart__btn-viewcart.hdt-btn:is(:hover,:focus-visible){border-color:var(--env2-gold);color:var(--env2-glow)}
+#CartDrawer .hdt-mini-cart__main{flex:0 1 auto;min-block-size:0;overflow:auto}
+#CartDrawer .hdt-mini-cart__sroll{position:static;max-block-size:100%;overflow:auto}
+#CartDrawer .hdt-mini-cart__btn-checkout.hdt-btn{min-height:52px;border:0;border-radius:999px;background:var(--env2-gold);color:var(--env2-btn-ink);font-family:var(--env2-sans);font-weight:500;font-size:16px;letter-spacing:0;text-transform:none}
+#CartDrawer .hdt-mini-cart__btn-checkout.hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);color:var(--env2-btn-ink)}
+#CartDrawer .hdt-mini-cart__btn-viewcart{display:flex;width:max-content;max-width:100%;margin-inline:auto;min-height:44px;padding:13px 6px;border:0;border-radius:0;background:transparent;color:var(--env2-ink-2);font-family:var(--env2-sans);font-weight:500;font-size:14px;line-height:1.3;letter-spacing:0;text-transform:none;text-decoration:underline;text-decoration-color:var(--env2-hair-btn);text-underline-offset:4px}
+#CartDrawer .hdt-mini-cart__btn-viewcart:is(:hover,:focus-visible){color:var(--env2-glow);text-decoration-color:var(--env2-glow)}
+#CartDrawer .ens-cart-empty{display:grid;gap:14px;justify-items:center;margin-block-start:18px}
+#CartDrawer .ens-cart-terms .ens-terms-line{margin-block-start:0}
+#CartDrawer .hdt-quantity-cart-item button:disabled,#hdt-page-cart .hdt-quantity-cart-item button:disabled{opacity:.35;cursor:default}
+#CartDrawer .hdt-quantity-cart-item,#hdt-page-cart .hdt-quantity-cart-item{block-size:auto;min-block-size:44px}
+#CartDrawer .hdt-quantity-cart-item :is(button,input),#hdt-page-cart .hdt-quantity-cart-item :is(button,input){min-block-size:44px;block-size:44px}
+#CartDrawer .hdt-mini-cart__remove,#hdt-page-cart .hdt-mini-cart__remove{display:inline-flex;align-items:center;min-block-size:44px;padding-inline:8px}
+#hdt-page-cart .hdt-main-cart__button-checkout.hdt-btn{width:100%;min-height:52px;border:0;border-radius:999px;background:var(--env2-gold);color:var(--env2-btn-ink);font-family:var(--env2-sans);font-weight:500;font-size:16px;letter-spacing:0;text-transform:none}
+#hdt-page-cart .hdt-main-cart__button-checkout.hdt-btn:is(:hover,:focus-visible){background:var(--env2-glow);color:var(--env2-btn-ink)}
+#hdt-page-cart .ens-cart-empty{display:grid;gap:14px;justify-items:center;margin-block-start:18px}
+#hdt-page-cart .ens-cart-qtylink{display:inline-flex;align-items:center;justify-content:center;min-inline-size:44px;min-block-size:44px;color:var(--env2-ink);text-decoration:none;font-size:18px}
 
 /* ---- 7. reduced motion (P6) ---- */
 @media (prefers-reduced-motion:reduce){

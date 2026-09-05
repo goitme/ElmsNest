@@ -1,7 +1,9 @@
 {%- comment -%}
   ElmsNest S — PDP facts (SIMPLIFY §8.2 item 2). Static outlined numeral = the IP code when the
-  product's OWN bullets carry one, captioned by that bullet verbatim; a hairline <dl> from the same
-  bullets (elmsnest-v2-pdp-facts chain); the description behind <details>. No variant table, no lamp.
+  product's OWN bullets carry one, captioned by the rest of that bullet (the code token removed — «עמידות IP65»
+  gives «עמידות»; no caption when nothing remains); a hairline <dl> from the same bullets (elmsnest-v2-pdp-facts
+  chain), skipping any bullet that repeats the variant picker's option values (owner 1, P2); the description
+  behind <details>. No variant table, no lamp.
 {%- endcomment -%}
 {%- if product != blank -%}
 {%- liquid
@@ -141,6 +143,40 @@
       assign cut = val.size | minus: 1
       assign val = val | slice: 0, cut
     endif
+    # owner 1 / P2: the picker already answers «which length / colour». Skip a bullet that IS an option value
+    # (before or after the label split) or that names two or more values of the SAME option — whole tokens
+    # between spaces, so «כחול» never matches inside a longer word. One-value options (Default Title) are ignored.
+    assign is_option_row = false
+    assign padded = ' ' | append: val | replace: ',', ' ' | replace: '·', ' ' | append: ' '
+    for opt in product.options_with_values
+      if opt.values.size < 2
+        continue
+      endif
+      assign hits = 0
+      for ov in opt.values
+        assign ovs = ov | strip
+        if ovs == ''
+          continue
+        endif
+        if val == ovs or t == ovs
+          assign is_option_row = true
+          break
+        endif
+        assign needle = ' ' | append: ovs | append: ' '
+        if padded contains needle
+          assign hits = hits | plus: 1
+        endif
+      endfor
+      if hits > 1
+        assign is_option_row = true
+      endif
+      if is_option_row
+        break
+      endif
+    endfor
+    if is_option_row
+      continue
+    endif
     if lab != '' and lab == prev_label
       assign shown = ''
     else
@@ -154,12 +190,14 @@
   assign heading = section.settings.heading | default: '' | strip
   assign more_label = section.settings.more_label | default: 'כל מה שכתוב על המוצר'
   assign giant_bdi = '<bdi dir="ltr">' | append: giant | append: '</bdi>'
+  # owner 6: the numeral already prints the code; the caption is the rest of the bullet, or nothing
+  assign gcap = gsub | remove: giant | strip
 -%}
 {%- comment -%} P6: every Latin/number token in ONE ltr isolate (whole tokens, adjacent ones merged), then the en-dash range isolator {%- endcomment -%}
 {%- assign gsub_html = '' -%}
-{%- if giant != '' -%}
+{%- if giant != '' and gcap != '' -%}
 {%- liquid
-  assign words = gsub | strip | split: ' '
+  assign words = gcap | split: ' '
   for w in words
     assign c = w | slice: 0, 1
     if c != blank and latin_chars contains c
@@ -197,9 +235,12 @@
 .ens-facts__more{margin-block-start:28px;border-block-start:1px solid #1f1e1d}
 .ens-facts__summary{display:flex;align-items:center;gap:10px;min-height:48px;padding-block:12px;font-weight:400;font-size:15px;line-height:1.5;color:#c9c4b8;cursor:pointer;list-style:none;transition:color .3s}
 .ens-facts__summary::-webkit-details-marker{display:none}
-.ens-facts__summary::after{content:"";width:9px;height:9px;border-inline-start:1px solid currentColor;border-block-end:1px solid currentColor;transform:rotate(-45deg);transition:transform .3s;margin-block-end:3px}
+/* chevron geometry (the section is dir="rtl"): border-inline-start = the RIGHT edge, so the bordered corner is bottom-right
+   (+1,+1); rotate(45deg) (clockwise, y-down) → (0,+1.41) = DOWN when closed, rotate(-135deg) → (0,-1.41) = UP when open.
+   The old -45deg / 135deg pair pointed RIGHT / LEFT, i.e. back / forward in RTL. Logical properties only (Sense RTL app). */
+.ens-facts__summary::after{content:"";width:9px;height:9px;border-inline-start:1px solid currentColor;border-block-end:1px solid currentColor;transform:rotate(45deg);transition:transform .3s;margin-block-end:3px}
 .ens-facts__summary:hover{color:#f4eee3}
-.ens-facts__more[open] .ens-facts__summary::after{transform:rotate(135deg);margin-block-end:-3px}
+.ens-facts__more[open] .ens-facts__summary::after{transform:rotate(-135deg);margin-block-end:-3px}
 .ens-facts__desc{padding-block:6px 24px;max-width:78ch;color:#c9c4b8}
 @media (min-width:901px){
   .ens-facts__grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px 64px;align-items:start}
@@ -216,8 +257,8 @@
     <div class="ens-facts__grid">
       {%- if giant != '' -%}
       <p class="ens-facts__num">
-        <span class="ens-facts__giant" aria-hidden="true">{{ giant_bdi }}</span>
-        <span class="ens-facts__cap">{{ gsub_html }}</span>
+        <span class="ens-facts__giant">{{ giant_bdi }}</span>
+        {%- if gsub_html != '' -%}<span class="ens-facts__cap">{{ gsub_html }}</span>{%- endif -%}
       </p>
       {%- endif -%}
       {%- if row_list.size > 1 -%}
