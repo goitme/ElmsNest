@@ -138,7 +138,8 @@ async function audit(page, name, vw, vh) {
       const r = await audit(page, p.name, w, h);
       r.target = p.target; r.overTarget = r.screens > p.target;
       report[key] = r;
-      if (js && vk !== 's') await page.screenshot({ path: path.join(OUT, `${key}-full.png`), fullPage: true }).catch(() => {});
+      // full-page capture: the viewport becomes page-tall, so Kalles' sticky bar ("outside the scope of the form") paints over the buy box; hide it for this shot only
+      if (js && vk !== 's') { await page.addStyleTag({ content: '.hdt-sticky-btn-atc{display:none!important}' }).catch(() => {}); await page.screenshot({ path: path.join(OUT, `${key}-full.png`), fullPage: true }).catch(() => {}); await page.evaluate(() => { const st = [...document.querySelectorAll('style')].pop(); if (st && /hdt-sticky-btn-atc\{display:none/.test(st.textContent)) st.remove(); }).catch(() => {}); }
       await page.screenshot({ path: path.join(OUT, `${key}-fold.png`) }).catch(() => {});
       console.log(key, `screens=${r.screens}/${p.target}`, `forms=${r.cartForms}`, `main=${r.mainProductForms} sticky=${r.stickyForms}`, `mailto=${r.mailtoInMain}`, `photo=${r.photoLineInMain}`, `terms=${r.termsStrips}/${r.termsLine}`, `glyph=${r.glyphPlates}/${r.glyphCaption}`, `wa=${r.whatsapp}`, `cards=${r.cards} cardForms=${r.cardForms} svg=${r.cardBigSvgs}`, `liquidErr=${r.liquidErrors}`, `ovX=${r.overflowX}`, `bdi!=${r.rangesOutsideBdiCount}`, r.cardsNotFeatured ? `notFeatured=${r.cardsNotFeatured.length}` : '');
     } catch (e) { report[key] = { error: e.message.slice(0, 200) }; console.log(key, 'ERROR', e.message.slice(0, 120)); }
