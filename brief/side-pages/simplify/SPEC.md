@@ -354,4 +354,6 @@ stainless path (1):
   lead, the collection filter row and the footer (`[data-ens-place]` order);
 - every en-dash range inside `<main>` text sits inside a `<bdi>` — except inside the merchant's own description, which `elmsnest-s-pdp-facts` shows verbatim behind `<details>` by design (measured separately as `rangesInRawDescription`); the `sr-only` radios behind the 44 px pills are not tap targets; a `display:none` element cannot animate;
 - reduced-motion: no transitions on `.hdt-card-product`.
+- The screen targets bind at 390×844 (P5); 360×640 and 1366×900 are recorded for information. The PDP's
+  «one terms line» count excludes the cart drawer, which (round 3) carries the same line inside `#CartDrawer`.
 Screenshots of the whole flow (home → collection → PDP → drawer) at 390×844 go into the owner artifact.

@@ -79,7 +79,7 @@ async function audit(page, name, vw, vh) {
     res.mailtoInFooter = q('footer a[href^="mailto:"], .shopify-section-group-footer-group a[href^="mailto:"]').length;
     res.photoLineInMain = (main.innerText.match(/תמונה של המקום/g) || []).length;
     res.termsStrips = q('[data-env2-terms], .ens-terms, #env2-terms').filter(vis).length;
-    res.termsLine = q('.ens-terms-line').length;
+    res.termsLine = q('.ens-terms-line').filter(el => !el.closest('#CartDrawer')).length; // the round-3 drawer carries the same line; the PDP's own count is what section 11 measures
     res.cartForms = q('form[action*="/cart/add"]').length;
     res.mainProductForms = q('form.hdt-main-product-form').length;
     res.stickyForms = q('form.hdt-sticky-atc__form').length;
