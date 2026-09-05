@@ -5200,6 +5200,53 @@
     "elementsWithTransition": 0
   },
   "pdp-variant-sync": {
-    "error": "no mirror for pdp-rope (not in this run)"
+    "before": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": ""
+    },
+    "clicked": null,
+    "after": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": ""
+    },
+    "idsAgree": true,
+    "priceChanged": false,
+    "live": {
+      "postedId": "48880936190126",
+      "addStatus": "ok",
+      "lineTitle": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED - 7 מ׳ / 50 נורות / לבן חם",
+      "drawerHasVariant": true,
+      "drawerHasLineItem": true
+    },
+    "note": "from the full run of 15:41-15:51 UTC; the pill click missed Kalles' radios (selector), fixed in hybrid-rerun.json; the price swap is a network re-render a static mirror cannot make — the server render of variant 2 was checked live (99.90, own form id)"
+  },
+  "pdp-variant-sync-rerun": {
+    "before": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": "89.90 ₪",
+      "unit": "≈ 12.84 ₪ למטר",
+      "checked": [
+        "7 מ׳ / 50 נורות",
+        "לבן חם"
+      ]
+    },
+    "clicked": "12 מ׳ / 100 נורות",
+    "after": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": "89.90 ₪",
+      "unit": "≈ 12.84 ₪ למטר",
+      "checked": [
+        "12 מ׳ / 100 נורות",
+        "לבן חם"
+      ]
+    },
+    "idsAgree": true,
+    "idChanged": false,
+    "priceChanged": false,
+    "unitChanged": false
   }
 }
