@@ -72,3 +72,34 @@ that the skeptics confirm is applied as written. `lint.py` and the three stock l
 | qa 3: no-JS desktop thumbnail rail collapses to one thumbnail | **Apply** in the skin, keyed on `hdt-slider-thumb:not(:defined)` (Kalles sets no `html.no-js` hook we can rely on): the thumb container becomes a grid with the transform cleared. | JS-off is a §11 surface; one rule, no JS-on effect because a defined element never matches. |
 | qa 4: the JS price swap / sticky sync has no positive evidence | **No theme change; open verification item in HANDOFF §7.6**: run `verify.js` against the live preview from a machine whose browser can reach the store (this sandbox's Chromium cannot). The server side is proven (variant 2 renders 99.90 with its own form id; the drawer received the live add). | Already a documented §11 exemption; the fix is a measurement, not an edit. |
 | qa 5: no drawer screenshot | **Done** after the lens ran: `verify-after/drawer-rope-{mobile,desktop}.png` (rope light in the drawer, 89.90 ₪, checkout). Goes into the owner artifact. | — |
+
+### Owner and honesty lenses (landed 16:21 / 16:2x) — and two rulings above revised by a measurement
+
+`critique/clamp-experiment.js` served the /all mirror at 390×844 and injected CSS overrides (`critique/clamp-experiment.txt`):
+
+```
+clamp2 (now)          docH 6702  7.94 screens  26 of 27 titles clipped
+clamp3 (portrait)     docH 7011  8.31          2 clipped   ← over target: why shopper 3 was refused above
+square only           docH 6087  7.21          26 clipped
+square+clamp3+16px    docH 6342  7.51          0 clipped   ← chosen
+```
+
+All 27 featured images are 1:1 (mirror `width`/`height`), so Kalles' `square` ratio shows the owner's frames whole
+(owner 0: the portrait cover-crop slices his baked-in captions) and is 44 px shorter per row than `portrait`.
+
+| finding | decision | why |
+|---|---|---|
+| owner 0 (major): portrait crop cuts the owner's images | **Apply** `templates/collection.json` `image_ratio: "square"` and `sections/elmsnest-s-products.liquid` lines 23/30 `image_ratio: 'square'` (not `adapt`: uniform grid, P1; a future landscape upload still gets a stable card). | 27/27 square sources; no crop; −616 px on /all. |
+| owner 5 + shopper 3 (REVISED): 2-line clamp swallows «10» → «0…» | **Apply** in the skin line 16: `--line-clamp-count:3` and `font-size:16px` (line-height 1.3). Owner-admin note on titles stays as advice, no longer as the fix. | With square cards the page lands at 7.51 screens with 0 clipped titles (measured above). |
+| owner 1 (major): PDP facts `<dl>` repeats the variant options (lengths, colours) | **Apply** in `elmsnest-s-pdp-facts.liquid` dl loop: skip a `<dd>` whose stripped text equals any `product.variants[].option1/2/3` value or contains two or more of `product.options_with_values[].values`; drop a `<dt>` left without rows. Render-check the rope light after deploy. | Complaint 2 in his own words; the picker already answers the question (P2). |
+| owner 2 (major): the four places three times on the home (lead, tiles, fit rows) | **Refuse the merge; put the question to the owner in the artifact.** The tiles answer «which four places»; the fit rows answer «does it suit / when not» with the four approved pairs — the honesty device he approved. Folding «yes» into the tiles and dropping «no» would remove the pairs from the home. The lead is a sentence, not a section. | P2 maps two questions to two blocks. If he says it is still «twice», the fold is a one-block change (remove `ens_fit` from the order). |
+| owner 3 (major): buy button below the fold | Same as shopper 0: `mobile_media_layout: "fraction"` (Kalles has no `dots`). The 28 px mobile title stays. | — |
+| owner 4 (major): the sticky bar painted over the pills in every full-page PNG | **Harness fix, applied by the lead** (`verify-mirror.js`: the bar is hidden for the full-page capture only, restored for the fold). The PDP PNGs are re-shot with the re-verify after deploy; the owner sees clean captures. | Capture artefact of a page-tall viewport, not the live page. |
+| owner 6: «IP65» numeral + caption «עמידות IP65» | **Apply**: caption = the bullet with the code token removed; when nothing but the code remains, no caption. | Literally the same thing twice, where he will look. |
+| owner 7 (owner-admin) + honesty 2: /all is Shopify's automatic collection, sorted alphabetically; «מומלץ» names an order that does not exist there | **Theme**: relabel the manual option «סדר החנות» (the store's order — true on every collection, including the automatic one) and — REVISING shopper 1 — no «מיון: » prefix; instead a visible `<label>` «מיון» before the select in `.ens-ch__sort` (the stock Shopify pattern). **Owner-admin**: create an «all» collection (handle `all`, manual sort) if he wants his own order on /collections/all. | Honest label + visible affordance; two lenses. |
+| owner 8: two «הוסיפו להזמנה» per PDP (main + sticky) | **Keep** (P1: one button that follows the customer; the bar shows only when the main button has scrolled away). Explained in the artifact. | — |
+| honesty 0 (major, owner-admin): deck light `compare_at_price` 199.90 in the DOM | **Owner-admin** (clear compare-at on the 4 variants); the skin keeps hiding it. | Store data, SPEC §9. |
+| honesty 1: Kalles' sr-only «מחיר מבצע» on every non-sale price | **Apply** the skin rule that hides the sr-only label inside `hdt-price` on cards and the PDP price block. | A sale claim for screen readers on 26 non-sale products. |
+| honesty 3: «מה שנדלק ראשון» reads as a rank | **Apply**: heading «ארבעה לפתיחה» in `templates/index.json` and the section default. | P4: no popularity claims; the four are an owner pick. |
+| honesty 4 (major, owner-admin): featured frames with a foreign brand (LUMIÈRE) and unbacked numbers | **Owner content task** (the §9 image sheet flags them first). No theme change (P3). | — |
+| honesty 5 (major, owner-admin): `info@elmsnest.com` has no MX record | **Owner action before publishing** (a mailbox for info@). The line stays as the owner chose (answer 3: email). Top of the admin list. | The promise is his to make good; the theme cannot. |

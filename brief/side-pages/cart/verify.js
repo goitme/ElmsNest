@@ -94,7 +94,7 @@ const VIEWPORTS = [[390, 844], [360, 640], [320, 568], [1440, 900]];
       let rival = 0, rivalTxt = '', exits = 0;
       for (const el of scope.querySelectorAll('a,button')) {
         if (el === chk || (chk && chk.contains(el))) continue;
-        if (el.querySelector('img')) { exits++; continue; }  // a photo link is an exit, not a rival control
+        if (el.querySelector('img') || /\/products\//.test(el.getAttribute('href') || '')) { exits++; continue; }  // a photo or title link leaves the cart: an exit, not a rival control (round 3: the full title is two lines wide)
         const r = el.getBoundingClientRect(); const a = r.width * r.height;
         if (getComputedStyle(el).visibility === 'hidden' || !el.offsetParent && getComputedStyle(el).position !== 'fixed') continue;
         if (a > rival && r.width > 40 && r.height > 20) { rival = a; rivalTxt = (el.textContent || '').trim().slice(0, 24) || el.className.slice(0, 24); }
@@ -128,7 +128,9 @@ const VIEWPORTS = [[390, 844], [360, 640], [320, 568], [1440, 900]];
       }
       const sub = [...scope.querySelectorAll('*')].find(e => !e.children.length && /סכום ביניים|סה"כ|לתשלום/.test(e.textContent));
       const last = [...scope.querySelectorAll('hdt-line-item,[data-env2-line]')].pop();
-      const gap = (sub && last) ? Math.round(sub.getBoundingClientRect().top - last.getBoundingClientRect().bottom) : null;
+      // round 3: the terms line now sits at the top of the bottom block by design, so the void is measured to the block's top edge (or to the terms line), not to the subtotal text
+      const bottomTop = scope.querySelector('.ens-cart-terms, .hdt-mini-cart__bottom, .hdt-page-cart__footer') || sub;
+      const gap = (bottomTop && last) ? Math.round(bottomTop.getBoundingClientRect().top - last.getBoundingClientRect().bottom) : null;
       const body = scope === document ? document.body.textContent : scope.textContent;
       return {
         checkout: chkBox,

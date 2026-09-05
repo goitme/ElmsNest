@@ -1,0 +1,8 @@
+square only    docH 6087 screens 7.21 titles 27 3-line 0 stillClipped 26
+square+clamp3+16px docH 6342 screens 7.51 titles 27 3-line 23 stillClipped 0
+square+clamp3+17px docH 6397 screens 7.58 titles 27 3-line 26 stillClipped 2
+clamp2 (now)   docH 6702 screens 7.94 titles 27 3-line 0 stillClipped 26
+clamp3         docH 7011 screens 8.31 titles 27 3-line 26 stillClipped 2
+clamp3+16px    docH 6956 screens 8.24 titles 27 3-line 23 stillClipped 0
+clamp2+15px    docH 6629 screens 7.85 titles 27 3-line 0 stillClipped 18
+
