@@ -1,0 +1,252 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest PDP round 2 — concept «places»: אותו אור, מקומות אחרים · בחורף</title>
+<style>
+/* ---- the real faces, offline pack (brief/assets/fonts) ---- */
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:300;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:300;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:400;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:400;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:500;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:500;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ---- tokens: the :root block of snippets/elmsnest-v2-core.liquid, verbatim values ---- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--env2-sans:"Heebo","Assistant",system-ui,sans-serif;
+}
+html{background:#020306}
+body{margin:0;background:#020306;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+/* the side-page ground of elmsnest-v2-core, per archetype block (each block is «one PDP») */
+.arch{background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;position:relative}
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+
+/* ---- the existing sections as labelled grey bands of their true heights at 390 (BRIEF §5) ---- */
+.band{position:relative;display:grid;place-items:center;background:rgba(244,238,227,.05);border-block:1px dashed rgba(244,238,227,.16);color:var(--env2-mute);font-family:var(--env2-sans);font-weight:400;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding-inline:var(--env2-gut)}
+.band small{display:block;letter-spacing:.02em;text-transform:none;font-size:12px;margin-block-start:6px;color:rgba(143,149,163,.8);max-inline-size:60ch}
+.band--header{block-size:59px}
+.band--main{block-size:1085px}
+.band--facts{block-size:723px}
+.band--related{block-size:781px}
+.band--footer{block-size:850px}
+/* the archetype divider — NOT part of the page, a label for the judges */
+.divider{background:#000;color:var(--env2-gold);font-family:var(--env2-sans);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:14px var(--env2-gut);border-block:1px solid var(--env2-gold)}
+.divider bdi{color:var(--env2-ink);letter-spacing:0;text-transform:none;font-weight:300}
+/* sticky buy bar of the real page (78 px) — drawn on the phone so the judges see nothing hides under it */
+.sticky{position:fixed;inset-inline:0;inset-block-end:0;block-size:78px;z-index:9;background:rgba(2,3,6,.86);backdrop-filter:blur(6px);border-block-start:1px solid rgba(244,238,227,.14);display:grid;place-items:center;color:var(--env2-mute);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+@media (min-width:901px){.sticky{display:none}}
+
+/* =========================================================================================
+   NEW 1 — sections/elmsnest-s-pdp-places.liquid  «אותו אור, מקומות אחרים»
+   A triptych of the family's clean frames in three places, one word (or one short line) on each
+   tile, bottom inline-start, on a bottom scrim. Heading in the facts' scale (24 px serif).
+   390: a 1 + 2 mosaic (lead tile 390×220 edge to edge, two tiles 193×160 under it, 4 px gutters —
+   the home-solar grid gutter). ≥ 901: three equal 4:5 tiles inside the wrap.
+   Crops are CSS only: object-fit cover, object-position per tile per breakpoint, and for a frame
+   that needs a baked pre-crop on the dev theme (C) a transform scale from an origin, so the slice
+   the buyer sees never contains the file's baked caption, logo or frame line (IMAGES.md).
+   Degrade by count: 3 frames → 1 + 2 · 2 frames → 1 + 1 · 1 frame → one tile (390×300 at 390,
+   one 4:5 column of three at ≥ 901) · 0 frames → the section prints nothing.
+   Honesty: when a tile shows ANOTHER store product, one muted 13 px line under the mosaic names
+   the tiles and the product — «{words} — בתמונה: {title}» — linked to it (BRIEF §3 image rule 3),
+   and the heading drops «אותו אור» for «מקומות לאור כזה» (singular «מקום לאור כזה» for one tile).
+   No button, no link except the credit, no motion, no carousel.
+   ========================================================================================= */
+.ens-places{padding-block:32px 20px;margin:0}
+.ens-places__h{font-family:var(--env2-serif);font-weight:700;font-size:24px;line-height:1.1;letter-spacing:-.01em;margin:0 0 14px;color:var(--env2-ink);text-wrap:balance}
+.ens-places__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;background:#020306;margin-inline:calc(-1*var(--env2-gut))}
+.ens-places__tile{position:relative;margin:0;min-width:0;overflow:hidden;background:#05070c;border-radius:0;isolation:isolate;block-size:160px}
+.ens-places__tile--lead{grid-column:1/-1;block-size:220px}
+.ens-places__grid--one .ens-places__tile{grid-column:1/-1;block-size:300px}
+.ens-places__tile img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--op,50% 50%);transform:scale(var(--z,1));transform-origin:var(--to,50% 50%)}
+/* bottom scrim only where the word sits (home-solar's night scrim, shorter) */
+.ens-places__tile::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,8,14,0) 52%,rgba(5,8,14,.8) 100%)}
+.ens-places__word{position:absolute;inset-inline-start:12px;inset-inline-end:12px;inset-block-end:10px;z-index:1;margin:0;font-family:var(--env2-serif);font-weight:700;font-size:20px;line-height:1.05;letter-spacing:-.01em;color:var(--env2-ink);text-shadow:0 1px 16px rgba(2,3,6,.7);text-wrap:balance}
+.ens-places__tile--lead .ens-places__word,.ens-places__grid--one .ens-places__word{font-size:24px;inset-inline-start:var(--env2-gut);inset-block-end:12px}
+.ens-places__credit{margin:0;padding-block:10px 0;font-family:var(--env2-sans);font-weight:400;font-size:13px;line-height:1.45;color:var(--env2-mute)}
+.ens-places__credit a{color:var(--env2-ink-2);border-block-end:1px solid var(--env2-hair-btn);padding-block-end:1px}
+@media (min-width:901px){
+  .ens-places{padding-block:56px 28px}
+  .ens-places__h{font-size:30px;margin-block-end:22px}
+  .ens-places__grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-inline:0}
+  .ens-places__tile,.ens-places__tile--lead{grid-column:auto;block-size:auto;aspect-ratio:4/5}
+  /* one frame at ≥ 901: a single 4:5 tile at the inline-start, the rest of the row is ground (smaller than the triptych — the weight a borrowed frame deserves) */
+  .ens-places__grid--one .ens-places__tile{grid-column:auto;block-size:auto;aspect-ratio:4/5}
+  .ens-places__tile img{object-position:var(--op-lg,var(--op,50% 50%));transform:scale(var(--z-lg,var(--z,1)));transform-origin:var(--to-lg,var(--to,50% 50%))}
+  .ens-places__word,.ens-places__tile--lead .ens-places__word,.ens-places__grid--one .ens-places__word{font-size:30px;inset-inline-start:22px;inset-inline-end:22px;inset-block-end:20px}
+  .ens-places__credit{padding-block-start:14px}
+}
+
+/* =========================================================================================
+   NEW 2 — sections/elmsnest-s-pdp-winter.liquid  «בחורף»  (solar products only, P4 gate)
+   One hairline row in the facts' own language (label 13 px muted · value 16 px), inside the wrap,
+   directly before the facts, so the winter fact sits above the «זמן עבודה» row it qualifies.
+   Mains / USB products (B): the section prints nothing. No heading, no link, no button, no image.
+   ========================================================================================= */
+.ens-winter{padding-block:8px 0;margin:0}
+.ens-winter__dl{margin:0;border-block-end:1px solid #1f1e1d}
+.ens-winter__row{display:grid;grid-template-columns:minmax(0,1fr);gap:3px;border-block-start:1px solid #1f1e1d;padding-block:12px}
+.ens-winter__dt{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:13px;line-height:1.5;color:var(--env2-ink-2)}
+.ens-winter__dd{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.55;color:var(--env2-ink);text-wrap:pretty}
+@media (min-width:901px){
+  .ens-winter{padding-block:12px 0}
+  .ens-winter__row{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline;padding-block:16px}
+  .ens-winter__dd{font-size:17px;max-inline-size:60ch}
+}
+@media (prefers-reduced-motion:reduce){.ens-places img{transition:none}}
+</style>
+</head>
+<body>
+<div class="sticky">sticky buy bar · 78 px · «הוסיפו להזמנה»</div>
+
+<!-- =====================================================================================
+     A — stainless-steel-solar-path-light-ip65 · path · SOLAR · own frames 1/2/4/5/6
+     templates/product.elmsnest.json order:
+       main-product → ens_pdp_places (NEW) → ens_pdp_winter (NEW, renders: solar) → ens_pdp_facts → ens_related
+     Tiles: own_..._6 (steps, lead) · own_..._4 (entrance, brick house) · own_..._2 (between the shrubs).
+     Frame 1 (the hedge — the phone's gallery frame) is NOT reused. Every tile shows the page's own
+     product, so no credit line and the heading keeps «אותו אור».
+     ===================================================================================== -->
+<div class="divider">A · <bdi dir="ltr">stainless-steel-solar-path-light-ip65</bdi> · שביל · סולארי</div>
+<div class="arch arch--a" id="arch-a">
+  <div class="band band--header">header<small>59 px</small></div>
+  <div class="band band--main">main-product<small>gallery 1/6 · kicker «תאורת שביל, עמוד וגינה · מתאים כדי לראות את הדרך» · h1 · 169.90 ₪ · pills · qty · «הוסיפו להזמנה» · terms · not-for · contact — 1085 px</small></div>
+
+  <section class="env2-section ens-places" id="ens-places-a" dir="rtl" aria-labelledby="ens-places-h-a">
+    <div class="env2-wrap">
+      <h2 class="ens-places__h" id="ens-places-h-a">אותו אור, מקומות אחרים</h2>
+      <div class="ens-places__grid">
+        <figure class="ens-places__tile ens-places__tile--lead" style="--op:50% 60%;--op-lg:66% 50%">
+          <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <figcaption class="ens-places__word">מדרגות</figcaption>
+        </figure>
+        <figure class="ens-places__tile" style="--op:50% 55%;--op-lg:55% 50%">
+          <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_4.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <figcaption class="ens-places__word">כניסה</figcaption>
+        </figure>
+        <figure class="ens-places__tile" style="--op:50% 50%;--op-lg:45% 50%">
+          <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_2.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <figcaption class="ens-places__word">בין השיחים</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="env2-section ens-winter" id="ens-winter-a" dir="rtl" aria-label="בחורף">
+    <div class="env2-wrap">
+      <dl class="ens-winter__dl">
+        <div class="ens-winter__row">
+          <dt class="ens-winter__dt">בחורף</dt>
+          <dd class="ens-winter__dd">היום קצר יותר, וגם האור בלילה.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="band band--facts">ens_pdp_facts<small>IP65 · hairline dl («זמן עבודה כ־8–10 שעות» is its fourth row) · «כל מה שכתוב על המוצר» — 723 px</small></div>
+  <div class="band band--related">ens_related<small>«עוד לאותו מקום» · 4 cards — 781 px</small></div>
+  <div class="band band--footer">footer<small>≈ 850 px</small></div>
+</div>
+
+<!-- =====================================================================================
+     B — waterproof-led-wall-light-ip65-6w-12w · wall · MAINS · own frame 6 (+ studio 2/4/5)
+     templates/product.elmsnest.json order:
+       main-product → ens_pdp_places (NEW) → ens_pdp_winter (NEW, renders NOTHING: gate false) → ens_pdp_facts → ens_related
+     Tiles: own_waterproof-led-wall-light-ip65-6w-12w_6 (the pergola terrace — the page's own product, lead)
+       · own_outdoor-bidirectional-led-wall-light-ip6_5 (the yard) · own_outdoor-bidirectional-led-wall-light-ip6_6
+       (the slate wall) — the last two show the collection's sibling wall light, so the credit line names them and
+       the heading is «מקומות לאור כזה».
+     ===================================================================================== -->
+<div class="divider">B · <bdi dir="ltr">waterproof-led-wall-light-ip65-6w-12w</bdi> · קיר · חשמל</div>
+<div class="arch arch--b" id="arch-b">
+  <div class="band band--header">header<small>59 px</small></div>
+  <div class="band band--main">main-product<small>gallery 1/6 · kicker «תאורת קיר · מתאים כדי להאיר נקודה מסוימת» · h1 · price · 8 variants · qty · «הוסיפו להזמנה» · terms · not-for · contact — 1085 px (like the path light, BRIEF §5)</small></div>
+
+  <section class="env2-section ens-places" id="ens-places-b" dir="rtl" aria-labelledby="ens-places-h-b">
+    <div class="env2-wrap">
+      <h2 class="ens-places__h" id="ens-places-h-b">מקומות לאור כזה</h2>
+      <div class="ens-places__grid">
+        <figure class="ens-places__tile ens-places__tile--lead" style="--op:50% 40%;--op-lg:55% 50%">
+          <img src="../../../home2/images/own/own_waterproof-led-wall-light-ip65-6w-12w_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <figcaption class="ens-places__word">פרגולה</figcaption>
+        </figure>
+        <figure class="ens-places__tile" style="--op:50% 45%;--op-lg:45% 50%">
+          <img src="../../../home2/images/own/own_outdoor-bidirectional-led-wall-light-ip6_5.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <figcaption class="ens-places__word">חצר</figcaption>
+        </figure>
+        <figure class="ens-places__tile" style="--op:50% 50%;--op-lg:45% 50%">
+          <img src="../../../home2/images/own/own_outdoor-bidirectional-led-wall-light-ip6_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <figcaption class="ens-places__word">אבן צפחה</figcaption>
+        </figure>
+      </div>
+      <p class="ens-places__credit">חצר, אבן צפחה — בתמונה: <a href="/products/outdoor-bidirectional-led-wall-light-ip65">מנורת קיר <bdi dir="ltr">LED</bdi> חיצונית דו־כיוונית <bdi dir="ltr">IP65</bdi></a></p>
+    </div>
+  </section>
+
+  <!-- ens_pdp_winter: the solar gate is false (mains wall light) — the section prints nothing -->
+
+  <div class="band band--facts">ens_pdp_facts<small>IP65 · hairline dl · «כל מה שכתוב על המוצר» — 723 px (like the path light, BRIEF §5)</small></div>
+  <div class="band band--related">ens_related<small>«עוד לאותו מקום» · 4 cards — 781 px</small></div>
+  <div class="band band--footer">footer<small>≈ 850 px</small></div>
+</div>
+
+<!-- =====================================================================================
+     C — solar-floodlight-ip67-remote-timer · spot · SOLAR · NO clean own frame → the degrade
+     templates/product.elmsnest.json order:
+       main-product → ens_pdp_places (NEW, one tile: the family's one place frame + credit) → ens_pdp_winter (NEW, renders: solar) → ens_pdp_facts → ens_related
+     The spot collection has ONE place frame (own_dual-head-garden-light-10w-ip65_3, crop-only: caption top-left,
+     logo top-right, hairline frame around the file). The mosaic degrades to one tile; the slice shown is the clean
+     region (CSS: object-position 50% 80% + scale 1.06 from 50% 80% at 390; 100% 50% + scale 1.25 from 80% 85% in a
+     single 4:5 tile at ≥ 901 — IMAGES.md gives the baked pre-crop the dev asset needs). It shows a sibling product, so the credit line names it and the heading
+     is singular: «מקום לאור כזה».
+     ===================================================================================== -->
+<div class="divider">C · <bdi dir="ltr">solar-floodlight-ip67-remote-timer</bdi> · גינה · סולארי</div>
+<div class="arch arch--c" id="arch-c">
+  <div class="band band--header">header<small>59 px</small></div>
+  <div class="band band--main">main-product<small>gallery 1/6 · kicker «ספוטים, פרוז'קטורים ותאורה ניידת · מתאים כדי להאיר עץ או ערוגה» · h1 · price · 3 variants · qty · «הוסיפו להזמנה» · terms · not-for · contact — 1085 px (path numbers; not measured for this product)</small></div>
+
+  <section class="env2-section ens-places" id="ens-places-c" dir="rtl" aria-labelledby="ens-places-h-c">
+    <div class="env2-wrap">
+      <h2 class="ens-places__h" id="ens-places-h-c">מקום לאור כזה</h2>
+      <div class="ens-places__grid ens-places__grid--one">
+        <figure class="ens-places__tile" style="--op:50% 80%;--z:1.06;--to:50% 80%;--op-lg:100% 50%;--z-lg:1.25;--to-lg:80% 85%">
+          <img src="../../../home2/images/own/own_dual-head-garden-light-10w-ip65_3.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <figcaption class="ens-places__word">ליד האדנית</figcaption>
+        </figure>
+      </div>
+      <p class="ens-places__credit">בתמונה: <a href="/products/dual-head-garden-light-10w-ip65">מנורת גינה דו־ראשית מתכווננת <bdi dir="ltr">180°</bdi> – <bdi dir="ltr">10W IP65</bdi></a></p>
+    </div>
+  </section>
+
+  <section class="env2-section ens-winter" id="ens-winter-c" dir="rtl" aria-label="בחורף">
+    <div class="env2-wrap">
+      <dl class="ens-winter__dl">
+        <div class="ens-winter__row">
+          <dt class="ens-winter__dt">בחורף</dt>
+          <dd class="ens-winter__dd">היום קצר יותר, וגם האור בלילה.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="band band--facts">ens_pdp_facts<small>IP67 · hairline dl · «כל מה שכתוב על המוצר» — 723 px (path numbers)</small></div>
+  <div class="band band--related">ens_related<small>«עוד לאותו מקום» · 4 cards — 781 px</small></div>
+  <div class="band band--footer">footer<small>≈ 850 px</small></div>
+</div>
+</body>
+</html>

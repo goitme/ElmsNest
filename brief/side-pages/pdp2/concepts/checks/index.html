@@ -1,0 +1,295 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest — PDP round 2 — concept «checks» (לפני שמזמינים)</title>
+<style>
+/* ---------- the real faces, from the offline pack (file://) ---------- */
+@font-face{font-family:'Frank Ruhl Libre';font-weight:300;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-300.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:400;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-400.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:500;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-500.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:700;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:900;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-900.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:300;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-300.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:400;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-400.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:500;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-500.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:700;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:900;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-900.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Heebo;font-weight:300;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:Heebo;font-weight:400;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:Heebo;font-weight:500;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:Heebo;font-weight:700;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-700.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:Heebo;font-weight:300;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Heebo;font-weight:400;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Heebo;font-weight:500;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Heebo;font-weight:700;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-700.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ---------- tokens, copied from snippets/elmsnest-v2-core.liquid :root ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-serif:'Frank Ruhl Libre',serif;--env2-sans:Heebo,sans-serif;
+}
+html{background:#020306}
+body{margin:0;background-color:#020306;color:#f4eee3;font-family:var(--env2-sans);font-weight:300;-webkit-font-smoothing:antialiased}
+/* the side-page ground of the theme: sky-2 -> sky-3 -> sky-4, per archetype block so each block reads like one page */
+.arch{background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;position:relative}
+.arch + .arch{border-block-start:6px solid #2a2f3a}
+/* section root helper + container, copied from core (§3.3) */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+@media (max-width:900px){.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---------- mock chrome: the existing sections as labelled grey bands of their true heights ---------- */
+.band{position:relative;block-size:var(--hm);background:rgba(244,238,227,.055);border-block:1px solid rgba(244,238,227,.14);display:grid;place-items:center;text-align:center;color:var(--env2-mute);font-size:13px;line-height:1.5;padding-inline:24px}
+.band b{display:block;font-weight:500;color:var(--env2-ink-2);font-size:14px}
+.band i{font-style:normal;display:block;font-size:12px}
+.band--d{display:none}
+.band--m{display:grid}
+@media (min-width:901px){.band{block-size:var(--hd)}}
+.arch__tag{position:absolute;inset-inline-start:0;inset-block-start:0;z-index:5;margin:0;padding:6px 10px;background:#2a2f3a;color:#fff;font-size:12px;font-weight:500;letter-spacing:.04em;font-family:var(--env2-sans)}
+/* the phone's sticky buy bar: 78 px of the viewport, so the fold shots are honest (mock only) */
+.stickybar{position:fixed;inset-inline:0;inset-block-end:0;block-size:78px;z-index:50;background:rgba(20,24,32,.92);border-block-start:1px solid rgba(244,238,227,.2);display:grid;place-items:center;color:var(--env2-mute);font-size:12px}
+@media (min-width:901px){.stickybar{display:none}}
+
+/* =====================================================================
+   1) sections/elmsnest-s-pdp-scene.liquid — «the scene band»
+   one photograph in place, at night, edge to edge; ONE family sentence in glow serif;
+   a muted «בתמונה: …» line under the photo ONLY when the frame shows another store product.
+   ===================================================================== */
+.ens-scene{padding:0;margin:0;isolation:isolate}
+.ens-scene__fig{position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0}
+.ens-scene__fig img{display:block;inline-size:100%;block-size:400px;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* the 30 % bottom fade of the home band, kept for the 4.5:1 floor under the sentence */
+.ens-scene__fig::after{content:"";position:absolute;inset-inline:0;inset-block-end:0;block-size:34%;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,0) 0%,rgba(2,3,6,.62) 100%)}
+.ens-scene__cap{position:absolute;inset-inline:0;inset-block-end:28px;z-index:1;margin:0;width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto;text-align:start;pointer-events:none}
+.ens-scene__h.env2-h{font-size:30px;line-height:1.08;color:var(--env2-glow);max-inline-size:13ch;text-shadow:0 2px 24px rgba(2,3,6,.7);margin:0}
+/* honesty line (BRIEF §3 image rule 3): 12–13 px, muted, linked to the product the frame shows */
+.ens-scene__credit{margin:0;width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto;padding-block:9px 0;font-size:12.5px;line-height:1.5;color:var(--env2-mute)}
+.ens-scene__credit a{color:var(--env2-ink-2);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.28em;text-decoration-color:var(--env2-hair-btn)}
+.ens-scene__credit a:hover,.ens-scene__credit a:focus-visible{color:var(--env2-glow)}
+/* the fallback frame of the spot collection carries a thin gold border, a caption and a logo in the file;
+   in production the theme asset is PRE-CROPPED (x 40–1214, y 220–1224 of 1254 → 1174×1004). The mock emulates
+   that crop with object-view-box so the real file is shown un-edited. */
+.ens-scene__fig img.is-precrop{object-view-box:inset(17.6% 3.2% 2.4% 3.2%)}
+@media (min-width:901px){
+  .ens-scene__fig img{block-size:520px;object-position:var(--ens-op-lg,50% 40%)}
+  .ens-scene__cap{inset-block-end:44px}
+  .ens-scene__h.env2-h{font-size:44px;max-inline-size:16ch}
+  .ens-scene__credit{padding-block:10px 0;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){.ens-scene img{transition:none}}
+
+/* =====================================================================
+   2) sections/elmsnest-s-pdp-checks.liquid — «לפני שמזמינים»
+   three (solar) or two (mains / rechargeable) checks, one question each, on three crops of ONE frame
+   (one request); a typographic fallback (outlined numeral, no photo) when the product has no clean frame;
+   then the one guide link the PDP has no other copy of.
+   ===================================================================== */
+.ens-checks{padding-block:34px 30px;margin:0}
+.ens-checks__head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:0 0 14px}
+.ens-checks__h2.env2-h{font-size:25px;line-height:1.1;margin:0}
+.ens-checks__lead{margin:0;font-size:14px;line-height:1.5;color:var(--env2-ink-2)}
+.ens-checks__list{list-style:none;margin:0;padding:0;display:grid;gap:4px;counter-reset:ens}
+.ens-checks__tile{position:relative;margin:0;min-width:0;block-size:104px;overflow:hidden;background:#05070c;isolation:isolate;display:flex;align-items:center;gap:12px;padding-inline:14px 12px}
+.ens-checks__tile img{position:absolute;inset:0;z-index:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* side scrim: dark under the words at the inline-start, the photograph clear at the inline-end (to left = away from the start edge in RTL) */
+.ens-checks__tile::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(to left,rgba(5,8,14,.94) 0%,rgba(5,8,14,.86) 46%,rgba(5,8,14,.28) 78%,rgba(5,8,14,.08) 100%)}
+.ens-checks__n{position:relative;z-index:1;flex:none;font-family:var(--env2-serif);font-weight:500;font-size:26px;line-height:1;color:var(--env2-gold);inline-size:22px;text-align:center}
+.ens-checks__q{position:relative;z-index:1;margin:0;max-inline-size:60%;font-family:var(--env2-serif);font-weight:700;font-size:18px;line-height:1.18;letter-spacing:-.005em;color:var(--env2-ink);text-wrap:balance;text-shadow:0 1px 14px rgba(2,3,6,.6)}
+/* fallback tile: no photograph — the outlined numeral of the facts section, small, and a hairline */
+.ens-checks__tile--type{background:transparent;border-block-start:1px solid #1f1e1d;gap:16px}
+.ens-checks__tile--type::after{display:none}
+.ens-checks__tile--type .ens-checks__n{font-weight:900;font-size:56px;color:transparent;-webkit-text-stroke:1.2px var(--env2-gold);inline-size:36px}
+.ens-checks__tile--type .ens-checks__q{max-inline-size:78%;text-shadow:none}
+.ens-checks__list--type{gap:0;border-block-end:1px solid #1f1e1d}
+.ens-checks__foot{margin:16px 0 0;min-height:44px;display:flex;align-items:center}
+@media (min-width:901px){
+  .ens-checks{padding-block:64px 56px}
+  .ens-checks__head{margin-block-end:24px;gap:8px 22px}
+  .ens-checks__h2.env2-h{font-size:clamp(25px,3.4vw,44px)}
+  .ens-checks__lead{font-size:16px}
+  .ens-checks__list{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+  .ens-checks__list--two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ens-checks__list--two .ens-checks__tile{aspect-ratio:2/1}
+  .ens-checks__tile{block-size:auto;aspect-ratio:4/3;display:grid;grid-template-rows:1fr auto;align-items:end;padding:22px 24px}
+  .ens-checks__tile img{object-position:var(--ens-op-lg,50% 50%)}
+  .ens-checks__tile::after{background:linear-gradient(180deg,rgba(5,8,14,.05) 30%,rgba(5,8,14,.6) 68%,rgba(5,8,14,.9) 100%)}
+  .ens-checks__n{align-self:start;justify-self:start;font-size:30px;inline-size:auto;text-align:start}
+  .ens-checks__q{max-inline-size:20ch;font-size:24px}
+  .ens-checks__tile--type{aspect-ratio:auto;min-block-size:220px;border-block-start:1px solid #1f1e1d;border-block-end:1px solid #1f1e1d;padding:26px 8px 26px 24px}
+  .ens-checks__tile--type .ens-checks__n{font-size:96px;inline-size:auto}
+  .ens-checks__tile--type .ens-checks__q{max-inline-size:18ch}
+  .ens-checks__list--type{border:0;gap:24px}
+  .ens-checks__foot{margin-block-start:28px}
+}
+@media (prefers-reduced-motion:reduce){.ens-checks img{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================================================
+  ARCHETYPE A — stainless-steel-solar-path-light-ip65 (path · SOLAR · 1 variant · clean own frames 1/2/4/5/6)
+  Proposed template order (templates/product.elmsnest.json):
+    main-product → ens_pdp_scene (NEW, this band) → ens_pdp_facts → ens_pdp_checks (NEW) → ens_related
+  Band heights at 390 from BRIEF §5: main-product 1085 · facts 723 · related 781 (at 1366 ≈ 660 · 450 · 600, read off pdp-path-d-js-full.png).
+  Solar gate (elmsnest-s-place test): title contains «סולארי» → true → three checks (sun · reach · winter).
+  Photographs: band = own frame 4 (gallery 4, NOT gallery 1) · checks = own frame 6 in three crops (one file).
+============================================================================================ -->
+<article class="arch" id="arch-a" style="--hm:1085px;--hd:660px">
+  <p class="arch__tag">A · מנורת שביל סולארית מנירוסטה · path · solar</p>
+  <div class="band" style="--hm:1085px;--hd:660px"><div><b>main-product</b><i>gallery «1/6» · kicker «תאורת שביל, עמוד וגינה · מתאים כדי לראות את הדרך» · h1 · 169.90 ₪ · pill · qty · «הוסיפו להזמנה» · terms line · «לא מתאים כשהמקום כמעט אינו מקבל אור יום.» · contact line</i><i>1085 px at 390 · ≈660 at 1366</i></div></div>
+
+  <!-- NEW 1: ens_pdp_scene (after main-product) -->
+  <section class="env2-section ens-scene" id="a-scene" dir="rtl" aria-labelledby="a-scene-p" style="scroll-margin-top:0">
+    <figure class="ens-scene__fig" style="--ens-op:50% 55%;--ens-op-lg:50% 55%">
+      <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_4.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+      <figcaption class="ens-scene__cap"><p id="a-scene-p" class="env2-h ens-scene__h">אור נמוך שמלווה את הדרך.</p></figcaption>
+    </figure>
+  </section>
+
+  <div class="band" style="--hm:723px;--hd:450px"><div><b>ens_pdp_facts</b><i>IP65 outlined numeral «עמידות» · dl: חומר הגוף / צבע האור / טעינה / זמן עבודה / התקנה / לפני שימוש ראשון · «כל מה שכתוב על המוצר»</i><i>723 px at 390 · ≈450 at 1366</i></div></div>
+
+  <!-- NEW 2: ens_pdp_checks (after ens_pdp_facts, before ens_related) — solar branch: three tiles -->
+  <section class="env2-section ens-checks" id="a-checks" dir="rtl" aria-labelledby="a-checks-h" style="scroll-margin-top:0">
+    <div class="env2-wrap">
+      <div class="ens-checks__head">
+        <h2 id="a-checks-h" class="env2-h ens-checks__h2">לפני שמזמינים</h2>
+        <p class="ens-checks__lead">שלוש בדיקות קטנות, במקום עצמו</p>
+      </div>
+      <ol class="ens-checks__list">
+        <li class="ens-checks__tile" style="--ens-op:50% 0%;--ens-op-lg:50% 0%">
+          <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <span class="ens-checks__n" aria-hidden="true">1</span>
+          <p class="ens-checks__q">כמה שמש מגיעה למקום במשך היום?</p>
+        </li>
+        <li class="ens-checks__tile" style="--ens-op:50% 50%;--ens-op-lg:50% 50%">
+          <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <span class="ens-checks__n" aria-hidden="true">2</span>
+          <p class="ens-checks__q">עד לאן האור צריך להגיע?</p>
+        </li>
+        <li class="ens-checks__tile" style="--ens-op:50% 100%;--ens-op-lg:50% 100%">
+          <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <span class="ens-checks__n" aria-hidden="true">3</span>
+          <p class="ens-checks__q">בחורף היום קצר יותר. לקחתם בחשבון?</p>
+        </li>
+      </ol>
+      <p class="ens-checks__foot"><a class="env2-link" href="/pages/guide-garden-lighting">למדריך לבחירת תאורה ←</a></p>
+    </div>
+  </section>
+
+  <div class="band" style="--hm:781px;--hd:600px"><div><b>ens_related</b><i>«עוד לאותו מקום» · four stock cards of תאורת-שביל-סולארית</i><i>781 px at 390 · ≈600 at 1366</i></div></div>
+</article>
+
+<!-- ============================================================================================
+  ARCHETYPE B — waterproof-led-wall-light-ip65-6w-12w (wall · MAINS, not solar · 8 variants · clean own frames 2/4/5/6)
+  Same template order: main-product → ens_pdp_scene → ens_pdp_facts → ens_pdp_checks → ens_related
+  Band heights «like the path light»: 1085 · 723 · 781 (the eight pills make main-product a little taller in truth).
+  Solar gate: metafield unwritten, title + description do not contain «סולארי» → false → TWO checks (reach · power);
+  no sun line, no winter line — a solar sentence on a mains light is a lie.
+  Photographs: band = own frame 6 (gallery 6, the dusk terrace — the product itself, white variant) ·
+  checks = own frame 4 in two crops (one file). No «בתמונה» line: both frames show this product.
+============================================================================================ -->
+<article class="arch" id="arch-b">
+  <p class="arch__tag">B · מנורת קיר LED עמידה למים IP65 · wall · mains</p>
+  <div class="band" style="--hm:1085px;--hd:660px"><div><b>main-product</b><i>gallery «1/6» · kicker «תאורת קיר · מתאים כדי להאיר נקודה מסוימת» · h1 · 219.90 ₪ · pills צבע גוף / עוצמה / גוון אור · qty · «הוסיפו להזמנה» · terms line · contact line (the not-for line is gated off: not solar)</i><i>1085 px at 390 (as the path light) · ≈660 at 1366</i></div></div>
+
+  <section class="env2-section ens-scene" id="b-scene" dir="rtl" aria-labelledby="b-scene-p" style="scroll-margin-top:0">
+    <figure class="ens-scene__fig" style="--ens-op:50% 45%;--ens-op-lg:50% 38%">
+      <img src="../../../home2/images/own/own_waterproof-led-wall-light-ip65-6w-12w_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+      <figcaption class="ens-scene__cap"><p id="b-scene-p" class="env2-h ens-scene__h">אור על הקיר, בדיוק בנקודה שבחרתם.</p></figcaption>
+    </figure>
+  </section>
+
+  <div class="band" style="--hm:723px;--hd:450px"><div><b>ens_pdp_facts</b><i>IP65 outlined numeral «עמידות» · dl: חומר הגוף / תאורה דו־כיוונית / מיקום (the option-value bullets are skipped) · «כל מה שכתוב על המוצר»</i><i>723 px at 390 (as the path light) · ≈450 at 1366</i></div></div>
+
+  <section class="env2-section ens-checks" id="b-checks" dir="rtl" aria-labelledby="b-checks-h" style="scroll-margin-top:0">
+    <div class="env2-wrap">
+      <div class="ens-checks__head">
+        <h2 id="b-checks-h" class="env2-h ens-checks__h2">לפני שמזמינים</h2>
+        <p class="ens-checks__lead">שתי בדיקות קטנות, במקום עצמו</p>
+      </div>
+      <ol class="ens-checks__list ens-checks__list--two">
+        <li class="ens-checks__tile" style="--ens-op:50% 0%;--ens-op-lg:50% 0%">
+          <img src="../../../home2/images/own/own_waterproof-led-wall-light-ip65-6w-12w_4.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <span class="ens-checks__n" aria-hidden="true">1</span>
+          <p class="ens-checks__q">עד לאן האור צריך להגיע?</p>
+        </li>
+        <li class="ens-checks__tile" style="--ens-op:50% 100%;--ens-op-lg:50% 100%">
+          <img src="../../../home2/images/own/own_waterproof-led-wall-light-ip65-6w-12w_4.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+          <span class="ens-checks__n" aria-hidden="true">2</span>
+          <p class="ens-checks__q">מאיפה יגיע החשמל למקום?</p>
+        </li>
+      </ol>
+      <p class="ens-checks__foot"><a class="env2-link" href="/pages/guide-garden-lighting">למדריך לבחירת תאורה ←</a></p>
+    </div>
+  </section>
+
+  <div class="band" style="--hm:781px;--hd:600px"><div><b>ens_related</b><i>«עוד לאותו מקום» · four stock cards of solar-wall-lights</i><i>781 px at 390 · ≈600 at 1366</i></div></div>
+</article>
+
+<!-- ============================================================================================
+  ARCHETYPE C — solar-floodlight-ip67-remote-timer (spot · SOLAR · 3 variants · NO clean own frame → the fallback)
+  Same template order: main-product → ens_pdp_scene → ens_pdp_facts → ens_pdp_checks → ens_related
+  Band heights: BRIEF §5 gives none for the spot light; the path light's 1085 · 723 · 781 are used and labelled so.
+  Solar gate: title contains «סולארי» → true → three checks.
+  Photographs: band = the SPOT COLLECTION SCENE (per-collection default asset ens-pdp-spot.jpg = own_dual-head-garden-light-10w-ip65_3,
+  pre-cropped; it shows another store product, so the band carries the «בתמונה: …» line, linked) ·
+  checks = the typographic fallback (outlined numerals, no photograph — the page shows no second frame of another product).
+============================================================================================ -->
+<article class="arch" id="arch-c">
+  <p class="arch__tag">C · פרוז׳קטור סולארי IP67 עם שלט וטיימר · spot · solar · no clean frame</p>
+  <div class="band" style="--hm:1085px;--hd:660px"><div><b>main-product</b><i>gallery «1/6» · kicker «ספוטים, פרוז׳קטורים ותאורה ניידת · מתאים כדי להאיר עץ או ערוגה» · h1 · 199.90 ₪ · pills דגם · qty · «הוסיפו להזמנה» · terms line · «לא מתאים כשנדרשת התקנה מיוחדת או חיבור קבוע.» · contact line</i><i>1085 px at 390 (assumed, as the path light) · ≈660 at 1366</i></div></div>
+
+  <section class="env2-section ens-scene" id="c-scene" dir="rtl" aria-labelledby="c-scene-p" style="scroll-margin-top:0">
+    <figure class="ens-scene__fig" style="--ens-op:50% 30%;--ens-op-lg:50% 0%">
+      <img class="is-precrop" src="../../../home2/images/own/own_dual-head-garden-light-10w-ip65_3.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+      <figcaption class="ens-scene__cap"><p id="c-scene-p" class="env2-h ens-scene__h">אור מכוון אל מה שרוצים להראות.</p></figcaption>
+    </figure>
+    <p class="ens-scene__credit">בתמונה: <a href="/products/dual-head-garden-light-10w-ip65">מנורת גינה דו־ראשית מתכווננת <bdi dir="ltr">180°</bdi> – <bdi dir="ltr">10W IP65</bdi></a></p>
+  </section>
+
+  <div class="band" style="--hm:723px;--hd:450px"><div><b>ens_pdp_facts</b><i>IP67 outlined numeral · dl from the listing's bullets · «כל מה שכתוב על המוצר»</i><i>723 px at 390 (assumed, as the path light) · ≈450 at 1366</i></div></div>
+
+  <section class="env2-section ens-checks" id="c-checks" dir="rtl" aria-labelledby="c-checks-h" style="scroll-margin-top:0">
+    <div class="env2-wrap">
+      <div class="ens-checks__head">
+        <h2 id="c-checks-h" class="env2-h ens-checks__h2">לפני שמזמינים</h2>
+        <p class="ens-checks__lead">שלוש בדיקות קטנות, במקום עצמו</p>
+      </div>
+      <ol class="ens-checks__list ens-checks__list--type">
+        <li class="ens-checks__tile ens-checks__tile--type">
+          <span class="ens-checks__n" aria-hidden="true">1</span>
+          <p class="ens-checks__q">כמה שמש מגיעה למקום במשך היום?</p>
+        </li>
+        <li class="ens-checks__tile ens-checks__tile--type">
+          <span class="ens-checks__n" aria-hidden="true">2</span>
+          <p class="ens-checks__q">עד לאן האור צריך להגיע?</p>
+        </li>
+        <li class="ens-checks__tile ens-checks__tile--type">
+          <span class="ens-checks__n" aria-hidden="true">3</span>
+          <p class="ens-checks__q">בחורף היום קצר יותר. לקחתם בחשבון?</p>
+        </li>
+      </ol>
+      <p class="ens-checks__foot"><a class="env2-link" href="/pages/guide-garden-lighting">למדריך לבחירת תאורה ←</a></p>
+    </div>
+  </section>
+
+  <div class="band" style="--hm:781px;--hd:600px"><div><b>ens_related</b><i>«עוד לאותו מקום» · four stock cards of ספוטים-ופרוז-קטורים-סולאריים</i><i>781 px at 390 · ≈600 at 1366</i></div></div>
+</article>
+
+<div class="stickybar" aria-hidden="true">sticky buy bar · 78 px (mock, phone only)</div>
+</body>
+</html>

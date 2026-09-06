@@ -1,0 +1,265 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ElmsNest PDP round 2 — concept «dusk» (כשמחשיך)</title>
+<!--
+  Concept «dusk» — «what happens when it gets dark».
+  Two new sections for templates/product.elmsnest.json:
+    ens_pdp_dusk   sections/elmsnest-s-pdp-dusk.liquid   («כשמחשיך»)   — solar: a compact pair (dusk detail · night detail, the
+                   page's OWN frames only, per-product map) + three short lines + the one sales line. Solar product with no
+                   mapped frame: the same pair in type (no photograph, no other product). Not solar: ONE line, «המנורה הזו אינה סולארית.»
+    ens_pdp_scene  sections/elmsnest-s-pdp-scene.liquid  (the scene band) — one wide photograph in flow (300 px at 390, 480 px at
+                   ≥ 901), one family sentence in glow serif; own frame when mapped, the collection scene with the linked
+                   «בתמונה: …» line otherwise.
+  Proposed order:  main-product → ens_pdp_dusk → ens_pdp_facts → ens_pdp_scene → ens_related   (see NOTES.md).
+  The existing sections are the labelled grey bands below, at their measured heights at 390 (BRIEF §5).
+  Fonts: the offline pack via file:// (the shots use the real faces). Frames: ../../../home2/images/own/… by relative path,
+  cropped by CSS only (object-fit / zoom + focal), never edited.
+-->
+<style>
+/* ---------- fonts (brief/assets/fonts, file://) ---------- */
+@font-face{font-family:"Frank Ruhl Libre";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:900;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-900.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:900;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-900.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ---------- tokens (elmsnest-v2-core :root, verbatim) ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-sans:"Heebo",system-ui,sans-serif;--env2-serif:"Frank Ruhl Libre",Georgia,serif;
+}
+html{background:#020306}
+body{margin:0;background:#020306;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;direction:rtl;text-align:start}
+/* the side-page ground of the real template (sky-2 -> sky-3 -> sky-4), once per archetype block so each block looks like one page */
+.arch{background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;position:relative}
+.arch + .arch{border-block-start:6px solid #4a6a9c}
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:var(--env2-stars,.25);
+  background-image:radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),radial-gradient(1.2px 1.2px at 78% 12%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 33% 62%,#fff 60%,transparent 61%),radial-gradient(1.4px 1.4px at 61% 34%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 88% 71%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 45% 9%,#fff 60%,transparent 61%),radial-gradient(1.2px 1.2px at 23% 87%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 69% 84%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 5% 48%,#fff 60%,transparent 61%),radial-gradient(1.3px 1.3px at 95% 42%,#fff 60%,transparent 61%),radial-gradient(1px 1px at 52% 55%,#fff 60%,transparent 61%);
+  background-size:900px 700px}
+
+/* ---------- the existing sections as labelled grey bands of their true heights at 390 (BRIEF §5) ---------- */
+.band{position:relative;display:grid;place-items:center;background:rgba(244,238,227,.05);border-block:1px dashed rgba(244,238,227,.16);color:var(--env2-mute);font-family:var(--env2-sans);font-weight:400;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding-inline:20px}
+.band small{display:block;letter-spacing:.02em;text-transform:none;font-size:12px;margin-block-start:6px;color:rgba(143,149,163,.8);max-inline-size:60ch}
+.band--header{block-size:59px}
+.band--main{block-size:1085px}
+.band--facts{block-size:723px}
+.band--related{block-size:781px}
+.band--footer{block-size:850px}
+.arch__tag{position:absolute;inset-inline-start:0;inset-block-start:0;z-index:5;margin:0;padding:4px 10px;background:#4a6a9c;color:#f4eee3;font:500 11px/1.4 var(--env2-sans);letter-spacing:.12em;text-transform:uppercase}
+
+/* ======================= section 1 — ens_pdp_dusk («כשמחשיך») ======================= */
+.ens-dusk{padding-block:36px 34px;margin:0}
+.ens-dusk__h.env2-h{font-size:26px;line-height:1.05;margin:0 0 14px}
+.ens-dusk__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+/* the pair: two square details, hairline gap, night backing */
+.ens-dusk__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;background:#020306;margin:0}
+.ens-dusk__tile{position:relative;margin:0;min-width:0;aspect-ratio:1/1;overflow:hidden;background:#05070c;border-radius:0;isolation:isolate;direction:ltr}
+/* crop = zoom (--z) + focal point of the SOURCE image (--fx/--fy, fractions of its width/height) kept at the tile's centre.
+   Settings in the Liquid: zoom (range 1–3) and focal x / focal y per frame. The frame file is never edited. */
+.ens-dusk__tile img{position:absolute;inline-size:calc(var(--z,1)*100%);block-size:calc(var(--z,1)*100%);inset-inline-start:calc(50% - var(--fx,50%)*var(--z,1));inset-block-start:calc(50% - var(--fy,50%)*var(--z,1));object-fit:cover;max-width:none}
+.ens-dusk__tag{position:absolute;inset-inline-end:8px;inset-block-end:8px;z-index:1;margin:0;padding:4px 8px;background:rgba(5,8,14,.85);font-family:var(--env2-sans);font-weight:400;font-size:12px;line-height:1.3;letter-spacing:.06em;color:var(--env2-ink);direction:rtl}
+/* the fallback pair (no mapped frame): the same two squares in type — the sky tokens and the facts' outlined-serif device; no photograph, no other product */
+.ens-dusk__tile--day{background:linear-gradient(165deg,#4a6a9c 0%,#1f3357 100%)}
+.ens-dusk__tile--night{background:linear-gradient(165deg,#0f1a2f 0%,#020306 100%)}
+.ens-dusk__tile--night::after{content:"";position:absolute;inset:auto -20% -30% -20%;block-size:70%;pointer-events:none;background:radial-gradient(50% 55% at 50% 60%,rgba(255,211,148,.28),transparent 70%);filter:blur(10px)}
+.ens-dusk__word{position:absolute;inset:0;display:grid;place-items:center;margin:0;font-family:var(--env2-serif);font-weight:900;font-size:56px;line-height:1;direction:rtl;z-index:1}
+.ens-dusk__tile--day .ens-dusk__word{color:transparent;-webkit-text-stroke:1.5px #e9b96e}
+.ens-dusk__tile--night .ens-dusk__word{color:var(--env2-glow)}
+/* three lines on hairlines, the rhythm of the facts' <dl> under them */
+.ens-dusk__lines{list-style:none;margin:0;padding:0;border-block-end:1px solid #1f1e1d}
+.ens-dusk__line{margin:0;padding-block:11px;border-block-start:1px solid #1f1e1d;font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.45;color:var(--env2-ink);text-wrap:pretty}
+/* the one sales line, said once */
+.ens-dusk__once{margin:14px 0 0;font-family:var(--env2-serif);font-weight:700;font-size:22px;line-height:1.1;color:var(--env2-glow);letter-spacing:-.01em}
+/* the collapsed state (not solar): one hairline row */
+.ens-dusk--line{padding-block:0 6px}
+.ens-dusk__row{display:grid;grid-template-columns:minmax(0,1fr);gap:3px;margin:0;padding-block:12px;border-block:1px solid #1f1e1d}
+.ens-dusk__dt{margin:0;font-weight:400;font-size:13px;line-height:1.5;color:var(--env2-ink-2)}
+.ens-dusk__dd{margin:0;font-weight:300;font-size:16px;line-height:1.55;color:var(--env2-ink)}
+@media (min-width:901px){
+  .ens-dusk{padding-block:64px 56px}
+  .ens-dusk__h.env2-h{font-size:40px;margin-block-end:22px}
+  .ens-dusk__grid{grid-template-columns:minmax(0,1fr) 524px;gap:24px 64px;align-items:start}
+  .ens-dusk__pair{grid-column:2;grid-row:1/3}
+  .ens-dusk__lines{grid-column:1;margin-block-start:6px}
+  .ens-dusk__line{padding-block:15px;font-size:17px}
+  .ens-dusk__once{grid-column:1;font-size:28px;margin:0}
+  .ens-dusk__word{font-size:96px}
+  .ens-dusk__tag{inset-inline-end:12px;inset-block-end:12px}
+  .ens-dusk--line{padding-block:0 10px}
+  .ens-dusk__row{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline;padding-block:16px}
+}
+
+/* ======================= section 2 — ens_pdp_scene (the scene band) ======================= */
+.ens-scene{padding:0;margin:0;isolation:isolate}
+.ens-scene__fig{position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0}
+/* the photograph is in flow and sets the height (300 / 480); crop = object-position, plus an optional side zoom (--zx) for a frame whose edges carry a border */
+.ens-scene__fig img{display:block;inline-size:calc(var(--zx,1)*100%);max-width:none;block-size:300px;object-fit:cover;object-position:var(--ens-op,50% 50%);margin-inline-start:calc((1 - var(--zx,1))*50%)}
+.ens-scene__fig::after{content:"";position:absolute;inset-inline:0;inset-block-end:0;block-size:34%;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,0) 0%,rgba(2,3,6,.62) 100%)}
+.ens-scene__cap{position:absolute;inset-inline:0;inset-block-end:22px;z-index:1;margin:0;width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto;text-align:start;pointer-events:none}
+.ens-scene__h.env2-h{font-size:28px;line-height:1.08;color:var(--env2-glow);max-inline-size:13ch;text-shadow:0 2px 24px rgba(2,3,6,.7);margin:0}
+/* the honesty line (only when the frame shows another store product): muted, 13 px, linked */
+.ens-scene__credit{margin:0;padding-block:10px 0;font-family:var(--env2-sans);font-weight:400;font-size:13px;line-height:1.5;color:var(--env2-mute)}
+.ens-scene__credit a{color:var(--env2-ink-2);border-block-end:1px solid var(--env2-hair-btn);padding-block-end:1px}
+@media (min-width:901px){
+  .ens-scene__fig img{block-size:480px;object-position:var(--ens-op-lg,50% 35%)}
+  .ens-scene__cap{inset-block-end:44px}
+  .ens-scene__h.env2-h{font-size:44px;max-inline-size:16ch}
+  .ens-scene__credit{padding-block:12px 0}
+}
+@media (prefers-reduced-motion:reduce){.env2-section *{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================================================
+     A — stainless-steel-solar-path-light-ip65 (path · SOLAR · 1 variant · clean own frames 1/2/4/5/6)
+     Template order: main-product → [ens_pdp_dusk] → ens_pdp_facts → [ens_pdp_scene] → ens_related
+     ens_pdp_dusk here = the PHOTO pair state (per-product map hit: frames 4 and 2). ens_pdp_scene = own frame 6, no credit line.
+     ============================================================================================ -->
+<div class="arch arch--a" id="arch-a">
+  <p class="arch__tag">A · path · solar</p>
+  <div class="band band--header">header<small>59 px</small></div>
+  <div class="band band--main">main-product<small>gallery 1/6 · kicker «תאורת שביל, עמוד וגינה · מתאים כדי לראות את הדרך» · h1 · 169.90 ₪ · pill · qty · «הוסיפו להזמנה» · terms · not-for · contact — 1085 px</small></div>
+
+  <section class="env2-section ens-dusk" id="dusk-a" aria-labelledby="dusk-a-h" style="scroll-margin-top:0">
+    <div class="env2-wrap">
+      <h2 class="env2-h ens-dusk__h" id="dusk-a-h">כשמחשיך</h2>
+      <div class="ens-dusk__grid">
+        <div class="ens-dusk__pair">
+          <figure class="ens-dusk__tile" style="--z:2;--fx:72%;--fy:47%">
+            <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_4.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+            <span class="ens-dusk__tag">בין ערביים</span>
+          </figure>
+          <figure class="ens-dusk__tile" style="--z:1.6;--fx:33%;--fy:42%">
+            <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_2.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+            <span class="ens-dusk__tag">לילה</span>
+          </figure>
+        </div>
+        <ul class="ens-dusk__lines" role="list">
+          <li class="ens-dusk__line">הפאנל אוסף אור שמש כל היום.</li>
+          <li class="ens-dusk__line">כשמחשיך, המנורה נדלקת מעצמה.</li>
+          <li class="ens-dusk__line">בחורף הימים קצרים יותר, ויש פחות טעינה.</li>
+        </ul>
+        <p class="ens-dusk__once">בלי כבל, בלי חשמלאי.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="band band--facts">ens_pdp_facts<small>IP65 · hairline dl (חומר הגוף · צבע האור · טעינה · זמן עבודה · התקנה · לפני שימוש ראשון) · «כל מה שכתוב על המוצר» — 723 px</small></div>
+
+  <section class="env2-section ens-scene" id="scene-a" aria-labelledby="scene-a-h">
+    <figure class="ens-scene__fig" style="--ens-op:50% 62%;--ens-op-lg:50% 58%">
+      <img src="../../../home2/images/own/own_stainless-steel-solar-path-light-ip65_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+      <figcaption class="ens-scene__cap"><p id="scene-a-h" class="env2-h ens-scene__h">אחרי השקיעה, השביל עדיין שם.</p></figcaption>
+    </figure>
+  </section>
+
+  <div class="band band--related">ens_related<small>«עוד לאותו מקום» · 4 cards — 781 px</small></div>
+  <div class="band band--footer">footer<small>≈ 850 px</small></div>
+</div>
+
+<!-- ============================================================================================
+     B — waterproof-led-wall-light-ip65-6w-12w (wall · MAINS, not solar · 8 variants · clean own frames 2/4/5/6)
+     Template order: main-product → [ens_pdp_dusk: collapsed to ONE line] → ens_pdp_facts → [ens_pdp_scene] → ens_related
+     The solar gate (elmsnest-s-place) is false → the pair, the three lines and the sales line do not render; one hairline row
+     says the light is not solar. The listing states no 220V / USB, and the facts print the connection whenever a bullet
+     states one, so the row never names a connection (that would be twice). ens_pdp_scene = own frame 6, no credit line.
+     ============================================================================================ -->
+<div class="arch arch--b" id="arch-b">
+  <p class="arch__tag">B · wall · mains</p>
+  <div class="band band--header">header<small>59 px</small></div>
+  <div class="band band--main">main-product<small>gallery 1/6 · kicker «תאורת קיר · מתאים כדי להאיר נקודה מסוימת» · h1 · 219.90 ₪ · 3 pill rows (8 variants) · qty · «הוסיפו להזמנה» · terms · contact — 1085 px (like the path light, BRIEF §5)</small></div>
+
+  <section class="env2-section ens-dusk ens-dusk--line" id="dusk-b" aria-label="כשמחשיך">
+    <div class="env2-wrap">
+      <div class="ens-dusk__row">
+        <p class="ens-dusk__dt">כשמחשיך</p>
+        <p class="ens-dusk__dd">המנורה הזו אינה סולארית.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="band band--facts">ens_pdp_facts<small>IP65 · hairline dl (חומר הגוף · כיוון · מיקום …) · «כל מה שכתוב על המוצר» — 723 px (like the path light, BRIEF §5)</small></div>
+
+  <section class="env2-section ens-scene" id="scene-b" aria-labelledby="scene-b-h">
+    <figure class="ens-scene__fig" style="--ens-op:50% 42%;--ens-op-lg:50% 40%">
+      <img src="../../../home2/images/own/own_waterproof-led-wall-light-ip65-6w-12w_6.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+      <figcaption class="ens-scene__cap"><p id="scene-b-h" class="env2-h ens-scene__h">אור אחד על הקיר, והכניסה כבר לא חשוכה.</p></figcaption>
+    </figure>
+  </section>
+
+  <div class="band band--related">ens_related<small>«עוד לאותו מקום» · 4 cards — 781 px</small></div>
+  <div class="band band--footer">footer<small>≈ 850 px</small></div>
+</div>
+
+<!-- ============================================================================================
+     C — solar-floodlight-ip67-remote-timer (spot · SOLAR · 3 variants · NO clean own frame → the fallbacks)
+     Template order: main-product → [ens_pdp_dusk: the TYPE pair] → ens_pdp_facts → [ens_pdp_scene: collection scene + credit] → ens_related
+     ens_pdp_dusk: solar, no mapped frame → the same two squares in type (no photograph, no other product implied).
+     ens_pdp_scene: no mapped frame → the spot collection's default scene (dual-head-garden-light-10w-ip65 frame 3, a
+     baked pre-crop on the dev theme — IMAGES.md), with the linked «בתמונה: …» line under it.
+     ============================================================================================ -->
+<div class="arch arch--c" id="arch-c">
+  <p class="arch__tag">C · spot · solar · no clean frame</p>
+  <div class="band band--header">header<small>59 px</small></div>
+  <div class="band band--main">main-product<small>gallery 1/6 · kicker «ספוטים, פרוז׳קטורים ותאורה ניידת · מתאים כדי להאיר עץ או ערוגה» · h1 · price · pills (72/128/200 LED) · qty · «הוסיפו להזמנה» · terms · not-for · contact — 1085 px (like the path light, BRIEF §5)</small></div>
+
+  <section class="env2-section ens-dusk" id="dusk-c" aria-labelledby="dusk-c-h">
+    <div class="env2-wrap">
+      <h2 class="env2-h ens-dusk__h" id="dusk-c-h">כשמחשיך</h2>
+      <div class="ens-dusk__grid">
+        <div class="ens-dusk__pair">
+          <div class="ens-dusk__tile ens-dusk__tile--day"><p class="ens-dusk__word">יום</p></div>
+          <div class="ens-dusk__tile ens-dusk__tile--night"><span class="env2-stars" style="--env2-stars:.45"></span><p class="ens-dusk__word">לילה</p></div>
+        </div>
+        <ul class="ens-dusk__lines" role="list">
+          <li class="ens-dusk__line">הפאנל אוסף אור שמש כל היום.</li>
+          <li class="ens-dusk__line">כשמחשיך, המנורה נדלקת מעצמה.</li>
+          <li class="ens-dusk__line">בחורף הימים קצרים יותר, ויש פחות טעינה.</li>
+        </ul>
+        <p class="ens-dusk__once">בלי כבל, בלי חשמלאי.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="band band--facts">ens_pdp_facts<small>IP67 · hairline dl · «כל מה שכתוב על המוצר» — 723 px (like the path light, BRIEF §5)</small></div>
+
+  <section class="env2-section ens-scene" id="scene-c" aria-labelledby="scene-c-h">
+    <figure class="ens-scene__fig" style="--zx:1.08;--ens-op:50% 76%;--ens-op-lg:50% 30%">
+      <img src="../../../home2/images/own/own_dual-head-garden-light-10w-ip65_3.jpg" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+      <figcaption class="ens-scene__cap"><p id="scene-c-h" class="env2-h ens-scene__h">אלומה אחת על מה שרוצים לראות בלילה.</p></figcaption>
+    </figure>
+    <div class="env2-wrap">
+      <p class="ens-scene__credit">בתמונה: <a href="/products/dual-head-garden-light-10w-ip65">מנורת גינה דו־ראשית מתכווננת <bdi dir="ltr">180°</bdi> – <bdi dir="ltr">10W IP65</bdi></a></p>
+    </div>
+  </section>
+
+  <div class="band band--related">ens_related<small>«עוד לאותו מקום» · 4 cards — 781 px</small></div>
+  <div class="band band--footer">footer<small>≈ 850 px</small></div>
+</div>
+
+</body>
+</html>

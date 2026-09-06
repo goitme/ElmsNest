@@ -1,0 +1,16 @@
+mirror pdp-wall … ok
+mirror pdp-flood … ok
+pdp-wall-m-js screens=4.13/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-flood-m-js screens=4.15/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-wall-s-js screens=5.38/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-flood-s-js screens=5.53/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-wall-d-js screens=2.64/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-flood-d-js screens=2.58/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-wall-m-nojs screens=3.82/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-flood-m-nojs screens=4.01/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-wall-s-nojs screens=4.97/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-flood-s-nojs screens=5.34/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-wall-d-nojs screens=2.37/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-flood-d-nojs screens=2.52/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 
+pdp-variant-sync: pdp-rope not in this run — previous entry kept
+wrote brief/side-pages/pdp2/verify-before/verify.json

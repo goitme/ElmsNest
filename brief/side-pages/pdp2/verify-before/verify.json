@@ -1,0 +1,1442 @@
+{
+  "pdp-wall-m-js": {
+    "docH": 3484,
+    "screens": 4.13,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1238
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 556
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 168
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 1050,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-flood-m-js": {
+    "docH": 3505,
+    "screens": 4.15,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1137
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 678
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 168
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 914,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-wall-s-js": {
+    "docH": 3440,
+    "screens": 5.38,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1229
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 551
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 153
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 1020,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-flood-s-js": {
+    "docH": 3537,
+    "screens": 5.53,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1204
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 673
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 153
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 935,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-wall-d-js": {
+    "docH": 2374,
+    "screens": 2.64,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 823
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 405
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 298
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 659,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-flood-d-js": {
+    "docH": 2320,
+    "screens": 2.58,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 670
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 298
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 470,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-wall-m-nojs": {
+    "docH": 3226,
+    "screens": 3.82,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 979
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 556
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 168
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 791,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-flood-m-nojs": {
+    "docH": 3382,
+    "screens": 4.01,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1014
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 678
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 168
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 791,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-wall-s-nojs": {
+    "docH": 3181,
+    "screens": 4.97,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 970
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 551
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 153
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 761,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-flood-s-nojs": {
+    "docH": 3415,
+    "screens": 5.34,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1081
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 673
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 153
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 813,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-wall-d-nojs": {
+    "docH": 2136,
+    "screens": 2.37,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 585
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 405
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 298
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 420,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  },
+  "pdp-flood-d-nojs": {
+    "docH": 2270,
+    "screens": 2.52,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 620
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 298
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 420,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 6,
+    "overTarget": false
+  }
+}
