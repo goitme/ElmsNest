@@ -69,24 +69,28 @@
   assign ens_l1_html = ens_out[0] | default: '' | strip
   assign ens_l2_html = ens_out[1] | default: '' | strip
   assign ens_h_html = ens_out[2] | default: '' | strip
-  assign ens_p_html = ens_l1_html
-  if ens_l1_html != '' and ens_l2_html != ''
-    assign ens_p_html = ens_l1_html | append: ' ' | append: ens_l2_html
-  elsif ens_l1_html == ''
-    assign ens_p_html = ens_l2_html
+  # each sentence on its own line (critique D2: two aphorisms, never one wrapped paragraph)
+  assign ens_p_html = ''
+  if ens_l1_html != ''
+    assign ens_p_html = '<span class="ens-pdp-dusk__s">' | append: ens_l1_html | append: '</span>'
+  endif
+  if ens_l2_html != ''
+    assign ens_p_html = ens_p_html | append: '<span class="ens-pdp-dusk__s">' | append: ens_l2_html | append: '</span>'
   endif
 -%}
 {%- if ens_h_html != '' or ens_p_html != '' -%}
 <style>
-.ens-pdp-dusk{padding-block:0 16px;margin:0}
+.ens-pdp-dusk{padding-block:16px 16px;margin:0}
 /* the facts' hairline-row rhythm (elmsnest-s-pdp-facts .ens-facts__row): one border-block-start, 20/22 padding */
-.ens-pdp-dusk__row{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;border-block-start:1px solid #1f1e1d;border-radius:0;padding-block:20px 22px}
+.ens-pdp-dusk__row{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;border-block-start:1px solid #1f1e1d;border-block-end:1px solid #1f1e1d;border-radius:0;padding-block:20px 22px}
+.ens-pdp-dusk__s{display:block}
 .ens-pdp-dusk__h{margin:0;font-family:var(--env2-serif,'Frank Ruhl Libre',serif);font-weight:700;font-size:20px;line-height:1.1;color:#f4eee3;text-wrap:balance}
 .ens-pdp-dusk__p{margin:0;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:300;font-size:16px;line-height:1.5;color:#c9c4b8;max-inline-size:52ch}
 .ens-pdp-dusk bdi{unicode-bidi:isolate}
 @media (min-width:901px){
   .ens-pdp-dusk{padding-block:0 24px}
-  .ens-pdp-dusk__row{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline}
+  /* the facts' dl column (critique O6): the hairlines align with the rows under them */
+  .ens-pdp-dusk__row{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline;inline-size:calc((100% - 64px) * .55);margin-inline-start:auto}
   .ens-pdp-dusk__h{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){

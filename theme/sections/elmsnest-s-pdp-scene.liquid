@@ -43,7 +43,7 @@
     assign ens_line = section.settings.line_wall | default: 'אור על הקיר, בדיוק בנקודה שבחרתם.'
   elsif ens_fam == 'spot'
     assign ens_heading = section.settings.heading_spot | default: 'בלילה, בגינה'
-    assign ens_line = section.settings.line_spot | default: 'אור מכוון אל מה שרוצים לראות בלילה.'
+    assign ens_line = section.settings.line_spot | default: 'אור מכוון אל מה שרוצים לראות.'
   else
     assign ens_heading = section.settings.heading_decor | default: 'בלילה, במרפסת'
     assign ens_line = section.settings.line_decor | default: 'הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו.'
@@ -59,19 +59,19 @@
   case product.handle
     when 'stainless-steel-solar-path-light-ip65'
       assign ens_frame = 'ens-pdp-stainless.jpg'
-      assign ens_w = 1254
-      assign ens_h = 1254
+      assign ens_w = 1100
+      assign ens_h = 1100
       assign ens_op = '50% 55%'
       assign ens_op_lg = '50% 45%'
     when 'powerful-solar-garden-light'
       assign ens_frame = 'ens-pdp-powerful.jpg'
       assign ens_w = 1254
-      assign ens_h = 1130
+      assign ens_h = 1040
       assign ens_op_lg = '50% 40%'
     when 'solar-rope-string-lights'
       assign ens_frame = 'ens-pdp-rope.jpg'
       assign ens_w = 1254
-      assign ens_h = 1044
+      assign ens_h = 874
     when 'solar-crystal-ball-string-lights'
       assign ens_frame = 'ens-pdp-crystal.jpg'
       assign ens_w = 1254
@@ -80,7 +80,7 @@
       assign ens_frame = 'ens-pdp-edison.jpg'
       assign ens_w = 1254
       assign ens_h = 1254
-      assign ens_op_lg = '50% 45%'
+      assign ens_op_lg = '50% 30%'
     when 'solar-firefly-garden-lights'
       assign ens_frame = 'ens-pdp-firefly.jpg'
       assign ens_w = 1254
@@ -125,11 +125,14 @@
       assign ens_frame = 'ens-pdp-lantern9.jpg'
       assign ens_w = 1254
       assign ens_h = 680
-      assign ens_op = '40% 50%'
+      assign ens_op = '0% 50%'
     when 'warm-solar-step-deck-lights'
       assign ens_frame = 'ens-pdp-warm-step.jpg'
       assign ens_w = 854
-      assign ens_h = 924
+      assign ens_h = 909
+    when 'rechargeable-telescopic-camping-lantern'
+      # no clean frame; the listing speaks of the field («בשטח»), never of a garden — heading override only
+      assign ens_head_map = section.settings.heading_portable | default: 'בלילה, בשטח'
   endcase
 
   # ---- 1. the owner block first: the first `frame` block whose product is this product ----
@@ -172,8 +175,8 @@
     if ens_fam == 'path'
       assign ens_pic = section.settings.image_path
       assign ens_frame = 'ens-pdp-scene-path.jpg'
-      assign ens_w = 1254
-      assign ens_h = 1254
+      assign ens_w = 1100
+      assign ens_h = 1100
       assign ens_pictured = section.settings.pictured_path
       if ens_pictured == blank
         assign ens_pictured = all_products['stainless-steel-solar-path-light-ip65']
@@ -215,6 +218,10 @@
     if ens_pictured != blank and ens_pictured.handle != product.handle
       assign ens_credit = true
     endif
+    # no live pictured product (unpublished, renamed, deleted) → no photograph: an uncredited sibling frame is never shown
+    if ens_pictured == blank
+      assign ens_kind = ''
+    endif
   endif
 
   # ---- the srcset: never a candidate wider than the file (home2 critique E7) ----
@@ -253,8 +260,8 @@
         assign ens_src = wurl
       endif
     endfor
-    # a pre-cropped file narrower than 900 (the step light, 854) also offers its own width
-    if ens_w < 900
+    # a file narrower than 1254 (854, 930, 1000, 1100) also offers its own width as the last candidate (critique E4)
+    if ens_w < 1254 and ens_w != 900 and ens_w != 600
       assign wsize = ens_w | append: 'x'
       assign wurl = ens_frame | asset_img_url: wsize
       assign ens_srcset = ens_srcset | append: ', ' | append: wurl | append: ' ' | append: ens_w | append: 'w'
@@ -321,7 +328,7 @@
   assign ens_line_html = ens_out[1] | default: '' | strip
   assign ens_title_html = ens_out[2] | default: '' | strip
 -%}
-<section class="env2-section ens-pdp-scene" dir="rtl" data-ens-place="{{ ens_fam }}"{% if ens_heading != '' %} aria-labelledby="ens-pdp-scene-h2-{{ section.id }}"{% endif %} style="scroll-margin-top:90px">
+<section class="env2-section ens-pdp-scene{% if ens_kind == '' %} ens-pdp-scene--text{% endif %}" dir="rtl" data-ens-place="{{ ens_fam }}"{% if ens_heading != '' %} aria-labelledby="ens-pdp-scene-h2-{{ section.id }}"{% endif %} style="scroll-margin-top:90px">
   {%- if ens_kind != '' -%}
   <figure class="ens-pdp-scene__fig" style="--ens-op:{{ ens_op }};--ens-op-lg:{{ ens_op_lg }}">
     <img
@@ -373,6 +380,10 @@
 .ens-pdp-scene__link{position:relative;display:inline-block;margin-block-start:14px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:15px;line-height:1.6;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;white-space:nowrap;transition:color .3s,border-color .3s}
 .ens-pdp-scene__link:hover,.ens-pdp-scene__link:focus-visible{color:#ffd394;border-color:#ffd394;text-decoration:none}
 .ens-pdp-scene__link::before{content:"";position:absolute;inset-block:-11px;inset-inline:-6px}
+/* the text-only state (no clean frame of THIS product — critique ruling 13): the dusk row's grammar, a hairline row with the heading at the row scale, so the two rows before the facts read as one designed list, not as a picture that failed to load */
+.ens-pdp-scene--text .ens-pdp-scene__text{border-block-start:1px solid #1f1e1d;border-radius:0;padding-block:20px 22px;margin-block-start:16px}
+.ens-pdp-scene--text .ens-pdp-scene__h2.env2-h{font-size:20px;line-height:1.1;margin-block-end:8px}
+.ens-pdp-scene--text .ens-pdp-scene__link{margin-block-start:10px}
 @media (min-width:901px){
   .ens-pdp-scene__fig img{block-size:560px;object-position:var(--ens-op-lg,50% 50%)}
   .ens-pdp-scene__credit{padding-block-start:12px}
@@ -381,6 +392,9 @@
   .ens-pdp-scene__credit + .ens-pdp-scene__text{padding-block-start:24px}
   .ens-pdp-scene__h2.env2-h{margin:0}
   .ens-pdp-scene__line{font-size:17px}
+  /* text-only state at ≥ 901: the facts' dl column (the same column the dusk row takes), label column + value column */
+  .ens-pdp-scene--text .ens-pdp-scene__text{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline;padding-block:20px 22px;inline-size:calc((100% - 64px) * .55);margin-inline-start:auto}
+  .ens-pdp-scene--text .ens-pdp-scene__h2.env2-h{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){
   .ens-pdp-scene__fig img,.ens-pdp-scene__link,.ens-pdp-scene__credit-link{transition:none!important;animation:none!important}
@@ -402,10 +416,11 @@
     { "type": "text", "id": "heading_spot", "label": "גינה", "default": "בלילה, בגינה" },
     { "type": "text", "id": "heading_decor", "label": "מרפסת", "default": "בלילה, במרפסת" },
     { "type": "text", "id": "heading_indoor", "label": "בבית (ענפי הליבנה)", "default": "בערב, בבית" },
+    { "type": "text", "id": "heading_portable", "label": "בשטח (פנס הקמפינג)", "default": "בלילה, בשטח" },
     { "type": "header", "content": "המשפט (אחד לכל משפחה)" },
     { "type": "text", "id": "line_path", "label": "שביל", "default": "אור נמוך, קרוב לאדמה, שמלווה את הדרך." },
     { "type": "text", "id": "line_wall", "label": "קיר", "default": "אור על הקיר, בדיוק בנקודה שבחרתם." },
-    { "type": "text", "id": "line_spot", "label": "גינה", "default": "אור מכוון אל מה שרוצים לראות בלילה." },
+    { "type": "text", "id": "line_spot", "label": "גינה", "default": "אור מכוון אל מה שרוצים לראות." },
     { "type": "text", "id": "line_decor", "label": "מרפסת", "default": "הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו." },
     { "type": "header", "content": "קישור למדריך" },
     { "type": "text", "id": "link_label", "label": "טקסט הקישור (ריק = בלי קישור)", "default": "למדריך לבחירת תאורה ←" },
