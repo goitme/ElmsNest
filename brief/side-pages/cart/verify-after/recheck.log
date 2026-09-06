@@ -1,0 +1,30 @@
+=== cart mirrors 04:31:25
+mirrored 267/267 assets → brief/side-pages/cart/verify-after/drawer-full/index.html (394 KB)
+mirrored 263/263 assets → brief/side-pages/cart/verify-after/drawer-empty/index.html (382 KB)
+mirrored 71/71 assets → brief/side-pages/cart/verify-after/cart-full/index.html (216 KB)
+mirrored 65/65 assets → brief/side-pages/cart/verify-after/cart-empty/index.html (199 KB)
+=== cart verify 04:32:43
+cart-empty    390x844   chk=- dom=0 exits=3 trunc=[] removes=[] under44=17:[('דילוג לתוכ', 1), ('', 40), ('', 23), ('0\n      \n ', 24), ('תאורת שביל', 21)] void=None terms=2/4
+cart-empty    360x640   chk=- dom=0 exits=3 trunc=[] removes=[] under44=17:[('דילוג לתוכ', 1), ('', 40), ('', 23), ('0\n      \n ', 24), ('תאורת שביל', 21)] void=None terms=2/4
+cart-empty    320x568   chk=- dom=0 exits=3 trunc=[] removes=[] under44=17:[('דילוג לתוכ', 1), ('', 40), ('', 23), ('0\n      \n ', 24), ('תאורת שביל', 21)] void=None terms=2/4
+cart-empty    1440x900  chk=- dom=0 exits=3 trunc=[] removes=[] under44=25:[('דילוג לתוכ', 1), ('', 23), ('דף הבית', 21), ('תאורת שביל', 21), ('תאורת קיר', 21)] void=None terms=2/4
+cart-full     390x844   chk=in dom=4.55 exits=7 trunc=[False, False] removes=[1, 1] under44=21:[('דילוג לתוכ', 1), ('', 40), ('', 23), ('3\n      \n ', 24), ('מנורת שביל', 41)] void=-691 terms=4/4
+cart-full     360x640   chk=in dom=4.17 exits=7 trunc=[False, False] removes=[1, 1] under44=21:[('דילוג לתוכ', 1), ('', 40), ('', 23), ('3\n      \n ', 24), ('מנורת שביל', 41)] void=-712 terms=4/4
+cart-full     320x568   chk=in dom=3.67 exits=7 trunc=[False, False] removes=[1, 1] under44=19:[('דילוג לתוכ', 1), ('', 40), ('', 23), ('3\n      \n ', 24), ('לכל התנאים', 23)] void=-768 terms=4/4
+cart-full     1440x900  chk=in dom=7.2 exits=7 trunc=[False, False] removes=[1, 1] under44=29:[('דילוג לתוכ', 1), ('', 23), ('דף הבית', 21), ('תאורת שביל', 21), ('תאורת קיר', 21)] void=81 terms=4/4
+drawer-empty  390x844   chk=- dom=0 exits=0 trunc=[] removes=[] under44=0:[] void=None terms=0/4
+drawer-empty  360x640   chk=- dom=0 exits=0 trunc=[] removes=[] under44=0:[] void=None terms=0/4
+drawer-empty  320x568   chk=- dom=0 exits=0 trunc=[] removes=[] under44=0:[] void=None terms=0/4
+drawer-empty  1440x900  chk=- dom=0 exits=0 trunc=[] removes=[] under44=0:[] void=None terms=0/4
+drawer-full   390x844   chk=in dom=3.01 exits=4 trunc=[False, False] removes=[1, 1] under44=3:[('גרילנדת כד', 42), ('לכל התנאים', 23), ('משלוח', 18)] void=0 terms=3/4
+drawer-full   360x640   chk=in dom=2.75 exits=4 trunc=[False, False] removes=[1, 1] under44=2:[('לכל התנאים', 23), ('משלוח', 18)] void=-128 terms=3/4
+drawer-full   320x568   chk=in dom=2.4 exits=4 trunc=[False, False] removes=[1, 1] under44=2:[('לכל התנאים', 23), ('משלוח', 18)] void=-238 terms=3/4
+drawer-full   1440x900  chk=in dom=2.91 exits=4 trunc=[False, False] removes=[1, 1] under44=2:[('לכל התנאים', 23), ('משלוח', 19)] void=0 terms=3/4
+=== shots 04:33:32
+mobile: height=6271px horizontal-overflow=false js-errors=2 TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:34725/a/ee2dde4a8a54739b5011515d7f9480c5.js | TypeError: Cannot read properties of null (reading 'innerHTML')
+mobile: height=6271px horizontal-overflow=false js-errors=2 TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:37677/a/ee2dde4a8a54739b5011515d7f9480c5.js | TypeError: Cannot read properties of null (reading 'innerHTML')
+mobile: height=1939px horizontal-overflow=false js-errors=2 TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:44593/a/ee2dde4a8a54739b5011515d7f9480c5.js | TypeError: Cannot read properties of null (reading 'innerHTML')
+mobile: height=1521px horizontal-overflow=false js-errors=2 TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:45663/a/ee2dde4a8a54739b5011515d7f9480c5.js | TypeError: Cannot read properties of null (reading 'innerHTML')
+mirrored 183/183 assets → brief/side-pages/simplify/verify-after/mirrors/pdp-rope-cart/index.html (342 KB)
+mobile: height=3318px horizontal-overflow=false js-errors=3 TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:39625/a/ee2dde4a8a54739b5011515d7f9480c5.js | solar-rope-string-lights not loaded json | TypeError: Cannot read properties of null (reading 'innerHTML')
+=== done 04:35:06
