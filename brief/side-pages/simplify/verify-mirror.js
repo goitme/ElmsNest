@@ -23,7 +23,7 @@ const ONLY = (process.argv.find(a => a.startsWith('--pages=')) || '').slice(8).s
 fs.mkdirSync(OUT, { recursive: true });
 const T = '154726400174', BASE = 'https://elmsnest.com';
 const ALL_PAGES = [
-  { name: 'home', path: '/', target: 6 },
+  { name: 'home', path: '/', target: 7.5 },  // round 2 (home2/SPEC.md §5): three image-led sections added to the 5.12-screen page
   { name: 'collection-all', path: '/collections/all', target: 8 },
   { name: 'collection-path', path: '/collections/%D7%AA%D7%90%D7%95%D7%A8%D7%AA-%D7%A9%D7%91%D7%99%D7%9C-%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA', target: 8 },
   { name: 'pdp-rope', path: '/products/solar-rope-string-lights', target: 6 },
@@ -87,6 +87,9 @@ async function audit(page, name, vw, vh) {
     res.qtyInputs = q('input[name="quantity"]').filter(vis).length;
     res.atcButtons = q('form[action*="/cart/add"] button[type="submit"], form[action*="/cart/add"] [name="add"]').filter(vis).length;
     res.sections = q('[id^="shopify-section"]').map(s => ({ id: s.id.replace('shopify-section-', ''), h: Math.round(s.getBoundingClientRect().height) }));
+    // home round 2: every image in the new sections must carry width/height (no layout shift), lazy-load, and come from the theme's assets
+    res.homeImages = q('.ens-home-solar, .ens-home-winter, .ens-home-band').map(sec => { const imgs = [...sec.querySelectorAll('img')]; return { section: sec.className.split(' ').find(c => c.startsWith('ens-home-')), imgs: imgs.length, sized: imgs.filter(i => i.getAttribute('width') && i.getAttribute('height')).length, lazy: imgs.filter(i => i.loading === 'lazy').length, loaded: imgs.filter(i => i.complete && i.naturalWidth > 0).length, h: Math.round(sec.getBoundingClientRect().height), text: (sec.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 160) }; });
+    res.homeCopyOk = ['ביום נטען.', 'בלילה נדלק.', 'הפאנל נטען לאור היום.', 'כשמחשיך, האור נדלק לבד.', 'בלי כבל, בלי חשמלאי.', 'ובחורף?', 'בחורף השמש קצרה יותר, והפאנל נטען פחות.', 'פחות טעינה ביום, פחות אור בלילה.', 'זה נכון לכל תאורה סולארית, גם שלנו.', 'חושך הוא לא סוף הערב.'].filter(t => !(main.innerText || '').includes(t));
     const cards = q('.hdt-card-product').filter(vis);
     res.cards = cards.length;
     res.cardForms = q('.hdt-card-product form').length;
