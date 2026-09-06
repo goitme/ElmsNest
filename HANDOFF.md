@@ -374,3 +374,75 @@ frame is a fourth bollard scene — the picker swaps it; (d) the band sentence v
 **Open items — next session:** the §7.6 JS chain check still needs a browser that reaches the store; then search + 404, content pages,
 policies under the same loop. The `home2/verify/exp/` experiment harness (`shoot-sections.js --css=<file> [--hide-text]` + `contrast.py
 <dir>`) is the way to test any text-over-photo change before deploying it. Do not run two sessions against the same dev theme.
+
+## 7.8 Product page round 2 — two sections, one photograph of THIS product, tuned for a sales page (2026-09-06)
+
+Owner's request (verbatim): «بعدها ابداء في صفحة المنتج بنفس الطلب لكن زبطها اكثر لانه صفحة منتج صفحة بيع» — the home round's request
+(2–3 image-led sections, niche images placed creatively) applied to the product page, tuned harder because it sells. Everything below
+is on the DEV theme `gid://shopify/OnlineStoreTheme/154726400174` only; nothing published; no product, collection, page or metafield
+changed. Branch `claude/design-sidebar-pages-3991tn`. Working folder `brief/side-pages/pdp2/`.
+
+**What happened, in order** (every step has its file):
+1. `BRIEF.md` — the sales-page tuning (§2: nothing between the gallery and the button; ≤ 1500 px new at 390 under P5's 6 screens; every
+   section serves the decision; per-product behaviour by rule without product data; the sticky bar's 78 px; ≤ 3 photographs) and the
+   stricter image rule (§3: a photograph on a product page is read as THIS product — own frames only, no CC, a sibling's frame only with
+   a «בתמונה: {title}» line or not at all, no frame with baked text unless pre-cropped, never gallery frame 1). `images/INVENTORY.md`:
+   all 165 store frames per product from the home round's ratings, with the solar gate per product (16 solar / 11 not) and the usable
+   pool (41 frames, `images/contact-sheet.png`).
+2. Five concepts rendered for three archetype products (stainless path light: photo + solar; waterproof wall light: photo + MAINS; solar
+   floodlight: no clean frame) and five judges (`workflows/pdp2-concepts.js`, `concepts/<name>/`): **one 49.75 · scene 49.25** · places
+   42.5 · checks 36.75 · dusk 36.25 — a tie at the top; the owner and honesty judges put *scene* first, the shopper, designer and engineer
+   *one*. `SPEC.md`: one's layout (the photograph left alone, every word on the night ground under it, the place heading that stays true
+   without a photograph, the guide link as the only link) + scene's photograph height and its split into a scene section and a small
+   «כשמחשיך» row (solar only); and the rule every judge converged on: **no photograph rather than another product's photograph** (the
+   collection scene + credit exists as `scene_fallback`, off by default).
+3. Assets (`images/prepare-assets.py`, `images/CHOSEN.md`): 15 own frames (gallery position ≠ 1; pre-crops baked where a caption, badge,
+   sign or headline sat in the source) + 3 collection scenes for the option — `assets/ens-pdp-*.jpg`, uploaded with `themeFilesUpsert`
+   `body.type: URL` from the branch's raw GitHub URL, checksums exact (`DEPLOY-LOG.md`).
+4. Build (`workflows/pdp2-build.js`: scene + dusk engineers, template engineer, contract reviewer — no blocker, four lows — fixer):
+   `sections/elmsnest-s-pdp-scene.liquid` (owner `frame` blocks → a `case product.handle` map of the 15 frames with crops → text only;
+   the option branch; srcset never wider than the file; the place heading by `elmsnest-s-place emit:'word'` with overrides for the indoor
+   birch «בערב, בבית» and the camping lantern «בלילה, בשטח»; one family line; the guide link «למדריך לבחירת תאורה ←»),
+   `sections/elmsnest-s-pdp-dusk.liquid` (the solar gate copied from `elmsnest-s-place`; «כשמחשיך» + two sentences; prints nothing on
+   mains/USB/battery products), `templates/product.elmsnest.json` order `main-product → ens_pdp_scene → ens_pdp_dusk → ens_pdp_facts →
+   ens_related`. `brief/lint.py` now skips binary assets for the block-string rule. Deploy pass 1 (three TEXT mutations via
+   `simplify/deploy-prep.py --extra=…`), verification on the re-mirrored five archetype pages (`simplify/verify-mirror.js` gained
+   `pdp-wall`, `pdp-flood` and the `pdpSections` / `pdpCopy` / `guideLinksInMain` probes), per-section shots (`pdp2/shoot-sections.js`,
+   generalised: `--sections=… --text=…`).
+5. Adversarial critique of the deployed render (`workflows/pdp2-critique.js`: shopper 6, owner 6, honesty 4, designer 6, engineer 7 → 30
+   findings, one skeptic each: 15 confirmed, 15 refuted; `critique/{RESULT.json,*.jsonl,SUMMARY.json}`). **The blocker was mine:** the
+   rope frame's pre-crop (y 210, read off a 455 px thumbnail) left the baked «עמידות IP65» badge in the file — every lens saw it. Rulings
+   written BEFORE the fixes (`critique/LEAD-DECISIONS.md`): 13 fixed (rope re-cut y 380 → 1254×874; legs cut from the powerful frame;
+   a headline stroke cut from the step-light frame; stainless / path scene / powerful re-encoded ≤ 220 KB; lantern 9 crop 0% 50%, edison
+   desktop 50% 30%; the spot line without «בלילה»; the camping-lantern heading; the dusk row as two lines in a closed row on the facts'
+   column at ≥ 901; the text-only state as a hairline row in the dusk row's grammar; a guard so the option never shows an uncredited
+   frame; own-width srcset candidates), 9 kept with reasons (deck heading word not licensed; dusk line 2 kept as a setting; the family line
+   vs the kicker; the desktop thumbnail overlap; the studio wall frames; the link form; 360×640 informational). Deploy pass 2 (five assets
+   + two sections), re-verified, re-shot; post-fix re-review (`workflows/pdp2-rereview.js`) — see the line below.
+
+**Numbers (390×844, JS on, pass 2):** rope 3.93 → **4.85** · path 4.14 → **5.03** · deck 4.07 → **4.43** · wall 4.13 → **4.84** · flood
+4.15 → **4.51** screens (P5 cap 6; at 360×640 path 6.57, rope 6.32, wall 6.31 — informational, P5 binds at 390); scene **596** px with a
+photograph (rope 621, the decor line wraps twice) / **134** without; dusk **152** (cap 160), absent on the mains wall light; at 1366 scene
+714 / 106, dusk 118. Every §11 PDP count unchanged on all 30 renders; `guideLinksInMain` = 1 everywhere; `pdpCopy.missing` = [] everywhere;
+no credit line (option off); one lazy sized `<img>` on the 15 mapped products, none on the 12 others.
+
+**Files on the dev theme (pass 2, remote = local minus the final newline):** `sections/elmsnest-s-pdp-scene.liquid` 24415 B
+`8208775cba17c5ff6648795ccbe72435` · `sections/elmsnest-s-pdp-dusk.liquid` 7127 B `576b0178acbd4b2ef491a4986dadd130` ·
+`templates/product.elmsnest.json` 9941 B `de63246840e05776924f16c697fc1ac6` · the 18 assets (`pdp2/DEPLOY-LOG.md`, the five re-cut ones
+with their pass-2 checksums).
+
+**Owner artifact:** the SIMPLIFY page gained a section «صفحة المنتج · الجولة الثانية» (`pdp2/build-owner-section.py` → `OWNER-SECTION.json`,
+spliced by `simplify/build-owner-page.py` after the home section): the request verbatim, the tuning, the concept ranking, the four phone
+shots and the desktop shot, two whole pages (path with a photograph, flood without), the five-page table, the 15 sources with crops, the
+12 products without a photograph and the three ways to give them one, the copy list, the critique summary, the notes. Same URL as §7.6/§7.7.
+
+**Open items — owner:** (a) approve or edit the copy (the four headings, the two overrides, the four lines, the dusk sentences, the link);
+(b) the 12 products without a clean frame — a night frame each, added through a `frame` block (the cure the critique named), or the
+`scene_fallback` option (off) with its credit line; (c) the deck/step lights are headed «בלילה, על השביל» (path collection) — a per-product
+heading if he wants «מדרגות»; (d) dusk line 2 as a setting; (e) the two studio wall frames (indoor-outdoor, 6W) under «בלילה, על הקיר»;
+(f) the 854 px step-light source; plus the §7.6 and §7.7 lists unchanged.
+
+**Open items — next session:** the §7.6 JS chain check still needs a browser that reaches the store; then search + 404, content pages,
+policies under the same loop. The pattern for a per-product image section without product data (owner block → Liquid handle map → honest
+empty state → an off-by-default credited fallback) is in `elmsnest-s-pdp-scene.liquid` and reusable. Do not run two sessions against the
+same dev theme.
