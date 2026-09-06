@@ -26,6 +26,11 @@ for f in os.listdir(OUT):
     if f.endswith('.graphql'): os.remove(os.path.join(OUT,f))
 only=[a.split('=',1)[1].split(',') for a in sys.argv[1:] if a.startswith('--only=')]
 only=set(only[0]) if only else None
+# --extra=sections/x.liquid,templates/y.json : files of a later round not yet in ORDER (appended, same rules)
+extra=[a.split('=',1)[1].split(',') for a in sys.argv[1:] if a.startswith('--extra=')]
+for rel in (extra[0] if extra else []):
+    if rel not in ORDER: ORDER.append(rel)
+    if only is not None: only.add(rel)
 rows=[]
 for i,rel in enumerate(ORDER,1):
     if only and rel not in only: continue
