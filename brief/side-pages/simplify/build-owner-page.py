@@ -10,6 +10,8 @@ OUT = '/tmp/claude-0/-home-user-ElmsNest/1c2132db-077d-58e0-b54a-35f2ebea6b2c/sc
 A = json.load(open(f'{SIM}/verify-after/verify.json'))
 B = json.load(open(f'{SIM}/verify-before/verify.json'))
 CRIT = json.load(open(f'{SIM}/critique/SUMMARY.json')) if os.path.exists(f'{SIM}/critique/SUMMARY.json') else None
+H2 = '/home/user/ElmsNest/brief/side-pages/home2/OWNER-SECTION.json'
+HOME2 = json.load(open(H2, encoding='utf-8'))['html'] if os.path.exists(H2) else ''  # home round 2 (2026-09-06): spliced in after the numbers, before the phone flow
 
 def jpg(path, width=390, q=78):
     im = Image.open(path).convert('RGB')
@@ -33,12 +35,12 @@ def cart_num(state, vw='390x844'):
         if str(d.get('viewport', d.get('vp', ''))).replace(' ', '') in (vw, vw.replace('x', '×')): return d
     return {}
 
-PAGES = [('home', 'الرئيسية', 6), ('collection-all', 'كل المنتجات (27)', 8), ('collection-path', 'كولكشن الشباك', 8),
+PAGES = [('home', 'الرئيسية', '7.5 <small class="muted">(6 قبل أقسام الصور)</small>'), ('collection-all', 'كل المنتجات (27)', 8), ('collection-path', 'كولكشن الشباك', 8),
          ('pdp-rope', 'منتج: حبل إضاءة (16 خياراً)', 6), ('pdp-path', 'منتج: مصباح شباك (خيار واحد)', 6), ('pdp-deck', 'منتج: إضاءة درج (4 خيارات)', 6)]
 def sc(d, k): return d.get(f'{k}-m-js', {}).get('screens', '—')
 rows = ''.join(f'<tr><td>{label}</td><td class="n old">{sc(B,k)}</td><td class="n new">{sc(A,k)}</td><td class="n tgt">≤ {t}</td></tr>' for k, label, t in PAGES)
 
-flow = [('home-m-js-full.png', 'الرئيسية', 'صورة، جملة واحدة، زرّ واحد؛ ثم أربع كولكشنات بأسمائها من المتجر، أربعة منتجات، «متى نعم ومتى لا»، وثلاثة أرقام.'),
+flow = [('home-m-js-full.png', 'الرئيسية', 'صورة، جملة واحدة، زرّ واحد؛ ثم أربع كولكشنات بأسمائها من المتجر، أربعة منتجات، نهار/ليل بثلاث خطوات، الشتاء، «متى نعم ومتى لا»، صورة السياج، وثلاثة أرقام.'),
         ('collection-all-m-js-full.png', 'كل المنتجات', 'شبكة Kalles الأصلية ببطاقاتها، صورة المنتج الأصلية في كل بطاقة، صفّ أزرار للكولكشنات الأربع، وترتيب واحد.'),
         ('pdp-rope-m-js-full.png', 'صفحة المنتج', 'معرض الصور الأصلي، الاسم، السعر وسعر المتر، الخيارات كأزرار، زرّ شراء واحد وشريط لاصق ثانٍ متزامن معه، سطر شروط واحد، وسطر «لا يناسب» ثم رابط البريد.')]
 flow_html = ''.join(f'<figure><img src="{shot("verify-after", f)}" alt="" loading="lazy"><figcaption><b>{t}</b>{d}</figcaption></figure>' for f, t, d in flow)
@@ -111,7 +113,8 @@ td.n{{font-family:var(--serif);font-size:24px;line-height:1;white-space:nowrap}}
 .flow figure,.pair figure{{margin:0}} .flow img,.pair img{{width:100%;display:block;border:1px solid var(--hair)}}
 figcaption{{margin-top:10px;font-size:14px;color:var(--ink2)}} figcaption b{{display:block;font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:3px}}
 .pair{{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px;align-items:start}} .pair h3{{grid-column:1/-1;order:-1}}
-.pair .old img{{filter:saturate(.7) brightness(.85)}} .pair .old b{{color:var(--mute)}}
+.pair .old img{{filter:saturate(.7) brightness(.85)}}
+.flow figure.wide{{grid-column:1/-1}} .flow figure.wide img{{width:100%}} blockquote[dir]{{direction:rtl}} .pair .old b{{color:var(--mute)}}
 ul.list{{margin:14px 0 0;padding:0;list-style:none}} ul.list li{{padding:12px 0;border-top:1px solid var(--hair);max-width:74ch}} ul.list li b{{color:var(--ink);font-weight:500}}
 .rules li{{color:var(--ink2)}}
 .admin li{{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline}} .admin li::before{{content:"☐";font-size:18px;color:var(--gold)}}
@@ -121,10 +124,10 @@ footer{{padding:40px 0 60px;color:var(--mute);font-size:13px;border-top:1px soli
 <header class="top"><div class="wrap">
 <p class="eyebrow">ElmsNest · ثيم التطوير 154726400174 · غير منشور</p>
 <h1>التبسيط</h1>
-<p class="lede">الصفحات الثلاث بعد حكمك في اليوم نفسه: النظرة الليلية بقيت، والتعقيد ذهب. الرئيسية من عشر شاشات إلى خمس، الكتالوج من ستٍّ وعشرين إلى ثمانٍ، صفحة المنتج من عشر إلى أربع — على قوالب Kalles الأصلية التي يعرفها كل مشترٍ، بصورة المنتج الأصلية في كل مكان.</p>
+<p class="lede">الصفحات الثلاث بعد حكمك في اليوم نفسه: النظرة الليلية بقيت، والتعقيد ذهب. الرئيسية من عشر شاشات إلى خمس (ثم قرابة سبع بعد أقسام الصور الثلاثة التي طلبتها)، الكتالوج من ستٍّ وعشرين إلى ثمانٍ، صفحة المنتج من عشر إلى أربع — على قوالب Kalles الأصلية التي يعرفها كل مشترٍ، بصورة المنتج الأصلية في كل مكان.</p>
 <blockquote>«صممتها تصميم بصري جميل جداً لكنه معقد ومش زابط للمتجر… هدفي كان نعطي افضل تصميم بصري لكن يكون بسيط للعميل»<small>حكمك، 2026-09-05 — وهو الموجز الذي بُنيت عليه هذه الجولة كلها</small></blockquote>
 </div></header>
-<nav class="toc"><div class="wrap"><ul><li><a href="#numbers">الأرقام</a></li><li><a href="#flow">رحلة الهاتف</a></li><li><a href="#ba">قبل وبعد</a></li><li><a href="#cart">السلة</a></li><li><a href="#answers">أجوبتك الخمسة</a></li><li><a href="#critique">النقد</a></li><li><a href="#admin">ما بقي لك</a></li><li><a href="#process">كيف جرى</a></li></ul></div></nav>
+<nav class="toc"><div class="wrap"><ul><li><a href="#numbers">الأرقام</a></li><li><a href="#home2">الرئيسية: الصور</a></li><li><a href="#flow">رحلة الهاتف</a></li><li><a href="#ba">قبل وبعد</a></li><li><a href="#cart">السلة</a></li><li><a href="#answers">أجوبتك الخمسة</a></li><li><a href="#critique">النقد</a></li><li><a href="#admin">ما بقي لك</a></li><li><a href="#process">كيف جرى</a></li></ul></div></nav>
 
 <section id="numbers"><div class="wrap">
 <p class="eyebrow">القياس</p><h2>كم شاشة هاتف تحتاج كل صفحة</h2>
@@ -136,6 +139,7 @@ footer{{padding:40px 0 60px;color:var(--mute);font-size:13px;border-top:1px soli
 <li><b>الإضافة إلى السلة</b> جُرِّبت على المتجر الحي: المنتج وصل إلى الدرج بالخيار المختار.</li></ul>
 </div></section>
 
+{HOME2}
 <section id="flow"><div class="wrap">
 <p class="eyebrow">الرحلة</p><h2>من الرئيسية إلى الدرج، على هاتف</h2>
 <div class="flow">{flow_html}{drawer_html}</div>
