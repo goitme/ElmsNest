@@ -13,7 +13,7 @@
 {%- liquid
   assign img = section.settings.image
   assign ens_op = section.settings.object_position | default: '50% 50%' | strip | escape
-  assign ens_op_lg = section.settings.object_position_desktop | default: '50% 40%' | strip | escape
+  assign ens_op_lg = section.settings.object_position_desktop | default: '50% 35%' | strip | escape
   assign ens_alt = section.settings.alt | default: '' | strip | escape
   comment
     Picker srcset: the widths are capped against the source width (the hero's R26 rule),
@@ -64,14 +64,14 @@
 <style>
 .ens-home-band{padding:0;margin:0;isolation:isolate}
 .ens-home-band__fig{position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0}
-/* the photograph is in flow and sets the figure's height (520 / 560 px); crop per section (object_position / object_position_desktop settings, defaults 50% 50% / 50% 40% — the desktop default measured 6.6:1 behind the sentence against 3.5:1 at 60%, where the lower string of bulbs ran through it) */
+/* the photograph is in flow and sets the figure's height (520 / 560 px); crop per section (object_position / object_position_desktop settings, defaults 50% 50% / 50% 35% — measured 6.6:1 behind the sentence at 40% against 3.5:1 at 60%, where the lower string of bulbs ran through it; 35% keeps the top string's bulbs whole at the top edge) */
 .ens-home-band__fig img{display:block;inline-size:100%;block-size:520px;object-fit:cover;object-position:var(--ens-op,50% 50%)}
 /* the 30 % bottom fade (show_fade): the sentence sits on the dark fence, the fade only guards the 4.5:1 floor */
 .ens-home-band__fig--fade::after{content:"";position:absolute;inset-inline:0;inset-block-end:0;block-size:30%;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,0) 0%,rgba(2,3,6,.55) 100%)}
 .ens-home-band__cap{position:absolute;inset-inline:0;inset-block-end:40px;z-index:1;margin:0;width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto;text-align:start;pointer-events:none}
 .ens-home-band__h.env2-h{font-size:34px;line-height:1.06;color:var(--env2-glow);max-inline-size:12ch;text-shadow:0 2px 24px rgba(2,3,6,.6);margin:0}
 @media (min-width:901px){
-  .ens-home-band__fig img{block-size:560px;object-position:var(--ens-op-lg,50% 40%)}
+  .ens-home-band__fig img{block-size:560px;object-position:var(--ens-op-lg,50% 35%)}
   .ens-home-band__cap{inset-block-end:56px}
   .ens-home-band__h.env2-h{font-size:52px;max-inline-size:14ch}
 }
@@ -88,7 +88,7 @@
     { "type": "text", "id": "sentence", "label": "המשפט", "default": "חושך הוא לא סוף הערב." },
     { "type": "image_picker", "id": "image", "label": "תמונה (ריק = ens-home-fence.jpg)", "info": "ריק = תמונת הגדר של החנות בשעת בין ערביים (מקבצי הערכה)." },
     { "type": "text", "id": "object_position", "label": "מיקום החיתוך בנייד (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול אינה חלה כאן." },
-    { "type": "text", "id": "object_position_desktop", "label": "מיקום החיתוך במחשב (object-position)", "default": "50% 40%", "info": "חל מרוחב 901 פיקסלים. ב-40% מחרוזת הנורות התחתונה נשארת מחוץ למשפט." },
+    { "type": "text", "id": "object_position_desktop", "label": "מיקום החיתוך במחשב (object-position)", "default": "50% 35%", "info": "חל מרוחב 901 פיקסלים. ב-35% מחרוזת הנורות העליונה שלמה בקצה העליון והתחתונה נשארת מחוץ למשפט." },
     { "type": "checkbox", "id": "show_fade", "label": "דהייה קלה בתחתית התמונה (עד 30%)", "default": true, "info": "רק כדי שהמשפט יישאר קריא על תמונה בהירה. המשפט יושב על הגדר הכהה." },
     { "type": "text", "id": "alt", "label": "טקסט חלופי לתמונה (alt)", "info": "ריק = תמונה דקורטיבית; המשפט נושא את המשמעות." }
   ],

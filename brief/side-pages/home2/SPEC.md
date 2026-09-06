@@ -2,7 +2,8 @@
 
 > **Amended after the critique of the deployed render** (`critique/LEAD-DECISIONS.md`, 2026-09-06): section A has a
 > heading instead of an eyebrow, no corner labels by default, ONE line under the frames instead of three numbered
-> steps, desktop crops per frame; the band's desktop crop is «50% 40%»; the winter figure has no border and the
+> steps, desktop crops per frame (day and night «50% 30%»); the band's desktop crop is «50% 35%» (40% after the critique,
+> 35% after the post-fix re-review — one bulb was still cut at the top edge); the winter figure has no border and the
 > neighbours' heading scale. The amended text is inline below; the original wording is in git (b27711c).
 
 Lead's synthesis after five concepts and five judges (`concepts/`, ranking dusk 50.75 · kinds 43.5 · band 41.5 ·
@@ -43,9 +44,9 @@ the frames ONE line on hairlines (fit block hairlines): «בלי חיבור לח
 default), `line_2`, `line_3` (empty). The three numbered steps of the first build were cut by the critique: «ביום
 נטען.» was step 1, «בלילה נדלק.» plus the hero's «כשהשמש יורדת, הגינה נדלקת.» were step 2 (the owner's «nothing
 twice»), and «בלי כבל» was not true of the separate-panel products (the listings say «בלי חיבור לחשמל»). No
-button, no link, no card chrome. Desktop crops per frame: `object_position_day_desktop` «50% 40%» and
+button, no link, no card chrome. Desktop crops per frame: `object_position_day_desktop` «50% 30%» and
 `object_position_night_desktop` «50% 30%» (≥ 901, 16:10 — the nearest panel crown and the far lamp heads were
-cut at 50%/40%).
+cut at 50%/40%; the re-review found the day frame's second and third heads still cut at 40%, so both frames take 30%).
 
 Images: day = `assets/ens-home-day.jpg` (store frame `own_powerful-solar-garden-light_3`, full 1254² — panel on
 every head, lamps off); night = `assets/ens-home-night.jpg` (store frame `own_powerful-solar-garden-light_2`
@@ -75,7 +76,10 @@ From `concepts/band` §A, the judges' single best screen: one full-bleed photogr
 (34 px / 52 px), bottom inline-start inside the wrap, on the dark fence — no scrim, or at most a 30 % bottom
 fade if the render needs it for 4.5:1. No eyebrow, no link, no button. Image: `assets/ens-home-fence.jpg` = store
 frame `own_solar-crystal-ball-string-lights_5` (crystal bulbs on a picket fence at blue hour, bougainvillea,
-city bokeh), full 1254², `object-position` default «50% 50%» at 390 and «50% 60%» at ≥ 901. Store-owned.
+city bokeh), full 1254², `object-position` default «50% 50%» at 390 and «50% 35%» at ≥ 901 (measured: at 60% the lower
+string of bulbs ran through the sentence, 3.5:1; at 40% the sentence sits on the dark boards, 6.6:1, but one bulb of the top
+string was cut at the top edge; 35% keeps it whole; a heavier fade only reached 4.6:1 and dirtied the frame). The img is in
+flow (520 / 560 px tall) so the figure's height is the photograph's. Store-owned.
 
 ## 2. Copy — every Hebrew sentence, verbatim (guillemets are notation)
 

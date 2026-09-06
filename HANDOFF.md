@@ -331,7 +331,10 @@ no product, collection, page or metafield changed. Branch `claude/design-sidebar
    `verify/`), and a text-over-photo contrast probe (`verify/contrast.py`; `--hide-text` shots give the TRUE background behind the glyphs,
    p90 = brightest tenth).
 5. Adversarial critique of the deployed render (`workflows/home2-critique.js`): five lenses (shopper 7.5, owner 6.5, honesty 8, designer 7,
-   engineer 7) → 36 findings, two skeptics each (evidence, scope); `critique/{RESULT.json,*.jsonl,SUMMARY.json}`. Rulings written BEFORE the
+   engineer 7) → 36 findings, two skeptics each (evidence, scope); `critique/{RESULT.json,*.jsonl,SUMMARY.json}`. Honest reading of the
+   votes: the skeptics ran for 34 minutes while the fixes were landing, so 29 of the 36 were «refuted» as «the file already does what the
+   fix asks»; 3 confirmed by both, 2 refuted on the merits (the step-2 repeat and the band-vs-hero sentence — the first was cut anyway on
+   the owner's «nothing twice», the second kept), 2 split (card 2 = the diptych's product; the band sentence). Rulings written BEFORE the
    fixes in `critique/LEAD-DECISIONS.md`, backed by a measured experiment (`verify/exp/candidate-{1,2,3}.css` + shots): tags off by default
    (the «יום» label measured 1.2–1.8:1 on the foliage), one line instead of three numbered steps (steps 1–2 repeated the frame headlines
    and the hero — the owner's «nothing twice»), «בלי חיבור לחשמל» instead of «בלי כבל» (true of the separate-panel floodlight too), a heading
@@ -340,17 +343,21 @@ no product, collection, page or metafield changed. Branch `claude/design-sidebar
    than the 1254 original), alt settings, decoding async, role=list. Kept and put to the owner: card 2 = the diptych's product; the band
    sentence vs the hero; the winter frame as a fourth bollard scene; no link on the band. SPEC amended (note at its top).
 6. Deploy pass 2 (three sections; the solar upsert needed four sends — Shopify Admin 500s around 09:00 UTC made the MCP's live-theme
-   pre-check fail), re-verification, re-shoot, re-measure; post-fix re-review (`workflows` inline script `home2-rereview`, contract +
-   render lenses, one skeptic per finding).
+   pre-check fail), re-verification, re-shoot, re-measure; post-fix re-review (inline workflow `home2-rereview`, contract + render
+   lenses, one skeptic per finding; `critique/REREVIEW.json`): contract PASS, four minors all confirmed — R1 the picker branch
+   double-escaped an owner alt (fixed: raw value to `image_tag`), R2 one bulb cut at the band's top edge at 1366 (crop 40% → 35%),
+   R3 the day frame's far heads cut at 1366 (crop 40% → 30%, the night frame's value), R4 phone heading 25 px vs on-frame words 28 px
+   (accepted). Deploy pass 3 (solar + band), re-verified.
 
 **Numbers (390×844, JS on):** home 5.12 → **6.74** screens (cap 7.5; 8.43 at 360×640, 5.95 at 1366×900); sections solar **413** ·
 winter **433** · band **520** px (caps 520); every SIMPLIFY §11 home check unchanged (terms 1, photo line 1, mailto 1, 0 WhatsApp, 0 glyph
 plates, 0 Liquid errors, no overflow-x, 0 bdi ranges); every copy line of SPEC §2 on the page; text over photographs (true background,
-p90): day headline 7.0–8.1:1, night headline 6.4–8.0:1, band sentence 6.7–7.5:1 (before the fixes: «יום» tag 1.2–1.8, band at 1366 3.5).
+p90): day headline 7.0–7.4:1, night headline 6.4–8.0:1, band sentence 6.6–7.5:1, heading and line ≥ 15.5:1 (before the fixes: «יום» tag
+1.2–1.8, band at 1366 3.5); after pass 3 no bulb is cut by the band's top edge at 1366 (pixel probe on band-d.png rows 0–3: 0 bright columns).
 
-**Files on the dev theme (pass 2, remote = local minus the final newline):** `sections/elmsnest-s-home-solar.liquid` 12583 B
-`b50db842447872575e909da4a93fcd06` · `sections/elmsnest-s-home-winter.liquid` 6307 B `d9e874083095be35eea457e71d79c228` ·
-`sections/elmsnest-s-home-band.liquid` 6462 B `e52c23798b25694c08d4ecc7045427a3` · `templates/index.json` 4270 B
+**Files on the dev theme (pass 3, remote = local minus the final newline):** `sections/elmsnest-s-home-solar.liquid` 12753 B
+`ee3d347e04123920f2c366006859427e` · `sections/elmsnest-s-home-winter.liquid` 6307 B `d9e874083095be35eea457e71d79c228` ·
+`sections/elmsnest-s-home-band.liquid` 6553 B `c26d6d63e5c98d9490a371c0a6ecd93e` · `templates/index.json` 4270 B
 `8011a297cf12fec780c0cb9091ad9c69` · the four assets (`home2/DEPLOY-LOG.md`). Leftover: `assets/ens-test.png` (75 B, the upload probe;
 `themeFilesDelete` is refused by the MCP policy — the owner deletes it in the code editor; nothing references it).
 

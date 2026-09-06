@@ -1,21 +1,27 @@
+ens-home-solar-s       ens-home-solar__h2       איך עובדת תאורה סו rgb(244, 238, 227) vs bg p50 15.64:1  p90 15.52:1  box 320x28
 ens-home-solar-s       ens-home-solar__word     ביום נטען.         rgb(244, 238, 227) vs bg p50 10.14:1  p90  7.04:1  box 134x29
 ens-home-solar-s       ens-home-solar__word     בלילה נדלק.        rgb(255, 211, 148) vs bg p50 10.42:1  p90  6.37:1  box 134x29
+ens-home-solar-s       ens-home-solar__line     בלי חיבור לחשמל, ב rgb(244, 238, 227) vs bg p50 16.07:1  p90 16.05:1  box 320x48
 ens-home-winter-s      ens-hw__h2               ובחורף?            rgb(244, 238, 227) vs bg p50 16.58:1  p90 16.46:1  box 320x28
 ens-home-winter-s      ens-hw__line             בחורף השמש קצרה יו rgb(244, 238, 227) vs bg p50 16.60:1  p90 16.58:1  box 320x25
 ens-home-winter-s      ens-hw__line             פחות טעינה ביום, פ rgb(244, 238, 227) vs bg p50 16.68:1  p90 16.60:1  box 320x25
 ens-home-winter-s      ens-hw__line             זה נכון לכל תאורה  rgb(244, 238, 227) vs bg p50 16.69:1  p90 16.68:1  box 320x25
 ens-home-band-s        ens-home-band__h         חושך הוא לא סוף הע rgb(255, 211, 148) vs bg p50 11.40:1  p90  7.48:1  box 242x72
+ens-home-solar-m       ens-home-solar__h2       איך עובדת תאורה סו rgb(244, 238, 227) vs bg p50 15.92:1  p90 15.80:1  box 350x28
 ens-home-solar-m       ens-home-solar__word     ביום נטען.         rgb(244, 238, 227) vs bg p50 10.30:1  p90  7.22:1  box 149x29
 ens-home-solar-m       ens-home-solar__word     בלילה נדלק.        rgb(255, 211, 148) vs bg p50 10.60:1  p90  6.59:1  box 149x29
+ens-home-solar-m       ens-home-solar__line     בלי חיבור לחשמל, ב rgb(244, 238, 227) vs bg p50 16.33:1  p90 16.21:1  box 350x48
 ens-home-winter-m      ens-hw__h2               ובחורף?            rgb(244, 238, 227) vs bg p50 16.81:1  p90 16.69:1  box 350x28
 ens-home-winter-m      ens-hw__line             בחורף השמש קצרה יו rgb(244, 238, 227) vs bg p50 16.82:1  p90 16.81:1  box 350x25
 ens-home-winter-m      ens-hw__line             פחות טעינה ביום, פ rgb(244, 238, 227) vs bg p50 16.82:1  p90 16.82:1  box 350x25
 ens-home-winter-m      ens-hw__line             זה נכון לכל תאורה  rgb(244, 238, 227) vs bg p50 16.91:1  p90 16.82:1  box 350x25
 ens-home-band-m        ens-home-band__h         חושך הוא לא סוף הע rgb(255, 211, 148) vs bg p50 10.89:1  p90  7.41:1  box 242x72
-ens-home-solar-d       ens-home-solar__word     ביום נטען.         rgb(244, 238, 227) vs bg p50 10.75:1  p90  8.14:1  box 562x45
+ens-home-solar-d       ens-home-solar__h2       איך עובדת תאורה סו rgb(244, 238, 227) vs bg p50 15.80:1  p90 15.78:1  box 1240x48
+ens-home-solar-d       ens-home-solar__word     ביום נטען.         rgb(244, 238, 227) vs bg p50 10.54:1  p90  7.36:1  box 562x45
 ens-home-solar-d       ens-home-solar__word     בלילה נדלק.        rgb(255, 211, 148) vs bg p50 12.05:1  p90  8.03:1  box 562x45
+ens-home-solar-d       ens-home-solar__line     בלי חיבור לחשמל, ב rgb(244, 238, 227) vs bg p50 16.58:1  p90 16.58:1  box 1240x58
 ens-home-winter-d      ens-hw__h2               ובחורף?            rgb(244, 238, 227) vs bg p50 17.02:1  p90 16.92:1  box 592x48
 ens-home-winter-d      ens-hw__line             בחורף השמש קצרה יו rgb(244, 238, 227) vs bg p50 17.03:1  p90 17.03:1  box 592x26
 ens-home-winter-d      ens-hw__line             פחות טעינה ביום, פ rgb(244, 238, 227) vs bg p50 17.03:1  p90 17.03:1  box 592x26
 ens-home-winter-d      ens-hw__line             זה נכון לכל תאורה  rgb(244, 238, 227) vs bg p50 17.04:1  p90 17.03:1  box 592x26
-ens-home-band-d        ens-home-band__h         חושך הוא לא סוף הע rgb(255, 211, 148) vs bg p50  9.92:1  p90  6.65:1  box 431x110
+ens-home-band-d        ens-home-band__h         חושך הוא לא סוף הע rgb(255, 211, 148) vs bg p50  9.74:1  p90  6.64:1  box 431x110

@@ -14,11 +14,13 @@
 {%- endcomment -%}
 {%- liquid
   assign ens_op_day = section.settings.object_position_day | default: '50% 50%' | strip | escape
-  assign ens_op_day_lg = section.settings.object_position_day_desktop | default: '50% 40%' | strip | escape
+  assign ens_op_day_lg = section.settings.object_position_day_desktop | default: '50% 30%' | strip | escape
   assign ens_op_night = section.settings.object_position_night | default: '50% 40%' | strip | escape
   assign ens_op_night_lg = section.settings.object_position_night_desktop | default: '50% 30%' | strip | escape
-  assign ens_alt_day = section.settings.alt_day | default: '' | strip | escape
-  assign ens_alt_night = section.settings.alt_night | default: '' | strip | escape
+  assign ens_alt_day_raw = section.settings.alt_day | default: '' | strip
+  assign ens_alt_night_raw = section.settings.alt_night | default: '' | strip
+  assign ens_alt_day = ens_alt_day_raw | escape
+  assign ens_alt_night = ens_alt_night_raw | escape
   comment
     Picker srcsets: the widths are capped against the source width here (image_tag does not
     drop oversize widths) — the hero's R26 rule. The theme assets below carry their native
@@ -62,7 +64,7 @@
     <div class="ens-home-solar__frames">
       <figure class="ens-home-solar__frame ens-home-solar__frame--day" style="--ens-op:{{ ens_op_day }};--ens-op-lg:{{ ens_op_day_lg }}">
         {%- if section.settings.image_day != blank -%}
-          {{ section.settings.image_day | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_w_day, sizes: '(min-width:1300px) 620px, 50vw', alt: ens_alt_day }}
+          {{ section.settings.image_day | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_w_day, sizes: '(min-width:1300px) 620px, 50vw', alt: ens_alt_day_raw }}
         {%- else -%}
           <img src="{{ 'ens-home-day.jpg' | asset_img_url: '1254x' }}" srcset="{{ 'ens-home-day.jpg' | asset_img_url: '600x' }} 600w, {{ 'ens-home-day.jpg' | asset_img_url: '900x' }} 900w, {{ 'ens-home-day.jpg' | asset_img_url: '1254x' }} 1254w" sizes="(min-width:1300px) 620px, 50vw" width="1254" height="1254" loading="lazy" decoding="async" alt="{{ ens_alt_day }}">
         {%- endif -%}
@@ -75,7 +77,7 @@
       </figure>
       <figure class="ens-home-solar__frame ens-home-solar__frame--night" style="--ens-op:{{ ens_op_night }};--ens-op-lg:{{ ens_op_night_lg }}">
         {%- if section.settings.image_night != blank -%}
-          {{ section.settings.image_night | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_w_night, sizes: '(min-width:1300px) 620px, 50vw', alt: ens_alt_night }}
+          {{ section.settings.image_night | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_w_night, sizes: '(min-width:1300px) 620px, 50vw', alt: ens_alt_night_raw }}
         {%- else -%}
           <img src="{{ 'ens-home-night.jpg' | asset_img_url: '1254x' }}" srcset="{{ 'ens-home-night.jpg' | asset_img_url: '600x' }} 600w, {{ 'ens-home-night.jpg' | asset_img_url: '900x' }} 900w, {{ 'ens-home-night.jpg' | asset_img_url: '1254x' }} 1254w" sizes="(min-width:1300px) 620px, 50vw" width="1254" height="1090" loading="lazy" decoding="async" alt="{{ ens_alt_night }}">
         {%- endif -%}
@@ -123,7 +125,7 @@
   .ens-home-solar{padding-block:72px 56px}
   .ens-home-solar__h2.env2-h{margin-block-end:26px}
   .ens-home-solar__frame{aspect-ratio:16/10}
-  .ens-home-solar__frame img{object-position:var(--ens-op-lg,50% 40%)}
+  .ens-home-solar__frame img{object-position:var(--ens-op-lg,50% 30%)}
   .ens-home-solar__tag{inset-inline-end:16px;inset-block-start:16px}
   .ens-home-solar__word{inset-inline:28px;inset-block-end:24px;font-size:44px}
   .ens-home-solar__lines{margin-block-start:28px}
@@ -143,7 +145,7 @@
     { "type": "header", "content": "מסגרת היום (בצד ימין)" },
     { "type": "image_picker", "id": "image_day", "label": "תמונת היום (ריק = ens-home-day.jpg)" },
     { "type": "text", "id": "object_position_day", "label": "מיקום החיתוך בנייד — יום (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
-    { "type": "text", "id": "object_position_day_desktop", "label": "מיקום החיתוך במחשב — יום", "default": "50% 40%", "info": "חל מרוחב 901 פיקסלים (המסגרת רחבה יותר שם)." },
+    { "type": "text", "id": "object_position_day_desktop", "label": "מיקום החיתוך במחשב — יום", "default": "50% 30%", "info": "חל מרוחב 901 פיקסלים (המסגרת רחבה יותר שם; ב-30% כל ראשי המנורות נשארים בתוך המסגרת)." },
     { "type": "text", "id": "headline_day", "label": "כותרת על מסגרת היום", "default": "ביום נטען." },
     { "type": "text", "id": "label_day", "label": "תווית פינה — יום", "info": "ריק = בלי תווית (הכותרת על המסגרת כבר אומרת «יום»)." },
     { "type": "text", "id": "alt_day", "label": "טקסט חלופי לתמונת היום (alt)", "info": "ריק = תמונה דקורטיבית; הטקסט על המסגרת נושא את המשמעות." },

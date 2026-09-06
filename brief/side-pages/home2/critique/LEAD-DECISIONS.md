@@ -40,3 +40,14 @@ B «ובחורף?» + the three lines unchanged · C «חושך הוא לא סו
 | E8 | band img absolute (minor) | already ruled (#15). | |
 | E9 | `decoding: 'async'` missing on the picker `image_tag` (minor) | **Apply.** | The two branches are meant to be interchangeable. |
 | E10 | `aria-label="נשימה"` when the sentence is blank names a landmark after the file (minor) | **Apply: no label when the sentence is blank.** | |
+
+## Post-fix re-review (contract + render lenses over the pass-2 render, one skeptic each; `critique/REREVIEW.json`)
+
+Contract: every «Apply» present, every «Keep» untouched, copy byte-identical, no empty text default, 0 Liquid errors. Four minors, all confirmed:
+
+| # | finding | decision | why |
+|---|---|---|---|
+| R1 | the picker branch hands an already-escaped alt to `image_tag`, which escapes again (solar only) | **Apply**: raw value to `image_tag`, escaped value only on the hand-written asset `<img>`. | The hero already does it that way; the reviewer's «house style» framing was wrong, the skeptic corrected it. |
+| R2 | one bulb of the top string still cut by the band's top edge at 1366 with «50% 40%» | **Apply «50% 35%»** and re-measure the sentence (expect ≥ 6.65:1). | Measured on band-d.png rows 0–5. |
+| R3 | the day frame's second and third heads cut at the top edge at 1366 with «50% 40%» while the night frame («50% 30%») shows every head | **Apply «50% 30%» on the day frame too** (not the reviewer's 35%: at 16:10 the overflow is 232 px, 30% gives the second disc ≈ 23 px of sky and the nearest crown ≈ 50 px); re-measure the day headline at d. | Same value on both frames; the pavement under the headline moves ≈ 23 px, contrast re-measured. |
+| R4 | at 360/390 the on-frame words (28 px) outrank the section heading (clamp floor 25 px) | **Accept.** | The heading leads by position and colour; the words are the section's payload; the SPEC set both numbers and the neighbours share the clamp. |

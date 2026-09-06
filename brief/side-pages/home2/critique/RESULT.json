@@ -1,0 +1,859 @@
+{
+ "lenses": [
+  {
+   "lens": "shopper",
+   "score": 7.5,
+   "verdict": "Scrolling home-m-js-full.png once at 390, the three sections cost me about one and a half screens and I understood all of them in one pass: the day/night pair plus three big numbered lines tells a first-time buyer how solar works without a single number I have to trust, the winter note reads as the store being straight with me («זה נכון לכל תאורה סולארית, גם שלנו») and the fit rows right under it answer the «so what do I do» that the note raises, and the fence band is a pleasant breath before the three numbers. Every body line is 16 px or larger on the plain night ground at 16:1+ contrast and each winter line fits on one line at both 390 and 360 (winter-m.png, winter-s.png); the two frame headlines and the fence sentence are legible at phone widths (p90 6.7:1, 4.5:1, 6.7:1). What I noticed and minded: the page now says «when it gets dark the light comes on» four times (hero, night frame, step 2, band sentence), and step 2 sits 77 px under the frame headline saying the same thing, which is exactly the «nothing twice» the owner asked to stop; the only text that is actually unreadable is the 12 px «יום» corner tag lost on the pink foliage (p90 1.75:1), which I do not need because the photo is obviously daytime. The fence photo does feel like the same store as the cards above (warm bulbs, blue hour, the same product-frame look), but it is the one thing on the page I wanted to buy and cannot tap. Nothing delays me, nothing worries me, and I would keep scrolling."
+  },
+  {
+   "lens": "owner",
+   "score": 6.5,
+   "verdict": "Yes, this is the shape of what I asked for: three sections, not more, each one led by a photograph, and every photograph is mine (powerful-solar-garden-light frames 2 and 3, modern-solar-path-lights-set frame 6, solar-crystal-ball-string-lights frame 5), so nobody else's lamps and no credit lines — using my listing frames as home-page scenery is right for me, and the day/night pair at 1366 (solar-d.png) and the fence at 390 (band-m.png) are the two most beautiful screens the home has had. But my verdict of 2026-09-05 was «nothing twice», and this round says things twice three times over: the card «מנורת גינה סולארית עוצמתית» sits directly above a diptych made of that same product's own frames (m-grid-solar crop, y≈1900→2450 at 390); inside the diptych the two headlines «ביום נטען. / בלילה נדלק.» are repeated under the frames as steps 1 and 2 «הפאנל נטען לאור היום. / כשמחשיך, האור נדלק לבד.»; and the band's «חושך הוא לא סוף הערב.» is the hero's «כשהשמש יורדת, הגינה נדלקת.» said a second time in the hero's own form (full-bleed photo + one serif sentence). Two texts also fail the 4.5:1 floor I was told is a rule: the «יום» corner label (p90 1.45–1.81:1 in every viewport, invisible in solar-d.png) and the band sentence at 1366 (p90 3.93:1, a bulb glowing behind «לא» and another behind «סוף» in band-d.png). I would sign the copy list in SPEC §2 with three changes: delete the two corner labels, delete steps 1 and 2 (keep «בלי כבל, בלי חשמלאי.» as the one line under the frames), and give the band a different thought or no sentence at all. 6.84 screens is still simple enough because I asked for the growth, but note that P5 still reads «home ≤ 6» and the winter is now the sixth bollard photograph on one page — the next image round should show a wall or a spot."
+  },
+  {
+   "lens": "honesty",
+   "score": 8,
+   "verdict": "Copy: every rendered string in sizes.json (all three viewports) is byte-identical to SPEC §2 — no number other than the three <bdi> step numerals, no rank, no urgency, no review, no «+»/«;», periods only on sentences; the winter lines are daylight physics and the third line («זה נכון לכל תאורה סולארית, גם שלנו») is the brand's honesty said out loud; the band sentence makes no claim. Images: I read all four frames at d and the theme assets themselves — no text, logo, badge, face or foreign mark survives; the night asset's bottom 220 px is bare pavement (the «אור חם ומרשים» caption is outside the 1254×1090 crop), and the winter asset (1100×580 cut from own_modern-solar-path-lights-set_6) carries none of the source creative's headline, «4 או 8» badge or icon strip; CHOSEN.md and manifest.jsonl both record the four ids as store-product-image / store-owned / author ElmsNest on this store's own cdn.shopify.com path (s/files/1/0689/4927/8894), so no credit is owed and none is claimed. The winter picture is honest as atmosphere: it is the store's own bollards on a wet lawn in rain, not somebody else's lamps, and the copy under it does not say those lamps shine like that in January. The one real problem is scope on the phone: the 13 px muted eyebrow «תאורה סולארית» is the only thing separating «בלי כבל, בלי חשמלאי» / «נדלק לבד» from a product grid whose first card, 90 px above it, is the mains wall light with no «סולארי» in its title — a first-time shopper reads the 28 px headlines and 16 px steps and can carry them onto that card. Two smaller items: «בלי כבל» is literally false for the store's own separate-panel solar products (floodlight «פאנל נפרד», string lights with a panel lead), and the «יום» corner label is unreadable on the bright day frame (p90 1.45–1.81:1), which I flag as cross-lens because the label carries no claim."
+  },
+  {
+   "lens": "designer",
+   "score": 7,
+   "verdict": "The idea is right and the images are the store's own: the diptych reads day→night in the order a Hebrew reader expects (day on the right, night on the left, steps 1→2→3 right to left), the winter frame continues the night frame's palette so A and B are one argument, and the fence band after the fit rows is a genuine breath, placed with the same 56+72 rhythm the existing sections already use (128 px at 1366, 88 px at 390 — no finding there). The craft misses are all about text on photographs: the 12 px «יום» tag is a ghost on the orange hedge at every width (1.45–1.81:1), the glow headline «בלילה נדלק.» sits on the lit pavement rays and dips under the floor at 360 (4.43:1), and at 1366 the lower bulb string runs straight through both lines of «חושך הוא לא / סוף הערב.» (3.93:1) with the fade already on — a fade cannot darken a light source, the sentence has to move off the string. Smaller things a studio would tidy: the nearest lamp crown touches the day frame's top edge at 1366, the step hairline sits 8 px under the diptych and reads as three underlines, the winter h2 is 34 px next to a 44 px «מתי כן, ומתי לא», and the winter photograph is the only photo on the page wearing a hairline border. Fix the three contrast items and the composition holds."
+  },
+  {
+   "lens": "engineer",
+   "score": 7,
+   "verdict": "The three sections are correct Liquid (the picker branch caps widths against the source, the `and`-with-nil comparison is safe in Liquid and the deployed page shows 0 errors; the asset branch's `asset_img_url: '1254x'` returns the untouched original, 294,365 B on the mirror vs 294,319 B local), the `sizes` expressions match the measured layout (solar frames are 618 px at 1366, so 620px is right; 50vw at 390 picks 600w; band 100vw picks 900w/1200w on DPR2/DPR3 phones; winter 50vw ≥ 901 vs a 592-px figure), every photograph carries width/height plus a fixed aspect-ratio or min-block-size so there is no layout shift, all properties are logical (the only `width`/`inset:0` uses are symmetric), radius is 0, reduced-motion blocks exist, schemas expose every text and image with SPEC §2 defaults, names are 17–19 chars, presets and `enabled_on: index` are present, and I found no Kalles rule targeting a bare `img` or `.hdt-section` that could override object-fit/position (Kalles JS only reads the first `#MainContent .hdt-section` and `.section-allow-transparent.hdt-section:first-child`, neither of which is ours). The `\"settings\": {}` entries are fine and are what SPEC §4 asks for; writing the defaults explicitly would only freeze copy the editor rewrites into the template on first edit anyway. What the render and the mirror's request log actually show is the weight problem the BRIEF tried to prevent: the sources are 249–294 KB against a ≤ 220 KB rule, the CDN's 600w re-encodes are 123–147 KB, and its 1200w re-encodes are heavier than the originals (347 KB vs 249 KB for the fence, 426 KB vs 294 KB for the day frame), so a 390 DPR3 phone downloads ≈ 800 KB for four decorative photographs (day 600w 147 KB + night 600w 143 KB + winter 1100w 165 KB + fence 1200w 347 KB) and a 1366 laptop ≈ 955 KB–1.0 MB. Three text-over-photo spots fall under the 4.5:1 floor the SPEC set (the «יום» tag is effectively invisible at 1.75:1 p90 / 3.60:1 p50; the band sentence at 1366 crosses the bulbs at 3.93:1), and a few accessibility details (an `<ol>` with list-style:none and aria-hidden numerals, no alt setting despite SPEC §2, an internal-name fallback landmark) are craft-level. Nothing here is a blocker; the srcset and contrast fixes are one-line each."
+  }
+ ],
+ "findings": [
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 108,
+   "severity": "blocker",
+   "where": "solar section, day frame corner tag «יום» (.ens-home-solar__tag) — shot solar-m.png top-right of the right frame, box 17×16 at x209 y79 in sizes.json",
+   "defect": "The 12 px ink-2 «יום» label sits on the day photograph's pink-orange foliage with no scrim under it (the frame scrim only starts at 45 % of the height), so in solar-m.png it is a faint smudge on the leaves and in solar-d.png it is practically invisible; contrast.txt measures it at p50 3.60:1 / p90 1.75:1 at 390, 1.81:1 at 360, 1.45:1 at 1366 — far under the 4.5:1 floor the round judges on p90, so by the contract this is unreadable text. As a shopper the loss is small because the photo is obviously daytime and its twin «לילה» is readable (p90 6.21:1), which is why the score is not pulled down hard, but it is a text on the page that cannot be read.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-m.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt lines ens-home-solar-m / -s / -d ens-home-solar__tag «יום»",
+   "fix": "Give .ens-home-solar__tag a small dark plate (e.g. background:rgba(5,8,14,.6);padding:2px 6px) so both corner labels sit on the night ground, or drop the day tag and keep only «לילה».",
+   "lens": "shopper",
+   "votes": [
+    {
+     "refuted": false,
+     "confidence": 0.9,
+     "reason": "The defect holds. contrast.txt measures «יום» (.ens-home-solar__tag, ink-2 rgb(201,196,184)) at p50 3.60 / p90 1.75 (390), 3.95 / 1.81 (360), 3.31 / 1.45 (1366) — all under 4.5:1 even on p50, while its twin «לילה» is 6.2 / 6.2 / 4.9 p90. The CSS confirms why: line 108 of elmsnest-s-home-solar.liquid gives the tag only a text-shadow (0 1px 8px rgba(2,3,6,.7)) and no plate, and the day-frame scrim on line 107 is `transparent 45%` → the top-corner tag (y79, 10 px below the frame top) sits on unscrimmed foliage. Crops of solar-m.png (x150–390, y60–120) and solar-d.png (x640–1366, y60–200) show the label as a faint pale smudge on pink-orange leaves — visible but not legible at 1366, barely at 390. One wording nit only: in RTL inset-inline-end puts the tag on the top-LEFT of the day frame (x209 on a frame spanning ~197–390), not top-right; that does not change the finding. The SPEC only requires 4.5:1 explicitly for the headline on the day scrim (§5), so the \"blocker\" severity is arguable, but the measured/visual defect is as described and the file does not already carry the fix."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.8,
+     "reason": "The contract is not silent: simplify SPEC §2 P6 («Contrast ≥ 4.5:1 for text») binds every home2 concept via BRIEF §2, and contrast.txt measures «יום» at p90 1.75:1 (390) / 1.81:1 (360) / 1.45:1 (1366), so the day tag fails a stated acceptance criterion; home2 SPEC §1-A prescribes the label's size, colour and corner but says nothing that forbids a plate under it, and §5 only spot-checks the headline, not the tag. The fix is a two-property CSS change inside the section's own <style> (no JS, no Kalles edit, no new section), so it costs less than the defect. The alternative fix of dropping the tag would contradict SPEC §2 copy («יום» · «לילה» are listed labels), so act via the plate/scrim tweak, not by removing the label; the \"blocker\" severity is overstated given the shopper loss is small, but acting on it is right."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 149,
+   "severity": "major",
+   "where": "solar section, step 2 «כשמחשיך, האור נדלק לבד.» directly under the night frame headline «בלילה נדלק.» — shot solar-m.png, headline at y245 and step 2 at y372 in sizes.json (127 px apart)",
+   "defect": "In one phone screen the page tells me the same fact twice in nearly the same words: the night frame headline «בלילה נדלק.» and, three finger-widths below it, step 2 «כשמחשיך, האור נדלק לבד.», and both restate the hero's «כשהשמש יורדת, הגינה נדלקת.» two screens earlier (home-m-js-full.png). The owner's standing verdict is that nothing on the page is said twice, and a first-time shopper reading the three steps pauses at step 2 thinking «you just said that»; the only new word in it is «לבד». The frame headlines and step 1 and step 3 each carry a distinct fact; step 2 does not.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-m.png; /home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-m-js-full.png; /home/user/ElmsNest/brief/side-pages/home2/verify/sizes.json ens-home-solar-m",
+   "fix": "Reword the step_2 default so it carries only its new fact, the automatic switch-on (for example «נדלק לבד, בלי שתדליקו.»), and list the new sentence for the owner's approval.",
+   "lens": "shopper",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.7,
+     "reason": "Checked solar-m.png, sizes.json (ens-home-solar-m), the liquid file and the SPEC. The render is exactly what the critic describes (night headline «בלילה נדלק.» at y245, step 2 «כשמחשיך, האור נדלק לבד.» at y372), but that is exactly what the contract mandates: SPEC §1 A line 35 and §2 lines 74–75 list both the frame headlines and all three steps verbatim, and SPEC line 6 states the page has \"nothing answered twice\" with this copy in it — so per the contract the headline/step pairing is the intended structure (two-word caption on the frame, mechanism sentence in the list), not a duplication. The finding's own premise does not hold: it claims step 1 carries a distinct fact while step 2 does not, yet step 1 «הפאנל נטען לאור היום.» restates «ביום נטען.» by precisely the same measure (its only new word is «הפאנל»), so by the critic's logic steps 1 and 2 are symmetric and the pattern is deliberate, not a slip in step 2. Step 2 does carry its new fact (automatic switch-on, «לבד», sourced from the products' bullet «הפעלה אוטומטית בחושך» per SPEC line 75). The owner's \"twice\" verdict (simplify/audit-context.md line 6) is about whole sections repeated in two forms, not a caption echoed by its explanatory step. The proposed replacement «נדלק לבד, בלי שתדליקו.» would still repeat «נדלק» under «בלילה נדלק.», so it does not remove the alleged echo either. No measurable defect; the file matches the SPEC copy at schema line 149."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.85,
+     "reason": "The contract fixed this sentence verbatim: home2 SPEC §1-A lists step 2 as «כשמחשיך, האור נדלק לבד.», §2 repeats it in the copy table, and §5 makes acceptance \"Copy on the page byte-identical to §2\" — the build did exactly what it was told, and rewording is a spec change, not a defect. The headline-plus-steps pairing is the section's deliberate structure (dusk concept, chosen by all five judges): step 1 «הפאנל נטען לאור היום.» restates «ביום נטען.» in precisely the same way step 2 restates «בלילה נדלק.», so singling out step 2 is inconsistent, and the owner's \"nothing twice\" verdict (SIMPLIFY §0/P2) is about sections and buyer questions answered twice per page, not a caption and its one-line elaboration 127 px apart. The proposed fix «נדלק לבד, בלי שתדליקו.» still says נדלק and still echoes the hero, so it does not even remove the overlap it complains about while adding a new unapproved sentence for the owner to review."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 88,
+   "severity": "minor",
+   "where": "band section, the sentence «חושך הוא לא סוף הערב.» — shot band-m.png and the page flow in home-m-js-full.png",
+   "defect": "The band is the second full-bleed photograph with a single glow serif sentence on the page after the hero, and its sentence is the fourth «dark → light» line I read on one scroll (hero headline, night frame headline, step 2, band). The BRIEF's own seed 4 warned «Watch the hero: it already does this once. Only if it is clearly different.» — the picture is clearly different (a terrace fence, not a path), the sentence is not. It did not confuse me and it takes only 520 px, so this is craft, not a delay.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-m.png; /home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-m-js-full.png; /home/user/ElmsNest/brief/side-pages/home2/BRIEF.md §3 seed 4",
+   "fix": "Keep the section as built; if the owner wants the repetition gone, change the default sentence to something the hero does not say (about sitting outside, not about the light coming on).",
+   "lens": "shopper",
+   "votes": [
+    {
+     "refuted": false,
+     "confidence": 0.8,
+     "reason": "The observation holds as described. (1) The hero really is a full-bleed photograph with a glow serif line: /home/user/ElmsNest/theme/templates/index.json lines 22-23 set «כשהשמש יורדת, / הגינה נדלקת.», the h1 is `env2-h` (Frank Ruhl serif, elmsnest-v2-core.liquid:122) and the `<em>` second line renders in var(--env2-glow) (core:123) over a min-height 100svh object-fit:cover photo (elmsnest-v2-hero.liquid:149-152); the 390-px crop of home-m-js-full.png shows exactly that — gold «הגינה נדלקת.» on a dusk garden with path lights. (2) The band (band-m.png) is the same device: one edge-to-edge photograph, one glow serif sentence «חושך הוא לא סוף הערב.» at 34 px in var(--env2-glow) (elmsnest-s-home-band.liquid:71, schema default line 88). (3) The intervening lines are also dark→light: solar night frame default «בלילה נדלק.» (elmsnest-s-home-solar.liquid:146) and step 2 «כשמחשיך, האור נדלק לבד.» (line 149). So the shopper does read four «dark → light» statements on one scroll, and only the photograph differs (fence with crystal string vs. path lights), which is what the critic said. Caveats that keep it minor rather than refuted: the sentence is the SPEC's own contract (SPEC.md lines 62 and 78 mandate «חושך הוא לא סוף הערב.»), the section measures 520 px as the SPEC allows, contrast is fine (contrast.txt: 11.35:1 p50 at m), and the critic's own fix is «keep as built» — so nothing in the file is wrong against the SPEC; the repetition is a BRIEF §3 seed-4 craft note, exactly as filed."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The contract decided this exact sentence: SPEC §1-C (line 62) prescribes \"ONE sentence «חושך הוא לא סוף הערב.» in glow serif\" and §2 (line 78) lists it verbatim as the C copy, so the build met the contract and the BRIEF seed-4 caveat was already weighed by the lead who chose band's screen \"as the page's breath\". The critic concedes it \"did not confuse me\", costs no screen budget, and recommends \"keep the section as built\" — a taste note with no shopper or owner consequence. Swapping the default sentence would be new Hebrew copy the owner has not seen (BRIEF line 29 requires listing it for his approval), costing an approval cycle for a thematic echo nobody is delayed by."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 39,
+   "severity": "minor",
+   "where": "band section, the whole figure — shot band-m.png, band-m-viewport.png",
+   "defect": "The fence photograph is the most «I want that» image on the page for a terrace shopper (crystal-ball string lights on a picket fence at blue hour), it is a product the store actually sells, and it is the only photograph on the page that is inert: no product name, no tap, and the product is not among the four cards above it (those show a wall light, a garden light, edison and firefly strings), so a shopper who scrolls back up to find it does not. That is a small detour, not a loss, and the spec chose «no link» deliberately.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-m.png; /home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-m-js-full.png (product cards at ≈ y 1720–2480)",
+   "fix": "No change required by the contract; the smallest useful option is an empty-by-default `link` setting so the owner can make the figure a plain link to the string-lights product or collection later.",
+   "lens": "shopper",
+   "votes": [
+    {
+     "refuted": false,
+     "confidence": 0.9,
+     "reason": "Every factual claim in the finding holds on inspection. (1) band-m.png shows exactly the described frame: crystal-ball string lights on a picket fence at blue hour with only the sentence «חושך הוא לא סוף הערב.» — no product name, no link, no button; the figcaption is even pointer-events:none. (2) /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid has no anchor and its schema has only sentence, image, object_position, object_position_desktop, show_fade — there is no `link` setting, so the file does NOT already do what the proposed fix asks. (3) The image is the store's own product frame `own_solar-crystal-ball-string-lights_5` (section comment and SPEC §1 C line 64-65). (4) /home/user/ElmsNest/theme/templates/index.json ens_products.product_list is outdoor-bidirectional-led-wall-light-ip65, powerful-solar-garden-light, solar-edison-string-lights, solar-firefly-garden-lights — the crystal-ball string lights are not among the four cards, so the pictured product is unreachable from the page. However, the finding is not a spec violation: SPEC.md line 64 says «No eyebrow, no link, no button» for the band, and the finding itself concedes «No change required by the contract». It stands as an accurate minor/optional observation (an empty-by-default link setting would be a spec amendment, not a fix), not as a defect against the contract."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.92,
+     "reason": "home2/SPEC.md §1 C is explicit: the band is \"one full-bleed photograph, one sentence, nothing else ... No eyebrow, no link, no button\" — the contract deliberately decided the figure is inert, and the finding itself admits this and rates the consequence \"a small detour, not a loss.\" The proposed `link` setting contradicts the round's own frame (SPEC intro: \"nothing on the page answered twice\"; BRIEF §3 seed 4: the band is \"the page's breath\") by turning the breath into a second product path when the product cards above already carry that action. No SPEC §5 acceptance check fails, so this is taste with no owner/shopper consequence the contract recognises; leave as built."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 69,
+   "severity": "minor",
+   "where": "band section at 1366 (outside the phone lens, recorded because it is a contract floor) — shot band-d.png, sentence box 431×110 at x872 y394",
+   "defect": "At 1366 the sentence's first line «חושך הוא לא» falls on the lit face of the right fence board (band-d.png x≈1050–1300, y≈394–450) and contrast.txt gives it p50 8.77:1 / p90 3.93:1, under the 4.5:1 floor; the 30 % fade at .55 is not enough there. At 390 and 360 the same sentence sits on the dark foliage and measures p90 6.74:1 / 7.03:1, so phone shoppers are fine.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt line ens-home-band-d",
+   "fix": "In the ≥ 901 media block raise the fade end to about rgba(2,3,6,.75) (or set object_position_desktop so the sentence lands on the dark boards) and re-measure.",
+   "lens": "shopper",
+   "votes": [
+    {
+     "refuted": false,
+     "confidence": 0.9,
+     "reason": "Checked and it holds. contrast.txt line ens-home-band-d reads exactly \"rgb(255,211,148) vs bg p50 8.77:1 p90 3.93:1 box 431x110\" — p90 is computed (contrast.py) against the brightest tenth of the true hidden-text background (verify-bg/ exists), so it is a real measurement, not an edge guess. band-d.png confirms the geometry: the first line «חושך הוא לא» sits at x≈1050–1300, y≈394–450 directly on the sunlit right-hand fence board, while the second line falls on darker foliage. The section file still ends the fade at rgba(2,3,6,.55) (elmsnest-s-home-band.liquid line 69) and index.json passes settings:{} so the defaults «50% 60%» at ≥901 are in force — nothing in the file already does what the fix asks. SPEC §1C says the sentence sits \"on the dark fence — no scrim, or at most a 30 % bottom fade if the render needs it for 4.5:1\", so 4.5:1 is the stated floor for this sentence; 390 and 360 pass (p90 7.03 / 6.74). Only caveat, consistent with the critic's \"minor\": §5 acceptance formally checks legibility on the 390 fold shots, and 1366 is a contract width but not a phone-lens gate."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.85,
+     "reason": "The contract is not silent: SPEC §1-C says the sentence sits on the dark fence with \"no scrim, or at most a 30 % bottom fade if the render needs it for 4.5:1\", and §5 lists 1366×900 among the acceptance viewports, so 4.5:1 at 1366 is a floor the build itself set (the liquid comment even claims 6.6:1 at the 40% desktop crop, which contrast.txt contradicts at p90 3.93:1; DEPLOY-LOG already hands this spot to the critique). The fix is inside the section's own ≥901 media block — a darker stop on the existing 30% fade or a different `object_position_desktop` default — no Kalles file, no JS, no new section, so it costs less than a desktop shopper reading a 52 px sentence across the lit board. It does not touch the owner's verdict (still one photo, one sentence, the store's own image), and the \"30 % fade\" cap concerns height, which raising the alpha keeps."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 106,
+   "severity": "minor",
+   "where": "solar section, night frame headline «בלילה נדלק.» at 360 — shot solar-s.png, box 134×29 at x32 y226",
+   "defect": "At 360 the glow headline's brightest tenth of background is the lit lamp head and the lamp-lit sand under it and contrast.txt gives p90 4.43:1, a hair under the floor (4.53:1 at 390 is a hair over). In solar-s.png I can read it without effort because the median background is dark (p50 8.85:1), so this is a margin issue, not a readability one; 360 is recorded for information in the acceptance.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-s.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt lines ens-home-solar-s / -m ens-home-solar__word «בלילה נדלק.»",
+   "fix": "End the night frame's scrim at about .8 instead of .72 so the headline clears 4.5:1 at both phone widths.",
+   "lens": "shopper",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.92,
+     "reason": "Checked the numbers and the file; the finding does not hold as stated. (1) The 4.43:1 in contrast.txt (08:27 UTC) is the older edge-pixel estimate of the background. contrast.py's documented exact mode reads the background from verify-bg/ (the same shots taken with --hide-text, present at 08:36); re-running `python3 contrast.py` now gives «בלילה נדלק.» p90 4.79:1 at 360, 5.03:1 at 390, 5.99:1 at 1366 — all over the 4.5:1 floor the SPEC §5 acceptance sets (and that acceptance names the -bg method). (2) The fix \"end the scrim at ~.8 instead of .72\" describes HEAD (line 106 of the committed file: `rgba(5,8,14,.72) 100%`), but the working file /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid already has at line 112 `linear-gradient(180deg,rgba(5,8,14,0) 36%,rgba(5,8,14,.84) 100%)` on the night frame — deeper than the .8 asked for — with the day frame keeping its own .78 rule (line 113). This is LEAD-DECISIONS.md #6 applied. (3) That .84 scrim was measured in verify/exp/c1 (candidate-1.css line 5 is the identical rule): `python3 contrast.py exp/c1` gives p90 6.38:1 at 360, 6.69:1 at 390, 7.85:1 at 1366, matching the \"6.4:1 at 360\" note in SPEC line 41 and the CSS comment on line 111. So the defect is not measurable with the exact method, and the file already does more than the fix asks."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.8,
+     "reason": "home2/SPEC.md §5 lines 128–129 bind the contract explicitly: \"Every text painted over a photograph ≥ 4.5:1 against the brightest tenth of its true background at 360, 390 and 1366\" — 360 is a named acceptance width here, not \"for information\" (that clause in simplify/SPEC.md line 357 concerns screen-height targets, not contrast), and contrast.txt line 5 records 4.43:1 p90 for «בלילה נדלק.» at 360, so the build misses its own acceptance. SPEC line 41 even asserts the night scrim was \"measured 6.4:1 behind the glow headline at 360\", which the verify data contradicts. The fix is a single CSS gradient value on one line of the section (no Kalles change, no JS, no new section) — cheaper than the defect. One correction to the finding's wording: the code already ends the scrim at .84 (line 112), not .72, so the lever is an earlier start or a higher end/darker stop, not \".8 instead of .72\"."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 75,
+   "severity": "blocker",
+   "where": "band sentence at 1366 (band-d.png, band-d-viewport.png)",
+   "defect": "At 1366×900 the one sentence «חושך הוא לא סוף הערב.» is set at 52 px bottom-right (box x 872–1303, y 394–504) directly over the lower string of crystal bulbs: in band-d.png a lit bulb sits behind the «לא» of line 1 (≈ x 1300, y 420) and a second behind the «סוף» of line 2 (≈ x 1090, y 490); contrast.txt measures the glow text at p90 3.93:1, under the 4.5:1 floor that P6 sets and that SPEC §5 explicitly asks for on «the fence sentence legible». At 390/360 the same sentence sits below the bulb row on the dark fence and passes (6.74 / 7.03).",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt line «ens-home-band-d … p90 3.93:1»",
+   "fix": "At ≥ 901 raise the caption (inset-block-end ≈ 120 px) or change the default object_position_desktop so no bulb lies inside the text box, then re-measure p90 ≥ 4.5:1 on band-d.",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.85,
+     "reason": "The defect is real on the evidence cited but the file already does what the fix asks. /home/user/ElmsNest/brief/side-pages/home2/verify/band-d.png (08:27, shot from the committed build, whose desktop crop default was «50% 60%») does show the lower bulb string running through the 872–1303 × 394–504 text box (bright non-glyph pixels cluster at ~x1290/y390–420 and ~x1200–1260/y450–480) and contrast.txt reports p90 3.93:1 — but that measurement is the approximate (no -bg shot) path. The working copy of /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid (modified 08:43, uncommitted; git diff vs 6e2c01e) already changed the desktop default from «50% 60%» to «50% 40%» in the Liquid assign (line 16), the CSS fallback in the ≥901 media block, and the schema default/info — exactly the finding's \"change the default object_position_desktop\" option. That crop was measured beforehand as experiment c2 (/home/user/ElmsNest/brief/side-pages/home2/verify/exp/candidate-2.css = `object-position:50% 40%` at ≥901) with hide-text background shots (exp/c2-bg): `python3 contrast.py exp/c2` → ens-home-band-d p90 6.62:1 (p50 9.89:1), and exp/c2/band-d.png shows the bulb string sitting above the sentence, no bulb inside the box (same 872,394 431×110 box). SPEC.md (amended header, line 5) also now records «the band's desktop crop is «50% 40%»». Remaining housekeeping, not a blocker: verify/band-d.png and verify/contrast.txt are stale (pre-fix) and should be re-shot from the current file to close the loop."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.82,
+     "reason": "The finding's evidence is the pre-fix render: verify/band-d.png and contrast.txt are timestamped 08:27, shot against the original «50% 60%» desktop crop, and contrast.txt still lists the eyebrow, corner tags and three steps that the amendment cut. The contract has already decided this exact defect: SPEC.md header «the band's desktop crop is «50% 40%»» and critique/LEAD-DECISIONS.md #2 («object_position_desktop default 50% 60% → 50% 40%. No extra fade… Measured 6.62:1 (c2)»), and the working-tree band.liquid already carries that default at line 17, in the ≥ 901 rule and in the schema. Acting on the finding would either re-do a done fix or add the caption raise the lead explicitly chose against (crop over fade/offset, photograph untouched); the only live obligation is the re-measure on the re-mirrored home, which SPEC §5 already requires and which the amended verify pass must run anyway. Note the residual inconsistency that SPEC §1 C's body still reads «50% 60%» at ≥ 901 while the header says 40% — a doc nit, not a build defect."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 140,
+   "severity": "blocker",
+   "where": "«יום» corner label on the day frame (solar-s/m/d.png)",
+   "defect": "The 12 px ink-2 label «יום» sits in the top-left corner of the bright day frame on sunlit red hedge leaves with only a text-shadow behind it; contrast.txt gives p90 1.81:1 at 360, 1.75:1 at 390 and 1.45:1 at 1366 (p50 3.31–3.95), and in solar-d.png at x 709 y 127 the word is a faint smudge one has to search for. It is unreadable text on the page and a P6 contract miss; it is also the word «יום» said twice on one frame, since the headline «ביום נטען.» already names the day.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt lines «ens-home-solar__tag יום»",
+   "fix": "Blank the label_day and label_night defaults (lines 140 and 145) so no corner labels render — the two headlines already carry day and night.",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.85,
+     "reason": "The evidence is genuine for the render it captured (solar-d.png 08:27:00, contrast.txt 08:27:39): the «יום» tag at ~x709 y127 is a faint smudge on sunlit leaves and contrast.txt reports p90 1.81/1.75/1.45:1 at s/m/d. However the fix is already applied: the working-tree /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (mtime 08:43:36, after the evidence) has label_day (line 146) and label_night (line 152) with NO default — the schema info even reads «ריק = בלי תווית (הכותרת על המסגרת כבר אומרת «יום»)» — and the render guard at lines 67/80 (`if label_day != blank`) plus index.json's `\"settings\": {}` for ens_home_solar mean no corner label renders. Only the committed HEAD version (lines 140/145: \"default\": \"יום\"/\"לילה\") still produces the tag, which is what the screenshots reflect. The finding's line numbers (140/145) match HEAD, not the current file. Refuted as 'the file already does what the fix asks'; the verify PNGs/contrast.txt are stale and should be re-captured against the current file to close the loop."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.93,
+     "reason": "The contract does not decide otherwise — it agrees: the amended home2 SPEC §1 A says the corner labels «יום»/«לילה» \"exist as settings label_day/label_night but are EMPTY by default: the headlines already say day and night, and the critique measured the day label at 1.2–1.8:1 on the foliage\", §2 strikes the labels row (\"settings, empty by default (critique #1)\"), and critique/LEAD-DECISIONS.md #1 rules \"Tags OFF by default\" on P2 (nothing twice) and shopper/owner blocker grounds. A shopper sees an unreadable 12 px word on the bright frame (contrast.txt p90 1.45–1.81:1, a §5 acceptance miss) and the owner sees «יום» said twice on one frame, so it is not taste. The fix is two blanked schema defaults in the section's own file — no Kalles change, no JS, no new section — and it is exactly what the working tree already did (git diff HEAD removes `\"default\": \"יום\"`/`\"default\": \"לילה\"` from lines 158/167, adding the `!= blank` guards); the finding only reflects the committed/deployed render (mirror still contains the tags), so acting on it means keeping and deploying that change, not reverting it."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 148,
+   "severity": "major",
+   "where": "steps 1–2 under the diptych (solar-m.png y 322–372, solar-d.png y 528)",
+   "defect": "The section says its two facts on the photographs — «ביום נטען.» on the day frame, «בלילה נדלק.» on the night frame — and then, 50 px lower, says the same two facts again as step 1 «הפאנל נטען לאור היום.» and step 2 «כשמחשיך, האור נדלק לבד.»; only step 3 «בלי כבל, בלי חשמלאי.» adds anything. This is exactly my complaint 2 of 2026-09-05 («a section repeated twice in the same way and in another way») inside one section, and it costs ≈ 100 px of the 499 at 390.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-m.png; /home/user/ElmsNest/brief/side-pages/home2/verify/sizes.json ens-home-solar-m texts",
+   "fix": "Blank the step_1 and step_2 defaults and keep the one line «בלי כבל, בלי חשמלאי.» under the frames (the <ol> already skips blank steps).",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The defect was real in the evidence render (solar-m.png and sizes.json ens-home-solar-m at 08:26 show three numbered steps at y 322/372/423 whose steps 1-2 restate the frame headlines), but the file the finding targets already does what the fix asks. /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid was modified at 08:46 (uncommitted working-tree change; the committed 6e2c01e version had step_1/step_2/step_3 defaults «הפאנל נטען לאור היום.» / «כשמחשיך, האור נדלק לבד.» / «בלי כבל, בלי חשמלאי.» and the ens-home-solar__steps <ol>). The current file has no step_1/step_2 settings at all: the <ol> of steps, its numerals and the __steps/__step/__txt CSS are removed, replaced by a <ul class=\"ens-home-solar__lines\"> that renders only line_1 (default «בלי חיבור לחשמל, בלי חשמלאי.»), with line_2/line_3 blank by default and skipped when blank; the header comment states explicitly ONE line under the frames because the automatic switch-on is already said by the night headline. index.json ens_home_solar settings are {} so the defaults apply. The repetition therefore no longer exists in the source; only the verify PNGs/sizes.json are stale (predate the edit) and should be re-shot."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The finding is stale: it describes the first build (b27711c) and its evidence is the pre-amendment shots, but the contract already decided this exact point — SPEC.md's amendment note and §2 («~~A steps 1–3~~ … cut (critique #3, #4)», «Under the frames ONE line on hairlines: «בלי חיבור לחשמל, בלי חשמלאי.»») and LEAD-DECISIONS #3 — and the built section (theme/sections/elmsnest-s-home-solar.liquid lines 90–99, 158–160) has no step_1/step_2 settings at all, only line_1 defaulting to that sentence; line 148 is now label_day. Acting on the proposed fix would even regress: it asks to keep «בלי כבל, בלי חשמלאי.», which SPEC §1/§2 and LEAD-DECISIONS #4 deliberately replaced because «בלי כבל» is untrue of the separate-panel products. Nothing remains for a shopper or the owner to notice; the diagnosis was right and is already applied in a stricter form."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/templates/index.json",
+   "line": 75,
+   "severity": "major",
+   "where": "products grid card 2 → diptych, at 390 (m-grid-solar crop of home-m-js-full.png; d-grid-solar-winter crop at 1366)",
+   "defect": "The second card of «מה שנדלק ראשון» is powerful-solar-garden-light (featured image: three crystal-bowl bollards on grass, 390 shot y≈1900–2010; 1366 shot x 690–990 y 115–410) and the very next section is a diptych built from that same product's frames 2 and 3 — the same lamp head, the same product, three photographs of it within one scroll. Together with the hero, the path tile and the winter frame this makes six bollard photographs on the home; a first-time shopper reads the diptych as an advert for the card above it, and I read it as the thing I asked you not to do: the same thing twice.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-m-js-full.png (y 1900–2600); /home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-d-js-full.png; /home/user/ElmsNest/brief/side-pages/home2/images/CHOSEN.md",
+   "fix": "Replace the product_list entry powerful-solar-garden-light with a product whose frames do not appear elsewhere on the page (a spot or wall product), so the diptych product is not also a card 400 px above it.",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": false,
+     "confidence": 0.9,
+     "reason": "Confirmed in the files and the render. /home/user/ElmsNest/theme/templates/index.json line 75 lists \"powerful-solar-garden-light\" as the second product_list entry of ens_products, and the very next section in \"order\" is ens_home_solar. /home/user/ElmsNest/brief/side-pages/home2/images/CHOSEN.md records ens-home-day.jpg = own_powerful-solar-garden-light_3 and ens-home-night.jpg = own_powerful-solar-garden-light_2 (crop), and elmsnest-s-home-solar.liquid hard-codes those two assets as the fallback frames. In the mobile render (home-m-js-full.png, y≈1800–2700) the card with the crystal-bowl bollards on grass sits directly above the diptych that shows the same bollard heads by day and night — three photographs of one product within ~700 px of scroll. The hero (stainless-steel path light) and winter frame (modern-solar-path-lights-set) are different products, so the \"six bollard photographs\" count is a looser reading (same lamp type, not same product), but the core defect — the diptych product is also a product card immediately above it — holds. The fix (swap the product_list entry for a wall/spot product) has not been applied."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.85,
+     "reason": "The contract deliberately decided this: home2/SPEC.md §1 says \"Nothing existing changes\" and §4 says of templates/index.json \"three new entries ... and the new order ... Nothing else in the file changes\" — the proposed fix edits the SIMPLIFY-era ens_products.product_list (simplify/SPEC.md lines 201–204), which is out of this round's scope. Moreover critique/LEAD-DECISIONS.md #11 already ruled on this exact finding (\"card 2 of «מה שנדלק ראשון» is the diptych's product, owner major\"): Keep, and put it to the owner as a one-line question, because a product card followed by that product in its place by day and night is a product→scene pair, not a fact answered twice, and \"changing the SIMPLIFY product list is the owner's call, not the round's.\" The owner's «nothing twice» verdict is about questions/content answered twice (place lists, terms, contact line), not about the same bollard appearing in more than one photograph; item #13 likewise kept the winter frame as a fourth bollard scene. The right action is the owner-page question already planned, not a unilateral product_list change."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 88,
+   "severity": "major",
+   "where": "band sentence vs hero headline (band-m.png; d-hero crop of home-d-js-full.png)",
+   "defect": "The hero already is a full-bleed night photograph with one serif sentence, «כשהשמש יורדת, הגינה נדלקת.»; the band is a full-bleed night photograph with one serif sentence, «חושך הוא לא סוף הערב.», which is the same thought (darkness → the evening/garden goes on) in different words and the same typographic form (Frank Ruhl Libre, glow colour, 34/52 px). BRIEF §3 seed 4 warned «the hero already does this once. Only if it is clearly different» — the photograph is clearly different (string lights on a fence, not bollards), the sentence is not.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-m.png; /home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-d-js-full.png hero",
+   "fix": "Give the band a sentence that says something the hero does not (about the terrace, the fence, the evening at the table) or blank the sentence default and let the photograph breathe alone — the section already handles an empty sentence.",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.7,
+     "reason": "Checked band-m.png, band-d.png, the hero crop of home-d-js-full.png, elmsnest-s-home-band.liquid, elmsnest-v2-hero.liquid, index.json and SPEC.md. The section does exactly what the contract asks: SPEC §1 C (line 74) prescribes \"ONE sentence «חושך הוא לא סוף הערב.» in glow serif (34 px / 52 px)\" and SPEC §2 line 91 lists that sentence verbatim as the C copy (\"a sentence, not a claim\"); the file's default (line 88) and the render match it character for character. The finding's only authority is BRIEF §3 seed 4 (\"only if it is clearly different\"), which is the pre-SPEC seed list; the lead's synthesis in SPEC already resolved that question by choosing this sentence, so the proposed fix (change or blank the sentence) would break the contract rather than satisfy it. The \"same typographic form\" claim also overstates the render: the hero is a two-line h1 at clamp(34px,5.6vw,62px) with a cream first line and glow em second line, plus eyebrow, lead paragraph, CTA button and sun rail over a heavily scrimmed bollard-and-hedge frame; the band is a single 34/52 px glow line with no chrome over an unscrimmed fence at blue hour. The shared serif family and glow token are the theme's global system and are what SPEC specifies. The residual thematic overlap (both lines concern night) is real but is a copy-taste disagreement with the SPEC, not a measurable defect against it."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.85,
+     "reason": "The contract deliberately decided this: home2 SPEC §1 C and §2 fix the band sentence «חושך הוא לא סוף הערב.» verbatim, §5 demands copy byte-identical to §2, and critique/LEAD-DECISIONS.md #12 already heard exactly this finding (band sentence vs hero headline, owner major / shopper minor) and ruled «Keep … list it for approval with the alternative», reasoning the hero is a fact about the lamps and the band a sentence about people. Changing or blanking the default would fail the SPEC's own acceptance and relitigate a ruled decision; whether the two thoughts are 'too close' is a copy-taste question the lead already routed to the owner as a one-field setting rather than a defect to fix in the build."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 74,
+   "severity": "minor",
+   "where": "band top edge at 1366 (band-d.png y 0–20)",
+   "defect": "With object_position_desktop 50% 60% the 1254² frame is cropped to 1366×560 so that the upper bulb row is sliced by the top edge: half-bulbs are visible at ≈ x 1080 and x 1290, y 0–15 in band-d.png (z-band-d-top crop), and the fence's top rail is cut mid-board. It reads as an accidental crop rather than a chosen one.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-d.png",
+   "fix": "Nudge the object_position_desktop default (e.g. 50% 66%) so the upper bulb row is either wholly inside or wholly outside the frame, checking the caption fix above at the same time.",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.8,
+     "reason": "The finding describes a render made with object_position_desktop «50% 60%», but the current file no longer uses that value. /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid (working tree, modified 08:46) sets the desktop default to «50% 40%» in all three places (liquid default on line 17, CSS fallback var(--ens-op-lg,50% 40%) in the ≥901 block, schema default), and the CSS comment records why (6.6:1 behind the sentence at 40% vs 3.5:1 at 60%); SPEC.md line 5 now also says «50% 40%». band-d.png (08:27) predates that edit: its top edge matches a 60% crop (offset ≈484 px of the 1366-scaled frame), where the right-hand upper bulbs (x≈1080, x≈1290) are indeed halved — I confirmed that in the crop — but a simulated 1366×560 cover crop of assets/ens-home-fence.jpg at 50% 40% (offset 322) puts the whole upper bulb row (y≈10–190) and the top rail inside the frame, so the described sliced-bulb/cut-rail edge no longer exists. index.json passes no override (settings: {}), so the 40% default is what renders. Only residual: at 40% one bulb near x≈480 sits tangent to the top edge with its top few pixels clipped; that is not the defect reported and the finding's proposed 66% would reintroduce the lower string behind the sentence (the very thing the 40% change fixed)."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The finding's premise is stale: it argues against object_position_desktop «50% 60%», but the amended SPEC (header note, line 5: \"the band's desktop crop is «50% 40%»\") and LEAD-DECISIONS #2 already moved the default 60% → 40% for the contrast fix, and the ruling explicitly says this \"also settles the owner's minor (half-bulbs sliced at the top edge with 60%)\". The built section already ships that: elmsnest-s-home-band.liquid has default \"50% 40%\" in the schema and `var(--ens-op-lg,50% 40%)` in the ≥ 901 rule, with a comment recording the 6.6:1 vs 3.5:1 measurement. The band-d.png evidence (08:27) predates the amendment and shows the old 60% crop, so acting on the finding as written (nudging toward 66%) would reintroduce the 3.5:1 contrast blocker the lead ruled out; the contract line 78 still saying «50% 60%» is a leftover the amendment header supersedes, not a reason to change the crop."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 106,
+   "severity": "minor",
+   "where": "night headline «בלילה נדלק.» at 360 (solar-s.png y 226–255)",
+   "defect": "At 360×640 the glow headline sits on the lit caustic pattern the lamps throw on the pavement (solar-s.png x 32–166, y 226–255) and contrast.txt measures p90 4.43:1 — a hair under the 4.5:1 floor; at 390 it is 4.53:1 and at 1366 5.77:1. Readable in the zoom, but the margin is zero and any owner-picked brighter night frame will fail.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-s.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt line «ens-home-solar-s … בלילה נדלק. … p90 4.43:1»",
+   "fix": "Deepen the night frame's scrim end from rgba(5,8,14,.72) to ≈ .82 (the frame is already dark, nobody will see the difference except the glyphs).",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The measurement the critic cites is real but stale: verify/contrast.txt and solar-s.png were written at 08:27 from the committed section (9f03a2a), whose night scrim was `rgba(5,8,14,0) 40% → rgba(5,8,14,.72) 100%` (git log -p confirms). The working-tree /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (modified 08:46, uncommitted) line 114 already reads `linear-gradient(180deg,rgba(5,8,14,0) 36%,rgba(5,8,14,.84) 100%)` — deeper than the ≈.82 the fix asks for, and starting earlier. That exact CSS is verify/exp/candidate-1.css, whose re-shot render (verify/exp/c1 with the c1-bg hidden-text shots, so exact backgrounds) measures «בלילה נדלק.» at p90 6.38:1 at 360, 6.69:1 at 390, 7.85:1 at 1366 (python3 contrast.py exp/c1) — the source comment's \"measured 6.4:1 at 360\" matches. The file already does what the fix asks; the only residual is that verify/contrast.txt and solar-s.png have not been regenerated from the amended file."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.92,
+     "reason": "The finding is stale and its premise is wrong: it cites the pre-critique measurement (contrast.txt, 08:27, still listing the cut eyebrow/tag/steps) and a scrim end of .72, but the deployed file already carries the deeper night scrim — line 114 of elmsnest-s-home-solar.liquid reads `rgba(5,8,14,0) 36%, rgba(5,8,14,.84) 100%`, exactly what SPEC §1-A prescribes («the night frame's scrim is rgba(5,8,14,0) 36% → rgba(5,8,14,.84) (measured 6.4:1 behind the glow headline at 360)») and what LEAD-DECISIONS #6 already applied, noting the exact measurement was 4.79:1 even before the change. The requested fix (.72 → ≈.82) would be a step backwards from the .84 the contract chose; nothing remains to act on. If anything, the only useful follow-up is re-running contrast.py on the amended build so contrast.txt stops advertising a number the code no longer produces."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-winter.liquid",
+   "line": 75,
+   "severity": "minor",
+   "where": "winter photograph border (winter-m.png, winter-d.png)",
+   "defect": "The winter frame is the only one of the four new photographs drawn with a 1 px #1f1e1d hairline border (visible as a faint grey rectangle around the rain scene in winter-m.png at x 20–370, y 48–245 and in winter-d.png at x 63–655); the diptych frames and the band have none, so the three sections do not share one image treatment.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/winter-m.png; /home/user/ElmsNest/brief/side-pages/home2/verify/winter-d.png",
+   "fix": "Drop the border on .ens-hw__fig so all four photographs sit borderless on the night ground like the diptych.",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The defect was real in the render but the file already does what the fix asks. Pixel sampling confirms the hairline in the screenshots: winter-m.png has a solid (31,30,29) = #1f1e1d 1 px ring at x=20, x=369, y=49, y=245, and winter-d.png at x=63, x=654, y=72, y=441, while the band (.ens-home-band__fig, border:0) and diptych (.ens-home-solar__frame, no border) have none. However, the committed HEAD version of elmsnest-s-home-winter.liquid had `border:1px solid #1f1e1d` on .ens-hw__fig, and the working tree (modified 08:46, after the 08:26 screenshots) now reads `.ens-hw__fig{...background:#05070c;border:0;border-radius:0}` at line 78, with the header comment updated to say 'no border (photographs on this page carry no frame — critique/LEAD-DECISIONS.md #7)'. So the fix is already applied; only the verify PNGs are stale and need re-capturing to reflect it."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.9,
+     "reason": "The contract agrees with the finding rather than deciding otherwise: SPEC.md line 61 says \"no border on the figure — photographs on this page carry no frame\", the amendment note at line 5 repeats \"the winter figure has no border\", and critique/LEAD-DECISIONS.md #7 records the owner's and designer's verdict \"Drop the border\" — the diptych frames (solar.liquid:110) and the band (band.liquid:66) are already borderless, so the hairline was a genuine departure from one image treatment that a shopper sees as a stray grey rectangle. The fix is a one-property CSS change in the section's own file (no Kalles change, no JS, no new section). Note the working tree already carries it uncommitted (theme/sections/elmsnest-s-home-winter.liquid:78 is now `border:0`, edited 08:46, while the cited verify/winter-*.png shots are from 08:26 and HEAD 9f03a2a still has `border:1px solid #1f1e1d`), so acting means keeping/committing that edit, redeploying, and re-shooting the winter verify screenshots — not re-deriving the fix."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/brief/side-pages/home2/images/CHOSEN.md",
+   "line": 7,
+   "severity": "minor",
+   "where": "winter image choice (winter-m.png; whole page home-m-js-full.png)",
+   "defect": "With the winter frame (modern-solar-path-lights-set frame 6: five bollards on wet lawn) the home page below the hero now shows bollards in the hero, the path tile, card 2, the day frame, the night frame and the winter frame — six of the ten photographs — while the wall and spot families I sell get one tile each. I asked for images that fit the niche; the niche is four places, not one lamp shape.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-m-js-full.png; /home/user/ElmsNest/brief/side-pages/home2/images/CHOSEN.md",
+   "fix": "For the winter section pick a store frame from the wall or spot families (a lit wall at dusk, a beam on a tree) if one in images/own fits, so the seasonal note is not a fourth bollard scene.",
+   "lens": "owner",
+   "votes": [
+    {
+     "refuted": false,
+     "confidence": 0.7,
+     "reason": "Checked the render. /home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-m-js-full.png (390 wide) shows, top to bottom: hero = stainless bollards on a lawn; «איפה צריך אור?» path tile = a post/lantern on a garden path; product card 2 (inline-end at 390) = three stainless bollards on grass; solar section = day and night frames of the same bollard set (confirmed in home2/verify/solar-m.png); winter figure = five bollards on wet lawn in rain (confirmed in home2/verify/winter-m.png, and CHOSEN.md row 7 / SPEC §B name it own_modern-solar-path-lights-set_6 «the store's bollards on wet lawn»). That is six post/bollard scenes; the wall family gets the wall tile plus the wall-light card (two, not the finding's «one»), spot gets one tile, strings get one tile, two cards and the fence band. The counting is slightly off but the visible repetition is as described and nothing in the numbers refutes it. Caveats for the fix: images/ratings.jsonl shows the only rain/weather frames of wall or spot products in images/own (own_solar-garden-lantern-9-led_6 spot in rain, own_solar-security-light-100-led_5 wall in rain) are rated cleanliness 0-1 with baked headlines/icon strips and «none clean» crops, and SHORTLIST.md lists set_6 as the fallback for the weather mood; so a non-bollard winter frame from images/own may not exist at usable quality, which weakens the fix but not the observation."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.8,
+     "reason": "The contract fixes the winter image by name: SPEC §1 B \"Image: `assets/ens-home-winter.jpg` = store frame `own_modern-solar-path-lights-set_6` pre-cropped to x 150 · y 450 · 1100 × 580 (the rainy evening ...)\" and §3's asset table repeat it, so the build did exactly what was decided; the reasons given there (rainy evening, store-owned, replaces the CC0 park frame the owner and shopper judges flagged) are the point of that section, not lamp-family balance. Nothing in SPEC or BRIEF §2 asks the four photographs to spread across the wall/spot/path families — BRIEF §2 only orders the sources (own frames first) and forbids daylight-only shots; the \"four places\" rule (SIMPLIFY P2/§11) is about the place words in copy, which the acceptance keeps intact. The defect is taste: a shopper reads «ובחורף?» and the honesty lines, not which SKU's bollards sit on the wet lawn, and the owner already has an `image_picker` per section to swap the frame himself. Acting on it would reopen a lead decision for no shopper consequence, so leave it as an optional owner note at most."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 100,
+   "severity": "major",
+   "where": ".ens-home-solar__eyebrow (13 px, ink-2) — the only scoping device for the three steps",
+   "defect": "In the phone full page (home-m-js-full.png, y≈2380–2450 of the 390-wide capture, the seam I cropped from it) the eyebrow «תאורה סולארית» renders as a 13 px muted line (sizes.json: box 350×17, rgb 201,196,184) sitting about 90 px under the «מה שנדלק ראשון» grid, whose top-right card is «מנורת קיר LED חיצונית דו־כיוונית IP65» (index.json line 74) — a mains-wired wall light with no «סולארי» in its title and no panel visible in its card image (collection/data.json: variants דגם A/B × 3000K/6000K, no solar field; INVENTORY.md lists the wall family as mixed with mains items). The diptych headlines are 28 px and the steps 16 px ink; a first-time shopper who has just read that card sees «כשמחשיך, האור נדלק לבד.» and «בלי כבל, בלי חשמלאי.» at 2× the eyebrow's weight and can apply both to the wall light, which needs a cable and an electrician. The eyebrow exists (the concept judge's ask was met) but at 13 px muted it does not visually scope the section against the store's own contradicting product directly above it at 390.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-m-js-full.png (product grid → eyebrow seam); /home/user/ElmsNest/brief/side-pages/home2/verify/sizes.json (ens-home-solar-m eyebrow 350×17); /home/user/ElmsNest/theme/templates/index.json line 74",
+   "fix": "Render the eyebrow as the section's heading in the env2-h style used by «ובחורף?» (Frank Ruhl Libre 700, 26 px, ink) so «תאורה סולארית» reads at the same weight as «מה שנדלק ראשון» above it — or, if the owner prefers, swap the one non-solar handle in ens_products.product_list for solar-wall-light-motion-sensor-ip65 so no card above the diptych contradicts it.",
+   "lens": "honesty",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.93,
+     "reason": "The finding describes the committed (HEAD 6e2c01e) version of the section, not the current one. In the working tree /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (staged, modified) there is no `.ens-home-solar__eyebrow` at all (grep returns nothing; the 13 px rule at old line 100 is gone). The section now opens with `<h2 class=\"env2-h ens-home-solar__h2\">` «איך עובדת תאורה סולארית?» at `clamp(25px,3.4vw,44px)` in the same env2-h serif style as «ובחורף?» — exactly what the fix asks — and the three 16 px \"steps\" («כשמחשיך, האור נדלק לבד.» / «בלי כבל, בלי חשמלאי.») no longer exist; there is one hairline line «בלי חיבור לחשמל, בלי חשמלאי.». This is recorded as decision #5 in brief/side-pages/home2/critique/LEAD-DECISIONS.md (\"Heading instead of eyebrow\"). The current render brief/side-pages/home2/verify/solar-m.png (390 wide, 08:54) shows the heading at heading weight above the diptych, and the cited measurement \"sizes.json eyebrow 350×17\" is not present in sizes.json (which lists only the __word headlines for the solar section). The screenshot the critic cropped (simplify/verify-after/home-m-js-full.png, 08:53) predates the 08:54 verify set and reflects the old markup. The non-solar wall-light handle in index.json line 74 is still there, but the fix's primary option (heading-weight scope word) is already implemented."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The amended SPEC (home2/SPEC.md banner and §1 A) already decided exactly what the finding asks for: \"section A has a heading instead of an eyebrow ... the honesty critique measured the original 13 px eyebrow as too weak to scope the facts to solar products — the scope word now sits at heading weight\" in env2-h clamp(25px,3.4vw,44px), and §2 strikes the three steps («כשמחשיך, האור נדלק לבד.» / «בלי כבל, בלי חשמלאי.») as cut. The current theme/sections/elmsnest-s-home-solar.liquid already renders that h2.env2-h (line 60, 108, default «איך עובדת תאורה סולארית?» line 142) with the single line «בלי חיבור לחשמל, בלי חשמלאי.» (line 158); the finding is evidenced against the pre-amendment render (simplify/verify-after/home-m-js-full.png), so it is stale, not open. Its alternative fix — swapping a handle in ens_products — contradicts SPEC §1 \"Nothing existing changes\" and the owner's own-images/own-order verdict (P3), so it should not be acted on either; the remaining useful action is only re-verifying the amended render, not a code change."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 150,
+   "severity": "minor",
+   "where": "step_3 default «בלי כבל, בלי חשמלאי.»",
+   "defect": "Read literally, «בלי כבל» is not true for every solar product on the store: the store's own descriptions (brief/side-pages/pdp/build-preview/_desc-*.json) describe solar-floodlight-ip67-remote-timer with «פאנל נפרד» (a lead from panel to lamp) and the solar string lights (crystal ball, Edison, rope) hang from a panel on a cable; the descriptions themselves say «בלי כבל מאריך» / «בלי חיבור לחשמל», i.e. no mains cable, not no cable at all. Every solar listing does back «בלי חשמלאי» and step 2's «נדלק לבד» (all 16 solar descriptions say auto-on at dusk; the two motion-sensor items and the timer floodlight still come on at night, so step 2 holds as a category fact under BRIEF §2). The rendered text (sizes.json ens-home-solar-m 'בלי כבל, בלי חשמלאי.') matches SPEC §2, so this is a spec-level wording question, not a build error.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/pdp/build-preview/_desc-solar-floodlight-ip67-remote-timer.json («פאנל נפרד»); _desc-solar-crystal-ball-string-lights.json; /home/user/ElmsNest/brief/side-pages/home2/verify/sizes.json",
+   "fix": "Change the step_3 default (and SPEC §2) to «בלי חיבור לחשמל, בלי חשמלאי.» — the phrase the store's own listings already use — so the sentence is true of the separate-panel products too.",
+   "lens": "honesty",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The file already does what the fix asks. /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid has no `step_3` setting at all; the only line under the frames is `line_1` (schema line 158) whose default is exactly the proposed wording «בלי חיבור לחשמל, בלי חשמלאי.», and theme/templates/index.json sets no override. SPEC.md §2 (line 42) and the table at line 86 already specify «בלי חיבור לחשמל, בלי חשמלאי.»; line 88 shows the old three steps (incl. «בלי כבל, בלי חשמלאי.») struck through with the exact rationale the critic gives (line 45: «בלי כבל» was not true of the separate-panel products). The real render confirms it: brief/side-pages/home2/verify/solar-m.png (08:54) shows the single line «בלי חיבור לחשמל, בלי חשמלאי.» under the day/night frames, and the current verify/sizes.json (08:54) contains no «בלי כבל» text — the only «בלי כבל, בלי חשמלאי.» occurrences are in the stale experiment folders verify/exp/c*/sizes.json (08:38), which is where the critic's quote must have come from. Product-description claims («פאנל נפרד») are not contested but are moot since the built wording no longer says «בלי כבל»."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The finding is against a superseded state: the contract already decided exactly what it asks for. Amended SPEC §1-A says the three numbered steps were cut and «בלי כבל» «was not true of the separate-panel products (the listings say «בלי חיבור לחשמל»)», and SPEC §2 lists «A line: בלי חיבור לחשמל, בלי חשמלאי.» while striking «A steps 1–3». The deployed section (/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid line 158) has no `step_3` at all — `line_1` defaults to «בלי חיבור לחשמל, בלי חשמלאי.» — and the current sizes.json no longer contains «בלי כבל» (commit 6ea957e). Acting on it would change nothing; there is no shopper- or owner-visible defect left to fix."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 108,
+   "severity": "major",
+   "where": ".ens-home-solar__tag «יום» on the day frame (cross-lens: readability, not a claim)",
+   "defect": "contrast.txt measures the 12 px ink-2 label «יום» over the day photograph at p90 1.81:1 (s), 1.75:1 (m) and 1.45:1 (d), p50 3.31–3.95:1 — far under the 4.5:1 floor the SPEC judges on p90; in solar-d.png the word at x≈709,y≈127 sits on sunlit copper foliage and is barely discernible, in solar-m.png at x≈209,y≈79 it is a faint smudge. Its twin «לילה» on the dark frame passes (4.92–6.23:1). The label carries no claim, so this is not an honesty violation, but it is unreadable text on the rendered page and the rubric calls that a defect at any lens.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt (ens-home-solar__tag יום rows); /home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/solar-m.png",
+   "fix": "Give the day frame's tag a small top scrim or a solid text-shadow pad (e.g. a 0 0 0 4px rgba(5,8,14,.6) shadow / a 1 px-padded rgba(5,8,14,.55) background on .ens-home-solar__frame--day .ens-home-solar__tag) so «יום» clears 4.5:1 on the bright hedge.",
+   "lens": "honesty",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The finding describes evidence that does not exist in the cited files and a defect that is not on the rendered page. (1) /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt has 21 lines and zero rows for ens-home-solar__tag (grep count 0); the only solar rows are ens-home-solar__word «ביום נטען.» / «בלילה נדלק.» at p90 6.37–8.14:1, all above 4.5:1. sizes.json likewise lists only __word entries for the solar section. The quoted numbers (1.81/1.75/1.45 p90, 3.31–3.95 p50) appear nowhere in the evidence. (2) In solar-d.png there is no text at x≈709,y≈127 — that spot is the top edge of the day photograph (foliage/lamp head) with no label; solar-m.png at x≈209,y≈79 is likewise bare foliage. The only text over the photos is the two large serif headlines at the bottom of each frame. (3) The code explains why: theme/sections/elmsnest-s-home-solar.liquid only renders .ens-home-solar__tag when label_day / label_night is non-blank (lines 69–70, 82–83), those settings have no default (schema lines 148, 155, info text says blank = no label), and theme/templates/index.json gives ens_home_solar \"settings\": {} — so the tag is off in the deployed render (commit 6ea957e: \"tags off\"). (4) Even if an owner enabled it, the tag already has the fix the finding asks for: line 117 sets background:rgba(5,8,14,.85) with 4px 8px padding (a solid night backing, comment notes 14:1 measured on the day frame), i.e. stronger than the proposed rgba(5,8,14,.55) pad. The defect is neither visible nor measurable as described, and the file already does what the fix requests."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The contract already decided this exact case the other way: SPEC §1A says the corner labels «יום»/«לילה» \"exist as settings label_day/label_night but are EMPTY by default … the critique measured the day label at 1.2–1.8:1 on the foliage; a typed label renders on a .85 night backing\", and §2 strikes the labels out with \"settings, empty by default (critique #1)\" — LEAD-DECISIONS #1 ruled tags OFF as the owner's \"nothing twice\" (the headlines already say day and night). The deployed build matches: label_day/label_night have no default in the schema, templates/index.json passes \"settings\": {}, the span at line 69–70 is guarded by `!= blank`, and line 117 already carries the rgba(5,8,14,.85) backing the finding asks for. The finding's evidence is stale — the current verify/contrast.txt (post-amendment, 08:54) contains no ens-home-solar__tag rows at all; the 1.45–1.81:1 numbers come from the pre-fix critique/exp measurements of a label that no longer renders, so no shopper sees the smudge and the proposed scrim would fix nothing."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 74,
+   "severity": "blocker",
+   "where": "band at 1366 — `.ens-home-band__fig img{object-position:var(--ens-op-lg,50% 60%)}` with the caption at `inset-block-end:56px` (line 75)",
+   "defect": "In band-d.png the lower string of crystal bulbs runs through the sentence box (x 872–1303, y 394–504): a bulb sits behind the right end of «חושך הוא לא» at the frame edge (≈1300,385) and another between the two lines under «סוף» (≈1180,450), and contrast.txt measures the glow serif at 3.93:1 on p90 over them — under the 4.5:1 floor of SIMPLIFY P6 and of SPEC §1 C, whose 30 % fade is already on (show_fade default true) and cannot darken a light source. At 360/390 the same sentence sits under the string on dark leaves and measures 6.74–7.03:1, so this is a desktop composition problem, not a type problem.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt line 39",
+   "fix": "Move the sentence off the string at ≥901 while keeping the photograph clean — raise the caption (inset-block-end ≈ 170 px, onto the dark gap between the two strings) or change object_position_desktop so the lower string leaves the sentence box (try «50% 42%») — then re-run contrast.py; a local backing is the fallback only if neither reaches 4.5:1.",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.85,
+     "reason": "The defect was real on the render the critic looked at, but the file already does what the fix asks. Evidence: (1) /home/user/ElmsNest/brief/side-pages/home2/verify/band-d.png and contrast.txt line 39 (band-d p90 3.93:1) were shot at 08:27 against the committed section, whose desktop default was `50% 60%` — the finding even quotes `var(--ens-op-lg,50% 60%)`. (2) The working copy of /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid (modified 08:46, uncommitted; `git diff` shows the change) now reads `assign ens_op_lg = ... | default: '50% 40%'` (line 16), `object-position:var(--ens-op-lg,50% 40%)` (line 74), the schema default `50% 40%` (line 91), and the comment on line 67 records the reason; SPEC.md line 5 also states «the band's desktop crop is 50% 40%». That is exactly the finding's own alternative fix («try 50% 42%»). (3) The number holds: verify/exp/c2 is the same shot with `object-position:50% 40%` at ≥901 (exp/candidate-2.css), and `python3 contrast.py exp/c2` on the hide-text background gives band-d p90 6.62:1 (p50 9.89:1) — above the 4.5:1 floor, with no extra fade; critique/LEAD-DECISIONS.md #2 records the same decision and measurement. I also re-derived it from the asset (theme/assets/ens-home-fence.jpg cover-cropped to 1366×560, the 30 % .55 fade applied, the 431×110 box at 872,394): 60 % → p90 3.42:1 (matches the 3.5–3.9 measured), 40 % → p90 6.54:1. Caveat: the verify/ folder itself has not been re-shot at 40 %, so contrast.txt line 39 still shows the stale 3.93; the fixer's re-run of shoot-sections.js + contrast.py should refresh it, but no code change is needed."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.82,
+     "reason": "The finding is stale: it reads line 74 as `50% 60%`, but the current file (08:46) already has `object-position:var(--ens-op-lg,50% 40%)` with the schema default «50% 40%», because the amended SPEC header and §1 C, and LEAD-DECISIONS #2, deliberately settled exactly this defect («band sentence over the lower string of bulbs at 1366 — 3.50:1 … object_position_desktop default 50% 60% → 50% 40%. No extra fade», measured 6.62:1 with the photograph untouched). Its evidence (band-d.png 08:27, contrast.txt 08:27) predates that amendment, so the 3.93:1 number describes the superseded render. Acting on it now — raising the caption to ≈170 px or changing the crop to «50% 42%» — would override a contract line the lead chose after measuring three candidates, for no shopper gain; the only legitimate residue is re-running contrast.py on the re-mirrored home to confirm the 40 % crop, which is the SPEC §5 acceptance step, not a design change."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 108,
+   "severity": "major",
+   "where": "`.ens-home-solar__tag` — 12 px ink-2 at the top inline-end corner with only a blurred text-shadow",
+   "defect": "The day tag «יום» is a ghost at every width: in the zoomed corner of solar-s.png / solar-m.png / solar-d.png the three letters are barely separable from the orange photinia leaves behind them, and contrast.txt gives 1.81:1 (360), 1.75:1 (390) and 1.45:1 (1366) on p90 — a label a shopper cannot read. The night tag «לילה» survives only because its corner happens to be dark (4.92–6.23:1). The 8 px blurred shadow does nothing on a mid-tone leaf field, and because inline-end is the LEFT corner in RTL, the day tag hugs the gutter while the night tag sits at the far left of the page, so the pair is not even symmetric. Not a blocker only because the headline word («ביום» / «בלילה») already carries the meaning.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt lines 2, 15, 28",
+   "fix": "Take the tags off the open photograph and seat them on the scrim just above their headline (inset-block-start → inset-block-end ≈ 52 px at 390 / 80 px at ≥901, inset-inline-start to align with the word), where the background already measures ≈10:1 — or, since the headline already says ביום/בלילה, drop the tags (empty defaults) and keep the frames clean.",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The defect was real in the evidence render (contrast.txt lines 2/15/28 do read 1.81/1.75/1.45:1 p90 for «יום», and a zoom of solar-d.png shows the faint tag on the photinia leaves), but the finding cites HEAD (`git show HEAD:` line 108: ink-2 + 8px text-shadow, no backing, defaults \"יום\"/\"לילה\"). The working-tree /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (mtime 08:46, after the 08:27 evidence) already does what the fix asks: label_day/label_night have no defaults (info: \"ריק = בלי תווית (הכותרת על המסגרת כבר אומרת «יום»)\"), index.json sets no label_day/label_night, so the tags do not render at all; and the `.ens-home-solar__tag` rule now has `padding:4px 8px;background:rgba(5,8,14,.85);color:var(--env2-ink)` with a comment noting 14:1 measured on the day frame, so an owner-typed tag would sit on a night backing rather than the open photo. The evidence PNGs/contrast.txt simply predate this change; the ghost-tag defect does not exist in the file as it stands."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The finding is stale: it measures the pre-amendment render (contrast.txt still lists `__eyebrow` and the three `__txt` steps that no longer exist) and the old CSS (text-shadow only). The amended SPEC §1 A and §2 already decided exactly this — «corner labels «יום»/«לילה» exist as settings label_day/label_night but are EMPTY by default … a typed label renders on a .85 night backing», and critique/LEAD-DECISIONS.md #1 records «Labels «יום»/«לילה» are gone from the page» for the P2 «nothing twice» reason. The current section file matches: schema line 148/155 has no default, lines 69/82 render the tag only when non-blank, and line 117 gives it `background:rgba(5,8,14,.85)` with no text-shadow (14:1 measured). Both halves of the proposed fix (drop the tags; back a typed one) are therefore already done, so acting on it would change nothing a shopper or the owner would see."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 106,
+   "severity": "major",
+   "where": "`.ens-home-solar__frame::after` night scrim — `linear-gradient(180deg,rgba(5,8,14,0) 40%,rgba(5,8,14,.72) 100%)`",
+   "defect": "The glow headline «בלילה נדלק.» sits on the lit pavement rays at the foot of the night frame (night-s foot zoom: the upper halves of the glyphs cross the light pool at the base of the nearest bollard), and glow (#ffd394) over warm lamplight is a same-hue pairing, so the brightest tenth behind the glyphs measures 4.43:1 at 360 and only 4.53:1 at 390 (5.77:1 at 1366) — under or at the P6 floor on the two phone widths. At 4:5 the night image (1254×1090, landscape) is cropped horizontally, so the object_position setting cannot move the light pool away; only the scrim can.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-s.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt lines 5, 18",
+   "fix": "Deepen the night scrim's foot — e.g. `rgba(5,8,14,0) 35%, rgba(5,8,14,.84) 100%` — which is invisible on the already-dark frame but lifts the headline past 4.5:1 at 360; re-measure.",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The finding is stale: it quotes a scrim (`rgba(5,8,14,0) 40%, .72 100%`) and numbers (contrast.txt lines 5/18: 4.43:1 at 360, 4.53:1 at 390) that were measured at 08:27 against an earlier version of the file. /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (mtime 08:46, uncommitted diff vs HEAD) already has the fix the finding asks for: line 106 reads `.ens-home-solar__frame::after{...background:linear-gradient(180deg,rgba(5,8,14,0) 36%,rgba(5,8,14,.84) 100%)}` — identical to verify/exp/candidate-1.css. That candidate was re-shot and re-measured (exp/c1 with an exact hidden-text -bg pass): running verify/contrast.py on exp/c1 gives «בלילה נדלק.» p90 6.38:1 at 360, 6.69:1 at 390, 7.85:1 at 1366 — all above the 4.5:1 P6 floor, matching the comment in the liquid (\"measured 6.4:1 at 360\"). So the defect as described (4.43/4.53 under the stale 40%/.72 scrim) is no longer present in the file; only the top-level verify/contrast.txt and solar-s.png need regenerating to reflect the current CSS."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.8,
+     "reason": "The contract agrees with the finding rather than deciding otherwise: the amended home2 SPEC §1 A fixes the night scrim at «rgba(5,8,14,0) 36% → rgba(5,8,14,.84) (measured 6.4:1 behind the glow headline at 360)» and LEAD-DECISIONS #6 ruled the same, so the committed line 106 (40% → .72, measured 4.43:1 at 360 / 4.53:1 at 390 in verify/contrast.txt) is a P6 floor miss a phone shopper would see on the glow headline. The fix is one CSS gradient value, no JS, no Kalles change, invisible on an already-dark frame. Note the finding is partly stale: the uncommitted working tree already carries 36%/.84 (git diff on the section), and contrast.txt predates the amendment (it still lists the cut eyebrow, tags and three steps) — acting on it means committing that change and re-measuring, not a new design decision."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 14,
+   "severity": "minor",
+   "where": "day frame default `object_position_day` «50% 50%» under the 16:10 desktop frame (line 118)",
+   "defect": "At 1366 the 16:10 frame shows source rows ≈235–1018 of the 1254 px day file, and the nearest lamp's panel rim starts at ≈245 in the source (day-src-top crop) — so in solar-d.png the crown of the nearest head touches the frame's top edge (day-d-top zoom: the panel's dark rim is clipped at y 107). The panel is still visible on the second and third heads, so the frame does say «panel», but the hero object of the frame is cramped against the edge. At 4:5 (360/390) the crop is horizontal and the crown has ≈20 % headroom — fine.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png (day frame top edge, x 850–1010)",
+   "fix": "Give the day frame a desktop crop of «50% 40%» (a `--ens-op-lg` like the band already has, or a media-query override) so the nearest panel gets ≈90 px of headroom; the pavement at the foot is unaffected.",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The screenshot does show what the critic describes (solar-d.png, 08:27: the nearest lamp's panel rim sits on the day frame's top edge), but the file already does what the fix asks. /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (working tree, mtime 08:46 — later than the screenshot) now has line 17 `assign ens_op_day_lg = section.settings.object_position_day_desktop | default: '50% 40%'`, line 63 writes it as `--ens-op-lg` on the day figure, and line 126 inside `@media (min-width:901px)` sets `.ens-home-solar__frame img{object-position:var(--ens-op-lg,50% 40%)}` — i.e. a per-breakpoint desktop crop of 50% 40% for the day frame (plus a schema setting `object_position_day_desktop`, default 50% 40%, at line 146; index.json passes no override). The 50% 50% at line 14/16 is only the mobile (4:5) default, where the critic agrees headroom is fine. The evidence PNG predates this change and should be re-rendered, but no further code change is needed."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The amended SPEC §1A already decides exactly this: «Desktop crops per frame: object_position_day_desktop «50% 40%» and object_position_night_desktop «50% 30%» (≥ 901, 16:10 — the nearest panel crown and the far lamp heads were cut at 50%/40%)», and LEAD-DECISIONS.md row 8 is the same ruling. The working-tree section (/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid lines 17, 63, 126, 146) already implements it with --ens-op-lg defaulting to 50% 40% under @media (min-width:901px). The critic's evidence, /home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png (08:27), predates the section edit (08:46) and shows the pre-amendment 50% 50% crop, so there is nothing left to act on except re-shooting the verify screenshot; the requested fix is a no-op against the current file."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 15,
+   "severity": "minor",
+   "where": "night frame default `object_position_night` «50% 40%» under the 16:10 desktop frame",
+   "defect": "In solar-d.png the two farthest bollard heads at the top-left of the night frame (x ≈ 85–250, y 107–160) are cut by the top edge — the lit heads lose their crowns exactly where the «לילה» tag sits (night-d-top zoom). The nearest head is whole, so the frame still works, but a lamp head sliced by the edge is the one crop a lighting store's diptych should avoid.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png (night frame, top-left)",
+   "fix": "Change the night default to «50% 30%» (shows ≈50 px more of the top at 1366; no effect at 4:5 where the crop is horizontal).",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.92,
+     "reason": "Checked the render and the file; the defect does not hold on either count. (1) The file already does what the fix asks: the desktop frame (≥901 px, 16:10) does not use `object_position_night` at all — line 19 defines `object_position_night_desktop` with default «50% 30%», and line 126 applies `--ens-op-lg` in the ≥901 media query (SPEC line 47 records the same: desktop night crop «50% 30%»). index.json `ens_home_solar` has empty settings, so solar-d.png (1366 px) was rendered at 50% 30% already; the 50% 40% default on line 18 only affects the mobile 4:5 crop. (2) The crop the critic describes is not visible in /home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png: pixel-scanning the night frame, its top edge is at y=147 (not 107 — the cited region y 107–160 is mostly page background above the frame). The farthest lamp head's dark cap rim starts around y≈179–200 and its lit bowl at y=209 (x≈162), i.e. ~30–50 px of foliage/dark garden between the frame edge and the crown; a 4x zoom of the top-left corner confirms both far heads sit whole below the edge with the hedge above them. Cross-check against the source asset ens-home-night.jpg (1254×1090): at 50% 30% in a 620×388 frame the crop starts at source y≈92, while the far head caps begin at source y≈200, so no crown is sliced."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The contract already decided this exact defect the finding's way, but through a separate desktop setting rather than the mobile default: SPEC §1 A (amended) reads «Desktop crops per frame: `object_position_day_desktop` «50% 40%» and `object_position_night_desktop` «50% 30%» (≥ 901, 16:10 — the nearest panel crown and the far lamp heads were cut at 50%/40%)», per LEAD-DECISIONS #8, and the working-tree file implements it (line 19 default '50% 30%', `--ens-op-lg` on the night figure at line 76, applied at ≥ 901 by line 126). The finding targets `object_position_night` («50% 40%», the 4:5 mobile crop, which SPEC keeps at «50% 40%») and asks for a change it admits has no effect at 4:5 — so acting on it as written is either a no-op duplicate of what is built or a deviation from the mobile default the SPEC fixed. If solar-d.png still shows sliced heads, the correct action is re-shooting the verify render against the amended file, not editing the default."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 121,
+   "severity": "minor",
+   "where": "`.ens-home-solar__steps{…margin-block-start:8px…}` at ≥901 with each step's `border-block-start` (line 112)",
+   "defect": "At 1366 the three step columns start 8 px under the diptych, so their three hairline tops (broken by the 40 px column gaps) sit at y ≈ 498 directly beneath the frames ending at 492 — in solar-d.png and the steps-d-rule zoom they read as three short underlines drawn under the photographs rather than as rules above the steps; the eye pairs them with the frames, not the numerals. At 390 the 22 px margin keeps the rule attached to the steps.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/solar-d.png (y 492–500)",
+   "fix": "At ≥901 set `.ens-home-solar__steps{margin-block-start:28px}` so the rules sit with the numerals, not under the frames.",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The finding describes markup and CSS that do not exist. /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid has no `.ens-home-solar__steps` selector, no three-column grid, no 8px margin and no numerals (grep for \"steps\"/\"numeral\" returns nothing); SPEC.md line 88 records the three numbered steps as cut this round. What exists is `.ens-home-solar__lines{margin:22px 0 0}` (line 120) with `@media (min-width:901px){ .ens-home-solar__lines{margin-block-start:28px} }` (line 129) — already the exact value the proposed fix requests — and each `.ens-home-solar__line` carries a full-width `border-block-start` (line 121). Measured on solar-d.png (1366×676): the frames end at y≈533, the only hairline rows are y=561 and y=619, both continuous across the full 1240px content width (310 of 310 sampled columns match #1f1e1d), with the single text row \"בלי חיבור לחשמל, בלי חשמלאי.\" between them. There are no short, gap-broken rules at y 492–500 under the photographs; the rule sits 28px below the diptych, attached to the text row. sizes.json for ens-home-solar-d likewise lists only the two frame words, no step numerals."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.92,
+     "reason": "The finding is against the superseded first build: SPEC §1 A (amended) says «The three numbered steps of the first build were cut by the critique» and «Under the frames ONE line on hairlines», and LEAD-DECISIONS #3 cut the three-column steps for the owner's «nothing twice». There is no `.ens-home-solar__steps` in the current /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (0 matches); line 121 is now `.ens-home-solar__line`, a single full-width hairline row, so the «three short underlines under the frames» geometry no longer exists. The only surviving half of the ask, `margin-block-start:28px` at ≥901, is already applied on `.ens-home-solar__lines` in the ≥901 block (LEAD-DECISIONS #9), so acting on this finding changes nothing; the cited solar-d.png is a shot of the pre-amendment render."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-winter.liquid",
+   "line": 86,
+   "severity": "minor",
+   "where": "`.ens-hw__h2.env2-h{font-size:34px}` at ≥901",
+   "defect": "The winter heading «ובחורף?» renders at 34 px (sizes.json: box h 37) while the section directly below it, «מתי כן, ומתי לא», and the two above use `clamp(25px,3.4vw,44px)` = 44 px at 1366 — in home-d-js-full.png the two serif headings sit ≈250 px apart at visibly different sizes, the only break in the page's heading scale. At 390 the pair is 26 vs 25 px and reads as one scale. The spec asked for 34, so this is the spec's number, but it does not match the neighbours it was placed between.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/simplify/verify-after/home-d-js-full.png (winter vs fit headings); /home/user/ElmsNest/brief/side-pages/home2/verify/sizes.json ens-home-winter-d",
+   "fix": "Use the neighbours' `font-size:clamp(25px,3.4vw,44px)` on `.ens-hw__h2.env2-h` (or, if the note is meant to sit lower, 38 px) so consecutive h2s share one scale.",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.92,
+     "reason": "The file already does what the fix asks. /home/user/ElmsNest/theme/sections/elmsnest-s-home-winter.liquid line 81 is `.ens-hw__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 12px}` and the ≥901 block (line 89) only sets `margin-block-end:16px` — there is no `font-size:34px` rule anywhere in the file (grep for 34px returns nothing). `git diff HEAD` confirms the uncommitted working tree removed `-.ens-hw__h2.env2-h{font-size:34px;...}` and replaced the base `26px` with the neighbours' clamp. The current verify/sizes.json also contradicts the finding's numbers: ens-home-winter-d heading box is h 48 (= 44px × 1.1), not 37; at 360/390 it is h 28 (≈25px), matching the clamp minimum. SPEC.md line 61 explicitly specifies «ובחורף?» at \"the neighbours' clamp(25px,3.4vw,44px)\", so the finding's claim that \"the spec asked for 34\" is also wrong — 34 px in the spec refers to the band heading (line 75). The finding was made against the older committed state (or the simplify/verify-after screenshot), not the current file/evidence."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.85,
+     "reason": "The contract agrees with the finding rather than deciding otherwise: the amended home2 SPEC (header note and §1.B) says the winter heading uses «the neighbours' clamp(25px,3.4vw,44px)», and critique/LEAD-DECISIONS.md #10 explicitly orders «drop the section's font-size overrides on .ens-hw__h2 … one scale for consecutive h2s». The 34 px value the critic cites was the committed round-2 build (6e2c01e, line 101 of the diff), so a shopper at 1366 did see consecutive serif headings at 34 vs 44 px. Note the working tree already applies the fix (line 82 now reads clamp(25px,3.4vw,44px), uncommitted), so acting on it means keeping/committing that change and re-verifying, not a new edit; it is a one-line CSS change with no Kalles, JS or section cost."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-winter.liquid",
+   "line": 75,
+   "severity": "minor",
+   "where": "`.ens-hw__fig{…border:1px solid #1f1e1d…}`",
+   "defect": "The winter photograph is the only photograph on the home page with a hairline border: the solar frames (line 102 of the solar file) and the band figure have none, the hero and collection tiles have none — only product cards carry the #1f1e1d hairline (the skin's card rule). In winter-m.png / winter-d.png the 1 px frame around a night photo on a night ground is faint, but it quietly puts the winter image in the product-card class instead of the photograph class its two siblings belong to.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/winter-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/winter-m.png",
+   "fix": "Drop `border:1px solid #1f1e1d` from `.ens-hw__fig` so the three new photographs share one treatment.",
+   "lens": "designer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The file already does what the fix asks. In the working tree, /home/user/ElmsNest/theme/sections/elmsnest-s-home-winter.liquid line 78 reads `.ens-hw__fig{...background:#05070c;border:0;border-radius:0}` — no `1px solid #1f1e1d`. The only `#1f1e1d` hairlines in the three new sections are the solar section's fit-line block (`.ens-home-solar__lines` / `__line`, lines 120–121), which the SPEC explicitly calls for; the band figure (line 66) and winter figure both carry `border:0`, and the solar frames have no border rule at all, so the three photographs already share one treatment. The critic was reading the committed version (HEAD 6e2c01e has `border:1px solid #1f1e1d` on that rule); the uncommitted diff replaces it with `border:0` and adds the header comment \"No link, no button, no card chrome, no border\", matching SPEC.md line 61 (\"no border on the figure — photographs on this page carry no frame\"). The verify screenshots (winter-d.png 08:54:21, winter-m.png 08:54:14) were rendered after the source edit (08:46:41), and winter-d.png shows the photo sitting on the night ground with no visible hairline. Note the line number in the finding (75) is also off — the rule is at line 78."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The contract agrees with the finding's principle, but the defect no longer exists: SPEC §1 B says \"no border on the figure — photographs on this page carry no frame\" and the amendment header says \"the winter figure has no border\", and the current /home/user/ElmsNest/theme/sections/elmsnest-s-home-winter.liquid line 78 already reads `.ens-hw__fig{…border:0;border-radius:0}` — no `border:1px solid #1f1e1d` anywhere in the file (the band figure at band.liquid:66 is `border:0` too). The finding was made against the pre-amendment build (b27711c) and the verify shots winter-d/m.png predate the fix, so acting on it now would be a no-op; the only remaining action is to re-shoot the winter verify images, not to edit CSS."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 50,
+   "severity": "major",
+   "where": "asset-branch srcset (also solar lines 61 and 74)",
+   "defect": "The 1200w candidate is a CDN re-encode that is heavier than the original 1254-px file, and it is exactly the candidate a 390-px DPR3 phone picks for the band (sizes=100vw → 1170 device px → 1200w): the mirror served a/631fadfb… (1200×1200) at 347,397 B while the 1254w original a/d587b4f6… is 249,347 B. The same inversion holds for the diptych: day 1200w = 425,981 B vs 294,365 B original, night 1200w = 426,167 B vs 290,733 B original, so any viewport whose computed slot lands between 900 and 1254 device px (e.g. a 800-px tablet at DPR3 for the 50vw frames, every DPR3 phone for the band) downloads 40–45 % more bytes than the largest candidate would cost.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/simplify/verify-after/mirrors/home/a/631fadfb7b1224a88ebcdb0f722d49a9.jpg (347,397 B) vs a/d587b4f6a8b42d1fc16f64c00d505618.jpg (249,347 B); a/927dc131014dee16710d45d3ef87f6f5.jpg (425,981 B) vs a/5870756aa9fcdeb42c1ef720d0d55bc4.jpg (294,365 B)",
+   "fix": "Delete the `… asset_img_url: '1200x' }} 1200w,` candidate from the three asset-branch srcsets (band line 50, solar lines 61 and 74) so the browser steps from 900w straight to the lighter 1254w original.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.92,
+     "reason": "The byte inversion in the mirror is real (a/631fadfb… 347,397 B > a/d587b4f6… 249,347 B; a/927dc131… 425,981 B > a/5870756a… 294,365 B), but the fix the finding asks for is already in the files. The asset-branch srcset at /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 50 is `600w, 900w, 1254w` with no 1200w candidate, and the solar asset-branch srcsets at /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid lines 61 and 74 are likewise `600w, 900w, 1254w`. `grep -n 1200` over band/solar/winter hits only the `ens_want = '600,900,1200,1600'` list used for the uploaded-image (image_url) branch, which is not the asset branch the finding targets. Commit 6ea957e (\"... no 1200w candidate ...\") records this removal; the mirror the critic cites is from the earlier simplify/verify-after run, i.e. a stale render predating the current files. A DPR3 390-px phone now steps 900w → 1254w (the lighter original) as requested."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.9,
+     "reason": "The contract does not decide against this: SPEC §3's \"asset_img_url sizes 600/900/1200/1600\" is a mechanism line, not a design choice, and the lead's own amendment (critique/LEAD-DECISIONS.md E1) already rules \"Apply: delete the 1200w candidate from the three asset srcsets\" on the same measurement (347 KB vs 249 KB on the fence). A DPR-3 phone shopper would notice ~100 KB more per photo for a worse-encoded image, which cuts against the owner's \"simple\" and the brief's ≤ 220 KB weight rule; the fix is a deletion inside our own section files (no Kalles edit, no JS, no new section), so it costs nothing. Note the current tree already carries the fix — band line 50 and solar lines 61/74 now step 600w → 900w → 1254w — so acting on it means verifying it is deployed, not re-doing it."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/assets/ens-home-day.jpg",
+   "line": 1,
+   "severity": "major",
+   "where": "the four theme assets (day 294,319 B, night 290,687 B, fence 249,301 B, winter 164,984 B) and what the CDN derives from them",
+   "defect": "BRIEF §2 and SPEC §3 set ≤ 220 KB per asset; three of the four are over (CHOSEN.md records day q74 at 287 KB and night q78 at 283 KB, which means prepare-assets.py was run with a raised --kb, since its default loop would have stepped q down until ≤ 220 KB). Because the CDN re-encodes at its own quality, the phone does not even get the benefit of the smaller variant: the 600w derivatives are 147,267 B (day, 600×600), 142,954 B (night, 600×522) and 122,806 B (fence), so a 390×844 DPR3 phone downloads ≈ 802 KB for the three sections (day 600w 147 + night 600w 143 + winter 1100w 165 + fence 1200w 347) and a DPR2 phone ≈ 669 KB (fence 900w 228, winter 900w 151); a 1366 DPR1 laptop ≈ 955 KB (day/night 900w 280 + 275, winter 900w 151, fence 1254w 249). All of it is lazy and below the fold, which is why this is major rather than blocking, but it is 3.6× the budget the round wrote for itself and the owner report must say so.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/images/CHOSEN.md (287 KB q74 / 283 KB q78 / 243 KB q82); /home/user/ElmsNest/brief/side-pages/simplify/verify-after/mirrors/home/a/0454cf89e7e4e4106d5b08c0412d9d6b.jpg (600×600, 147,267 B), a/70ee80bdb9d876703a36ee827ad78ac5.jpg (600×522, 142,954 B), a/8587383496d943b53e86a7b98535cc30.jpg (600×600, 122,806 B)",
+   "fix": "Re-run images/prepare-assets.py for day, night and fence with the default --kb 220 (the loop lands around q66–70; the foliage/bokeh noise is what inflates them) and re-upsert, or record the accepted overage and the ≈ 800 KB phone figure in the owner report.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": false,
+     "confidence": 0.85,
+     "reason": "The core defect holds. SPEC §3 (line 106) and BRIEF line 38 both set \"JPEG ≤ 220 KB\"; the deployed assets are day 294,319 B, night 290,687 B, fence 249,301 B (only winter 164,984 B is under), confirmed by `ls -l theme/assets/ens-home-*.jpg` and by DEPLOY-LOG.md's byte table. CHOSEN.md records 287 KB q74 / 283 KB q78 / 243 KB q82, and prepare-assets.py's default loop (kb=220, step q down until ≤ kb) cannot produce those, so --kb was raised. The CDN mirrors confirm the derivative sizes: 600×600 147,267 B (day), 600×522 142,954 B (night), 600×600 122,806 B (fence), 900×900 280,107 / 900×782 274,919 (day/night 900w), 1100×580 165,030 (winter), 1254×1254 249,347 (fence). Two caveats that soften but do not refute it: (1) the finding's fence \"1200w 347 KB\" is wrong — the fence asset srcset in elmsnest-s-home-band.liquid lists 600/900/1254w, so a 390 DPR3 phone at sizes=100vw takes the 1254w file (249 KB), making the DPR3 total ≈ 704 KB rather than 802 KB — still ~3.2× the budget; (2) the owner report (OWNER-SECTION.json, \"وزن الصور\" bullet) already records the overage qualitatively (\"165–294 KB, above the 220 cap I set myself, because the day image lost detail below it; the phone gets the 600/900 px CDN variant, all lazy\"), so the \"record it\" half of the fix is partly done, though it does not state the ≈700 KB per-page phone figure."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.9,
+     "reason": "SPEC §3 (line 106, \"JPEG ≤ 220 KB\") and BRIEF §2 (line 38, \"≤ 220 KB\") both set the budget the finding cites, and the contract nowhere waives it; CHOSEN.md records the 287/283/243 KB weights without noting an accepted overage, so the round breached its own written number silently. The three files on disk (294,319 / 290,687 / 249,301 B) confirm the defect, and the fix is the cheapest kind — re-run prepare-assets.py with its default --kb 220 (which the SPEC itself names as the preparation method) or write the overage into the owner report — touching no Kalles file, no JS and no fourth section, and not contradicting simple / nothing twice / own images. A shopper on a phone downloads noticeably more below the fold and the owner is entitled to a report that matches the contract, so acting on it is right."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 108,
+   "severity": "major",
+   "where": ".ens-home-solar__tag on the day frame (the «יום» corner label)",
+   "defect": "The 12-px muted label sits on the brightest part of the day photograph (pale foliage and sky at the top inline-end corner) with only a text-shadow behind it: contrast.txt measures «יום» at p50 3.60:1 / p90 1.75:1 at 390, 3.95 / 1.81 at 360 and 3.31 / 1.45 at 1366, i.e. it fails the 4.5:1 floor even on its median background, and in solar-m.png the glyphs at x 209–226, y 79–95 (section-relative) are barely distinguishable from the leaves. The «לילה» twin on the night frame is fine (6.21 p90) because that frame is dark, so the day frame alone needs help.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt (ens-home-solar-m tag יום 3.60 / 1.75); /home/user/ElmsNest/brief/side-pages/home2/verify/solar-m.png",
+   "fix": "Give the day frame's ::after a top stop too (e.g. `linear-gradient(180deg,rgba(5,8,14,.6) 0,transparent 16%,transparent 45%,rgba(5,8,14,.78) 100%)` on line 107) or set `.ens-home-solar__tag{background:rgba(5,8,14,.6);padding:2px 6px}`.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The finding describes a pass-1 state that no longer exists in the round-2 render or the file. (1) The cited measurement is not in the evidence: /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt contains no `ens-home-solar__tag` / «יום» row at all (only __word, __h2, __line, band__h rows; solar __word rows are 10.1–12.1 p50 / 6.4–8.1 p90), and sizes.json lists only the two __word texts for ens-home-solar-s/m/d. (2) The corner label is not rendered: solar-m.png shows no «יום»/«לילה» tag at the top inline-end corner of either frame — only the foot headlines. The template (/home/user/ElmsNest/theme/templates/index.json, `ens_home_solar` settings: {}) leaves `label_day`/`label_night` empty, and the section (lines 69-71, 82-84) only emits `.ens-home-solar__tag` when those settings are non-blank; SPEC.md line 35-37 and line 87 record labels as struck/empty by default (critique #1). (3) The file already does what the fix asks: line 117 of elmsnest-s-home-solar.liquid sets `.ens-home-solar__tag{...padding:4px 8px;background:rgba(5,8,14,.85);...}` (comment: 14:1 measured on the day frame), so a typed label would sit on a night backing, not just a text-shadow. Commit 6ea957e (\"tags off\", \"text over photos ≥ 6.4:1\") confirms this was the deployed pass-2 fix."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The finding is stale: it cites contrast.txt lines («יום» 3.60/1.75 at ens-home-solar-m) that exist only in the pre-critique commit 9f03a2a and were removed in 6ea957e; the current /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt has no tag rows at all because the label no longer renders. The amended SPEC §1 A decides this deliberately: corner labels «יום»/«לילה» \"exist as settings label_day/label_night but are EMPTY by default … a typed label renders on a .85 night backing\" (LEAD-DECISIONS.md #1, the owner's «nothing twice» — the headlines already say day and night). The current section already implements the finding's own second fix, `.ens-home-solar__tag{…background:rgba(5,8,14,.85);padding:4px 8px}` at theme/sections/elmsnest-s-home-solar.liquid:117 (measured 14:1 on the day frame, c1), and index.json leaves `settings: {}` so nothing is painted on the foliage; the proposed top gradient stop on the day scrim would darken the sky for a label nobody sees, so no shopper or owner consequence remains."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 75,
+   "severity": "major",
+   "where": ".ens-home-band__cap at ≥ 901 (inset-block-end:56px) with object_position_desktop 50% 60%",
+   "defect": "At 1366×900 the sentence box (x 872–1303, y 394–504 per sizes.json) lands on the lower crystal-bulb string: in band-d.png the word «לא» crosses a lit bulb around x 1090–1130, y 395–440 and «סוף הערב.» sits over the bulbs at y 470–500, and contrast.txt gives the sentence p50 8.77:1 but p90 3.93:1 — under the 4.5:1 floor SPEC §1 C set, with the 30 % fade already switched on by default (show_fade true). At 360/390 the same sentence measures 7.03 / 6.74 p90 because the phone crop puts the bulbs lower than the text.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/band-d.png; /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt (ens-home-band-d 8.77 / 3.93); /home/user/ElmsNest/brief/side-pages/home2/verify/sizes.json (ens-home-band-d text box)",
+   "fix": "In the ≥ 901 block raise the caption clear of the bulb row (`.ens-home-band__cap{inset-block-end:120px}`) or change the object_position_desktop default so the string sits below the text, then re-run contrast.py to confirm ≥ 4.5 p90.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The finding does not match the evidence or the file. (1) contrast.txt line for ens-home-band-d reads \"p50 9.92:1 p90 6.65:1\" — not 8.77 / 3.93; a grep of the whole verify tree (including exp/) finds no 3.93 or 8.77 anywhere. p90 6.65 clears the 4.5:1 floor. (2) The premise \"object_position_desktop 50% 60%\" is false: /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 16 defaults to '50% 40%', line 74 applies var(--ens-op-lg,50% 40%) at ≥901, the schema default (line 91) is \"50% 40%\", and index.json passes settings {} so the default applies. The line-67 comment even records that 60% was tried and rejected precisely because the lower bulb string ran through the sentence (3.5:1). (3) band-d.png (1366×560, sizes.json box x 872–1303, y 394–504) shows the sentence on the dark wooden fence at bottom-right; the bulb string runs across the top of the frame (y ≈ 20–260, lowest bulb at far left around y 250) and no bulb is anywhere near x 1090–1130 / y 395–500. The defect as described is not visible and the numbers say otherwise; the file already does what the fix asks (keeps the string above the caption)."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.9,
+     "reason": "The finding is stale: it measures the pre-critique state (object_position_desktop 50% 60%, p90 3.93:1), but SPEC's amendment header and critique/LEAD-DECISIONS.md #2 already decided «object_position_desktop default 50% 60% → 50% 40%. No extra fade», and /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 16/91 ships that default. The current /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt reads ens-home-band-d p50 9.92 / p90 6.65:1, above the 4.5:1 floor of SPEC §5, so the defect no longer exists. Acting on the proposed fix (raising the caption to 120px) would move the sentence off the dark fence the SPEC §1 C places it on, for no shopper gain."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 106,
+   "severity": "minor",
+   "where": ".ens-home-solar__frame::after (the night frame's scrim ends at .72)",
+   "defect": "The glow headline «בלילה נדלק.» measures p90 4.43:1 at 360×640 (4.53 at 390, 5.77 at 1366) — a hair under the floor at the smallest phone because the lamp halo behind the last letters is the brightest tenth of the box. The day frame got a stronger scrim (.78); the night frame's lighter .72 is where the margin is lost.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt (ens-home-solar-s word בלילה נדלק. 8.85 / 4.43); /home/user/ElmsNest/brief/side-pages/home2/verify/solar-s.png",
+   "fix": "Raise the night scrim's end stop from rgba(5,8,14,.72) to .78 on line 106 (matching the day frame).",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The cited evidence does not say what the finding claims. /home/user/ElmsNest/brief/side-pages/home2/verify/contrast.txt line 2 reads: ens-home-solar-s / ens-home-solar__word / בלילה נדלק. / rgb(255,211,148) vs bg p50 10.42:1, p90 6.37:1 — not \"8.85 / 4.43\". At 390 (line 9) p90 is 6.59:1 and at 1366 (line 16) 8.03:1; all three are above the 4.5:1 floor set in SPEC.md line 128. The string \"4.43\" appears nowhere in the verify folder. The file also does not contain the .72 stop the fix targets: /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid line 106 already ends the night scrim at rgba(5,8,14,.84) (starting at 36%), i.e. stronger than the .78 the fix asks for, with a comment recording \"measured 6.4:1 at 360\". The day frame is .78 (line 107). The only \".72\" values in the tree are in verify/exp/candidate-1.css and candidate-3.css, and they belong to the band section's fade, not the solar night frame. The liquid file (08:46) predates the contrast.txt run (08:54), so the measurements reflect the current .84 scrim. The render solar-s.png shows the gold headline on a dark scrim with no lamp halo behind the letters. Defect is neither measurable nor present in the file as described."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The finding's premise does not match the repo: the night scrim on line 114 of elmsnest-s-home-solar.liquid already ends at rgba(5,8,14,.84), not .72, exactly as SPEC §1-A prescribes («the night frame's scrim is rgba(5,8,14,0) 36% → rgba(5,8,14,.84) (measured 6.4:1 behind the glow headline at 360)»). The cited evidence file verify/contrast.txt records «בלילה נדלק.» at p90 6.37:1 at 360, 6.59 at 390 and 8.03 at 1366 — no 4.43 appears anywhere in verify/ — so the 4.5:1 acceptance in SPEC §5 already holds. Applying the proposed «fix» (set the end stop to .78) would actually lower the scrim from .84 and reduce the margin the spec measured."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 84,
+   "severity": "minor",
+   "where": "<ol class=\"ens-home-solar__steps\"> with list-style:none and aria-hidden numerals (lines 86, 89, 92)",
+   "defect": "With `list-style:none` WebKit/VoiceOver drops the list semantics of the `<ol>` unless it carries role=\"list\", and the visible numerals are `aria-hidden`, so an iPhone VoiceOver user hears three bare sentences with no \"list, 3 items\" and no 1 / 2 / 3 — the ordering the section exists to convey. The sibling fit block already does it the right way (`<ul class=\"ens-fit__rows\" role=\"list\">`).",
+   "evidence": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid lines 84–93; /home/user/ElmsNest/theme/sections/elmsnest-s-fit.liquid line 13",
+   "fix": "Add `role=\"list\"` to the `<ol>` and drop `aria-hidden=\"true\"` from the three `.ens-home-solar__num` spans so the `<bdi>1</bdi>` is spoken.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The finding describes markup that no longer exists. The current /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid (HEAD 6ea957e, clean working tree) has no <ol>, no .ens-home-solar__steps, no .ens-home-solar__num, and no aria-hidden anywhere (grep returns nothing). The three numbered steps were cut by the critique (SPEC.md line 43 and the strikethrough row at line 88: «A steps 1–3 … cut (critique #3, #4)») and replaced by a single line. What the file has now at lines 91–101 is `<ul class=\"ens-home-solar__lines\" role=\"list\">` with list-style:none (CSS line 120) — i.e. it already carries role=\"list\", exactly the pattern the fix asks for, and there are no numerals to expose because ordering is no longer conveyed. The cited lines 84/86/89/92 only match the previous commit 6e2c01e, which the pass-2 deploy superseded. The rendered evidence confirms it: solar-m.png shows the diptych followed by one hairlined line («בלי חיבור לחשמל, בלי חשמלאי.») and no 1/2/3 steps. So the VoiceOver defect as described is not present in the contract's current render or source."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The finding targets code that no longer exists: the amended home2 SPEC (§1 A, \"The three numbered steps of the first build were cut by the critique\"; §2 \"~~A steps 1–3~~ … cut (critique #3, #4)\"; §2 rules \"none on the page since the numerals went\") deliberately replaced the `<ol>` with ONE line, and the deployed file (commit 6ea957e) has no `<ol>`, no `.ens-home-solar__num`, and no `aria-hidden` anywhere — the block at lines 84–93 is now `<ul class=\"ens-home-solar__lines\" role=\"list\">`, i.e. exactly the pattern the finding asks for, mirroring `elmsnest-s-fit.liquid` line 13. The critic reviewed the pass-1 build (6e2c01e), so there is nothing left to fix and no shopper or owner consequence; acting on it would be a no-op at best."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 59,
+   "severity": "minor",
+   "where": "alt=\"\" on every photograph in all three files (solar 59/61/72/74, winter 45/52, band 46/53) and the schemas",
+   "defect": "SPEC §2 says alt is empty by default but \"the owner can set an alt through a setting if he wants one\"; none of the three schemas has an alt setting, and the picker branches pass `alt: ''` / `alt=\"\"` explicitly, which also discards any alt the owner typed on the image in Admin. As built the owner has no way to make any of the four photographs non-decorative without editing Liquid.",
+   "evidence": "/home/user/ElmsNest/brief/side-pages/home2/SPEC.md line 81–82; the three schema blocks",
+   "fix": "Add a `text` setting `alt_…` per image (default empty) and render `alt=\"{{ section.settings.alt_x | escape }}\"` (image_tag: `alt: section.settings.alt_day`).",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The files already do what the fix asks. In the committed working tree (HEAD 6ea957e, whose message lists \"alt settings\"), all three sections have a `text` alt setting and render it on both picker and asset branches: solar.liquid lines 20–21 assign `ens_alt_day`/`ens_alt_night` from `section.settings.alt_day`/`alt_night` (`| default: '' | strip | escape`), line 65 passes `alt: ens_alt_day` to image_tag, line 67 renders `alt=\"{{ ens_alt_day }}\"`, lines 78/80 do the same for night, and the schema declares `alt_day` (line 149) and `alt_night` (line 156). winter.liquid line 17 assigns `ens_alt` from `section.settings.alt`, lines 48 and 55 render `alt=\"{{ ens_alt }}\"`, schema line 109 declares the `alt` text setting. band.liquid line 17 / lines 47, 54 / schema line 93 likewise. No literal `alt=\"\"` or `alt: ''` remains in any of the three files (grep on 'alt' shows none). The cited line numbers (59/61/72/74, 45/52, 46/53) do not match the current files, so the finding was against a stale revision (6e2c01e). Default remains empty (decorative) per SPEC §2 line 81–82, and the owner can set alt via the theme editor without editing Liquid."
+    },
+    {
+     "refuted": false,
+     "confidence": 0.85,
+     "reason": "The contract agrees with the finding, not against it: SPEC §2 line 94–95 says \"alt on every image is empty … the owner can set an alt through a setting if he wants one\", so an alt setting per image is required by the contract, is a plain text setting (no Kalles change, no JS, no new section), and it is the owner's only way to make a photograph non-decorative without editing Liquid. The finding is therefore right to act on; note however that it is already acted on in the current tree: commit 6ea957e (\"pass 2 … alt settings\") added `alt_day`/`alt_night` to the solar schema and `alt` to the winter and band schemas, and all three files render `alt=\"{{ ens_alt… }}\"` (solar lines 20–21, 65/67/78/80, schema 149/156; winter 17, 48/55, 109; band 17, 47/54, 93) — the critic's line numbers (59/61/72/74, 45/52, 46/53) match the pre-fix revision. So the ruling is \"correct and already done\": nothing further to build, only mark the finding closed."
+    }
+   ],
+   "survives": true
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 67,
+   "severity": "minor",
+   "where": ".ens-home-band__fig img{position:absolute;inset:0;…} inside a figure whose only height is min-block-size",
+   "defect": "The figure has no in-flow content, so its whole box comes from `min-block-size`, and the photograph is an absolutely positioned layer behind an absolutely positioned figcaption — two positioning layers where one is needed. It renders correctly in every per-section and viewport shot, but it is the one layout on the page that a capture tool left blank, and it is more fragile than flow: any ancestor that later changes `position` or `contain` changes what `inset:0` resolves against.",
+   "evidence": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid lines 65–70; /home/user/ElmsNest/brief/side-pages/home2/verify/band-m.png (painted) vs the full-page capture note",
+   "fix": "Put the image in flow — `.ens-home-band__fig img{display:block;inline-size:100%;block-size:520px;object-fit:cover}` (560px at ≥ 901) — drop `min-block-size` from the figure and keep only the figcaption absolute.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The file already does exactly what the fix asks. /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 68 is `.ens-home-band__fig img{display:block;inline-size:100%;block-size:520px;object-fit:cover;object-position:var(--ens-op,50% 50%)}` and line 74 sets `block-size:560px` at ≥ 901px; the figure rule (line 66) is `position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0` with no `min-block-size`, and grep finds neither `min-block-size` nor `position:absolute;inset:0` anywhere in the file — only the figcaption (line 71) and the optional fade ::after (line 70) are absolute. The header comment (line 3) and the CSS comment (line 67) both state the img is in flow. The quoted \"line 67 .ens-home-band__fig img{position:absolute;inset:0;…}\" does not exist in the committed file (last touched in 6ea957e, working tree clean). The measurements agree with an in-flow image: sizes.json reports ens-home-band-s/m h=520 and ens-home-band-d h=560, matching the img block-size, and band-m.png / band-s.png / band-d.png are fully painted at 390x521, 360x521, 1366x561 (image visible with the sentence at the bottom; no blank capture). The finding describes a previous or imagined version of the rule, not the file on disk."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.85,
+     "reason": "The finding is stale: the file as it stands (commit 6ea957e, /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 67) already has the proposed fix verbatim — `.ens-home-band__fig img{display:block;inline-size:100%;block-size:520px;object-fit:cover;…}` with 560px at ≥ 901, no `min-block-size` on the figure, and only the figcaption (and the optional fade ::after) absolute; the comment on line 66 even says \"the photograph is in flow and sets the figure's height\". There is nothing left to act on, and the critic's own evidence concedes every per-section and viewport shot painted correctly, so no shopper or owner consequence exists. The only remaining wrinkle is that SPEC §1 C names `min-block-size` 520/560 as the mechanism, but that describes the rendered height, which the in-flow image already yields (acceptance measured the band at 520)."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+   "line": 59,
+   "severity": "minor",
+   "where": "image_tag in the two picker branches (lines 59 and 72)",
+   "defect": "The asset branch emits `decoding=\"async\"` but the picker branch's `image_tag` is not given `decoding: 'async'`, so the moment the owner picks his own photographs the two frames decode synchronously on the main thread while the theme asset path does not; the two branches are meant to be interchangeable.",
+   "evidence": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid lines 59 vs 61, 72 vs 74",
+   "fix": "Add `decoding: 'async'` to both `image_tag` calls.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.98,
+     "reason": "The file already does what the fix asks. In /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid both picker-branch image_tag calls carry `decoding: 'async'`: line 65 (`image_tag: loading: 'lazy', decoding: 'async', widths: ens_w_day, ...`) and line 78 (`image_tag: loading: 'lazy', decoding: 'async', widths: ens_w_night, ...`). The asset-branch <img> tags on lines 67 and 80 also carry decoding=\"async\", so the two branches are already interchangeable on this attribute. The finding's line numbers (59/72) do not point at image_tag calls in the current file (line 59 is the heading guard, line 72 the headline_day guard), so it appears to have been written against an earlier revision or misread. A grep for image_tag/decoding shows no image in the section lacking the attribute."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.98,
+     "reason": "The defect does not exist in the file as built: both picker-branch image_tag calls (/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid lines 59 and 72) already read `image_tag: loading: 'lazy', decoding: 'async', widths: ..., sizes: ..., alt: ...`, matching the asset branch's `loading=\"lazy\" decoding=\"async\"` on lines 61 and 74. The two branches are therefore already interchangeable on this attribute, and the proposed fix would be a no-op. The contract (home2/SPEC.md line 26 / BRIEF.md §2 line 42) only requires lazy loading with width/height below the hero and is silent on decoding, so even if it were missing it would be a sub-perceptual nicety rather than something a shopper or the owner would notice."
+    }
+   ],
+   "survives": false
+  },
+  {
+   "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+   "line": 38,
+   "severity": "minor",
+   "where": "aria-label=\"נשימה\" fallback on the <section> when the sentence is blank",
+   "defect": "«נשימה» (breath) is the round's internal working title for the section, not something a shopper would understand as a landmark name; if the owner ever blanks the sentence, a screen reader announces a region called \"breath\" that contains only a decorative image with empty alt — an empty named landmark.",
+   "evidence": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 38 and the schema label on line 85",
+   "fix": "When `sentence` is blank, drop the `aria-label` (leave the section unnamed so it is not exposed as a landmark) instead of naming it after the file.",
+   "lens": "engineer",
+   "votes": [
+    {
+     "refuted": true,
+     "confidence": 0.97,
+     "reason": "The file already does what the fix asks. /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 39 (the <section>) reads: `<section class=\"env2-section ens-home-band\" dir=\"rtl\"{% if section.settings.sentence != blank %} aria-labelledby=\"ens-home-band-p-{{ section.id }}\"{% endif %} style=\"scroll-margin-top:90px\">` — there is no `aria-label=\"נשימה\"` fallback anywhere in the file (grep for `aria-label` returns only that line, and a grep across theme/sections for `aria-label=\"נשימה\"` returns nothing). When `sentence` is blank the section carries no accessible name at all, so it is not exposed as a named landmark; the string «נשימה» appears only in the schema `name` (line 85) and preset (line 96), which are Theme Editor labels, not rendered markup."
+    },
+    {
+     "refuted": true,
+     "confidence": 0.95,
+     "reason": "The defect no longer exists in the file: the `{% else %} aria-label=\"נשימה\"` branch was in the first build (commit 6e2c01e) and was removed in the deployed pass-2 commit (6ea957e); /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 39 now reads `{% if section.settings.sentence != blank %} aria-labelledby=\"ens-home-band-p-{{ section.id }}\"{% endif %}` with no fallback name, which is precisely the proposed fix. The critic was reading a stale revision; acting on it would be a no-op. The SPEC (§1 C, §4) is silent on landmark naming, so the finding is not contract-contrary in itself — just already resolved, and no shopper or owner would notice anything further."
+    }
+   ],
+   "survives": false
+  }
+ ]
+}

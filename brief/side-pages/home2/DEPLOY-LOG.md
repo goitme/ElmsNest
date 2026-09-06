@@ -51,3 +51,13 @@ did not change (the three entries keep `"settings": {}`; every amended default l
 | `sections/elmsnest-s-home-solar.liquid` | 12583 | `b50db842447872575e909da4a93fcd06` | heading «איך עובדת תאורה סולארית?» instead of the 13 px eyebrow; corner labels off by default (a .85 backing when typed); one line «בלי חיבור לחשמל, בלי חשמלאי.» instead of three numbered steps; night scrim .84 from 36 %; desktop crops per frame (50% 40% / 50% 30%); alt settings; `decoding: 'async'` on the picker branch; no 1200w candidate; `role="list"` |
 | `sections/elmsnest-s-home-winter.liquid` | 6307 | `d9e874083095be35eea457e71d79c228` | no border on the figure; heading in the neighbours' clamp; alt setting |
 | `sections/elmsnest-s-home-band.liquid` | 6462 | `e52c23798b25694c08d4ecc7045427a3` | desktop crop default 50% 40% (sentence off the bulbs, 6.6:1); img in flow (520 / 560 px); no 1200w candidate; alt setting; no aria-label when the sentence is blank |
+
+## Sections, 2026-09-06 ~09:20 UTC — pass 3 (the post-fix re-review's three minors, `critique/LEAD-DECISIONS.md` R1–R3)
+
+Two mutations, `userErrors: []` (the first two sends were refused by the MCP's live-theme pre-check while Shopify Admin
+returned 500 again; the MAIN lookup came back after ~5 minutes and both landed).
+
+| file | remote bytes | md5 (remote = local minus final newline) | what changed |
+|---|---|---|---|
+| `sections/elmsnest-s-home-solar.liquid` | 12753 | `ee3d347e04123920f2c366006859427e` | R1 raw alt to `image_tag` (it escapes itself), escaped alt only on the hand-written asset `<img>`; R3 day frame desktop crop 50% 40% → 50% 30% |
+| `sections/elmsnest-s-home-band.liquid` | 6553 | `c26d6d63e5c98d9490a371c0a6ecd93e` | R2 desktop crop 50% 40% → 50% 35% (the top string's bulbs whole at the top edge) |

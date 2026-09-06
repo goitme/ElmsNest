@@ -1,0 +1,217 @@
+{
+  "summary": "Home round 2, after the critique fixes: contract reviewer over the three amended section files + render reviewer over the pass-2 shots; each finding refuted by one skeptic",
+  "agentCount": 6,
+  "logs": [
+    "re-review: contract 1 findings (1 confirmed) · render 3 findings (3 confirmed)"
+  ],
+  "result": [
+    {
+      "lens": "contract",
+      "verdict": "The three section files and index.json match SPEC (amended) and every «Apply» in LEAD-DECISIONS: tags off by default with the .85 ink backing, one line under the frames (line_1 default, line_2/line_3 with no default key), the h2 «איך עובדת תאורה סולארית?» in the neighbours' clamp, night scrim 36 %→.84 with the day rule kept, desktop crops 50% 40% / 50% 30% / band 50% 40%, winter border gone and heading clamp, band img in flow 520/560, 1200w gone from the three asset srcsets, alt settings rendered on both branches, decoding async on image_tag, role=\"list\", no aria-label when the band sentence is blank, 28 px margin on the lines at ≥ 901. Every «Keep» is untouched (index.json card 2 still powerful-solar-garden-light, band sentence, winter frame, no link setting, show_fade .55 unchanged from pass 1). All nine copy strings are byte-identical to SPEC §2, no text setting carries an empty default, schema names are 17–19 chars, radius 0, reduced-motion blocks present, if/endif and for/endfor balanced, mirror reports 0 Liquid errors; the shots show the diptych/winter/band as specified and contrast p90 is 6.37–17:1 everywhere. One minor: the solar picker branch double-escapes an owner-typed alt (the same pattern as the hero); verify.json's homeImages.lazy = 0 is a harness artifact (verify-mirror.js flips loading to eager before counting), not a file defect — all four imgs carry loading=\"lazy\".",
+      "findings": [
+        {
+          "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+          "line": 65,
+          "severity": "minor",
+          "defect": "On the image_picker branch the alt is HTML-escaped twice: ens_alt_day/ens_alt_night are built with `| escape` (lines 20–21) and then handed to image_tag, which escapes attribute values itself, so an owner alt containing & or \" renders as &amp;amp; / &amp;quot;. The asset branch (line 67/80) is correct because it writes the raw attribute. Winter and band are unaffected (raw <img> on both branches). Same pattern exists in the hero (bg_alt), so it is house style, not a regression.",
+          "evidence": "line 20: assign ens_alt_day = section.settings.alt_day | default: '' | strip | escape; line 65: image_tag: … alt: ens_alt_day (and line 78 for the night frame).",
+          "fix": "Pass the unescaped value to image_tag (`alt: section.settings.alt_day | strip`) and keep `| escape` only where the attribute is written by hand on the asset branch (`alt=\"{{ ens_alt_day }}\"`).",
+          "lens": "contract",
+          "vote": {
+            "refuted": false,
+            "confidence": 0.7,
+            "reason": "Code citations hold: /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid lines 20-21 build ens_alt_day/ens_alt_night with `| strip | escape`, and lines 65/78 hand those pre-escaped strings to `image_tag: ... alt: ens_alt_day` / `alt: ens_alt_night`, while the asset branch (lines 67/80) writes `alt=\"{{ ens_alt_day }}\"` by hand where the single escape is correct. Shopify's image_tag HTML-escapes attribute values it emits, so an owner alt containing & or \" on the picker branch would render as &amp;amp; / &amp;quot; — a real but minor defect (no owner alt set: theme/templates/index.json sets no alt_day/alt_night/image_day/image_night, so the deployed render exercises only the asset branch and the shots cannot show it either way). Nothing in SPEC.md or LEAD-DECISIONS.md rules on this; E7 (LEAD-DECISIONS line 39) only requires the alt settings rendered on both branches, which they are. One correction to the finding's framing: the hero (/home/user/ElmsNest/theme/sections/elmsnest-hero.liquid lines 47-60 vs the asset <img> below) passes the raw `section.settings.image_alt` to image_tag and escapes only on the hand-written branch — i.e. the hero already does what the proposed fix says, so this is not house style but an inconsistency in the solar section. Residual uncertainty is only in image_tag's escaping being assumed rather than reproduced in a render."
+          }
+        }
+      ]
+    },
+    {
+      "lens": "render",
+      "verdict": "Pass 2 renders as the amended SPEC and every lead «Apply» describes: the diptych headlines sit cleanly on their scrims at all three widths (p90 6.37–8.14:1, the night word's 6.37 at 360 is the lead's measured 6.4), the three consecutive h2s are one scale at 1366 (cap runs 31/29/31 px — «איך עובדת תאורה סולארית?», «ובחורף?», «מתי כן, ומתי לא»), the winter figure has no border, the band's sentence sits on the dark boards with the lower string out of frame (6.65:1 at d), and nothing the critique flagged has come back (no tags, no numbered steps, no eyebrow, no hairline frame). The one line on two hairlines reads as a deliberate caption row at 360/390 (the same hairline-row idiom the fit block uses right after it); at 1366 a 215-px sentence on 1240-px hairlines reads a touch orphaned but not broken, and the 28 px gap above it keeps it off the frames — acceptable as the SPEC says. Section-to-neighbour spacing is consistent (≈128 px between the padded sections at d, ≈90 at m; the full-bleed band sits ≈70 px from the fit block and the terms heading by design). Three minors remain, all crop or scale nudges: one bulb still cut by the band's top edge at 1366 (the lead's #2 claimed 40% settled this — it mostly did), the day frame's far heads now kiss the top edge at 1366, and at phone widths the on-frame words (28 px) outrank the section heading (25 px).",
+      "findings": [
+        {
+          "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid",
+          "line": 16,
+          "severity": "minor",
+          "defect": "At 1366 one crystal bulb on the top string is sliced by the section's top edge with the new «50% 40%» desktop crop (the bulb at x≈475–518 in band-d.png; its neighbour at x≈590 keeps its cap). LEAD-DECISIONS #2 said the 40% crop «also settles the owner's minor (half-bulbs sliced at the top edge with 60%)» — it reduced it from a row of half-bulbs to one, but a cut bulb is still the first thing at the band's top edge in home-d-js-full.png and band-d-viewport.png.",
+          "evidence": "band-d.png rows 0–2 have a bright (lum > 170) run at x 475–518; band-s.png and band-m.png have none. Sentence p90 6.65:1 at d (contrast.txt line 21), so there is margin to move the crop.",
+          "fix": "Change the `object_position_desktop` default from '50% 40%' to '50% 35%' (line 16 and the schema default on line 91) — ≈ 40 px more of the top at 1366 brings the bulb's crown in and pushes the lower string further from the sentence; re-run contrast.py for the d sentence (expect ≥ 6.65:1).",
+          "lens": "render",
+          "vote": {
+            "refuted": false,
+            "confidence": 0.85,
+            "reason": "Checked and it holds. /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 16 and the schema default on line 91 are «50% 40%» (matching SPEC.md line 5 and LEAD-DECISIONS #2, which claims the 40% crop «also settles the owner's minor (half-bulbs sliced at the top edge with 60%)»). In band-d.png (1366×561) rows 0–5 have a contiguous lum>170 run at x 477–518 (row 0: 477–517; row 5: 473–518); a magnified crop of x 400–700 / y 0–120 shows that bulb (and the dimmer one at x≈400–430) with its crown cut by the section's top edge, while the neighbour at x≈590 keeps its cap. band-s.png and band-m.png have no bright run on row 0. band-d-viewport.png shows the same cut at the band's first row (y=674). contrast.txt line 21 gives the d sentence p90 6.65:1, so there is headroom to move the crop to 35% as proposed. Severity minor is fair; note the fix would deviate from the amended SPEC's stated «50% 40%» and would need the lead's sign-off, but the defect as described is real."
+          }
+        },
+        {
+          "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+          "line": 17,
+          "severity": "minor",
+          "defect": "The new day-frame desktop crop «50% 40%» (#8) brings the nearest panel crown into the frame (≈ 38 px clearance in solar-d.png), but the second lamp's panel disc now touches the top edge and the third lamp's glass bowl is sliced by it — the far heads of the day frame are cut where the night frame's are not (the night frame's «50% 30%» shows every head intact).",
+          "evidence": "solar-d.png, day frame x 683–1303, y 147–535: second head disc top at y≈148–152, third head's disc outside the frame (zoomed crop 960–1220 × 147–230). Day word p90 8.14:1 at d (contrast.txt line 15) so the bottom of the crop can afford to lose 12 px of pavement.",
+          "fix": "Set `object_position_day_desktop` default to '50% 35%' (line 17 and schema line 146): at 16:10 on a square frame the overflow is 232 px, so 5% ≈ 12 px more sky — the second head clears the edge and the nearest crown keeps ≈ 50 px; the third head stays partly cut (inherent to 16:10 of a 1:1 frame), or accept as is.",
+          "lens": "render",
+          "vote": {
+            "refuted": false,
+            "confidence": 0.6,
+            "reason": "Checked the shot and the files. solar-d.png (1366x676), day frame crop 683–1303 × 147–535: the nearest lamp's panel crown is fully inside the frame (≈ 35–40 px of foliage above it), but the second lamp's panel disc sits flush against the top edge (its rim is the first row of pixels, y≈148–152) and the third lamp shows only its glass bowl — the disc is above the frame. The night frame (60–683 × 147–535, «50% 30%») shows all four heads with their discs intact. So the observation holds as stated. Files: theme/sections/elmsnest-s-home-solar.liquid line 17 `default: '50% 40%'` and schema line 146 `\"default\": \"50% 40%\"`, applied at ≥ 901 with `aspect-ratio:16/10` (lines 122–125). Contrast.txt line 15: day word at d p90 8.14:1, so a few px less pavement is affordable. Caveat on the fix, not the defect: LEAD-DECISIONS #8 (line 18) and SPEC §1 A lines 46–48 fixed the day desktop default at exactly «50% 40%» and the ruling's stated target for the day frame was only «the nearest panel crown» (now satisfied) — the far heads of the day frame were never part of the ruling, so this is a new minor observation, not a ruling breach; changing the default to «50% 35%» would need the SPEC value amended, otherwise it is an owner one-field setting. Severity minor is right."
+          }
+        },
+        {
+          "file": "/home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid",
+          "line": 118,
+          "severity": "minor",
+          "defect": "At 360/390 the on-frame words «ביום נטען.» / «בלילה נדלק.» (28 px, Frank Ruhl 700) are larger than the section's own h2 «איך עובדת תאורה סולארית?» (clamp floor 25 px) — the caption on the photograph outranks the heading that scopes it, which is the inverse of the hierarchy the lead's #5 wanted (the scope word at heading weight). At 1366 both are 44 px, so the heading and the words are equal weight, not a lead-and-follow. The SPEC set both numbers (28 px words, clamp(25px,3.4vw,44px) heading), so this is the SPEC's two numbers colliding, not a build error.",
+          "evidence": "Pixel scan of home-m-js-full.png: on-frame word glyph run 17 px (y 2654–2670) vs «ובחורף?» 15 px (3071–3085) and «מתי כן, ומתי לא» 14 px (3286–3299); solar-m.png / solar-s.png show the words visibly heavier than the heading above them. home-d-js-full.png: heading cap run 31 px, word run 30 px (same 44 px).",
+          "fix": "Accept (the words are the section's payload and the h2 still leads by position), or if the lead wants the heading to win at phones: `.ens-home-solar__word{font-size:26px}` on line 118 (the frames are 4:5 at 390, a 26 px word still fills the foot) and leave the ≥ 901 rule at 44 px.",
+          "lens": "render",
+          "vote": {
+            "refuted": false,
+            "confidence": 0.7,
+            "reason": "The measured facts hold. /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid line 108 sets the h2 to clamp(25px,3.4vw,44px), which resolves to the 25 px floor at 360 and 390 (3.4vw = 12.2 / 13.3 px), and line 118 sets .ens-home-solar__word to 28 px (line 128: 44 px at >= 901). verify/sizes.json confirms: word boxes h 29 at s/m and h 45 at d; the winter h2 on the same clamp has box h 28 at s/m and 48 at d, i.e. the on-frame words are 3 px larger than the section heading on phones and equal at 1366. solar-m.png shows it: the two words on the frames read visibly heavier than «איך עובדת תאורה סולארית?» above them; solar-d.png shows heading and words at the same size, with the heading leading by position only. Neither the SPEC nor the rulings decide the point the other way: SPEC.md lines 32 and 37-38 fix both numbers (clamp heading, 28/44 px words) without addressing their relation, and LEAD-DECISIONS.md #5 only asks for the scope word \"at heading weight\", not for the heading to outrank the words. So this is correctly a SPEC-level collision, not a build defect; the build matches the contract exactly, the severity is minor, and \"accept\" is a legitimate resolution, but the observation itself is not refuted."
+          }
+        }
+      ]
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Re-review"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "rereview:contract",
+      "phaseIndex": 1,
+      "phaseTitle": "Re-review",
+      "agentId": "a192517193c3f03c6",
+      "model": "claude-fable-5-1",
+      "state": "done",
+      "startedAt": 1788684947974,
+      "queuedAt": 1788684944542,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "contract",
+      "promptPreview": "Repo /home/user/ElmsNest. ElmsNest home round 2 (Hebrew RTL Shopify store, Kalles 5.4.2, dev theme only). The contract is /home/user/ElmsNest/brief/side-pages/home2/SPEC.md (amended, read the note at its top and §1–§5); the critique's rulings are /home/user/ElmsNest/brief/side-pages/home2/critique/LEAD-DECISIONS.md (the first table + the engineer table — every «Apply» there must be in the files, e…",
+      "lastProgressAt": 1788685099791,
+      "tokens": 113876,
+      "toolCalls": 26,
+      "durationMs": 151103,
+      "resultPreview": "{\"lens\":\"contract\",\"verdict\":\"The three section files and index.json match SPEC (amended) and every «Apply» in LEAD-DECISIONS: tags off by default with the .85 ink backing, one line under the frames (line_1 default, line_2/line_3 with no default key), the h2 «איך עובדת תאורה סולארית?» in the neighbours' clamp, night scrim 36 %→.84 with the day rule kept, desktop crops 50% 40% / 50% 30% / band 50% …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "rereview:render",
+      "phaseIndex": 1,
+      "phaseTitle": "Re-review",
+      "agentId": "a20f6492484e51fbd",
+      "model": "claude-fable-5-1",
+      "state": "done",
+      "startedAt": 1788684947222,
+      "queuedAt": 1788684944542,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "render",
+      "promptPreview": "Repo /home/user/ElmsNest. ElmsNest home round 2 (Hebrew RTL Shopify store, Kalles 5.4.2, dev theme only). The contract is /home/user/ElmsNest/brief/side-pages/home2/SPEC.md (amended, read the note at its top and §1–§5); the critique's rulings are /home/user/ElmsNest/brief/side-pages/home2/critique/LEAD-DECISIONS.md (the first table + the engineer table — every «Apply» there must be in the files, e…",
+      "lastProgressAt": 1788685206205,
+      "tokens": 105315,
+      "toolCalls": 35,
+      "durationMs": 258982,
+      "resultPreview": "{\"lens\":\"render\",\"verdict\":\"Pass 2 renders as the amended SPEC and every lead «Apply» describes: the diptych headlines sit cleanly on their scrims at all three widths (p90 6.37–8.14:1, the night word's 6.37 at 360 is the lead's measured 6.4), the three consecutive h2s are one scale at 1366 (cap runs 31/29/31 px — «איך עובדת תאורה סולארית?», «ובחורף?», «מתי כן, ומתי לא»), the winter figure has no b…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "skeptic:contract",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a7110bf6eb6b968be",
+      "model": "claude-fable-5-1",
+      "state": "done",
+      "startedAt": 1788685107043,
+      "queuedAt": 1788685105756,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Code citations hold: /home/user/ElmsNest/theme/sections/elm…",
+      "promptPreview": "Repo /home/user/ElmsNest. ElmsNest home round 2 (Hebrew RTL Shopify store, Kalles 5.4.2, dev theme only). The contract is /home/user/ElmsNest/brief/side-pages/home2/SPEC.md (amended, read the note at its top and §1–§5); the critique's rulings are /home/user/ElmsNest/brief/side-pages/home2/critique/LEAD-DECISIONS.md (the first table + the engineer table — every «Apply» there must be in the files, e…",
+      "lastProgressAt": 1788685337211,
+      "tokens": 57446,
+      "toolCalls": 7,
+      "durationMs": 230167,
+      "resultPreview": "{\"refuted\":false,\"confidence\":0.7,\"reason\":\"Code citations hold: /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid lines 20-21 build ens_alt_day/ens_alt_night with `| strip | escape`, and lines 65/78 hand those pre-escaped strings to `image_tag: ... alt: ens_alt_day` / `alt: ens_alt_night`, while the asset branch (lines 67/80) writes `alt=\\\"{{ ens_alt_day }}\\\"` by hand where the sing…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "skeptic:render",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a131def0d62f061bd",
+      "model": "claude-fable-5-1",
+      "state": "done",
+      "startedAt": 1788685214028,
+      "queuedAt": 1788685207443,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Checked and it holds. /home/user/ElmsNest/theme/sections/el…",
+      "promptPreview": "Repo /home/user/ElmsNest. ElmsNest home round 2 (Hebrew RTL Shopify store, Kalles 5.4.2, dev theme only). The contract is /home/user/ElmsNest/brief/side-pages/home2/SPEC.md (amended, read the note at its top and §1–§5); the critique's rulings are /home/user/ElmsNest/brief/side-pages/home2/critique/LEAD-DECISIONS.md (the first table + the engineer table — every «Apply» there must be in the files, e…",
+      "lastProgressAt": 1788685265514,
+      "tokens": 56363,
+      "toolCalls": 6,
+      "durationMs": 51485,
+      "resultPreview": "{\"refuted\":false,\"confidence\":0.85,\"reason\":\"Checked and it holds. /home/user/ElmsNest/theme/sections/elmsnest-s-home-band.liquid line 16 and the schema default on line 91 are «50% 40%» (matching SPEC.md line 5 and LEAD-DECISIONS #2, which claims the 40% crop «also settles the owner's minor (half-bulbs sliced at the top edge with 60%)»). In band-d.png (1366×561) rows 0–5 have a contiguous lum>170 …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "skeptic:render",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "ada2a70b15e2b0fde",
+      "model": "claude-fable-5-1",
+      "state": "done",
+      "startedAt": 1788685268916,
+      "queuedAt": 1788685207443,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Checked the shot and the files. solar-d.png (1366x676), day…",
+      "promptPreview": "Repo /home/user/ElmsNest. ElmsNest home round 2 (Hebrew RTL Shopify store, Kalles 5.4.2, dev theme only). The contract is /home/user/ElmsNest/brief/side-pages/home2/SPEC.md (amended, read the note at its top and §1–§5); the critique's rulings are /home/user/ElmsNest/brief/side-pages/home2/critique/LEAD-DECISIONS.md (the first table + the engineer table — every «Apply» there must be in the files, e…",
+      "lastProgressAt": 1788685321233,
+      "tokens": 61560,
+      "toolCalls": 7,
+      "durationMs": 52317,
+      "resultPreview": "{\"refuted\":false,\"confidence\":0.6,\"reason\":\"Checked the shot and the files. solar-d.png (1366x676), day frame crop 683–1303 × 147–535: the nearest lamp's panel crown is fully inside the frame (≈ 35–40 px of foliage above it), but the second lamp's panel disc sits flush against the top edge (its rim is the first row of pixels, y≈148–152) and the third lamp shows only its glass bowl — the disc is ab…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "skeptic:render",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a3886a7fae5b3e78e",
+      "model": "claude-fable-5-1",
+      "state": "done",
+      "startedAt": 1788685324694,
+      "queuedAt": 1788685207444,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "The measured facts hold. /home/user/ElmsNest/theme/sections…",
+      "promptPreview": "Repo /home/user/ElmsNest. ElmsNest home round 2 (Hebrew RTL Shopify store, Kalles 5.4.2, dev theme only). The contract is /home/user/ElmsNest/brief/side-pages/home2/SPEC.md (amended, read the note at its top and §1–§5); the critique's rulings are /home/user/ElmsNest/brief/side-pages/home2/critique/LEAD-DECISIONS.md (the first table + the engineer table — every «Apply» there must be in the files, e…",
+      "lastProgressAt": 1788685367990,
+      "tokens": 61278,
+      "toolCalls": 6,
+      "durationMs": 43295,
+      "resultPreview": "{\"refuted\":false,\"confidence\":0.7,\"reason\":\"The measured facts hold. /home/user/ElmsNest/theme/sections/elmsnest-s-home-solar.liquid line 108 sets the h2 to clamp(25px,3.4vw,44px), which resolves to the 25 px floor at 360 and 390 (3.4vw = 12.2 / 13.3 px), and line 118 sets .ens-home-solar__word to 28 px (line 128: 44 px at >= 901). verify/sizes.json confirms: word boxes h 29 at s/m and h 45 at d; …"
+    }
+  ],
+  "totalTokens": 455838,
+  "totalToolCalls": 87
+}
