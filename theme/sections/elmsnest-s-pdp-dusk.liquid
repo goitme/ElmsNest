@@ -1,0 +1,125 @@
+{%- comment -%}
+  ElmsNest S — PDP dusk row (PDP2 SPEC §1 B, «כשמחשיך»). Solar products only: one hairline row in the
+  facts' <dl> rhythm — the heading «כשמחשיך» and two sentences about the sun dependency, no image, no
+  link, no button. The solar gate is copied verbatim from snippets/elmsnest-s-place.liquid (three states:
+  custom.power_source == 'סולארי'; when that metafield is unwritten, the product's own description +
+  title must contain 'סולארי'; anything else is not solar). A product that fails the gate — the mains wall
+  lights, the rechargeable spot, the mains bollard, the dual-head, the camping lantern, the USB globe
+  string, the 220V net, the battery birch branches — prints NOTHING: no section root, no style, no
+  substitute line (the facts already print the connection the bullets state). No product data changes.
+  Copy is byte-identical to SPEC §2 (heading has no period, each sentence keeps its own); the owner's
+  text settings run through the same Latin/number <bdi dir="ltr"> token loop as elmsnest-s-pdp-facts (P6),
+  so a typed «IP65» never flips. ≤ 160 px at 390: 1 hairline + 20 + 22 (h2) + 6 + 2×24 (p) + 22 + 16.
+  Tokens come from elmsnest-v2-core (global); this file only adds ens-pdp-dusk* rules.
+{%- endcomment -%}
+{%- if product != blank -%}
+{%- liquid
+  # solar test, copied verbatim from snippets/elmsnest-s-place.liquid lines 73-82 (three states)
+  assign ens_pwr = product.metafields.custom.power_source | default: '' | strip
+  assign ens_solar = false
+  if ens_pwr == 'סולארי'
+    assign ens_solar = true
+  elsif ens_pwr == ''
+    assign ens_hay = product.description | strip_html | append: ' ' | append: product.title
+    if ens_hay contains 'סולארי'
+      assign ens_solar = true
+    endif
+  endif
+-%}
+{%- if ens_solar -%}
+{%- liquid
+  assign RS = '~~R~~'
+  assign latin_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  assign ens_heading = section.settings.heading | default: '' | strip | escape
+  assign ens_l1 = section.settings.line_1 | default: '' | strip | escape
+  assign ens_l2 = section.settings.line_2 | default: '' | strip | escape
+  assign ens_lines = ens_l1 | append: RS | append: ens_l2 | append: RS | append: ens_heading
+  assign ens_parts = ens_lines | split: RS
+-%}
+{%- comment -%} P6: every Latin/number token in ONE ltr isolate (whole tokens, adjacent ones merged), then the en-dash range isolator — the elmsnest-s-pdp-facts loop, run on the two sentences and the heading {%- endcomment -%}
+{%- capture ens_html -%}
+{%- for part in ens_parts -%}
+  {%- liquid
+    assign words = part | split: ' '
+    assign v = ''
+    for w in words
+      assign c = w | slice: 0, 1
+      if c != blank and latin_chars contains c
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      elsif w == '&' or w == '&amp;' or w == '+' or w == '/'
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      else
+        assign tok = w
+      endif
+      if forloop.first
+        assign v = tok
+      else
+        assign v = v | append: ' ' | append: tok
+      endif
+    endfor
+    assign v = v | replace: '</bdi> <bdi dir="ltr">', ' '
+  -%}
+  {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: v -%}{%- endcapture -%}
+  {%- assign v = v | strip | replace: '<bdi>', '<bdi dir="ltr">' -%}
+  {%- unless forloop.first -%}{{ RS }}{%- endunless -%}{{ v }}
+{%- endfor -%}
+{%- endcapture -%}
+{%- liquid
+  assign ens_out = ens_html | strip | split: RS
+  assign ens_l1_html = ens_out[0] | default: '' | strip
+  assign ens_l2_html = ens_out[1] | default: '' | strip
+  assign ens_h_html = ens_out[2] | default: '' | strip
+  assign ens_p_html = ens_l1_html
+  if ens_l1_html != '' and ens_l2_html != ''
+    assign ens_p_html = ens_l1_html | append: ' ' | append: ens_l2_html
+  elsif ens_l1_html == ''
+    assign ens_p_html = ens_l2_html
+  endif
+-%}
+{%- if ens_h_html != '' or ens_p_html != '' -%}
+<style>
+.ens-pdp-dusk{padding-block:0 16px;margin:0}
+/* the facts' hairline-row rhythm (elmsnest-s-pdp-facts .ens-facts__row): one border-block-start, 20/22 padding */
+.ens-pdp-dusk__row{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;border-block-start:1px solid #1f1e1d;border-radius:0;padding-block:20px 22px}
+.ens-pdp-dusk__h{margin:0;font-family:var(--env2-serif,'Frank Ruhl Libre',serif);font-weight:700;font-size:20px;line-height:1.1;color:#f4eee3;text-wrap:balance}
+.ens-pdp-dusk__p{margin:0;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:300;font-size:16px;line-height:1.5;color:#c9c4b8;max-inline-size:52ch}
+.ens-pdp-dusk bdi{unicode-bidi:isolate}
+@media (min-width:901px){
+  .ens-pdp-dusk{padding-block:0 24px}
+  .ens-pdp-dusk__row{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline}
+  .ens-pdp-dusk__h{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-pdp-dusk,.ens-pdp-dusk *{transition:none!important;animation:none!important}
+}
+</style>
+<section id="ens-pdp-dusk-{{ section.id }}" class="env2-section ens-pdp-dusk" dir="rtl"{% if ens_h_html != '' %} aria-labelledby="ens-pdp-dusk-h-{{ section.id }}"{% endif %} style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    <div class="ens-pdp-dusk__row">
+      {%- if ens_h_html != '' -%}<h2 class="ens-pdp-dusk__h" id="ens-pdp-dusk-h-{{ section.id }}">{{ ens_h_html }}</h2>{%- endif -%}
+      {%- if ens_p_html != '' -%}<p class="ens-pdp-dusk__p">{{ ens_p_html }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "ElmsNest S — כשמחשיך",
+  "tag": "section",
+  "class": "ens-pdp-section hdt-section",
+  "settings": [
+    { "type": "paragraph", "content": "שורה אחת למוצרים סולאריים בלבד: כותרת ושני משפטים על השמש. במוצר שאינו סולארי (חשמל, USB, סוללות) הסקשן לא מודפס כלל. הבדיקה: שדה power_source = סולארי, או המילה סולארי בכותרת או בתיאור המוצר." },
+    { "type": "text", "id": "heading", "label": "כותרת (בלי נקודה בסוף)", "default": "כשמחשיך" },
+    { "type": "text", "id": "line_1", "label": "משפט ראשון", "default": "ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה." },
+    { "type": "text", "id": "line_2", "label": "משפט שני", "default": "יותר שמש ביום, יותר אור בלילה.", "info": "עובדה כללית על השמש, בלי מספרים, בלי שעות, בלי הבטחה שהאור נדלק לבד." }
+  ],
+  "presets": [
+    { "name": "ElmsNest S — כשמחשיך" }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}
