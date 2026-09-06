@@ -1,5 +1,15 @@
 # Product page, round 2 — SPEC (2026-09-06): two sections, one photograph, the store's own frames only
 
+> **Amended after the critique of the deployed render** (`critique/LEAD-DECISIONS.md`, 2026-09-06): the rope frame is
+> re-cut below its baked IP65 badge (y 380 → 1254×874 — the first pre-crop, read off a thumbnail, was wrong), the powerful
+> bollard frame loses the legs at its top-right (y 90 → 1254×1040), the step-light frame its headline stroke (y 345 →
+> 854×909); stainless and the path scene are 1100 px / ≤ 220 KB; lantern 9 crops at «0% 50%», edison at «50% 30%» on
+> desktop; the spot line drops its «בלילה» («אור מכוון אל מה שרוצים לראות.»); the camping lantern is headed «בלילה, בשטח»
+> (`heading_portable`); the text-only state renders as a hairline row (20/22 px heading, the facts' `<dl>` column at
+> ≥ 901); the dusk row sets each sentence on its own line inside a closed row (hairline above and below, 16 px of air
+> above, the facts' column at ≥ 901); the fallback option shows no photograph when its pictured product is not live; a
+> file narrower than 1254 offers its own width as a srcset candidate. The amended text is inline below.
+
 Lead's synthesis after five concepts and five judges (`concepts/`, ranking **one 49.75 · scene 49.25** · places 42.5 ·
 checks 36.75 · dusk 36.25 — a tie at the top: the owner and the honesty judge put *scene* first, the shopper, the
 designer and the engineer put *one* first, and every judge named the other as the thing to borrow from). Built:
@@ -101,7 +111,8 @@ minmax(0,1fr)` like a facts row (heading in the label column). No image, no link
 | A heading override | «בערב, בבית» | map: `lighted-birch-branches-20-led` (indoor) | the listing's «לעיצוב הבית» |
 | A line, path | «אור נמוך, קרוב לאדמה, שמלווה את הדרך.» | שביל | what a bollard's light is by its form; no reach, no hours, no lumens |
 | A line, wall | «אור על הקיר, בדיוק בנקודה שבחרתם.» | קיר | a wall light lights the wall it is mounted on; the shopper judges' clearest line |
-| A line, spot | «אור מכוון אל מה שרוצים לראות בלילה.» | גינה | true of a spot, a floodlight and a security light alike (a beam or a flood is aimed) — the honesty judge's correction of «אלומה אחת ממוקדת» |
+| A line, spot | «אור מכוון אל מה שרוצים לראות.» | גינה | true of a spot, a floodlight and a security light alike (a beam or a flood is aimed) — the honesty judge's correction of «אלומה אחת ממוקדת»; the critique cut its «בלילה» (four in 290 px on the text-only pages: the heading already says when) |
+| A heading override | «בלילה, בשטח» | map: `rechargeable-telescopic-camping-lantern` (spot family, no clean frame) | the listing's own word («בשטח»); it never mentions a garden (critique H3) |
 | A line, decor | «הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו.» | מרפסת | the nature of a string; no strength claim except by contrast |
 | A link | «למדריך לבחירת תאורה ←» | all | the licensed ל־ infinitive form (P4); the PDP's first and only guide link |
 | A credit (option) | «בתמונה: {title}» | `scene_fallback` on, pictured ≠ page product | the pictured product's own title, verbatim, linked |
@@ -121,11 +132,11 @@ Per-product map (gallery position ≠ 1 everywhere; the frame is the page's own 
 
 | handle | asset | source frame · crop (x,y,w,h in the 1254² source) | crops `--ens-op` / `--ens-op-lg` |
 |---|---|---|---|
-| `stainless-steel-solar-path-light-ip65` | `ens-pdp-stainless.jpg` | `_6` steps · none | 50% 55% / 50% 45% |
-| `powerful-solar-garden-light` | `ens-pdp-powerful.jpg` | `_4` lit bollards, patterns · pre-crop 0,0,1254,1130 (the «מתאים לגינה» caption sat below y 1150; confirmed by eye) | 50% 50% / 50% 40% |
-| `solar-rope-string-lights` | `ens-pdp-rope.jpg` | `_3` rope on the trunk, panel · pre-crop 0,210,1254,1044 (the IP65 badge is above y 200) | 50% 50% / 50% 50% |
+| `stainless-steel-solar-path-light-ip65` | `ens-pdp-stainless.jpg` | `_6` steps · none; 1100×1100 q70 (pass 2: the 1254 file was 304 KB and its 900w CDN derivative 281 KB) | 50% 55% / 50% 45% |
+| `powerful-solar-garden-light` | `ens-pdp-powerful.jpg` | `_4` lit bollards, patterns · pre-crop 0,90,1254,1040 (the «מתאים לגינה» caption sat below y 1150 and a person's legs at the top-right edge above y 90 — pass 2) | 50% 50% / 50% 40% |
+| `solar-rope-string-lights` | `ens-pdp-rope.jpg` | `_3` rope on the trunk, lantern, panel · pre-crop 0,380,1254,874 (the IP65 badge spans y ≈ 185–355; the first crop at y 210 left it in the file — the critique's blocker, pass 2) | 50% 50% / 50% 50% |
 | `solar-crystal-ball-string-lights` | `ens-pdp-crystal.jpg` | `_3` trellis · none (`_5` is the home band) | 50% 50% / 50% 50% |
-| `solar-edison-string-lights` | `ens-pdp-edison.jpg` | `_4` patio table, panel · none | 50% 50% / 50% 45% |
+| `solar-edison-string-lights` | `ens-pdp-edison.jpg` | `_4` patio table, panel · none | 50% 50% / 50% 30% (pass 2: the first bulb kept its socket at 1366) |
 | `solar-firefly-garden-lights` | `ens-pdp-firefly.jpg` | `_4` ferns · none | 50% 50% / 50% 50% |
 | `lighted-birch-branches-20-led` | `ens-pdp-birch.jpg` | `_4` hallway, two vases · none (indoor; heading «בערב, בבית») | 50% 50% / 50% 55% |
 | `outdoor-bidirectional-led-wall-light-ip65` | `ens-pdp-bidirectional.jpg` | `_6` slate wall · none | 50% 50% / 50% 45% |
@@ -134,8 +145,8 @@ Per-product map (gallery position ≠ 1 everywhere; the frame is the page's own 
 | `modern-led-wall-light-6w-up-down` | `ens-pdp-wall-6w.jpg` | `_7` black cube on the dark wall · none (1000 px source — the 900 candidate is the largest; softness noted for the owner) | 50% 50% / 50% 50% |
 | `dual-head-garden-light-10w-ip65` | `ens-pdp-dual-head.jpg` | `_5` bollard aiming into the planting · pre-crop 0,0,930,1254 (the LUMIÈRE sign is at x > 935 — the whole panel stays out of the file; 930 px wide, the short side, renders at 390 without upscaling and at 1366 like every other 1254 source, ×1.1–1.5) | 50% 50% / 50% 45% |
 | `modern-solar-path-lights-set` | `ens-pdp-modern-path.jpg` | `_3` dusk path, three curved bollards, the house · pre-crop 0,380,1254,660 (the headline and subtitle above, the icon strip below; confirmed by eye) | 50% 60% / 50% 55% |
-| `solar-garden-lantern-9-led` | `ens-pdp-lantern9.jpg` | `_6` the spot in the rain lighting the wet shrub · pre-crop 0,300,1254,680 (headline above, weather icons below; confirmed) | 40% 50% / 50% 50% |
-| `warm-solar-step-deck-lights` | `ens-pdp-warm-step.jpg` | `_2` the lit stairs · pre-crop 400,330,854,924 (the gold headline and the icon column are on the left; confirmed) | 50% 50% / 50% 50% |
+| `solar-garden-lantern-9-led` | `ens-pdp-lantern9.jpg` | `_6` the spot in the rain lighting the wet shrub · pre-crop 0,300,1254,680 (headline above, weather icons below; confirmed) | 0% 50% / 50% 50% (pass 2: the spot and its panel whole at 390/360) |
+| `warm-solar-step-deck-lights` | `ens-pdp-warm-step.jpg` | `_2` the lit stairs · pre-crop 400,345,854,909 (the gold headline and the icon column are on the left; a stroke of the headline sat on the top edge at y 330 — pass 2) | 50% 50% / 50% 50% |
 | ~~candidates~~ | `swaying-solar-path-lights-ip65_4` rejected (the «נטען ביום • מאיר בלילה» pill sits exactly where the far lamp heads are — no band is both clean and whole); `retro-solar-path-lights-set_6` rejected (four labelled quadrants) | a band ≥ 600 px tall from the full 1254 width is enough for a 440/560 px band (no vertical upscaling); rejected if any glyph, badge or icon survives |
 
 Fifteen products carry their own frame. No frame (text-only A by default), twelve: `magnetic-rechargeable-touch-wall-light`,
@@ -149,7 +160,7 @@ Collection scenes (the `scene_fallback` option, off by default; each shows a sib
 
 | collection | asset | source frame | pictured product (credit) |
 |---|---|---|---|
-| path | `ens-pdp-scene-path.jpg` | `stainless-steel-solar-path-light-ip65_1` (hedge, wet pavers — not `_6`, so the stainless page and a fallback page never show the same frame) | `stainless-steel-solar-path-light-ip65` |
+| path | `ens-pdp-scene-path.jpg` (1100×1100 q70, pass 2) | `stainless-steel-solar-path-light-ip65_1` (hedge, wet pavers — not `_6`, so the stainless page and a fallback page never show the same frame) | `stainless-steel-solar-path-light-ip65` |
 | wall | `ens-pdp-scene-wall.jpg` | `outdoor-bidirectional-led-wall-light-ip6_1` (dusk patio, cylinder — not `_6`) | `outdoor-bidirectional-led-wall-light-ip65` |
 | spot | `ens-pdp-dual-head.jpg` (the same file as the dual-head's own) | `dual-head-garden-light-10w-ip65_5` pre-crop | `dual-head-garden-light-10w-ip65` |
 | decor | `ens-pdp-scene-decor.jpg` | `solar-edison-string-lights_5` (pergola, lantern — not `_4`) | `solar-edison-string-lights` |

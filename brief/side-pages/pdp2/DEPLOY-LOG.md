@@ -52,3 +52,22 @@ Every §11 PDP count unchanged on all 30 renders (forms 2, main form 1, sticky 1
 renders); `pdpCopy.credit` = false everywhere (the option is off). Images: one `<img>` in the scene on path/wall/rope with
 width/height, `loading="lazy"`, `decoding="async"`, candidates 600/900/1254 from the theme's assets; none on deck/flood.
 Per-section shots: `pdp2/shoot-sections.js` → `pdp2/verify/` (path), `verify-wall/`, `verify-flood/` at 360/390/1366.
+
+## Pass 2, 2026-09-06 ~23:40 UTC — the critique's rulings (`critique/LEAD-DECISIONS.md`)
+
+Five assets re-sent with `body: {type: URL}` (one mutation, commit 8511f64; the file query confirms the new checksums):
+
+| asset | bytes | md5 (= local) | what changed |
+|---|---|---|---|
+| `assets/ens-pdp-rope.jpg` | 210015 | `b0c6af11ed13b6e3a22fb8d6e9be2a9a` | re-cut y 380–1254 → 1254×874: the baked «עמידות IP65» badge is out of the file (the blocker) |
+| `assets/ens-pdp-powerful.jpg` | 210882 | `b471b5c49eb9c702e0258d8921d18863` | re-cut y 90–1130 → 1254×1040 (the legs at the top-right are out), q70 |
+| `assets/ens-pdp-warm-step.jpg` | 116999 | `ae2471bdc30dd12da3a09362541b9373` | re-cut y 345–1254 → 854×909 (the headline stroke on the top edge is out) |
+| `assets/ens-pdp-stainless.jpg` | 209994 | `6a03cfb6a451f9fe7202f3bd9a0446ef` | 1100×1100 q70 (was 304 KB) |
+| `assets/ens-pdp-scene-path.jpg` | 221262 | `f287ef9515a665dad3affe7b18eb2423` | 1100×1100 q70 (was 295 KB) |
+
+Two section mutations (`pdp2/deploy/{31,32}-*.graphql` regenerated), `userErrors: []`; the template did not change.
+
+| file | remote bytes | md5 (remote = local minus final newline) | what changed |
+|---|---|---|---|
+| `sections/elmsnest-s-pdp-scene.liquid` | 24415 | `8208775cba17c5ff6648795ccbe72435` | map sizes for the re-cut files; lantern9 crop 0% 50%, edison desktop crop 50% 30%; the camping lantern's heading «בלילה, בשטח» (`heading_portable`); the spot line without «בלילה»; no photograph when the fallback's pictured product is not live; a file narrower than 1254 offers its own width; the text-only state as a hairline row (20/22 px heading, the facts' column at ≥ 901) |
+| `sections/elmsnest-s-pdp-dusk.liquid` | 7127 | `576b0178acbd4b2ef491a4986dadd130` | each sentence on its own line; a closing hairline and 16 px above the row; at ≥ 901 the row takes the facts' `<dl>` column |
