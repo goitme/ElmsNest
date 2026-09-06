@@ -1,0 +1,190 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest · home round 2 · concept «kinds» (what light does what)</title>
+<!--
+  Concept «kinds» — two new sections about the LIGHT itself, not the place and not the product.
+
+  Insertion (templates/index.json order):
+    hero (844) → tiles «איפה צריך אור?» (761) → cards «מה שנדלק ראשון» (781)
+      → [A] ens-home-kinds  «לא כל אור עושה אותו דבר.» — 2×2 mosaic: pool · wash · beam · string, one line each
+    → fit «מתי כן, ומתי לא» (690)
+      → [B] ens-home-solar  «מה שהשמש טוענת ביום, נדלק לבד בערב.» — one sentence over one wide frame
+    → terms «שלושה מספרים שכדאי לדעת» (397) → footer
+
+  Neighbouring sections are sketched as grey bands at their measured 390-px heights (desktop heights estimated
+  from home-d-js-full.png). Fonts from the offline pack via file:// so the shots use the real faces.
+  No JS. No carousel, no parallax, no scroll-lamps, no hover reveal. Every crop is object-position + a CSS
+  scale around the same origin — the files are untouched. All four mosaic frames and the wide frame are the
+  store's own product images (no credit line needed).
+-->
+<style>
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF}
+
+/* ---- tokens, copied from elmsnest-v2-core :root ---- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--env2-sans:"Heebo","Assistant",system-ui,sans-serif;
+  --ens-card:#05070c;--ens-hair:#1f1e1d;
+}
+html{background:#020306}
+body{margin:0;background-color:#020306;background-image:linear-gradient(180deg,#4a6a9c 0%,#1f3357 14%,#0f1a2f 34%,#070b15 58%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;min-height:100vh;color:var(--env2-ink);font-family:var(--env2-sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+
+/* ---- sketched neighbours: grey bands at true 390 heights ---- */
+.sk{position:relative;display:grid;place-items:center;background:rgba(244,238,227,.06);border-block:1px solid rgba(244,238,227,.10);color:var(--env2-mute);font-family:var(--env2-sans);font-size:13px;letter-spacing:.06em;text-align:center}
+.sk span{display:block;font-size:11px;opacity:.75;margin-top:6px}
+.sk--hero{height:844px}.sk--tiles{height:761px}.sk--cards{height:781px}.sk--fit{height:690px}.sk--terms{height:397px}.sk--footer{height:848px}
+@media (min-width:901px){.sk--hero{height:885px}.sk--tiles{height:620px}.sk--cards{height:620px}.sk--fit{height:530px}.sk--terms{height:400px}.sk--footer{height:480px}}
+
+/* =========================================================
+   [A] ens-home-kinds — «לא כל אור עושה אותו דבר.»
+   2×2 mosaic of four kinds of light; kind-word on the frame, one line under it.
+   Phone: head above, mosaic below, captions in a row under each pair of frames.
+   Desktop: head beside the mosaic (start side), captions inside the frames.
+   ========================================================= */
+.ens-kinds{padding-block:40px 44px}
+.ens-kinds__head{margin-block-end:22px}
+.ens-kinds__h{font-size:30px;margin-block-start:10px}
+.ens-kinds__grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto auto;column-gap:2px;row-gap:0;margin:0;padding:0}
+.ens-kinds__fig{display:contents;margin:0}
+.ens-kinds__fig:nth-of-type(1) .ens-kinds__ph{grid-area:1/1}.ens-kinds__fig:nth-of-type(1) .ens-kinds__cap{grid-area:2/1}
+.ens-kinds__fig:nth-of-type(2) .ens-kinds__ph{grid-area:1/2}.ens-kinds__fig:nth-of-type(2) .ens-kinds__cap{grid-area:2/2}
+.ens-kinds__fig:nth-of-type(3) .ens-kinds__ph{grid-area:3/1}.ens-kinds__fig:nth-of-type(3) .ens-kinds__cap{grid-area:4/1}
+.ens-kinds__fig:nth-of-type(4) .ens-kinds__ph{grid-area:3/2}.ens-kinds__fig:nth-of-type(4) .ens-kinds__cap{grid-area:4/2}
+.ens-kinds__ph{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--ens-card);isolation:isolate}
+.ens-kinds__ph img{width:100%;height:100%;object-fit:cover;object-position:var(--o);transform:scale(var(--z));transform-origin:var(--o)}
+.ens-kinds__ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,8,14,0) 55%,rgba(5,8,14,.78) 100%)}
+.ens-kinds__word{position:absolute;inset-inline:12px;inset-block-end:10px;z-index:1;margin:0;font-family:var(--env2-serif);font-weight:700;font-size:21px;line-height:1.05;letter-spacing:-.01em;color:var(--env2-glow);text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.ens-kinds__cap{margin:0;padding:10px 4px 18px;font-family:var(--env2-sans);font-weight:400;font-size:13.5px;line-height:1.45;color:var(--env2-ink-2);text-wrap:pretty}
+/* per-frame crop: --o = focus point, --z = zoom around it (files untouched) */
+.ens-kinds__ph--pool{--o:55% 90%;--z:1.3}    /* path_1: window ≈ x 13–90 %, y 21–98 %: two bollards and the wet pavers they light */
+.ens-kinds__ph--wash{--o:42% 50%;--z:1.35}   /* wall_6: the lamp and its up/down wash on the slate, villa mostly out */
+.ens-kinds__ph--beam{--o:14% 38%;--z:1.5}    /* dual_5: window ≈ x 5–71 %, y 13–80 %: spot head + the tree; the baked sign starts at x≈75 % and stays out */
+.ens-kinds__ph--string{--o:62% 50%;--z:1.25} /* edison_4: the bulbs over the table, a corner of the panel */
+@media (min-width:901px){
+  .ens-kinds{padding-block:72px 64px}
+  .ens-kinds .env2-wrap{display:grid;grid-template-columns:minmax(0,1fr) 560px;align-items:end;column-gap:56px}
+  .ens-kinds__head{margin:0 0 8px;align-self:start;position:sticky;top:0}
+  .ens-kinds__h{font-size:46px;margin-block-start:14px;max-width:11ch}
+  .ens-kinds__lead{margin:22px 0 0;max-width:34ch;font-size:16px;line-height:1.55;color:var(--env2-ink-2)}
+  .ens-kinds__grid{grid-template-rows:auto auto;row-gap:2px}
+  .ens-kinds__fig{display:block;position:relative}
+  .ens-kinds__fig:nth-of-type(1){grid-area:1/1}.ens-kinds__fig:nth-of-type(2){grid-area:1/2}
+  .ens-kinds__fig:nth-of-type(3){grid-area:2/1}.ens-kinds__fig:nth-of-type(4){grid-area:2/2}
+  .ens-kinds__fig .ens-kinds__ph,.ens-kinds__fig .ens-kinds__cap{grid-area:auto}
+  .ens-kinds__ph::after{background:linear-gradient(180deg,rgba(5,8,14,0) 45%,rgba(5,8,14,.84) 100%)}
+  .ens-kinds__word{inset-inline:18px;inset-block-end:40px;font-size:26px}
+  .ens-kinds__cap{position:absolute;inset-inline:18px;inset-block-end:16px;z-index:1;padding:0;color:var(--env2-ink);text-shadow:0 1px 2px rgba(0,0,0,.5)}
+}
+@media (max-width:900px){.ens-kinds__lead{display:none}}
+
+/* =========================================================
+   [B] ens-home-solar — «מה שהשמש טוענת ביום, נדלק לבד בערב.»
+   one sentence over one wide frame (panel on its spike, the rope light on the trunk it feeds)
+   ========================================================= */
+.ens-solar{margin-block:8px 0}
+.ens-solar__fig{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--ens-card);isolation:isolate}
+.ens-solar__fig img{width:100%;height:100%;object-fit:cover;object-position:75% 100%;transform:scale(1.5);transform-origin:75% 100%} /* window ≈ x 35–88 %, y 33–100 %: the badge (y < 30 %) is outside the box */
+.ens-solar__fig::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,8,14,.05) 30%,rgba(5,8,14,.9) 100%)}
+.ens-solar__txt{position:absolute;inset-inline:var(--env2-gut);inset-block-end:28px;z-index:1;margin:0}
+.ens-solar__line{margin:10px 0 0;font-family:var(--env2-serif);font-weight:700;font-size:30px;line-height:1.05;letter-spacing:-.01em;color:var(--env2-ink);text-wrap:balance;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.ens-solar__line em{font-style:normal;color:var(--env2-glow)}
+@media (min-width:901px){
+  .ens-solar{margin-block:24px 0}
+  .ens-solar__fig{aspect-ratio:auto;height:540px}
+  .ens-solar__fig img{object-position:50% 84%;transform:none} /* band = y 51–90 % of the square: panel, rope, lantern; badge out */
+  /* the trunk and its rope sit on the right of the frame, so the sentence goes to the END side (left), over the dark sofa corner, with a side scrim */
+  .ens-solar__fig::after{background:linear-gradient(90deg,rgba(5,8,14,.78) 0%,rgba(5,8,14,.45) 40%,rgba(5,8,14,0) 65%),linear-gradient(180deg,rgba(5,8,14,0) 60%,rgba(5,8,14,.4) 100%)}
+  .ens-solar__txt{inset-inline:auto;inset-inline-end:calc((100% - min(var(--env2-w),100% - 2*var(--env2-gut)))/2);inset-block-end:auto;top:50%;transform:translateY(-50%);max-width:520px;text-align:start}
+  .ens-solar__line{font-size:46px;margin-top:14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="sk sk--hero">hero — «כשהשמש יורדת, הגינה נדלקת.»<span>844 px · unchanged</span></div>
+<div class="sk sk--tiles">tiles — «איפה צריך אור?»<span>761 px · unchanged</span></div>
+<div class="sk sk--cards">cards — «מה שנדלק ראשון»<span>781 px · unchanged</span></div>
+
+<!-- [A] NEW · sections/elmsnest-s-home-kinds.liquid · inserted after the product cards, before the fit block -->
+<section class="env2-section ens-kinds" id="ens-home-kinds" aria-labelledby="ens-kinds-h">
+  <div class="env2-wrap">
+    <header class="ens-kinds__head">
+      <p class="env2-kicker">סוגי אור</p>
+      <h2 class="env2-h ens-kinds__h" id="ens-kinds-h">לא כל אור עושה אותו דבר.</h2>
+      <p class="ens-kinds__lead">ארבעה סוגים. כל אחד מאיר אחרת.</p>
+    </header>
+    <div class="ens-kinds__grid">
+      <figure class="ens-kinds__fig">
+        <div class="ens-kinds__ph ens-kinds__ph--pool">
+          <img src="../../images/own/own_stainless-steel-solar-path-light-ip65_1.jpg" width="1254" height="1254" loading="lazy" alt="">
+          <p class="ens-kinds__word">שלולית אור</p>
+        </div>
+        <figcaption class="ens-kinds__cap">אור שנופל למטה ונשאר על הרצפה.</figcaption>
+      </figure>
+      <figure class="ens-kinds__fig">
+        <div class="ens-kinds__ph ens-kinds__ph--wash">
+          <img src="../../images/own/own_outdoor-bidirectional-led-wall-light-ip6_6.jpg" width="1254" height="1254" loading="lazy" alt="">
+          <p class="ens-kinds__word">שטיפת אור</p>
+        </div>
+        <figcaption class="ens-kinds__cap">אור שנמרח על הקיר, למעלה ולמטה.</figcaption>
+      </figure>
+      <figure class="ens-kinds__fig">
+        <div class="ens-kinds__ph ens-kinds__ph--beam">
+          <img src="../../images/own/own_dual-head-garden-light-10w-ip65_5.jpg" width="1254" height="1254" loading="lazy" alt="">
+          <p class="ens-kinds__word">אלומת אור</p>
+        </div>
+        <figcaption class="ens-kinds__cap">אור צר, שמכוון לנקודה אחת.</figcaption>
+      </figure>
+      <figure class="ens-kinds__fig">
+        <div class="ens-kinds__ph ens-kinds__ph--string">
+          <img src="../../images/own/own_solar-edison-string-lights_4.jpg" width="1254" height="1254" loading="lazy" alt="">
+          <p class="ens-kinds__word">שרשרת אור</p>
+        </div>
+        <figcaption class="ens-kinds__cap">נקודות קטנות של אור, מעל הראש.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="sk sk--fit">fit — «מתי כן, ומתי לא»<span>690 px · unchanged (keeps its guide link and contact line)</span></div>
+
+<!-- [B] NEW · sections/elmsnest-s-home-solar.liquid · inserted after the fit block, before the terms strip -->
+<section class="env2-section ens-solar" id="ens-home-solar" aria-label="תאורה סולארית">
+  <figure class="ens-solar__fig">
+    <img src="../../images/own/own_solar-rope-string-lights_3.jpg" width="1254" height="1254" loading="lazy" alt="">
+    <figcaption class="ens-solar__txt">
+      <p class="env2-kicker">תאורה סולארית</p>
+      <p class="ens-solar__line">מה שהשמש טוענת ביום, <em>נדלק לבד בערב.</em></p>
+    </figcaption>
+  </figure>
+</section>
+
+<div class="sk sk--terms">terms — «שלושה מספרים שכדאי לדעת»<span>397 px · unchanged</span></div>
+<div class="sk sk--footer">footer<span>848 px · unchanged</span></div>
+
+</body>
+</html>

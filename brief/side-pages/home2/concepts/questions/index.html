@@ -1,0 +1,195 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest — home round 2 — concept «questions» (לפני שקונים)</title>
+<!--
+  CONCEPT «questions» — before you buy.
+  Two new sections on the existing home. Everything else on this page is the CURRENT home, sketched as
+  labelled grey bands at the heights measured on the dev theme (390 wide: hero 844, tiles 761, cards 781,
+  fit 690, terms 397; the footer band is what is left of the 4321 px full page).
+
+  Insertion (templates/index.json order):
+    env2_hero → ens_collections → ens_products → [A] ens_ask «שלוש שאלות לפני שקונים» → ens_fit → [B] ens_winter «ובחורף?» → ens_terms → footer
+
+  [A] sits right after the four product cards, before «מתי כן, ומתי לא»: the shopper has just seen a product,
+      and the store says «ask this first». It carries the page's ONE guide link, so ens_fit's guide_label is
+      set to "" in index.json (the fit block keeps its contact line — the only photo promise in <main>).
+  [B] sits after the fit block, before the terms strip: the honest winter note, one image, three lines.
+
+  Fonts are declared from the offline pack so the shots use the real faces; on the theme the fonts snippet
+  already provides --env2-serif / --env2-sans. Tokens below are copied from elmsnest-v2-core :root.
+  No JS. Images are the real files, cropped by CSS only (object-fit / object-position, one oversized <img>
+  inside an overflow-hidden frame for the winter band).
+-->
+<style>
+/* ---- fonts (offline pack, file:// — mockup only; the theme renders elmsnest-v2-fonts) ---- */
+@font-face{font-family:"Frank Ruhl Libre";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF}
+
+/* ---- tokens: elmsnest-v2-core :root + fonts snippet + skin ---- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--env2-sans:"Heebo","Assistant",system-ui,sans-serif;
+  --ens-card:#05070c;--ens-hair:#1f1e1d;
+}
+html{background:#020306}
+body{margin:0;background-color:#020306;background-image:linear-gradient(180deg,#4a6a9c 0%,#1f3357 14%,#0f1a2f 34%,#070b15 58%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;color:var(--env2-ink);min-height:100vh}
+
+/* ---- core helpers used here (copied from elmsnest-v2-core) ---- */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-section :focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--env2-sans);font-size:14px;font-weight:500;line-height:1.3;color:var(--env2-ink-2);border-bottom:1px solid var(--env2-hair-btn);padding-bottom:3px;text-decoration:none;transition:color .3s,border-color .3s}
+.env2-link:hover,.env2-link:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow);text-decoration:none}
+@media (max-width:900px){.env2-link{position:relative}.env2-link::before{content:"";position:absolute;inset:-11px -6px}}
+
+/* ---- the existing sections, as labelled bands (heights measured on the dev theme, 390 wide) ---- */
+.ens-x{display:grid;place-items:center;text-align:center;background:rgba(244,238,227,.045);border-block:1px dashed rgba(244,238,227,.16);color:var(--env2-mute);font-family:var(--env2-sans);font-weight:400;font-size:12px;line-height:1.6;letter-spacing:.06em}
+.ens-x b{display:block;font-family:var(--env2-serif);font-weight:700;font-size:20px;letter-spacing:0;color:rgba(244,238,227,.55)}
+.ens-x--hero{height:844px;border-block-start:0}.ens-x--tiles{height:761px}.ens-x--cards{height:781px}.ens-x--fit{height:690px}.ens-x--terms{height:397px}.ens-x--footer{height:848px;border-block-end:0}
+@media (min-width:901px){.ens-x--hero{height:905px}.ens-x--tiles{height:655px}.ens-x--cards{height:600px}.ens-x--fit{height:540px}.ens-x--terms{height:400px}.ens-x--footer{height:518px}}
+
+/* =====================================================================
+   [A] ens-ask — «שלוש שאלות לפני שקונים»  (sections/elmsnest-s-home-ask.liquid)
+   ===================================================================== */
+.ens-ask{padding-block:48px 36px;margin:0}
+.ens-ask__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 8px}
+.ens-ask__lead{margin:0 0 18px;font-family:var(--env2-sans);font-weight:300;font-size:15.5px;line-height:1.5;color:var(--env2-ink-2);max-width:44ch}
+.ens-ask__list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ens-ask__card{display:grid;grid-template-columns:124px minmax(0,1fr);gap:14px;align-items:center;margin:0;background:var(--ens-card);border:1px solid var(--ens-hair);border-radius:0}
+.ens-ask__ph{display:block;position:relative;aspect-ratio:1/1;overflow:hidden;background:#05070c}
+.ens-ask__ph img{width:100%;height:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+.ens-ask__txt{padding-inline-end:12px;padding-block:8px}
+.ens-ask__n{display:block;font-family:var(--env2-serif);font-weight:500;font-size:13px;line-height:1;letter-spacing:.08em;color:var(--env2-gold);margin-block-end:6px}
+.ens-ask__n bdi{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.ens-ask__q{display:block;font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.2;color:var(--env2-ink);text-wrap:pretty;margin:0}
+.ens-ask__a{display:block;margin:6px 0 0;font-family:var(--env2-sans);font-weight:300;font-size:14px;line-height:1.5;color:var(--env2-ink-2)}
+.ens-ask__foot{display:flex;align-items:baseline;gap:14px 32px;margin-block-start:20px}
+.ens-ask__guide{color:var(--env2-ink)}
+.ens-ask__guide:hover,.ens-ask__guide:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow)}
+@media (min-width:901px){
+  .ens-ask{padding-block:88px 56px}
+  .ens-ask__h2.env2-h{margin-block-end:12px}
+  .ens-ask__lead{font-size:17px;margin-block-end:30px}
+  .ens-ask__list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .ens-ask__card{grid-template-columns:minmax(0,1fr);gap:0;align-items:start}
+  .ens-ask__txt{padding:16px 18px 20px}
+  .ens-ask__n{font-size:14px;margin-block-end:8px}
+  .ens-ask__q{font-size:23px}
+  .ens-ask__a{font-size:15px;margin-block-start:8px}
+  .ens-ask__foot{margin-block-start:28px}
+}
+
+/* =====================================================================
+   [B] ens-winter — «ובחורף?»  (sections/elmsnest-s-home-winter.liquid)
+   ===================================================================== */
+.ens-winter{padding-block:0 40px;margin:0}
+.ens-winter__ph{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:#05070c;border-block:1px solid var(--ens-hair)}
+/* the frame shows the right-hand 45 % of the source (bollards and spruces); the left 55 % — pergola, poles — is
+   outside the frame. One oversized <img>, clipped by the frame; nothing edited. --ens-zoom is the section setting. */
+.ens-winter__ph img{--ens-zoom:2.2;width:calc(100% * var(--ens-zoom));max-width:none;height:100%;object-fit:cover;object-position:50% 45%}
+.ens-winter__txt{padding-block-start:26px}
+.ens-winter__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 12px}
+.ens-winter__p{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.55;color:var(--env2-ink);max-width:36ch}
+.ens-winter__p + .ens-winter__p{margin-block-start:4px}
+.ens-winter__p--soft{color:var(--env2-ink-2)}
+@media (min-width:901px){
+  .ens-winter{padding-block:72px 64px}
+  .ens-winter__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center;width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+  .ens-winter__txt.env2-wrap{width:auto;margin:0}
+  .ens-winter__ph{aspect-ratio:4/3;border:1px solid var(--ens-hair)}
+  .ens-winter__ph img{--ens-zoom:2.2;object-position:50% 58%}
+  .ens-winter__txt{padding-block-start:0}
+  .ens-winter__h2.env2-h{margin-block-end:18px}
+  .ens-winter__p{font-size:18px}
+  .ens-winter__p + .ens-winter__p{margin-block-start:8px}
+}
+@media (prefers-reduced-motion:reduce){.ens-ask a,.ens-winter a{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="ens-x ens-x--hero"><div><b>כשהשמש יורדת, הגינה נדלקת.</b>קיים · hero · <bdi dir="ltr">844 px</bdi></div></div>
+<div class="ens-x ens-x--tiles"><div><b>איפה צריך אור?</b>קיים · ארבע קולקציות · <bdi dir="ltr">761 px</bdi></div></div>
+<div class="ens-x ens-x--cards"><div><b>מה שנדלק ראשון</b>קיים · ארבעה מוצרים · <bdi dir="ltr">781 px</bdi></div></div>
+
+<!-- ============ [A] NEW · inserted after ens_products, before ens_fit ============ -->
+<section class="env2-section ens-ask" dir="rtl" aria-labelledby="ens-ask-h2" style="scroll-margin-top:90px" data-ens-new="A">
+  <div class="env2-wrap">
+    <h2 id="ens-ask-h2" class="env2-h ens-ask__h2">שלוש שאלות לפני שקונים</h2>
+    <p class="ens-ask__lead">השאלות שהמדריך שואל ראשון.</p>
+    <ol class="ens-ask__list">
+      <li class="ens-ask__card" style="--ens-op:50% 50%">
+        <span class="ens-ask__ph"><img src="../../images/own/own_powerful-solar-garden-light_3.jpg" width="1254" height="1254" loading="lazy" alt="מנורות גינה סולאריות בשמש, הפאנל על כל ראש"></span>
+        <div class="ens-ask__txt">
+          <span class="ens-ask__n"><bdi dir="ltr">1</bdi></span>
+          <h3 class="ens-ask__q">כמה שמש מגיעה לנקודה?</h3>
+          <p class="ens-ask__a">הפאנל נטען מהשמש ביום. פינה מוצלת רוב היום תיתן פחות אור בלילה.</p>
+        </div>
+      </li>
+      <li class="ens-ask__card" style="--ens-op:50% 55%">
+        <span class="ens-ask__ph"><img src="../../images/own/own_stainless-steel-solar-path-light-ip65_6.jpg" width="1254" height="1254" loading="lazy" alt="שלוש מנורות שביל לאורך מדרגות אבן בלילה"></span>
+        <div class="ens-ask__txt">
+          <span class="ens-ask__n"><bdi dir="ltr">2</bdi></span>
+          <h3 class="ens-ask__q">עד כמה רחוק האור צריך להגיע?</h3>
+          <p class="ens-ask__a">מנורה אחת מאירה את סביבתה הקרובה. שביל ארוך צריך כמה מנורות.</p>
+        </div>
+      </li>
+      <li class="ens-ask__card" style="--ens-op:35% 50%">
+        <span class="ens-ask__ph"><img src="../../images/own/own_outdoor-bidirectional-led-wall-light-ip6_1.jpg" width="1254" height="1254" loading="lazy" alt="מנורת קיר על עמוד בין חלון מואר לגינה בדמדומים"></span>
+        <div class="ens-ask__txt">
+          <span class="ens-ask__n"><bdi dir="ltr">3</bdi></span>
+          <h3 class="ens-ask__q">בפנים או בחוץ?</h3>
+          <p class="ens-ask__a">בחוץ יש גשם, אבק ושמש. לא כל מנורה בנויה לזה.</p>
+        </div>
+      </li>
+    </ol>
+    <div class="ens-ask__foot">
+      <a class="env2-link ens-ask__guide" href="/pages/guide-garden-lighting">למדריך לבחירת תאורה ←</a>
+    </div>
+  </div>
+</section>
+<!-- ============ end [A] ============ -->
+
+<div class="ens-x ens-x--fit"><div><b>מתי כן, ומתי לא</b>קיים · ארבע שורות ושורת יצירת קשר · <bdi dir="ltr">690 px</bdi><br>(קישור המדריך כבוי כאן — הוא עבר למעלה)</div></div>
+
+<!-- ============ [B] NEW · inserted after ens_fit, before ens_terms ============ -->
+<section class="env2-section ens-winter" dir="rtl" aria-labelledby="ens-winter-h2" style="scroll-margin-top:90px" data-ens-new="B">
+  <div class="ens-winter__grid">
+    <span class="ens-winter__ph"><img src="../../images/candidates/wm_03d6246a95.jpg" width="3840" height="2560" loading="lazy" alt="עמודי תאורה על דשא בדמדומים כחולים של חורף"></span>
+    <div class="env2-wrap ens-winter__txt">
+      <h2 id="ens-winter-h2" class="env2-h ens-winter__h2">ובחורף?</h2>
+      <p class="ens-winter__p">בחורף השמש קצרה יותר, והפאנל נטען פחות.</p>
+      <p class="ens-winter__p">פחות טעינה ביום, פחות שעות אור בלילה.</p>
+      <p class="ens-winter__p ens-winter__p--soft">זה נכון לכל תאורה סולארית, גם שלנו.</p>
+    </div>
+  </div>
+</section>
+<!-- ============ end [B] ============ -->
+
+<div class="ens-x ens-x--terms"><div><b>שלושה מספרים שכדאי לדעת</b>קיים · תנאים · <bdi dir="ltr">397 px</bdi></div></div>
+<div class="ens-x ens-x--footer"><div><b>footer</b>קיים · <bdi dir="ltr">848 px</bdi></div></div>
+
+</body>
+</html>

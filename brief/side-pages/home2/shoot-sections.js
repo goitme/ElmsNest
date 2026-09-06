@@ -1,12 +1,14 @@
 // Home round 2 — per-section shots of the REAL render (the re-mirrored dev-theme home, served locally like every
 // screenshot in this repo). Element screenshots, so a section that sits deep in the page is captured whole; a
 // viewport shot of the band is added because the sentence's contrast is judged against the photo under it.
-// Usage: node brief/side-pages/home2/shoot-sections.js [mirrorDir] [outDir]
+// Usage: node brief/side-pages/home2/shoot-sections.js [mirrorDir] [outDir] [--css=candidate.css]
 const path = require('path'), fs = require('fs'), http = require('http');
 const PW = fs.readdirSync('/tmp/claude-0/-home-user-ElmsNest').map(d => `/tmp/claude-0/-home-user-ElmsNest/${d}/scratchpad/node_modules/playwright`).find(p => fs.existsSync(p));
 const { chromium } = require(PW);
 const DIR = process.argv[2] || '/home/user/ElmsNest/brief/side-pages/simplify/verify-after/mirrors/home';
 const OUT = process.argv[3] || '/home/user/ElmsNest/brief/side-pages/home2/verify';
+const CSS = (process.argv.find(a => a.startsWith('--css=')) || '').slice(6);
+const HIDE = process.argv.includes('--hide-text');  // shoot with the glyphs and their shadows made transparent (boxes, scrims and backings stay) so contrast.py measures the true background behind the glyphs  // --css=<file>: candidate CSS injected after load (fix experiments, measured with verify/contrast.py <outDir>)
 const FONT_DIR = '/home/user/ElmsNest/brief/assets/fonts';
 const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff': 'font/woff', '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.json': 'application/json' };
 fs.mkdirSync(OUT, { recursive: true });
@@ -26,13 +28,15 @@ function fontFaceCss(port) { let css = ''; for (const f of fs.readdirSync(FONT_D
     await page.evaluate(async () => { document.querySelectorAll('img[loading="lazy"]').forEach(i => i.loading = 'eager'); for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 80)); } window.scrollTo(0, 0); });
     await page.waitForTimeout(800);
     await page.addStyleTag({ content: '.hdt-sticky-btn-atc,.hdt-back-top,[class*="back_top"]{display:none!important}' }).catch(() => {});
+    if (CSS) { await page.addStyleTag({ content: fs.readFileSync(CSS, 'utf8') }); await page.waitForTimeout(300); }
+    if (HIDE) { await page.addStyleTag({ content: '.ens-home-solar__word,.ens-home-solar__tag,.ens-home-solar__h2,.ens-home-solar__line,.ens-home-band__h,.ens-hw__h2,.ens-hw__line{color:transparent!important;text-shadow:none!important}' }); await page.waitForTimeout(200); }
     for (const sec of ['ens-home-solar', 'ens-home-winter', 'ens-home-band']) {
       const el = await page.$(`.${sec}`); if (!el) { console.log(vk, sec, 'MISSING'); continue; }
       await el.scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
       await el.screenshot({ path: path.join(OUT, `${sec.replace('ens-home-', '')}-${vk}.png`) });
       const box = await el.boundingBox();
       // text boxes relative to the section shot, for verify/contrast.py (the headline on the day scrim, the band sentence)
-      const texts = await el.evaluate((node) => { const r0 = node.getBoundingClientRect(); return [...node.querySelectorAll('.ens-home-solar__word, .ens-home-solar__tag, .ens-home-solar__eyebrow, .ens-home-band__h, .ens-hw__h2, .ens-hw__line, .ens-home-solar__txt')].map(t => { const r = t.getBoundingClientRect(); return { cls: t.className, text: t.textContent.trim().slice(0, 30), color: getComputedStyle(t).color, x: Math.round(r.left - r0.left), y: Math.round(r.top - r0.top), w: Math.round(r.width), h: Math.round(r.height) }; }); });
+      const texts = await el.evaluate((node) => { const r0 = node.getBoundingClientRect(); return [...node.querySelectorAll('.ens-home-solar__word, .ens-home-solar__tag, .ens-home-solar__h2, .ens-home-solar__line, .ens-home-band__h, .ens-hw__h2, .ens-hw__line')].map(t => { const r = t.getBoundingClientRect(); return { cls: t.className, text: t.textContent.trim().slice(0, 30), color: getComputedStyle(t).color, x: Math.round(r.left - r0.left), y: Math.round(r.top - r0.top), w: Math.round(r.width), h: Math.round(r.height) }; }); });
       out[`${sec}-${vk}`] = { w: Math.round(box.width), h: Math.round(box.height), texts };
     }
     // the band and the diptych in the viewport, as a phone shows them (scroll so the section top sits at y=0)

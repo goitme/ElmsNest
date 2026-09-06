@@ -1,0 +1,4 @@
+/* candidate 2: the corner tags removed (the headlines already say day/night — P2, nothing twice); the band's desktop crop
+   moved up so the lower string of bulbs leaves the sentence; night scrim unchanged. */
+html body .ens-home-solar__tag{display:none}
+@media (min-width:901px){html body .ens-home-band__fig img{object-position:50% 40%}}

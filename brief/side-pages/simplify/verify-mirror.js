@@ -89,7 +89,7 @@ async function audit(page, name, vw, vh) {
     res.sections = q('[id^="shopify-section"]').map(s => ({ id: s.id.replace('shopify-section-', ''), h: Math.round(s.getBoundingClientRect().height) }));
     // home round 2: every image in the new sections must carry width/height (no layout shift), lazy-load, and come from the theme's assets
     res.homeImages = q('.ens-home-solar, .ens-home-winter, .ens-home-band').map(sec => { const imgs = [...sec.querySelectorAll('img')]; return { section: sec.className.split(' ').find(c => c.startsWith('ens-home-')), imgs: imgs.length, sized: imgs.filter(i => i.getAttribute('width') && i.getAttribute('height')).length, lazy: imgs.filter(i => i.loading === 'lazy').length, loaded: imgs.filter(i => i.complete && i.naturalWidth > 0).length, h: Math.round(sec.getBoundingClientRect().height), text: (sec.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 160) }; });
-    res.homeCopyOk = ['ביום נטען.', 'בלילה נדלק.', 'הפאנל נטען לאור היום.', 'כשמחשיך, האור נדלק לבד.', 'בלי כבל, בלי חשמלאי.', 'ובחורף?', 'בחורף השמש קצרה יותר, והפאנל נטען פחות.', 'פחות טעינה ביום, פחות אור בלילה.', 'זה נכון לכל תאורה סולארית, גם שלנו.', 'חושך הוא לא סוף הערב.'].filter(t => !(main.innerText || '').includes(t));
+    res.homeCopyOk = ['איך עובדת תאורה סולארית?', 'ביום נטען.', 'בלילה נדלק.', 'בלי חיבור לחשמל, בלי חשמלאי.', 'ובחורף?', 'בחורף השמש קצרה יותר, והפאנל נטען פחות.', 'פחות טעינה ביום, פחות אור בלילה.', 'זה נכון לכל תאורה סולארית, גם שלנו.', 'חושך הוא לא סוף הערב.'].filter(t => !(main.innerText || '').includes(t));
     const cards = q('.hdt-card-product').filter(vis);
     res.cards = cards.length;
     res.cardForms = q('.hdt-card-product form').length;

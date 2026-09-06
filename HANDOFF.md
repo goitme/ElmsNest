@@ -303,3 +303,67 @@ section; noscript built from `section.id`, only when `variants.size > 1`). SPEC 
 - Then: search + 404, content pages, policies, under the same SIMPLIFY principles (`SPEC.md` §2) and the same loop
   (brief → concepts → judges → spec → build → deploy → verify → critique → owner page).
 - Do not run two sessions against the same dev theme.
+
+## 7.7 Home round 2 — three image-led sections: sourced, designed, built, deployed, critiqued, fixed, verified (2026-09-06)
+
+Owner's request (verbatim): «الان لا اريد العمل على السلة اريد العمل على الصفحة الرئيسية اريد منك ان تزيد محتوى لكن لا تزيد كثير زيد
+يعني 2-3 سكشنز و اهم شيء ان اتصنع السكشن مع صور يعني ابحث عن صور مناسبة للنيش و قوم بوضعها في السكشن بشكل ابداعي جميل». Cart work
+stopped where §7.6 left it. Everything below is on the DEV theme `gid://shopify/OnlineStoreTheme/154726400174` only; nothing published;
+no product, collection, page or metafield changed. Branch `claude/design-sidebar-pages-3991tn`. Working folder `brief/side-pages/home2/`.
+
+**What happened, in order** (every step has its file):
+1. `BRIEF.md` — the round's brief (constraints: P1–P7, honesty, image rules own frames > CC0/PDM/CC-BY > generation last, ≤ 0.8 screen per
+   section, page ≤ 7.5 screens). Image sourcing (`workflows/home2-images.js`, `images/fetch.py`): 498 candidates from Openverse and
+   Wikimedia Commons (licence-filtered) plus the store's own listing frames (`/products.json`), rated visually on a contact sheet
+   (`images/{manifest.jsonl,ratings.jsonl,SHORTLIST.md,contact-sheet.png}`). Result: the store's own secondary product frames beat every
+   free photograph for a night garden at home scale — all four slots are store-owned, no credit owed, no generation credit spent.
+2. Five concepts rendered with the real photographs and judged by five judges (`workflows/home2-concepts.js`, `concepts/<name>/`): dusk
+   50.75 · kinds 43.5 · band 41.5 · questions 39 · mosaic 38.5, dusk first with every judge. `SPEC.md`: dusk's two sections (day/night
+   diptych + winter note) plus band's one full-bleed screen; order `env2_hero → ens_collections → ens_products → ens_home_solar →
+   ens_home_winter → ens_fit → ens_home_band → ens_terms`.
+3. Assets (`images/prepare-assets.py`, `images/CHOSEN.md`): `assets/ens-home-{day,night,winter,fence}.jpg` — night pre-cropped to the top
+   1090 px (the baked caption is not in the file), winter pre-cropped 150,450 → 1100×580 (the marketing text is outside the crop).
+   Uploaded with `themeFilesUpsert` `body.type: URL` from the public GitHub raw URL (BASE64 mutations were too large to paste safely);
+   checksums exact. `DEPLOY-LOG.md`.
+4. Build (`workflows/home2-build.js`: one engineer per section + template, contract reviewer, fixer), deploy pass 1 (`simplify/deploy-prep.py
+   --only=…` → four TEXT mutations), verification on the re-mirrored home (`simplify/verify-mirror.js --pages=home`; home target raised
+   to 7.5 screens; new `homeImages` / `homeCopyOk` probes). Per-section element shots at 360/390/1366 (`shoot-sections.js` →
+   `verify/`), and a text-over-photo contrast probe (`verify/contrast.py`; `--hide-text` shots give the TRUE background behind the glyphs,
+   p90 = brightest tenth).
+5. Adversarial critique of the deployed render (`workflows/home2-critique.js`): five lenses (shopper 7.5, owner 6.5, honesty 8, designer 7,
+   engineer 7) → 36 findings, two skeptics each (evidence, scope); `critique/{RESULT.json,*.jsonl,SUMMARY.json}`. Rulings written BEFORE the
+   fixes in `critique/LEAD-DECISIONS.md`, backed by a measured experiment (`verify/exp/candidate-{1,2,3}.css` + shots): tags off by default
+   (the «יום» label measured 1.2–1.8:1 on the foliage), one line instead of three numbered steps (steps 1–2 repeated the frame headlines
+   and the hero — the owner's «nothing twice»), «בלי חיבור לחשמל» instead of «בלי כבל» (true of the separate-panel floodlight too), a heading
+   «איך עובדת תאורה סולארית?» instead of the 13 px eyebrow, band desktop crop 50% 40% (6.6:1 behind the sentence vs 3.5:1 at 60%; a heavier
+   fade only reached 4.6:1), night scrim .84, winter border gone, desktop crops per frame, 1200w candidate dropped (CDN re-encode heavier
+   than the 1254 original), alt settings, decoding async, role=list. Kept and put to the owner: card 2 = the diptych's product; the band
+   sentence vs the hero; the winter frame as a fourth bollard scene; no link on the band. SPEC amended (note at its top).
+6. Deploy pass 2 (three sections; the solar upsert needed four sends — Shopify Admin 500s around 09:00 UTC made the MCP's live-theme
+   pre-check fail), re-verification, re-shoot, re-measure; post-fix re-review (`workflows` inline script `home2-rereview`, contract +
+   render lenses, one skeptic per finding).
+
+**Numbers (390×844, JS on):** home 5.12 → **6.74** screens (cap 7.5; 8.43 at 360×640, 5.95 at 1366×900); sections solar **413** ·
+winter **433** · band **520** px (caps 520); every SIMPLIFY §11 home check unchanged (terms 1, photo line 1, mailto 1, 0 WhatsApp, 0 glyph
+plates, 0 Liquid errors, no overflow-x, 0 bdi ranges); every copy line of SPEC §2 on the page; text over photographs (true background,
+p90): day headline 7.0–8.1:1, night headline 6.4–8.0:1, band sentence 6.7–7.5:1 (before the fixes: «יום» tag 1.2–1.8, band at 1366 3.5).
+
+**Files on the dev theme (pass 2, remote = local minus the final newline):** `sections/elmsnest-s-home-solar.liquid` 12583 B
+`b50db842447872575e909da4a93fcd06` · `sections/elmsnest-s-home-winter.liquid` 6307 B `d9e874083095be35eea457e71d79c228` ·
+`sections/elmsnest-s-home-band.liquid` 6462 B `e52c23798b25694c08d4ecc7045427a3` · `templates/index.json` 4270 B
+`8011a297cf12fec780c0cb9091ad9c69` · the four assets (`home2/DEPLOY-LOG.md`). Leftover: `assets/ens-test.png` (75 B, the upload probe;
+`themeFilesDelete` is refused by the MCP policy — the owner deletes it in the code editor; nothing references it).
+
+**Owner artifact:** the SIMPLIFY page gained a section «الرئيسية · الجولة الثانية» (`home2/build-owner-section.py` → `OWNER-SECTION.json`,
+spliced by `simplify/build-owner-page.py`): the request verbatim, the three sections at 390 and 1366, the whole page, where the images came
+from (table of the four store frames and crops), the copy list for approval, the critique summary (`critique/build-summary.py` →
+`SUMMARY.json`), and the notes (listing photos as scenery, the 300 KB sources, `ens-test.png`, the four «kept, yours to decide» items).
+Same Artifact URL as §7.6 (republish: run the three scripts, pass the URL to the Artifact tool).
+
+**Open items — owner:** the §7.6 list unchanged, plus: (a) approve or edit the seven copy lines (all settings in the theme editor);
+(b) card 2 of «מה שנדלק ראשון» is also the diptych's product — swap the `product_list` entry if that is «twice» for him; (c) the winter
+frame is a fourth bollard scene — the picker swaps it; (d) the band sentence vs the hero's — one field.
+
+**Open items — next session:** the §7.6 JS chain check still needs a browser that reaches the store; then search + 404, content pages,
+policies under the same loop. The `home2/verify/exp/` experiment harness (`shoot-sections.js --css=<file> [--hide-text]` + `contrast.py
+<dir>`) is the way to test any text-over-photo change before deploying it. Do not run two sessions against the same dev theme.

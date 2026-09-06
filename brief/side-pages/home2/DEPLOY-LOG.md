@@ -38,3 +38,16 @@ Liquid errors, no overflow-x). Per-section shots + text boxes: `home2/shoot-sect
 worst-case text-over-photo contrast: `home2/verify/contrast.py` → `contrast.txt` (three spots under 4.5:1 on the
 brightest tenth of their background: the «יום» corner tag on the day frame, the night headline at 360, the band
 sentence over the bulbs at 1366 — handed to the critique).
+
+## Sections, 2026-09-06 ~09:05 UTC — pass 2 (the critique's rulings, `critique/LEAD-DECISIONS.md`)
+
+Three mutations (`simplify/deploy/{28,29,30}-*.graphql` regenerated), `userErrors: []`. The solar upsert was refused
+three times by the MCP's own pre-check («Unable to verify the target theme is not the live storefront theme», the
+Admin API returning 500 for a few minutes around 09:00) and landed on the fourth send, unchanged. `templates/index.json`
+did not change (the three entries keep `"settings": {}`; every amended default lives in the schemas).
+
+| file | remote bytes | md5 (remote = local minus final newline) | what changed |
+|---|---|---|---|
+| `sections/elmsnest-s-home-solar.liquid` | 12583 | `b50db842447872575e909da4a93fcd06` | heading «איך עובדת תאורה סולארית?» instead of the 13 px eyebrow; corner labels off by default (a .85 backing when typed); one line «בלי חיבור לחשמל, בלי חשמלאי.» instead of three numbered steps; night scrim .84 from 36 %; desktop crops per frame (50% 40% / 50% 30%); alt settings; `decoding: 'async'` on the picker branch; no 1200w candidate; `role="list"` |
+| `sections/elmsnest-s-home-winter.liquid` | 6307 | `d9e874083095be35eea457e71d79c228` | no border on the figure; heading in the neighbours' clamp; alt setting |
+| `sections/elmsnest-s-home-band.liquid` | 6462 | `e52c23798b25694c08d4ecc7045427a3` | desktop crop default 50% 40% (sentence off the bulbs, 6.6:1); img in flow (520 / 560 px); no 1200w candidate; alt setting; no aria-label when the sentence is blank |

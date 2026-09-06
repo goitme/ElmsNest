@@ -1,0 +1,195 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest — home round 2 — concept «band» (the breath)</title>
+<!--
+  Concept «band» — the breath. Three new sections, mockup in place.
+  Insertion points in templates/index.json (existing sections are the grey bands):
+    hero (844)  ->  tiles «איפה צריך אור?» (761)  ->  cards «מה שנדלק ראשון» (781)
+      -> [A] elmsnest-s-home-band    : one full-bleed night photograph, one sentence
+    -> fit «מתי כן, ומתי לא» (690)
+      -> [B] elmsnest-s-home-solar   : three short solar facts, tiny photos, mostly type
+      -> [C] elmsnest-s-home-daynight: the same garden by day and by night, two frames
+    -> terms «שלושה מספרים שכדאי לדעת» (397) -> footer
+  Fonts come from the offline pack via file:// so the shots use the real faces.
+  Images are the real files under ../../images/, cropped only by CSS (object-fit / object-position / a CSS window).
+-->
+<style>
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:300;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:400;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:500;font-display:swap;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+
+/* ---- tokens: theme/snippets/elmsnest-v2-core.liquid :root, verbatim ---- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-serif:"Frank Ruhl Libre",Georgia,serif;--env2-sans:"Heebo",Arial,sans-serif;
+  --ens-card:#05070c;--ens-hair:#1f1e1d;
+}
+html{background:#020306}
+body{margin:0;min-height:100vh;background-color:#020306;color:var(--env2-ink);
+  background-image:linear-gradient(180deg,#4a6a9c 0%,#1f3357 14%,#0f1a2f 34%,#070b15 58%,#020306 100%);
+  background-repeat:no-repeat;background-size:100% 100%;background-attachment:scroll}
+/* the theme's section root helper (core l.113-118) */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section a{color:inherit;text-decoration:none}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--env2-sans);font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.18em;text-transform:uppercase;color:var(--env2-gold)}
+.env2-eyebrow::before{content:"";flex:none;width:34px;height:1px;background:var(--env2-gold);opacity:.8}
+.env2-kicker{font-family:var(--env2-sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--env2-gold)}
+
+/* ---- the existing sections, sketched as grey bands of their measured heights at 390 ---- */
+.ghost{display:grid;place-items:center;margin:0;background:rgba(244,238,227,.055);border-block:1px solid rgba(244,238,227,.08);color:var(--env2-mute);font-family:var(--env2-sans);font-size:13px;font-weight:400;letter-spacing:.04em;text-align:center;padding-inline:var(--env2-gut)}
+.ghost small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-block-start:6px}
+.ghost--hero{height:844px}.ghost--tiles{height:761px}.ghost--cards{height:781px}.ghost--fit{height:690px}.ghost--terms{height:397px}.ghost--footer{height:520px}
+@media (min-width:901px){.ghost--hero{height:900px}.ghost--tiles{height:560px}.ghost--cards{height:620px}.ghost--fit{height:420px}.ghost--terms{height:340px}.ghost--footer{height:360px}}
+
+/* ================= [A] elmsnest-s-home-band : the breath ================= */
+.ens-band{margin:0;padding:0}
+.ens-band__fig{position:relative;margin:0;height:520px;overflow:hidden;background:var(--ens-card)}
+.ens-band__fig img{width:100%;height:100%;object-fit:cover;object-position:64% 50%}
+.ens-band__fig::after{content:"";position:absolute;inset:auto 0 0 0;height:62%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,3,6,0) 0%,rgba(2,3,6,.58) 55%,rgba(2,3,6,.9) 100%)}
+.ens-band__cap{position:absolute;inset-inline:var(--env2-gut);inset-block-end:40px;z-index:1;margin:0}
+.ens-band__h{font-size:clamp(30px,8.4vw,54px);line-height:1.06;max-width:12ch;text-shadow:0 2px 24px rgba(2,3,6,.6)}
+@media (min-width:901px){
+  .ens-band__fig{height:clamp(440px,40vw,560px)}
+  .ens-band__fig img{object-position:50% 38%}
+  .ens-band__fig::after{height:55%}
+  .ens-band__cap{inset-inline:auto var(--env2-gut);inset-block-end:56px;width:min(var(--env2-w),100% - 2*var(--env2-gut));inset-inline:0;margin-inline:auto}
+  .ens-band__h{max-width:14ch}
+}
+
+/* ================= [B] elmsnest-s-home-solar : three facts, tiny photos ================= */
+.ens-solar{padding-block:48px 40px}
+.ens-solar__eyebrow{margin-block-end:14px}
+.ens-solar__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 18px}
+.ens-solar__list{list-style:none;margin:0;padding:0}
+.ens-solar__row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center;padding-block:14px;border-block-start:1px solid var(--ens-hair);margin:0}
+.ens-solar__pic{position:relative;width:64px;height:64px;overflow:hidden;margin:0;background:var(--ens-card);border:1px solid var(--ens-hair)}
+.ens-solar__pic img{position:absolute;max-width:none;width:var(--z);height:auto;left:var(--x);top:var(--y)}
+.ens-solar__t{margin:0;font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.2;color:var(--env2-ink)}
+.ens-solar__p{margin:4px 0 0;font-size:15px;line-height:1.5;color:var(--env2-ink-2);max-width:40ch}
+@media (min-width:901px){
+  .ens-solar{padding-block:72px 56px}
+  .ens-solar__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;margin-block-start:8px}
+  .ens-solar__row{grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:start;padding-block:22px 4px}
+  .ens-solar__pic{width:72px;height:72px}
+  .ens-solar__t{font-size:21px}
+}
+
+/* ================= [C] elmsnest-s-home-daynight : the same garden, twice ================= */
+.ens-pair{padding-block:32px 40px}
+.ens-pair__grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0}
+.ens-pair__fig{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--ens-card)}
+.ens-pair__fig img{width:100%;height:100%;object-fit:cover}
+.ens-pair__fig--day img{object-position:28% 50%}
+/* the night frame carries a baked caption bottom-left; the window is scaled from the top-right so it never shows */
+.ens-pair__fig--night img{object-position:100% 0;transform:scale(1.16);transform-origin:82% 0}
+.ens-pair__lab{position:absolute;inset-inline-start:12px;inset-block-start:12px;z-index:1;margin:0;padding:6px 10px;background:rgba(2,3,6,.55);color:var(--env2-glow);font-family:var(--env2-serif);font-weight:400;font-size:16px;line-height:1;letter-spacing:.02em}
+.ens-pair__p{margin:14px 0 0;font-size:15px;line-height:1.5;color:var(--env2-ink-2)}
+@media (min-width:901px){
+  .ens-pair{padding-block:24px 72px}
+  .ens-pair__grid{gap:20px}
+  .ens-pair__fig{aspect-ratio:3/2}
+  .ens-pair__fig--day img{object-position:40% 32%}
+  .ens-pair__fig--night img{object-position:50% 24%;transform:none}
+  .ens-pair__lab{inset-inline-start:18px;inset-block-start:18px;font-size:18px}
+  .ens-pair__p{margin-block-start:16px}
+}
+@media (prefers-reduced-motion:reduce){.ens-band *,.ens-solar *,.ens-pair *{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="ghost ghost--hero"><div>hero — «כשהשמש יורדת, הגינה נדלקת.»<small><bdi dir="ltr">844 px</bdi> · existing</small></div></div>
+<div class="ghost ghost--tiles"><div>«איפה צריך אור?» — four collection tiles<small><bdi dir="ltr">761 px</bdi> · existing</small></div></div>
+<div class="ghost ghost--cards"><div>«מה שנדלק ראשון» — four product cards<small><bdi dir="ltr">781 px</bdi> · existing</small></div></div>
+
+<!-- [A] NEW — inserted after the product cards, before the fit rows -->
+<section class="env2-section ens-band" id="ens-band" aria-label="הנשימה">
+  <figure class="ens-band__fig">
+    <img src="../../images/own/own_solar-crystal-ball-string-lights_5.jpg" width="1254" height="1254" loading="lazy" alt="גדר עץ בגינה בשעת בין ערביים, שרשרת נורות קטנות דולקות לאורכה">
+    <figcaption class="ens-band__cap">
+      <p class="env2-h ens-band__h">חושך הוא לא סוף הערב.</p>
+    </figcaption>
+  </figure>
+</section>
+
+<div class="ghost ghost--fit"><div>«מתי כן, ומתי לא» — four place rows, guide link, contact line<small><bdi dir="ltr">690 px</bdi> · existing</small></div></div>
+
+<!-- [B] NEW — inserted after the fit rows -->
+<section class="env2-section ens-solar" id="ens-solar" aria-labelledby="ens-solar-h">
+  <div class="env2-wrap">
+    <p class="env2-eyebrow ens-solar__eyebrow">תאורה סולארית</p>
+    <h2 class="env2-h ens-solar__h2" id="ens-solar-h">ביום נטען. בלילה נדלק.</h2>
+    <ol class="ens-solar__list">
+      <li class="ens-solar__row">
+        <figure class="ens-solar__pic" style="--z:330%;--x:-10%;--y:-206%">
+          <img src="../../images/own/own_solar-edison-string-lights_4.jpg" width="1254" height="1254" loading="lazy" alt="פאנל סולארי קטן על יתד">
+        </figure>
+        <div>
+          <h3 class="ens-solar__t">השמש טוענת</h3>
+          <p class="ens-solar__p">הפאנל הקטן אוסף אור במשך היום. בחורף היום קצר יותר, וגם הטעינה.</p>
+        </div>
+      </li>
+      <li class="ens-solar__row">
+        <figure class="ens-solar__pic" style="--z:300%;--x:-8%;--y:-96%">
+          <img src="../../images/own/own_stainless-steel-solar-path-light-ip65_6.jpg" width="1254" height="1254" loading="lazy" alt="מנורת שביל דולקת בערב">
+        </figure>
+        <div>
+          <h3 class="ens-solar__t">החושך מדליק</h3>
+          <p class="ens-solar__p">כשמחשיך, המנורה נדלקת בעצמה.</p>
+        </div>
+      </li>
+      <li class="ens-solar__row">
+        <figure class="ens-solar__pic" style="--z:260%;--x:-98%;--y:-182%">
+          <img src="../../images/own/own_solar-rope-string-lights_3.jpg" width="1254" height="1254" loading="lazy" alt="יתד של פאנל סולארי נעוצה באדמה">
+        </figure>
+        <div>
+          <h3 class="ens-solar__t">בלי כבל</h3>
+          <p class="ens-solar__p">אין חיבור לחשמל ואין חשמלאי.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- [C] NEW — inserted after [B], before the terms strip -->
+<section class="env2-section ens-pair" id="ens-pair" aria-label="אותה גינה, ביום ובלילה">
+  <div class="env2-wrap">
+    <div class="ens-pair__grid">
+      <figure class="ens-pair__fig ens-pair__fig--day">
+        <img src="../../images/own/own_powerful-solar-garden-light_3.jpg" width="1254" height="1254" loading="lazy" alt="שביל גינה ביום, מנורות סולאריות כבויות לאורך גדר חיה">
+        <figcaption class="ens-pair__lab">ביום</figcaption>
+      </figure>
+      <figure class="ens-pair__fig ens-pair__fig--night">
+        <img src="../../images/own/own_powerful-solar-garden-light_2.jpg" width="1254" height="1254" loading="lazy" alt="אותו שביל בלילה, המנורות דולקות">
+        <figcaption class="ens-pair__lab">בלילה</figcaption>
+      </figure>
+    </div>
+    <p class="ens-pair__p">אותה גינה, אותן מנורות.</p>
+  </div>
+</section>
+
+<div class="ghost ghost--terms"><div>«שלושה מספרים שכדאי לדעת» — terms strip<small><bdi dir="ltr">397 px</bdi> · existing</small></div></div>
+<div class="ghost ghost--footer"><div>footer<small>existing</small></div></div>
+
+</body>
+</html>

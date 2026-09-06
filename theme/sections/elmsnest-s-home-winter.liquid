@@ -1,17 +1,20 @@
 {%- comment -%}
   ElmsNest S — winter (HOME2 SPEC §1 B). Home only.
-  The seasonal half of the store's honesty, right after the three solar steps:
+  The seasonal half of the store's honesty, right after the solar diptych:
   one photograph (the rainy evening, store frame own_modern-solar-path-lights-set_6,
   pre-cropped to 1100×580 — assets/ens-home-winter.jpg), the heading «ובחורף?» and
   three lines. At 390 the photograph is a 16:9 band on top and the text sits under it
   on the night ground; at ≥ 901 the photograph takes the inline-end half (16:10) and
-  the text the inline-start half, vertically centred. No link, no button, no card chrome.
+  the text the inline-start half, vertically centred. No link, no button, no card chrome, no border
+  (photographs on this page carry no frame — critique/LEAD-DECISIONS.md #7); the heading uses the neighbours'
+  scale (#10).
   An owner-picked image (image_picker) replaces the theme asset; empty picker = the asset.
   Tokens come from elmsnest-v2-core (global); this file only adds ens-hw-* rules.
 {%- endcomment -%}
 {%- liquid
   assign img = section.settings.image
   assign op = section.settings.object_position | default: '50% 50%' | strip | escape
+  assign ens_alt = section.settings.alt | default: '' | strip | escape
   comment
     Picker srcset: the widths are capped against the source width (the hero's R26 rule),
     so a narrower owner image never gets a descriptor the CDN cannot honour.
@@ -42,14 +45,14 @@
           srcset="{{ ens_srcset }}"
           sizes="(min-width:901px) 50vw, 100vw"
           width="{{ img.width }}" height="{{ img.height }}"
-          loading="lazy" decoding="async" alt="">
+          loading="lazy" decoding="async" alt="{{ ens_alt }}">
       {%- else -%}
         <img
           src="{{ 'ens-home-winter.jpg' | asset_img_url: '1100x' }}"
           srcset="{{ 'ens-home-winter.jpg' | asset_img_url: '600x' }} 600w, {{ 'ens-home-winter.jpg' | asset_img_url: '900x' }} 900w, {{ 'ens-home-winter.jpg' | asset_img_url: '1100x' }} 1100w"
           sizes="(min-width:901px) 50vw, 100vw"
           width="1100" height="580"
-          loading="lazy" decoding="async" alt="">
+          loading="lazy" decoding="async" alt="{{ ens_alt }}">
       {%- endif -%}
     </figure>
     <div class="ens-hw__txt">
@@ -72,18 +75,18 @@
 <style>
 .ens-home-winter{padding-block:48px 40px;margin:0}
 .ens-hw{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"fig" "txt";gap:22px}
-.ens-hw__fig{grid-area:fig;position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;background:#05070c;border:1px solid #1f1e1d;border-radius:0}
+.ens-hw__fig{grid-area:fig;position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;background:#05070c;border:0;border-radius:0}
 /* crop per section (object_position setting, default 50% 50%) */
 .ens-hw__fig img{display:block;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
 .ens-hw__txt{grid-area:txt;min-width:0}
-.ens-hw__h2.env2-h{font-size:26px;line-height:1.1;margin:0 0 12px}
+.ens-hw__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 12px}
 .ens-hw__line{font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.55;color:var(--env2-ink);margin:0;text-wrap:pretty}
 .ens-hw__line+.ens-hw__line{margin-block-start:6px}
 @media (min-width:901px){
   .ens-home-winter{padding-block:72px 56px}
   .ens-hw{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"txt fig";align-items:center;gap:56px}
   .ens-hw__fig{aspect-ratio:16/10}
-  .ens-hw__h2.env2-h{font-size:34px;margin-block-end:16px}
+  .ens-hw__h2.env2-h{margin-block-end:16px}
   .ens-hw__line{font-size:17px}
   .ens-hw__line+.ens-hw__line{margin-block-start:8px}
 }
@@ -102,7 +105,8 @@
     { "type": "text", "id": "line_2", "label": "שורה שנייה", "default": "פחות טעינה ביום, פחות אור בלילה." },
     { "type": "text", "id": "line_3", "label": "שורה שלישית", "default": "זה נכון לכל תאורה סולארית, גם שלנו." },
     { "type": "image_picker", "id": "image", "label": "תמונה", "info": "ריק = תמונת ערב הגשם של החנות (ens-home-winter.jpg מקבצי הערכה)." },
-    { "type": "text", "id": "object_position", "label": "מיקום החיתוך (object-position)", "default": "50% 50%", "info": "לדוגמה 50% 40% כדי להרים את החיתוך. נקודת מיקוד מממשק הניהול אינה חלה כאן." }
+    { "type": "text", "id": "object_position", "label": "מיקום החיתוך (object-position)", "default": "50% 50%", "info": "לדוגמה 50% 40% כדי להרים את החיתוך. נקודת מיקוד מממשק הניהול אינה חלה כאן." },
+    { "type": "text", "id": "alt", "label": "טקסט חלופי לתמונה (alt)", "info": "ריק = תמונה דקורטיבית; הכותרת והשורות נושאות את המשמעות." }
   ],
   "presets": [
     { "name": "ElmsNest S — חורף" }

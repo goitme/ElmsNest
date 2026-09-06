@@ -1,7 +1,7 @@
 {
   "home-m-js": {
-    "docH": 4321,
-    "screens": 5.12,
+    "docH": 5687,
+    "screens": 6.74,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -38,8 +38,20 @@
         "h": 781
       },
       {
+        "id": "template--21567616057518__ens_home_solar",
+        "h": 413
+      },
+      {
+        "id": "template--21567616057518__ens_home_winter",
+        "h": 433
+      },
+      {
         "id": "template--21567616057518__ens_fit",
         "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_home_band",
+        "h": 520
       },
       {
         "id": "template--21567616057518__ens_terms",
@@ -62,6 +74,36 @@
         "h": 0
       }
     ],
+    "homeImages": [
+      {
+        "section": "ens-home-solar",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "h": 413,
+        "text": "איך עובדת תאורה סולארית? ביום נטען. בלילה נדלק. בלי חיבור לחשמל, בלי חשמלאי."
+      },
+      {
+        "section": "ens-home-winter",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "h": 433,
+        "text": "ובחורף? בחורף השמש קצרה יותר, והפאנל נטען פחות. פחות טעינה ביום, פחות אור בלילה. זה נכון לכל תאורה סולארית, גם שלנו."
+      },
+      {
+        "section": "ens-home-band",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "h": 520,
+        "text": "חושך הוא לא סוף הערב."
+      }
+    ],
+    "homeCopyOk": [],
     "cards": 4,
     "cardForms": 0,
     "cardBigSvgs": 0,
@@ -125,7 +167,7 @@
     "rangesOutsideBdiCount": 0,
     "rangesInRawDescription": 0,
     "cardTransition": "0s",
-    "target": 6,
+    "target": 7.5,
     "overTarget": false
   },
   "collection-all-m-js": {
@@ -867,8 +909,8 @@
     "overTarget": false
   },
   "home-s-js": {
-    "docH": 4068,
-    "screens": 6.36,
+    "docH": 5398,
+    "screens": 8.43,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -905,8 +947,20 @@
         "h": 751
       },
       {
+        "id": "template--21567616057518__ens_home_solar",
+        "h": 394
+      },
+      {
+        "id": "template--21567616057518__ens_home_winter",
+        "h": 416
+      },
+      {
         "id": "template--21567616057518__ens_fit",
         "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_home_band",
+        "h": 520
       },
       {
         "id": "template--21567616057518__ens_terms",
@@ -929,6 +983,36 @@
         "h": 0
       }
     ],
+    "homeImages": [
+      {
+        "section": "ens-home-solar",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "h": 394,
+        "text": "איך עובדת תאורה סולארית? ביום נטען. בלילה נדלק. בלי חיבור לחשמל, בלי חשמלאי."
+      },
+      {
+        "section": "ens-home-winter",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "h": 416,
+        "text": "ובחורף? בחורף השמש קצרה יותר, והפאנל נטען פחות. פחות טעינה ביום, פחות אור בלילה. זה נכון לכל תאורה סולארית, גם שלנו."
+      },
+      {
+        "section": "ens-home-band",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "h": 520,
+        "text": "חושך הוא לא סוף הערב."
+      }
+    ],
+    "homeCopyOk": [],
     "cards": 4,
     "cardForms": 0,
     "cardBigSvgs": 0,
@@ -992,7 +1076,7 @@
     "rangesOutsideBdiCount": 0,
     "rangesInRawDescription": 0,
     "cardTransition": "0s",
-    "target": 6,
+    "target": 7.5,
     "overTarget": true
   },
   "collection-all-s-js": {
@@ -1734,8 +1818,8 @@
     "overTarget": false
   },
   "home-d-js": {
-    "docH": 3618,
-    "screens": 4.02,
+    "docH": 5351,
+    "screens": 5.95,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1772,8 +1856,20 @@
         "h": 626
       },
       {
+        "id": "template--21567616057518__ens_home_solar",
+        "h": 675
+      },
+      {
+        "id": "template--21567616057518__ens_home_winter",
+        "h": 498
+      },
+      {
         "id": "template--21567616057518__ens_fit",
         "h": 539
+      },
+      {
+        "id": "template--21567616057518__ens_home_band",
+        "h": 560
       },
       {
         "id": "template--21567616057518__ens_terms",
@@ -1796,6 +1892,36 @@
         "h": 0
       }
     ],
+    "homeImages": [
+      {
+        "section": "ens-home-solar",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "h": 675,
+        "text": "איך עובדת תאורה סולארית? ביום נטען. בלילה נדלק. בלי חיבור לחשמל, בלי חשמלאי."
+      },
+      {
+        "section": "ens-home-winter",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "h": 498,
+        "text": "ובחורף? בחורף השמש קצרה יותר, והפאנל נטען פחות. פחות טעינה ביום, פחות אור בלילה. זה נכון לכל תאורה סולארית, גם שלנו."
+      },
+      {
+        "section": "ens-home-band",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "h": 560,
+        "text": "חושך הוא לא סוף הערב."
+      }
+    ],
+    "homeCopyOk": [],
     "cards": 4,
     "cardForms": 0,
     "cardBigSvgs": 0,
@@ -1859,7 +1985,7 @@
     "rangesOutsideBdiCount": 0,
     "rangesInRawDescription": 0,
     "cardTransition": "0s",
-    "target": 6,
+    "target": 7.5,
     "overTarget": false
   },
   "collection-all-d-js": {
@@ -2601,8 +2727,8 @@
     "overTarget": false
   },
   "home-m-nojs": {
-    "docH": 4321,
-    "screens": 5.12,
+    "docH": 5687,
+    "screens": 6.74,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2639,8 +2765,20 @@
         "h": 781
       },
       {
+        "id": "template--21567616057518__ens_home_solar",
+        "h": 413
+      },
+      {
+        "id": "template--21567616057518__ens_home_winter",
+        "h": 433
+      },
+      {
         "id": "template--21567616057518__ens_fit",
         "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_home_band",
+        "h": 520
       },
       {
         "id": "template--21567616057518__ens_terms",
@@ -2663,6 +2801,36 @@
         "h": 0
       }
     ],
+    "homeImages": [
+      {
+        "section": "ens-home-solar",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "h": 413,
+        "text": "איך עובדת תאורה סולארית? ביום נטען. בלילה נדלק. בלי חיבור לחשמל, בלי חשמלאי."
+      },
+      {
+        "section": "ens-home-winter",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "h": 433,
+        "text": "ובחורף? בחורף השמש קצרה יותר, והפאנל נטען פחות. פחות טעינה ביום, פחות אור בלילה. זה נכון לכל תאורה סולארית, גם שלנו."
+      },
+      {
+        "section": "ens-home-band",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "h": 520,
+        "text": "חושך הוא לא סוף הערב."
+      }
+    ],
+    "homeCopyOk": [],
     "cards": 4,
     "cardForms": 0,
     "cardBigSvgs": 0,
@@ -2726,7 +2894,7 @@
     "rangesOutsideBdiCount": 0,
     "rangesInRawDescription": 0,
     "cardTransition": "0s",
-    "target": 6,
+    "target": 7.5,
     "overTarget": false
   },
   "collection-all-m-nojs": {
@@ -3468,8 +3636,8 @@
     "overTarget": false
   },
   "home-s-nojs": {
-    "docH": 4068,
-    "screens": 6.36,
+    "docH": 5398,
+    "screens": 8.43,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3506,8 +3674,20 @@
         "h": 751
       },
       {
+        "id": "template--21567616057518__ens_home_solar",
+        "h": 394
+      },
+      {
+        "id": "template--21567616057518__ens_home_winter",
+        "h": 416
+      },
+      {
         "id": "template--21567616057518__ens_fit",
         "h": 690
+      },
+      {
+        "id": "template--21567616057518__ens_home_band",
+        "h": 520
       },
       {
         "id": "template--21567616057518__ens_terms",
@@ -3530,6 +3710,36 @@
         "h": 0
       }
     ],
+    "homeImages": [
+      {
+        "section": "ens-home-solar",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "h": 394,
+        "text": "איך עובדת תאורה סולארית? ביום נטען. בלילה נדלק. בלי חיבור לחשמל, בלי חשמלאי."
+      },
+      {
+        "section": "ens-home-winter",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "h": 416,
+        "text": "ובחורף? בחורף השמש קצרה יותר, והפאנל נטען פחות. פחות טעינה ביום, פחות אור בלילה. זה נכון לכל תאורה סולארית, גם שלנו."
+      },
+      {
+        "section": "ens-home-band",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "h": 520,
+        "text": "חושך הוא לא סוף הערב."
+      }
+    ],
+    "homeCopyOk": [],
     "cards": 4,
     "cardForms": 0,
     "cardBigSvgs": 0,
@@ -3593,7 +3803,7 @@
     "rangesOutsideBdiCount": 0,
     "rangesInRawDescription": 0,
     "cardTransition": "0s",
-    "target": 6,
+    "target": 7.5,
     "overTarget": true
   },
   "collection-all-s-nojs": {
@@ -4335,8 +4545,8 @@
     "overTarget": false
   },
   "home-d-nojs": {
-    "docH": 3618,
-    "screens": 4.02,
+    "docH": 5351,
+    "screens": 5.95,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4373,8 +4583,20 @@
         "h": 626
       },
       {
+        "id": "template--21567616057518__ens_home_solar",
+        "h": 675
+      },
+      {
+        "id": "template--21567616057518__ens_home_winter",
+        "h": 498
+      },
+      {
         "id": "template--21567616057518__ens_fit",
         "h": 539
+      },
+      {
+        "id": "template--21567616057518__ens_home_band",
+        "h": 560
       },
       {
         "id": "template--21567616057518__ens_terms",
@@ -4397,6 +4619,36 @@
         "h": 0
       }
     ],
+    "homeImages": [
+      {
+        "section": "ens-home-solar",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "h": 675,
+        "text": "איך עובדת תאורה סולארית? ביום נטען. בלילה נדלק. בלי חיבור לחשמל, בלי חשמלאי."
+      },
+      {
+        "section": "ens-home-winter",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "h": 498,
+        "text": "ובחורף? בחורף השמש קצרה יותר, והפאנל נטען פחות. פחות טעינה ביום, פחות אור בלילה. זה נכון לכל תאורה סולארית, גם שלנו."
+      },
+      {
+        "section": "ens-home-band",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "h": 560,
+        "text": "חושך הוא לא סוף הערב."
+      }
+    ],
+    "homeCopyOk": [],
     "cards": 4,
     "cardForms": 0,
     "cardBigSvgs": 0,
@@ -4460,7 +4712,7 @@
     "rangesOutsideBdiCount": 0,
     "rangesInRawDescription": 0,
     "cardTransition": "0s",
-    "target": 6,
+    "target": 7.5,
     "overTarget": false
   },
   "collection-all-d-nojs": {

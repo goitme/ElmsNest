@@ -1,5 +1,10 @@
 # Home, round 2 — SPEC (2026-09-06): three image-led sections
 
+> **Amended after the critique of the deployed render** (`critique/LEAD-DECISIONS.md`, 2026-09-06): section A has a
+> heading instead of an eyebrow, no corner labels by default, ONE line under the frames instead of three numbered
+> steps, desktop crops per frame; the band's desktop crop is «50% 40%»; the winter figure has no border and the
+> neighbours' heading scale. The amended text is inline below; the original wording is in git (b27711c).
+
 Lead's synthesis after five concepts and five judges (`concepts/`, ranking dusk 50.75 · kinds 43.5 · band 41.5 ·
 questions 39 · mosaic 38.5; every judge put **dusk** first). Built: dusk's two sections, with the fixes the judges
 asked for, plus band's single best screen as the page's breath. Three sections, all photographs the store's own
@@ -14,7 +19,7 @@ numbers → footer. Nothing existing changes (the fit block keeps its guide link
 
 | # | section file | template id | at 390 (cap) | what |
 |---|---|---|---|---|
-| A | `sections/elmsnest-s-home-solar.liquid` | `ens_home_solar` | ≤ 520 px (dusk measured 481) | eyebrow · day/night diptych with the headline split across the frames · three steps |
+| A | `sections/elmsnest-s-home-solar.liquid` | `ens_home_solar` | ≤ 520 px (dusk measured 481; built 499, amended ≈ 440) | heading · day/night diptych with the headline split across the frames · one line |
 | B | `sections/elmsnest-s-home-winter.liquid` | `ens_home_winter` | ≤ 520 px | «ובחורף?» — the rainy-evening frame + heading + three lines |
 | C | `sections/elmsnest-s-home-band.liquid` | `ens_home_band` | ≤ 520 px (band measured 520) | one full-bleed photograph, one sentence, nothing else |
 
@@ -23,17 +28,24 @@ photographs with `width`/`height` attributes (no layout shift).
 
 ### A — `elmsnest-s-home-solar` («ElmsNest S — סולארי»)
 
-Layout (from `concepts/dusk`, desktop shot is the reference): eyebrow line «תאורה סולארית» (13 px, ink-2, 0.06em
-tracking — it scopes the three facts to solar products, the honesty judge's one ask); a two-frame figure grid —
-**day frame on the inline-start (right in RTL), night frame on the inline-end** — each frame with a tiny corner
-label («יום» / «לילה», 12 px, ink-2, top inline-end corner) and the headline sitting on the frame's foot on a
-bottom scrim: day frame «ביום נטען.» in cream, night frame «בלילה נדלק.» in glow, Frank Ruhl Libre 700, 28 px at
+Layout (from `concepts/dusk`, desktop shot is the reference): heading «איך עובדת תאורה סולארית?» in the neighbours'
+`env2-h` scale (`clamp(25px,3.4vw,44px)`; the honesty critique measured the original 13 px eyebrow as too weak to
+scope the facts to solar products — the scope word now sits at heading weight, and the question form leads into
+«ובחורף?»); a two-frame figure grid — **day frame on the inline-start (right in RTL), night frame on the
+inline-end** — the headline sitting on each frame's foot on a bottom scrim (corner labels «יום»/«לילה» exist as
+settings `label_day`/`label_night` but are EMPTY by default: the headlines already say day and night, and the
+critique measured the day label at 1.2–1.8:1 on the foliage; a typed label renders on a `.85` night backing): day frame «ביום נטען.» in cream, night frame «בלילה נדלק.» in glow, Frank Ruhl Libre 700, 28 px at
 390 / 44 px at ≥ 901. Frames: 4:5 at 390 (two side by side, 4 px gutter), 16:10 at ≥ 901. Scrim: the day frame is
 bright, so its scrim is `linear-gradient(180deg, transparent 45%, rgba(5,8,14,.78) 100%)` — lighter than the
-mockup's .86 so it does not turn to mud at 1366 (designer); the headline sits on the pavement's shadow. Under
-the frames an `<ol>` of three steps on hairlines (fit block hairlines), gold serif numerals in `<bdi>` like the
-terms strip: 1 «הפאנל נטען לאור היום.» 2 «כשמחשיך, האור נדלק לבד.» 3 «בלי כבל, בלי חשמלאי.» — three columns at
-≥ 901, stacked at 390. No button, no link, no card chrome.
+mockup's .86 so it does not turn to mud at 1366 (designer); the headline sits on the pavement's shadow; the night
+frame's scrim is `rgba(5,8,14,0) 36% → rgba(5,8,14,.84)` (measured 6.4:1 behind the glow headline at 360). Under
+the frames ONE line on hairlines (fit block hairlines): «בלי חיבור לחשמל, בלי חשמלאי.» — settings `line_1` (that
+default), `line_2`, `line_3` (empty). The three numbered steps of the first build were cut by the critique: «ביום
+נטען.» was step 1, «בלילה נדלק.» plus the hero's «כשהשמש יורדת, הגינה נדלקת.» were step 2 (the owner's «nothing
+twice»), and «בלי כבל» was not true of the separate-panel products (the listings say «בלי חיבור לחשמל»). No
+button, no link, no card chrome. Desktop crops per frame: `object_position_day_desktop` «50% 40%» and
+`object_position_night_desktop` «50% 30%» (≥ 901, 16:10 — the nearest panel crown and the far lamp heads were
+cut at 50%/40%).
 
 Images: day = `assets/ens-home-day.jpg` (store frame `own_powerful-solar-garden-light_3`, full 1254² — panel on
 every head, lamps off); night = `assets/ens-home-night.jpg` (store frame `own_powerful-solar-garden-light_2`
@@ -46,7 +58,7 @@ and the honesty judge's fix: no CSS crop hides anything, and an owner-picked rep
 The seasonal half of the store's honesty, right after the three steps. Layout: at 390 the photograph is a 16:9
 band on top (full width of the wrap, ≈ 200 px) and the text below it on the night ground; at ≥ 901 the
 photograph takes the inline-end half (16:10) and the text sits in the inline-start half, vertically centred.
-Text: heading «ובחורף?» (Frank Ruhl Libre 700, 26 px / 34 px) then three lines, Heebo 300, 16 px / 17 px, ink:
+Text: heading «ובחורף?» (Frank Ruhl Libre 700, the neighbours' `clamp(25px,3.4vw,44px)`; no border on the figure — photographs on this page carry no frame) then three lines, Heebo 300, 16 px / 17 px, ink:
 «בחורף השמש קצרה יותר, והפאנל נטען פחות.» · «פחות טעינה ביום, פחות אור בלילה.» · «זה נכון לכל תאורה סולארית,
 גם שלנו.» (the last line is the brand's honesty said out loud — every judge asked for it). No link.
 
@@ -69,16 +81,17 @@ city bokeh), full 1254², `object-position` default «50% 50%» at 390 and «50%
 
 | where | text | source / why it is claim-free |
 |---|---|---|
-| A eyebrow | «תאורה סולארית» | scope label |
-| A labels | «יום» · «לילה» | labels |
+| A heading | «איך עובדת תאורה סולארית?» | question; the scope word |
 | A headlines | «ביום נטען.» · «בלילה נדלק.» | how any solar light works |
-| A steps | «הפאנל נטען לאור היום.» · «כשמחשיך, האור נדלק לבד.» · «בלי כבל, בלי חשמלאי.» | the products' own bullets say «הפעלה אוטומטית בחושך»; a solar light has no mains cable |
+| A line | «בלי חיבור לחשמל, בלי חשמלאי.» | the listings' own phrase; a solar light has no mains connection (a floodlight's panel lead is not one) |
+| ~~A labels~~ | ~~«יום» · «לילה»~~ | settings, empty by default (critique #1) |
+| ~~A steps 1–3~~ | ~~«הפאנל נטען לאור היום.» · «כשמחשיך, האור נדלק לבד.» · «בלי כבל, בלי חשמלאי.»~~ | cut (critique #3, #4) |
 | B heading | «ובחורף?» | question |
 | B lines | «בחורף השמש קצרה יותר, והפאנל נטען פחות.» · «פחות טעינה ביום, פחות אור בלילה.» · «זה נכון לכל תאורה סולארית, גם שלנו.» | physics of daylight; the honest note |
 | C sentence | «חושך הוא לא סוף הערב.» | a sentence, not a claim |
 
-Rules: no «+», no «;», sentences keep their period, labels have none; every digit/Latin token inside Hebrew in
-`<bdi dir="ltr">` (the step numerals are `<bdi>1</bdi>` etc.). `alt` on every image is empty (decorative;
+Rules: no «+», no «;», sentences keep their period, headings have none (a question mark is not a period); every
+digit/Latin token inside Hebrew in `<bdi dir="ltr">` (none on the page since the numerals went). `alt` on every image is empty (decorative;
 the text carries the meaning) — the owner can set an alt through a setting if he wants one.
 
 ## 3. Images — theme assets on the DEV theme
@@ -112,6 +125,8 @@ page pretends to be anything but the store's products — the round's honesty ru
 ## 5. Acceptance (verify-mirror.js on the re-mirrored home, 390×844 / 360×640 / 1366×900, JS on and off)
 
 - home ≤ 7.5 screens at 390×844 (was 5.12); each new section ≤ 520 px at 390 (measured `sections[].h`).
+- Every text painted over a photograph ≥ 4.5:1 against the brightest tenth of its true background at 360, 390 and
+  1366 (`home2/shoot-sections.js` + `--hide-text`, `home2/verify/contrast.py`).
 - Every SIMPLIFY §11 home check still holds: terms strip = 1, «תמונה של המקום» in main = 1, mailto in main = 1,
   the four places in the same order everywhere, 0 WhatsApp, 0 glyph plates, 0 Liquid errors, no overflow-x,
   reduced-motion clean.
