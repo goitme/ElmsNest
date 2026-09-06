@@ -275,8 +275,9 @@ Hebrew letter-spacing 2 → 0; cart page at 360×640: checkout 340 px below the 
 
 **Owner artifact:** `brief/side-pages/simplify/build-owner-page.py` (+ `critique/build-summary.py` → `critique/SUMMARY.json`)
 renders the Arabic page (numbers, the phone flow home → collection → PDP → drawer, before/after, the five answers, the
-critique, the cart before/after, the admin list, the honest process notes). Published as an Artifact — link in the last
-commit message of this section and in the chat.
+critique, the cart before/after, the admin list, the honest process notes). Published as an Artifact (private until the owner shares it):
+https://claude.ai/code/artifact/3738c906-cedd-4d22-8509-4f7dde70476a — republish by running the two scripts and
+passing that URL to the Artifact tool.
 
 **The one real bug the critique found in our own code:** the sticky-bar sync in `elmsnest-s-pdp-terms-line.liquid` looked
 up `product-form-main-product<id>`; Kalles names the form `product-form-<section.id><product.id>`, so the listener never
