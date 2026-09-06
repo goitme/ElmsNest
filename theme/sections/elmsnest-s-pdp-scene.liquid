@@ -1,0 +1,447 @@
+{%- comment -%}
+  ElmsNest S — the night scene (PDP2 SPEC §1 A). Product page only.
+  ONE page-wide night photograph of THIS product in place (the home band's skeleton: the <img> in
+  flow, 440 px tall at 390, 560 px at ≥ 901, no scrim, no text on it), then on the night ground the
+  place heading, one family line and the guide link — the PDP's only guide link.
+
+  Which photograph (no product data changes):
+    1. a `frame` block whose product IS this product (owner override, blocks are empty by default);
+    2. the per-product map below (fifteen store-owned frames, assets/ens-pdp-*.jpg, with their crops);
+    3. no frame → NO photograph: the text block alone (the honest state, never another product's frame);
+    4. the owner option scene_fallback (off): the collection scene + «בתמונה: {pictured product}» linked,
+       skipped when the pictured product is the page's product;
+    5. no place collection (a product only in `sale`) → the section prints nothing.
+  Every word of the place vocabulary comes from snippets/elmsnest-s-place (emit:'word'); the indoor
+  birch branches override the heading with «בערב, בבית». Tokens come from elmsnest-v2-core (global);
+  this file only adds ens-pdp-scene* rules. No JS.
+{%- endcomment -%}
+{%- if product != blank -%}
+{%- liquid
+  capture ens_word
+    render 'elmsnest-s-place', product: product, emit: 'word'
+  endcapture
+  assign ens_word = ens_word | strip
+-%}
+{%- if ens_word != blank -%}
+{%- liquid
+  assign latin_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+
+  # ---- the family (by the place word) ----
+  assign ens_fam = 'path'
+  if ens_word == 'קיר'
+    assign ens_fam = 'wall'
+  elsif ens_word == 'גינה'
+    assign ens_fam = 'spot'
+  elsif ens_word == 'מרפסת'
+    assign ens_fam = 'decor'
+  endif
+  if ens_fam == 'path'
+    assign ens_heading = section.settings.heading_path | default: 'בלילה, על השביל'
+    assign ens_line = section.settings.line_path | default: 'אור נמוך, קרוב לאדמה, שמלווה את הדרך.'
+  elsif ens_fam == 'wall'
+    assign ens_heading = section.settings.heading_wall | default: 'בלילה, על הקיר'
+    assign ens_line = section.settings.line_wall | default: 'אור על הקיר, בדיוק בנקודה שבחרתם.'
+  elsif ens_fam == 'spot'
+    assign ens_heading = section.settings.heading_spot | default: 'בלילה, בגינה'
+    assign ens_line = section.settings.line_spot | default: 'אור מכוון אל מה שרוצים לראות בלילה.'
+  else
+    assign ens_heading = section.settings.heading_decor | default: 'בלילה, במרפסת'
+    assign ens_line = section.settings.line_decor | default: 'הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו.'
+  endif
+
+  # ---- 2. the per-product map (SPEC §3): asset, real size, crops, heading override ----
+  assign ens_frame = ''
+  assign ens_w = 0
+  assign ens_h = 0
+  assign ens_op = '50% 50%'
+  assign ens_op_lg = '50% 50%'
+  assign ens_head_map = ''
+  case product.handle
+    when 'stainless-steel-solar-path-light-ip65'
+      assign ens_frame = 'ens-pdp-stainless.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_op = '50% 55%'
+      assign ens_op_lg = '50% 45%'
+    when 'powerful-solar-garden-light'
+      assign ens_frame = 'ens-pdp-powerful.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1130
+      assign ens_op_lg = '50% 40%'
+    when 'solar-rope-string-lights'
+      assign ens_frame = 'ens-pdp-rope.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1044
+    when 'solar-crystal-ball-string-lights'
+      assign ens_frame = 'ens-pdp-crystal.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+    when 'solar-edison-string-lights'
+      assign ens_frame = 'ens-pdp-edison.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_op_lg = '50% 45%'
+    when 'solar-firefly-garden-lights'
+      assign ens_frame = 'ens-pdp-firefly.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+    when 'lighted-birch-branches-20-led'
+      assign ens_frame = 'ens-pdp-birch.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_op_lg = '50% 55%'
+      assign ens_head_map = section.settings.heading_indoor | default: 'בערב, בבית'
+    when 'outdoor-bidirectional-led-wall-light-ip65'
+      assign ens_frame = 'ens-pdp-bidirectional.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_op_lg = '50% 45%'
+    when 'waterproof-led-wall-light-ip65-6w-12w'
+      assign ens_frame = 'ens-pdp-waterproof-wall.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_op = '62% 50%'
+      assign ens_op_lg = '50% 34%'
+    when 'modern-led-wall-light-indoor-outdoor'
+      assign ens_frame = 'ens-pdp-wall-indoor-outdoor.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+    when 'modern-led-wall-light-6w-up-down'
+      assign ens_frame = 'ens-pdp-wall-6w.jpg'
+      assign ens_w = 1000
+      assign ens_h = 1000
+    when 'dual-head-garden-light-10w-ip65'
+      assign ens_frame = 'ens-pdp-dual-head.jpg'
+      assign ens_w = 930
+      assign ens_h = 1254
+      assign ens_op_lg = '50% 45%'
+    when 'modern-solar-path-lights-set'
+      assign ens_frame = 'ens-pdp-modern-path.jpg'
+      assign ens_w = 1254
+      assign ens_h = 660
+      assign ens_op = '50% 60%'
+      assign ens_op_lg = '50% 55%'
+    when 'solar-garden-lantern-9-led'
+      assign ens_frame = 'ens-pdp-lantern9.jpg'
+      assign ens_w = 1254
+      assign ens_h = 680
+      assign ens_op = '40% 50%'
+    when 'warm-solar-step-deck-lights'
+      assign ens_frame = 'ens-pdp-warm-step.jpg'
+      assign ens_w = 854
+      assign ens_h = 924
+  endcase
+
+  # ---- 1. the owner block first: the first `frame` block whose product is this product ----
+  assign ens_kind = ''
+  assign ens_head_block = ''
+  assign ens_alt = ''
+  for block in section.blocks
+    if block.type != 'frame'
+      continue
+    endif
+    if block.settings.product == blank
+      continue
+    endif
+    if block.settings.product.handle != product.handle
+      continue
+    endif
+    if block.settings.heading != blank
+      assign ens_head_block = block.settings.heading | strip
+    endif
+    if block.settings.alt != blank
+      assign ens_alt = block.settings.alt | strip
+    endif
+    if block.settings.image != blank
+      assign ens_kind = 'picker'
+      assign ens_pic = block.settings.image
+      assign ens_op = block.settings.object_position | default: '50% 50%'
+      assign ens_op_lg = block.settings.object_position_desktop | default: '50% 50%'
+    endif
+    break
+  endfor
+  if ens_kind == '' and ens_frame != ''
+    assign ens_kind = 'asset'
+  endif
+
+  # ---- 4. the owner option: the collection scene with a credit line (off by default) ----
+  assign ens_credit = false
+  if ens_kind == '' and section.settings.scene_fallback
+    assign ens_op = '50% 50%'
+    assign ens_op_lg = '50% 50%'
+    if ens_fam == 'path'
+      assign ens_pic = section.settings.image_path
+      assign ens_frame = 'ens-pdp-scene-path.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_pictured = section.settings.pictured_path
+      if ens_pictured == blank
+        assign ens_pictured = all_products['stainless-steel-solar-path-light-ip65']
+      endif
+    elsif ens_fam == 'wall'
+      assign ens_pic = section.settings.image_wall
+      assign ens_frame = 'ens-pdp-scene-wall.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_pictured = section.settings.pictured_wall
+      if ens_pictured == blank
+        assign ens_pictured = all_products['outdoor-bidirectional-led-wall-light-ip65']
+      endif
+    elsif ens_fam == 'spot'
+      assign ens_pic = section.settings.image_spot
+      assign ens_frame = 'ens-pdp-dual-head.jpg'
+      assign ens_w = 930
+      assign ens_h = 1254
+      assign ens_op_lg = '50% 45%'
+      assign ens_pictured = section.settings.pictured_spot
+      if ens_pictured == blank
+        assign ens_pictured = all_products['dual-head-garden-light-10w-ip65']
+      endif
+    else
+      assign ens_pic = section.settings.image_decor
+      assign ens_frame = 'ens-pdp-scene-decor.jpg'
+      assign ens_w = 1254
+      assign ens_h = 1254
+      assign ens_pictured = section.settings.pictured_decor
+      if ens_pictured == blank
+        assign ens_pictured = all_products['solar-edison-string-lights']
+      endif
+    endif
+    if ens_pic != blank
+      assign ens_kind = 'picker'
+    else
+      assign ens_kind = 'asset'
+    endif
+    if ens_pictured != blank and ens_pictured.handle != product.handle
+      assign ens_credit = true
+    endif
+  endif
+
+  # ---- the srcset: never a candidate wider than the file (home2 critique E7) ----
+  assign ens_srcset = ''
+  assign ens_src = ''
+  assign ens_want = '600,900,1254' | split: ','
+  if ens_kind == 'picker'
+    assign ens_w = ens_pic.width
+    assign ens_h = ens_pic.height
+    for w in ens_want
+      assign wn = w | plus: 0
+      if wn <= ens_pic.width
+        assign wurl = ens_pic | image_url: width: wn
+        if ens_srcset != ''
+          assign ens_srcset = ens_srcset | append: ', '
+        endif
+        assign ens_srcset = ens_srcset | append: wurl | append: ' ' | append: w | append: 'w'
+        assign ens_src = wurl
+      endif
+    endfor
+    if ens_srcset == ''
+      assign wurl = ens_pic | image_url: width: ens_pic.width
+      assign ens_srcset = wurl | append: ' ' | append: ens_pic.width | append: 'w'
+      assign ens_src = wurl
+    endif
+  elsif ens_kind == 'asset'
+    for w in ens_want
+      assign wn = w | plus: 0
+      if wn <= ens_w
+        assign wsize = w | append: 'x'
+        assign wurl = ens_frame | asset_img_url: wsize
+        if ens_srcset != ''
+          assign ens_srcset = ens_srcset | append: ', '
+        endif
+        assign ens_srcset = ens_srcset | append: wurl | append: ' ' | append: w | append: 'w'
+        assign ens_src = wurl
+      endif
+    endfor
+    # a pre-cropped file narrower than 900 (the step light, 854) also offers its own width
+    if ens_w < 900
+      assign wsize = ens_w | append: 'x'
+      assign wurl = ens_frame | asset_img_url: wsize
+      assign ens_srcset = ens_srcset | append: ', ' | append: wurl | append: ' ' | append: ens_w | append: 'w'
+      assign ens_src = wurl
+    endif
+  endif
+  assign ens_op = ens_op | strip | escape
+  assign ens_op_lg = ens_op_lg | strip | escape
+
+  # ---- the text block ----
+  if ens_head_block != ''
+    assign ens_heading = ens_head_block
+  elsif ens_head_map != ''
+    assign ens_heading = ens_head_map
+  endif
+  assign ens_heading = ens_heading | strip
+  assign ens_line = ens_line | strip
+  assign ens_link_label = section.settings.link_label | default: '' | remove: '←' | strip
+  assign ens_link_url = section.settings.link_url | default: '/pages/guide-garden-lighting'
+  assign ens_credit_prefix = section.settings.credit_prefix | default: 'בתמונה:' | strip
+-%}
+{%- comment -%} P6: the heading, the line and (scene_fallback) the pictured product's title through the facts' token loop — every Latin/number token in ONE ltr isolate, then the en-dash range isolator — so a typed «IP65» never flips {%- endcomment -%}
+{%- liquid
+  assign RS = '~~R~~'
+  assign ens_title = ''
+  if ens_credit
+    assign ens_title = ens_pictured.title | strip
+  endif
+  assign ens_h_esc = ens_heading | escape
+  assign ens_l_esc = ens_line | escape
+  assign ens_t_esc = ens_title | escape
+  assign ens_parts = ens_h_esc | append: RS | append: ens_l_esc | append: RS | append: ens_t_esc | split: RS
+-%}
+{%- capture ens_html -%}
+{%- for part in ens_parts -%}
+  {%- liquid
+    assign words = part | split: ' '
+    assign v = ''
+    for w in words
+      assign c = w | slice: 0, 1
+      if c != blank and latin_chars contains c
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      elsif w == '&' or w == '&amp;' or w == '+' or w == '/'
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      else
+        assign tok = w
+      endif
+      if forloop.first
+        assign v = tok
+      else
+        assign v = v | append: ' ' | append: tok
+      endif
+    endfor
+    assign v = v | replace: '</bdi> <bdi dir="ltr">', ' '
+  -%}
+  {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: v -%}{%- endcapture -%}
+  {%- assign v = v | strip | replace: '<bdi>', '<bdi dir="ltr">' -%}
+  {%- unless forloop.first -%}{{ RS }}{%- endunless -%}{{ v }}
+{%- endfor -%}
+{%- endcapture -%}
+{%- liquid
+  assign ens_out = ens_html | strip | split: RS
+  assign ens_heading_html = ens_out[0] | default: '' | strip
+  assign ens_line_html = ens_out[1] | default: '' | strip
+  assign ens_title_html = ens_out[2] | default: '' | strip
+-%}
+<section class="env2-section ens-pdp-scene" dir="rtl" data-ens-place="{{ ens_fam }}"{% if ens_heading != '' %} aria-labelledby="ens-pdp-scene-h2-{{ section.id }}"{% endif %} style="scroll-margin-top:90px">
+  {%- if ens_kind != '' -%}
+  <figure class="ens-pdp-scene__fig" style="--ens-op:{{ ens_op }};--ens-op-lg:{{ ens_op_lg }}">
+    <img
+      src="{{ ens_src }}"
+      srcset="{{ ens_srcset }}"
+      sizes="100vw"
+      width="{{ ens_w }}" height="{{ ens_h }}"
+      loading="lazy" decoding="async" alt="{{ ens_alt | escape }}">
+  </figure>
+  {%- endif -%}
+  <div class="env2-wrap">
+    {%- if ens_credit -%}
+    <p class="ens-pdp-scene__credit">{{ ens_credit_prefix | escape }} <a class="ens-pdp-scene__credit-link" href="{{ ens_pictured.url }}">{{ ens_title_html }}</a></p>
+    {%- endif -%}
+    <div class="ens-pdp-scene__text">
+      {%- if ens_heading != '' -%}
+      <h2 id="ens-pdp-scene-h2-{{ section.id }}" class="env2-h ens-pdp-scene__h2">{{ ens_heading_html }}</h2>
+      {%- endif -%}
+      <div class="ens-pdp-scene__body">
+        {%- if ens_line != '' -%}
+        <p class="ens-pdp-scene__line">{{ ens_line_html }}</p>
+        {%- endif -%}
+        {%- if ens_link_label != '' -%}
+        <a class="ens-pdp-scene__link" href="{{ ens_link_url }}">{{ ens_link_label | escape }} <span aria-hidden="true">&#8592;</span></a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.ens-pdp-scene{padding:0;margin:0;isolation:isolate}
+.ens-pdp-scene bdi{unicode-bidi:isolate}
+.ens-pdp-scene :focus-visible{outline:2px solid #ffd394;outline-offset:4px}
+/* the photograph is in flow and sets the figure's height (440 / 560 px); no scrim, no text on it, no border, radius 0; crop per frame (--ens-op / --ens-op-lg from the map or the block) */
+.ens-pdp-scene__fig{position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0}
+.ens-pdp-scene__fig img{display:block;inline-size:100%;block-size:440px;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* the credit line (scene_fallback only): muted 13 px, the pictured product's own title, linked */
+.ens-pdp-scene__credit{margin:0;padding-block:10px 0;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:13px;line-height:1.6;color:#c9c4b8}
+.ens-pdp-scene__credit-link{position:relative;display:inline-block;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;transition:color .3s,border-color .3s}
+.ens-pdp-scene__credit-link:hover,.ens-pdp-scene__credit-link:focus-visible{color:#ffd394;border-color:#ffd394;text-decoration:none}
+.ens-pdp-scene__credit-link::before{content:"";position:absolute;inset-block:-11px;inset-inline:-6px}
+/* the text block on the night ground: 24 + h2 28 + 12 + line ≤ 50 + 14 + link 24 + 28 ≈ 180 px at 390 (≤ 200 with a photograph, ≤ 220 alone) */
+.ens-pdp-scene__text{padding-block:24px 28px}
+.ens-pdp-scene__credit + .ens-pdp-scene__text{padding-block-start:12px}
+.ens-pdp-scene__h2.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0;margin-block-end:12px}
+.ens-pdp-scene__line{margin:0;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:300;font-size:16px;line-height:1.55;color:#f4eee3;max-inline-size:46ch}
+/* the guide link — the form of «לכל התנאים ←»: hairline underline, glow on hover/focus, 44 px hit area via ::before, the arrow in an aria-hidden span */
+.ens-pdp-scene__link{position:relative;display:inline-block;margin-block-start:14px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:15px;line-height:1.6;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;white-space:nowrap;transition:color .3s,border-color .3s}
+.ens-pdp-scene__link:hover,.ens-pdp-scene__link:focus-visible{color:#ffd394;border-color:#ffd394;text-decoration:none}
+.ens-pdp-scene__link::before{content:"";position:absolute;inset-block:-11px;inset-inline:-6px}
+@media (min-width:901px){
+  .ens-pdp-scene__fig img{block-size:560px;object-position:var(--ens-op-lg,50% 50%)}
+  .ens-pdp-scene__credit{padding-block-start:12px}
+  /* two columns like the facts grid: the heading in the inline-start column, the line + link in the inline-end column */
+  .ens-pdp-scene__text{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px 64px;align-items:start;padding-block:40px 48px}
+  .ens-pdp-scene__credit + .ens-pdp-scene__text{padding-block-start:24px}
+  .ens-pdp-scene__h2.env2-h{margin:0}
+  .ens-pdp-scene__line{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-pdp-scene__fig img,.ens-pdp-scene__link,.ens-pdp-scene__credit-link{transition:none!important;animation:none!important}
+}
+</style>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ElmsNest S — בלילה",
+  "tag": "section",
+  "class": "ens-pdp-section hdt-section",
+  "settings": [
+    { "type": "paragraph", "content": "תמונת לילה אחת של המוצר במקומו, ואחריה כותרת המקום, משפט אחד וקישור למדריך. התמונה נבחרת לפי המוצר: בלוק של הבעלים קודם, אחריו המפה הקבועה של החנות, ולמוצר בלי תמונה נקייה — בלי תמונה." },
+    { "type": "header", "content": "כותרת המקום (בלי נקודה)" },
+    { "type": "text", "id": "heading_path", "label": "שביל", "default": "בלילה, על השביל" },
+    { "type": "text", "id": "heading_wall", "label": "קיר", "default": "בלילה, על הקיר" },
+    { "type": "text", "id": "heading_spot", "label": "גינה", "default": "בלילה, בגינה" },
+    { "type": "text", "id": "heading_decor", "label": "מרפסת", "default": "בלילה, במרפסת" },
+    { "type": "text", "id": "heading_indoor", "label": "בבית (ענפי הליבנה)", "default": "בערב, בבית" },
+    { "type": "header", "content": "המשפט (אחד לכל משפחה)" },
+    { "type": "text", "id": "line_path", "label": "שביל", "default": "אור נמוך, קרוב לאדמה, שמלווה את הדרך." },
+    { "type": "text", "id": "line_wall", "label": "קיר", "default": "אור על הקיר, בדיוק בנקודה שבחרתם." },
+    { "type": "text", "id": "line_spot", "label": "גינה", "default": "אור מכוון אל מה שרוצים לראות בלילה." },
+    { "type": "text", "id": "line_decor", "label": "מרפסת", "default": "הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו." },
+    { "type": "header", "content": "קישור למדריך" },
+    { "type": "text", "id": "link_label", "label": "טקסט הקישור (ריק = בלי קישור)", "default": "למדריך לבחירת תאורה ←" },
+    { "type": "url", "id": "link_url", "label": "יעד הקישור (ריק = /pages/guide-garden-lighting)" },
+    { "type": "header", "content": "מוצר בלי תמונה משלו" },
+    { "type": "checkbox", "id": "scene_fallback", "label": "להציג את תמונת הקולקציה עם שורת קרדיט", "default": false, "info": "כבוי = בלי תמונה (הכותרת, המשפט והקישור בלבד). דלוק = תמונת הקולקציה, ומתחתיה «בתמונה: {שם המוצר המצולם}» עם קישור אליו." },
+    { "type": "text", "id": "credit_prefix", "label": "תחילת שורת הקרדיט", "default": "בתמונה:" },
+    { "type": "image_picker", "id": "image_path", "label": "תמונת הקולקציה — שביל (ריק = ens-pdp-scene-path.jpg)" },
+    { "type": "product", "id": "pictured_path", "label": "המוצר שבתמונה — שביל (ריק = פנס השביל מנירוסטה)" },
+    { "type": "image_picker", "id": "image_wall", "label": "תמונת הקולקציה — קיר (ריק = ens-pdp-scene-wall.jpg)" },
+    { "type": "product", "id": "pictured_wall", "label": "המוצר שבתמונה — קיר (ריק = מנורת הקיר הדו-כיוונית)" },
+    { "type": "image_picker", "id": "image_spot", "label": "תמונת הקולקציה — גינה (ריק = ens-pdp-dual-head.jpg)" },
+    { "type": "product", "id": "pictured_spot", "label": "המוצר שבתמונה — גינה (ריק = פנס הגינה הדו-ראשי)" },
+    { "type": "image_picker", "id": "image_decor", "label": "תמונת הקולקציה — מרפסת (ריק = ens-pdp-scene-decor.jpg)" },
+    { "type": "product", "id": "pictured_decor", "label": "המוצר שבתמונה — מרפסת (ריק = שרשרת אדיסון סולארית)" }
+  ],
+  "blocks": [
+    {
+      "type": "frame",
+      "name": "תמונה למוצר אחד",
+      "settings": [
+        { "type": "paragraph", "content": "הבלוק מחליף את התמונה של מוצר אחד בלבד: המוצר שנבחר כאן. בלי בלוקים — המפה הקבועה של החנות." },
+        { "type": "product", "id": "product", "label": "המוצר" },
+        { "type": "image_picker", "id": "image", "label": "התמונה (לילה, המוצר במקומו)" },
+        { "type": "text", "id": "object_position", "label": "מיקום החיתוך בנייד (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה." },
+        { "type": "text", "id": "object_position_desktop", "label": "מיקום החיתוך במחשב (object-position)", "default": "50% 50%", "info": "חל מרוחב 901 פיקסלים." },
+        { "type": "text", "id": "heading", "label": "כותרת במקום כותרת המקום (ריק = כותרת המקום)" },
+        { "type": "text", "id": "alt", "label": "טקסט חלופי לתמונה (alt)", "info": "ריק = תמונה דקורטיבית; הכותרת נושאת את המשמעות." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "ElmsNest S — בלילה" }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

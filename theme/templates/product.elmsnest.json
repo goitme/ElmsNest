@@ -255,6 +255,16 @@
         "pd_mb": "22px,,30px,"
       }
     },
+    "ens_pdp_scene": {
+      "type": "elmsnest-s-pdp-scene",
+      "settings": {
+        "link_url": "shopify://pages/guide-garden-lighting"
+      }
+    },
+    "ens_pdp_dusk": {
+      "type": "elmsnest-s-pdp-dusk",
+      "settings": {}
+    },
     "ens_pdp_facts": {
       "type": "elmsnest-s-pdp-facts",
       "settings": {
@@ -275,6 +285,8 @@
   },
   "order": [
     "main-product",
+    "ens_pdp_scene",
+    "ens_pdp_dusk",
     "ens_pdp_facts",
     "ens_related"
   ]

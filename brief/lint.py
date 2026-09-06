@@ -100,8 +100,9 @@ for f in [x for x in env2_files if os.path.basename(x).startswith(PDPSET)]:
     if small: print(f"  .. {name}: font-size below 11.5px {sorted(set(small))} — captions have a 13px floor, labels 11.5px (§3.2)")
 
 # ---- no file under theme/ may contain the GraphQL block-string terminator ----
+BINARY=('.jpg','.jpeg','.png','.webp','.gif','.ico','.woff','.woff2','.ttf','.otf','.mp4','.pdf')  # uploaded with a URL/BASE64 body, never as a block string
 for f in sorted(glob.glob(root+'/**/*',recursive=True)):
-    if os.path.isfile(f) and '"""' in open(f,encoding='utf-8',errors='replace').read():
+    if os.path.isfile(f) and not f.lower().endswith(BINARY) and '"""' in open(f,encoding='utf-8',errors='replace').read():
         err(os.path.relpath(f,root),'contains three double quotes (breaks GraphQL block string upload)')
 # ---- template JSON ↔ section schema (env2 sections from theme/, Kalles sections from the theme-src dumps) ----
 SRC=os.path.join(os.path.dirname(os.path.abspath(__file__)),'inventory','theme-src','sections')
