@@ -29,6 +29,8 @@ const ALL_PAGES = [
   { name: 'pdp-rope', path: '/products/solar-rope-string-lights', target: 6 },
   { name: 'pdp-path', path: '/products/stainless-steel-solar-path-light-ip65', target: 6 },
   { name: 'pdp-deck', path: '/products/waterproof-solar-deck-step-lights', target: 6 },
+  { name: 'pdp-wall', path: '/products/waterproof-led-wall-light-ip65-6w-12w', target: 6 },  // pdp2 archetype B: MAINS wall light, 8 variants (the solar gate must be OFF)
+  { name: 'pdp-flood', path: '/products/solar-floodlight-ip67-remote-timer', target: 6 },  // pdp2 archetype C: solar, no clean own frame (the collection fallback)
 ];
 const PAGES = ONLY.length ? ALL_PAGES.filter(p => ONLY.includes(p.name)) : ALL_PAGES;
 const VIEWS = [['m', 390, 844], ['s', 360, 640], ['d', 1366, 900]];
