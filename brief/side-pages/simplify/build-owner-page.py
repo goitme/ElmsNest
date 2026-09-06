@@ -12,6 +12,8 @@ B = json.load(open(f'{SIM}/verify-before/verify.json'))
 CRIT = json.load(open(f'{SIM}/critique/SUMMARY.json')) if os.path.exists(f'{SIM}/critique/SUMMARY.json') else None
 H2 = '/home/user/ElmsNest/brief/side-pages/home2/OWNER-SECTION.json'
 HOME2 = json.load(open(H2, encoding='utf-8'))['html'] if os.path.exists(H2) else ''  # home round 2 (2026-09-06): spliced in after the numbers, before the phone flow
+P2 = '/home/user/ElmsNest/brief/side-pages/pdp2/OWNER-SECTION.json'
+PDP2 = json.load(open(P2, encoding='utf-8'))['html'] if os.path.exists(P2) else ''  # product-page round 2 (2026-09-06): spliced in after the home round-2 section
 
 def jpg(path, width=390, q=78):
     im = Image.open(path).convert('RGB')
@@ -127,7 +129,7 @@ footer{{padding:40px 0 60px;color:var(--mute);font-size:13px;border-top:1px soli
 <p class="lede">الصفحات الثلاث بعد حكمك في اليوم نفسه: النظرة الليلية بقيت، والتعقيد ذهب. الرئيسية من عشر شاشات إلى خمس (ثم قرابة سبع بعد أقسام الصور الثلاثة التي طلبتها)، الكتالوج من ستٍّ وعشرين إلى ثمانٍ، صفحة المنتج من عشر إلى أربع — على قوالب Kalles الأصلية التي يعرفها كل مشترٍ، بصورة المنتج الأصلية في كل مكان.</p>
 <blockquote>«صممتها تصميم بصري جميل جداً لكنه معقد ومش زابط للمتجر… هدفي كان نعطي افضل تصميم بصري لكن يكون بسيط للعميل»<small>حكمك، 2026-09-05 — وهو الموجز الذي بُنيت عليه هذه الجولة كلها</small></blockquote>
 </div></header>
-<nav class="toc"><div class="wrap"><ul><li><a href="#numbers">الأرقام</a></li><li><a href="#home2">الرئيسية: الصور</a></li><li><a href="#flow">رحلة الهاتف</a></li><li><a href="#ba">قبل وبعد</a></li><li><a href="#cart">السلة</a></li><li><a href="#answers">أجوبتك الخمسة</a></li><li><a href="#critique">النقد</a></li><li><a href="#admin">ما بقي لك</a></li><li><a href="#process">كيف جرى</a></li></ul></div></nav>
+<nav class="toc"><div class="wrap"><ul><li><a href="#numbers">الأرقام</a></li><li><a href="#home2">الرئيسية: الصور</a></li><li><a href="#pdp2">صفحة المنتج: الصور</a></li><li><a href="#flow">رحلة الهاتف</a></li><li><a href="#ba">قبل وبعد</a></li><li><a href="#cart">السلة</a></li><li><a href="#answers">أجوبتك الخمسة</a></li><li><a href="#critique">النقد</a></li><li><a href="#admin">ما بقي لك</a></li><li><a href="#process">كيف جرى</a></li></ul></div></nav>
 
 <section id="numbers"><div class="wrap">
 <p class="eyebrow">القياس</p><h2>كم شاشة هاتف تحتاج كل صفحة</h2>
@@ -140,6 +142,7 @@ footer{{padding:40px 0 60px;color:var(--mute);font-size:13px;border-top:1px soli
 </div></section>
 
 {HOME2}
+{PDP2}
 <section id="flow"><div class="wrap">
 <p class="eyebrow">الرحلة</p><h2>من الرئيسية إلى الدرج، على هاتف</h2>
 <div class="flow">{flow_html}{drawer_html}</div>
