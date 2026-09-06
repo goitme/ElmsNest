@@ -40,3 +40,15 @@ block string drops the file's final newline); the checksum equals `head -c -1 <f
 | `sections/elmsnest-s-pdp-dusk.liquid` | 6728 | `764b3c2db0732b299c6e7b48e5f7627e` |
 | `sections/elmsnest-s-pdp-scene.liquid` | 22781 | `3218fdcd677abfc2f43cdc9e5ad826f6` |
 | `templates/product.elmsnest.json` | 9941 | `de63246840e05776924f16c697fc1ac6` |
+
+Verified 2026-09-06 ~22:35 UTC on the re-mirrored dev-theme pages (`simplify/verify-mirror.js … --pages=pdp-path,pdp-wall,pdp-flood,pdp-rope,pdp-deck`,
+30 renders: 5 pages × 390/360/1366 × JS on/off; `pdp2/verify-after/verify.json`, `verify-after.log`). At 390×844, JS on:
+rope **4.83** · path **5.01** · deck **4.42** · wall **4.84** · flood **4.50** screens (P5 cap 6; before: 3.93 · 4.14 · 4.07 · 4.13 · 4.15).
+Sections at 390: scene **596** px with a photograph (path, wall; rope 621 — the decor line wraps twice) / **156** px without
+(deck, flood); dusk **135** px (cap 160), absent on the mains wall light (the gate). At 1366: scene 714 / 154, dusk 117.
+Every §11 PDP count unchanged on all 30 renders (forms 2, main form 1, sticky 1, terms line 1, mailto 1, photo line 1,
+0 WhatsApp, 0 glyph plates, 0 Liquid errors, no overflow-x, en-dash ranges in bdi); `guideLinksInMain` = 1 on every page;
+`pdpCopy.missing` = [] on every page (the family's heading and line, the link, and the two dusk sentences where the row
+renders); `pdpCopy.credit` = false everywhere (the option is off). Images: one `<img>` in the scene on path/wall/rope with
+width/height, `loading="lazy"`, `decoding="async"`, candidates 600/900/1254 from the theme's assets; none on deck/flood.
+Per-section shots: `pdp2/shoot-sections.js` → `pdp2/verify/` (path), `verify-wall/`, `verify-flood/` at 360/390/1366.
