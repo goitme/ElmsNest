@@ -42,10 +42,10 @@ own = [('stainless', 'stainless-steel-solar-path-light-ip65', '6', 'كاملة')
 src_rows = ''.join(f'<tr><td dir="ltr" style="font-family:ui-monospace,monospace;font-size:13px">{h}</td><td dir="ltr" style="font-size:13px">ens-pdp-{a}.jpg</td><td dir="ltr">{n}</td><td>{c}</td></tr>' for a, h, n, c in own)
 nophoto = ['magnetic-rechargeable-touch-wall-light', 'solar-wall-light-motion-sensor-ip65', 'waterproof-solar-deck-step-lights', 'retro-solar-path-lights-set', 'swaying-solar-path-lights-ip65', 'modern-led-bollard-light-5w-ip65', 'solar-garden-spotlight-52-led', 'solar-security-light-100-led', 'solar-floodlight-ip67-remote-timer', 'rechargeable-telescopic-camping-lantern', 'led-globe-string-lights', 'decorative-led-net-lights']
 nophoto_html = '، '.join(f'<span dir="ltr" style="font-family:ui-monospace,monospace;font-size:12.5px">{h}</span>' for h in nophoto)
-copy = [('בלילה, על השביל · בלילה, על הקיר · בלילה, בגינה · בלילה, במרפסת', 'عنوان القسم حسب الكولكشن (كلمة المكان المرخّصة نفسها). لأغصان البتولا داخل البيت: «בערב, בבית».'),
+copy = [('בלילה, על השביל · בלילה, על הקיר · בלילה, בגינה · בלילה, במרפסת', 'عنوان القسم حسب الكولكشن (كلمة المكان المرخّصة نفسها). لأغصان البتولا داخل البيت: «בערב, בבית»؛ لفانوس التخييم: «בלילה, בשטח» (كلمة وصفه).'),
         ('אור נמוך, קרוב לאדמה, שמלווה את הדרך.', 'سطر عائلة الممرّ: شكل الضوء لا مواصفاته — لا مدى، لا ساعات، لا لومن.'),
         ('אור על הקיר, בדיוק בנקודה שבחרתם.', 'سطر عائلة الجدار: مصباح الجدار يضيء الجدار الذي ركّبتَه عليه.'),
-        ('אור מכוון אל מה שרוצים לראות בלילה.', 'سطر عائلة الحديقة (سبوت، كشّاف، إضاءة أمان): ضوء موجَّه — صحيح للثلاثة، ولا يناقض «מאיר רחב» في وصف الكشّاف.'),
+        ('אור מכוון אל מה שרוצים לראות.', 'سطر عائلة الحديقة (سبوت، كشّاف، إضاءة أمان): ضوء موجَّه — صحيح للثلاثة، ولا يناقض «מאיר רחב» في وصف الكشّاف. (كان فيه «בלילה»؛ النقد عدّها أربع مرات في 290 بكسل، فسقطت.)'),
         ('הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו.', 'سطر عائلة الشرفة (الجرلندات والديكور).'),
         ('למדריך לבחירת תאורה ←', 'رابط الدليل — الوحيد في صفحة المنتج (لم يكن فيها رابط دليل من قبل).'),
         ('כשמחשיך', 'عنوان الصفّ الشمسي.'),
