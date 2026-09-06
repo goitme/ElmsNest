@@ -10,7 +10,7 @@ from PIL import Image, ImageOps
 HERE = os.path.dirname(os.path.abspath(__file__)); H = os.path.dirname(HERE)
 THEME = '/home/user/ElmsNest/theme'; OUT = os.path.join(H, 'deploy'); os.makedirs(OUT, exist_ok=True); os.makedirs(os.path.join(THEME, 'assets'), exist_ok=True)
 TID = 'gid://shopify/OnlineStoreTheme/154726400174'
-args = [a for a in sys.argv[1:] if not a.startswith('--')]
+args = [a for i, a in enumerate(sys.argv[1:], 1) if not a.startswith('--') and sys.argv[i - 1] not in ('--max-width', '--kb')]
 maxw = int(next((a.split()[0] for a in sys.argv if a.startswith('--max-width')), '--max-width 1800').split()[-1]) if False else 1800
 kb = 220
 for i, a in enumerate(sys.argv):
@@ -20,8 +20,13 @@ man = {json.loads(l)['id']: json.loads(l) for l in open(os.path.join(HERE, 'mani
 n = 0
 for spec in args:
     pid, slug = spec.split('=', 1)
+    crop = None
+    if ':' in slug:  # id=slug:x,y,w,h (pixels in the source) — a pre-crop baked into the asset so no CSS crop is needed
+        slug, box = slug.split(':', 1); crop = tuple(int(v) for v in box.split(','))
     rec = man[pid]
     im = ImageOps.exif_transpose(Image.open(os.path.join(HERE, rec['file']))).convert('RGB')
+    if crop:
+        x, y, cw, ch = crop; im = im.crop((x, y, x + cw, y + ch))
     w, h = im.size
     if max(w, h) > maxw:
         s = maxw / max(w, h); im = im.resize((round(w * s), round(h * s)), Image.LANCZOS)
@@ -38,6 +43,6 @@ for spec in args:
     open(os.path.join(OUT, f'{n:02d}-assets__{name}.graphql'), 'w').write(gq)
     credit = 'none (store-owned)' if rec['license'] == 'store-owned' else ('none' if rec['license'] in ('CC0', 'CC PDM 1.0', 'Public domain') else f"צילום: {rec.get('author') or '?'} ({rec['license']})")
     with open(os.path.join(HERE, 'CHOSEN.md'), 'a', encoding='utf-8') as f:
-        f.write(f"| `{name}` | {pid} | {im.width}×{im.height} | {len(data)//1024} KB q{q} | {rec['source']} | {rec['license']} | {rec.get('author') or ''} | {rec.get('page') or rec.get('url')} | {credit} |\n")
+        f.write(f"| `{name}` | {pid}{' crop ' + ','.join(map(str, crop)) if crop else ''} | {im.width}×{im.height} | {len(data)//1024} KB q{q} | {rec['source']} | {rec['license']} | {rec.get('author') or ''} | {rec.get('page') or rec.get('url')} | {credit} |\n")
     print(f'{name}: {im.width}x{im.height} {len(data)//1024} KB (q{q}) md5 {hashlib.md5(data).hexdigest()} — {rec["license"]} {rec.get("author") or ""}')
 print(f'{n} assets written to theme/assets and {OUT}')
