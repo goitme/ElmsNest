@@ -1,0 +1,29 @@
+# PDP round 2 — deploy log (dev theme `gid://shopify/OnlineStoreTheme/154726400174`, role UNPUBLISHED, only)
+
+## Assets, 2026-09-06 ~21:50 UTC — `themeFilesUpsert` with `body: {type: URL}`, two mutations of nine files
+
+Eighteen photographs (`images/CHOSEN.md`: fifteen own frames, three collection scenes for the off-by-default option),
+fetched by Shopify from the branch's public raw GitHub URL (commit 0582182). Both mutations returned an empty
+`upsertedThemeFiles` and `userErrors: []` (URL bodies are fetched asynchronously); the theme file query a minute
+later lists all eighteen with sizes and checksums equal to the local files byte for byte.
+
+| asset | bytes | md5 (= local) | source frame (store-owned) · pre-crop in the 1254² source |
+|---|---|---|---|
+| `assets/ens-pdp-bidirectional.jpg` | 223043 | `86f941564f1aa1a0902719db050745ef` | outdoor-bidirectional-led-wall-light-ip65 image 6 |
+| `assets/ens-pdp-birch.jpg` | 170376 | `d245ef3c4fff6f693f18991d9d873938` | lighted-birch-branches-20-led image 4 |
+| `assets/ens-pdp-crystal.jpg` | 189385 | `308e7bc0e4baaeba5a25fb94b88ac081` | solar-crystal-ball-string-lights image 3 |
+| `assets/ens-pdp-dual-head.jpg` | 207631 | `6d54e73dc5b0e683efc9b34a94dc4006` | dual-head-garden-light-10w-ip65 image 5, x 0–930 (the LUMIÈRE sign is out of the file) |
+| `assets/ens-pdp-edison.jpg` | 162687 | `7c75fdc77f93d6c5b1f84f6abe475449` | solar-edison-string-lights image 4 |
+| `assets/ens-pdp-firefly.jpg` | 210117 | `74597ed3dbc92ff093028ec2ec123926` | solar-firefly-garden-lights image 4 |
+| `assets/ens-pdp-lantern9.jpg` | 192761 | `e494afb3f778aaa61984d2a76ded06e8` | solar-garden-lantern-9-led image 6, y 300–980 |
+| `assets/ens-pdp-modern-path.jpg` | 139625 | `d5a961b585c7d0f39237252d4f692d78` | modern-solar-path-lights-set image 3, y 380–1040 |
+| `assets/ens-pdp-powerful.jpg` | 293076 | `267ad6e52fa66a17c79a60847072e14a` | powerful-solar-garden-light image 4, y 0–1130 |
+| `assets/ens-pdp-rope.jpg` | 222331 | `29d67abb618a769c9a5c3d45c07c8f25` | solar-rope-string-lights image 3, y 210–1254 |
+| `assets/ens-pdp-scene-decor.jpg` | 161605 | `0f4efe307302b6e36ce7beba7ef82778` | solar-edison-string-lights image 5 (collection scene, option) |
+| `assets/ens-pdp-scene-path.jpg` | 294799 | `08002b98cb7ebd7f8c521b8ecc4a3e77` | stainless-steel-solar-path-light-ip65 image 1 (collection scene, option) |
+| `assets/ens-pdp-scene-wall.jpg` | 167085 | `ed14d43ff7598b10d6b1252dd6aca430` | outdoor-bidirectional-led-wall-light-ip65 image 1 (collection scene, option) |
+| `assets/ens-pdp-stainless.jpg` | 304455 | `314a522af6fe1e8a7496a9480498bffa` | stainless-steel-solar-path-light-ip65 image 6 |
+| `assets/ens-pdp-wall-6w.jpg` | 36643 | `e542050b6d9d679bbea94dddaa20fc3b` | modern-led-wall-light-6w-up-down image 7 (1000 px source) |
+| `assets/ens-pdp-wall-indoor-outdoor.jpg` | 210724 | `c40a4dc6d75ce1eb115be509052aef71` | modern-led-wall-light-indoor-outdoor image 5 |
+| `assets/ens-pdp-warm-step.jpg` | 118745 | `87dfb8cad4d2818e2a4d8217553e07b4` | warm-solar-step-deck-lights image 2, x 400–1254 · y 330–1254 |
+| `assets/ens-pdp-waterproof-wall.jpg` | 154204 | `3bcf9fb234d7a3b75b7b625a074321d6` | waterproof-led-wall-light-ip65-6w-12w image 6 |
