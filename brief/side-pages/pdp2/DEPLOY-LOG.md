@@ -83,3 +83,10 @@ Two section mutations, `userErrors: []`; no asset and no template change.
 
 The pass-2 log carried `copyMissing=1` on the flood renders from a run before the verifier learned the new spot line (its JSON
 was re-run and correct); pass 3's log and JSON come from one run (`verify-after-pass3.log`).
+
+Verified 2026-09-07 ~00:55 UTC on the re-mirrored pages, one run for the log and the JSON (`verify-after-pass3.log`,
+`verify-after/verify.json`): at 390×844, JS on — rope **4.85** · path **5.03** · deck **4.41** · wall **4.84** · flood **4.49** screens;
+scene 596 (rope 621) with a photograph, **135** without; dusk 152 (**135** on the text-only pages, where it shares the text row's
+hairline); at 1366 scene 714 / 107, dusk 118 / 117. Every §11 count unchanged on all 30 renders, `guideLinksInMain` = 1 and
+`pdpCopy.missing` = [] on all 30. Re-shot: the rope frame now shows the wrapped trunk and the panel whole at 390/360; the text-only
+pages read as two rows sharing one rule before the facts; at 1366 both rows sit in the facts' column with a 152 px label.
