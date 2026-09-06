@@ -1,0 +1,18 @@
+mirror pdp-rope … mirror: 429 from the store, waiting 20s (attempt 1/6)
+ok
+mirror pdp-path … mirror: 429 from the store, waiting 20s (attempt 1/6)
+ok
+mirror pdp-deck … ok
+mirror pdp-wall … mirror: 429 from the store, waiting 20s (attempt 1/6)
+ok
+mirror pdp-flood … ok
+pdp-rope-m-js screens=4.85/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:621px/img1,dusk:152px/img0 guide=1 copyMissing=0
+pdp-path-m-js screens=5.03/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:596px/img1,dusk:152px/img0 guide=1 copyMissing=0
+pdp-deck-m-js screens=4.41/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:135px/img0,dusk:135px/img0 guide=1 copyMissing=0
+pdp-wall-m-js screens=4.84/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:596px/img1 guide=1 copyMissing=0
+pdp-flood-m-js screens=4.49/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:135px/img0,dusk:135px/img0 guide=1 copyMissing=0
+pdp-rope-s-js screens=6.32/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:621px/img1,dusk:152px/img0 guide=1 copyMissing=0
+pdp-path-s-js screens=6.57/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:596px/img1,dusk:152px/img0 guide=1 copyMissing=0
+pdp-deck-s-js screens=5.75/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:135px/img0,dusk:135px/img0 guide=1 copyMissing=0
+pdp-wall-s-js screens=6.31/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:596px/img1 guide=1 copyMissing=0
+pdp-flood-s-js screens=5.97/6 forms=2 main=1 sticky=1 mailto=1 photo=1 terms=0/1 glyph=0/0 wa=0 cards=4 cardForms=0 svg=0 liquidErr=0 ovX=false bdi!=0 notFeatured=4 pdp=scene:135px/img0,dusk:135px/img0 guide=1 copyMissing=0
