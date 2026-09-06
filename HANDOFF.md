@@ -240,3 +240,65 @@ screens. Verification script: `brief/side-pages/simplify/verify.js` (+ `featured
    compare-at cleanup, images content sheet). Then HANDOFF §7.6, commit, push.
 Do not run two sessions against the same dev theme: this round was handed over precisely because a second
 session («تصميم الصفحات الجانبية») was opened in parallel.
+
+## 7.6 SIMPLIFY reviewed, deployed, verified, critiqued, fixed; round 3 cart built and measured (2026-09-05 → 06)
+
+Everything below is on the DEV theme `gid://shopify/OnlineStoreTheme/154726400174` only. The live theme (154652737710) is
+untouched; nothing was published; no product, collection, page or metafield was changed. Branch `claude/design-sidebar-pages-3991tn`.
+
+**What happened after §7.5, in order** (every step has its file):
+1. Contract review of the 22 SIMPLIFY files — 35 agents (`brief/side-pages/workflows/simplify-review.js`), 27 findings, one
+   major (Latin tokens flipping inside Hebrew `<dd>` rows), rulings in `brief/side-pages/simplify/review/LEAD-DECISIONS.md`
+   (written before the fixer ran), fixer + re-review. Deployed 23 files (`DEPLOY-LOG.md` first + second pass; four Shopify
+   validation rules learned there). Verified on mirrors (`verify-mirror.js`; Chromium cannot reach the store through this
+   sandbox, curl can — `brief/mirror.py` with 429 backoff and an asset cache).
+2. Adversarial critique of the deployed render (`workflows/simplify-critique.js`): four lenses (shopper, QA, honesty, the
+   owner's own three complaints) → 34 findings in `critique/*.jsonl`, one skeptic per finding (30 confirmed, 4 refuted),
+   rulings appended to `review/LEAD-DECISIONS.md` BEFORE the fixer, fixer applied them, lead amended SPEC §4/§5/§6/§7/§8/§11.
+   Third deploy pass: 13 files (`DEPLOY-LOG.md`). Third verification (`verify-after/verify.json`; the second-pass numbers are
+   kept in `verify-after/verify-pass2.json`; the clamp experiment that decided square cards + 3-line titles is in
+   `critique/clamp-experiment.{js,txt}`).
+3. Round 3 cart: five concepts + five judges (`brief/side-pages/cart/JUDGES.json`), re-scoped under the verdict into the
+   stock drawer (`cart/WINNING-SPEC.md`, `RULING.md` in Arabic), built by `workflows/cart-build.js` (two engineers,
+   contract reviewer PASS, fixer), skin patch applied by the lead (`cart/apply-skin-patch.py`, `SKIN-PATCH.json`), the
+   header count dropped (Kalles re-renders only the items component after an add → stale count), deployed with pass 3,
+   measured with `cart/verify.js` against the baseline in `cart/INVENTORY-DRAWER.md`. Fourth pass: the skin only — at
+   360×640 Kalles' `flex:1 1 100%` inner overflowed the `overflow:hidden` dialog and clipped the checkout; fixed and measured.
+
+**Numbers (390×844, JS on; rejected env2 → SIMPLIFY pass 3 / target):** home 10.32 → 5.12 / 6 · /collections/all
+25.76 → 7.43 / 8 · path collection 17.98 → 3.53 / 8 · rope PDP 10.25 → 3.93 / 6 · path PDP 10.37 → 4.14 / 6 · deck PDP
+9.89 → 4.07 / 6. Every §11 check passes on the third mirror run except the documented harness artefacts (mirror renames image
+files → `cardsNotFeatured`; the price swap on a pill click is a Kalles network re-render the mirror cannot make →
+`priceChanged:false`; the live add reached the drawer with the chosen variant). Cart, drawer at 390×844 (baseline →
+now): dominance 0.99 → 3.01, titles cut → none, remove controls per line [1,2] → [1,1], void 288 → 32 px, terms 0/4 → 3/4,
+Hebrew letter-spacing 2 → 0; cart page at 360×640: checkout 340 px below the fold → inside, dominance 0.68 → 4.17.
+
+**Owner artifact:** `brief/side-pages/simplify/build-owner-page.py` (+ `critique/build-summary.py` → `critique/SUMMARY.json`)
+renders the Arabic page (numbers, the phone flow home → collection → PDP → drawer, before/after, the five answers, the
+critique, the cart before/after, the admin list, the honest process notes). Published as an Artifact — link in the last
+commit message of this section and in the chat.
+
+**The one real bug the critique found in our own code:** the sticky-bar sync in `elmsnest-s-pdp-terms-line.liquid` looked
+up `product-form-main-product<id>`; Kalles names the form `product-form-<section.id><product.id>`, so the listener never
+attached and the noscript `<select form=…>` pointed at nothing. Fixed (form resolved by class inside the block's own
+section; noscript built from `section.id`, only when `variants.size > 1`). SPEC §8 corrected.
+
+**Open items — owner (Shopify Admin / DNS), in priority order** (also on the owner page):
+1. `info@elmsnest.com` has no MX record — the photo promise on every page depends on it. Mailbox before publishing.
+2. Cookie banner (compact mode); main menu «קולקציות» → /collections/all.
+3. Product images: the sheet of 5 products with a clean frame later in the gallery + 14 without one; two frames carry a
+   foreign brand (bollard, «LUMIÈRE») or unbacked numbers (swaying path set) — first in line.
+4. Deck light `compare_at_price` 199.90 → clear (the skin hides it; the data should not say "sale").
+5. `/collections/all` is Shopify's automatic collection (alphabetical); an `all` collection with manual sort gives the
+   owner his own order. The one-variant stainless path light: remove the option «צבע אור» so Kalles omits the picker.
+6. Optional: a logo file with the wordmark; shorter product titles (advice, not a change).
+7. The question put to the owner on the page: the home's four collection tiles + the four «when yes / when not» rows —
+   is that "twice"? Removing `ens_fit` from `templates/index.json` order is the one-line change if he says yes.
+
+**Open items — next session:**
+- The JS half of the pill → price → sticky id → drawer chain has to be proven on a machine whose browser can reach the
+  store (`verify.js` on the live preview, not the mirror): click «12 מ׳ / 100 נורות», assert the main and sticky
+  `input[name=id]` change together and the drawer line item matches. The server half and the listener wiring are proven.
+- Then: search + 404, content pages, policies, under the same SIMPLIFY principles (`SPEC.md` §2) and the same loop
+  (brief → concepts → judges → spec → build → deploy → verify → critique → owner page).
+- Do not run two sessions against the same dev theme.

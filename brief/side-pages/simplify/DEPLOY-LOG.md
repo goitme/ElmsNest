@@ -83,3 +83,17 @@ and match byte for byte.
 | `sections/cart-drawer.liquid` | 54533 | `fc51615cf5df6da2424e51777ace2f51` | round 3: terms line above the subtotal, view-cart text link, four-collection empty state |
 | `sections/main-cart.liquid` | 53365 | `150a2f374e0acd7a13f96844b13e8ada` | round 3: footer first on phones, terms line, no-JS quantity links, one remove control, four-collection empty state |
 | `templates/cart.json` | 2910 | `ed03e92dcb90d05a9f3cc5c2dc7328f7` | round 3: heading band and guidance boxes dropped |
+
+## Fourth pass (one file), 2026-09-05 ~17:40 UTC
+
+| file | remote bytes | remote md5 | why |
+|---|---|---|---|
+| `snippets/elmsnest-s-skin.liquid` | 15759 | `42f16dbc068efe96e6a15dc4577b10fb` | drawer: inner/wrap shrink so the checkout stays on screen at 360×640 (Kalles' `flex:1 1 100%` inner overflowed the `overflow:hidden` dialog and clipped the button — measured on the mirror before and after); 44 px empty-state links; the empty tool row hidden |
+
+Third-pass numbers (390×844, JS on; second pass → third pass / target): home 5.18 → **5.12** / 6 · /all 7.94 → **7.43** / 8 ·
+path 3.82 → **3.53** / 8 · rope PDP 4.38 → **3.93** / 6 · path PDP 4.25 → **4.14** / 6 · deck PDP 4.18 → **4.07** / 6.
+Buy button top (px): rope 1082 → 1043, path 900 → 862, deck 936 → 897 (the `fraction` gallery saves ~40 px, not the
+~100 px the thumbnail strip measured — the counter row keeps a margin). Cart, third pass: drawer at 390×844 dominance
+0.99 → **3.01**, titles cut [true,true] → **[false,false]**, remove controls [1,2] → **[1,1]**, void 288 → **32 px**,
+terms 0/4 → **3/4** (pickup · days · cancel; the fourth is the photo promise, which lives in the page body), letter-spacing
+on Hebrew 2 → **0**; cart page at 360×640: checkout 340 px below the fold → **inside** (top 307), dominance 0.68 → **4.17**.
