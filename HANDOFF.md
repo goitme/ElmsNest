@@ -418,7 +418,14 @@ changed. Branch `claude/design-sidebar-pages-3991tn`. Working folder `brief/side
    column at ≥ 901; the text-only state as a hairline row in the dusk row's grammar; a guard so the option never shows an uncredited
    frame; own-width srcset candidates), 9 kept with reasons (deck heading word not licensed; dusk line 2 kept as a setting; the family line
    vs the kicker; the desktop thumbnail overlap; the studio wall frames; the link form; 360×640 informational). Deploy pass 2 (five assets
-   + two sections), re-verified, re-shot; post-fix re-review (`workflows/pdp2-rereview.js`) — see the line below.
+   + two sections), re-verified, re-shot; post-fix re-review (`workflows/pdp2-rereview.js`, contract + render lenses, one skeptic
+   per finding, `critique/REREVIEW.json`): all 13 rulings landed; 10 findings, 8 confirmed → **pass 3** (edison desktop crop «50% 0%»
+   — «50% 30%» still cut the first bulb's socket; rope phone crop «75% 50%» so the wrapped trunk is whole; the text-only row closed
+   and sharing one hairline with the dusk row via `:has()` sibling rules; a 152 px label column on both rows at ≥ 901 — «בלילה, על
+   השביל» wrapped in the facts' 128; the own-width srcset candidate for owner-picked frames; a separator guard; the fallback's default
+   pictured product substituted only when the family's image picker is blank), re-verified on a single run (the pass-2 log's
+   `copyMissing=1` on flood was a stale expectation in the verifier, its JSON was re-run). Refuted and kept: the stainless third
+   bollard (whole, measured), the 360 element shots' dark band (a harness artefact).
 
 **Numbers (390×844, JS on, pass 2):** rope 3.93 → **4.85** · path 4.14 → **5.03** · deck 4.07 → **4.43** · wall 4.13 → **4.84** · flood
 4.15 → **4.51** screens (P5 cap 6; at 360×640 path 6.57, rope 6.32, wall 6.31 — informational, P5 binds at 390); scene **596** px with a
@@ -426,8 +433,8 @@ photograph (rope 621, the decor line wraps twice) / **134** without; dusk **152*
 714 / 106, dusk 118. Every §11 PDP count unchanged on all 30 renders; `guideLinksInMain` = 1 everywhere; `pdpCopy.missing` = [] everywhere;
 no credit line (option off); one lazy sized `<img>` on the 15 mapped products, none on the 12 others.
 
-**Files on the dev theme (pass 2, remote = local minus the final newline):** `sections/elmsnest-s-pdp-scene.liquid` 24415 B
-`8208775cba17c5ff6648795ccbe72435` · `sections/elmsnest-s-pdp-dusk.liquid` 7127 B `576b0178acbd4b2ef491a4986dadd130` ·
+**Files on the dev theme (pass 3, remote = local minus the final newline):** `sections/elmsnest-s-pdp-scene.liquid` 25875 B
+`3b2cc6f5bb4347c5da68ae46fd909400` · `sections/elmsnest-s-pdp-dusk.liquid` 7127 B `707ac01130d00299fe38d00eb58407c1` ·
 `templates/product.elmsnest.json` 9941 B `de63246840e05776924f16c697fc1ac6` · the 18 assets (`pdp2/DEPLOY-LOG.md`, the five re-cut ones
 with their pass-2 checksums).
 

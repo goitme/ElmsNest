@@ -9,6 +9,9 @@
 > ≥ 901); the dusk row sets each sentence on its own line inside a closed row (hairline above and below, 16 px of air
 > above, the facts' column at ≥ 901); the fallback option shows no photograph when its pictured product is not live; a
 > file narrower than 1254 offers its own width as a srcset candidate. The amended text is inline below.
+> **Pass 3** (the post-fix re-review's confirmed minors, `critique/REREVIEW.json`): edison desktop «50% 0%», rope phone «75% 50%»,
+> the text-only row closed and sharing one hairline with the dusk row, a 152 px label column on both rows at ≥ 901, the own-width
+> candidate for owner-picked frames too, the fallback's default product tied to the default asset.
 
 Lead's synthesis after five concepts and five judges (`concepts/`, ranking **one 49.75 · scene 49.25** · places 42.5 ·
 checks 36.75 · dusk 36.25 — a tie at the top: the owner and the honesty judge put *scene* first, the shopper, the
@@ -134,9 +137,9 @@ Per-product map (gallery position ≠ 1 everywhere; the frame is the page's own 
 |---|---|---|---|
 | `stainless-steel-solar-path-light-ip65` | `ens-pdp-stainless.jpg` | `_6` steps · none; 1100×1100 q70 (pass 2: the 1254 file was 304 KB and its 900w CDN derivative 281 KB) | 50% 55% / 50% 45% |
 | `powerful-solar-garden-light` | `ens-pdp-powerful.jpg` | `_4` lit bollards, patterns · pre-crop 0,90,1254,1040 (the «מתאים לגינה» caption sat below y 1150 and a person's legs at the top-right edge above y 90 — pass 2) | 50% 50% / 50% 40% |
-| `solar-rope-string-lights` | `ens-pdp-rope.jpg` | `_3` rope on the trunk, lantern, panel · pre-crop 0,380,1254,874 (the IP65 badge spans y ≈ 185–355; the first crop at y 210 left it in the file — the critique's blocker, pass 2) | 50% 50% / 50% 50% |
+| `solar-rope-string-lights` | `ens-pdp-rope.jpg` | `_3` rope on the trunk, lantern, panel · pre-crop 0,380,1254,874 (the IP65 badge spans y ≈ 185–355; the first crop at y 210 left it in the file — the critique's blocker, pass 2) | 75% 50% / 50% 50% (pass 3: at 390/360 the window sits on the wrapped trunk and the panel, both whole; centred, the trunk ran off the edge) |
 | `solar-crystal-ball-string-lights` | `ens-pdp-crystal.jpg` | `_3` trellis · none (`_5` is the home band) | 50% 50% / 50% 50% |
-| `solar-edison-string-lights` | `ens-pdp-edison.jpg` | `_4` patio table, panel · none | 50% 50% / 50% 30% (pass 2: the first bulb kept its socket at 1366) |
+| `solar-edison-string-lights` | `ens-pdp-edison.jpg` | `_4` patio table, panel · none | 50% 50% / 50% 0% (pass 3: the first bulb is ≈ 640 rows tall in the 514-row desktop window, so its socket is kept and its tip gives way; «50% 30%» still cut the socket) |
 | `solar-firefly-garden-lights` | `ens-pdp-firefly.jpg` | `_4` ferns · none | 50% 50% / 50% 50% |
 | `lighted-birch-branches-20-led` | `ens-pdp-birch.jpg` | `_4` hallway, two vases · none (indoor; heading «בערב, בבית») | 50% 50% / 50% 55% |
 | `outdoor-bidirectional-led-wall-light-ip65` | `ens-pdp-bidirectional.jpg` | `_6` slate wall · none | 50% 50% / 50% 45% |

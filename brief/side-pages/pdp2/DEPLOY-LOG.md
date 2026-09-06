@@ -71,3 +71,15 @@ Two section mutations (`pdp2/deploy/{31,32}-*.graphql` regenerated), `userErrors
 |---|---|---|---|
 | `sections/elmsnest-s-pdp-scene.liquid` | 24415 | `8208775cba17c5ff6648795ccbe72435` | map sizes for the re-cut files; lantern9 crop 0% 50%, edison desktop crop 50% 30%; the camping lantern's heading «בלילה, בשטח» (`heading_portable`); the spot line without «בלילה»; no photograph when the fallback's pictured product is not live; a file narrower than 1254 offers its own width; the text-only state as a hairline row (20/22 px heading, the facts' column at ≥ 901) |
 | `sections/elmsnest-s-pdp-dusk.liquid` | 7127 | `576b0178acbd4b2ef491a4986dadd130` | each sentence on its own line; a closing hairline and 16 px above the row; at ≥ 901 the row takes the facts' `<dl>` column |
+
+## Pass 3, 2026-09-07 ~00:40 UTC — the post-fix re-review's confirmed minors (`critique/REREVIEW.json`, `critique/LEAD-DECISIONS.md` §re-review)
+
+Two section mutations, `userErrors: []`; no asset and no template change.
+
+| file | remote bytes | md5 (remote = local minus final newline) | what changed |
+|---|---|---|---|
+| `sections/elmsnest-s-pdp-scene.liquid` | 25875 | `3b2cc6f5bb4347c5da68ae46fd909400` | edison desktop crop «50% 0%» (the first bulb's socket in frame at 1366 — «50% 30%» still cut it); rope phone crop «75% 50%» (the wrapped trunk whole at 390/360, the panel still whole); the text-only row closed with a bottom hairline and, when the dusk row follows, the two share one rule (`:has()` sibling rules); label column 152 px at ≥ 901 (the path/wall headings wrapped in 128); an owner-picked frame narrower than 1254 offers its own width; separator guard; the fallback's §3 default product is substituted only when the family's image picker is blank |
+| `sections/elmsnest-s-pdp-dusk.liquid` | 7127 | `707ac01130d00299fe38d00eb58407c1` | label column 152 px at ≥ 901 (paired with the text-only row) |
+
+The pass-2 log carried `copyMissing=1` on the flood renders from a run before the verifier learned the new spot line (its JSON
+was re-run and correct); pass 3's log and JSON come from one run (`verify-after-pass3.log`).

@@ -42,3 +42,20 @@ The twelve products without a clean frame (the cure is a night frame per product
 «scene_fallback» option and why it is off; the seven copy lines plus the two new headings («בערב, בבית», «בלילה, בשטח») and
 the changed spot line; line 2 of the dusk row as a setting; the deck lights' heading word; the desktop thumbnail overlap;
 the two studio wall frames; the 854 px step-light source.
+
+## Post-fix re-review of pass 2 (`workflows/pdp2-rereview.js`, `critique/REREVIEW.json`) — rulings, written before pass 3
+
+Both lenses (contract, render) confirm all 13 rulings landed in the files and, where a mirrored page shows them, on the render;
+10 findings, 8 confirmed by the skeptic, 2 refuted.
+
+| # | finding | ruling |
+|---|---|---|
+| R-1 | Edison desktop crop «50% 30%» still beheads the first bulb (F1, confirmed 0.9) | Confirmed by arithmetic on the file (the bulb is ≈ 640 rows tall in a 514-row window). «50% 0%»: the socket in frame, the cut at the bulb's base. SPEC §3 row corrected. |
+| R-2 | The text-only row is open at the bottom on the five non-solar no-frame products (F2, confirmed 0.62) | Confirmed. A closing hairline; where the dusk row follows, the two share one rule (`:has()` sibling rules — two rules 16 px apart in browsers without it). |
+| R-3 | Ruling 11's own-width candidate covers only theme assets; a separator could lead with a comma (F3, confirmed 0.6) | Confirmed. The picker branch gets the same rule; both branches guard the separator. |
+| R-4 | The fallback's default pictured product is substituted even under an owner-picked frame, so an unpublished pictured product mis-credits the owner's image (F4, confirmed 0.7) | Confirmed (dormant path). The default product is substituted only when the family's image picker is blank; otherwise the existing guard shows no photograph. |
+| R-5 | The pass-2 log says `copyMissing=1` on flood while the JSON says none (F5 0.9, R5 0.85) | Confirmed: the log came from the run before the verifier's expectation was updated to the new spot line; the JSON was re-run. Pass 3 produces one run for both. |
+| R-6 | At 1366 the text-only heading «בלילה, על השביל» wraps inside the 128 px label column (R1, confirmed 0.85) | Confirmed on `pdp-deck-d-js-full.png`. The two rows (text-only scene, dusk) take a 152 px label column; the hairlines still align with the facts' rows, the values sit 24 px further in — the facts file stays untouched (SPEC §4). |
+| R-7 | The rope frame's phone crop centres the panel and runs the wrapped trunk off the right edge (R2, confirmed 0.85) | Confirmed by measurement (the loops span source x 815–1119; the 390 window was 240–1014). «75% 50%»: trunk and panel whole. |
+| R-8 | The stainless frame's third bollard halved at 390/360 (R3, refuted 0.65) | Refuted by measurement (the head is whole, 34 css px = the full source head). Kept. |
+| R-9 | The 360 element shots hide the guide link under a dark band (R4, refuted 0.9) | The band is real in the element shots; the page is fine (the verifier's full-page shots show the link). Harness note, not a page issue. |
