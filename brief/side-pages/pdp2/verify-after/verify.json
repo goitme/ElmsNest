@@ -1,7 +1,7 @@
 {
   "pdp-rope-m-js": {
-    "docH": 4074,
-    "screens": 4.83,
+    "docH": 4091,
+    "screens": 4.85,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -35,7 +35,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -83,7 +83,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -167,8 +167,8 @@
     "overTarget": false
   },
   "pdp-path-m-js": {
-    "docH": 4229,
-    "screens": 5.01,
+    "docH": 4246,
+    "screens": 5.03,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -202,7 +202,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -237,7 +237,7 @@
         "sized": 1,
         "lazy": 0,
         "loaded": 1,
-        "srcset": "600w/900w/1254w",
+        "srcset": "600w/900w/1100w",
         "credits": 0,
         "h": 596,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
@@ -250,7 +250,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -334,8 +334,8 @@
     "overTarget": false
   },
   "pdp-deck-m-js": {
-    "docH": 3730,
-    "screens": 4.42,
+    "docH": 3740,
+    "screens": 4.43,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -365,11 +365,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -406,7 +406,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
+        "h": 134,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
       },
       {
@@ -417,7 +417,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -657,8 +657,8 @@
     "overTarget": false
   },
   "pdp-flood-m-js": {
-    "docH": 3796,
-    "screens": 4.5,
+    "docH": 3807,
+    "screens": 4.51,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -688,11 +688,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -729,8 +729,8 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
-        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות בלילה. למדריך לבחירת תאורה ←"
+        "h": 134,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
       },
       {
         "section": "ens-pdp-dusk",
@@ -740,7 +740,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -824,8 +824,8 @@
     "overTarget": false
   },
   "pdp-rope-s-js": {
-    "docH": 4030,
-    "screens": 6.3,
+    "docH": 4047,
+    "screens": 6.32,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -859,7 +859,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -907,7 +907,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -991,8 +991,8 @@
     "overTarget": true
   },
   "pdp-path-s-js": {
-    "docH": 4185,
-    "screens": 6.54,
+    "docH": 4202,
+    "screens": 6.57,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1026,7 +1026,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -1061,7 +1061,7 @@
         "sized": 1,
         "lazy": 0,
         "loaded": 1,
-        "srcset": "600w/900w/1254w",
+        "srcset": "600w/900w/1100w",
         "credits": 0,
         "h": 596,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
@@ -1074,7 +1074,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -1158,8 +1158,8 @@
     "overTarget": true
   },
   "pdp-deck-s-js": {
-    "docH": 3686,
-    "screens": 5.76,
+    "docH": 3696,
+    "screens": 5.78,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1189,11 +1189,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -1230,7 +1230,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
+        "h": 134,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
       },
       {
@@ -1241,7 +1241,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -1481,8 +1481,8 @@
     "overTarget": true
   },
   "pdp-flood-s-js": {
-    "docH": 3828,
-    "screens": 5.98,
+    "docH": 3839,
+    "screens": 6,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -1512,11 +1512,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -1553,8 +1553,8 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
-        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות בלילה. למדריך לבחירת תאורה ←"
+        "h": 134,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
       },
       {
         "section": "ens-pdp-dusk",
@@ -1564,7 +1564,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -1648,7 +1648,7 @@
     "overTarget": false
   },
   "pdp-rope-d-js": {
-    "docH": 3176,
+    "docH": 3177,
     "screens": 3.53,
     "overflowX": false,
     "liquidErrors": 0,
@@ -1683,7 +1683,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -1731,7 +1731,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -1815,7 +1815,7 @@
     "overTarget": false
   },
   "pdp-path-d-js": {
-    "docH": 3152,
+    "docH": 3153,
     "screens": 3.5,
     "overflowX": false,
     "liquidErrors": 0,
@@ -1850,7 +1850,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -1885,7 +1885,7 @@
         "sized": 1,
         "lazy": 0,
         "loaded": 1,
-        "srcset": "600w/900w/1254w",
+        "srcset": "600w/900w/1100w",
         "credits": 0,
         "h": 714,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
@@ -1898,7 +1898,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -1982,8 +1982,8 @@
     "overTarget": false
   },
   "pdp-deck-d-js": {
-    "docH": 2577,
-    "screens": 2.86,
+    "docH": 2546,
+    "screens": 2.83,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2013,11 +2013,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 154
+        "h": 106
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -2054,7 +2054,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 154,
+        "h": 106,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
       },
       {
@@ -2065,7 +2065,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -2305,8 +2305,8 @@
     "overTarget": false
   },
   "pdp-flood-d-js": {
-    "docH": 2592,
-    "screens": 2.88,
+    "docH": 2561,
+    "screens": 2.85,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2336,11 +2336,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 154
+        "h": 106
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -2377,8 +2377,8 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 154,
-        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות בלילה. למדריך לבחירת תאורה ←"
+        "h": 106,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
       },
       {
         "section": "ens-pdp-dusk",
@@ -2388,7 +2388,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -2472,8 +2472,8 @@
     "overTarget": false
   },
   "pdp-rope-m-nojs": {
-    "docH": 3858,
-    "screens": 4.57,
+    "docH": 3875,
+    "screens": 4.59,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2507,7 +2507,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -2555,7 +2555,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -2639,8 +2639,8 @@
     "overTarget": false
   },
   "pdp-path-m-nojs": {
-    "docH": 4115,
-    "screens": 4.88,
+    "docH": 4132,
+    "screens": 4.9,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2674,7 +2674,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -2709,7 +2709,7 @@
         "sized": 1,
         "lazy": 1,
         "loaded": 1,
-        "srcset": "600w/900w/1254w",
+        "srcset": "600w/900w/1100w",
         "credits": 0,
         "h": 596,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
@@ -2722,7 +2722,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -2806,8 +2806,8 @@
     "overTarget": false
   },
   "pdp-deck-m-nojs": {
-    "docH": 3659,
-    "screens": 4.34,
+    "docH": 3670,
+    "screens": 4.35,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2837,11 +2837,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -2878,7 +2878,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
+        "h": 134,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
       },
       {
@@ -2889,7 +2889,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -3129,8 +3129,8 @@
     "overTarget": false
   },
   "pdp-flood-m-nojs": {
-    "docH": 3674,
-    "screens": 4.35,
+    "docH": 3684,
+    "screens": 4.36,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3160,11 +3160,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -3201,8 +3201,8 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
-        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות בלילה. למדריך לבחירת תאורה ←"
+        "h": 134,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
       },
       {
         "section": "ens-pdp-dusk",
@@ -3212,7 +3212,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -3296,8 +3296,8 @@
     "overTarget": false
   },
   "pdp-rope-s-nojs": {
-    "docH": 3813,
-    "screens": 5.96,
+    "docH": 3830,
+    "screens": 5.98,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3331,7 +3331,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -3379,7 +3379,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -3463,8 +3463,8 @@
     "overTarget": false
   },
   "pdp-path-s-nojs": {
-    "docH": 4071,
-    "screens": 6.36,
+    "docH": 4088,
+    "screens": 6.39,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3498,7 +3498,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -3533,7 +3533,7 @@
         "sized": 1,
         "lazy": 1,
         "loaded": 1,
-        "srcset": "600w/900w/1254w",
+        "srcset": "600w/900w/1100w",
         "credits": 0,
         "h": 596,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
@@ -3546,7 +3546,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -3630,8 +3630,8 @@
     "overTarget": true
   },
   "pdp-deck-s-nojs": {
-    "docH": 3615,
-    "screens": 5.65,
+    "docH": 3626,
+    "screens": 5.67,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3661,11 +3661,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -3702,7 +3702,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
+        "h": 134,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
       },
       {
@@ -3713,7 +3713,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -3953,8 +3953,8 @@
     "overTarget": false
   },
   "pdp-flood-s-nojs": {
-    "docH": 3706,
-    "screens": 5.79,
+    "docH": 3716,
+    "screens": 5.81,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3984,11 +3984,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 156
+        "h": 134
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 135
+        "h": 152
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -4025,8 +4025,8 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 156,
-        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות בלילה. למדריך לבחירת תאורה ←"
+        "h": 134,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
       },
       {
         "section": "ens-pdp-dusk",
@@ -4036,7 +4036,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 135,
+        "h": 152,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -4120,7 +4120,7 @@
     "overTarget": false
   },
   "pdp-rope-d-nojs": {
-    "docH": 3032,
+    "docH": 3033,
     "screens": 3.37,
     "overflowX": false,
     "liquidErrors": 0,
@@ -4155,7 +4155,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -4203,7 +4203,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -4287,7 +4287,7 @@
     "overTarget": false
   },
   "pdp-path-d-nojs": {
-    "docH": 3058,
+    "docH": 3059,
     "screens": 3.4,
     "overflowX": false,
     "liquidErrors": 0,
@@ -4322,7 +4322,7 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -4357,7 +4357,7 @@
         "sized": 1,
         "lazy": 1,
         "loaded": 1,
-        "srcset": "600w/900w/1254w",
+        "srcset": "600w/900w/1100w",
         "credits": 0,
         "h": 714,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
@@ -4370,7 +4370,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -4454,8 +4454,8 @@
     "overTarget": false
   },
   "pdp-deck-d-nojs": {
-    "docH": 2527,
-    "screens": 2.81,
+    "docH": 2496,
+    "screens": 2.77,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4485,11 +4485,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 154
+        "h": 106
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -4526,7 +4526,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 154,
+        "h": 106,
         "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
       },
       {
@@ -4537,7 +4537,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -4777,8 +4777,8 @@
     "overTarget": false
   },
   "pdp-flood-d-nojs": {
-    "docH": 2541,
-    "screens": 2.82,
+    "docH": 2510,
+    "screens": 2.79,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -4808,11 +4808,11 @@
       },
       {
         "id": "template--21567616745646__ens_pdp_scene",
-        "h": 154
+        "h": 106
       },
       {
         "id": "template--21567616745646__ens_pdp_dusk",
-        "h": 117
+        "h": 118
       },
       {
         "id": "template--21567616745646__ens_pdp_facts",
@@ -4849,8 +4849,8 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 154,
-        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות בלילה. למדריך לבחירת תאורה ←"
+        "h": 106,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
       },
       {
         "section": "ens-pdp-dusk",
@@ -4860,7 +4860,7 @@
         "loaded": 0,
         "srcset": "",
         "credits": 0,
-        "h": 117,
+        "h": 118,
         "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
       }
     ],
@@ -4961,8 +4961,8 @@
       "postedId": "48880936190126",
       "addStatus": "ok",
       "lineTitle": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED - 7 מ׳ / 50 נורות / לבן חם",
-      "drawerHasVariant": true,
-      "drawerHasLineItem": true
+      "drawerHasVariant": false,
+      "drawerHasLineItem": false
     }
   }
 }
