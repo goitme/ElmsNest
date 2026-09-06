@@ -72,6 +72,7 @@
       assign ens_frame = 'ens-pdp-rope.jpg'
       assign ens_w = 1254
       assign ens_h = 874
+      assign ens_op = '75% 50%'
     when 'solar-crystal-ball-string-lights'
       assign ens_frame = 'ens-pdp-crystal.jpg'
       assign ens_w = 1254
@@ -80,7 +81,7 @@
       assign ens_frame = 'ens-pdp-edison.jpg'
       assign ens_w = 1254
       assign ens_h = 1254
-      assign ens_op_lg = '50% 30%'
+      assign ens_op_lg = '50% 0%'
     when 'solar-firefly-garden-lights'
       assign ens_frame = 'ens-pdp-firefly.jpg'
       assign ens_w = 1254
@@ -178,7 +179,8 @@
       assign ens_w = 1100
       assign ens_h = 1100
       assign ens_pictured = section.settings.pictured_path
-      if ens_pictured == blank
+      # the §3 default product belongs to the §3 default asset only: an owner-picked frame with no live pictured product gets no photograph (re-review F4)
+      if ens_pictured == blank and section.settings.image_path == blank
         assign ens_pictured = all_products['stainless-steel-solar-path-light-ip65']
       endif
     elsif ens_fam == 'wall'
@@ -187,7 +189,7 @@
       assign ens_w = 1254
       assign ens_h = 1254
       assign ens_pictured = section.settings.pictured_wall
-      if ens_pictured == blank
+      if ens_pictured == blank and section.settings.image_wall == blank
         assign ens_pictured = all_products['outdoor-bidirectional-led-wall-light-ip65']
       endif
     elsif ens_fam == 'spot'
@@ -197,7 +199,7 @@
       assign ens_h = 1254
       assign ens_op_lg = '50% 45%'
       assign ens_pictured = section.settings.pictured_spot
-      if ens_pictured == blank
+      if ens_pictured == blank and section.settings.image_spot == blank
         assign ens_pictured = all_products['dual-head-garden-light-10w-ip65']
       endif
     else
@@ -206,7 +208,7 @@
       assign ens_w = 1254
       assign ens_h = 1254
       assign ens_pictured = section.settings.pictured_decor
-      if ens_pictured == blank
+      if ens_pictured == blank and section.settings.image_decor == blank
         assign ens_pictured = all_products['solar-edison-string-lights']
       endif
     endif
@@ -246,6 +248,11 @@
       assign wurl = ens_pic | image_url: width: ens_pic.width
       assign ens_srcset = wurl | append: ' ' | append: ens_pic.width | append: 'w'
       assign ens_src = wurl
+    elsif ens_pic.width < 1254 and ens_pic.width != 900 and ens_pic.width != 600
+      # an owner-picked file narrower than 1254 also offers its own width as the last candidate (re-review F3)
+      assign wurl = ens_pic | image_url: width: ens_pic.width
+      assign ens_srcset = ens_srcset | append: ', ' | append: wurl | append: ' ' | append: ens_pic.width | append: 'w'
+      assign ens_src = wurl
     endif
   elsif ens_kind == 'asset'
     for w in ens_want
@@ -264,7 +271,10 @@
     if ens_w < 1254 and ens_w != 900 and ens_w != 600
       assign wsize = ens_w | append: 'x'
       assign wurl = ens_frame | asset_img_url: wsize
-      assign ens_srcset = ens_srcset | append: ', ' | append: wurl | append: ' ' | append: ens_w | append: 'w'
+      if ens_srcset != ''
+        assign ens_srcset = ens_srcset | append: ', '
+      endif
+      assign ens_srcset = ens_srcset | append: wurl | append: ' ' | append: ens_w | append: 'w'
       assign ens_src = wurl
     endif
   endif
@@ -381,9 +391,12 @@
 .ens-pdp-scene__link:hover,.ens-pdp-scene__link:focus-visible{color:#ffd394;border-color:#ffd394;text-decoration:none}
 .ens-pdp-scene__link::before{content:"";position:absolute;inset-block:-11px;inset-inline:-6px}
 /* the text-only state (no clean frame of THIS product — critique ruling 13): the dusk row's grammar, a hairline row with the heading at the row scale, so the two rows before the facts read as one designed list, not as a picture that failed to load */
-.ens-pdp-scene--text .ens-pdp-scene__text{border-block-start:1px solid #1f1e1d;border-radius:0;padding-block:20px 22px;margin-block-start:16px}
+.ens-pdp-scene--text .ens-pdp-scene__text{border-block-start:1px solid #1f1e1d;border-block-end:1px solid #1f1e1d;border-radius:0;padding-block:20px 22px;margin-block-start:16px}
 .ens-pdp-scene--text .ens-pdp-scene__h2.env2-h{font-size:20px;line-height:1.1;margin-block-end:8px}
 .ens-pdp-scene--text .ens-pdp-scene__link{margin-block-start:10px}
+/* when the dusk row follows a text-only row the two share one hairline, like the facts' rows (re-review F2); browsers without :has() show two rules 16 px apart */
+.shopify-section:has(.ens-pdp-scene--text)+.shopify-section .ens-pdp-dusk{padding-block-start:0}
+.shopify-section:has(.ens-pdp-scene--text)+.shopify-section .ens-pdp-dusk__row{border-block-start:0}
 @media (min-width:901px){
   .ens-pdp-scene__fig img{block-size:560px;object-position:var(--ens-op-lg,50% 50%)}
   .ens-pdp-scene__credit{padding-block-start:12px}
@@ -393,7 +406,8 @@
   .ens-pdp-scene__h2.env2-h{margin:0}
   .ens-pdp-scene__line{font-size:17px}
   /* text-only state at ≥ 901: the facts' dl column (the same column the dusk row takes), label column + value column */
-  .ens-pdp-scene--text .ens-pdp-scene__text{grid-template-columns:128px minmax(0,1fr);gap:0 20px;align-items:baseline;padding-block:20px 22px;inline-size:calc((100% - 64px) * .55);margin-inline-start:auto}
+  /* label column 152 px (the dusk row too): «בלילה, על השביל» at 22 px is ≈ 143 px and wrapped in the facts' 128 px (re-review R1); the hairlines still align with the facts' rows, the values sit 24 px further in */
+  .ens-pdp-scene--text .ens-pdp-scene__text{grid-template-columns:152px minmax(0,1fr);gap:0 20px;align-items:baseline;padding-block:20px 22px;inline-size:calc((100% - 64px) * .55);margin-inline-start:auto}
   .ens-pdp-scene--text .ens-pdp-scene__h2.env2-h{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){
