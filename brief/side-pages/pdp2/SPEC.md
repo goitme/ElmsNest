@@ -122,7 +122,7 @@ Per-product map (gallery position ≠ 1 everywhere; the frame is the page's own 
 | handle | asset | source frame · crop (x,y,w,h in the 1254² source) | crops `--ens-op` / `--ens-op-lg` |
 |---|---|---|---|
 | `stainless-steel-solar-path-light-ip65` | `ens-pdp-stainless.jpg` | `_6` steps · none | 50% 55% / 50% 45% |
-| `powerful-solar-garden-light` | `ens-pdp-powerful.jpg` | `_4` lit bollards, patterns · pre-crop to drop the caption bottom-left and the edge top-right (confirm by eye) | 50% 50% / 50% 40% |
+| `powerful-solar-garden-light` | `ens-pdp-powerful.jpg` | `_4` lit bollards, patterns · pre-crop 0,0,1254,1130 (the «מתאים לגינה» caption sat below y 1150; confirmed by eye) | 50% 50% / 50% 40% |
 | `solar-rope-string-lights` | `ens-pdp-rope.jpg` | `_3` rope on the trunk, panel · pre-crop 0,210,1254,1044 (the IP65 badge is above y 200) | 50% 50% / 50% 50% |
 | `solar-crystal-ball-string-lights` | `ens-pdp-crystal.jpg` | `_3` trellis · none (`_5` is the home band) | 50% 50% / 50% 50% |
 | `solar-edison-string-lights` | `ens-pdp-edison.jpg` | `_4` patio table, panel · none | 50% 50% / 50% 45% |
@@ -133,14 +133,17 @@ Per-product map (gallery position ≠ 1 everywhere; the frame is the page's own 
 | `modern-led-wall-light-indoor-outdoor` | `ens-pdp-wall-indoor-outdoor.jpg` | `_5` six-beam sconce on the grey wall · none (a studio wall, but the product itself) | 50% 50% / 50% 50% |
 | `modern-led-wall-light-6w-up-down` | `ens-pdp-wall-6w.jpg` | `_7` black cube on the dark wall · none (1000 px source — the 900 candidate is the largest; softness noted for the owner) | 50% 50% / 50% 50% |
 | `dual-head-garden-light-10w-ip65` | `ens-pdp-dual-head.jpg` | `_5` bollard aiming into the planting · pre-crop 0,0,930,1254 (the LUMIÈRE sign is at x > 935 — the whole panel stays out of the file; 930 px wide, the short side, renders at 390 without upscaling and at 1366 like every other 1254 source, ×1.1–1.5) | 50% 50% / 50% 45% |
-| candidates, confirm by eye | `ens-pdp-swaying.jpg` `_4` band y 560–1254 · `ens-pdp-modern-path.jpg` `_3` band y 330–1040 · `ens-pdp-lantern9.jpg` `_6` band y 300–1000 · `ens-pdp-warm-step.jpg` `_2` right part | a band ≥ 600 px tall from the full 1254 width is enough for a 440/560 px band (no vertical upscaling); rejected if any glyph, badge or icon survives |
+| `modern-solar-path-lights-set` | `ens-pdp-modern-path.jpg` | `_3` dusk path, three curved bollards, the house · pre-crop 0,380,1254,660 (the headline and subtitle above, the icon strip below; confirmed by eye) | 50% 60% / 50% 55% |
+| `solar-garden-lantern-9-led` | `ens-pdp-lantern9.jpg` | `_6` the spot in the rain lighting the wet shrub · pre-crop 0,300,1254,680 (headline above, weather icons below; confirmed) | 40% 50% / 50% 50% |
+| `warm-solar-step-deck-lights` | `ens-pdp-warm-step.jpg` | `_2` the lit stairs · pre-crop 400,330,854,924 (the gold headline and the icon column are on the left; confirmed) | 50% 50% / 50% 50% |
+| ~~candidates~~ | `swaying-solar-path-lights-ip65_4` rejected (the «נטען ביום • מאיר בלילה» pill sits exactly where the far lamp heads are — no band is both clean and whole); `retro-solar-path-lights-set_6` rejected (four labelled quadrants) | a band ≥ 600 px tall from the full 1254 width is enough for a 440/560 px band (no vertical upscaling); rejected if any glyph, badge or icon survives |
 
-No frame (text-only A by default): `magnetic-rechargeable-touch-wall-light`, `solar-wall-light-motion-sensor-ip65`,
-`waterproof-solar-deck-step-lights`, `retro-solar-path-lights-set`, `modern-led-bollard-light-5w-ip65`,
-`solar-garden-spotlight-52-led`, `solar-security-light-100-led`, `solar-floodlight-ip67-remote-timer`,
-`rechargeable-telescopic-camping-lantern`, `led-globe-string-lights`, `decorative-led-net-lights` (+ whichever
-candidates fail). These are the owner's open item #3 (clean frames): the moment he uploads one, a `frame` block
-puts it on the page.
+Fifteen products carry their own frame. No frame (text-only A by default), twelve: `magnetic-rechargeable-touch-wall-light`,
+`solar-wall-light-motion-sensor-ip65`, `waterproof-solar-deck-step-lights`, `retro-solar-path-lights-set`,
+`swaying-solar-path-lights-ip65`, `modern-led-bollard-light-5w-ip65`, `solar-garden-spotlight-52-led`,
+`solar-security-light-100-led`, `solar-floodlight-ip67-remote-timer`, `rechargeable-telescopic-camping-lantern`,
+`led-globe-string-lights`, `decorative-led-net-lights`. These are the owner's open item #3 (clean frames): the
+moment he uploads one, a `frame` block puts it on the page.
 
 Collection scenes (the `scene_fallback` option, off by default; each shows a sibling product, hence the credit):
 
