@@ -18,6 +18,8 @@ ORDER=[
  'templates/index.json','templates/collection.json','templates/product.elmsnest.json',
  # 5 round-3 cart (edited Kalles files + template)
  'snippets/item-cart.liquid','sections/cart-drawer.liquid','sections/main-cart.liquid','templates/cart.json',
+ # 6 home round 2 (image-led sections; index.json above is re-sent after them)
+ 'sections/elmsnest-s-home-solar.liquid','sections/elmsnest-s-home-winter.liquid','sections/elmsnest-s-home-band.liquid',
 ]
 os.makedirs(OUT,exist_ok=True)
 for f in os.listdir(OUT):

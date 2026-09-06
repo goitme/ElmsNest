@@ -1,0 +1,161 @@
+{%- comment -%}
+  ElmsNest S — solar, how it works (HOME round 2 SPEC §1 A). Home only.
+  Eyebrow, then a two-frame figure grid: the day frame on the inline-start (right in RTL),
+  the night frame on the inline-end, each with a tiny corner label and half of the headline on
+  its foot («ביום נטען.» cream / «בלילה נדלק.» glow) on a bottom scrim. Under the frames an <ol>
+  of three steps on hairlines (fit block hairlines), gold serif numerals in <bdi> like the terms
+  strip. No button, no link, no card chrome, no motion. Both photographs are the store's own
+  product frames (assets/ens-home-day.jpg 1254x1254, assets/ens-home-night.jpg 1254x1090, the
+  latter pre-cropped so its baked caption is not in the file) — no credit owed. An owner-picked
+  image_picker replaces the asset; object_position per frame crops it.
+  Tokens come from elmsnest-v2-core (global); this file only adds ens-home-solar* rules.
+{%- endcomment -%}
+{%- liquid
+  assign ens_op_day = section.settings.object_position_day | default: '50% 50%' | strip | escape
+  assign ens_op_night = section.settings.object_position_night | default: '50% 40%' | strip | escape
+  comment
+    Picker srcsets: the widths are capped against the source width here (image_tag does not
+    drop oversize widths) — the hero's R26 rule. The theme assets below carry their native
+    top width (1254w) instead of a false 1600w descriptor.
+  endcomment
+  assign ens_want = '600,900,1200,1600' | split: ','
+  assign ens_w_day = ''
+  for w in ens_want
+    assign wn = w | plus: 0
+    if section.settings.image_day != blank and wn <= section.settings.image_day.width
+      if ens_w_day == ''
+        assign ens_w_day = w
+      else
+        assign ens_w_day = ens_w_day | append: ',' | append: w
+      endif
+    endif
+  endfor
+  if ens_w_day == ''
+    assign ens_w_day = '600'
+  endif
+  assign ens_w_night = ''
+  for w in ens_want
+    assign wn = w | plus: 0
+    if section.settings.image_night != blank and wn <= section.settings.image_night.width
+      if ens_w_night == ''
+        assign ens_w_night = w
+      else
+        assign ens_w_night = ens_w_night | append: ',' | append: w
+      endif
+    endif
+  endfor
+  if ens_w_night == ''
+    assign ens_w_night = '600'
+  endif
+-%}
+<section class="env2-section ens-home-solar" dir="rtl"{% if section.settings.eyebrow != blank %} aria-labelledby="ens-home-solar-eb-{{ section.id }}"{% else %} aria-label="תאורה סולארית"{% endif %} style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    {%- if section.settings.eyebrow != blank -%}
+    <p id="ens-home-solar-eb-{{ section.id }}" class="ens-home-solar__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    <div class="ens-home-solar__frames">
+      <figure class="ens-home-solar__frame ens-home-solar__frame--day" style="--ens-op:{{ ens_op_day }}">
+        {%- if section.settings.image_day != blank -%}
+          {{ section.settings.image_day | image_url: width: 1600 | image_tag: loading: 'lazy', widths: ens_w_day, sizes: '(min-width:1300px) 620px, 50vw', alt: '' }}
+        {%- else -%}
+          <img src="{{ 'ens-home-day.jpg' | asset_img_url: '1254x' }}" srcset="{{ 'ens-home-day.jpg' | asset_img_url: '600x' }} 600w, {{ 'ens-home-day.jpg' | asset_img_url: '900x' }} 900w, {{ 'ens-home-day.jpg' | asset_img_url: '1200x' }} 1200w, {{ 'ens-home-day.jpg' | asset_img_url: '1254x' }} 1254w" sizes="(min-width:1300px) 620px, 50vw" width="1254" height="1254" loading="lazy" decoding="async" alt="">
+        {%- endif -%}
+        {%- if section.settings.label_day != blank -%}
+        <span class="ens-home-solar__tag">{{ section.settings.label_day | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.headline_day != blank -%}
+        <p class="ens-home-solar__word">{{ section.settings.headline_day | escape }}</p>
+        {%- endif -%}
+      </figure>
+      <figure class="ens-home-solar__frame ens-home-solar__frame--night" style="--ens-op:{{ ens_op_night }}">
+        {%- if section.settings.image_night != blank -%}
+          {{ section.settings.image_night | image_url: width: 1600 | image_tag: loading: 'lazy', widths: ens_w_night, sizes: '(min-width:1300px) 620px, 50vw', alt: '' }}
+        {%- else -%}
+          <img src="{{ 'ens-home-night.jpg' | asset_img_url: '1254x' }}" srcset="{{ 'ens-home-night.jpg' | asset_img_url: '600x' }} 600w, {{ 'ens-home-night.jpg' | asset_img_url: '900x' }} 900w, {{ 'ens-home-night.jpg' | asset_img_url: '1200x' }} 1200w, {{ 'ens-home-night.jpg' | asset_img_url: '1254x' }} 1254w" sizes="(min-width:1300px) 620px, 50vw" width="1254" height="1090" loading="lazy" decoding="async" alt="">
+        {%- endif -%}
+        {%- if section.settings.label_night != blank -%}
+        <span class="ens-home-solar__tag">{{ section.settings.label_night | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.headline_night != blank -%}
+        <p class="ens-home-solar__word">{{ section.settings.headline_night | escape }}</p>
+        {%- endif -%}
+      </figure>
+    </div>
+    <ol class="ens-home-solar__steps">
+      {%- if section.settings.step_1 != blank -%}
+      <li class="ens-home-solar__step"><span class="ens-home-solar__num" aria-hidden="true"><bdi dir="ltr">1</bdi></span><span class="ens-home-solar__txt">{{ section.settings.step_1 | escape }}</span></li>
+      {%- endif -%}
+      {%- if section.settings.step_2 != blank -%}
+      <li class="ens-home-solar__step"><span class="ens-home-solar__num" aria-hidden="true"><bdi dir="ltr">2</bdi></span><span class="ens-home-solar__txt">{{ section.settings.step_2 | escape }}</span></li>
+      {%- endif -%}
+      {%- if section.settings.step_3 != blank -%}
+      <li class="ens-home-solar__step"><span class="ens-home-solar__num" aria-hidden="true"><bdi dir="ltr">3</bdi></span><span class="ens-home-solar__txt">{{ section.settings.step_3 | escape }}</span></li>
+      {%- endif -%}
+    </ol>
+  </div>
+</section>
+
+<style>
+.ens-home-solar{padding-block:40px 40px;margin:0}
+.ens-home-solar__eyebrow{margin:0 0 12px;font-family:var(--env2-sans);font-weight:400;font-size:13px;line-height:1.3;letter-spacing:.06em;color:var(--env2-ink-2)}
+.ens-home-solar__frames{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;background:#020306}
+.ens-home-solar__frame{position:relative;margin:0;min-width:0;aspect-ratio:4/5;overflow:hidden;background:#05070c;border-radius:0;isolation:isolate}
+/* crop per frame (object_position setting); an admin focal point written inline by image_tag still wins */
+.ens-home-solar__frame img{display:block;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* bottom scrim: the night frame is already dark; the day frame is bright, so its scrim starts later and ends at .78 */
+.ens-home-solar__frame::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,8,14,0) 40%,rgba(5,8,14,.72) 100%)}
+.ens-home-solar__frame--day::after{background:linear-gradient(180deg,transparent 45%,rgba(5,8,14,.78) 100%)}
+.ens-home-solar__tag{position:absolute;inset-inline-end:12px;inset-block-start:10px;z-index:1;margin:0;font-family:var(--env2-sans);font-weight:400;font-size:12px;line-height:1.3;letter-spacing:.06em;color:var(--env2-ink-2);text-shadow:0 1px 8px rgba(2,3,6,.7)}
+.ens-home-solar__word{position:absolute;inset-inline:12px;inset-block-end:12px;z-index:1;margin:0;font-family:var(--env2-serif);font-weight:700;font-size:28px;line-height:1.02;letter-spacing:-.01em;color:var(--env2-ink);text-shadow:0 1px 18px rgba(2,3,6,.6);text-wrap:balance}
+.ens-home-solar__frame--night .ens-home-solar__word{color:var(--env2-glow)}
+.ens-home-solar__steps{list-style:none;margin:22px 0 0;padding:0;border-block-end:1px solid #1f1e1d}
+.ens-home-solar__step{display:grid;grid-template-columns:2.2em minmax(0,1fr);align-items:baseline;gap:12px;padding-block:12px;border-block-start:1px solid #1f1e1d;margin:0}
+.ens-home-solar__num{font-family:var(--env2-serif);font-weight:500;font-size:22px;line-height:1;color:var(--env2-gold);font-variant-numeric:tabular-nums}
+.ens-home-solar__txt{font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.45;color:var(--env2-ink)}
+@media (min-width:901px){
+  .ens-home-solar{padding-block:72px 56px}
+  .ens-home-solar__eyebrow{margin-block-end:18px}
+  .ens-home-solar__frame{aspect-ratio:16/10}
+  .ens-home-solar__tag{inset-inline-end:24px;inset-block-start:20px}
+  .ens-home-solar__word{inset-inline:28px;inset-block-end:24px;font-size:44px}
+  .ens-home-solar__steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;margin-block-start:8px;border-block-end:0}
+  .ens-home-solar__step{padding-block:22px 0}
+  .ens-home-solar__num{font-size:26px}
+  .ens-home-solar__txt{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-home-solar img{transition:none}
+}
+</style>
+
+{% schema %}
+{
+  "name": "ElmsNest S — סולארי",
+  "class": "ens-home-section hdt-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "שורת פתיחה", "default": "תאורה סולארית" },
+    { "type": "header", "content": "מסגרת היום (בצד ימין)" },
+    { "type": "image_picker", "id": "image_day", "label": "תמונת היום (ריק = ens-home-day.jpg)" },
+    { "type": "text", "id": "object_position_day", "label": "מיקום החיתוך — יום (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
+    { "type": "text", "id": "label_day", "label": "תווית פינה — יום", "default": "יום" },
+    { "type": "text", "id": "headline_day", "label": "כותרת על מסגרת היום", "default": "ביום נטען." },
+    { "type": "header", "content": "מסגרת הלילה (בצד שמאל)" },
+    { "type": "image_picker", "id": "image_night", "label": "תמונת הלילה (ריק = ens-home-night.jpg)" },
+    { "type": "text", "id": "object_position_night", "label": "מיקום החיתוך — לילה (object-position)", "default": "50% 40%", "info": "לדוגמה 70% 30% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
+    { "type": "text", "id": "label_night", "label": "תווית פינה — לילה", "default": "לילה" },
+    { "type": "text", "id": "headline_night", "label": "כותרת על מסגרת הלילה", "default": "בלילה נדלק." },
+    { "type": "header", "content": "שלושת השלבים" },
+    { "type": "text", "id": "step_1", "label": "שלב 1", "default": "הפאנל נטען לאור היום." },
+    { "type": "text", "id": "step_2", "label": "שלב 2", "default": "כשמחשיך, האור נדלק לבד." },
+    { "type": "text", "id": "step_3", "label": "שלב 3", "default": "בלי כבל, בלי חשמלאי." }
+  ],
+  "presets": [
+    {
+      "name": "ElmsNest S — סולארי"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  }
+}
+{% endschema %}

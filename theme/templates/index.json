@@ -78,6 +78,14 @@
         ]
       }
     },
+    "ens_home_solar": {
+      "type": "elmsnest-s-home-solar",
+      "settings": {}
+    },
+    "ens_home_winter": {
+      "type": "elmsnest-s-home-winter",
+      "settings": {}
+    },
     "ens_fit": {
       "type": "elmsnest-s-fit",
       "blocks": {
@@ -113,6 +121,10 @@
         "guide_link": "/pages/guide-garden-lighting"
       }
     },
+    "ens_home_band": {
+      "type": "elmsnest-s-home-band",
+      "settings": {}
+    },
     "ens_terms": {
       "type": "elmsnest-s-terms",
       "settings": {
@@ -124,7 +136,10 @@
     "env2_hero",
     "ens_collections",
     "ens_products",
+    "ens_home_solar",
+    "ens_home_winter",
     "ens_fit",
+    "ens_home_band",
     "ens_terms"
   ]
 }
