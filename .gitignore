@@ -36,3 +36,11 @@ brief/side-pages/pdp3/concepts/*/shots/
 brief/side-pages/pdp3/deploy/
 brief/side-pages/pdp3/OWNER-SECTION.json
 brief/side-pages/pdp3/images/chunks.json
+brief/side-pages/pages/concepts/*/shots/
+brief/side-pages/pages/deploy/
+brief/side-pages/pages/OWNER-SECTION.json
+brief/side-pages/pages/verify-*/mirrors/
+brief/side-pages/pages/verify-*/jar.txt
+brief/side-pages/pdp3/verify-*/mirrors/
+brief/side-pages/pdp3/verify-*/jar.txt
+brief/side-pages/pdp3/images/contact-sheet.png
