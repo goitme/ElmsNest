@@ -22,15 +22,23 @@ const NO_MIRROR = process.argv.includes('--no-mirror');
 const ONLY = (process.argv.find(a => a.startsWith('--pages=')) || '').slice(8).split(',').filter(Boolean);  // --pages=a,b re-runs a subset; verify.json is merged, not replaced
 fs.mkdirSync(OUT, { recursive: true });
 const T = '154726400174', BASE = 'https://elmsnest.com';
-const ALL_PAGES = [
+const ALL_PAGES = [  // pdp targets 6 -> 7.5 since round 3 (pdp3/BRIEF.md §4)
   { name: 'home', path: '/', target: 7.5 },  // round 2 (home2/SPEC.md §5): three image-led sections added to the 5.12-screen page
   { name: 'collection-all', path: '/collections/all', target: 8 },
   { name: 'collection-path', path: '/collections/%D7%AA%D7%90%D7%95%D7%A8%D7%AA-%D7%A9%D7%91%D7%99%D7%9C-%D7%A1%D7%95%D7%9C%D7%90%D7%A8%D7%99%D7%AA', target: 8 },
-  { name: 'pdp-rope', path: '/products/solar-rope-string-lights', target: 6 },
-  { name: 'pdp-path', path: '/products/stainless-steel-solar-path-light-ip65', target: 6 },
-  { name: 'pdp-deck', path: '/products/waterproof-solar-deck-step-lights', target: 6 },
-  { name: 'pdp-wall', path: '/products/waterproof-led-wall-light-ip65-6w-12w', target: 6 },  // pdp2 archetype B: MAINS wall light, 8 variants (the solar gate must be OFF)
-  { name: 'pdp-flood', path: '/products/solar-floodlight-ip67-remote-timer', target: 6 },  // pdp2 archetype C: solar, no clean own frame (the collection fallback)
+  { name: 'pdp-rope', path: '/products/solar-rope-string-lights', target: 7.5 },
+  { name: 'pdp-path', path: '/products/stainless-steel-solar-path-light-ip65', target: 7.5 },
+  { name: 'pdp-deck', path: '/products/waterproof-solar-deck-step-lights', target: 7.5 },
+  { name: 'pdp-wall', path: '/products/waterproof-led-wall-light-ip65-6w-12w', target: 7.5 },  // pdp2 archetype B: MAINS wall light, 8 variants (the solar gate must be OFF)
+  { name: 'pdp-flood', path: '/products/solar-floodlight-ip67-remote-timer', target: 7.5 },  // pdp2 archetype C: solar, no clean own frame (the collection fallback)
+  // content pages (pages/BRIEF.md §2 targets; the pages are measured on the same mirror so the numbers are comparable)
+  { name: 'page-guide', path: '/pages/guide-garden-lighting', target: 6 },
+  { name: 'page-why', path: '/pages/why-solar-lighting', target: 5 },
+  { name: 'page-about', path: '/pages/%D7%9E%D7%99-%D7%90%D7%A0%D7%97%D7%A0%D7%95', target: 5 },
+  { name: 'page-faq', path: '/pages/help-faq', target: 6 },
+  { name: 'page-processing', path: '/pages/processing-time', target: 4 },
+  { name: 'page-shipping', path: '/pages/shipping-delivery', target: 5 },
+  { name: 'page-contact', path: '/pages/contact-us', target: 4 },
 ];
 const PAGES = ONLY.length ? ALL_PAGES.filter(p => ONLY.includes(p.name)) : ALL_PAGES;
 const VIEWS = [['m', 390, 844], ['s', 360, 640], ['d', 1366, 900]];
