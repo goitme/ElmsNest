@@ -1,0 +1,33 @@
+<style>
+.ens-pdp-weather{padding-block:28px 32px;margin:0}
+.ens-pdp-weather bdi{unicode-bidi:isolate}
+.ens-pdp-weather__h.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 14px}
+/* the pair is framed inside the wrap, never full-bleed: two columns, 12 px gap, 1:1 at 390 */
+.ens-pdp-weather__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.ens-pdp-weather__tile{margin:0;min-inline-size:0}
+.ens-pdp-weather__frame{position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0;aspect-ratio:1/1}
+/* crop per slot and per breakpoint (op_* settings); an admin focal point written inline by image_tag still wins */
+.ens-pdp-weather__frame img{display:block;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* one short line under each tile, then the muted caption that names the photograph and its credit */
+.ens-pdp-weather__line{margin:0;padding-block-start:10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:var(--env2-fs-body,16px);line-height:1.45;color:var(--env2-ink,#f4eee3);text-wrap:pretty}
+.ens-pdp-weather__cap{margin:0;padding-block-start:8px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:12px;line-height:1.5;color:#8f8b83}
+.ens-pdp-weather__credit{display:block}
+@media (min-width:901px){
+  .ens-pdp-weather{padding-block:40px 44px}
+  .ens-pdp-weather__h.env2-h{margin-block-end:20px}
+  .ens-pdp-weather__pair{gap:20px}
+  .ens-pdp-weather__frame{aspect-ratio:3/2}
+  .ens-pdp-weather__frame img{object-position:var(--ens-op-lg,50% 50%)}
+  .ens-pdp-weather__line{padding-block-start:14px;font-size:17px}
+  .ens-pdp-weather__cap{padding-block-start:10px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-pdp-weather,.ens-pdp-weather *{transition:none!important;animation:none!important}
+}
+</style>
+<section id="ens-pdp-weather-ens-weather-C" class="env2-section ens-pdp-weather" dir="rtl" aria-labelledby="ens-pdp-weather-h-ens-weather-C" style="scroll-margin-top:90px">
+  <div class="env2-wrap"><h2 id="ens-pdp-weather-h-ens-weather-C" class="env2-h ens-pdp-weather__h">בחוץ, כל השנה</h2><div class="ens-pdp-weather__pair"><figure class="ens-pdp-weather__tile ens-pdp-weather__tile--rain">
+        <div class="ens-pdp-weather__frame" style="--ens-op:50% 50%;--ens-op-lg:50% 45%"><img src="file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-panel.jpg" srcset="file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-panel.jpg 400w, file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-panel.jpg 600w, file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-panel.jpg 900w, file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-panel.jpg 1066w" sizes="(min-width:1348px) 610px, (min-width:901px) calc(46vw - 10px), (min-width:501px) calc(46vw - 6px), calc(50vw - 26px)" width="1066" height="1600" loading="lazy" decoding="async" alt=""></div><figcaption><p class="ens-pdp-weather__line">גשם של ינואר. התאורה נשארת בחוץ.</p><p class="ens-pdp-weather__cap">טיפות גשם על פאנל סולארי<span class="ens-pdp-weather__credit">צילום: <bdi dir="ltr">h080 (CC BY-SA 2.0)</bdi></span></p></figcaption></figure><figure class="ens-pdp-weather__tile ens-pdp-weather__tile--sun">
+        <div class="ens-pdp-weather__frame" style="--ens-op:50% 50%;--ens-op-lg:55% 50%"><img src="file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg" srcset="file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 400w, file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 600w, file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 900w, file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 1200w" sizes="(min-width:1348px) 610px, (min-width:901px) calc(46vw - 10px), (min-width:501px) calc(46vw - 6px), calc(50vw - 26px)" width="1200" height="900" loading="lazy" decoding="async" alt=""></div><figcaption><p class="ens-pdp-weather__line">שמש של אוגוסט. אותו הדבר.</p><p class="ens-pdp-weather__cap">קיר לבן בשמש של צהריים</p></figcaption></figure></div>
+  </div>
+</section>

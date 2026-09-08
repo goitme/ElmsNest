@@ -1,0 +1,59 @@
+<meta charset="utf-8"><title>weather B</title><style>@font-face{font-family:'Heebo';font-style:normal;font-weight:300;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2') format('woff2')}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:300;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2') format('woff2')}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:400;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2') format('woff2')}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:400;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2') format('woff2')}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:500;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2') format('woff2')}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:500;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2') format('woff2')}
+@font-face{font-family:'Frank Ruhl Libre';font-style:normal;font-weight:700;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2') format('woff2')}
+@font-face{font-family:'Frank Ruhl Libre';font-style:normal;font-weight:700;font-display:swap;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2') format('woff2')}
+:root{--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+ --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-gold:#e9b96e;--env2-glow:#ffd394;
+ --env2-hair:rgba(244,238,227,.12);--env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+ --env2-serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;
+ --env2-sans:"Heebo","Assistant",system-ui,sans-serif}
+html{background:#020306}
+body{margin:0;background-color:#020306;color:#f4eee3;
+ background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+ background-repeat:no-repeat;background-size:100% 100%;min-height:100vh}
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);
+ font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;
+ direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;
+ text-wrap:balance;margin:0;color:var(--env2-ink)}
+</style>
+<div id="probe"><style>
+.ens-pdp-weather{padding-block:28px 32px;margin:0}
+.ens-pdp-weather bdi{unicode-bidi:isolate}
+.ens-pdp-weather__h.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 14px}
+/* the pair is framed inside the wrap, never full-bleed: two columns, 12 px gap, 1:1 at 390 */
+.ens-pdp-weather__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.ens-pdp-weather__tile{margin:0;min-inline-size:0}
+.ens-pdp-weather__frame{position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0;aspect-ratio:1/1}
+/* crop per slot and per breakpoint (op_* settings); an admin focal point written inline by image_tag still wins */
+.ens-pdp-weather__frame img{display:block;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* one short line under each tile, then the muted caption that names the photograph and its credit */
+.ens-pdp-weather__line{margin:0;padding-block-start:10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:var(--env2-fs-body,16px);line-height:1.45;color:var(--env2-ink,#f4eee3);text-wrap:pretty}
+.ens-pdp-weather__cap{margin:0;padding-block-start:8px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:12px;line-height:1.5;color:#8f8b83}
+.ens-pdp-weather__credit{display:block}
+@media (min-width:901px){
+  .ens-pdp-weather{padding-block:40px 44px}
+  .ens-pdp-weather__h.env2-h{margin-block-end:20px}
+  .ens-pdp-weather__pair{gap:20px}
+  .ens-pdp-weather__frame{aspect-ratio:3/2}
+  .ens-pdp-weather__frame img{object-position:var(--ens-op-lg,50% 50%)}
+  .ens-pdp-weather__line{padding-block-start:14px;font-size:17px}
+  .ens-pdp-weather__cap{padding-block-start:10px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-pdp-weather,.ens-pdp-weather *{transition:none!important;animation:none!important}
+}
+</style>
+<section id="ens-pdp-weather-ens-weather-B" class="env2-section ens-pdp-weather" dir="rtl" aria-labelledby="ens-pdp-weather-h-ens-weather-B" style="scroll-margin-top:90px">
+  <div class="env2-wrap"><h2 id="ens-pdp-weather-h-ens-weather-B" class="env2-h ens-pdp-weather__h">בחוץ, כל השנה</h2><div class="ens-pdp-weather__pair"><figure class="ens-pdp-weather__tile ens-pdp-weather__tile--rain">
+        <div class="ens-pdp-weather__frame" style="--ens-op:50% 50%;--ens-op-lg:50% 50%"><img src="file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-stem.jpg" srcset="file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-stem.jpg 400w, file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-stem.jpg 600w, file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-stem.jpg 900w, file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-stem.jpg 1200w, file:///home/user/ElmsNest/theme/assets/ens-pdp-rain-stem.jpg 1600w" sizes="(min-width:1348px) 610px, (min-width:901px) calc(46vw - 10px), (min-width:501px) calc(46vw - 6px), calc(50vw - 26px)" width="1600" height="1067" loading="lazy" decoding="async" alt=""></div><figcaption><p class="ens-pdp-weather__line">גשם של ינואר. התאורה נשארת בחוץ.</p><p class="ens-pdp-weather__cap">טיפות על גבעול, אחרי הגשם<span class="ens-pdp-weather__credit">צילום: <bdi dir="ltr">jenny downing (CC BY 2.0)</bdi></span></p></figcaption></figure><figure class="ens-pdp-weather__tile ens-pdp-weather__tile--sun">
+        <div class="ens-pdp-weather__frame" style="--ens-op:50% 50%;--ens-op-lg:55% 50%"><img src="file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg" srcset="file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 400w, file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 600w, file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 900w, file:///home/user/ElmsNest/theme/assets/ens-pdp-sun-wall.jpg 1200w" sizes="(min-width:1348px) 610px, (min-width:901px) calc(46vw - 10px), (min-width:501px) calc(46vw - 6px), calc(50vw - 26px)" width="1200" height="900" loading="lazy" decoding="async" alt=""></div><figcaption><p class="ens-pdp-weather__line">שמש של אוגוסט. אותו הדבר.</p><p class="ens-pdp-weather__cap">קיר לבן בשמש של צהריים</p></figcaption></figure></div>
+  </div>
+</section></div>

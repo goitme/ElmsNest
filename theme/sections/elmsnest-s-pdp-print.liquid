@@ -1,0 +1,261 @@
+{%- comment -%}
+  ElmsNest S — the cream print (PDP3 SPEC §3, ruling R3). Product page only.
+  ONE serif sentence on the night ground, then a cream mat (#efe7d8, 14 px padding, radius 0) with the
+  photograph bleeding to the mat's inner edge (3:2 at 390, 16:9 at ≥ 901) and, on the mat itself and never
+  on the photograph, the caption naming the place and the credit (11 px, #6b6558 — measured 4.71:1 on the mat).
+  This is the page's one cream surface: a print lying on the night page.
+
+  Gate (no product data): snippets/elmsnest-s-place emit:'word' must be non-blank (a product only in `sale`
+  prints nothing, exactly as the scene does), and the two scene overrides — lighted-birch-branches-20-led,
+  rechargeable-telescopic-camping-lantern — print NOTHING: an evening garden is not their place. A closed gate
+  prints no root, no style and no padding.
+
+  Which photograph, caption and credit: the place word (שביל / קיר / גינה / מרפסת) picks one of the four
+  prepared assets (pdp3/images/CHOSEN.md); each slot's image_picker, caption and credit are owner settings, an
+  empty picker falls back to the asset. No frame in the set contains an artificial light fixture (R8), and no
+  word ever sits on a photograph. srcset candidates are capped at the file's real width (400/700/1000/1300 plus
+  the file's own width when it is narrower), sizes matches the rendered width.
+
+  Copy runs through the elmsnest-s-pdp-facts / -dusk Latin-token loop (P6), extended by one line so a token that
+  opens with "(" — «(CC BY 2.0)» — is isolated too and the whole credit tail becomes ONE ltr isolate.
+  Tokens come from elmsnest-v2-core (global); this file only adds ens-pdp-print* rules. No JS, no reveal, radius 0.
+  ≤ 420 px at 390: 24 + line 25 + 14 + mat (14 + 215 + 10 + 17 + 3 + 17 + 14) + 28 ≈ 380.
+{%- endcomment -%}
+{%- if product != blank -%}
+{%- liquid
+  capture ens_word
+    render 'elmsnest-s-place', product: product, emit: 'word'
+  endcapture
+  assign ens_word = ens_word | strip
+
+  # the two scene overrides never print here (SPEC §3 gate)
+  assign ens_gate = false
+  if ens_word != blank
+    assign ens_gate = true
+  endif
+  if product.handle == 'lighted-birch-branches-20-led' or product.handle == 'rechargeable-telescopic-camping-lantern'
+    assign ens_gate = false
+  endif
+-%}
+{%- if ens_gate -%}
+{%- liquid
+  # ---- the print, by the place word (SPEC §3 table); the fallback row is the path print ----
+  if ens_word == 'קיר'
+    assign ens_fam = 'wall'
+    assign ens_file = 'ens-pdp-print-wall.jpg'
+    assign ens_w = 1600
+    assign ens_h = 1063
+    assign ens_pic = section.settings.image_wall
+    assign ens_cap = section.settings.cap_wall | default: 'גינה של בית, באור אחרון'
+    assign ens_credit = section.settings.credit_wall | default: 'צילום: BPPrice (CC BY 2.0)'
+  elsif ens_word == 'גינה'
+    assign ens_fam = 'garden'
+    assign ens_file = 'ens-pdp-print-garden.jpg'
+    assign ens_w = 1000
+    assign ens_h = 667
+    assign ens_pic = section.settings.image_garden
+    assign ens_cap = section.settings.cap_garden | default: 'ספסל בגינה, לפנות ערב'
+    assign ens_credit = section.settings.credit_garden | default: 'צילום: Basile Morin (CC BY-SA 4.0)'
+  elsif ens_word == 'מרפסת'
+    assign ens_fam = 'balcony'
+    assign ens_file = 'ens-pdp-print-balcony.jpg'
+    assign ens_w = 1600
+    assign ens_h = 1067
+    assign ens_pic = section.settings.image_balcony
+    assign ens_cap = section.settings.cap_balcony | default: 'מרפסת בשעת בין ערביים'
+    assign ens_credit = section.settings.credit_balcony | default: 'צילום: tillwe (CC BY-SA 2.0)'
+  else
+    assign ens_fam = 'path'
+    assign ens_file = 'ens-pdp-print-path.jpg'
+    assign ens_w = 1200
+    assign ens_h = 781
+    assign ens_pic = section.settings.image_path
+    assign ens_cap = section.settings.cap_path | default: 'שביל אבן בשעת בין ערביים'
+    assign ens_credit = section.settings.credit_path | default: 'צילום: Corey Leopold (CC BY 2.0)'
+  endif
+
+  # ---- the srcset: never a candidate wider than the file (the scene's loop, at this section's widths) ----
+  assign ens_srcset = ''
+  assign ens_src = ''
+  assign ens_want = '400,700,1000,1300' | split: ','
+  if ens_pic != blank
+    assign ens_w = ens_pic.width
+    assign ens_h = ens_pic.height
+    for w in ens_want
+      assign wn = w | plus: 0
+      if wn <= ens_pic.width
+        assign wurl = ens_pic | image_url: width: wn
+        if ens_srcset != ''
+          assign ens_srcset = ens_srcset | append: ', '
+        endif
+        assign ens_srcset = ens_srcset | append: wurl | append: ' ' | append: w | append: 'w'
+        assign ens_src = wurl
+      endif
+    endfor
+    if ens_srcset == ''
+      assign wurl = ens_pic | image_url: width: ens_pic.width
+      assign ens_srcset = wurl | append: ' ' | append: ens_pic.width | append: 'w'
+      assign ens_src = wurl
+    elsif ens_pic.width < 1300 and ens_pic.width != 1000 and ens_pic.width != 700 and ens_pic.width != 400
+      # an owner-picked file narrower than the widest candidate also offers its own width as the last one
+      assign wurl = ens_pic | image_url: width: ens_pic.width
+      assign ens_srcset = ens_srcset | append: ', ' | append: wurl | append: ' ' | append: ens_pic.width | append: 'w'
+      assign ens_src = wurl
+    endif
+  else
+    for w in ens_want
+      assign wn = w | plus: 0
+      if wn <= ens_w
+        assign wsize = w | append: 'x'
+        assign wurl = ens_file | asset_img_url: wsize
+        if ens_srcset != ''
+          assign ens_srcset = ens_srcset | append: ', '
+        endif
+        assign ens_srcset = ens_srcset | append: wurl | append: ' ' | append: w | append: 'w'
+        assign ens_src = wurl
+      endif
+    endfor
+    # the 1200 px path print also offers its own width as the last candidate (1000 and 1600 already end on one)
+    if ens_w < 1300 and ens_w != 1000 and ens_w != 700 and ens_w != 400
+      assign wsize = ens_w | append: 'x'
+      assign wurl = ens_file | asset_img_url: wsize
+      if ens_srcset != ''
+        assign ens_srcset = ens_srcset | append: ', '
+      endif
+      assign ens_srcset = ens_srcset | append: wurl | append: ' ' | append: ens_w | append: 'w'
+      assign ens_src = wurl
+    endif
+  endif
+
+  assign ens_line = section.settings.line | default: 'האור האחרון של היום.' | strip
+  assign ens_cap = ens_cap | strip
+  assign ens_credit = ens_credit | strip
+-%}
+{%- comment -%} P6: the sentence, the caption and the credit through the facts' token loop — every Latin/number token in ONE ltr isolate (a token opening with "(" counts as Latin too, so «(CC BY 2.0)» joins the credit's isolate), then the en-dash range isolator {%- endcomment -%}
+{%- liquid
+  assign RS = '~~R~~'
+  assign latin_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  assign ens_l_esc = ens_line | escape
+  assign ens_c_esc = ens_cap | escape
+  assign ens_r_esc = ens_credit | escape
+  assign ens_parts = ens_l_esc | append: RS | append: ens_c_esc | append: RS | append: ens_r_esc | split: RS
+-%}
+{%- capture ens_html -%}
+{%- for part in ens_parts -%}
+  {%- liquid
+    assign words = part | split: ' '
+    assign v = ''
+    for w in words
+      assign c = w | slice: 0, 1
+      if c == '('
+        assign c = w | slice: 1, 1
+      endif
+      if c != blank and latin_chars contains c
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      elsif w == '&' or w == '&amp;' or w == '+' or w == '/'
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      else
+        assign tok = w
+      endif
+      if forloop.first
+        assign v = tok
+      else
+        assign v = v | append: ' ' | append: tok
+      endif
+    endfor
+    assign v = v | replace: '</bdi> <bdi dir="ltr">', ' '
+  -%}
+  {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: v -%}{%- endcapture -%}
+  {%- assign v = v | strip | replace: '<bdi>', '<bdi dir="ltr">' -%}
+  {%- unless forloop.first -%}{{ RS }}{%- endunless -%}{{ v }}
+{%- endfor -%}
+{%- endcapture -%}
+{%- liquid
+  assign ens_out = ens_html | strip | split: RS
+  assign ens_line_html = ens_out[0] | default: '' | strip
+  assign ens_cap_html = ens_out[1] | default: '' | strip
+  assign ens_credit_html = ens_out[2] | default: '' | strip
+-%}
+<style>
+.ens-pdp-print{padding-block:24px 28px;margin:0}
+.ens-pdp-print bdi{unicode-bidi:isolate}
+/* the serif sentence on the night ground — the one line above the mat */
+.ens-pdp-print__line{margin:0;margin-block-end:14px;font-family:var(--env2-serif,'Frank Ruhl Libre',serif);font-weight:400;font-size:clamp(19px,2.6vw,26px);line-height:1.3;color:var(--env2-ink,#f4eee3);max-inline-size:34ch;text-wrap:balance}
+/* the mat: the page's one cream surface, 14 px all round, radius 0, no border, no shadow */
+.ens-pdp-print__mat{background:#efe7d8;padding:14px;border:0;border-radius:0}
+.ens-pdp-print__fig{margin:0}
+/* the photograph bleeds to the mat's inner edge: 3:2 at 390, 16:9 at ≥ 901 */
+.ens-pdp-print__fig img{display:block;inline-size:100%;block-size:auto;aspect-ratio:3/2;object-fit:cover;object-position:50% 50%;background:#e3dac9;border-radius:0}
+/* the caption and the credit on the mat, never on the photograph (11 px on #efe7d8 = 4.71:1) */
+.ens-pdp-print__cap{margin:0;padding-block-start:10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:11px;line-height:1.5;color:#6b6558}
+.ens-pdp-print__credit{margin:0;padding-block-start:3px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:11px;line-height:1.5;color:#6b6558}
+@media (min-width:901px){
+  /* the desktop column of the dusk row's neighbours: the sentence in the inline-start column, the print in the inline-end one */
+  .ens-pdp-print{padding-block:16px 48px}
+  .ens-pdp-print__in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:0 64px;align-items:start}
+  .ens-pdp-print__line{margin-block-end:0;font-size:clamp(22px,2vw,30px)}
+  .ens-pdp-print__fig img{aspect-ratio:16/9}
+  .ens-pdp-print__cap{padding-block-start:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-pdp-print,.ens-pdp-print *{transition:none!important;animation:none!important}
+}
+</style>
+<section id="ens-pdp-print-{{ section.id }}" class="env2-section ens-pdp-print" dir="rtl" data-ens-place="{{ ens_fam }}" style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    <div class="ens-pdp-print__in">
+      {%- if ens_line_html != '' -%}<p class="ens-pdp-print__line">{{ ens_line_html }}</p>{%- endif -%}
+      <div class="ens-pdp-print__mat">
+        <figure class="ens-pdp-print__fig">
+          <img
+            src="{{ ens_src }}"
+            srcset="{{ ens_srcset }}"
+            sizes="(min-width:901px) 620px, (min-width:500px) calc(92vw - 28px), calc(100vw - 68px)"
+            width="{{ ens_w }}" height="{{ ens_h }}"
+            loading="lazy" decoding="async" alt="">
+          {%- if ens_cap_html != '' or ens_credit_html != '' -%}
+          <figcaption>
+            {%- if ens_cap_html != '' -%}<p class="ens-pdp-print__cap">{{ ens_cap_html }}</p>{%- endif -%}
+            {%- if ens_credit_html != '' -%}<p class="ens-pdp-print__credit">{{ ens_credit_html }}</p>{%- endif -%}
+          </figcaption>
+          {%- endif -%}
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "ElmsNest S — הדפס",
+  "tag": "section",
+  "class": "ens-pdp-section hdt-section",
+  "settings": [
+    { "type": "paragraph", "content": "משפט אחד על רקע הלילה, ומתחתיו הדפס על מזרן קרם: תצלום של מקום אמיתי בשעה האחרונה של האור, ועל המזרן — לא על התצלום — הכיתוב והקרדיט. התצלום נבחר לפי המקום של המוצר (שביל, קיר, גינה, מרפסת). למוצר בלי קולקציית מקום, לענפי הליבנה ולפנס הקמפינג הסקשן לא מודפס כלל." },
+    { "type": "text", "id": "line", "label": "המשפט מעל ההדפס", "default": "האור האחרון של היום." },
+    { "type": "header", "content": "שביל" },
+    { "type": "image_picker", "id": "image_path", "label": "תצלום (ריק = ens-pdp-print-path.jpg)" },
+    { "type": "text", "id": "cap_path", "label": "כיתוב", "default": "שביל אבן בשעת בין ערביים" },
+    { "type": "text", "id": "credit_path", "label": "קרדיט", "default": "צילום: Corey Leopold (CC BY 2.0)" },
+    { "type": "header", "content": "קיר" },
+    { "type": "image_picker", "id": "image_wall", "label": "תצלום (ריק = ens-pdp-print-wall.jpg)" },
+    { "type": "text", "id": "cap_wall", "label": "כיתוב", "default": "גינה של בית, באור אחרון" },
+    { "type": "text", "id": "credit_wall", "label": "קרדיט", "default": "צילום: BPPrice (CC BY 2.0)" },
+    { "type": "header", "content": "גינה" },
+    { "type": "image_picker", "id": "image_garden", "label": "תצלום (ריק = ens-pdp-print-garden.jpg)" },
+    { "type": "text", "id": "cap_garden", "label": "כיתוב", "default": "ספסל בגינה, לפנות ערב" },
+    { "type": "text", "id": "credit_garden", "label": "קרדיט", "default": "צילום: Basile Morin (CC BY-SA 4.0)" },
+    { "type": "header", "content": "מרפסת" },
+    { "type": "image_picker", "id": "image_balcony", "label": "תצלום (ריק = ens-pdp-print-balcony.jpg)" },
+    { "type": "text", "id": "cap_balcony", "label": "כיתוב", "default": "מרפסת בשעת בין ערביים" },
+    { "type": "text", "id": "credit_balcony", "label": "קרדיט", "default": "צילום: tillwe (CC BY-SA 2.0)" }
+  ],
+  "presets": [
+    { "name": "ElmsNest S — הדפס" }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

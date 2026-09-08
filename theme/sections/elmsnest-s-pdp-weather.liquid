@@ -1,0 +1,350 @@
+{%- comment -%}
+  ElmsNest S — «בחוץ, כל השנה» (PDP3 SPEC §2, ruling R1 · R7). Product page only.
+  Two framed detail tiles side by side INSIDE the wrap — never full-bleed: 1:1 at 390 in two columns
+  with a 12 px gap, 3:2 at ≥ 901. Under each tile one short line, then the 12 px muted caption that
+  names what the photograph is and the credit it owes. No word on a photograph, no scrim, no hairline
+  row, no link, no button, radius 0, logical properties, no JS.
+
+  Two gates, and the section prints NOTHING when either is closed (no root, no <style>, no padding):
+    1. Prints at all — only when the product's OWN description carries an outdoor IP token
+       (IP65 / IP66 / IP67 / IP68, the outdoor half of the token list elmsnest-s-pdp-facts scans).
+       No token, or IP44 and lower → nothing: the birch branches, the camping lantern, the USB globe
+       string and the net lights never claim a January of rain.
+    2. Which rain tile — the dusk row's solar test copied verbatim from sections/elmsnest-s-pdp-dusk
+       lines 17-27 (custom.power_source == 'סולארי'; when that metafield is unwritten, the product's
+       own description + title must contain 'סולארי'). Solar → rain on a panel; anything else → drops
+       on a stem. The sun tile is the white wall in noon sun on EVERY product (R7: on the flagship
+       solar page the pair must not be two cold blue panels side by side).
+
+  Photographs are licensed frames of MATERIALS, never of someone else's lamps (BRIEF §4):
+    ens-pdp-rain-panel.jpg 1066×1600 CC BY-SA 2.0 h080 · ens-pdp-rain-stem.jpg 1600×1067 CC BY 2.0
+    jenny downing · ens-pdp-sun-wall.jpg 1200×900 CC0 Carol M Highsmith (no credit owed).
+  An image_picker per slot replaces the asset; object_position per slot and per breakpoint crops it
+  (the elmsnest-s-home-solar pattern). srcset candidates are capped at the file's real width and the
+  sizes attribute is the rendered width. The owner's strings run through the same Latin/number
+  <bdi dir="ltr"> token loop as elmsnest-s-pdp-facts / -dusk (P6), so a typed «IP65» never flips; a
+  credit takes ONE <bdi dir="ltr"> around its whole Latin tail, so «(CC BY-SA 2.0)» never breaks up.
+  ≤ 430 px at 390. Tokens come from elmsnest-v2-core (global); this file only adds ens-pdp-weather*.
+{%- endcomment -%}
+{%- if product != blank -%}
+{%- liquid
+  # ---- gate 1: the outdoor IP token in the product's own description ----
+  assign ens_desc = product.description | strip_html
+  assign ens_ip = false
+  assign ens_ip_codes = 'IP65,IP66,IP67,IP68' | split: ','
+  for ens_code in ens_ip_codes
+    if ens_desc contains ens_code
+      assign ens_ip = true
+      break
+    endif
+  endfor
+-%}
+{%- if ens_ip -%}
+{%- liquid
+  # ---- gate 2: solar test, copied verbatim from sections/elmsnest-s-pdp-dusk.liquid lines 17-27 ----
+  assign ens_pwr = product.metafields.custom.power_source | default: '' | strip
+  assign ens_solar = false
+  if ens_pwr == 'סולארי'
+    assign ens_solar = true
+  elsif ens_pwr == ''
+    assign ens_hay = product.description | strip_html | append: ' ' | append: product.title
+    if ens_hay contains 'סולארי'
+      assign ens_solar = true
+    endif
+  endif
+
+  # ---- the rain slot: the panel on a solar product, the stem on everything else (SPEC §2) ----
+  if ens_solar
+    assign ens_pic_a = section.settings.image_rain_solar
+    assign ens_file_a = 'ens-pdp-rain-panel.jpg'
+    assign ens_fw_a = 1066
+    assign ens_fh_a = 1600
+    assign ens_op_a = section.settings.op_rain_solar | default: '50% 50%'
+    assign ens_op_a_lg = section.settings.op_rain_solar_desktop | default: '50% 45%'
+    assign ens_cap_a = section.settings.cap_rain_solar | default: ''
+    assign ens_cred_a = section.settings.credit_rain_solar | default: ''
+  else
+    assign ens_pic_a = section.settings.image_rain_plain
+    assign ens_file_a = 'ens-pdp-rain-stem.jpg'
+    assign ens_fw_a = 1600
+    assign ens_fh_a = 1067
+    assign ens_op_a = section.settings.op_rain_plain | default: '50% 50%'
+    assign ens_op_a_lg = section.settings.op_rain_plain_desktop | default: '50% 50%'
+    assign ens_cap_a = section.settings.cap_rain_plain | default: ''
+    assign ens_cred_a = section.settings.credit_rain_plain | default: ''
+  endif
+  # ---- the sun slot: the white wall in noon sun, on every product (R7) ----
+  assign ens_pic_b = section.settings.image_sun
+  assign ens_file_b = 'ens-pdp-sun-wall.jpg'
+  assign ens_fw_b = 1200
+  assign ens_fh_b = 900
+  assign ens_op_b = section.settings.op_sun | default: '50% 50%'
+  assign ens_op_b_lg = section.settings.op_sun_desktop | default: '55% 50%'
+  assign ens_cap_b = section.settings.cap_sun | default: ''
+  assign ens_cred_b = section.settings.credit_sun | default: ''
+
+  assign ens_op_a = ens_op_a | strip | escape
+  assign ens_op_a_lg = ens_op_a_lg | strip | escape
+  assign ens_op_b = ens_op_b | strip | escape
+  assign ens_op_b_lg = ens_op_b_lg | strip | escape
+
+  assign ens_head = section.settings.heading | default: '' | strip
+  assign ens_line_a = section.settings.line_rain | default: '' | strip
+  assign ens_line_b = section.settings.line_sun | default: '' | strip
+  assign ens_cap_a = ens_cap_a | strip
+  assign ens_cap_b = ens_cap_b | strip
+  assign ens_cred_a = ens_cred_a | strip
+  assign ens_cred_b = ens_cred_b | strip
+
+  assign RS = '~~R~~'
+  assign latin_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  # a credit opens its Latin tail on a letter, a digit or the bracket of a licence code
+  assign latin_open = latin_chars | append: '(['
+  assign ens_parts = ens_head | escape | append: RS | append: ens_line_a | escape | append: RS | append: ens_line_b | escape | append: RS | append: ens_cap_a | escape | append: RS | append: ens_cap_b | escape | split: RS
+  assign ens_cred_parts = ens_cred_a | escape | append: RS | append: ens_cred_b | escape | split: RS
+-%}
+{%- comment -%} P6: every Latin/number token in ONE ltr isolate (whole tokens, adjacent ones merged), then the en-dash range isolator — the elmsnest-s-pdp-facts loop, run on the heading, the two lines and the two captions {%- endcomment -%}
+{%- capture ens_html -%}
+{%- for part in ens_parts -%}
+  {%- liquid
+    assign words = part | split: ' '
+    assign v = ''
+    for w in words
+      assign c = w | slice: 0, 1
+      if c != blank and latin_chars contains c
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      elsif w == '&' or w == '&amp;' or w == '+' or w == '/'
+        assign tok = '<bdi dir="ltr">' | append: w | append: '</bdi>'
+      else
+        assign tok = w
+      endif
+      if forloop.first
+        assign v = tok
+      else
+        assign v = v | append: ' ' | append: tok
+      endif
+    endfor
+    assign v = v | replace: '</bdi> <bdi dir="ltr">', ' '
+  -%}
+  {%- capture v -%}{%- render 'elmsnest-v2-bdi-range', text: v -%}{%- endcapture -%}
+  {%- assign v = v | strip | replace: '<bdi>', '<bdi dir="ltr">' -%}
+  {%- unless forloop.first -%}{{ RS }}{%- endunless -%}{{ v }}
+{%- endfor -%}
+{%- endcapture -%}
+{%- comment -%} SPEC §2: ONE <bdi dir="ltr"> around the Latin credit — «צילום: h080 (CC BY-SA 2.0)» keeps the name, the licence and the version in a single isolate, so the brackets never change places {%- endcomment -%}
+{%- capture ens_cred_html -%}
+{%- for part in ens_cred_parts -%}
+  {%- liquid
+    assign words = part | split: ' '
+    assign pre = ''
+    assign post = ''
+    assign started = false
+    for w in words
+      unless started
+        assign c = w | slice: 0, 1
+        if c != blank and latin_open contains c
+          assign started = true
+        endif
+      endunless
+      if started
+        if post == ''
+          assign post = w
+        else
+          assign post = post | append: ' ' | append: w
+        endif
+      else
+        if pre == ''
+          assign pre = w
+        else
+          assign pre = pre | append: ' ' | append: w
+        endif
+      endif
+    endfor
+    assign v = pre
+    if post != ''
+      assign v = ''
+      if pre != ''
+        assign v = pre | append: ' '
+      endif
+      assign v = v | append: '<bdi dir="ltr">' | append: post | append: '</bdi>'
+    endif
+  -%}
+  {%- unless forloop.first -%}{{ RS }}{%- endunless -%}{{ v }}
+{%- endfor -%}
+{%- endcapture -%}
+{%- liquid
+  assign ens_out = ens_html | strip | split: RS
+  assign ens_head_html = ens_out[0] | default: '' | strip
+  assign ens_line_a_html = ens_out[1] | default: '' | strip
+  assign ens_line_b_html = ens_out[2] | default: '' | strip
+  assign ens_cap_a_html = ens_out[3] | default: '' | strip
+  assign ens_cap_b_html = ens_out[4] | default: '' | strip
+  assign ens_cred_out = ens_cred_html | strip | split: RS
+  assign ens_cred_a_html = ens_cred_out[0] | default: '' | strip
+  assign ens_cred_b_html = ens_cred_out[1] | default: '' | strip
+-%}
+<style>
+.ens-pdp-weather{padding-block:28px 32px;margin:0}
+.ens-pdp-weather bdi{unicode-bidi:isolate}
+.ens-pdp-weather__h.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 14px}
+/* the pair is framed inside the wrap, never full-bleed: two columns, 12 px gap, 1:1 at 390 */
+.ens-pdp-weather__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.ens-pdp-weather__tile{margin:0;min-inline-size:0}
+.ens-pdp-weather__frame{position:relative;margin:0;overflow:hidden;background:#05070c;border:0;border-radius:0;aspect-ratio:1/1}
+/* crop per slot and per breakpoint (op_* settings); an admin focal point written inline by image_tag still wins */
+.ens-pdp-weather__frame img{display:block;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* one short line under each tile, then the muted caption that names the photograph and its credit */
+.ens-pdp-weather__line{margin:0;padding-block-start:10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:var(--env2-fs-body,16px);line-height:1.45;color:var(--env2-ink,#f4eee3);text-wrap:pretty}
+.ens-pdp-weather__cap{margin:0;padding-block-start:8px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:12px;line-height:1.5;color:#8f8b83}
+.ens-pdp-weather__credit{display:block}
+@media (min-width:901px){
+  .ens-pdp-weather{padding-block:40px 44px}
+  .ens-pdp-weather__h.env2-h{margin-block-end:20px}
+  .ens-pdp-weather__pair{gap:20px}
+  .ens-pdp-weather__frame{aspect-ratio:3/2}
+  .ens-pdp-weather__frame img{object-position:var(--ens-op-lg,50% 50%)}
+  .ens-pdp-weather__line{padding-block-start:14px;font-size:17px}
+  .ens-pdp-weather__cap{padding-block-start:10px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-pdp-weather,.ens-pdp-weather *{transition:none!important;animation:none!important}
+}
+</style>
+<section id="ens-pdp-weather-{{ section.id }}" class="env2-section ens-pdp-weather" dir="rtl"{% if ens_head_html != '' %} aria-labelledby="ens-pdp-weather-h-{{ section.id }}"{% else %} aria-label="בחוץ, כל השנה"{% endif %} style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    {%- if ens_head_html != '' -%}
+    <h2 id="ens-pdp-weather-h-{{ section.id }}" class="env2-h ens-pdp-weather__h">{{ ens_head_html }}</h2>
+    {%- endif -%}
+    <div class="ens-pdp-weather__pair">
+      {%- for ens_i in (1..2) -%}
+        {%- liquid
+          if forloop.first
+            assign ens_pic = ens_pic_a
+            assign ens_file = ens_file_a
+            assign ens_fw = ens_fw_a
+            assign ens_fh = ens_fh_a
+            assign ens_op = ens_op_a
+            assign ens_op_lg = ens_op_a_lg
+            assign ens_line_html = ens_line_a_html
+            assign ens_cap_html = ens_cap_a_html
+            assign ens_cred_line = ens_cred_a_html
+            assign ens_slot = 'rain'
+          else
+            assign ens_pic = ens_pic_b
+            assign ens_file = ens_file_b
+            assign ens_fw = ens_fw_b
+            assign ens_fh = ens_fh_b
+            assign ens_op = ens_op_b
+            assign ens_op_lg = ens_op_b_lg
+            assign ens_line_html = ens_line_b_html
+            assign ens_cap_html = ens_cap_b_html
+            assign ens_cred_line = ens_cred_b_html
+            assign ens_slot = 'sun'
+          endif
+
+          # ---- the srcset: never a candidate wider than the file (home2 critique E7) ----
+          # the rendered width, band by band: the wrap is min(1240, 100vw - 2*clamp(20px,4vw,64px)) and the
+          # tile is (wrap - gap)/2 — (350-12)/2 = 169 px at 390 · (92vw-20)/2 from 901 · (1240-20)/2 from 1348
+          assign ens_sizes = '(min-width:1348px) 610px, (min-width:901px) calc(46vw - 10px), (min-width:501px) calc(46vw - 6px), calc(50vw - 26px)'
+          assign ens_want = '400,600,900,1200,1600' | split: ','
+          assign ens_widths = ''
+          assign ens_top = 0
+          if ens_pic != blank
+            assign ens_fw = ens_pic.width
+            assign ens_fh = ens_pic.height
+          endif
+          for w in ens_want
+            assign wn = w | plus: 0
+            if wn <= ens_fw
+              if ens_widths == ''
+                assign ens_widths = w
+              else
+                assign ens_widths = ens_widths | append: ',' | append: w
+              endif
+              assign ens_top = wn
+            endif
+          endfor
+          # a file whose real width is not one of the candidates also offers its own width as the last one (critique E4)
+          if ens_top < ens_fw
+            if ens_widths == ''
+              assign ens_widths = ens_fw | append: ''
+            else
+              assign ens_widths = ens_widths | append: ',' | append: ens_fw
+            endif
+          endif
+          assign ens_srcset = ''
+          assign ens_src = ''
+          unless ens_pic != blank
+            assign ens_list = ens_widths | split: ','
+            for w in ens_list
+              assign wsize = w | append: 'x'
+              assign wurl = ens_file | asset_img_url: wsize
+              if ens_srcset != ''
+                assign ens_srcset = ens_srcset | append: ', '
+              endif
+              assign ens_srcset = ens_srcset | append: wurl | append: ' ' | append: w | append: 'w'
+              assign ens_src = wurl
+            endfor
+          endunless
+        -%}
+      <figure class="ens-pdp-weather__tile ens-pdp-weather__tile--{{ ens_slot }}">
+        <div class="ens-pdp-weather__frame" style="--ens-op:{{ ens_op }};--ens-op-lg:{{ ens_op_lg }}">
+          {%- if ens_pic != blank -%}
+            {{ ens_pic | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_widths, sizes: ens_sizes, alt: '' }}
+          {%- else -%}
+            <img src="{{ ens_src }}" srcset="{{ ens_srcset }}" sizes="{{ ens_sizes }}" width="{{ ens_fw }}" height="{{ ens_fh }}" loading="lazy" decoding="async" alt="">
+          {%- endif -%}
+        </div>
+        {%- if ens_line_html != '' or ens_cap_html != '' or ens_cred_line != '' -%}
+        <figcaption>
+          {%- if ens_line_html != '' -%}<p class="ens-pdp-weather__line">{{ ens_line_html }}</p>{%- endif -%}
+          {%- if ens_cap_html != '' or ens_cred_line != '' -%}
+          <p class="ens-pdp-weather__cap">{%- if ens_cap_html != '' -%}{{ ens_cap_html }}{%- endif -%}{%- if ens_cred_line != '' -%}<span class="ens-pdp-weather__credit">{{ ens_cred_line }}</span>{%- endif -%}</p>
+          {%- endif -%}
+        </figcaption>
+        {%- endif -%}
+      </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "ElmsNest S — בחוץ",
+  "tag": "section",
+  "class": "ens-pdp-section hdt-section",
+  "settings": [
+    { "type": "paragraph", "content": "שני תצלומים ממוסגרים זה לצד זה: גשם ושמש. הסקשן מודפס רק כשבתיאור המוצר מופיע IP65, IP66, IP67 או IP68. במוצר סולארי תמונת הגשם היא טיפות על פאנל; בכל מוצר אחר טיפות על גבעול. תמונת השמש זהה בכל המוצרים." },
+    { "type": "text", "id": "heading", "label": "כותרת (בלי נקודה בסוף)", "default": "בחוץ, כל השנה" },
+    { "type": "header", "content": "המשפטים מתחת לתצלומים" },
+    { "type": "text", "id": "line_rain", "label": "המשפט מתחת לתצלום הגשם", "default": "גשם של ינואר. התאורה נשארת בחוץ." },
+    { "type": "text", "id": "line_sun", "label": "המשפט מתחת לתצלום השמש", "default": "שמש של אוגוסט. אותו הדבר." },
+    { "type": "header", "content": "תצלום הגשם — מוצר סולארי" },
+    { "type": "image_picker", "id": "image_rain_solar", "label": "התצלום (ריק = ens-pdp-rain-panel.jpg)" },
+    { "type": "text", "id": "op_rain_solar", "label": "מיקום החיתוך בנייד (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
+    { "type": "text", "id": "op_rain_solar_desktop", "label": "מיקום החיתוך במחשב", "default": "50% 45%", "info": "חל מרוחב 901 פיקסלים (שם המסגרת רחבה, 3:2)." },
+    { "type": "text", "id": "cap_rain_solar", "label": "הכיתוב מתחת לתצלום", "default": "טיפות גשם על פאנל סולארי" },
+    { "type": "text", "id": "credit_rain_solar", "label": "שורת הקרדיט (ריק = בלי קרדיט)", "default": "צילום: h080 (CC BY-SA 2.0)" },
+    { "type": "header", "content": "תצלום הגשם — מוצר שאינו סולארי" },
+    { "type": "image_picker", "id": "image_rain_plain", "label": "התצלום (ריק = ens-pdp-rain-stem.jpg)" },
+    { "type": "text", "id": "op_rain_plain", "label": "מיקום החיתוך בנייד (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
+    { "type": "text", "id": "op_rain_plain_desktop", "label": "מיקום החיתוך במחשב", "default": "50% 50%", "info": "חל מרוחב 901 פיקסלים (שם המסגרת רחבה, 3:2)." },
+    { "type": "text", "id": "cap_rain_plain", "label": "הכיתוב מתחת לתצלום", "default": "טיפות על גבעול, אחרי הגשם" },
+    { "type": "text", "id": "credit_rain_plain", "label": "שורת הקרדיט (ריק = בלי קרדיט)", "default": "צילום: jenny downing (CC BY 2.0)" },
+    { "type": "header", "content": "תצלום השמש — בכל המוצרים" },
+    { "type": "image_picker", "id": "image_sun", "label": "התצלום (ריק = ens-pdp-sun-wall.jpg)" },
+    { "type": "text", "id": "op_sun", "label": "מיקום החיתוך בנייד (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
+    { "type": "text", "id": "op_sun_desktop", "label": "מיקום החיתוך במחשב", "default": "55% 50%", "info": "חל מרוחב 901 פיקסלים (שם המסגרת רחבה, 3:2)." },
+    { "type": "text", "id": "cap_sun", "label": "הכיתוב מתחת לתצלום", "default": "קיר לבן בשמש של צהריים" },
+    { "type": "text", "id": "credit_sun", "label": "שורת הקרדיט (ריק = בלי קרדיט)", "info": "התצלום הוא CC0 ואינו חייב קרדיט." }
+  ],
+  "presets": [
+    { "name": "ElmsNest S — בחוץ" }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

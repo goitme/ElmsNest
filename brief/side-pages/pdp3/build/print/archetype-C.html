@@ -1,0 +1,52 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ens_pdp_print — C</title><style>@font-face{font-family:'Frank Ruhl Libre';src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block}@font-face{font-family:'Frank Ruhl Libre';src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block}@font-face{font-family:'Frank Ruhl Libre';src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:block}@font-face{font-family:'Frank Ruhl Libre';src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:block}@font-face{font-family:'Heebo';src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block}@font-face{font-family:'Heebo';src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block}@font-face{font-family:'Heebo';src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2') format('woff2');font-weight:300;font-style:normal;font-display:block}@font-face{font-family:'Heebo';src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2') format('woff2');font-weight:300;font-style:normal;font-display:block}
+:root{--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+ --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;--env2-gold:#e9b96e;--env2-glow:#ffd394;
+ --env2-hair:rgba(244,238,227,.12);--env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+ --env2-serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--env2-sans:"Heebo","Assistant",system-ui,sans-serif}
+html{background:#020306}
+body{margin:0;background-color:#020306;color:#f4eee3;
+ background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);
+ background-repeat:no-repeat;background-size:100% 100%;min-height:100vh}
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+</style></head><body><div id="ens-harness"><style>
+.ens-pdp-print{padding-block:24px 28px;margin:0}
+.ens-pdp-print bdi{unicode-bidi:isolate}
+/* the serif sentence on the night ground — the one line above the mat */
+.ens-pdp-print__line{margin:0;margin-block-end:14px;font-family:var(--env2-serif,'Frank Ruhl Libre',serif);font-weight:400;font-size:clamp(19px,2.6vw,26px);line-height:1.3;color:var(--env2-ink,#f4eee3);max-inline-size:34ch;text-wrap:balance}
+/* the mat: the page's one cream surface, 14 px all round, radius 0, no border, no shadow */
+.ens-pdp-print__mat{background:#efe7d8;padding:14px;border:0;border-radius:0}
+.ens-pdp-print__fig{margin:0}
+/* the photograph bleeds to the mat's inner edge: 3:2 at 390, 16:9 at ≥ 901 */
+.ens-pdp-print__fig img{display:block;inline-size:100%;block-size:auto;aspect-ratio:3/2;object-fit:cover;object-position:50% 50%;background:#e3dac9;border-radius:0}
+/* the caption and the credit on the mat, never on the photograph (11 px on #efe7d8 = 4.71:1) */
+.ens-pdp-print__cap{margin:0;padding-block-start:10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:11px;line-height:1.5;color:#6b6558}
+.ens-pdp-print__credit{margin:0;padding-block-start:3px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:11px;line-height:1.5;color:#6b6558}
+@media (min-width:901px){
+  /* the desktop column of the dusk row's neighbours: the sentence in the inline-start column, the print in the inline-end one */
+  .ens-pdp-print{padding-block:16px 48px}
+  .ens-pdp-print__in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:0 64px;align-items:start}
+  .ens-pdp-print__line{margin-block-end:0;font-size:clamp(22px,2vw,30px)}
+  .ens-pdp-print__fig img{aspect-ratio:16/9}
+  .ens-pdp-print__cap{padding-block-start:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-pdp-print,.ens-pdp-print *{transition:none!important;animation:none!important}
+}
+</style>
+<section id="ens-pdp-print-harness-C" class="env2-section ens-pdp-print" dir="rtl" data-ens-place="garden" style="scroll-margin-top:90px">
+  <div class="env2-wrap">
+    <div class="ens-pdp-print__in"><p class="ens-pdp-print__line">האור האחרון של היום.</p><div class="ens-pdp-print__mat">
+        <figure class="ens-pdp-print__fig">
+          <img
+            src="file:///home/user/ElmsNest/theme/assets/ens-pdp-print-garden.jpg"
+            srcset="file:///home/user/ElmsNest/theme/assets/ens-pdp-print-garden.jpg 400w, file:///home/user/ElmsNest/theme/assets/ens-pdp-print-garden.jpg 700w, file:///home/user/ElmsNest/theme/assets/ens-pdp-print-garden.jpg 1000w"
+            sizes="(min-width:901px) 620px, (min-width:500px) calc(92vw - 28px), calc(100vw - 68px)"
+            width="1000" height="667"
+            loading="lazy" decoding="async" alt=""><figcaption><p class="ens-pdp-print__cap">ספסל בגינה, לפנות ערב</p><p class="ens-pdp-print__credit">צילום: <bdi dir="ltr">Basile Morin (CC BY-SA 4.0)</bdi></p></figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section></div></body></html>

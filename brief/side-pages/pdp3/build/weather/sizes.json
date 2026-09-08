@@ -1,0 +1,422 @@
+{
+ "weather-A-390": {
+  "height": 371,
+  "tile": [
+   169,
+   169
+  ],
+  "currentSrc": "ens-pdp-rain-panel.jpg",
+  "texts": [
+   {
+    "cls": "env2-h ens-pdp-weather__h",
+    "text": "בחוץ, כל השנה",
+    "color": "rgb(244, 238, 227)",
+    "size": "25px",
+    "x": 20,
+    "y": 28,
+    "w": 350,
+    "h": 28
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "גשם של ינואר. התאורה נשארת בחוץ.",
+    "color": "rgb(244, 238, 227)",
+    "size": "16px",
+    "x": 201,
+    "y": 239,
+    "w": 169,
+    "h": 56
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "טיפות גשם על פאנל סולאריצילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 201,
+    "y": 295,
+    "w": 169,
+    "h": 44
+   },
+   {
+    "cls": "ens-pdp-weather__credit",
+    "text": "צילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 201,
+    "y": 321,
+    "w": 169,
+    "h": 18
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "שמש של אוגוסט. אותו הדבר.",
+    "color": "rgb(244, 238, 227)",
+    "size": "16px",
+    "x": 20,
+    "y": 239,
+    "w": 169,
+    "h": 56
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "קיר לבן בשמש של צהריים",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 20,
+    "y": 295,
+    "w": 169,
+    "h": 26
+   }
+  ]
+ },
+ "weather-A-1366": {
+  "height": 647,
+  "tile": [
+   610,
+   407
+  ],
+  "currentSrc": "ens-pdp-rain-panel.jpg",
+  "texts": [
+   {
+    "cls": "env2-h ens-pdp-weather__h",
+    "text": "בחוץ, כל השנה",
+    "color": "rgb(244, 238, 227)",
+    "size": "44px",
+    "x": 63,
+    "y": 40,
+    "w": 1240,
+    "h": 48
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "גשם של ינואר. התאורה נשארת בחוץ.",
+    "color": "rgb(244, 238, 227)",
+    "size": "17px",
+    "x": 693,
+    "y": 515,
+    "w": 610,
+    "h": 39
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "טיפות גשם על פאנל סולאריצילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 693,
+    "y": 554,
+    "w": 610,
+    "h": 49
+   },
+   {
+    "cls": "ens-pdp-weather__credit",
+    "text": "צילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 693,
+    "y": 583,
+    "w": 610,
+    "h": 20
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "שמש של אוגוסט. אותו הדבר.",
+    "color": "rgb(244, 238, 227)",
+    "size": "17px",
+    "x": 63,
+    "y": 515,
+    "w": 610,
+    "h": 39
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "קיר לבן בשמש של צהריים",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 63,
+    "y": 554,
+    "w": 610,
+    "h": 30
+   }
+  ]
+ },
+ "weather-B-390": {
+  "height": 389,
+  "tile": [
+   169,
+   169
+  ],
+  "currentSrc": "ens-pdp-rain-stem.jpg",
+  "texts": [
+   {
+    "cls": "env2-h ens-pdp-weather__h",
+    "text": "בחוץ, כל השנה",
+    "color": "rgb(244, 238, 227)",
+    "size": "25px",
+    "x": 20,
+    "y": 28,
+    "w": 350,
+    "h": 28
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "גשם של ינואר. התאורה נשארת בחוץ.",
+    "color": "rgb(244, 238, 227)",
+    "size": "16px",
+    "x": 201,
+    "y": 239,
+    "w": 169,
+    "h": 56
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "טיפות על גבעול, אחרי הגשםצילום: jenny downing (CC BY 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 201,
+    "y": 295,
+    "w": 169,
+    "h": 62
+   },
+   {
+    "cls": "ens-pdp-weather__credit",
+    "text": "צילום: jenny downing (CC BY 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 201,
+    "y": 321,
+    "w": 169,
+    "h": 36
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "שמש של אוגוסט. אותו הדבר.",
+    "color": "rgb(244, 238, 227)",
+    "size": "16px",
+    "x": 20,
+    "y": 239,
+    "w": 169,
+    "h": 56
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "קיר לבן בשמש של צהריים",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 20,
+    "y": 295,
+    "w": 169,
+    "h": 26
+   }
+  ]
+ },
+ "weather-B-1366": {
+  "height": 647,
+  "tile": [
+   610,
+   407
+  ],
+  "currentSrc": "ens-pdp-rain-stem.jpg",
+  "texts": [
+   {
+    "cls": "env2-h ens-pdp-weather__h",
+    "text": "בחוץ, כל השנה",
+    "color": "rgb(244, 238, 227)",
+    "size": "44px",
+    "x": 63,
+    "y": 40,
+    "w": 1240,
+    "h": 48
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "גשם של ינואר. התאורה נשארת בחוץ.",
+    "color": "rgb(244, 238, 227)",
+    "size": "17px",
+    "x": 693,
+    "y": 515,
+    "w": 610,
+    "h": 39
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "טיפות על גבעול, אחרי הגשםצילום: jenny downing (CC BY 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 693,
+    "y": 554,
+    "w": 610,
+    "h": 49
+   },
+   {
+    "cls": "ens-pdp-weather__credit",
+    "text": "צילום: jenny downing (CC BY 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 693,
+    "y": 583,
+    "w": 610,
+    "h": 20
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "שמש של אוגוסט. אותו הדבר.",
+    "color": "rgb(244, 238, 227)",
+    "size": "17px",
+    "x": 63,
+    "y": 515,
+    "w": 610,
+    "h": 39
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "קיר לבן בשמש של צהריים",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 63,
+    "y": 554,
+    "w": 610,
+    "h": 30
+   }
+  ]
+ },
+ "weather-C-390": {
+  "height": 371,
+  "tile": [
+   169,
+   169
+  ],
+  "currentSrc": "ens-pdp-rain-panel.jpg",
+  "texts": [
+   {
+    "cls": "env2-h ens-pdp-weather__h",
+    "text": "בחוץ, כל השנה",
+    "color": "rgb(244, 238, 227)",
+    "size": "25px",
+    "x": 20,
+    "y": 28,
+    "w": 350,
+    "h": 28
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "גשם של ינואר. התאורה נשארת בחוץ.",
+    "color": "rgb(244, 238, 227)",
+    "size": "16px",
+    "x": 201,
+    "y": 239,
+    "w": 169,
+    "h": 56
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "טיפות גשם על פאנל סולאריצילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 201,
+    "y": 295,
+    "w": 169,
+    "h": 44
+   },
+   {
+    "cls": "ens-pdp-weather__credit",
+    "text": "צילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 201,
+    "y": 321,
+    "w": 169,
+    "h": 18
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "שמש של אוגוסט. אותו הדבר.",
+    "color": "rgb(244, 238, 227)",
+    "size": "16px",
+    "x": 20,
+    "y": 239,
+    "w": 169,
+    "h": 56
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "קיר לבן בשמש של צהריים",
+    "color": "rgb(143, 139, 131)",
+    "size": "12px",
+    "x": 20,
+    "y": 295,
+    "w": 169,
+    "h": 26
+   }
+  ]
+ },
+ "weather-C-1366": {
+  "height": 647,
+  "tile": [
+   610,
+   407
+  ],
+  "currentSrc": "ens-pdp-rain-panel.jpg",
+  "texts": [
+   {
+    "cls": "env2-h ens-pdp-weather__h",
+    "text": "בחוץ, כל השנה",
+    "color": "rgb(244, 238, 227)",
+    "size": "44px",
+    "x": 63,
+    "y": 40,
+    "w": 1240,
+    "h": 48
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "גשם של ינואר. התאורה נשארת בחוץ.",
+    "color": "rgb(244, 238, 227)",
+    "size": "17px",
+    "x": 693,
+    "y": 515,
+    "w": 610,
+    "h": 39
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "טיפות גשם על פאנל סולאריצילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 693,
+    "y": 554,
+    "w": 610,
+    "h": 49
+   },
+   {
+    "cls": "ens-pdp-weather__credit",
+    "text": "צילום: h080 (CC BY-SA 2.0)",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 693,
+    "y": 583,
+    "w": 610,
+    "h": 20
+   },
+   {
+    "cls": "ens-pdp-weather__line",
+    "text": "שמש של אוגוסט. אותו הדבר.",
+    "color": "rgb(244, 238, 227)",
+    "size": "17px",
+    "x": 63,
+    "y": 515,
+    "w": 610,
+    "h": 39
+   },
+   {
+    "cls": "ens-pdp-weather__cap",
+    "text": "קיר לבן בשמש של צהריים",
+    "color": "rgb(143, 139, 131)",
+    "size": "13px",
+    "x": 63,
+    "y": 554,
+    "w": 610,
+    "h": 30
+   }
+  ]
+ }
+}
