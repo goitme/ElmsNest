@@ -14,12 +14,21 @@
     credit   «צילום: … (CC …)». Blank -> nothing (a store-owned or CC0 frame owes no credit).
     alt      blank = decorative: the caption carries the meaning (SPEC §3).
     pos      object-position under 901 px.   pos_d  object-position from 901 px.
+    sizes    optional `sizes` attribute. Blank -> 100vw for a band, and the full reading wrap
+             (min(1240px, 100% - 2*gut)) for an inline frame. Pass it for an inline frame that is
+             NOT the full wrap — the guide's places frame spans the section grid (300 + 64 + 68ch),
+             so it asks for ~920 px, not 1240.
     band     true  = the page's opening band: full-bleed, 220 px at 390 / 300 px at >= 901 (R3),
                      loading="eager" fetchpriority="high" — the only eager image on the page.
              false = an inline frame inside the reading wrap, lazy, 3:2.
     h1_on    true only where the crop was MEASURED >= 4.5:1 against the ink under the h1 (R2); then
              `h1` (already <bdi>-marked HTML from the section) is printed inside the band and the
              section prints no h1 of its own. `h1_id` gives it its id.
+
+  Structure: the <img> and the on-band h1 live in div.ens-page__box, the photograph's own box and the
+  only positioning context; the <figcaption> is its sibling, in normal flow under the picture. The
+  figure itself is NOT positioned — an overlay pinned to it would be pinned to the caption's bottom
+  and would slide down as the caption wraps.
 
   <bdi>: the caption and the credit are owner-editable text, so every word that is Latin/numeric and
   carries no Hebrew letter is isolated (P6). The loop is the one in sections/elmsnest-s-pdp-scene,
@@ -89,6 +98,15 @@
   endif
 
   assign ens_op = pos | default: '50% 50%' | strip | escape
+  assign ens_sizes = sizes | default: '' | strip
+  if ens_sizes == ''
+    if ens_band
+      assign ens_sizes = '100vw'
+    else
+      assign ens_sizes = '(min-width: 1368px) 1240px, 100vw'
+    endif
+  endif
+  assign ens_sizes = ens_sizes | escape
   assign ens_op_lg = pos_d | default: ens_op | strip | escape
   assign ens_alt = alt | default: '' | strip | escape
   assign ens_kick = kicker | default: '' | strip | escape
@@ -139,23 +157,25 @@
   endif
 -%}
 <figure class="ens-page__fig{% if ens_band %} ens-page__fig--band{% else %} ens-page__fig--inline{% endif %}{% if ens_h1_on %} ens-page__fig--h1{% endif %}" style="--ens-op:{{ ens_op }};--ens-op-lg:{{ ens_op_lg }}">
-  <img
-    src="{{ ens_src }}"
-    srcset="{{ ens_srcset }}"
-    sizes="{% if ens_band %}100vw{% else %}(min-width: 1368px) 1240px, 100vw{% endif %}"
-    width="{{ ens_w }}" height="{{ ens_h }}"
-    {% if ens_band %}loading="eager" fetchpriority="high" decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}
-    alt="{{ ens_alt }}">
-  {%- if ens_h1_on -%}
-  <div class="ens-page__onband">
-    <div class="ens-page__onband-in">
-      <h1{% if h1_id != blank %} id="{{ h1_id }}"{% endif %} class="env2-h ens-page__h1 ens-page__h1--on">{{ h1 }}</h1>
+  <div class="ens-page__box">
+    <img
+      src="{{ ens_src }}"
+      srcset="{{ ens_srcset }}"
+      sizes="{{ ens_sizes }}"
+      width="{{ ens_w }}" height="{{ ens_h }}"
+      {% if ens_band %}loading="eager" fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %}
+      alt="{{ ens_alt }}">
+    {%- if ens_h1_on -%}
+    <div class="ens-page__onband">
+      <div class="ens-page__onband-in env2-wrap">
+        <h1{% if h1_id != blank %} id="{{ h1_id }}"{% endif %} class="env2-h ens-page__h1 ens-page__h1--on">{{ h1 }}</h1>
+      </div>
     </div>
+    {%- endif -%}
   </div>
-  {%- endif -%}
   {%- if ens_cap_html != '' or ens_cred_html != '' -%}
   <figcaption class="ens-page__figcap">
-    <div class="ens-page__figcap-in">
+    <div class="ens-page__figcap-in{% if ens_band %} env2-wrap{% endif %}">
       {%- if ens_cap_html != '' -%}
       <p class="ens-page__cap">{% if ens_kick != '' %}<span class="ens-page__kick">{{ ens_kick }}</span><span class="ens-page__dot" aria-hidden="true">·</span>{% endif %}{{ ens_cap_html }}</p>
       {%- endif -%}

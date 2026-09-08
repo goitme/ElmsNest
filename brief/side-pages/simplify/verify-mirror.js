@@ -133,13 +133,13 @@ async function audit(page, name, vw, vh) {
       const H1 = { 'page-guide': 'בוחרים תאורת גינה לפי המקום — לא לפי התמונה', 'page-why': 'למה תאורה סולארית — ומתי לא', 'page-about': 'רק תאורת חוץ. וזה בכוונה.', 'page-faq': 'שאלות נפוצות', 'page-processing': 'זמני טיפול בהזמנה', 'page-shipping': 'משלוחים והחזרות', 'page-contact': 'יצירת קשר' };
       // SPEC §3, the ten photographs: [kicker, caption, credit] per page, in document order
       const PHOTO = {
-        'page-guide': [['מקום', 'שמיים בין ערביים, מעל גינה', 'צילום: aenigmatēs (CC BY 2.0)'], ['מקום', 'חצר אחת בשעת בין ערביים', 'צילום: Jeremy Levine Design (CC BY 2.0)']],
-        'page-why': [['מקום', 'זריחה בין עצים', 'צילום: Dietmar Rabich (CC BY-SA 4.0)'], ['מנגנון', 'תא סולארי מקרוב, באור יום', 'צילום: Guilhem Vellut (CC BY 2.0)']],
-        'page-about': [['מקום', 'חורשה בירושלים, בצל של צהריים', 'צילום: זאב שטיין (CC BY 2.5)'], ['מקום', 'חצר בירושלים, בצל', 'צילום: RonAlmog (CC BY 2.0)']],
+        'page-guide': [['מקום', 'שמיים בין ערביים', 'צילום: aenigmatēs (CC BY 2.0)'], ['מקום', 'חצר אחת בשעת בין ערביים', 'צילום: Jeremy Levine Design (CC BY 2.0)']],
+        'page-why': [['מקום', 'אור נמוך בין עצים', 'צילום: Dietmar Rabich (CC BY-SA 4.0)'], ['מנגנון', 'תא סולארי מקרוב, באור יום', 'צילום: Guilhem Vellut (CC BY 2.0)']],
+        'page-about': [['מקום', 'חצר בירושלים, בצל', 'צילום: RonAlmog (CC BY 2.0)'], ['מקום', 'ספסל בגינה', 'צילום: Basile Morin (CC BY-SA 4.0)']],
         'page-faq': [['מקום', 'שביל בגינה, בין ערביים', 'צילום: PumpkinSky (CC BY-SA 3.0)']],
-        'page-processing': [['מקום', 'גינה ים-תיכונית, אחר הצהריים', 'צילום: Swphotouk (CC BY 4.0)']],
+        'page-processing': [['מקום', 'גינה ים-תיכונית בקיו', 'צילום: Swphotouk (CC BY 4.0)']],
         'page-shipping': [['מקום', 'מטע זיתים, יום מעונן', 'צילום: Dimitry B (CC BY 2.0)']],
-        'page-contact': [['מקום', 'חצר בחיפה, בצהריים', 'צילום: Josh Evnin (CC BY-SA 2.0)']],
+        'page-contact': [['מקום', 'גן בחיפה, בצהריים', 'צילום: Josh Evnin from Chicago, IL, USA (CC BY-SA 2.0)']],
       };
       // SPEC §4.1: the four live Shopify titles, in main-menu order, with the collection handle each must link to
       const COLL = [['תאורת שביל, עמוד וגינה', 'תאורת-שביל-סולארית'], ['תאורת קיר', 'solar-wall-lights'], ['ספוטים, פרוז׳קטורים ותאורה ניידת', 'ספוטים-ופרוז-קטורים-סולאריים'], ['גרילנדות ותאורה דקורטיבית', 'גרילנדות-ותאורה-דקורטיבית']];
