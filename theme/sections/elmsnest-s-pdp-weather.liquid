@@ -59,10 +59,14 @@
     assign ens_file_a = 'ens-pdp-rain-panel.jpg'
     assign ens_fw_a = 1066
     assign ens_fh_a = 1600
-    assign ens_op_a = section.settings.op_rain_solar | default: '50% 50%'
-    assign ens_op_a_lg = section.settings.op_rain_solar_desktop | default: '50% 45%'
+    assign ens_op_a = section.settings.op_rain_solar | default: '50% 80%'
+    assign ens_op_a_lg = section.settings.op_rain_solar_desktop | default: '50% 72%'
     assign ens_cap_a = section.settings.cap_rain_solar | default: ''
     assign ens_cred_a = section.settings.credit_rain_solar | default: ''
+    # the licence follows the file: while the theme asset is in use its credit cannot be emptied
+    if ens_pic_a == blank and ens_cred_a == blank
+      assign ens_cred_a = 'צילום: h080 (CC BY-SA 2.0)'
+    endif
   else
     assign ens_pic_a = section.settings.image_rain_plain
     assign ens_file_a = 'ens-pdp-rain-stem.jpg'
@@ -72,6 +76,9 @@
     assign ens_op_a_lg = section.settings.op_rain_plain_desktop | default: '50% 50%'
     assign ens_cap_a = section.settings.cap_rain_plain | default: ''
     assign ens_cred_a = section.settings.credit_rain_plain | default: ''
+    if ens_pic_a == blank and ens_cred_a == blank
+      assign ens_cred_a = 'צילום: jenny downing (CC BY 2.0)'
+    endif
   endif
   # ---- the sun slot: the white wall in noon sun, on every product (R7) ----
   assign ens_pic_b = section.settings.image_sun
@@ -100,8 +107,15 @@
   assign latin_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
   # a credit opens its Latin tail on a letter, a digit or the bracket of a licence code
   assign latin_open = latin_chars | append: '(['
-  assign ens_parts = ens_head | escape | append: RS | append: ens_line_a | escape | append: RS | append: ens_line_b | escape | append: RS | append: ens_cap_a | escape | append: RS | append: ens_cap_b | escape | split: RS
-  assign ens_cred_parts = ens_cred_a | escape | append: RS | append: ens_cred_b | escape | split: RS
+  assign ens_head_e = ens_head | escape
+  assign ens_line_a_e = ens_line_a | escape
+  assign ens_line_b_e = ens_line_b | escape
+  assign ens_cap_a_e = ens_cap_a | escape
+  assign ens_cap_b_e = ens_cap_b | escape
+  assign ens_cred_a_e = ens_cred_a | escape
+  assign ens_cred_b_e = ens_cred_b | escape
+  assign ens_parts = ens_head_e | append: RS | append: ens_line_a_e | append: RS | append: ens_line_b_e | append: RS | append: ens_cap_a_e | append: RS | append: ens_cap_b_e | split: RS
+  assign ens_cred_parts = ens_cred_a_e | append: RS | append: ens_cred_b_e | split: RS
 -%}
 {%- comment -%} P6: every Latin/number token in ONE ltr isolate (whole tokens, adjacent ones merged), then the en-dash range isolator — the elmsnest-s-pdp-facts loop, run on the heading, the two lines and the two captions {%- endcomment -%}
 {%- capture ens_html -%}
@@ -186,7 +200,7 @@
 <style>
 .ens-pdp-weather{padding-block:28px 32px;margin:0}
 .ens-pdp-weather bdi{unicode-bidi:isolate}
-.ens-pdp-weather__h.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0 0 14px}
+.ens-pdp-weather__h.env2-h{font-size:clamp(25px,3.4vw,44px);line-height:1.1;margin:0;margin-block-end:14px}
 /* the pair is framed inside the wrap, never full-bleed: two columns, 12 px gap, 1:1 at 390 */
 .ens-pdp-weather__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
 .ens-pdp-weather__tile{margin:0;min-inline-size:0}
@@ -197,6 +211,7 @@
 .ens-pdp-weather__line{margin:0;padding-block-start:10px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:var(--env2-fs-body,16px);line-height:1.45;color:var(--env2-ink,#f4eee3);text-wrap:pretty}
 .ens-pdp-weather__cap{margin:0;padding-block-start:8px;font-family:var(--env2-sans,Heebo,sans-serif);font-weight:400;font-size:12px;line-height:1.5;color:#8f8b83}
 .ens-pdp-weather__credit{display:block}
+.ens-pdp-weather__credit bdi{white-space:nowrap}
 @media (min-width:901px){
   .ens-pdp-weather{padding-block:40px 44px}
   .ens-pdp-weather__h.env2-h{margin-block-end:20px}
@@ -205,9 +220,6 @@
   .ens-pdp-weather__frame img{object-position:var(--ens-op-lg,50% 50%)}
   .ens-pdp-weather__line{padding-block-start:14px;font-size:17px}
   .ens-pdp-weather__cap{padding-block-start:10px;font-size:13px}
-}
-@media (prefers-reduced-motion:reduce){
-  .ens-pdp-weather,.ens-pdp-weather *{transition:none!important;animation:none!important}
 }
 </style>
 <section id="ens-pdp-weather-{{ section.id }}" class="env2-section ens-pdp-weather" dir="rtl"{% if ens_head_html != '' %} aria-labelledby="ens-pdp-weather-h-{{ section.id }}"{% else %} aria-label="בחוץ, כל השנה"{% endif %} style="scroll-margin-top:90px">
@@ -228,6 +240,7 @@
             assign ens_line_html = ens_line_a_html
             assign ens_cap_html = ens_cap_a_html
             assign ens_cred_line = ens_cred_a_html
+            assign ens_alt = ens_cap_a
             assign ens_slot = 'rain'
           else
             assign ens_pic = ens_pic_b
@@ -239,6 +252,7 @@
             assign ens_line_html = ens_line_b_html
             assign ens_cap_html = ens_cap_b_html
             assign ens_cred_line = ens_cred_b_html
+            assign ens_alt = ens_cap_b
             assign ens_slot = 'sun'
           endif
 
@@ -290,9 +304,9 @@
       <figure class="ens-pdp-weather__tile ens-pdp-weather__tile--{{ ens_slot }}">
         <div class="ens-pdp-weather__frame" style="--ens-op:{{ ens_op }};--ens-op-lg:{{ ens_op_lg }}">
           {%- if ens_pic != blank -%}
-            {{ ens_pic | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_widths, sizes: ens_sizes, alt: '' }}
+            {{ ens_pic | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_widths, sizes: ens_sizes, alt: ens_alt }}
           {%- else -%}
-            <img src="{{ ens_src }}" srcset="{{ ens_srcset }}" sizes="{{ ens_sizes }}" width="{{ ens_fw }}" height="{{ ens_fh }}" loading="lazy" decoding="async" alt="">
+            <img src="{{ ens_src }}" srcset="{{ ens_srcset }}" sizes="{{ ens_sizes }}" width="{{ ens_fw }}" height="{{ ens_fh }}" loading="lazy" decoding="async" alt="{{ ens_alt }}">
           {%- endif -%}
         </div>
         {%- if ens_line_html != '' or ens_cap_html != '' or ens_cred_line != '' -%}
@@ -319,8 +333,8 @@
     { "type": "paragraph", "content": "שני תצלומים ממוסגרים זה לצד זה: גשם ושמש. הסקשן מודפס רק כשבתיאור המוצר מופיע IP65, IP66, IP67 או IP68. במוצר סולארי תמונת הגשם היא טיפות על פאנל; בכל מוצר אחר טיפות על גבעול. תמונת השמש זהה בכל המוצרים." },
     { "type": "text", "id": "heading", "label": "כותרת (בלי נקודה בסוף)", "default": "בחוץ, כל השנה" },
     { "type": "header", "content": "המשפטים מתחת לתצלומים" },
-    { "type": "text", "id": "line_rain", "label": "המשפט מתחת לתצלום הגשם", "default": "גשם של ינואר. התאורה נשארת בחוץ." },
-    { "type": "text", "id": "line_sun", "label": "המשפט מתחת לתצלום השמש", "default": "שמש של אוגוסט. אותו הדבר." },
+    { "type": "text", "id": "line_rain", "label": "המשפט מתחת לתצלום הגשם", "default": "גשם של ינואר." },
+    { "type": "text", "id": "line_sun", "label": "המשפט מתחת לתצלום השמש", "default": "שמש של אוגוסט." },
     { "type": "header", "content": "תצלום הגשם — מוצר סולארי" },
     { "type": "image_picker", "id": "image_rain_solar", "label": "התצלום (ריק = ens-pdp-rain-panel.jpg)" },
     { "type": "text", "id": "op_rain_solar", "label": "מיקום החיתוך בנייד (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
@@ -337,7 +351,7 @@
     { "type": "image_picker", "id": "image_sun", "label": "התצלום (ריק = ens-pdp-sun-wall.jpg)" },
     { "type": "text", "id": "op_sun", "label": "מיקום החיתוך בנייד (object-position)", "default": "50% 50%", "info": "לדוגמה 30% 50% כדי להצמיד לצד התמונה. נקודת מיקוד מממשק הניהול גוברת." },
     { "type": "text", "id": "op_sun_desktop", "label": "מיקום החיתוך במחשב", "default": "55% 50%", "info": "חל מרוחב 901 פיקסלים (שם המסגרת רחבה, 3:2)." },
-    { "type": "text", "id": "cap_sun", "label": "הכיתוב מתחת לתצלום", "default": "קיר לבן בשמש של צהריים" },
+    { "type": "text", "id": "cap_sun", "label": "הכיתוב מתחת לתצלום", "default": "בוגנוויליה על קיר, בשמש של צהריים" },
     { "type": "text", "id": "credit_sun", "label": "שורת הקרדיט (ריק = בלי קרדיט)", "info": "התצלום הוא CC0 ואינו חייב קרדיט." }
   ],
   "presets": [

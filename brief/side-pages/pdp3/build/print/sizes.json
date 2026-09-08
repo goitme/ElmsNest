@@ -22,7 +22,7 @@
    },
    {
     "cls": "ens-pdp-print__cap",
-    "text": "שביל אבן בשעת בין ערביים",
+    "text": "שביל אבן",
     "color": "rgb(107, 101, 88)",
     "size": "11px",
     "x": 34,
@@ -65,7 +65,7 @@
    },
    {
     "cls": "ens-pdp-print__cap",
-    "text": "גינה של בית, באור אחרון",
+    "text": "גינה של בית",
     "color": "rgb(107, 101, 88)",
     "size": "11px",
     "x": 34,
@@ -86,12 +86,12 @@
   ]
  },
  "print-C-390": {
-  "height": 379,
+  "height": 360,
   "width": 390,
   "img": {
    "w": 322,
    "h": 215,
-   "natural": "805x536",
+   "natural": "966x644",
    "currentSrc": "ens-pdp-print-garden.jpg"
   },
   "doc": 844,
@@ -108,23 +108,13 @@
    },
    {
     "cls": "ens-pdp-print__cap",
-    "text": "ספסל בגינה, לפנות ערב",
+    "text": "גן קקטוסים, בשקיעה",
     "color": "rgb(107, 101, 88)",
     "size": "11px",
     "x": 34,
     "y": 291,
     "w": 322,
     "h": 27
-   },
-   {
-    "cls": "ens-pdp-print__credit",
-    "text": "צילום: Basile Morin (CC BY-SA 4.0)",
-    "color": "rgb(107, 101, 88)",
-    "size": "11px",
-    "x": 34,
-    "y": 318,
-    "w": 322,
-    "h": 20
    }
   ]
  },
@@ -151,7 +141,7 @@
    },
    {
     "cls": "ens-pdp-print__cap",
-    "text": "שביל אבן בשעת בין ערביים",
+    "text": "שביל אבן",
     "color": "rgb(107, 101, 88)",
     "size": "11px",
     "x": 77,
@@ -194,7 +184,7 @@
    },
    {
     "cls": "ens-pdp-print__cap",
-    "text": "גינה של בית, באור אחרון",
+    "text": "גינה של בית",
     "color": "rgb(107, 101, 88)",
     "size": "11px",
     "x": 77,
@@ -215,12 +205,12 @@
   ]
  },
  "print-C-1366": {
-  "height": 488,
+  "height": 469,
   "width": 1366,
   "img": {
    "w": 619,
    "h": 348,
-   "natural": "885x590",
+   "natural": "1062x709",
    "currentSrc": "ens-pdp-print-garden.jpg"
   },
   "doc": 900,
@@ -237,23 +227,13 @@
    },
    {
     "cls": "ens-pdp-print__cap",
-    "text": "ספסל בגינה, לפנות ערב",
+    "text": "גן קקטוסים, בשקיעה",
     "color": "rgb(107, 101, 88)",
     "size": "11px",
     "x": 77,
     "y": 378,
     "w": 619,
     "h": 29
-   },
-   {
-    "cls": "ens-pdp-print__credit",
-    "text": "צילום: Basile Morin (CC BY-SA 4.0)",
-    "color": "rgb(107, 101, 88)",
-    "size": "11px",
-    "x": 77,
-    "y": 407,
-    "w": 619,
-    "h": 20
    }
   ]
  }

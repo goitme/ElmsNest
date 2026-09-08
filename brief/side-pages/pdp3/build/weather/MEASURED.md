@@ -31,9 +31,13 @@ B is 18 px taller because «טיפות על גבעול, אחרי הגשם» + «
 two lines in a 169 px column, where the solar pair's caption and credit take one line each.
 
 Tile geometry, measured: **169×169 at 390** (1:1, two columns, 12 px gap inside the 350 px wrap) and
-**610×407 at 1366** (3:2, 20 px gap inside the 1240 px wrap). `currentSrc` picked by the browser at
-`deviceScaleFactor: 1`: the 400w candidate at 390, the 900w candidate at 1366 — every candidate is
-capped at the file's real width (panel 1066, stem 1600, sun 1200), none is invented.
+**610×407 at 1366** (3:2, 20 px gap inside the 1240 px wrap). In the harness every srcset candidate
+resolves to the same `file://` asset, so which descriptor the browser picks is not observable there;
+what IS checked, in the rendered markup (`section-*.html`), is that no descriptor exceeds the file's
+real width — panel `400,600,900,1066w`, stem `400,600,900,1200,1600w`, sun `400,600,900,1200w` — and
+that `sizes` states the measured rendered width band by band:
+`(min-width:1348px) 610px, (min-width:901px) calc(46vw - 10px), (min-width:501px) calc(46vw - 6px), calc(50vw - 26px)`
+(169 px at 390, 610 px at 1366, both confirmed by the measured tile boxes above).
 
 ## Gate states (rendered byte count of the whole section)
 

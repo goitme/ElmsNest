@@ -46,32 +46,52 @@
     assign ens_w = 1600
     assign ens_h = 1063
     assign ens_pic = section.settings.image_wall
-    assign ens_cap = section.settings.cap_wall | default: 'גינה של בית, באור אחרון'
-    assign ens_credit = section.settings.credit_wall | default: 'צילום: BPPrice (CC BY 2.0)'
+    assign ens_cap = section.settings.cap_wall | default: 'גינה של בית'
+    assign ens_credit = section.settings.credit_wall
+    if ens_pic != blank
+      assign ens_credit = section.settings.credit_wall | default: ''
+    elsif ens_credit == blank
+      assign ens_credit = 'צילום: BPPrice (CC BY 2.0)'
+    endif
   elsif ens_word == 'גינה'
     assign ens_fam = 'garden'
     assign ens_file = 'ens-pdp-print-garden.jpg'
-    assign ens_w = 1000
-    assign ens_h = 667
+    assign ens_w = 1200
+    assign ens_h = 801
     assign ens_pic = section.settings.image_garden
-    assign ens_cap = section.settings.cap_garden | default: 'ספסל בגינה, לפנות ערב'
-    assign ens_credit = section.settings.credit_garden | default: 'צילום: Basile Morin (CC BY-SA 4.0)'
+    assign ens_cap = section.settings.cap_garden | default: 'גן קקטוסים, בשקיעה'
+    assign ens_credit = section.settings.credit_garden
+    if ens_pic != blank
+      assign ens_credit = section.settings.credit_garden | default: ''
+    elsif ens_credit == blank
+      assign ens_credit = ''
+    endif
   elsif ens_word == 'מרפסת'
     assign ens_fam = 'balcony'
     assign ens_file = 'ens-pdp-print-balcony.jpg'
     assign ens_w = 1600
     assign ens_h = 1067
     assign ens_pic = section.settings.image_balcony
-    assign ens_cap = section.settings.cap_balcony | default: 'מרפסת בשעת בין ערביים'
-    assign ens_credit = section.settings.credit_balcony | default: 'צילום: tillwe (CC BY-SA 2.0)'
+    assign ens_cap = section.settings.cap_balcony | default: 'מרפסת בעיר'
+    assign ens_credit = section.settings.credit_balcony
+    if ens_pic != blank
+      assign ens_credit = section.settings.credit_balcony | default: ''
+    elsif ens_credit == blank
+      assign ens_credit = 'צילום: tillwe (CC BY-SA 2.0)'
+    endif
   else
     assign ens_fam = 'path'
     assign ens_file = 'ens-pdp-print-path.jpg'
     assign ens_w = 1200
     assign ens_h = 781
     assign ens_pic = section.settings.image_path
-    assign ens_cap = section.settings.cap_path | default: 'שביל אבן בשעת בין ערביים'
-    assign ens_credit = section.settings.credit_path | default: 'צילום: Corey Leopold (CC BY 2.0)'
+    assign ens_cap = section.settings.cap_path | default: 'שביל אבן'
+    assign ens_credit = section.settings.credit_path
+    if ens_pic != blank
+      assign ens_credit = section.settings.credit_path | default: ''
+    elsif ens_credit == blank
+      assign ens_credit = 'צילום: Corey Leopold (CC BY 2.0)'
+    endif
   endif
 
   # ---- the srcset: never a candidate wider than the file (the scene's loop, at this section's widths) ----
@@ -197,9 +217,6 @@
   .ens-pdp-print__fig img{aspect-ratio:16/9}
   .ens-pdp-print__cap{padding-block-start:12px}
 }
-@media (prefers-reduced-motion:reduce){
-  .ens-pdp-print,.ens-pdp-print *{transition:none!important;animation:none!important}
-}
 </style>
 <section id="ens-pdp-print-{{ section.id }}" class="env2-section ens-pdp-print" dir="rtl" data-ens-place="{{ ens_fam }}" style="scroll-margin-top:90px">
   <div class="env2-wrap">
@@ -210,9 +227,9 @@
           <img
             src="{{ ens_src }}"
             srcset="{{ ens_srcset }}"
-            sizes="(min-width:901px) 620px, (min-width:500px) calc(92vw - 28px), calc(100vw - 68px)"
+            sizes="(min-width:1348px) 620px, (min-width:901px) calc(50.6vw - 63px), (min-width:500px) calc(92vw - 28px), calc(100vw - 68px)"
             width="{{ ens_w }}" height="{{ ens_h }}"
-            loading="lazy" decoding="async" alt="">
+            loading="lazy" decoding="async" alt="{{ ens_cap | escape }}">
           {%- if ens_cap_html != '' or ens_credit_html != '' -%}
           <figcaption>
             {%- if ens_cap_html != '' -%}<p class="ens-pdp-print__cap">{{ ens_cap_html }}</p>{%- endif -%}
@@ -236,19 +253,19 @@
     { "type": "text", "id": "line", "label": "המשפט מעל ההדפס", "default": "האור האחרון של היום." },
     { "type": "header", "content": "שביל" },
     { "type": "image_picker", "id": "image_path", "label": "תצלום (ריק = ens-pdp-print-path.jpg)" },
-    { "type": "text", "id": "cap_path", "label": "כיתוב", "default": "שביל אבן בשעת בין ערביים" },
+    { "type": "text", "id": "cap_path", "label": "כיתוב", "default": "שביל אבן" },
     { "type": "text", "id": "credit_path", "label": "קרדיט", "default": "צילום: Corey Leopold (CC BY 2.0)" },
     { "type": "header", "content": "קיר" },
     { "type": "image_picker", "id": "image_wall", "label": "תצלום (ריק = ens-pdp-print-wall.jpg)" },
-    { "type": "text", "id": "cap_wall", "label": "כיתוב", "default": "גינה של בית, באור אחרון" },
+    { "type": "text", "id": "cap_wall", "label": "כיתוב", "default": "גינה של בית" },
     { "type": "text", "id": "credit_wall", "label": "קרדיט", "default": "צילום: BPPrice (CC BY 2.0)" },
     { "type": "header", "content": "גינה" },
     { "type": "image_picker", "id": "image_garden", "label": "תצלום (ריק = ens-pdp-print-garden.jpg)" },
-    { "type": "text", "id": "cap_garden", "label": "כיתוב", "default": "ספסל בגינה, לפנות ערב" },
-    { "type": "text", "id": "credit_garden", "label": "קרדיט", "default": "צילום: Basile Morin (CC BY-SA 4.0)" },
+    { "type": "text", "id": "cap_garden", "label": "כיתוב", "default": "גן קקטוסים, בשקיעה" },
+    { "type": "text", "id": "credit_garden", "label": "קרדיט", "info": "התצלום נחלת הכלל ואינו חייב קרדיט." },
     { "type": "header", "content": "מרפסת" },
     { "type": "image_picker", "id": "image_balcony", "label": "תצלום (ריק = ens-pdp-print-balcony.jpg)" },
-    { "type": "text", "id": "cap_balcony", "label": "כיתוב", "default": "מרפסת בשעת בין ערביים" },
+    { "type": "text", "id": "cap_balcony", "label": "כיתוב", "default": "מרפסת בעיר" },
     { "type": "text", "id": "credit_balcony", "label": "קרדיט", "default": "צילום: tillwe (CC BY-SA 2.0)" }
   ],
   "presets": [
