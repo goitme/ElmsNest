@@ -1,0 +1,5922 @@
+{
+  "pdp-rope-m-js": {
+    "docH": 4818,
+    "screens": 5.71,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1266
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 621
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 362
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 621,
+        "text": "בלילה, במרפסת הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. מרפסת בעיר צילום: tillwe (CC BY-SA 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "decor",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: tillwe (CC BY-SA 2.0)"
+      ],
+      "printCap": "מרפסת בעיר"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 168
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 168
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 1043,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [
+      "decor",
+      "balcony"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-path-m-js": {
+    "docH": 4973,
+    "screens": 5.89,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": false,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1085
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 723
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1100w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 862,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-deck-m-js": {
+    "docH": 4451,
+    "screens": 5.27,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1120
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 628
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 168
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 897,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-wall-m-js": {
+    "docH": 4826,
+    "screens": 5.72,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1238
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 0
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 366
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 556
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על הקיר אור על הקיר, בדיוק בנקודה שבחרתם. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1200w/1600w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 366,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות על גבעול, אחרי הגשם צילום: jenny downing (CC BY 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. גינה של בית צילום: BPPrice (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "wall",
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: jenny downing (CC BY 2.0)",
+        "צילום: BPPrice (CC BY 2.0)"
+      ],
+      "printCap": "גינה של בית"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 168
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 1050,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [
+      "wall",
+      "wall"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-flood-m-js": {
+    "docH": 4498,
+    "screens": 5.33,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1137
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 678
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 360
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 360,
+        "text": "האור האחרון של היום. גן קקטוסים, בשקיעה"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "spot",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)"
+      ],
+      "printCap": "גן קקטוסים, בשקיעה"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 168
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 914,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [
+      "spot",
+      "garden"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-rope-s-js": {
+    "docH": 4739,
+    "screens": 7.4,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1257
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 621
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 357
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 621,
+        "text": "בלילה, במרפסת הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. מרפסת בעיר צילום: tillwe (CC BY-SA 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "decor",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: tillwe (CC BY-SA 2.0)"
+      ],
+      "printCap": "מרפסת בעיר"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 153
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 153
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 1013,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [
+      "decor",
+      "balcony"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-path-s-js": {
+    "docH": 4894,
+    "screens": 7.65,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": false,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1075
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1100w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 832,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": true
+  },
+  "pdp-deck-s-js": {
+    "docH": 4372,
+    "screens": 6.83,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1111
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 623
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 153
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 867,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-wall-s-js": {
+    "docH": 4746,
+    "screens": 7.42,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1229
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 0
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 351
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 551
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על הקיר אור על הקיר, בדיוק בנקודה שבחרתם. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1200w/1600w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 351,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות על גבעול, אחרי הגשם צילום: jenny downing (CC BY 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. גינה של בית צילום: BPPrice (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "wall",
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: jenny downing (CC BY 2.0)",
+        "צילום: BPPrice (CC BY 2.0)"
+      ],
+      "printCap": "גינה של בית"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 153
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 1020,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [
+      "wall",
+      "wall"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-flood-s-js": {
+    "docH": 4495,
+    "screens": 7.02,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1204
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 673
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 340
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 340,
+        "text": "האור האחרון של היום. גן קקטוסים, בשקיעה"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "spot",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)"
+      ],
+      "printCap": "גן קקטוסים, בשקיעה"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 153
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 935,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [
+      "spot",
+      "garden"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-rope-d-js": {
+    "docH": 4312,
+    "screens": 4.79,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 800
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 714
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 118
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 400
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 714,
+        "text": "בלילה, במרפסת הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 118,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. מרפסת בעיר צילום: tillwe (CC BY-SA 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "decor",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: tillwe (CC BY-SA 2.0)"
+      ],
+      "printCap": "מרפסת בעיר"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 298
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 298
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 600,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [
+      "decor",
+      "balcony"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-path-d-js": {
+    "docH": 4287,
+    "screens": 4.76,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": false,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 670
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 714
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 118
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1100w",
+        "credits": 0,
+        "h": 714,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 118,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 470,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-deck-d-js": {
+    "docH": 3681,
+    "screens": 4.09,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 706
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 107
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 117
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 455
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 107,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 117,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 298
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 506,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-wall-d-js": {
+    "docH": 4223,
+    "screens": 4.69,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 823
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 714
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 0
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 405
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 714,
+        "text": "בלילה, על הקיר אור על הקיר, בדיוק בנקודה שבחרתם. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1200w/1600w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות על גבעול, אחרי הגשם צילום: jenny downing (CC BY 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. גינה של בית צילום: BPPrice (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "wall",
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: jenny downing (CC BY 2.0)",
+        "צילום: BPPrice (CC BY 2.0)"
+      ],
+      "printCap": "גינה של בית"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 298
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 659,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [
+      "wall",
+      "wall"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-flood-d-js": {
+    "docH": 3676,
+    "screens": 4.08,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 670
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 107
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 117
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 469
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 107,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 117,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 469,
+        "text": "האור האחרון של היום. גן קקטוסים, בשקיעה"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "spot",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)"
+      ],
+      "printCap": "גן קקטוסים, בשקיעה"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 298
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 470,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [
+      "spot",
+      "garden"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-rope-m-nojs": {
+    "docH": 4602,
+    "screens": 5.45,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1050
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 621
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 362
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 621,
+        "text": "בלילה, במרפסת הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. מרפסת בעיר צילום: tillwe (CC BY-SA 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "decor",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: tillwe (CC BY-SA 2.0)"
+      ],
+      "printCap": "מרפסת בעיר"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 168
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 168
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 827,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [
+      "decor",
+      "balcony"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-path-m-nojs": {
+    "docH": 4859,
+    "screens": 5.76,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": false,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 970
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 723
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1100w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 747,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-deck-m-nojs": {
+    "docH": 4381,
+    "screens": 5.19,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1050
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 628
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 168
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 168
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 827,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-wall-m-nojs": {
+    "docH": 4567,
+    "screens": 5.41,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 979
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 0
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 366
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 556
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 379
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על הקיר אור על הקיר, בדיוק בנקודה שבחרתם. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1200w/1600w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 366,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות על גבעול, אחרי הגשם צילום: jenny downing (CC BY 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 379,
+        "text": "האור האחרון של היום. גינה של בית צילום: BPPrice (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "wall",
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: jenny downing (CC BY 2.0)",
+        "צילום: BPPrice (CC BY 2.0)"
+      ],
+      "printCap": "גינה של בית"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 168
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 168
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 791,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [
+      "wall",
+      "wall"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-flood-m-nojs": {
+    "docH": 4376,
+    "screens": 5.18,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1014
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 348
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 678
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 360
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 781
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 348,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 360,
+        "text": "האור האחרון של היום. גן קקטוסים, בשקיעה"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "spot",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)"
+      ],
+      "printCap": "גן קקטוסים, בשקיעה"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 168
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 168
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 168
+      }
+    ],
+    "atcTop": 791,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [
+      "spot",
+      "garden"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-rope-s-nojs": {
+    "docH": 4522,
+    "screens": 7.07,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1040
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 621
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 357
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 621,
+        "text": "בלילה, במרפסת הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. מרפסת בעיר צילום: tillwe (CC BY-SA 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "decor",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: tillwe (CC BY-SA 2.0)"
+      ],
+      "printCap": "מרפסת בעיר"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 153
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 153
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 797,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [
+      "decor",
+      "balcony"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-path-s-nojs": {
+    "docH": 4780,
+    "screens": 7.47,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": false,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 961
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 152
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 718
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1100w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 152,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 717,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-deck-s-nojs": {
+    "docH": 4302,
+    "screens": 6.72,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1040
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 623
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 153
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 153
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 797,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-wall-s-nojs": {
+    "docH": 4488,
+    "screens": 7.01,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 970
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 596
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 0
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 351
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 551
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 359
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 596,
+        "text": "בלילה, על הקיר אור על הקיר, בדיוק בנקודה שבחרתם. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1200w/1600w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 351,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות על גבעול, אחרי הגשם צילום: jenny downing (CC BY 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 359,
+        "text": "האור האחרון של היום. גינה של בית צילום: BPPrice (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "wall",
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: jenny downing (CC BY 2.0)",
+        "צילום: BPPrice (CC BY 2.0)"
+      ],
+      "printCap": "גינה של בית"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 153
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 153
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 761,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [
+      "wall",
+      "wall"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-flood-s-nojs": {
+    "docH": 4373,
+    "screens": 6.83,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 1081
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 135
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 333
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 673
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 340
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 751
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 135,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 333,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 340,
+        "text": "האור האחרון של היום. גן קקטוסים, בשקיעה"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "spot",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)"
+      ],
+      "printCap": "גן קקטוסים, בשקיעה"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 153
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 153
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 153
+      }
+    ],
+    "atcTop": 813,
+    "atcInFold": false,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [
+      "spot",
+      "garden"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-rope-d-nojs": {
+    "docH": 4168,
+    "screens": 4.63,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 655
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 714
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 118
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 400
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 714,
+        "text": "בלילה, במרפסת הרבה נקודות אור קטנות במקום מנורה אחת. אור שיושבים בו. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 118,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. מרפסת בעיר צילום: tillwe (CC BY-SA 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "decor",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: tillwe (CC BY-SA 2.0)"
+      ],
+      "printCap": "מרפסת בעיר"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-crystal-ball-string-lights",
+        "file": "d39c9d8c3279413014e9dd735e03cc2f.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-firefly-garden-lights",
+        "file": "3adceaa935b7462e17f5662132d46fdf.png",
+        "w": 298
+      },
+      {
+        "handle": "decorative-led-net-lights",
+        "file": "271acd6c1f13e8201c38d81acfbfc304.png",
+        "w": 298
+      },
+      {
+        "handle": "led-globe-string-lights",
+        "file": "f2a525b91ec29683dbeadf5c0032054b.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 456,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED"
+    ],
+    "placeOrder": [
+      "decor",
+      "balcony"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-path-d-nojs": {
+    "docH": 4193,
+    "screens": 4.66,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": false,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 576
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 714
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 118
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1100w",
+        "credits": 0,
+        "h": 714,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 118,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "waterproof-solar-deck-step-lights",
+        "file": "5c9dc9f2fcdde977b43b4709b361f491.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 376,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת שביל סולארית מנירוסטה – תאורה אוטומטית IP65"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 3,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-deck-d-nojs": {
+    "docH": 3631,
+    "screens": 4.03,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 655
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 107
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 117
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 455
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 107,
+        "text": "בלילה, על השביל אור נמוך, קרוב לאדמה, שמלווה את הדרך. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 117,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. שביל אבן צילום: Corey Leopold (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "path",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)",
+        "צילום: Corey Leopold (CC BY 2.0)"
+      ],
+      "printCap": "שביל אבן"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "stainless-steel-solar-path-light-ip65",
+        "file": "92cd5d18b49372714eb3ffec32482de7.png",
+        "w": 298
+      },
+      {
+        "handle": "retro-solar-path-lights-set",
+        "file": "37b5989c14f17e548566a20003d47543.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-solar-path-lights-set",
+        "file": "31312192c73c63f5e54b189018aee0fe.png",
+        "w": 298
+      },
+      {
+        "handle": "warm-solar-step-deck-lights",
+        "file": "afb0742999d9e0b77559aa644caba882.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 456,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "תאורה סולארית עמידה למים לדק ולמדרגות"
+    ],
+    "placeOrder": [
+      "path",
+      "path"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-wall-d-nojs": {
+    "docH": 3985,
+    "screens": 4.43,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 585
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 714
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 0
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 405
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 488
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "600w/900w/1254w",
+        "credits": 0,
+        "h": 714,
+        "text": "בלילה, על הקיר אור על הקיר, בדיוק בנקודה שבחרתם. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1200w/1600w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות על גבעול, אחרי הגשם צילום: jenny downing (CC BY 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1300w",
+        "credits": 0,
+        "h": 488,
+        "text": "האור האחרון של היום. גינה של בית צילום: BPPrice (CC BY 2.0)"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "wall",
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: jenny downing (CC BY 2.0)",
+        "צילום: BPPrice (CC BY 2.0)"
+      ],
+      "printCap": "גינה של בית"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-wall-light-motion-sensor-ip65",
+        "file": "fc423e25af1e303a68779053be6fd509.png",
+        "w": 298
+      },
+      {
+        "handle": "outdoor-bidirectional-led-wall-light-ip65",
+        "file": "2e9797fa58898bd08fbcba2e70c94844.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-6w-up-down",
+        "file": "70805727a619f97fd45650cd952a5f19.png",
+        "w": 298
+      },
+      {
+        "handle": "modern-led-wall-light-indoor-outdoor",
+        "file": "6c5bd5572c8cbcf2084084bb57608bc8.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 420,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "מנורת קיר LED עמידה למים IP65 – ‏6W/12W"
+    ],
+    "placeOrder": [
+      "wall",
+      "wall"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-flood-d-nojs": {
+    "docH": 3626,
+    "screens": 4.03,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 1,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 1,
+    "cartForms": 2,
+    "mainProductForms": 1,
+    "stickyForms": 1,
+    "noscriptSelect": true,
+    "qtyInputs": 1,
+    "atcButtons": 2,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616745646__main-product",
+        "h": 620
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_scene",
+        "h": 107
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_dusk",
+        "h": 117
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_weather",
+        "h": 647
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_facts",
+        "h": 505
+      },
+      {
+        "id": "template--21567616745646__ens_pdp_print",
+        "h": 469
+      },
+      {
+        "id": "template--21567616745646__ens_related",
+        "h": 626
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [
+      {
+        "section": "ens-pdp-scene",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 107,
+        "text": "בלילה, בגינה אור מכוון אל מה שרוצים לראות. למדריך לבחירת תאורה ←"
+      },
+      {
+        "section": "ens-pdp-dusk",
+        "imgs": 0,
+        "sized": 0,
+        "lazy": 0,
+        "loaded": 0,
+        "srcset": "",
+        "credits": 0,
+        "h": 117,
+        "text": "כשמחשיך ביום הפאנל אוסף שמש, וזה מה שמאיר בלילה. יותר שמש ביום, יותר אור בלילה."
+      },
+      {
+        "section": "ens-pdp-weather",
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 2,
+        "loaded": 2,
+        "srcset": "400w/600w/900w/1066w 400w/600w/900w/1200w",
+        "credits": 0,
+        "h": 647,
+        "text": "בחוץ, כל השנה גשם של ינואר. טיפות גשם על פאנל סולארי צילום: h080 (CC BY-SA 2.0) שמש של אוגוסט. בוגנוויליה על קיר, בשמש של צהריים"
+      },
+      {
+        "section": "ens-pdp-print",
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 1,
+        "loaded": 1,
+        "srcset": "400w/700w/1000w/1200w",
+        "credits": 0,
+        "h": 469,
+        "text": "האור האחרון של היום. גן קקטוסים, בשקיעה"
+      }
+    ],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": "spot",
+      "missing": [],
+      "dusk": 1,
+      "credit": false,
+      "weather": 1,
+      "print": 1,
+      "credits": [
+        "צילום: h080 (CC BY-SA 2.0)"
+      ],
+      "printCap": "גן קקטוסים, בשקיעה"
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 4,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [
+      {
+        "handle": "solar-garden-lantern-9-led",
+        "file": "c23253c6361c2e98a94f12e3cbcf041d.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-garden-spotlight-52-led",
+        "file": "6511017003c622473819256ca9a2cfdb.png",
+        "w": 298
+      },
+      {
+        "handle": "solar-security-light-100-led",
+        "file": "d4caf48ebfa145cb868bc7c5636d35b5.png",
+        "w": 298
+      },
+      {
+        "handle": "dual-head-garden-light-10w-ip65",
+        "file": "fe1b72661e8d023a2379a86adea7357d.png",
+        "w": 298
+      }
+    ],
+    "atcTop": 420,
+    "atcInFold": true,
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED"
+    ],
+    "placeOrder": [
+      "spot",
+      "garden"
+    ],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 2,
+    "cardTransition": "0s",
+    "target": 7.5,
+    "overTarget": false
+  },
+  "pdp-variant-sync": {
+    "before": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": "89.90 ₪"
+    },
+    "clicked": "12 מ׳ / 100 נורות",
+    "after": {
+      "mainId": "48880936190126",
+      "stickyId": "48880936190126",
+      "price": "89.90 ₪"
+    },
+    "idsAgree": true,
+    "priceChanged": false,
+    "live": {
+      "postedId": "48880936190126",
+      "addStatus": "ok",
+      "lineTitle": "שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED - 7 מ׳ / 50 נורות / לבן חם",
+      "drawerHasVariant": true,
+      "drawerHasLineItem": true
+    }
+  }
+}

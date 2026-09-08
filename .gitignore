@@ -52,3 +52,6 @@ brief/side-pages/pdp3/verify/mirrors/
 brief/side-pages/pdp3/verify/jar.txt
 brief/side-pages/pages/verify/mirrors/
 brief/side-pages/pages/verify/jar.txt
+brief/side-pages/pdp3/verify/*-s-*.png
+brief/side-pages/pdp3/verify/*-nojs-*.png
+brief/side-pages/pdp3/verify/*-d-js-fold.png
