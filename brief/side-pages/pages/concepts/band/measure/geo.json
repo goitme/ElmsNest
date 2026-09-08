@@ -1,0 +1,114 @@
+{
+  "m": {
+    "guide": {
+      "headTop": 0,
+      "top": 64,
+      "height": 3354.90625,
+      "footBottom": 4038.90625,
+      "h1OnBand": {
+        "x": 20,
+        "y": 488.1875,
+        "w": 350,
+        "h": 67.8125
+      },
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "32px"
+    },
+    "about": {
+      "headTop": 4038.90625,
+      "top": 4102.90625,
+      "height": 2433.1875,
+      "footBottom": 7156.09375,
+      "h1OnBand": null,
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "32px"
+    },
+    "why": {
+      "headTop": 7156.09375,
+      "top": 7220.09375,
+      "height": 2423.53125,
+      "footBottom": 10263.625,
+      "h1OnBand": null,
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "32px"
+    },
+    "faq": {
+      "headTop": 10263.625,
+      "top": 10327.625,
+      "height": 1948.515625,
+      "footBottom": 12896.140625,
+      "h1OnBand": {
+        "x": 20,
+        "y": 10785.71875,
+        "w": 350,
+        "h": 33.90625
+      },
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "32px"
+    },
+    "_scrollWidth": 390,
+    "_clientWidth": 390,
+    "_minLeft": -351,
+    "_maxRight": 390,
+    "_scrollLeftRange": [
+      0,
+      0
+    ]
+  },
+  "d": {
+    "guide": {
+      "headTop": 0,
+      "top": 64,
+      "height": 3807.96875,
+      "footBottom": 4491.96875,
+      "h1OnBand": {
+        "x": 363,
+        "y": 482.5,
+        "w": 640,
+        "h": 97.5
+      },
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "46px"
+    },
+    "about": {
+      "headTop": 4491.96875,
+      "top": 4555.96875,
+      "height": 2660.765625,
+      "footBottom": 7836.734375,
+      "h1OnBand": null,
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "46px"
+    },
+    "why": {
+      "headTop": 7836.734375,
+      "top": 7900.734375,
+      "height": 2461.984375,
+      "footBottom": 10982.71875,
+      "h1OnBand": null,
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "46px"
+    },
+    "faq": {
+      "headTop": 10982.71875,
+      "top": 11046.71875,
+      "height": 2039.875,
+      "footBottom": 13706.59375,
+      "h1OnBand": {
+        "x": 363,
+        "y": 11513.96875,
+        "w": 640,
+        "h": 48.75
+      },
+      "h1Font": "\"Frank Ruhl Libre\", serif",
+      "h1Size": "46px"
+    },
+    "_scrollWidth": 1366,
+    "_clientWidth": 1366,
+    "_minLeft": -1120.109375,
+    "_maxRight": 2049,
+    "_scrollLeftRange": [
+      0,
+      0
+    ]
+  }
+}

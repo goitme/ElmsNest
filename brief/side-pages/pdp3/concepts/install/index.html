@@ -1,0 +1,246 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest PDP round 3 — concept «install» — התקנה · בחוץ</title>
+<style>
+/* ---------- the store's faces, from the offline pack (shots only; the theme loads the same families) ---------- */
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:300;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:300;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:400;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:400;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Heebo";font-weight:500;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Heebo";font-weight:500;font-style:normal;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ---------- tokens: the :root block of snippets/elmsnest-v2-core + elmsnest-v2-fonts, copied, not restyled ---------- */
+:root{
+  --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-ember:#f7a24a;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--env2-hair-num:rgba(244,238,227,.45);
+  --env2-scrim:rgba(5,8,14,.55);
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-serif:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--env2-sans:"Heebo","Assistant",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+html{background:#020306}
+body{margin:0;background:#020306;color:#f4eee3;font-family:var(--env2-sans);font-weight:300;-webkit-font-smoothing:antialiased}
+/* section root helper + container (core §3.3) */
+.env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;direction:rtl;text-align:start}
+.env2-section img{display:block;max-width:100%}
+.env2-section bdi{unicode-bidi:isolate}
+.env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+
+/* ---------- the concept page's own chrome: one «page» per archetype, the side-page ground under each ---------- */
+.page{position:relative;background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;min-height:100vh;padding-block-end:1px}
+.page + .page{border-block-start:6px solid #4a6a9c}
+.arch{margin:0;padding:10px var(--env2-gut);font-family:var(--env2-sans);font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--env2-mute);border-block-end:1px solid var(--env2-hair)}
+.arch b{color:var(--env2-gold);font-weight:500}
+.band{display:grid;place-items:center;background:rgba(244,238,227,.05);border-block:1px dashed rgba(244,238,227,.16);color:var(--env2-mute);font-family:var(--env2-sans);font-size:12px;letter-spacing:.08em;direction:ltr}
+.band span{padding:4px 10px;background:rgba(2,3,6,.6)}
+
+/* =====================================================================================
+   NEW SECTION 1 — elmsnest-s-pdp-install («התקנה»): a framed daylight/detail photograph BESIDE the text.
+   Phone: the frame first (350×300 at 390 — a 7:6 window into the 4:5 crop so the section stays ≤ 520),
+   the naming caption + credit under it, then the heading and the one line. Desktop (≥ 901): two columns — the 4:5 frame at the
+   inline-start (right), the text beside it at its left, hugging the frame. No text on the photograph, no scrim, radius 0.
+   ===================================================================================== */
+.ens-pdp-install{padding-block:28px 30px;margin:0}
+.ens-pdp-install__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.ens-pdp-install__h2.env2-h{font-size:26px;line-height:1.05;margin:0 0 10px}
+.ens-pdp-install__line{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:17px;line-height:1.5;color:var(--env2-ink-2);max-inline-size:36ch}
+.ens-pdp-install__s{display:block}
+.ens-pdp-install__fig{margin:0;min-width:0;order:-1}
+.ens-pdp-install__frame{position:relative;overflow:hidden;background:#05070c;inline-size:100%;block-size:300px;border:0;border-radius:0}
+.ens-pdp-install__frame img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* the soil frame: a CSS zoom-crop (no file editing) so the boot at the top-right of the source stays out of the window;
+   phone window = source x 15.6–68.4 % · y 34.2–79.4 %; desktop window = x 21–73.6 % · y 34.2–100 % (a true 4:5) */
+.ens-pdp-install__fig--zoom img{inset:auto;top:0;left:0;max-inline-size:none;inline-size:var(--ens-zoom,100%);block-size:auto;object-fit:unset;translate:var(--ens-shift,0 0)}
+.ens-pdp-install__cap{margin:8px 0 0;font-family:var(--env2-sans);font-weight:400;font-size:12px;line-height:1.45;color:var(--env2-ink-2)}
+@media (min-width:901px){
+  .ens-pdp-install{padding-block:64px 56px}
+  .ens-pdp-install__grid{grid-template-columns:440px minmax(0,1fr);gap:0 64px;align-items:center}
+  /* both columns pinned to row 1: with a column-locked item whose column is BEFORE the previous one, sparse auto-placement would start a new row */
+  .ens-pdp-install__fig{order:0;grid-column:1;grid-row:1}
+  .ens-pdp-install__text{grid-column:2;grid-row:1}
+  .ens-pdp-install__h2.env2-h{font-size:40px;margin-block-end:16px}
+  .ens-pdp-install__line{font-size:20px}
+  .ens-pdp-install__frame{block-size:auto;aspect-ratio:4/5}
+  .ens-pdp-install__frame img{object-position:var(--ens-op-lg,var(--ens-op,50% 50%))}
+  .ens-pdp-install__fig--zoom img{inline-size:var(--ens-zoom-lg,var(--ens-zoom,100%));translate:var(--ens-shift-lg,var(--ens-shift,0 0))}
+}
+
+/* =====================================================================================
+   NEW SECTION 2 — elmsnest-s-pdp-weather («בחוץ»): two small detail photographs side by side inside the wrap,
+   one short line and the naming caption + credit under each. Nothing on the photographs. 1:1 tiles at 390, 3:2 ≥ 901.
+   ===================================================================================== */
+.ens-pdp-weather{padding-block:24px 28px;margin:0}
+.ens-pdp-weather__h2.env2-h{font-size:26px;line-height:1.05;margin:0 0 6px}
+.ens-pdp-weather__lead{margin:0 0 14px;font-family:var(--env2-sans);font-weight:300;font-size:17px;line-height:1.5;color:var(--env2-ink-2)}
+.ens-pdp-weather__tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ens-pdp-weather__tile{margin:0;min-width:0}
+.ens-pdp-weather__frame{position:relative;overflow:hidden;background:#05070c;aspect-ratio:1/1;border:0;border-radius:0}
+.ens-pdp-weather__frame img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+.ens-pdp-weather__line{margin:8px 0 2px;font-family:var(--env2-sans);font-weight:400;font-size:16px;line-height:1.4;color:var(--env2-ink)}
+.ens-pdp-weather__cap{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:11.5px;line-height:1.45;color:var(--env2-ink-2)}
+@media (min-width:901px){
+  .ens-pdp-weather{padding-block:24px 64px}
+  .ens-pdp-weather__h2.env2-h{font-size:40px;margin-block-end:10px}
+  .ens-pdp-weather__lead{font-size:20px;margin-block-end:22px}
+  .ens-pdp-weather__tiles{gap:24px}
+  .ens-pdp-weather__frame{aspect-ratio:3/2}
+  .ens-pdp-weather__line{font-size:18px;margin-block-start:12px}
+  .ens-pdp-weather__cap{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){.ens-pdp-install *,.ens-pdp-weather *{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ===================================================================================================
+     ARCHETYPE A — stainless-steel-solar-path-light-ip65 (path family, solar, own scene photograph).
+     Template order proposed (templates/product.elmsnest.json "order"):
+       main-product → ens_pdp_scene → ens_pdp_dusk → [ens_pdp_install] → [ens_pdp_weather] → ens_pdp_facts → ens_related
+     install variant = «stake» (the description contains «נעיצה»/«נועצים»); weather = solar pair (rain on a panel · cells in sun).
+     =================================================================================================== -->
+<article class="page" id="arch-a">
+  <p class="arch"><b>A</b> · מנורת שביל סולארית מנירוסטה – תאורה אוטומטית <bdi dir="ltr">IP65</bdi> · <bdi dir="ltr">path · solar · install = stake · weather = solar pair</bdi></p>
+  <div class="band" style="block-size:1085px"><span>main-product · 1085</span></div>
+  <div class="band" style="block-size:596px"><span>ens_pdp_scene · 596</span></div>
+  <div class="band" style="block-size:152px"><span>ens_pdp_dusk · 152</span></div>
+
+  <section class="env2-section ens-pdp-install" id="a-install" dir="rtl" aria-labelledby="a-install-h" data-ens-variant="stake">
+    <div class="env2-wrap ens-pdp-install__grid">
+      <div class="ens-pdp-install__text">
+        <h2 class="env2-h ens-pdp-install__h2" id="a-install-h">התקנה</h2>
+        <p class="ens-pdp-install__line"><span class="ens-pdp-install__s">מרכיבים את היתד, נועצים באדמה.</span><span class="ens-pdp-install__s">בלי חפירה, בלי חיווט.</span></p>
+      </div>
+      <figure class="ens-pdp-install__fig ens-pdp-install__fig--zoom" style="--ens-zoom:189.6%;--ens-shift:-15.6% -34.2%;--ens-zoom-lg:190%;--ens-shift-lg:-21% -34.2%">
+        <div class="ens-pdp-install__frame"><img src="../../images/candidates/ov_f726110a-04f8-4546-861e-5eb0af61a54b.jpg" width="1276" height="1276" loading="lazy" decoding="async" alt=""></div>
+        <figcaption class="ens-pdp-install__cap">ידיים מהדקות אדמה · צילום: <bdi dir="ltr">mypubliclands (CC BY 2.0)</bdi></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="env2-section ens-pdp-weather" id="a-weather" dir="rtl" aria-labelledby="a-weather-h" data-ens-variant="solar">
+    <div class="env2-wrap">
+      <h2 class="env2-h ens-pdp-weather__h2" id="a-weather-h">בחוץ</h2>
+      <p class="ens-pdp-weather__lead">תאורת חוץ חיה בחוץ.</p>
+      <ul class="ens-pdp-weather__tiles" role="list">
+        <li class="ens-pdp-weather__tile">
+          <div class="ens-pdp-weather__frame" style="--ens-op:50% 62%"><img src="../../images/candidates/ov_dbe4a3f1-c6e9-4900-84ef-34a5c41e30b1.jpg" width="1365" height="2048" loading="lazy" decoding="async" alt=""></div>
+          <p class="ens-pdp-weather__line">גם בגשם.</p>
+          <p class="ens-pdp-weather__cap">טיפות על פאנל סולארי · צילום: <bdi dir="ltr">h080 (CC BY-SA 2.0)</bdi></p>
+        </li>
+        <li class="ens-pdp-weather__tile">
+          <div class="ens-pdp-weather__frame" style="--ens-op:50% 50%"><img src="../../images/candidates/wm_5869e6ea3a.jpg" width="3840" height="2560" loading="lazy" decoding="async" alt=""></div>
+          <p class="ens-pdp-weather__line">גם בשמש של צהריים.</p>
+          <p class="ens-pdp-weather__cap">תאים סולאריים בשמש, מקרוב · צילום: <bdi dir="ltr">Guilhem Vellut (CC BY 2.0)</bdi></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="band" style="block-size:723px"><span>ens_pdp_facts · 723</span></div>
+  <div class="band" style="block-size:781px"><span>ens_related · 781</span></div>
+</article>
+
+<!-- ===================================================================================================
+     ARCHETYPE B — waterproof-led-wall-light-ip65-6w-12w (wall family, mains → no dusk row).
+     Template order: main-product → ens_pdp_scene → (ens_pdp_dusk prints nothing) → [ens_pdp_install] → [ens_pdp_weather] → ens_pdp_facts → ens_related
+     install variant = «wall» (family word קיר); weather = the non-solar pair (drops on a stem · a white wall in the sun).
+     =================================================================================================== -->
+<article class="page" id="arch-b">
+  <p class="arch"><b>B</b> · מנורת קיר <bdi dir="ltr">LED</bdi> עמידה למים <bdi dir="ltr">IP65</bdi> – <bdi dir="ltr">6W/12W</bdi> · <bdi dir="ltr">wall · mains · install = wall · weather = non-solar pair</bdi></p>
+  <div class="band" style="block-size:1085px"><span>main-product · 1085</span></div>
+  <div class="band" style="block-size:596px"><span>ens_pdp_scene · 596</span></div>
+
+  <section class="env2-section ens-pdp-install" id="b-install" dir="rtl" aria-labelledby="b-install-h" data-ens-variant="wall">
+    <div class="env2-wrap ens-pdp-install__grid">
+      <div class="ens-pdp-install__text">
+        <h2 class="env2-h ens-pdp-install__h2" id="b-install-h">התקנה</h2>
+        <p class="ens-pdp-install__line"><span class="ens-pdp-install__s">מתחברת לקיר, בגובה שבוחרים.</span><span class="ens-pdp-install__s">דיבל, בורג, וזהו.</span></p>
+      </div>
+      <figure class="ens-pdp-install__fig" style="--ens-op:58% 55%;--ens-op-lg:82% 55%">
+        <div class="ens-pdp-install__frame"><img src="images/fetched/d5cfca29.jpg" width="1024" height="680" loading="lazy" decoding="async" alt=""></div>
+        <figcaption class="ens-pdp-install__cap">בורג ודיבל, מקרוב · צילום: <bdi dir="ltr">anka.albrecht (CC BY 2.0)</bdi></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="env2-section ens-pdp-weather" id="b-weather" dir="rtl" aria-labelledby="b-weather-h" data-ens-variant="mains">
+    <div class="env2-wrap">
+      <h2 class="env2-h ens-pdp-weather__h2" id="b-weather-h">בחוץ</h2>
+      <p class="ens-pdp-weather__lead">תאורת חוץ חיה בחוץ.</p>
+      <ul class="ens-pdp-weather__tiles" role="list">
+        <li class="ens-pdp-weather__tile">
+          <div class="ens-pdp-weather__frame" style="--ens-op:38% 50%"><img src="../../images/candidates/ov_5795ed8a-cd8b-4588-9ae7-110f9a3ed0e4.jpg" width="2047" height="1365" loading="lazy" decoding="async" alt=""></div>
+          <p class="ens-pdp-weather__line">גם בגשם.</p>
+          <p class="ens-pdp-weather__cap">טיפות על גבעול · צילום: <bdi dir="ltr">jenny downing (CC BY 2.0)</bdi></p>
+        </li>
+        <li class="ens-pdp-weather__tile">
+          <div class="ens-pdp-weather__frame" style="--ens-op:22% 45%"><img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt=""></div>
+          <p class="ens-pdp-weather__line">גם בשמש של צהריים.</p>
+          <p class="ens-pdp-weather__cap">בוגנוויליה על קיר לבן, בשמש</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="band" style="block-size:723px"><span>ens_pdp_facts · 723</span></div>
+  <div class="band" style="block-size:781px"><span>ens_related · 781</span></div>
+</article>
+
+<!-- ===================================================================================================
+     ARCHETYPE C — solar-floodlight-ip67-remote-timer (spot family, solar, text-only scene 135, dusk 135).
+     Template order: main-product → ens_pdp_scene → ens_pdp_dusk → [ens_pdp_install] → [ens_pdp_weather] → ens_pdp_facts → ens_related
+     install variant = «panel» (the description contains «פאנל נפרד»; the body is fixed where the light is needed, the panel where the sun is);
+     weather = solar pair (rain on a panel · cells in sun).
+     =================================================================================================== -->
+<article class="page" id="arch-c">
+  <p class="arch"><b>C</b> · פרוז׳קטור סולארי <bdi dir="ltr">IP67</bdi> עם שלט וטיימר – <bdi dir="ltr">72/128/200 LED</bdi> · <bdi dir="ltr">spot · solar · install = panel · weather = solar pair</bdi></p>
+  <div class="band" style="block-size:1085px"><span>main-product · 1085</span></div>
+  <div class="band" style="block-size:135px"><span>ens_pdp_scene (text-only) · 135</span></div>
+  <div class="band" style="block-size:135px"><span>ens_pdp_dusk · 135</span></div>
+
+  <section class="env2-section ens-pdp-install" id="c-install" dir="rtl" aria-labelledby="c-install-h" data-ens-variant="panel">
+    <div class="env2-wrap ens-pdp-install__grid">
+      <div class="ens-pdp-install__text">
+        <h2 class="env2-h ens-pdp-install__h2" id="c-install-h">התקנה</h2>
+        <p class="ens-pdp-install__line"><span class="ens-pdp-install__s">גוף התאורה במקום שצריך אור.</span><span class="ens-pdp-install__s">הפאנל במקום שמקבל שמש.</span></p>
+      </div>
+      <figure class="ens-pdp-install__fig" style="--ens-op:58% 55%;--ens-op-lg:82% 55%">
+        <div class="ens-pdp-install__frame"><img src="images/fetched/d5cfca29.jpg" width="1024" height="680" loading="lazy" decoding="async" alt=""></div>
+        <figcaption class="ens-pdp-install__cap">בורג ודיבל, מקרוב · צילום: <bdi dir="ltr">anka.albrecht (CC BY 2.0)</bdi></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="env2-section ens-pdp-weather" id="c-weather" dir="rtl" aria-labelledby="c-weather-h" data-ens-variant="solar">
+    <div class="env2-wrap">
+      <h2 class="env2-h ens-pdp-weather__h2" id="c-weather-h">בחוץ</h2>
+      <p class="ens-pdp-weather__lead">תאורת חוץ חיה בחוץ.</p>
+      <ul class="ens-pdp-weather__tiles" role="list">
+        <li class="ens-pdp-weather__tile">
+          <div class="ens-pdp-weather__frame" style="--ens-op:50% 62%"><img src="../../images/candidates/ov_dbe4a3f1-c6e9-4900-84ef-34a5c41e30b1.jpg" width="1365" height="2048" loading="lazy" decoding="async" alt=""></div>
+          <p class="ens-pdp-weather__line">גם בגשם.</p>
+          <p class="ens-pdp-weather__cap">טיפות על פאנל סולארי · צילום: <bdi dir="ltr">h080 (CC BY-SA 2.0)</bdi></p>
+        </li>
+        <li class="ens-pdp-weather__tile">
+          <div class="ens-pdp-weather__frame" style="--ens-op:50% 50%"><img src="../../images/candidates/wm_5869e6ea3a.jpg" width="3840" height="2560" loading="lazy" decoding="async" alt=""></div>
+          <p class="ens-pdp-weather__line">גם בשמש של צהריים.</p>
+          <p class="ens-pdp-weather__cap">תאים סולאריים בשמש, מקרוב · צילום: <bdi dir="ltr">Guilhem Vellut (CC BY 2.0)</bdi></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="band" style="block-size:723px"><span>ens_pdp_facts · 723</span></div>
+  <div class="band" style="block-size:781px"><span>ens_related · 781</span></div>
+</article>
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ElmsNest — content pages, concept «field» (a field guide)</title>
+<style>
+/* ---------- fonts: the offline pack, real faces ---------- */
+@font-face{font-family:'Frank Ruhl Libre';font-weight:700;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:700;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-700.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:500;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-500.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Frank Ruhl Libre';font-weight:500;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-latin-500.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Heebo';font-weight:300;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-300.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-weight:300;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-300.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Heebo';font-weight:400;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-400.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-weight:400;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-400.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Heebo';font-weight:500;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2') format('woff2');unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-weight:500;font-style:normal;font-display:block;src:url('file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ---------- tokens: elmsnest-v2-core :root, verbatim values ---------- */
+:root{
+  --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
+  --env2-gold:#e9b96e;--env2-glow:#ffd394;--env2-btn-ink:#1a1206;
+  --env2-hair:rgba(244,238,227,.12);--env2-hair-btn:rgba(244,238,227,.25);--hair:#1f1e1d;
+  --env2-gut:clamp(20px,4vw,64px);--env2-w:1240px;
+  --env2-serif:'Frank Ruhl Libre',serif;--env2-sans:'Heebo',sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#020306}
+body{margin:0;background:#020306;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;direction:rtl;text-align:start}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+bdi{unicode-bidi:isolate}
+:focus-visible{outline:2px solid var(--env2-glow);outline-offset:4px}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:var(--env2-serif);font-weight:700;line-height:1.05;letter-spacing:-.01em;text-wrap:balance;color:var(--env2-ink)}
+strong{font-weight:500}
+
+/* ---------- the page ground: the side-page gradient of elmsnest-v2-core, per page here ---------- */
+.page{background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;overflow-x:clip}
+.page+.page{border-block-start:2px dashed #3a3a3a}
+/* the shared header / footer groups, drawn as labelled grey bands (64 / 620 px at 390) */
+.band{display:flex;align-items:center;justify-content:center;background:#2c2c2c;color:#9a9a9a;font-size:12px;letter-spacing:.06em}
+.band--h{block-size:64px}
+.band--f{block-size:620px}
+
+.wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+main.wrap{padding-block:28px 56px}
+
+/* ---------- the field-guide grid: a content column and a margin column for captions and numerals ---------- */
+.fg{display:flex;flex-direction:column;margin-block-start:40px}
+.fg--head{margin-block-start:0}
+.fg .m,.fg .c{min-width:0}
+.c{max-inline-size:62ch}
+.c--full{max-inline-size:none}
+
+/* ---------- head ---------- */
+.h1{font-size:34px;line-height:1.02}
+.lead{margin-block-start:14px;font-size:17px;line-height:1.5;color:var(--env2-ink-2);max-inline-size:40ch}
+.lead a,.note a,.qa__a a{color:var(--env2-ink);border-block-end:1px solid var(--env2-hair-btn);padding-block-end:1px}
+.lead a:hover,.note a:hover,.qa__a a:hover{color:var(--env2-glow);border-color:var(--env2-glow)}
+/* the contents line: the guide's four questions as small anchors */
+.toc{margin-block-start:18px;font-size:13px;color:var(--env2-mute);display:flex;flex-wrap:wrap;gap:6px 0}
+.toc a{color:var(--env2-ink-2)}
+.toc a:hover{color:var(--env2-glow)}
+.toc a+a::before{content:"·";margin-inline:8px;color:var(--env2-mute)}
+
+/* ---------- plates: the photograph in the content column, its caption in the margin ---------- */
+.plate{margin:0}
+.plate__img{position:relative;overflow:hidden;background:#05070c}
+.plate__img img{inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--op,50% 50%)}
+.plate--top{margin-block-start:26px}
+.plate--top .plate__img{block-size:236px}
+.plate--in .plate__img{block-size:226px}
+.plate--side .plate__img{block-size:430px}
+.plate--side{margin-block-start:28px}
+/* a marginal figure that sits BEFORE its section's text on the phone (the FAQ's break between groups) */
+.plate--before{order:-1;margin-block:0 34px}
+.cap{margin-block-start:10px;font-size:13px;line-height:1.5;color:var(--env2-ink-2)}
+.cap__k{font-family:var(--env2-serif);font-weight:500;color:var(--env2-gold)}
+.cap__k::after{content:"·";margin-inline:6px;color:var(--env2-mute)}
+.cap__c{display:block;margin-block-start:2px;font-size:12px;color:var(--env2-mute)}
+
+/* ---------- sections: the numeral in the margin, the h2 in the content column ---------- */
+.num{font-family:var(--env2-serif);font-weight:500;font-size:15px;color:var(--env2-gold);line-height:1;margin-block-end:10px}
+.h2{font-size:26px;line-height:1.1}
+.h3{font-size:19px;line-height:1.2;font-weight:500}
+.intro{margin-block-start:12px;color:var(--env2-ink-2);max-inline-size:48ch}
+.prose{margin-block-start:14px;font-size:17px;line-height:1.6;color:var(--env2-ink);max-inline-size:52ch}
+
+/* device A — the places: the plate, then four link rows, no rules (the whole row is the link) */
+.prow{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:18px 40px}
+.prow a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;align-items:baseline}
+.prow strong{font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.15;color:var(--env2-ink)}
+.prow span.sub{grid-column:1;font-size:14px;color:var(--env2-ink-2)}
+.prow .cnt{grid-column:2;grid-row:1/3;align-self:start;font-size:13px;color:var(--env2-mute);white-space:nowrap}
+.prow a:hover strong{color:var(--env2-glow)}
+
+/* device B — the purposes: a spine, one gold rule with the letters hanging outside it */
+.spine{list-style:none;margin:20px 0 0;padding:0}
+.spine li{display:grid;grid-template-columns:34px minmax(0,1fr)}
+.spine__k{font-family:var(--env2-serif);font-weight:700;font-size:20px;line-height:1;color:var(--env2-gold);padding-block-start:2px}
+.spine__b{border-inline-start:1px solid var(--env2-gold);padding-inline-start:18px;padding-block:0 22px}
+.spine li:last-child .spine__b{padding-block-end:4px}
+.spine strong{display:block;font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.15;margin-block-end:4px}
+.spine p{color:var(--env2-ink-2)}
+
+/* device C — the power sources: a two-column table on hairlines, the term beside its definition */
+.two{margin:18px 0 0}
+.two>div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:14px;padding-block:14px;border-block-start:1px solid var(--env2-hair)}
+.two>div:last-child{border-block-end:1px solid var(--env2-hair)}
+.two dt{font-family:var(--env2-serif);font-weight:700;font-size:17px;line-height:1.2;margin:0}
+.two dt .n{display:block;font-weight:500;font-size:13px;color:var(--env2-gold);margin-block-end:4px}
+.two dd{margin:0;font-size:15px;color:var(--env2-ink-2)}
+
+/* device D — the checks: a checklist, one hollow gold square before each line */
+.check{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:12px 40px}
+.check li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:14px;align-items:start;font-weight:400;font-size:16px}
+.check li::before{content:"";inline-size:14px;block-size:14px;border:1px solid var(--env2-gold);margin-block-start:5px}
+
+/* the foot of a page: the note (the one contact line), the one gold pill, a text link */
+.note{margin-block-start:26px;color:var(--env2-ink-2);max-inline-size:48ch}
+.cta{margin-block-start:26px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
+.pill{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--env2-glow);color:var(--env2-btn-ink);font-weight:500;font-size:15px;line-height:1.2;white-space:nowrap}
+.pill:hover{transform:translateY(-2px)}
+.tlink{position:relative;display:inline-block;font-weight:400;font-size:15px;color:var(--env2-ink);border-block-end:1px solid var(--env2-hair-btn);padding-block-end:1px;white-space:nowrap}
+.tlink:hover{color:var(--env2-glow);border-color:var(--env2-glow)}
+/* the contact line of elmsnest-s-contact (once, on the pages that have no other contact link) */
+.contact{margin-block-start:26px;padding-block-start:18px;border-block-start:1px solid var(--env2-hair);color:var(--env2-ink-2);font-size:15px}
+.contact .tlink{margin-inline-start:8px}
+
+/* ---------- about: the legend (three numerals over three titles), run-in paragraphs, a link run ---------- */
+.legend{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:20px 40px}
+.legend li{border-block-start:1px solid var(--env2-hair);padding-block-start:12px}
+.legend .k{font-family:var(--env2-serif);font-weight:500;font-size:28px;line-height:1;color:var(--env2-gold)}
+.legend strong{display:block;font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.15;margin-block:8px 4px}
+.legend p{color:var(--env2-ink-2)}
+.runin{margin-block-start:14px;max-inline-size:52ch}
+.runin p{margin-block-start:12px;color:var(--env2-ink-2)}
+.runin p:first-child{margin-block-start:0}
+.runin strong{font-family:var(--env2-serif);font-weight:700;font-size:18px;color:var(--env2-ink)}
+.runin strong::after{content:"—";margin-inline:6px 2px;color:var(--env2-gold)}
+.run{margin-block-start:16px;display:flex;flex-wrap:wrap;gap:12px 22px}
+.run a{font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.2;border-block-end:1px solid var(--env2-hair-btn);padding-block-end:2px}
+.run a:hover{color:var(--env2-glow);border-color:var(--env2-glow)}
+.run a span{font-family:var(--env2-sans);font-weight:400;font-size:14px;color:var(--env2-mute);margin-inline-start:6px}
+
+/* ---------- why solar: three beats, the pairs, three questions ---------- */
+.beats{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:18px 32px}
+.beats li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:0 10px}
+.beats .k{font-family:var(--env2-serif);font-weight:500;font-size:24px;line-height:1;color:var(--env2-gold)}
+.beats strong{display:block;font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.15;margin-block-end:4px}
+.beats p{color:var(--env2-ink-2)}
+.fit{margin-block-start:18px;display:grid;grid-template-columns:1fr;gap:26px 48px}
+.yes{list-style:none;margin:10px 0 0;padding:0}
+.yes li{position:relative;padding-inline-start:18px;padding-block:5px;color:var(--env2-ink-2)}
+.yes li::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:15px;inline-size:8px;block-size:1px;background:var(--env2-gold)}
+.pairs{list-style:none;margin:10px 0 0;padding:0}
+.pairs li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:0 12px;padding-block:10px;border-block-start:1px solid var(--env2-hair);align-items:baseline}
+.pairs li:last-child{border-block-end:1px solid var(--env2-hair)}
+.pairs .w{font-family:var(--env2-serif);font-weight:700;font-size:18px;color:var(--env2-gold)}
+.pairs p{color:var(--env2-ink-2);font-size:15px}
+.qs{list-style:none;margin:16px 0 0;padding:0}
+.qs li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:0 10px;padding-block:8px;font-family:var(--env2-serif);font-weight:700;font-size:20px;line-height:1.2}
+.qs .k{font-weight:500;color:var(--env2-gold);font-size:18px;padding-block-start:2px}
+
+/* ---------- faq: native details on hairlines ---------- */
+.qa{border-block-start:1px solid var(--env2-hair)}
+.qa:last-of-type{border-block-end:1px solid var(--env2-hair)}
+.qa summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 12px;gap:16px;align-items:center;padding-block:14px;font-weight:400;font-size:16px;color:var(--env2-ink)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"";inline-size:8px;block-size:8px;border-inline-end:1px solid var(--env2-gold);border-block-end:1px solid var(--env2-gold);transform:rotate(45deg);margin-block-start:-4px}
+.qa[open] summary::after{transform:rotate(-135deg);margin-block-start:4px}
+.qa__a{padding-block:0 18px;color:var(--env2-ink-2);max-inline-size:52ch}
+.group{margin-block-start:36px}
+.group .h2{font-size:22px;margin-block-end:12px}
+
+/* ---------- desktop: the margin column ---------- */
+@media (min-width:901px){
+  main.wrap{padding-block:48px 88px}
+  .fg{display:grid;grid-template-columns:minmax(0,1fr) 240px;column-gap:64px;align-items:start;margin-block-start:64px}
+  .fg--head{margin-block-start:0}
+  .fg>.c{grid-column:1;grid-row:1}
+  .fg>.m{grid-column:2;grid-row:1}
+  .fg--head .m{align-self:end}
+  .h1{font-size:54px}
+  .lead{font-size:20px;margin-block-start:18px}
+  .toc{flex-direction:column;gap:4px;font-size:14px;margin:0;padding-block-end:6px}
+  .toc a+a::before{content:none}
+  .plate .m{align-self:end}
+  .plate--top{margin-block-start:40px}
+  .plate--top .plate__img{block-size:440px}
+  .plate--in .plate__img{block-size:400px}
+  .plate--side .plate__img{block-size:300px}
+  .plate--side{grid-row:1;align-self:start;margin:0}
+  .plate--before{order:0;margin:0}
+  .cap{margin:0;font-size:14px}
+  .num{font-size:17px;margin:0;padding-block-start:8px}
+  .h2{font-size:34px}
+  .prose{font-size:18px}
+  .prow{grid-template-columns:1fr 1fr;margin-block-start:28px}
+  .two>div{grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;padding-block:18px}
+  .two dd{font-size:16px}
+  .check{grid-template-columns:1fr 1fr}
+  .legend{grid-template-columns:1fr 1fr 1fr;margin-block-start:28px}
+  .beats{grid-template-columns:1fr 1fr 1fr;margin-block-start:28px}
+  .fit{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
+  .group .h2{font-size:26px}
+  .cta{margin-block-start:34px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ======================================================= GUIDE ======================================================= -->
+<article class="page" id="guide" aria-label="מדריך לבחירת תאורה לגינה">
+  <div class="band band--h" aria-hidden="true">header group · <bdi dir="ltr">64 px</bdi></div>
+  <main class="wrap">
+
+    <header class="fg fg--head">
+      <div class="c">
+        <h1 class="h1">בוחרים תאורת גינה לפי המקום — לא לפי התמונה</h1>
+        <p class="lead">ארבע החלטות קצרות: איפה צריך אור, מה הוא צריך לעשות, איזה מקור חשמל מתאים, ומה בודקים לפני שמזמינים.</p>
+      </div>
+      <nav class="m toc" aria-label="תוכן המדריך">
+        <a href="#guide-place">לפי מקום</a><a href="#guide-purpose">לפי מטרה</a><a href="#guide-power">מקור חשמל</a><a href="#guide-check">לפני ההזמנה</a>
+      </nav>
+    </header>
+
+    <figure class="fg plate plate--top">
+      <div class="c c--full plate__img" style="--op:50% 72%">
+        <img src="../../../pdp3/images/candidates/wm_b1fa34fd63.jpg" width="3840" height="2550" alt="" loading="eager">
+      </div>
+      <figcaption class="m cap"><span class="cap__k">מקום</span>טרסות מגוננות בחיפה, בצהריים<span class="cap__c">צילום: <bdi dir="ltr">Josh Evnin (CC BY-SA 2.0)</bdi></span></figcaption>
+    </figure>
+
+    <section class="fg" id="guide-place">
+      <p class="m num"><bdi dir="ltr">01</bdi></p>
+      <div class="c c--full">
+        <h2 class="h2">איפה צריך אור?</h2>
+        <p class="intro">בחרו את האזור הקרוב ביותר לצורך שלכם והמשיכו לקולקציה המתאימה. כל קולקציה מכילה רק מוצרים לאותו מקום.</p>
+      </div>
+    </section>
+
+    <figure class="fg plate plate--in" style="margin-block-start:22px">
+      <div class="c c--full plate__img" style="--op:50% 62%">
+        <img src="../../../home2/images/candidates/wm_54cd152739.jpg" width="3840" height="2563" alt="" loading="lazy">
+      </div>
+      <figcaption class="m cap"><span class="cap__k">מקום</span>דרך חצץ בין קקטוסים, בשמש נמוכה<span class="cap__c">נחלת הכלל <bdi dir="ltr">(public domain)</bdi></span></figcaption>
+    </figure>
+
+    <div class="fg" style="margin-block-start:0">
+      <ul class="c c--full prow">
+        <li><a href="/collections/תאורת-שביל-סולארית"><strong>תאורת שביל, עמוד וגינה</strong><span class="sub">לסימון הדרך, לערוגות ולפינות הגינה</span><span class="cnt"><bdi dir="ltr">8</bdi> מוצרים <span aria-hidden="true">←</span></span></a></li>
+        <li><a href="/collections/solar-wall-lights"><strong>תאורת קיר</strong><span class="sub">לדלת, לחזית ולאזורי מעבר</span><span class="cnt"><bdi dir="ltr">6</bdi> מוצרים <span aria-hidden="true">←</span></span></a></li>
+        <li><a href="/collections/ספוטים-ופרוז-קטורים-סולאריים"><strong>ספוטים, פרוז׳קטורים ותאורה ניידת</strong><span class="sub">לעץ, לקיר, לפינה חשוכה או לשטח</span><span class="cnt"><bdi dir="ltr">6</bdi> מוצרים <span aria-hidden="true">←</span></span></a></li>
+        <li><a href="/collections/גרילנדות-ותאורה-דקורטיבית"><strong>גרילנדות ותאורה דקורטיבית</strong><span class="sub">לאור חם ולאווירה בפינת הישיבה</span><span class="cnt"><bdi dir="ltr">7</bdi> מוצרים <span aria-hidden="true">←</span></span></a></li>
+      </ul>
+    </div>
+
+    <section class="fg" id="guide-purpose">
+      <p class="m num"><bdi dir="ltr">02</bdi></p>
+      <div class="c">
+        <h2 class="h2">מה האור צריך לעשות?</h2>
+        <ol class="spine">
+          <li><span class="spine__k"><bdi dir="ltr">א</bdi></span><div class="spine__b"><strong>לעזור להתמצא</strong><p>לשביל, למדרגות ולאזורי מעבר שבהם חשוב לראות את הדרך.</p></div></li>
+          <li><span class="spine__k"><bdi dir="ltr">ב</bdi></span><div class="spine__b"><strong>להאיר נקודה</strong><p>לכניסה, לקיר, לעץ או לאזור שרוצים להדגיש בצורה ברורה.</p></div></li>
+          <li><span class="spine__k"><bdi dir="ltr">ג</bdi></span><div class="spine__b"><strong>ליצור אווירה</strong><p>למרפסת, לפרגולה ולפינת ישיבה שבהן האור הוא חלק מהחוויה. תאורת אווירה אינה מיועדת להאיר חזק — וזה בסדר, זה תפקידה.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <figure class="fg plate plate--in">
+      <div class="c c--full plate__img" style="--op:50% 70%">
+        <img src="../../../pdp3/images/candidates/wm_701ca719a2.jpg" width="3840" height="2560" alt="" loading="lazy">
+      </div>
+      <figcaption class="m cap"><span class="cap__k">מנגנון</span>תאים סולאריים בשמש מלאה, ביום<span class="cap__c">צילום: <bdi dir="ltr">Bastique (CC BY 4.0)</bdi></span></figcaption>
+    </figure>
+
+    <section class="fg" id="guide-power" style="margin-block-start:28px">
+      <p class="m num"><bdi dir="ltr">03</bdi></p>
+      <div class="c">
+        <h2 class="h2">איזה מקור חשמל מתאים?</h2>
+        <p class="intro">הנתונים משתנים בין מוצרים. בדקו תמיד את עמוד המוצר, ואל תניחו שמפרט של מוצר אחד נכון גם לאחר.</p>
+        <dl class="two">
+          <div><dt><span class="n"><bdi dir="ltr">1</bdi></span>סולארי — למקום שמקבל שמש</dt><dd>מתאים כשרוצים להימנע מחיבור קבוע. הפאנל צריך אור יום של ממש: בצל כבוד רוב היום, ובימים מעוננים או בחורף, הביצועים יורדים. אם המקום כמעט לא מקבל שמש — אל תבחרו סולארי, יש פתרון מתאים יותר.</dd></div>
+          <div><dt><span class="n"><bdi dir="ltr">2</bdi></span>סוללה או <bdi dir="ltr">USB</bdi> — לשליטה בטעינה</dt><dd>לא תלוי בשמש. בדקו איך טוענים או מחליפים סוללה, והאם שגרת התחזוקה מתאימה לכם.</dd></div>
+          <div><dt><span class="n"><bdi dir="ltr">3</bdi></span>חיבור לחשמל — להתקנה קבועה</dt><dd>לעוצמה קבועה בלי תלות בטעינה. כשנדרשת עבודת חשמל — היעזרו בבעל מקצוע מוסמך.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="fg" id="guide-check">
+      <p class="m num"><bdi dir="ltr">04</bdi></p>
+      <div class="c c--full">
+        <h2 class="h2">מה בודקים לפני ההזמנה?</h2>
+        <ul class="check">
+          <li>מידות המוצר והשטח הזמין</li>
+          <li>מקור החשמל ואופן ההתקנה</li>
+          <li>מה כלול באריזה</li>
+          <li>נתוני אור ועמידות שמופיעים במפורש</li>
+          <li>התאמה למיקום המתוכנן</li>
+        </ul>
+        <p class="note">פרט חשוב חסר בעמוד המוצר? אל תנחשו. <a href="/pages/contact-us">שלחו לנו את שם המוצר ואת השאלה</a> — נבדוק לפני שתזמינו.</p>
+        <p class="cta"><a class="pill" href="/collections/all">לכל גופי התאורה</a></p>
+      </div>
+    </section>
+
+  </main>
+  <div class="band band--f" aria-hidden="true">footer group · <bdi dir="ltr">620 px</bdi></div>
+</article>
+
+<!-- ======================================================= ABOUT ======================================================= -->
+<article class="page" id="about" aria-label="מי אנחנו">
+  <div class="band band--h" aria-hidden="true">header group · <bdi dir="ltr">64 px</bdi></div>
+  <main class="wrap">
+
+    <header class="fg fg--head">
+      <div class="c">
+        <h1 class="h1">רק תאורת חוץ. וזה בכוונה.</h1>
+        <p class="lead">אנחנו עוזרים להתאים גוף תאורה למקום שלכם — וגם אומרים כשמשהו לא מתאים.</p>
+      </div>
+    </header>
+
+    <figure class="fg plate plate--top">
+      <div class="c c--full plate__img" style="--op:22% 60%">
+        <img src="../../../pdp3/images/candidates/wm_d5e6fd1fe6.jpg" width="3840" height="2162" alt="" loading="eager">
+      </div>
+      <figcaption class="m cap"><span class="cap__k">מקום</span>חורשה בירושלים, בצל הצהריים<span class="cap__c">צילום: זאב שטיין <bdi dir="ltr">(CC BY 2.5)</bdi></span></figcaption>
+    </figure>
+
+    <section class="fg">
+      <div class="c">
+        <h2 class="h2">למה הקמנו את <bdi dir="ltr">ElmsNest</bdi></h2>
+        <p class="prose">בחירת תאורה באינטרנט יכולה להיות מבלבלת: מקורות חשמל שונים, דרכי התקנה שונות ומוצרים שנראים דומים אך מיועדים לצרכים אחרים. <bdi dir="ltr">ElmsNest</bdi> עוסקת בתחום אחד — תאורת חוץ — ומארגנת את הבחירה לפי מקום, מטרה ואופן שימוש, כדי שיהיה ברור מה מתאים לפני שקונים.</p>
+      </div>
+    </section>
+
+    <section class="fg">
+      <div class="c c--full">
+        <h2 class="h2">העקרונות שמכוונים אותנו</h2>
+        <ol class="legend">
+          <li><span class="k"><bdi dir="ltr">01</bdi></span><strong>בהירות לפני הבטחות</strong><p>כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.</p></li>
+          <li><span class="k"><bdi dir="ltr">02</bdi></span><strong>בחירה לפי צורך</strong><p>העיצוב חשוב, אך ההתאמה למקום ולאופן ההתקנה חשובה לא פחות.</p></li>
+          <li><span class="k"><bdi dir="ltr">03</bdi></span><strong>שאלה לפני הזמנה</strong><p>אם פרט חיוני חסר, עדיף לעצור ולבדוק לפני שקונים.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="fg">
+      <div class="c">
+        <h2 class="h2">מה זה אומר בפועל</h2>
+        <div class="runin">
+          <p><strong>אין אצלנו קטגוריה אחרת</strong>לא מוצרי בית, לא גאדג׳טים — תאורת חוץ בלבד: סולארית, נטענת, בסוללה או בחיבור לחשמל.</p>
+          <p><strong>המפרט לפני הקנייה</strong>בכל עמוד מוצר: מקור החשמל, המידות ואופן ההתקנה. נתון שלא מופיע — לא ממציאים.</p>
+          <p><strong>וכשמשהו לא מתאים — אומרים</strong>במדריכים שלנו כתוב גם מתי תאורה סולארית היא לא הבחירה הנכונה. עדיף לקוח שקנה נכון מלקוח שהתאכזב.</p>
+        </div>
+      </div>
+      <figure class="m plate plate--side">
+        <div class="plate__img" style="--op:42% 50%">
+          <img src="../../../pdp3/images/candidates/ov_f33051a3-3351-42fb-8212-32c670264164.jpg" width="2048" height="1282" alt="" loading="lazy">
+        </div>
+        <figcaption class="cap"><span class="cap__k">מקום</span>חצר סרגיי בירושלים, בצל<span class="cap__c">צילום: <bdi dir="ltr">RonAlmog (CC BY 2.0)</bdi></span></figcaption>
+      </figure>
+    </section>
+
+    <section class="fg">
+      <div class="c c--full">
+        <h2 class="h2">מה תמצאו בחנות</h2>
+        <nav class="run" aria-label="הקולקציות">
+          <a href="/collections/תאורת-שביל-סולארית">תאורת שביל, עמוד וגינה<span aria-hidden="true">←</span></a>
+          <a href="/collections/solar-wall-lights">תאורת קיר<span aria-hidden="true">←</span></a>
+          <a href="/collections/ספוטים-ופרוז-קטורים-סולאריים">ספוטים, פרוז׳קטורים ותאורה ניידת<span aria-hidden="true">←</span></a>
+          <a href="/collections/גרילנדות-ותאורה-דקורטיבית">גרילנדות ותאורה דקורטיבית<span aria-hidden="true">←</span></a>
+        </nav>
+        <p class="cta"><a class="pill" href="/collections/all">לכל גופי התאורה</a><a class="tlink" href="/pages/guide-garden-lighting">איך בוחרים תאורה לגינה? <span aria-hidden="true">←</span></a></p>
+        <p class="contact">לא בטוחים? נבדוק התאמה לפני שתזמינו.<a class="tlink" href="mailto:info@elmsnest.com?body=שלום, מצרף/ת תמונה של המקום שרוצים להאיר.">לשלוח תמונה של המקום <span aria-hidden="true">←</span></a></p>
+      </div>
+    </section>
+
+  </main>
+  <div class="band band--f" aria-hidden="true">footer group · <bdi dir="ltr">620 px</bdi></div>
+</article>
+
+<!-- ======================================================= WHY SOLAR ======================================================= -->
+<article class="page" id="why" aria-label="למה תאורה סולארית?">
+  <div class="band band--h" aria-hidden="true">header group · <bdi dir="ltr">64 px</bdi></div>
+  <main class="wrap">
+
+    <header class="fg fg--head">
+      <div class="c">
+        <h1 class="h1">למה תאורה סולארית — ומתי לא</h1>
+        <p class="lead">היתרון: פחות תלות בחיבור קבוע לחשמל. ההתאמה תלויה בשמש שהמקום מקבל, במטרת האור ובנתוני המוצר הספציפי.</p>
+      </div>
+    </header>
+
+    <figure class="fg plate plate--top">
+      <div class="c c--full plate__img" style="--op:50% 50%">
+        <img src="../../../pdp3/images/candidates/wm_5869e6ea3a.jpg" width="3840" height="2560" alt="" loading="eager">
+      </div>
+      <figcaption class="m cap"><span class="cap__k">מנגנון</span>תא סולארי מקרוב, בשמש<span class="cap__c">צילום: <bdi dir="ltr">Guilhem Vellut (CC BY 2.0)</bdi></span></figcaption>
+    </figure>
+
+    <section class="fg">
+      <div class="c c--full">
+        <h2 class="h2">איך זה עובד בפועל</h2>
+        <ol class="beats">
+          <li><span class="k"><bdi dir="ltr">1</bdi></span><div><strong>ביום</strong><p>הפאנל הסולארי נטען מאור היום. צל, כיוון הפאנל ועונת השנה משפיעים על הטעינה.</p></div></li>
+          <li><span class="k"><bdi dir="ltr">2</bdi></span><div><strong>בערב</strong><p>התאורה נדלקת ועובדת על האנרגיה שנאגרה, בהתאם למוצר ולתנאי הטעינה.</p></div></li>
+          <li><span class="k"><bdi dir="ltr">3</bdi></span><div><strong>מה זה אומר</strong><p>השמש היא חלק מהמפרט. בימים מעוננים או בחורף הביצועים עשויים להיות חלשים יותר — זו לא תקלה, זה אופי הפתרון.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="fg">
+      <div class="c c--full">
+        <h2 class="h2">מתי זה מתאים — ומתי עדיף פתרון אחר</h2>
+        <div class="fit">
+          <div>
+            <h3 class="h3">יכול להתאים כאשר</h3>
+            <ul class="yes">
+              <li>המיקום מקבל חשיפה טובה לאור יום</li>
+              <li>לא רוצים חיבור קבוע לחשמל או שאין נקודה קרובה</li>
+              <li>המטרה היא אווירה, סימון דרך או הארה נקודתית</li>
+              <li>נתוני המוצר תואמים לשימוש המתוכנן</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="h3">עדיף פתרון אחר כאשר</h3>
+            <ul class="pairs">
+              <li><span class="w">שביל</span><p>לא מתאים כשהמקום כמעט אינו מקבל אור יום.</p></li>
+              <li><span class="w">קיר</span><p>לא מתאים כשנדרש אור חזק וקבוע לאורך כל הלילה.</p></li>
+              <li><span class="w">גינה</span><p>לא מתאים כשנדרשת התקנה מיוחדת או חיבור קבוע.</p></li>
+              <li><span class="w">מרפסת</span><p>לא מתאים אם צריך אור חזק — זו אינה מטרתה.</p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <figure class="fg plate plate--in">
+      <div class="c c--full plate__img" style="--op:50% 45%">
+        <img src="../../../pdp3/images/candidates/wm_51200569f7.jpg" width="3840" height="2565" alt="" loading="lazy">
+      </div>
+      <figcaption class="m cap"><span class="cap__k">מנגנון</span>זריחה בין עצים, מעל בריכת מים<span class="cap__c">צילום: <bdi dir="ltr">Dietmar Rabich (CC BY-SA 4.0)</bdi></span></figcaption>
+    </figure>
+
+    <section class="fg" style="margin-block-start:28px">
+      <div class="c">
+        <h2 class="h2">שלוש בדיקות לפני שבוחרים</h2>
+        <ol class="qs">
+          <li><span class="k"><bdi dir="ltr">1</bdi></span>כמה אור יום מגיע למקום?</li>
+          <li><span class="k"><bdi dir="ltr">2</bdi></span>האם המטרה היא אווירה, התמצאות או הארה ממוקדת?</li>
+          <li><span class="k"><bdi dir="ltr">3</bdi></span>אילו נתונים מופיעים במפורש בעמוד המוצר?</li>
+        </ol>
+        <p class="note">חלק מהמוצרים בחנות מיועדים בעיקר לאווירה ולא לאור חזק. אם הנתון שחשוב לכם לא מופיע בעמוד המוצר — שאלו אותנו לפני ההזמנה.</p>
+        <p class="cta"><a class="pill" href="/pages/guide-garden-lighting">איך בוחרים תאורה לגינה?</a><a class="tlink" href="/collections/all">לכל גופי התאורה <span aria-hidden="true">←</span></a></p>
+      </div>
+    </section>
+
+  </main>
+  <div class="band band--f" aria-hidden="true">footer group · <bdi dir="ltr">620 px</bdi></div>
+</article>
+
+<!-- ======================================================= FAQ ======================================================= -->
+<article class="page" id="faq" aria-label="שאלות נפוצות">
+  <div class="band band--h" aria-hidden="true">header group · <bdi dir="ltr">64 px</bdi></div>
+  <main class="wrap">
+
+    <header class="fg fg--head">
+      <div class="c">
+        <h1 class="h1">שאלות נפוצות</h1>
+        <p class="lead">תשובות קצרות לפני ואחרי ההזמנה. לא מצאתם תשובה? <a href="/pages/contact-us">כתבו לנו</a>.</p>
+      </div>
+      <nav class="m toc" aria-label="נושאי השאלות">
+        <a href="#faq-products">מוצרים והתאמה</a><a href="#faq-orders">הזמנות ומשלוח</a><a href="#faq-policies">ביטול והחזרות</a>
+      </nav>
+    </header>
+
+    <figure class="fg plate plate--top">
+      <div class="c c--full plate__img" style="--op:35% 45%">
+        <img src="../../../pdp3/images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" alt="" loading="eager">
+      </div>
+      <figcaption class="m cap"><span class="cap__k">מקום</span>בוגנוויליה בשמש הצהריים<span class="cap__c">נחלת הכלל <bdi dir="ltr">(CC0)</bdi></span></figcaption>
+    </figure>
+
+    <section class="fg group" id="faq-products">
+      <div class="c c--full">
+        <h2 class="h2">מוצרים והתאמה</h2>
+        <details class="qa" open><summary>האם כל המוצרים בחנות סולאריים?</summary><div class="qa__a"><p>לא. <bdi dir="ltr">ElmsNest</bdi> מציעה תאורת חוץ בלבד, אבל מקורות החשמל שונים: סולארי, נטען ב־<bdi dir="ltr">USB</bdi>, סוללות או חיבור לחשמל. בדקו בכל עמוד מוצר את מקור החשמל ואופן ההתקנה.</p></div></details>
+        <details class="qa"><summary>האם תאורה סולארית עובדת גם בחורף?</summary><div class="qa__a"><p>היא עובדת, אבל חלש יותר: בימים מעוננים ובחורף הפאנל נטען פחות. אם המקום כמעט לא מקבל שמש — עדיף פתרון אחר, ואנחנו אומרים את זה גם כשזה אומר לוותר על מכירה. <a href="/pages/why-solar-lighting">מתי תאורה סולארית מתאימה ומתי לא</a>.</p></div></details>
+        <details class="qa"><summary>איך בוחרים תאורה שמתאימה למקום?</summary><div class="qa__a"><p>מתחילים במקום ובמטרת האור, ורק אז בודקים מקור חשמל, מידות ואופן התקנה. <a href="/pages/guide-garden-lighting">מדריך הבחירה המלא</a> עובר על זה בארבעה צעדים.</p></div></details>
+        <details class="qa"><summary>נתון שחשוב לי לא מופיע בעמוד המוצר. מה עושים?</summary><div class="qa__a"><p>לא מנחשים. שלחו לנו את שם המוצר ואת השאלה לפני ההזמנה — נבדוק את המידע הזמין ונחזור אליכם. אם נתון אינו מופיע, איננו מציגים אותו כעובדה.</p></div></details>
+      </div>
+    </section>
+
+    <section class="fg group" id="faq-orders">
+      <div class="c c--full">
+        <h2 class="h2">הזמנות ומשלוח</h2>
+        <details class="qa"><summary>כמה עולה המשלוח?</summary><div class="qa__a"><p>משלוח לנקודת איסוף בישראל — חינם. שליח עד הבית — <bdi dir="ltr">29.90</bdi> ₪. המחיר הסופי מוצג בקופה לפני התשלום.</p></div></details>
+        <details class="qa"><summary>תוך כמה זמן ההזמנה מגיעה?</summary><div class="qa__a"><p>הזמן הכולל המשוער הוא <bdi dir="ltr">8–17</bdi> ימי עסקים: <bdi dir="ltr">1–3</bdi> ימי טיפול ועוד <bdi dir="ltr">7–14</bdi> ימי משלוח. הפירוט המלא ב<a href="/policies/shipping-policy">מדיניות המשלוחים</a>.</p></div></details>
+        <details class="qa"><summary>איך עוקבים אחרי ההזמנה?</summary><div class="qa__a"><p>כשמספר מעקב זמין, הוא נשלח לאימייל או לטלפון שנמסרו בהזמנה. לפעמים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.</p></div></details>
+        <details class="qa"><summary>איך פונים לגבי הזמנה קיימת?</summary><div class="qa__a"><p>דרך <a href="/pages/contact-us">עמוד יצירת הקשר</a>, עם מספר ההזמנה והאימייל ששימש לרכישה.</p></div></details>
+      </div>
+      <figure class="m plate plate--side plate--before">
+        <div class="plate__img" style="--op:0% 40%">
+          <img src="../../../pdp3/images/candidates/ov_e2bc06ac-f491-4032-b9cd-81e1391be7e9.jpg" width="1920" height="1440" alt="" loading="lazy">
+        </div>
+        <figcaption class="cap"><span class="cap__k">מקום</span>סמטה בטאורמינה, בצל<span class="cap__c">נחלת הכלל <bdi dir="ltr">(CC0)</bdi></span></figcaption>
+      </figure>
+    </section>
+
+    <section class="fg group" id="faq-policies">
+      <div class="c c--full">
+        <h2 class="h2">ביטול והחזרות</h2>
+        <details class="qa"><summary>אפשר לבטל עסקה אחרי שהזמנתי?</summary><div class="qa__a"><p>כן. בעסקת מכר מרחוק אפשר למסור הודעת ביטול עד <bdi dir="ltr">14</bdi> ימים מקבלת המוצר, לפי חוק הגנת הצרכן. כאשר הדין מאפשר גביית דמי ביטול, שיעורם <bdi dir="ltr">5%</bdi> ממחיר העסקה או <bdi dir="ltr">100</bdi> ₪ — הנמוך מביניהם. הפרטים המלאים ב<a href="/policies/refund-policy">מדיניות הביטולים וההחזרים</a>.</p></div></details>
+        <details class="qa"><summary>קיבלתי מוצר פגום או שגוי. מה עושים?</summary><div class="qa__a"><p>פנו אלינו בהקדם עם מספר ההזמנה ותמונות של הבעיה. בביטול שנובע מפגם, מאי־התאמה או מאי־אספקה במועד — לא נגבים דמי ביטול. אל תשלחו מוצר חזרה לפני שקיבלתם מאיתנו הנחיות כתובות.</p></div></details>
+        <p class="cta"><a class="tlink" href="/policies/refund-policy">למדיניות המלאה <span aria-hidden="true">←</span></a></p>
+      </div>
+    </section>
+
+  </main>
+  <div class="band band--f" aria-hidden="true">footer group · <bdi dir="ltr">620 px</bdi></div>
+</article>
+
+</body>
+</html>

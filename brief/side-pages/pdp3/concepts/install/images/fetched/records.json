@@ -1,70 +1,5 @@
 [
  {
-  "id": "da5d960f-9871-4eff-8f73-43425c35a906",
-  "title": "Know the drill Project 365(3) Day 48",
-  "creator": "Keith Williamson",
-  "license": "by",
-  "license_version": "2.0",
-  "width": 1024,
-  "height": 683,
-  "url": "https://live.staticflickr.com/5067/5552720974_7bbbc40502_b.jpg",
-  "foreign_landing_url": "https://www.flickr.com/photos/34673186@N03/5552720974",
-  "source": "flickr",
-  "provider": "flickr"
- },
- {
-  "id": "6c872ceb-1c12-47f3-ae76-d7bae7e9573a",
-  "title": "Tarugos",
-  "creator": "Canopus49",
-  "license": "by-sa",
-  "license_version": "4.0",
-  "width": 1600,
-  "height": 1200,
-  "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Tarugos.JPG",
-  "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=16968804",
-  "source": "wikimedia",
-  "provider": "wikimedia"
- },
- {
-  "id": "3208962b-36c8-4dff-950e-37359a7cb0b0",
-  "title": "Z-5500 Wall Mounted",
-  "creator": "Yutaka Tsutano",
-  "license": "by",
-  "license_version": "2.0",
-  "width": 1024,
-  "height": 683,
-  "url": "https://live.staticflickr.com/4112/5023784336_d2d016d704_b.jpg",
-  "foreign_landing_url": "https://www.flickr.com/photos/23208360@N07/5023784336",
-  "source": "flickr",
-  "provider": "flickr"
- },
- {
-  "id": "a88915eb-93c2-4cf6-9a47-63fe9a14fbaa",
-  "title": "DIY: Guitar Hanger",
-  "creator": "Yutaka Tsutano",
-  "license": "by",
-  "license_version": "2.0",
-  "width": 1024,
-  "height": 683,
-  "url": "https://live.staticflickr.com/4144/5010270373_5f4c3d4a9d_b.jpg",
-  "foreign_landing_url": "https://www.flickr.com/photos/23208360@N07/5010270373",
-  "source": "flickr",
-  "provider": "flickr"
- },
- {
-  "id": "eb8c30a7-615b-42ca-98c2-c774e9013359",
-  "title": "Rawlplug",
-  "creator": "Stewart Black",
-  "license": "by",
-  "license_version": "2.0",
-  "width": 1024,
-  "height": 1024,
-  "url": "https://live.staticflickr.com/3928/33940497785_842a2ff615_b.jpg",
-  "foreign_landing_url": "https://www.flickr.com/photos/36967498@N00/33940497785",
-  "source": "flickr",
-  "provider": "flickr"
- },
- {
   "id": "d5cfca29-ca46-454e-bd51-5ead417396b5",
   "title": "Dübel / Rawlplug",
   "creator": "anka.albrecht",
@@ -74,32 +9,6 @@
   "height": 680,
   "url": "https://live.staticflickr.com/1606/24097520989_e6b57f3e68_b.jpg",
   "foreign_landing_url": "https://www.flickr.com/photos/134465805@N06/24097520989",
-  "source": "flickr",
-  "provider": "flickr"
- },
- {
-  "id": "e7517c35-9faf-4aa8-a2c5-f07376fe918e",
-  "title": "Dübel Rawlplug (24097520989)",
-  "creator": "Anka Albrecht",
-  "license": "by",
-  "license_version": "2.0",
-  "width": 4288,
-  "height": 2848,
-  "url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/D%C3%BCbel_Rawlplug_%2824097520989%29.jpg",
-  "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=75147346",
-  "source": "wikimedia",
-  "provider": "wikimedia"
- },
- {
-  "id": "efc46abc-171e-41d5-9342-5c3b846d9e10",
-  "title": "Day 125 - Red Rawl Plugs",
-  "creator": "DaGoaty",
-  "license": "by",
-  "license_version": "2.0",
-  "width": 1024,
-  "height": 685,
-  "url": "https://live.staticflickr.com/4018/4581939067_db9c363844_b.jpg",
-  "foreign_landing_url": "https://www.flickr.com/photos/58169987@N00/4581939067",
   "source": "flickr",
   "provider": "flickr"
  }
