@@ -453,3 +453,77 @@ heading if he wants «מדרגות»; (d) dusk line 2 as a setting; (e) the two 
 policies under the same loop. The pattern for a per-product image section without product data (owner block → Liquid handle map → honest
 empty state → an off-by-default credited fallback) is in `elmsnest-s-pdp-scene.liquid` and reusable. Do not run two sessions against the
 same dev theme.
+
+---
+
+## 7.9 Round 3 — the product page gains two sections in a different look, and the seven content pages leave the cream editorial (2026-09-07 → 08)
+
+The owner asked, in Arabic: **more content on the product page — two or three more image sections, creative, «not the same
+look/colour»**; then **the content pages, with images too**; and **the images may come from the internet**. Both halves are
+built, deployed to the **dev theme only** (`154726400174`), and measured on the real store. Nothing was published; no
+product, collection, Shopify page or metafield was touched.
+
+### Image sourcing (both halves share one pool)
+`brief/side-pages/pdp3/images/`: `fetch.py` pulled **324 candidates** from Openverse and Wikimedia Commons under
+commercial-safe licences; every one was looked at and scored (`ratings.jsonl`), **27 shortlisted** with roles, tones and
+credit lines (`SHORTLIST.md`, `contact-sheet.png` — gitignored), and the 13 that came down at 1024 px were re-fetched from
+their Flickr/LoC originals. `prepare-assets.py <id>=<slug>[:x,y,w,h] --prefix ens-pdp|ens-page --max-width N --kb N`
+writes the theme asset and appends a row (source, licence, author, page, credit line) to a register.
+
+### The product page (`pdp3/`)
+Five concepts, five judges (owner and shopper ×1.5): works 43.2 · weather 41.0 · daylight 39.8 · pair 37.0 · install 33.5.
+The build is **not** the top folder: the owner's verdict took weather's first section and works's cream print, and the
+rulings (R1–R9, `pdp3/SPEC.md` §1) record what was rejected and why — the Mexican courtyard full of lit lanterns (honesty
+scored it 3), the triptych that retold the dusk row, the installation section whose mounting sentences the listings cannot
+back, the sand card, the diptych.
+
+- **`sections/elmsnest-s-pdp-weather.liquid`** — «בחוץ, כל השנה»: two framed detail tiles (1:1 at 390, 3:2 at ≥ 901), a
+  line under each, then a 12 px caption naming the photograph and its credit. Two gates: an IP65–IP68 token in the
+  product's own description (else the section prints nothing), and the dusk row's solar test picking the rain tile
+  (panel for solar, a stem for everything else). The sun tile is the same warm wall on every product.
+- **`sections/elmsnest-s-pdp-print.liquid`** — a cream mat (`#efe7d8`) laid on the night ground holding one golden-hour
+  photograph of a real place, with one serif sentence above it and the caption and credit on the mat. The photograph is
+  chosen by the place word: שביל · קיר · גינה · מרפסת; the birch branches and the camping lantern print nothing.
+- Template order: `main-product → ens_pdp_scene → ens_pdp_dusk → ens_pdp_weather → ens_pdp_facts → ens_pdp_print → ens_related`.
+- Assets: `ens-pdp-{rain-panel,rain-stem,sun-wall,print-path,print-wall,print-garden,print-balcony}.jpg`, ≤ 202 KB each.
+- **Measured** (`pdp3/verify/verify.json`): 390×844 with JS — path 5.89 · rope 5.55 · deck 5.27 · wall 5.72 · flood 5.33
+  screens (cap raised to 7.5 for this round). Sections 333–366 px and 340–379 px. `copyMissing=0`, no Liquid error, no
+  horizontal overflow, credits drawn per gate.
+- **Critique**: five lenses on the deployed pages, a skeptic per finding — **67 findings, 3 confirmed, 64 refuted with
+  measurements** (`pdp3/critique/RESULT.json`). The two loudest were disproved: the scene photograph is the product's own
+  gallery frame (pixel diff 1.82/255), and the floodlight print owes no credit (public domain). Confirmed and fixed: the
+  `alt` attribute is escaped; the spec's copy tables were rewritten to what shipped (`SPEC.md` §7).
+
+### The content pages (`pages/`)
+`COPY-SOURCE.md` holds all seven pages' copy verbatim (581 lines, every run verified against the section and the mirrors).
+Five concepts, five judges (owner and visitor ×1.5): atlas 46.5 · quiet 42.5 · letter 41.5 · band 41.0 · field 38.0. The
+build takes **atlas's structure** (a different device per idea), **band's opening** (one short photograph band, the h1 on
+it only where the contrast measures ≥ 4.5:1), **quiet's places frame** (one courtyard at dusk with four labels that are
+also the four collection links with live counts), **letter's signed About**, and **field's caption grammar** (מקום /
+מנגנון before the subject). Rulings R1–R9 in `pages/SPEC.md` §1.
+
+- **`sections/elmsnest-s-page.liquid`** (68 KB) renders all seven handles from one `case page.handle`, plus a plain-prose
+  fallback for any future page; **`snippets/elmsnest-s-page-photo.liquid`** renders every photograph slot.
+  `templates/page.json` is now `["ens_page"]`; `templates/page.contact-us.json` is `["ens_page", "contact_form_zzPDf3"]`
+  with the Kalles form byte-identical. The rollback copies are in `pages/rollback/`.
+- Ten assets `ens-page-*.jpg` ≤ 199 KB. **Four bands were re-cropped or replaced by the lead after the honesty lens**:
+  the shipping band was sky only, the contact band opened on four light fixtures, the processing band broke R7, and the
+  About band was the Garden of the Righteous at Yad Vashem — a memorial is not decorative brand imagery, so it is now the
+  Sergei Courtyard in Jerusalem.
+- **Measured** (`pages/verify/verify.json`): 390×844 — guide 4.05/6 · why-solar 3.57/5 · about 3.52/5 · FAQ 2.66/6 ·
+  processing 2.63/4 · shipping 3.18/5 · contact 2.95/4. One h1 per page (the duplicate `sr-only` h1 is gone with the
+  template swap), every photograph found with its kicker, caption and credit, the four collection titles live, the seven
+  policy numbers byte-identical, no broken link, About signed without a `mailto:`.
+- The verifier (`simplify/verify-mirror.js`) now carries the seven pages, a `pageCopy` probe (h1, photographs, numbers,
+  collection titles, place labels, signature) and reads `textContent` for presence checks so the collapsed FAQ answers count.
+
+### Open for the owner (added to the artifact)
+1. An installation line per product («בלי חפירה, בלי חיווט» / «דיבל, בורג, וזהו») — the shopper's favourite sentence in the
+   round; it needs the owner to confirm each product's mounting.
+2. A real Israeli photograph at dusk or golden hour: every Israeli frame in the pool is midday.
+3. The «בצל כבוד» typo in the guide (§03 row 1) is left verbatim — the copy is his.
+4. The contact page's Shopify body is never rendered by the template; if it holds copy he wants shown, it goes into the
+   section's contact branch.
+
+The owner artifact (same URL) now carries a «الجولة الثالثة» section with the real renders:
+https://claude.ai/code/artifact/3738c906-cedd-4d22-8509-4f7dde70476a
