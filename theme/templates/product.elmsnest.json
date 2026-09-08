@@ -265,6 +265,10 @@
       "type": "elmsnest-s-pdp-dusk",
       "settings": {}
     },
+    "ens_pdp_weather": {
+      "type": "elmsnest-s-pdp-weather",
+      "settings": {}
+    },
     "ens_pdp_facts": {
       "type": "elmsnest-s-pdp-facts",
       "settings": {
@@ -274,6 +278,10 @@
         "max_rows": 10,
         "more_label": "כל מה שכתוב על המוצר"
       }
+    },
+    "ens_pdp_print": {
+      "type": "elmsnest-s-pdp-print",
+      "settings": {}
     },
     "ens_related": {
       "type": "elmsnest-s-products",
@@ -287,7 +295,9 @@
     "main-product",
     "ens_pdp_scene",
     "ens_pdp_dusk",
+    "ens_pdp_weather",
     "ens_pdp_facts",
+    "ens_pdp_print",
     "ens_related"
   ]
 }
