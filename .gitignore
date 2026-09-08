@@ -48,3 +48,7 @@ brief/side-pages/pdp3/build/*/shots/
 brief/side-pages/pdp3/build/*/*.png
 brief/side-pages/pages/build/*/shots/
 brief/side-pages/pages/build/*/*.png
+brief/side-pages/pdp3/verify/mirrors/
+brief/side-pages/pdp3/verify/jar.txt
+brief/side-pages/pages/verify/mirrors/
+brief/side-pages/pages/verify/jar.txt
