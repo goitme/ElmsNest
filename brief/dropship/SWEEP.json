@@ -1,0 +1,1362 @@
+{
+ "hits": [
+  {
+   "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-terms.liquid:23",
+   "surface": "LIVE — home page. Rendered by sections/elmsnest-s-terms.liquid:15, which is section `ens_terms` in templates/index.json order (last section of the homepage). Prints as the sub-line of the middle of the three big numbers.",
+   "text": "assign ens_s2 = 'ייתכן משלוח ממחסן מחוץ לישראל.'",
+   "tier": "A",
+   "why": "Explicitly tells the customer the goods may ship from a warehouse OUTSIDE Israel. Directly contradicts the owner's stated truth (own warehouses in Israel, every order ships from them). This is the single highest-impact string: it sits on the homepage, under the '8–17 ימי עסקים' numeral, i.e. the classic dropship disclosure."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:543",
+   "surface": "LIVE — /pages/shipping-delivery. templates/page.json → section `ens_page` (elmsnest-s-page), `when 'ship'` branch, printed unless the checkbox shipping_from_body is on (default false, so this copy IS what renders).",
+   "text": "<li><span class=\"ens-page__spine-n\"><bdi dir=\"ltr\">2</bdi></span><span class=\"ens-page__spine-t\">זמן הובלה משוער: <bdi dir=\"ltr\">7–14</bdi> ימי עסקים</span><p>מוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.</p></li>",
+   "tier": "A",
+   "why": "Two dropship tells in one row. (A) 'מוצרים עשויים להישלח ממחסנים מחוץ לישראל' — states outright that goods ship from warehouses outside Israel. (B) 'הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות' — the split-parcel fingerprint, which only makes sense when items ship from separate third-party warehouses, not from one Israeli warehouse. Also carries the 7–14 business-day transit window as normal."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-terms.liquid:204",
+   "surface": "LEGACY — elmsnest-v2-terms appears in no template order and in no *-group.json. It is a schema PRESET default, so it renders the moment the section is added in the theme editor.",
+   "text": "{ \"type\": \"line\", \"settings\": { \"number\": \"8–17\", \"unit\": \"ימי עסקים\", \"title\": \"מרגע ההזמנה עד הדלת.\", \"text\": \"1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן אנחנו כותבים את זה כאן, ולא מגלים אחרי.\" } },",
+   "tier": "A",
+   "why": "Preset default that renders as customer copy when the block is added. States as fact that SOME PRODUCTS SHIP FROM WAREHOUSES OUTSIDE ISRAEL, and doubles down rhetorically ('and that is why we write it here and do not reveal it afterwards'). Strongest wording of the claim anywhere in the theme."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-coll-terms.liquid:356",
+   "surface": "LEGACY — elmsnest-v2-coll-terms is in no template order (templates/collection.json uses elmsnest-s-coll-header / main-collection / elmsnest-s-guide-strip). Schema preset default → renders on block add.",
+   "text": "{ \"type\": \"number\", \"settings\": { \"numeral\": \"8–17\", \"unit\": \"ימי עסקים\", \"headline\": \"לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.\", \"sub\": \"ייתכן משלוח ממחסן מחוץ לישראל.\" } },",
+   "tier": "A",
+   "why": "Preset default customer copy: 'shipping from a warehouse outside Israel is possible'. Same false claim as the live homepage row, on the collection page."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-coll-terms.liquid:15",
+   "surface": "LEGACY — file-header {% comment %} of the same legacy section.",
+   "text": "    8-17  - 4 -  ימי עסקים לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח. ייתכן משלוח ממחסן מחוץ לישראל.",
+   "tier": "A",
+   "why": "A Hebrew comment that reproduces the customer-facing row verbatim (the brief asks for Hebrew comments that carry customer text). It is the canonical copy source the presets were built from, so it must be corrected too or the wrong wording gets re-introduced."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-pdp-terms.liquid:285",
+   "surface": "LEGACY — elmsnest-v2-pdp-terms is in no template order (templates/product.elmsnest.json uses main-product + the elmsnest-s-pdp-* family). Schema preset default → renders on block add.",
+   "text": "{ \"type\": \"number\", \"settings\": { \"numeral\": \"8–17\", \"unit\": \"\", \"headline\": \"ימי עסקים מרגע ההזמנה ועד הדלת.\", \"sub\": \"1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל.\", \"link_label\": \"\" } },",
+   "tier": "A",
+   "why": "Preset default on the PRODUCT page: 'some of the products are shipped from warehouses outside Israel'. Explicit foreign-origin claim at the moment of purchase."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-terms.liquid:6",
+   "surface": "LEGACY — elmsnest-terms (the pre-v2 strip) is in no template order. English text inside the file-header {% comment %}.",
+   "text": "  8–17 day window, the «may ship from warehouses outside Israel» disclosure,",
+   "tier": "A",
+   "why": "An English sentence left inside the theme that names the claim and frames it as a consumer-protection disclosure that must never be dropped. Not rendered to customers, but it is the instruction that keeps the false claim alive across rewrites, and the block's richtext `note` setting (line 139: 'כאן נכנסים הנתונים המשפטיים המלאים — אין לקצר אותם') is where the merchant is told to paste it."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-terms.liquid:20-22",
+   "surface": "LIVE — homepage, same three-number strip as hit #1.",
+   "text": "assign ens_n2 = '8–17'  /  assign ens_u2 = 'ימי עסקים'  /  assign ens_h2 = 'לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.'",
+   "tier": "B",
+   "why": "The standard dropshipping transit fingerprint presented as normal: 1–3 handling days plus 7–14 shipping days, 8–17 business days total, given the largest typographic weight on the homepage. A shop shipping from its own Israeli warehouses does not need a 7–14 business-day leg."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-pdp-terms-line.liquid:28",
+   "surface": "LIVE — product page, directly under the buy button. Rendered from templates/product.elmsnest.json block `ens_terms_line` ({% render 'elmsnest-s-pdp-terms-line', product: product %}).",
+   "text": "<p class=\"ens-terms-line\" dir=\"rtl\">משלוח חינם לנקודת איסוף · עד הבית <bdi dir=\"ltr\">29.90</bdi> ₪ · אספקה משוערת <bdi dir=\"ltr\">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר <a class=\"ens-terms-line__link\" href=\"/pages/shipping-delivery\">לכל התנאים <span aria-hidden=\"true\">&#8592;</span></a></p>",
+   "tier": "B",
+   "why": "'אספקה משוערת 8–17 ימי עסקים' — a hedged ('משוערת') 8–17 business-day window shown at the point of purchase, and it links to /pages/shipping-delivery, which is where the explicit «warehouses outside Israel» sentence lives (hit #2). Structural transit tell."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-pdp-terms-line.liquid:4-5",
+   "surface": "LIVE file, {% comment %} header.",
+   "text": "Wording licensed by the inventory (elmsnest-pdp-facts «אספקה משוערת: 8–17 ימי עסקים», elmsnest-pdp-trust «ניתן לבטל עסקה עד 14 יום מקבלת המוצר», coll_terms rows 0 ₪ / 8–17 / 14) and the",
+   "tier": "B",
+   "why": "Hebrew comment quoting the customer-facing 8–17 window; it is the 'licence' that authorises the same number in other files, so it will regenerate the tell if not corrected."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:436",
+   "surface": "LIVE — /pages/help-faq, `when 'faq'` branch, question 'תוך כמה זמן ההזמנה מגיעה?'",
+   "text": "<p>הזמן הכולל המשוער הוא <bdi dir=\"ltr\">8–17</bdi> ימי עסקים: <bdi dir=\"ltr\">1–3</bdi> ימי טיפול ועוד <bdi dir=\"ltr\">7–14</bdi> ימי משלוח. הפירוט המלא ב<a href=\"{{ ens_ship_pol }}\">מדיניות המשלוחים</a>.</p>",
+   "tier": "B",
+   "why": "The 8–17 / 1–3 / 7–14 split presented as the normal delivery time. Same transit fingerprint as the homepage, repeated in the FAQ."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:440",
+   "surface": "LIVE — /pages/help-faq, question 'איך עוקבים אחרי ההזמנה?'",
+   "text": "<p>כשמספר מעקב זמין, הוא נשלח לאימייל או לטלפון שנמסרו בהזמנה. לפעמים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.</p>",
+   "tier": "B",
+   "why": "Two tells: tracking is conditional ('כשמספר מעקב זמין' — when a tracking number is available, implying it sometimes is not) and tracking 'may take several days to update'. Both are hallmarks of a foreign consolidated/forwarded parcel, not of a domestic Israeli courier handoff."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:481-483",
+   "surface": "LIVE — /pages/processing-time, the definition-list plate.",
+   "text": "<dt>טיפול בהזמנה</dt><dd><bdi dir=\"ltr\">1–3</bdi> ימי עסקים</dd> … <dt>זמן הובלה</dt><dd><bdi dir=\"ltr\">7–14</bdi> ימי עסקים</dd> … <dt>סה״כ משוער</dt><dd><bdi dir=\"ltr\">8–17</bdi> ימי עסקים</dd>",
+   "tier": "B",
+   "why": "The 1–3 / 7–14 / 8–17 transit table set out as the shop's normal service level. 7–14 business days of pure 'הובלה' is not a domestic Israeli leg."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:491-492",
+   "surface": "LIVE — /pages/processing-time, the numbered spine 'מה קורה אחרי שהזמנתם'.",
+   "text": "…<p>עד <bdi dir=\"ltr\">3</bdi> ימי עסקים. כשמספר מעקב זמין — נשלח לכם אותו.</p></li><li>…<span class=\"ens-page__spine-t\">ההזמנה בדרך</span><p>זמן ההובלה המשוער הוא <bdi dir=\"ltr\">7–14</bdi> ימי עסקים. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.</p></li>",
+   "tier": "B",
+   "why": "'זמן ההובלה המשוער' hedging + a 7–14 business-day transit + the split-parcel disclosure ('an order with several items may arrive in separate parcels'). Split parcels at no extra charge is the signature of separate third-party warehouses fulfilling one order."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:498",
+   "surface": "LIVE — /pages/processing-time, h2.",
+   "text": "<h2 class=\"env2-h ens-page__h2\">עברו <bdi dir=\"ltr\">17</bdi> ימי עסקים והחבילה לא הגיעה?</h2>",
+   "tier": "B",
+   "why": "A dedicated 'what if 17 business days passed and the parcel never arrived' section normalises a delivery window long enough to fail — a delay disclaimer for shipments outside the shop's control. Duplicated at line 560 on /pages/shipping-delivery."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:542-544",
+   "surface": "LIVE — /pages/shipping-delivery, 'זמני טיפול ואספקה' spine (line 543 is the Tier-A hit #2).",
+   "text": "טיפול בהזמנה: <bdi dir=\"ltr\">1–3</bdi> ימי עסקים … זמן הובלה משוער: <bdi dir=\"ltr\">7–14</bdi> ימי עסקים … סה״כ משוער: <bdi dir=\"ltr\">8–17</bdi> ימי עסקים",
+   "tier": "B",
+   "why": "The full 1–3 / 7–14 / 8–17 transit ladder presented as the shipping policy, with 'משוער' hedging on both the transit and the total."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:546",
+   "surface": "LIVE — /pages/shipping-delivery, foot note of the delivery-times section.",
+   "text": "<p class=\"ens-page__note\">כשמספר מעקב זמין, נשלח אותו לאימייל או לטלפון שנמסרו בהזמנה. לעיתים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח. המספרים כאן זהים ל<a href=\"{{ ens_ship_pol }}\">מדיניות המשלוחים המלאה</a>.</p>",
+   "tier": "B",
+   "why": "Conditional tracking + 'tracking may take days to update at the shipping company' — the standard disclaimer for a parcel handed to a foreign consolidator before it is scanned locally."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:554",
+   "surface": "LIVE — /pages/shipping-delivery, returns trio, item 3.",
+   "text": "<div><span class=\"ens-page__trio-t\"><span class=\"ens-page__num\"><bdi dir=\"ltr\">3</bdi></span>אל תשלחו מוצר לפני קבלת הנחיות</span><p>פתחו בקשת החזרה וקבלו מאיתנו הנחיות כתובות. כתובת ההחזרה נמסרת בהתאם למוצר ולמסלול המשלוח.</p></div>",
+   "tier": "B",
+   "why": "'The return address is given according to the product and the shipping route' — i.e. there is no single return address. A shop with its own Israeli warehouses has one. This is the returns-side fingerprint of per-supplier fulfilment, and it is repeated at line 458 on the FAQ ('אל תשלחו מוצר חזרה לפני שקיבלתם מאיתנו הנחיות כתובות')."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:830",
+   "surface": "LIVE — schema default for lead_proc, printed as the lead sentence of /pages/processing-time.",
+   "text": "{ \"type\": \"text\", \"id\": \"lead_proc\", \"label\": \"משפט פתיחה\", \"default\": \"המספרים כאן זהים למדיניות המשלוחים המלאה — אין הבטחות נפרדות.\" },",
+   "tier": "B",
+   "why": "Schema default that renders. It anchors the whole 8–17 / warehouse-abroad number set as the shop's single source of truth, so it must be revised together with them; on its own it advertises that the long window is deliberate policy, not an exception."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-goodnight.liquid:212",
+   "surface": "LEGACY — elmsnest-v2-goodnight is in no template order. Schema default for strip_text → renders on section add.",
+   "text": "{ \"type\": \"text\", \"id\": \"strip_text\", \"label\": \"רצועת התנאים (פריטים מופרדים ב־ · )\", \"default\": \"משלוח חינם לנקודת איסוף · 8–17 ימי עסקים · ביטול תוך 14 יום לפי חוק הגנת הצרכן · לתנאים המלאים ←\" },",
+   "tier": "B",
+   "why": "Schema default customer copy carrying the 8–17 business-day window as a headline term."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-pdp-stage.liquid:1061",
+   "surface": "LEGACY — elmsnest-v2-pdp-stage is in no template order. Schema default for terms_strip, printed under the buy button when the section is used.",
+   "text": "{ \"type\": \"textarea\", \"id\": \"terms_strip\", \"label\": \"שורת התנאים שמתחת לכפתור\", \"default\": \"משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר.\" },",
+   "tier": "B",
+   "why": "Schema default: 8–17 business-day delivery shown at the buy button on the legacy PDP."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-coll-terms.liquid:356 (headline field)",
+   "surface": "LEGACY — same preset row as the Tier-A hit; the headline half is the transit tell on its own.",
+   "text": "\"headline\": \"לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.\"",
+   "tier": "B",
+   "why": "1–3 handling + 7–14 shipping business days on the collection page as normal service."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-pdp-terms.liquid:285 (headline field)",
+   "surface": "LEGACY — same preset row as the Tier-A hit.",
+   "text": "\"headline\": \"ימי עסקים מרגע ההזמנה ועד הדלת.\" (with numeral \"8–17\")",
+   "tier": "B",
+   "why": "8–17 business days door-to-door on the legacy PDP terms block."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/snippets/elmsnest-v2-pdp-image.liquid:26-39, 61, 109-120",
+   "surface": "LEGACY plumbing — this resolver is rendered only by legacy v2 sections (elmsnest-v2-pdp-stage / -night / -ask / -related, -coll-scene, -coll-bands, snippets/elmsnest-v2-pdp-card, -pdp-buybar). BUT the underlying product images it describes are the LIVE product images the Kalles gallery and the live elmsnest-s-products cards show.",
+   "text": "FIFTEEN handles have no text-free image at ANY index. Every one is a marketing poster — baked Hebrew headline, spec icon strip, cream or beige ground … modern-led-bollard-light-5w-ip65 also carries three conflicting third-party wordmarks (LUMIERE / LUMORA / LUMIRA) across four images. … C waterproof-led-wall-light-6w-12w   0 = slogan slide, 2 = a supplier 2x2 contact sheet (four equal cells, black/white x two shapes, on a white seamless)",
+   "tier": "C",
+   "why": "The theme's own audit records that 16 of 27 products have NOTHING but supplier marketing artwork: baked-in text slides, spec-icon strips, installation infographics, a literal SUPPLIER CONTACT SHEET on a white seamless, and three conflicting third-party brand wordmarks on one product. This is the visual half of the dropship fingerprint — imagery lifted from a supplier's listing rather than photographed by a shop that holds the stock. The list of affected handles is at line 61 and the per-image bans at line 120."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/snippets/elmsnest-v2-coll-glyph.liquid:4-7, 87, 91",
+   "surface": "LEGACY — rendered by legacy v2 collection sections only (elmsnest-v2-coll-scene, -coll-bands, elmsnest-v2-pdp-card). Line 87/91 are the live customer-visible caption and alt text of that plate.",
+   "text": "assign env2_cap = 'איור · אין תצלום נקי'  /  assign env2_alt = 'איור של המנורה — אין תצלום נקי'  (comment 4-7: \"Fifteen of the twenty-seven products have NO text-free photograph at any index 0–3. Every one is a marketing poster: a baked Hebrew headline, a spec icon strip, a cream or beige ground … three conflicting third-party wordmarks (LUMIÈRE / LUMORA / LUMIRA)\")",
+   "tier": "C",
+   "why": "A whole UI device exists solely because the catalogue has no photographs of its own — a drawn glyph captioned 'illustration · no clean photograph' stands in for the product picture. Copy written as if the shop never physically holds or photographs the item; the plate silently tells the customer the image is not of the goods."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-pdp-facts.liquid:29-41 and 300-305",
+   "surface": "LIVE — product page, section `ens_pdp_facts` in templates/product.elmsnest.json order.",
+   "text": "assign spec_mark = section.settings.specs_heading | default: 'פרטים טכניים' … <details class=\"ens-facts__more\"><summary class=\"ens-facts__summary\">{{ more_label | escape }}</summary><div class=\"ens-facts__desc\">{{ product.description }}</div></details>  (more_label default: 'כל מה שכתוב על המוצר', schema line 319)",
+   "tier": "C",
+   "why": "The live PDP parses a ' · '-separated spec run out of the supplier-pasted product description and then dumps the ENTIRE raw description into a <details> labelled 'everything written about the product'. Any foreign text, model number, English or Chinese sentence, or supplier spec table left in the Shopify description reaches the customer verbatim through this block. It is the delivery mechanism for every Tier-A/C string that lives in product data rather than in the theme."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-pdp-facts.liquid:489 (and 12, 89)",
+   "surface": "LEGACY — elmsnest-v2-pdp-facts is in no template order.",
+   "text": "<div class=\"env2-pdp-facts__desc\">{{ product.description | replace: '<h2', '<h4' | replace: '</h2>', '</h4>' | replace: '<h3', '<h5' | replace: '</h3>', '</h5>' }}</div>",
+   "tier": "C",
+   "why": "Same raw-supplier-description passthrough in the legacy PDP facts section, plus the same 'פרטים טכניים' spec-run parser (line 89) that assumes a pasted supplier spec table."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-hero.liquid:234",
+   "surface": "LEGACY schema setting on a LIVE section — elmsnest-v2-hero IS the first section of templates/index.json (`env2_hero`), but index.json sets show_card:false, so the card title does not currently print. It renders the moment the card is switched on.",
+   "text": "{ \"type\": \"text\", \"id\": \"card_title_override\", \"label\": \"שם המוצר בכרטיס (ריק = השם מהחנות)\", \"default\": \"מנורת שביל סולארית מנירוסטה, תאורה אוטומטית IP65\" },",
+   "tier": "C",
+   "why": "A supplier-listing-style title: keyword-stuffed with material and an IP code instead of a shop-written product name. The handle it is attached to (stainless-steel-solar-path-light-ip65, index.json line 14) is the same pattern."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-night-wall.liquid:218 and 236",
+   "surface": "LEGACY — elmsnest-v2-night-wall is in no template order. Schema default + preset default, both render on section add.",
+   "text": "\"title_override\": \"מנורת קיר LED עמידה למים IP65, אור למעלה ולמטה\"",
+   "tier": "C",
+   "why": "Another supplier-catalogue title hard-coded into the theme — spec-string naming (LED / waterproof / IP65 / up-and-down light) rather than a name a shop that stocks the item would write."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/snippets/elmsnest-v2-pdp-image.liquid:61, 107, 120",
+   "surface": "LEGACY plumbing, but the handles are the LIVE catalogue's handles.",
+   "text": "solar-security-light-100-led | solar-garden-spotlight-52-led | modern-led-bollard-light-5w-ip65 | waterproof-led-wall-light-ip65-6w-12w | dual-head-garden-light-10w-ip65 | rechargeable-telescopic-camping-lantern | waterproof-solar-deck-step-lights …",
+   "tier": "C",
+   "why": "The product handles hard-coded across the theme are supplier model/spec strings (wattage, LED count, IP rating baked into the name) — 'solar-security-light-100-led', 'modern-led-bollard-light-5w-ip65', 'dual-head-garden-light-10w-ip65'. Product titles derived from a supplier's model designation rather than from the shop."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-pdp-weather.liquid:32-44",
+   "surface": "LIVE — product page, section `ens_pdp_weather` in templates/product.elmsnest.json order.",
+   "text": "assign ens_desc = product.description | strip_html   … (gate: the section prints only when the product's OWN description carries an outdoor IP token IP65/66/67/68)",
+   "tier": "C",
+   "why": "A live section whose entire visibility is decided by scraping an IP code out of the pasted supplier description. Confirms that supplier spec text is the theme's data source for product facts; if that text is foreign-language or wrong, the section silently mis-fires. Same pattern in elmsnest-s-pdp-dusk.liquid:23 and snippets/elmsnest-s-place.liquid:79, which sniff the word 'סולארי' out of the description + title."
+  },
+  {
+   "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-coll-terms.liquid:14-17 (block) and sections/elmsnest-v2-terms.liquid:8",
+   "surface": "LEGACY — file-header comments.",
+   "text": "0     - 4 -  משלוח לנקודת איסוף — חינם. עד הבית 29.90 ₪. / 8-17  - 4 -  ימי עסקים לאספקה … / 1     - 4 -  תמונה — שולחים תמונה של המקום ואנחנו בודקים התאמה לפני ההזמנה.",
+   "tier": "B",
+   "why": "The Hebrew comment table that is the copy source for every 8–17 terms strip in the theme. It carries the customer text verbatim, so leaving it uncorrected re-seeds the transit window and the outside-Israel line into any rebuilt section."
+  },
+  {
+   "where": "solar-wall-light-motion-sensor-ip65 → metafield custom.faq (answer to \"מתי ההזמנה מגיעה?\")",
+   "surface": "metafield custom.faq",
+   "text": "הזמן הכולל המשוער ממועד ההזמנה הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח. משלוח לנקודת איסוף בישראל — חינם; שליח עד הבית — 29.90 ₪.",
+   "tier": "B",
+   "why": "This is the textbook dropshipping transit window named in the brief — 7–14 shipping days, 8–17 total — presented as the normal delivery expectation. A shop that picks and packs from its own Israeli warehouses cannot honestly quote 7–14 business days of transit inside Israel; that number only makes sense for a parcel moving from a foreign hub. It is the single most damaging false statement in the catalog and it sits in the FAQ, i.e. the answer a hesitating buyer reads right before checkout. The '1–3 ימי טיפול' handling window is the same fingerprint (supplier order-processing lag dressed up as handling time)."
+  },
+  {
+   "where": "solar-wall-light-motion-sensor-ip65 → metafield custom.faq (answer to \"האם המנורה עמידה בגשם?\")",
+   "surface": "metafield custom.faq",
+   "text": "אנחנו מסתמכים רק על נתונים שמפורסמים בעמוד — נתון שאינו מצוין כאן אינו מובטח.",
+   "tier": "C",
+   "why": "Copy written as if the shop has never physically held the item: it disclaims any knowledge of the product beyond what is printed on the page, which is only true of a seller passing through a third party's spec sheet. A business stocking the lamp in its own warehouse can open a box and answer. It also quietly undercuts the shop's own authority on every spec claim on the page."
+  },
+  {
+   "where": "stainless-steel-solar-path-light-ip65 → product tag",
+   "surface": "tags",
+   "text": "YN-PL3-BS",
+   "tier": "C",
+   "why": "A raw supplier model/SKU code left in the public tag list, alongside otherwise human tags (IP65, מנורת שביל, נירוסטה). 'YN-…' is a factory part number, not shop vocabulary — the standard residue of a listing imported from a supplier catalog, and it is indexable/visible to shoppers and to search engines."
+  },
+  {
+   "where": "swaying-solar-path-lights-ip65 → descriptionHtml, \"פרטים טכניים\" line",
+   "surface": "descriptionHtml",
+   "text": "מקור מתח: סולארי · מתח עבודה: 5V · גוון אור: לבן חם · חומר: ABS · דירוג אטימות: IP65 · נורות LED כלולות · התקנה בהרכבה פשוטה · תקנים: CE, RoHS, UL, FCC, LVD.",
+   "tier": "C",
+   "why": "A supplier spec table pasted verbatim, dot-separated in export-listing style. The certification string is the giveaway: UL and FCC are US-market approvals and LVD is an EU directive — an export-catalog boilerplate stack that has no meaning for a product held and sold from an Israeli warehouse. Nobody writing about their own stock lists five foreign certification acronyms in a row."
+  },
+  {
+   "where": "rechargeable-telescopic-camping-lantern → descriptionHtml, \"פרטים טכניים\" line",
+   "surface": "descriptionHtml",
+   "text": "מקור אור: ליבת אור לבנה + 54 LED · מצבי פנס: חזק / חלש / הבהוב · מצבי תאורת צד: חזק / חלש · זמן עבודה מוצהר: כ־3 שעות בפנס הקדמי וכ־5+ שעות בתאורת הצד · טעינה: Type‑C · חומר: ABS עמיד לנפילות · צבע: כסוף־שחור · עמידות למים לשימוש יומיומי.",
+   "tier": "C",
+   "why": "Pasted supplier spec block, and the phrase «זמן עבודה מוצהר» ('declared runtime') explicitly attributes the figure to someone else — the shop is relaying a third party's claim rather than stating what its own product does. Same tell in the body copy's oddly precise imported dimensions (כ־51.8 ס\"מ, כ־25.2×10×4.2 ס\"מ), which are converted listing measurements, not numbers a seller writes about goods on its own shelf."
+  },
+  {
+   "where": "modern-led-bollard-light-5w-ip65 → descriptionHtml, \"פרטים טכניים\" line",
+   "surface": "descriptionHtml",
+   "text": "הספק: 5W · מתח: AC 85–265V · צבע גוף: שחור · גוון אור: חם · מקור אור: LED · גוף: אלומיניום · דירוג אטימות: IP65 · נורה כלולה · תקן CE · אחריות יצרן: שנתיים.",
+   "tier": "C",
+   "why": "Supplier spec table in export format. «מתח: AC 85–265V» is the universal wide-input range printed on factory listings for worldwide shipping; a product sold from Israeli stock would simply say 220–240V. «אחריות יצרן» (manufacturer's warranty) rather than a shop warranty also frames the shop as a pass-through rather than the party that holds and stands behind the goods."
+  },
+  {
+   "where": "dual-head-garden-light-10w-ip65 → descriptionHtml, \"פרטים טכניים\" line",
+   "surface": "descriptionHtml",
+   "text": "הספק: 10W · גוון אור: חם · צבע גוף: שחור · מתח: AC 85–265V · מקור אור: LED · גוף: אלומיניום · סיבוב: עד 180° · דירוג אטימות: IP65 · נורות כלולות · תקן CE · אחריות יצרן: שנתיים.",
+   "tier": "C",
+   "why": "Identical supplier-listing spec block and the same worldwide AC 85–265V input range and 'manufacturer's warranty' framing as the bollard light. Two products carrying the same boilerplate confirms it was copied from a supplier feed rather than written from inventory the shop actually stocks."
+  },
+  {
+   "where": "powerful-solar-garden-light → descriptionHtml, \"פרטים טכניים\" line",
+   "surface": "descriptionHtml",
+   "text": "מקור מתח: סולארי · מקור אור: LED · התקנה בהרכבה פשוטה · מיועדת לגינה, למדשאה, לשביל, לחצר ולכניסה · יחידה אחת באריזה.",
+   "tier": "C",
+   "why": "A thin supplier spec stub — so thin it lists almost no real specification, which is what happens when a listing is transcribed from a supplier page instead of from the product. «יחידה אחת באריזה» ('one unit per package') is packing-slip / carton-quantity language from a wholesale feed, not something a shop writes to a retail customer."
+  },
+  {
+   "where": "outdoor-bidirectional-led-wall-light-ip65 → descriptionHtml, body paragraph and \"פרטים שכדאי לדעת\" bullet",
+   "surface": "descriptionHtml",
+   "text": "דגם A ו־דגם B מאפשרים לבחור את צורת האלומה והאופי שמתאימים לחזית. … דגם A או דגם B",
+   "tier": "C",
+   "why": "Unnamed «דגם» codes offered as the customer-facing choice. A shop that owns the stock names its variants by what the buyer sees (e.g. beam shape or finish); 'Model A / Model B' is the supplier's own variant labelling carried straight through into the storefront."
+  },
+  {
+   "where": "modern-led-wall-light-6w-up-down → media files 7 and 8",
+   "surface": "media (image filenames)",
+   "text": "3_f980b44a-5262-4ec7-acb8-99e39ffdefc3.jpg / 6_86375a80-58c9-4a8b-8a3c-67bfd049ed35.jpg",
+   "tier": "C",
+   "why": "Every other image in the entire catalog (163 of 165) is an AI render named ChatGPTImage<date>.png. These two are .jpg files whose original names were bare sequence numbers ('3', '6') — the naming pattern of images downloaded in bulk from a supplier's listing gallery. Flagged as a lead: I could not view the pixels, so whether foreign packaging or foreign text is baked into them is unverified."
+  },
+  {
+   "where": "Shipping policy (מדיניות משלוחים) — ShopPolicy SHIPPING_POLICY, gid://shopify/ShopPolicy/34732933294, section heading «מקור המשלוח וחבילות נפרדות»",
+   "surface": "Legal policy (binding)",
+   "text": "מוצרים עשויים להישלח ממחסנים מחוץ לישראל.",
+   "tier": "A",
+   "why": "The single most damaging sentence in the store. It is in the legally binding shipping policy and states outright that goods ship from warehouses OUTSIDE Israel. The owner states every order ships from the shop's own Israeli warehouses, so this is factually false and directly contradicts the truth. It also gives the store an entire policy section («מקור המשלוח») that only exists because of an assumed foreign origin."
+  },
+  {
+   "where": "Shipping policy (מדיניות משלוחים) — same section «מקור המשלוח וחבילות נפרדות»",
+   "surface": "Legal policy (binding)",
+   "text": "כאשר הזמנה כוללת מספר פריטים, ייתכן שהם יישלחו בחבילות נפרדות ויגיעו במועדים שונים, ללא חיוב נוסף מעבר למחיר המשלוח שהוצג בקופה.",
+   "tier": "B",
+   "why": "Textbook dropshipping split-parcel disclaimer, presented as normal. A shop picking from its own warehouse packs one order into one parcel; separate parcels arriving on different dates is the fingerprint of multiple foreign suppliers shipping independently."
+  },
+  {
+   "where": "Shipping policy (מדיניות משלוחים) — section «זמני טיפול ואספקה»",
+   "surface": "Legal policy (binding)",
+   "text": "זמן הובלה משוער לאחר הטיפול: 7–14 ימי עסקים.",
+   "tier": "B",
+   "why": "A 7–14 business-day transit window presented as the normal case is impossible for domestic Israeli delivery from an in-country warehouse (1–3 days). It is the standard long-haul import transit window and is legally binding as the promised delivery time."
+  },
+  {
+   "where": "Shipping policy (מדיניות משלוחים) — section «זמני טיפול ואספקה»",
+   "surface": "Legal policy (binding)",
+   "text": "זמן כולל משוער ממועד ההזמנה: 8–17 ימי עסקים.",
+   "tier": "B",
+   "why": "An 8–17 business-day total (up to ~3.5 calendar weeks) as the standard promise is the classic dropshipping window. If stock is genuinely held in Israel this over-promises delay by two weeks and is wrong in the binding text."
+  },
+  {
+   "where": "Shipping policy (מדיניות משלוחים) — section «זמני טיפול ואספקה»",
+   "surface": "Legal policy (binding)",
+   "text": "זמני האספקה הם הערכה ואינם כוללים עיכובים חריגים שאינם בשליטתנו.",
+   "tier": "B",
+   "why": "Hedging disclaimer about delays outside the shop's control. A merchant shipping from its own warehouse with a domestic carrier controls the handoff; this wording exists to cover customs/international-leg delays."
+  },
+  {
+   "where": "Shipping policy (מדיניות משלוחים) — section «מעקב אחר ההזמנה»",
+   "surface": "Legal policy (binding)",
+   "text": "לעיתים נדרשים מספר ימים עד שמידע המעקב מתעדכן אצל חברת השילוח.",
+   "tier": "B",
+   "why": "«Tracking may take days to update» is the specific tell of a foreign/consolidated tracking number that is not live in the destination carrier's system yet. Israeli domestic tracking updates on scan."
+  },
+  {
+   "where": "Shipping policy (מדיניות משלוחים) — section «עיכוב, חבילה חסרה או מוצר פגום»",
+   "surface": "Legal policy (binding)",
+   "text": "אם חלפו 17 ימי עסקים ממועד ההזמנה והחבילה טרם נמסרה, או אם התקבל מוצר פגום, חסר או שגוי, פנו אלינו עם מספר ההזמנה ותיאור הבעיה.",
+   "tier": "B",
+   "why": "Sets the customer's right to even ask about a missing parcel at 17 business days — roughly a month calendar. That threshold only makes sense for an import chain, and it is binding: it tells the customer to wait a month before complaining."
+  },
+  {
+   "where": "Terms of service (תנאי שימוש ורכישה) — ShopPolicy TERMS_OF_SERVICE, gid://shopify/ShopPolicy/34732671150, section «משלוחים»",
+   "surface": "Legal policy (binding)",
+   "text": "זמני הטיפול, זמני האספקה, מקור המשלוח והעלויות מפורטים במדיניות המשלוחים.",
+   "tier": "A",
+   "why": "The Terms explicitly incorporate «מקור המשלוח» (the shipment's ORIGIN) by reference — i.e. the Terms make the foreign-warehouse clause a contractual term of every sale. A shop shipping only from its own Israeli warehouses has no 'shipment origin' clause to point at."
+  },
+  {
+   "where": "Terms of service (תנאי שימוש ורכישה) — section «משלוחים»",
+   "surface": "Legal policy (binding)",
+   "text": "נכון למועד עדכון התנאים, טיפול בהזמנה אורך 1–3 ימי עסקים, זמן ההובלה המשוער הוא 7–14 ימי עסקים, והזמן הכולל המשוער הוא 8–17 ימי עסקים.",
+   "tier": "B",
+   "why": "The import-length transit window is restated inside the contract itself, so the 7–14 / 8–17 figures are binding in two separate legal documents, not just the shipping policy."
+  },
+  {
+   "where": "Contact information policy (Contact) — ShopPolicy CONTACT_INFORMATION, gid://shopify/ShopPolicy/34732998830",
+   "surface": "Legal policy (binding)",
+   "text": "ElmsNest\nAddress: United Kingdom",
+   "tier": "A",
+   "why": "A FOREIGN ADDRESS in the store's official contact/legal details. The only address the store publishes anywhere is 'United Kingdom' — no Israeli address, no Israeli warehouse, no VAT/company number. This is the strongest single contradiction of 'we have our own warehouses in Israel' and it sits in a legally required disclosure."
+  },
+  {
+   "where": "Contact information policy (Contact) — same document",
+   "surface": "Legal policy (binding)",
+   "text": "Address: United Kingdom (أو ضع عنوان فعلي عند توفره) ... Phone: (إضافة رقم هاتف إذا توفر) ... VAT Number: (إن وجد)",
+   "tier": "A",
+   "why": "Foreign-language (Arabic) authoring placeholders left live in a public legal document of an otherwise all-Hebrew store — literally 'or put a real address when one is available' / 'add a phone number if available' / 'if any'. It proves the published address is a stand-in, not a real place of business, and the whole document is English + Arabic inside a Hebrew shop."
+  },
+  {
+   "where": "Page «משלוחים והחזרות» (handle: shipping-delivery, gid://shopify/Page/104093417646) — item 2 under «זמני טיפול ואספקה»",
+   "surface": "Storefront page",
+   "text": "זמן הובלה משוער: 7–14 ימי עסקים — מוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.",
+   "tier": "A",
+   "why": "The customer-facing shipping page repeats the foreign-warehouse statement verbatim and pairs it with the split-parcel tell in one sentence. This is the page most customers actually read before buying, and it explicitly says the goods come from outside Israel."
+  },
+  {
+   "where": "Page «משלוחים והחזרות» (shipping-delivery) — item 3 under «זמני טיפול ואספקה»",
+   "surface": "Storefront page",
+   "text": "סה״כ משוער: 8–17 ימי עסקים — ממועד ההזמנה ועד קבלתה.",
+   "tier": "B",
+   "why": "Import-length total window presented as the shop's normal service level on the main shipping page."
+  },
+  {
+   "where": "Page «משלוחים והחזרות» (shipping-delivery) — closing note of «זמני טיפול ואספקה»",
+   "surface": "Storefront page",
+   "text": "לעיתים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.",
+   "tier": "B",
+   "why": "Same 'tracking may take days to update' hedge as the policy — a foreign-leg tracking tell shown to shoppers."
+  },
+  {
+   "where": "Page «משלוחים והחזרות» (shipping-delivery) — section heading",
+   "surface": "Storefront page",
+   "text": "עברו 17 ימי עסקים והחבילה לא הגיעה?",
+   "tier": "B",
+   "why": "A whole page section built around the assumption that a month-long wait is the normal ceiling. Structurally an import-transit escalation flow, not domestic-warehouse fulfilment."
+  },
+  {
+   "where": "Page «משלוחים והחזרות» (shipping-delivery) — section «ביטול עסקה והחזרות», item 3",
+   "surface": "Storefront page",
+   "text": "אל תשלחו מוצר לפני קבלת הנחיות — פתחו בקשת החזרה וקבלו מאיתנו הנחיות כתובות. כתובת ההחזרה נמסרת בהתאם למוצר ולמסלול המשלוח.",
+   "tier": "B",
+   "why": "The return address is per-product and per-shipping-route rather than one fixed Israeli warehouse address. That is only necessary when different items come from different (foreign) senders; a shop with its own warehouses publishes one address."
+  },
+  {
+   "where": "Refund policy (מדיניות ביטולים, החזרות והחזרים) — ShopPolicy REFUND_POLICY, gid://shopify/ShopPolicy/34732638382, section «החזרת המוצר»",
+   "surface": "Legal policy (binding)",
+   "text": "אין לשלוח מוצר לפני פתיחת בקשת החזרה וקבלת הנחיות כתובות משירות הלקוחות. כתובת ההחזרה המדויקת תימסר במסגרת ההנחיות, בהתאם למוצר ולמסלול המשלוח.",
+   "tier": "B",
+   "why": "Binding text that refuses to publish a return address at all and makes it vary by product and shipping route — the dropshipping return-routing pattern. With Israeli warehouses there is one address and it belongs in the policy."
+  },
+  {
+   "where": "Page «זמני טיפול בהזמנה» (handle: processing-time, gid://shopify/Page/104095449262) — full body",
+   "surface": "Storefront page",
+   "text": "זמני הטיפול והאספקה: 1–3 ימי עסקים לטיפול, 7–14 להובלה, 8–17 סה\"כ — בהתאם למדיניות המשלוחים.",
+   "tier": "B",
+   "why": "Third independent surface repeating the import-length window; keeps the false timeline consistent across the site so it reads as deliberate policy."
+  },
+  {
+   "where": "Theme (MAIN, «ElmsNest - Homepage v3 2026-08-29») — templates/index.json, custom HTML block «v3-terms» on the HOMEPAGE, row «זמן אספקה»",
+   "surface": "Theme file / homepage",
+   "text": "8–17 ימי עסקים — 1–3 ימי טיפול ועוד 7–14 ימי משלוח · מוצרים עשויים להישלח ממחסנים מחוץ לישראל",
+   "tier": "A",
+   "why": "The foreign-warehouse sentence is hard-coded into the HOMEPAGE terms table, so it is the first thing a visitor sees. It is in a theme file, not in a page or policy, so fixing the policies alone would leave it live. (Read-only finding — no theme file was modified.)"
+  },
+  {
+   "where": "Theme (MAIN) — templates/product.elms-pdp.json and templates/product.elmsnest.json, section «elms_policy» → block «policy_time» (title «זמן אספקה»)",
+   "surface": "Theme file / every product page",
+   "text": "הזמן הכולל המשוער הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח.",
+   "tier": "B",
+   "why": "The import-length window is baked into the product-page template, so it renders on every PDP next to the buy button. Two separate product templates carry it, so it survives a template switch."
+  },
+  {
+   "where": "Theme (MAIN) — templates/product.elms-pdp.json and templates/product.elmsnest.json, section «elms_faq» → block «faq_when», question «מתי ההזמנה מגיעה?»",
+   "surface": "Theme file / product-page FAQ",
+   "text": "הזמן הכולל המשוער ממועד ההזמנה הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח. משלוח לנקודת איסוף בישראל — חינם; שליח עד הבית — 29.90 ₪.",
+   "tier": "B",
+   "why": "The product-page FAQ answers the single most-asked question with the import window. Also present as fact1_a in the «elms_trust» block of templates/product.elmsnest.json with identical wording."
+  },
+  {
+   "where": "Products «מנורת עמוד LED מודרנית לגינה ולחצר – 5W IP65» (modern-led-bollard-light-5w-ip65) and «מנורת גינה דו־ראשית מתכווננת 180° – 10W IP65» (dual-head-garden-light-10w-ip65) — «פרטים טכניים» block",
+   "surface": "Product description",
+   "text": "הספק: 5W · מתח: AC 85–265V · צבע גוף: שחור · גוון אור: חם · מקור אור: LED · גוף: אלומיניום · דירוג אטימות: IP65 · נורה כלולה · תקן CE · אחריות יצרן: שנתיים.",
+   "tier": "C",
+   "why": "A supplier-style spec table pasted into the description: the universal-input «AC 85–265V» range and «תקן CE» (European conformity) are how a foreign catalogue lists a part — an Israeli-stocked SKU would state 230V and the Israeli standard (ת\"י / SI mark). The dual-head product carries the same table with «הספק: 10W ... מתח: AC 85–265V ... תקן CE»."
+  },
+  {
+   "where": "Files library (Shopify Files) — 8 images: 202504151053086167.jpg, 202504151053058269.jpg, 202504151053012525.jpg, 202504151052585361.jpg, 202504151035172627.jpg, 202504141810314762.jpg, 202504141810315039.jpg, 202504141810318513.jpg",
+   "surface": "Media / Files",
+   "text": "202504151053086167.jpg (and the 7 sibling files with the same YYYYMMDDHHMMSSnnnn naming)",
+   "tier": "C",
+   "why": "Bare 18-digit timestamp filenames are the naming scheme of Chinese supplier-platform image dumps (1688/AliExpress/CJ-style bulk downloads), not of a shop photographing its own stock. All other files in the library are named descriptively (ElmsNest_Logo, ChatGPT_Image_..., pexels-...). I could not OCR them, so foreign packaging or baked-in foreign text in these images is unverified — worth a manual look."
+  },
+  {
+   "where": "Product «מנורת קיר LED מודרנית 6W עם תאורת Up & Down» (modern-led-wall-light-6w-up-down) — media items 7 and 8",
+   "surface": "Product media",
+   "text": "3_f980b44a-5262-4ec7-acb8-99e39ffdefc3.jpg and 6_86375a80-58c9-4a8b-8a3c-67bfd049ed35.jpg",
+   "tier": "C",
+   "why": "The only two product images in the whole catalogue with bare numeric source filenames («3.jpg», «6.jpg» + Shopify dedupe suffix) — the signature of images saved straight out of a supplier listing gallery. Every other product image on the store is AI-generated (ChatGPTImage*). Not OCR'd; these two are the likeliest place for foreign packaging or foreign text baked into the picture."
+  },
+  {
+   "where": "Product «מנורת קיר LED חיצונית דו־כיוונית IP65» (outdoor-bidirectional-led-wall-light-ip65) — «פרטים שכדאי לדעת»",
+   "surface": "Product description",
+   "text": "שני עיצובים לבחירה — דגם A ו־דגם B מאפשרים לבחור את צורת האלומה והאופי שמתאימים לחזית.",
+   "tier": "C",
+   "why": "«דגם A / דגם B» with no explanation of what distinguishes them reads as a supplier's variant code carried into the Hebrew copy rather than a named product line. Weakest hit in this list — it may be benign design-variant labelling; flagged only because tier C explicitly covers «דגם» codes."
+  },
+  {
+   "where": "Page «הצהרת נגישות» (handle: accessibility-statement, gid://shopify/Page/119193895086) — section «נגישות פיזית»",
+   "surface": "Storefront page",
+   "text": "ElmsNest היא חנות מקוונת בלבד ואינה מפעילה חנות פיזית או מרכז שירות פרונטלי.",
+   "tier": "C",
+   "why": "Arguable, flagged for the owner's judgement: strictly this only denies a retail storefront, which is compatible with owning warehouses. But it is the store's only statement about physical presence in Israel, it names no facility, and read together with the 'United Kingdom' contact address it leaves a reader with the impression the business holds nothing on the ground here. If the Israeli warehouses are real, this is the natural place to say so."
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-shipping/index.html — section#shopify-section-template--21567616352430__ens_page, inside <section class=\"env2-wrap ens-page__sec\"> under the heading «זמני טיפול ואספקה», item 2 («זמן הובלה משוער: 7–14 ימי עסקים»). Identical copy also at /home/user/ElmsNest/brief/inventory/page-shipping/index.html, section#shopify-section-template--21567616352430__main.",
+   "text": "מוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.",
+   "tier": "A",
+   "why": "States outright that goods ship from warehouses OUTSIDE Israel, and pairs it with the classic split-parcel disclaimer. Directly contradicts the owner's stated truth that the shop has its own warehouses in Israel and every order ships from them. This is the single most damaging sentence on the site — it sits on the main shipping page a buyer is sent to from the footer, the FAQ and every PDP terms line.",
+   "surface": "content page (משלוחים והחזרות)"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-shipping/index.html and /home/user/ElmsNest/brief/inventory/page-shipping/index.html — <head>, <meta name=\"description\">, <meta property=\"og:description\"> and <meta name=\"twitter:description\"> (auto-generated by Shopify from the page body).",
+   "text": "…2 זמן הובלה משוער: 7–14 ימי עסקיםמוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה…",
+   "tier": "A",
+   "why": "The same «ממחסנים מחוץ לישראל» claim is baked into the page's meta description and Open Graph / Twitter description. It is not visible on the page itself, but it is what Google shows in the search snippet and what appears in any WhatsApp/Facebook link preview. Fixing only the body copy will leave this behind, because Shopify regenerates it from the body.",
+   "surface": "meta / og:description / twitter:description"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/inventory/policy-shipping/index.html — div.rte inside #MainContent, under the sub-heading «מקור המשלוח וחבילות נפרדות».",
+   "text": "מוצרים עשויים להישלח ממחסנים מחוץ לישראל. כאשר הזמנה כוללת מספר פריטים, ייתכן שהם יישלחו בחבילות נפרדות ויגיעו במועדים שונים, ללא חיוב נוסף מעבר למחיר המשלוח שהוצג בקופה.",
+   "tier": "A",
+   "why": "The legally binding shipping policy (Shopify policy page, not a theme file) states goods may ship from warehouses outside Israel. The whole sub-heading «מקור המשלוח» — 'the origin of the shipment' — exists only because the origin is foreign. This is the text the shipping page links to as «הנוסח המחייב» / «מדיניות המשלוחים המלאה», so it governs everything else.",
+   "surface": "Shopify policy page"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/inventory/home/index.html — section#env2-terms (aria-labelledby env2-terms-h2), div.env2-terms__t, the «8–17 ימי עסקים» row.",
+   "text": "1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן אנחנו כותבים את זה כאן, ולא מגלים אחרי.",
+   "tier": "A",
+   "why": "Homepage. Not a hedge — an affirmative claim («נשלחים», present tense) that part of the catalogue ships from warehouses outside Israel, framed as a transparency virtue. Worst placement possible: it is on the front page, above the fold of the terms band, and it explicitly invites the reader to notice the foreign origin.",
+   "surface": "home"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/simplify/verify-after/mirrors/home/index.html — section#env2-terms.ens-terms (aria-labelledby ens-terms-h2-template--21567616057518__ens_terms), ul.ens-terms__rows, third row after «8–17 ימי עסקים».",
+   "text": "ייתכן משלוח ממחסן מחוץ לישראל.",
+   "tier": "A",
+   "why": "The simplified/after homepage still carries the foreign-warehouse line, shortened but intact. Confirms the claim survived the simplify pass — anyone checking only the newest home mirror would still ship this to production.",
+   "surface": "home (verify-after)"
+  },
+  {
+   "where": "section#env2-coll-terms, div.env2-wrap.env2-coll-terms__wrap — on all five collection pages: /home/user/ElmsNest/brief/inventory/coll-all/index.html, coll-path/index.html, coll-wall/index.html, coll-spot/index.html, coll-decor/index.html.",
+   "text": "ייתכן משלוח ממחסן מחוץ לישראל.",
+   "tier": "A",
+   "why": "Repeated verbatim in the terms band at the foot of every collection page. Five more surfaces asserting foreign warehouses; a customer browsing any category sees it before ever reaching a product.",
+   "surface": "collections"
+  },
+  {
+   "where": "section#env2-pdp-terms (aria-labelledby env2-pdp-terms-h2), div.env2-pdp-terms__t — on six product pages: /home/user/ElmsNest/brief/inventory/pdp-single/index.html, pdp-multi/index.html, pdp-wall/index.html, solar-crystal-ball-string-lights/index.html, stainless-steel-solar-path-light-ip65/index.html, waterproof-led-wall-light-ip65-6w-12w/index.html.",
+   "text": "1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל.",
+   "tier": "A",
+   "why": "The foreign-warehouse claim sits on the product page itself, in the terms band directly under the buy area — the last thing read before adding to cart. Present-tense assertion again, not a hedge.",
+   "surface": "PDP"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pdp3/verify/mirrors/{pdp-deck,pdp-flood,pdp-path,pdp-rope,pdp-wall}/index.html and /home/user/ElmsNest/brief/side-pages/simplify/verify-after/mirrors/{pdp-deck,pdp-path,pdp-rope,pdp-rope-cart}/index.html — div#block-Ack1HOEtRUkxsY2Fle__ens_terms_line, immediately under the add-to-cart button (also repeated as div.ens-cart-terms in the cart drawer on pdp-rope-cart).",
+   "text": "משלוח חינם לנקודת איסוף · עד הבית 29.90 ₪ · אספקה משוערת 8–17 ימי עסקים · ביטול עד 14 יום מקבלת המוצר",
+   "tier": "B",
+   "why": "An 8–17 business-day delivery window presented as the normal case, right at the point of purchase, on all five pdp3 pages and all four simplify verify-after PDPs. A shop shipping from its own Israeli warehouses cannot honestly need 8–17 business days; this window is the standard dropshipping transit fingerprint and is the number every other page is anchored to.",
+   "surface": "PDP buy area / cart drawer"
+  },
+  {
+   "where": "JSON-LD <script type=\"application/ld+json\"> ProductGroup → offers → shippingDetails → deliveryTime, on every product page including all five /home/user/ElmsNest/brief/side-pages/pdp3/verify/mirrors/*/index.html and the six /home/user/ElmsNest/brief/inventory PDPs.",
+   "text": "\"deliveryTime\":{\"@type\":\"ShippingDeliveryTime\",\"handlingTime\":{\"@type\":\"QuantitativeValue\",\"minValue\":1,\"maxValue\":3,\"unitCode\":\"DAY\"},\"transitTime\":{\"@type\":\"QuantitativeValue\",\"minValue\":7,\"maxValue\":14,\"unitCode\":\"DAY\"}}",
+   "tier": "B",
+   "why": "The 7–14 day transit window is also in machine-readable structured data, fed from the Shopify shipping profile rather than from theme copy — so it will keep feeding Google Shopping and rich results even after every visible sentence is rewritten. It appears 2–32 times per page (once per variant). This is the root record that has to change, not just the rendered text.",
+   "surface": "structured data (Shopify shipping profile)"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-processing/index.html — section#shopify-section-template--21567616352430__ens_page, <section class=\"env2-wrap ens-page__sec\">, step 3 «ההזמנה בדרך». Same text at /home/user/ElmsNest/brief/inventory/page-processing/index.html (section#shopify-section-template--21567616352430__editorial).",
+   "text": "זמן ההובלה המשוער הוא 7–14 ימי עסקים. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.",
+   "tier": "B",
+   "why": "Split-parcel disclaimer plus a hedged 7–14 day transit estimate, presented as the normal flow of an order. Multiple items arriving in separate parcels at different times is what happens when each item ships from a different third-party warehouse; it does not happen when one Israeli warehouse picks and packs the order.",
+   "surface": "content page (זמני טיפול בהזמנה)"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-shipping/index.html and /home/user/ElmsNest/brief/inventory/page-shipping/index.html — section.env2-wrap.ens-page__sec, closing paragraph of the «זמני טיפול ואספקה» block. Near-identical wording at /home/user/ElmsNest/brief/inventory/policy-shipping/index.html (div.rte, «מעקב אחר ההזמנה») and in the FAQ (see next hit).",
+   "text": "כשמספר מעקב זמין, נשלח אותו לאימייל או לטלפון שנמסרו בהזמנה. לעיתים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.",
+   "tier": "B",
+   "why": "Two tells in one sentence: tracking is conditional («כשמספר מעקב זמין» — it might not exist at all), and tracking «may take several days to update». Both are artifacts of a foreign consolidator handing off to a local carrier. An order picked from your own warehouse gets a domestic tracking number the same day and it scans immediately.",
+   "surface": "content page + policy"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-faq/index.html — section#faq-orders, div.ens-page__faq, answers to «תוך כמה זמן ההזמנה מגיעה?» and «איך עוקבים אחרי ההזמנה?». Same at /home/user/ElmsNest/brief/inventory/page-faq/index.html.",
+   "text": "הזמן הכולל המשוער הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח. […] כשמספר מעקב זמין, הוא נשלח לאימייל או לטלפון שנמסרו בהזמנה. לפעמים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.",
+   "tier": "B",
+   "why": "The FAQ — the page customers actually read before buying — normalises both the 8–17 day window and the lagging/optional tracking. Same fingerprint as the shipping page, restated in the shop's own voice as an answer to a direct question.",
+   "surface": "content page (שאלות נפוצות)"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/inventory/policy-shipping/index.html — div.rte in #MainContent, the paragraph defining a business day.",
+   "text": "יום עסקים הוא יום ראשון עד חמישי, למעט ערבי חג, חגים וימי שבתון. זמני האספקה הם הערכה ואינם כוללים עיכובים חריגים שאינם בשליטתנו. אין בכך לגרוע מזכויות הלקוח לפי דין במקרה של אי-אספקה במועד.",
+   "tier": "B",
+   "why": "«עיכובים חריגים שאינם בשליטתנו» — the delays-outside-our-control disclaimer. Standard dropshipping cover for customs holds and international transit; a shop shipping from its own Israeli warehouse controls the handover to the local courier and does not need it.",
+   "surface": "Shopify policy page"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/inventory/policy-shipping/index.html and /home/user/ElmsNest/brief/inventory/page-shipping/index.html and /home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/{page-shipping,page-processing}/index.html — closing «עברו 17 ימי עסקים והחבילה לא הגיעה?» block (div.rte / section.ens-page__sec).",
+   "text": "אם חלפו 17 ימי עסקים ממועד ההזמנה והחבילה טרם נמסרה, או אם התקבל מוצר פגום, חסר או שגוי, פנו אלינו עם מספר ההזמנה ותיאור הבעיה.",
+   "tier": "B",
+   "why": "The escalation threshold is set at 17 business days — roughly three and a half calendar weeks — which builds the long international window into the complaints procedure itself. It tells a customer that under three weeks of silence is not yet a problem.",
+   "surface": "policy + content pages"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/inventory/policy-terms/index.html — div.rte in #MainContent, the ordering/delivery clause.",
+   "text": "נכון למועד עדכון התנאים, טיפול בהזמנה אורך 1–3 ימי עסקים, זמן ההובלה המשוער הוא 7–14 ימי עסקים, והזמן הכולל המשוער הוא 8–17 ימי עסקים. משלוח לנקודת איסוף בישראל הוא חינם ושליח עד הבית עולה 29.90 ₪.",
+   "tier": "B",
+   "why": "The terms of service — the contract — hard-codes the 7–14 day transit and 8–17 day total. Any correction that stops at the theme copy leaves the binding document still promising a dropshipping timeline.",
+   "surface": "Shopify policy page (תנאי שימוש)"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/inventory/cart-empty/index.html and /home/user/ElmsNest/brief/inventory/cart-full/index.html — section#shopify-section-template--21567615402158__elmsnest_cart_guidance, div.en-cart-guide__grid.",
+   "text": "8–17 ימי עסקים בסך הכול: 1–3 ימי טיפול ועוד 7–14 ימי משלוח.",
+   "tier": "B",
+   "why": "The long window is repeated in the cart, at the moment of checkout intent. Same transit fingerprint, on the highest-stakes surface.",
+   "surface": "cart"
+  },
+  {
+   "where": "section#env2-coll-terms, div.env2-coll-terms__t — on /home/user/ElmsNest/brief/inventory/{coll-all,coll-path,coll-wall,coll-spot,coll-decor}/index.html; and section#env2-terms ul.ens-terms__rows on /home/user/ElmsNest/brief/side-pages/simplify/verify-after/mirrors/home/index.html.",
+   "text": "8–17 ימי עסקים — לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.",
+   "tier": "B",
+   "why": "The same 8–17 / 7–14 breakdown repeated in the terms band of every collection page and the simplified homepage, so the international-transit number is asserted on essentially every surface of the store, not just the shipping page.",
+   "surface": "collections + home"
+  },
+  {
+   "where": "Every mirrored page in all four directories (56 files checked) — rendered at the end of <body>, no wrapping section, emitted by the Shopify localization form (form#localization_form_currencies_ / form#localization_form_language region).",
+   "text": "Choosing a selection results in a full page refresh.",
+   "tier": "C",
+   "why": "An untranslated English stock string from Shopify's localization snippet left inside an otherwise fully Hebrew RTL store. It is screen-reader-announced, so it is real visible text, not markup. It does not name a foreign origin, but it is the classic 'imported theme, never fully localised' tell that reads as a non-Israeli operation.",
+   "surface": "all pages (Shopify stock string)"
+  },
+  {
+   "where": "Product URLs and JSON-LD @id on /home/user/ElmsNest/brief/inventory/{stainless-steel-solar-path-light-ip65,waterproof-led-wall-light-ip65-6w-12w,solar-crystal-ball-string-lights}/index.html — e.g. \"@id\":\"/products/stainless-steel-solar-path-light-ip65#product\".",
+   "text": "/products/waterproof-led-wall-light-ip65-6w-12w",
+   "tier": "C",
+   "why": "English, spec-string product handles («waterproof-led-wall-light-ip65-6w-12w») on a Hebrew store. These are supplier-listing titles transliterated straight into the URL — the Hebrew titles were written later and the original English slug was never changed. Visible in the address bar, in shared links and in structured data.",
+   "surface": "URL / structured data"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pdp3/verify/mirrors/pdp-flood/index.html — main product gallery, image a/93b2182c061d9b3503315785c43430be.png (foreign text baked into the picture, bottom-left of the fixture).",
+   "text": "Solar Light   IP67",
+   "tier": "C",
+   "why": "English lettering silk-screened on the product face and left in the hero gallery image of an otherwise fully Hebrew-localised infographic. Generic unbranded English marking of the kind that appears on white-label goods. Weakest of the hits — it names no country or supplier — but it is foreign text baked into a product image, which is the tier-C pattern.",
+   "surface": "PDP gallery image"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pdp3/verify/mirrors/pdp-wall/index.html (div.hdt-product-form__values / div.hdt-swatch-item) and the same option on /home/user/ElmsNest/brief/inventory/{coll-all,coll-wall,cart-drawer}/index.html and /home/user/ElmsNest/brief/side-pages/simplify/verify-after/mirrors/collection-all/index.html.",
+   "text": "דגם A · דגם B",
+   "tier": "C",
+   "why": "The wall light's variants are sold as bare model letters with no описание of what differs. Reads like a supplier's option list carried over rather than a merchant who has the two units in a warehouse and can describe them. Low confidence — «דגם A/B» is generic Hebrew, not a supplier SKU — flagging it only because model-code titles are an explicit tier-C pattern.",
+   "surface": "PDP / collection variant picker"
+  },
+  {
+   "where": "JSON-LD ProductGroup on every product page, e.g. /home/user/ElmsNest/brief/side-pages/pdp3/verify/mirrors/pdp-path/index.html — \"category\":\"Uncategorized\".",
+   "text": "\"category\":\"Uncategorized\"",
+   "tier": "C",
+   "why": "Every product is filed as \"Uncategorized\" in the Shopify product record and this leaks into structured data. Consistent with a catalogue imported in bulk from a supplier feed rather than a merchandised inventory. Cosmetic on its own, corroborating in aggregate.",
+   "surface": "structured data"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-about/index.html (section.env2-wrap.ens-page__sec, closing block) and /home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-contact/index.html (div#block-AMU11TVNiWHBSNXExR__liquid_XznGcy).",
+   "text": "ElmsNest, ישראל",
+   "tier": "C",
+   "why": "An absence rather than a statement: the only address anywhere on the site is the bare word 'Israel' — no street, no city, no warehouse, no company number. A shop that owns warehouses in Israel has an address and normally says so; the about page describes what the shop sells and how it advises, and never once says where the goods are held or that they ship from Israel. That silence is what lets «ממחסנים מחוץ לישראל» stand as the only origin statement on the site.",
+   "surface": "about / contact"
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-shipping/index.html — section «זמני טיפול ואספקה», step 2; rendered at /home/user/ElmsNest/brief/side-pages/pages/verify/page-shipping-m-js-full.png (first screen, ~55% down)",
+   "text": "מוצרים עשויים להישלח ממחסנים מחוץ לישראל.",
+   "tier": "A",
+   "surface": "mirror-HTML + screenshot (visible body copy)",
+   "why": "The single sentence that kills the store. It is the ONLY use of the word «מחסן/מחסנים» anywhere in the twelve mirrored pages, and it points the warehouses OUT of Israel. The owner says every order ships from the shop's own Israeli warehouses, so this is factually wrong as written. It sits directly under the bold «זמן הובלה משוער: 7–14 ימי עסקים» heading, i.e. at exactly the point a suspicious shopper is looking. Nothing on any page contradicts it — no page ever claims an Israeli warehouse, Israeli stock, or same-day dispatch."
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-shipping/index.html — <meta name=\"description\">, <meta property=\"og:description\"> and <meta name=\"twitter:description\"> in <head> (4 occurrences of the phrase in the file)",
+   "text": "…זמן הובלה משוער: 7–14 ימי עסקיםמוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה",
+   "tier": "A",
+   "surface": "mirror-HTML (head metadata — not on screen, but on Google/WhatsApp/Facebook)",
+   "why": "The auto-generated meta description truncates mid-sentence and the snippet literally ENDS on «ממחסנים מחוץ לישראל». This is the text Google shows in search results and the text that appears in a WhatsApp link preview when a customer shares the shipping page. The shopper reads «ships from warehouses outside Israel» before ever loading the site. Worst possible placement of the worst possible sentence, and it is factually wrong per the owner."
+  },
+  {
+   "where": "All five PDPs — buy-box line directly under «הוסיפו להזמנה». Files: pdp3/verify/mirrors/{pdp-path,pdp-deck,pdp-flood,pdp-rope,pdp-wall}/index.html; visible in pdp-path-m-js-full.png (first screen), pdp-deck/flood/rope/wall-m-js-full.png",
+   "text": "משלוח חינם לנקודת איסוף · עד הבית 29.90 ₪ · אספקה משוערת 8–17 ימי עסקים · ביטול עד 14 יום מקבלת המוצר",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshot (above the fold on mobile)",
+   "why": "«8–17 ימי עסקים» = up to about 3.5 calendar weeks, printed at the moment of purchase on every product. No Israeli shop shipping from its own Israeli warehouse quotes that; local courier or pickup-point delivery from Israeli stock is 1–4 days. This number alone, seen at the Add-to-cart button, is what makes a shopper decide 'this is coming from abroad' before reading any policy page. It is the highest-frequency dropship fingerprint on the site (5/5 PDPs)."
+  },
+  {
+   "where": "page-shipping (step 2 «זמן הובלה משוער: 7–14 ימי עסקים») + page-processing (step 3 «ההזמנה בדרך») + page-faq (answer to «תוך כמה זמן ההזמנה מגיעה?») + JSON-LD on all 5 PDPs",
+   "text": "זמן הובלה משוער: 7–14 ימי עסקים / זמן ההובלה המשוער הוא 7–14 ימי עסקים / הזמן הכולל המשוער הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshots (page-shipping-m-js-full.png, page-processing-m-js-full.png, page-faq-m-js-full.png)",
+   "why": "A 7–14 business-day transit window repeated on three separate pages and presented as the normal case. 7–14 business days is the standard China→Israel e-packet/consolidated-line window; it is not a domestic Israeli transit time under any carrier. Repeating it consistently across pages makes it read as a deliberately disclosed fact about the supply chain, not a typo. Incompatible with 'ships from our Israeli warehouses'."
+  },
+  {
+   "where": "page-shipping (step 2, same paragraph as the «מחוץ לישראל» sentence) and page-processing (step 3 «ההזמנה בדרך»)",
+   "text": "הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshot",
+   "why": "Textbook split-parcel language. A shop picking from its own single warehouse packs one box; separate parcels for one order happen when each SKU is shipped independently by a different third party. Israeli shoppers recognise this sentence specifically as the AliExpress-store tell. It appears twice, both times immediately adjacent to the 7–14-day window, which compounds it."
+  },
+  {
+   "where": "/home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-shipping/index.html — «ביטול עסקה והחזרות», item 3 «אל תשלחו מוצר לפני קבלת הנחיות»",
+   "text": "פתחו בקשת החזרה וקבלו מאיתנו הנחיות כתובות. כתובת ההחזרה נמסרת בהתאם למוצר ולמסלול המשלוח.",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshot (page-shipping-m-js-full.png, second screen)",
+   "why": "The return address is withheld and made conditional on 'the product and the shipping route'. A shop with its own Israeli warehouses has ONE return address and publishes it. 'Depends on the product and the route' means different items go back to different places — i.e. to different suppliers. Combined with «אל תשלחו מוצר לפני קבלת הנחיות», this is the classic dropship RMA script, and it directly contradicts the owner's stated single-warehouse operation."
+  },
+  {
+   "where": "page-shipping (paragraph after step 3) + page-processing (step 2) + page-faq («איך עוקבים אחרי ההזמנה?»)",
+   "text": "כשמספר מעקב זמין, נשלח אותו לאימייל או לטלפון שנמסרו בהזמנה. לעיתים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshot",
+   "why": "Two hedges in one sentence: tracking may not exist at all («כשמספר מעקב זמין» — conditional, not 'we will send'), and when it exists it may be dead for days. Both are symptoms of a label created abroad that only enters a trackable network after an international leg. A shop dispatching from its own Israeli warehouse issues a domestic tracking number at pack time and it scans the same day."
+  },
+  {
+   "where": "page-shipping («עברו 17 ימי עסקים והחבילה לא הגיעה?») and page-processing (same heading, bottom block)",
+   "text": "עברו 17 ימי עסקים והחבילה לא הגיעה? פנו אלינו עם מספר ההזמנה, האימייל ששימש לרכישה ותיאור קצר — נבדוק מול חברת השילוח ונחזור אליכם עם תשובה.",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshot",
+   "why": "The store pre-builds a dedicated 'your parcel never arrived' escalation path and gives it a heading on two separate pages. Publishing a lost-parcel procedure as a standing feature signals that non-arrival is a routine, expected outcome — a long-haul supply chain, not a local one. It also quietly concedes that the shop cannot see the parcel itself and must ask an unnamed carrier."
+  },
+  {
+   "where": "Sitewide — footer on all 12 pages («ElmsNest © 2026 · תנאי משלוח וביטול»), page-contact bottom block, page-about closing block, and the Organization JSON-LD in every file",
+   "text": "ElmsNest , ישראל / דוא״ל: info@elmsnest.com  — and JSON-LD: {\"@type\":\"Organization\",\"name\":\"ElmsNest\",\"logo\":…,\"sameAs\":[instagram,tiktok],\"url\":\"https://elmsnest.com\"}",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshots (page-contact-m-js-full.png, page-about-m-js-full.png, footer of every page)",
+   "why": "MISSING LOCAL SIGNALS, all of them at once: no street address, no city, no Israeli phone number, no ח.פ./ע.מ./עוסק מורשה, no named pickup point, no store or warehouse location, no opening hours. «ישראל» alone is a country label, not an address. The Organization schema has no `address` and no `telephone` property. The contact page asks the CUSTOMER for «מספר טלפון» while giving none in return. For an Israeli shopper this is the fastest disqualifier after the delivery window: a real local shop with warehouses in Israel can name where they are."
+  },
+  {
+   "where": "Sitewide — page-shipping, page-processing, page-faq, PDP buy-box",
+   "text": "חברת השילוח (never named) / משלוח לנקודת איסוף בישראל (network never named)",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshot",
+   "why": "The carrier is referred to five times as «חברת השילוח» and never once named (no דואר ישראל, HFD, צ׳יטה, בוקסיט, נקודות איסוף by brand). The free pickup-point option — the thing an Israeli shopper actually picks — never says whose points. A shop with its own Israeli logistics names its carrier; an unnamed carrier reads as 'whichever forwarder the supplier used'."
+  },
+  {
+   "where": "All five PDPs — Product/ProductGroup JSON-LD, `offers[].shippingDetails[].deliveryTime`",
+   "text": "\"deliveryTime\":{\"@type\":\"ShippingDeliveryTime\",\"handlingTime\":{\"minValue\":1,\"maxValue\":3,\"unitCode\":\"DAY\"},\"transitTime\":{\"minValue\":7,\"maxValue\":14,\"unitCode\":\"DAY\"}}",
+   "tier": "B",
+   "surface": "mirror-HTML (structured data)",
+   "why": "The 7–14-day transit window is also broadcast machine-readably to Google Shopping and any price-comparison feed, so the 'delivery in up to 17 business days' label follows the product outside the site. The same JSON-LD block declares `addressCountry: IL` for the destination but says nothing about origin — it structurally describes an import lane, and it is the version a competitor or a journalist would quote."
+  },
+  {
+   "where": "page-shipping «זמני טיפול ואספקה» step 1; page-processing step 2",
+   "text": "טיפול בהזמנה: 1–3 ימי עסקים — מרגע ההזמנה ועד המסירה לחברת השילוח.",
+   "tier": "B",
+   "surface": "mirror-HTML + screenshot",
+   "why": "Three business days merely to hand a package to a courier is a purchasing-and-forwarding lead time, not a picking time. From your own warehouse this is measured in hours. Read together with «7–14 ימי הובלה» it describes 'we order it, then it travels', which is the operation the owner says does not exist."
+  },
+  {
+   "where": "pdp3/verify/mirrors/pdp-flood — all six gallery frames (a/d2725f992334086be05b8d9e033d55ac.png and siblings); pdp-deck gallery (a/19249d27321d87c450dbe0e924bd6c15.png etc.); pdp-rope gallery (a/4c933328ee0ede43305da16390cdb7a1.png etc.)",
+   "text": "Full-frame marketing panels with headline + subhead + icon strip, e.g. «שליטה חכמה ונוחה», «התקנה חיצונית פשוטה», «נורות LED בעוצמה גבוהה», «האירו את המדרגות בשתי דרכים», «מבנה המוצר»",
+   "tier": "C",
+   "surface": "mirrored image files (gallery frames 2–6; the screenshots only render frame 1/6)",
+   "why": "These are not product photographs — they are a supplier's A+ / listing-image deck (1000×1000 beige-and-gold banner frames with baked-in headline typography, decorative gold leaf borders and icon rows), Hebrew-translated frame for frame. Every AliExpress/1688 listing ships exactly this asset pack. A shopper swiping the gallery sees an advertisement someone else designed, not stock the shop owns. Same deck structure recurs across three unrelated products, so it is a sourcing pattern, not one lazy page."
+  },
+  {
+   "where": "pdp3/verify/mirrors/pdp-flood — gold badge at the top of EVERY gallery frame (e.g. a/d2725f992334086be05b8d9e033d55ac.png, top centre)",
+   "text": "זמין בסט של 4 או 8 יחידות",
+   "tier": "C",
+   "surface": "mirrored image file (text baked into the image)",
+   "why": "The product's only variants are «72 LED / 100W», «128 LED / 200W», «200 LED / 300W» — there is no 4-unit or 8-unit set anywhere on the page. The image deck was made for a DIFFERENT listing and pasted in unchanged. This is provable proof the imagery is not the shop's own, and a shopper who notices it also concludes the specs may not be the shop's own either."
+  },
+  {
+   "where": "pdp3/verify/mirrors/pdp-flood/a/a7366fae2dc23ffc17e7b413cb64b5a0.png and a/93b2182c061d9b3503315785c43430be.png (fixture bezel and remote control, all frames)",
+   "text": "«Solar Light» · «IP67» · «25% 50% 75% 100%» printed on the floodlight bezel; «AUTO» and Latin letters printed on the remote",
+   "tier": "C",
+   "surface": "mirrored image files (foreign text baked into product photos)",
+   "why": "The physical goods carry English silk-screening in every frame of a Hebrew page, and the page never mentions that the remote and the fixture are labelled in English. This is exactly what an Israeli buyer scans for: whether the object in the photo was made for this market. It was not. Same pattern on pdp-deck («800mAh», «ON/OFF», «IP65» baked into the panels)."
+  },
+  {
+   "where": "pdp3/verify/mirrors/pdp-deck/a/061fbe24b21e6f5ddaf3ef18029ab66d.png — durability icon panel, middle row",
+   "text": "עמידה בשלג — מתאימה גם לתנאי חורף קשים",
+   "tier": "C",
+   "surface": "mirrored image file (text baked into the image)",
+   "why": "A snow-resistance selling point, with a snowflake icon, on garden lighting sold in Israel. Nobody writing for the Israeli market leads with snow. The argument was written for a northern-hemisphere audience and machine-translated into Hebrew — the image deck's origin showing through. The shop's own on-page copy correctly talks about «גשם של ינואר / שמש של אוגוסט»; the supplier's image contradicts it."
+  },
+  {
+   "where": "pdp3/verify/mirrors/pdp-rope/a/b4c1ef7b4b042e9f90c0a84b4612f113.png (bottom-left tile of the «מתאימות לכל פינה» frame) and a/95b87a1610a3cc1779de8db36db50b4e.png (top-right / bottom-right tiles)",
+   "text": "A decorated Christmas tree with wrapped presents; a palm-tree wrap shot; an English-titled book/box reading «Ar…» beside the coiled lights",
+   "tier": "C",
+   "surface": "mirrored image files",
+   "why": "A Christmas tree with presents inside the gallery of an Israeli store is the single most visible foreign-catalogue giveaway in the whole set — it announces that the pictures were assembled for a Western Christmas-lights listing. The Latin-lettered book prop and the palm-tree shot are the same source. None of this is text the shop wrote, which is precisely why it reads as borrowed."
+  },
+  {
+   "where": "pdp3/verify/mirrors/pdp-path/a/1ca2dc24deac406b67f02a0f1b93ed8f.png — the «מידות והתקנה» spec card (gallery frame 3)",
+   "text": "6 ס\"מ / 2.36 אינץ' · 4 ס\"מ / 1.57 אינץ' · 43 ס\"מ / 16.9 אינץ' — plus a four-step hand-model install strip: «1 פתיחה / 2 הפעלת המתג / 3 סגירה / 4 חיבור יתד»",
+   "tier": "C",
+   "surface": "mirrored image file",
+   "why": "Dual centimetre/inch dimensions carried to two decimal places are a conversion artefact — no Israeli shop prints inches, and 2.36in/1.57in/16.9in are the round source values (60mm/40mm/430mm converted, or the reverse). The hand-model assembly strip is a supplier instruction card redrawn. Together they show a supplier spec sheet translated rather than a measurement the shop took off a unit in its own warehouse."
+  },
+  {
+   "where": "PDP titles and variant labels: pdp-flood, pdp-wall, pdp-rope, pdp-deck (all five mirrors + all five *-m-js-full.png)",
+   "text": "«פרוז׳קטור סולארי IP67 עם שלט וטיימר – 72/128/200 LED» · «מנורת קיר LED עמידה למים IP65 – ‏6W/12W» · «שרשרת חבל סולארית לחוץ – 50 עד 300 נורות LED» · variant selector «דגם: 72 LED / 100W» · related card «עיצוב: דגם A / דגם B»",
+   "tier": "C",
+   "surface": "mirror-HTML + screenshot",
+   "why": "Product names built out of a spec string rather than a name — «72/128/200 LED», «6W/12W» — is how a supplier catalogue indexes SKUs, and the variant selector literally labels it «דגם» (model). «דגם A / דגם B» on the related wall-light card is a supplier's unnamed style code left as the customer-facing option. A shop that stocks and sells these would name them; a shop that relists them keeps the model string."
+  },
+  {
+   "where": "All five PDPs — the spec strip above «כל מה שכתוב על המוצר», and the repeat list «פרטים שכדאי לדעת»",
+   "text": "«סוללה 800mAh» · «נורות 24 נורות LED בכל יחידה» · «טעינה ממוצעת כ־6 שעות» · «זמן עבודה כ־8–10 שעות» · «לפני שימוש ראשון מצב ON וטעינה של לפחות 3 שעות»",
+   "tier": "C",
+   "surface": "mirror-HTML + screenshot",
+   "why": "A flat parameter dump in a supplier's voice — cell capacity in mAh, LED count per unit, an 'ON position + 3 hours before first use' instruction lifted from a manual — with every figure hedged («כ־», «בהתאם לתנאים», «ממוצעת»). It is a translated spec table, not a description written by someone who has the item on a shelf. Note the same values are also baked into the supplier images («800mAh», «5–6 שעות» in the deck panel vs «עד כ־10 שעות» on the page), so the page and the picture do not even agree."
+  },
+  {
+   "where": "All five PDPs and all seven content pages — every product image URL",
+   "text": "cdn/shop/files/ChatGPTImageJul28_2026_07_24_15PM_5.png · ChatGPTImageJul26_2026_07_52_49PM.png · ChatGPTImageAug2_2026_09_38_50PM_5.png · ChatGPT_Image_Jul_28_2026_08_00_45_PM_1_53b1f346-…png",
+   "tier": "C",
+   "surface": "mirror-HTML (image filenames, visible in page source and in the CDN URL of any image a shopper right-clicks)",
+   "why": "Every hero and card image is an AI render saved straight from ChatGPT with the default filename. There is not one photograph of a real unit, a real box, a real shelf, or a real Israeli warehouse anywhere in the twelve pages. A shop with its own warehouses has the easiest possible trust asset — a photo of the stock — and shows none. Anyone who opens an image in a new tab sees «ChatGPTImage…» in the address bar."
+  },
+  {
+   "where": "Every content page hero and every PDP editorial band: page-processing («גינה ים-תיכונית בקיו · צילום: Swphotouk»), page-shipping («מטע זיתים · Dimitry B»), page-guide («aenigmatēs», «Jeremy Levine Design»), page-why («Dietmar Rabich», «Guilhem Vellut»), all PDPs («h080», «Corey Leopold», «tillwe», «jenny downing», «BPPrice»)",
+   "text": "מקום · גינה ים-תיכונית בקיו — צילום: Swphotouk (CC BY 4.0)",
+   "tier": "C",
+   "surface": "mirror-HTML + screenshots (visible credit lines under every hero image)",
+   "why": "The 'place' anchoring the Hebrew order-processing page is Kew — the Royal Botanic Gardens in London — credited by name on screen. Fourteen different foreign CC photographers are credited across the set. The shop's visual identity is entirely borrowed foreign stock, credited in Latin letters, on pages whose whole job is to say 'we are here, locally'. It reinforces the same impression as the delivery window: nothing on this site was photographed in Israel by this business."
+  },
+  {
+   "where": "page-faq («נתון שחשוב לי לא מופיע בעמוד המוצר. מה עושים?»), page-about (item 2 «המפרט לפני הקנייה»), page-guide (step 04 checklist)",
+   "text": "שלחו לנו את שם המוצר ואת השאלה לפני ההזמנה — נבדוק את המידע הזמין ונחזור אליכם. אם נתון אינו מופיע, איננו מציגים אותו כעובדה. / נתון שלא מופיע — לא ממציאים. / מה בודקים לפני ההזמנה: … מה כלול באריזה",
+   "tier": "C",
+   "surface": "mirror-HTML + screenshots (page-faq-m-js-full.png, page-about-m-js-full.png, page-guide-m-js-full.png)",
+   "why": "Written throughout as if the shop has never had the item in its hands. «נבדוק את המידע הזמין» — we will check the available information — is what you say when you have to ask someone else; a warehouse operator opens a box and measures. The guide even instructs the customer to verify «מה כלול באריזה» that the shop itself does not state. Intended as honesty, it lands as 'we are an intermediary'. It is also the tell most at odds with the owner's claim, because it is the shop's own voice, repeated on three pages."
+  },
+  {
+   "where": "pdp3/verify/mirrors/pdp-flood/index.html — related-product card «פנס סולארי לגינה 9 LED», line ~228684 (also in the embedded product JSON at ~122462)",
+   "text": "<span class=\"hdt-variant-label\">Title:</span> <span class=\"hdt-variant-selected\">Default Title</span> … <span class=\"hdt-swatch-title\">Default Title</span>",
+   "tier": "C",
+   "surface": "mirror-HTML (source only — the wrapping <hdt-variant-option> carries `hidden`, so it does not paint on screen)",
+   "why": "Shopify's untranslated default variant label left inside a Hebrew page. Invisible to a casual shopper (the element is `hidden`) but present in the page source, in the embedded product JSON, and exposed to anyone who inspects or scrapes — including price-comparison bots. Signals a catalogue imported without the localisation pass being finished."
+  },
+  {
+   "where": "All twelve mirrors — <ul hidden> a11y string block near the closing </body>",
+   "text": "Choosing a selection results in a full page refresh.",
+   "tier": "C",
+   "surface": "mirror-HTML (source only, inside `<ul hidden>`; not rendered)",
+   "why": "The one English sentence left in the Hebrew localisation string set — its three siblings («נפתח בחלון חדש.», «פותח אתר חיצוני.», «נפתח באתר חיצוני בחלון חדש.») were all translated. Not customer-visible, so low priority, but it is a leftover-English artefact of an imported theme and it is the kind of thing a sceptic who views source will screenshot."
+  },
+  {
+   "where": "All five PDPs — ProductGroup JSON-LD `category` field",
+   "text": "\"category\":\"Landscape Pathway Lighting\" (pdp-deck) · \"category\":\"Uncategorized\" (pdp-path, pdp-flood, pdp-rope, pdp-wall)",
+   "tier": "C",
+   "surface": "mirror-HTML (structured data)",
+   "why": "English Google-taxonomy category strings, and four of five products left as literally «Uncategorized», inside the machine-readable record of a Hebrew store. Reads as an unfinished bulk import rather than a curated local catalogue, and it is what feed-based comparison sites will display."
+  },
+  {
+   "where": "Structural absence across all twelve mirrored pages",
+   "text": "(no occurrence) — «מחסן» appears exactly 4 times sitewide, all four inside the phrase «ממחסנים מחוץ לישראל» on page-shipping. There is no «במלאי», no «נשלח היום», no «מלאי בישראל», no «מהמחסן שלנו בישראל», no «איסוף עצמי» from a physical location.",
+   "tier": "B",
+   "surface": "mirror-HTML (verified by grep across all 12 files)",
+   "why": "The counter-evidence a shopper would need simply is not on the site. The store never once claims Israeli stock, never says an item is in stock, never offers self-collection from a real address, and never mentions its own warehouse — while the only warehouse it does mention is abroad. Even after the «מחוץ לישראל» sentence is deleted, nothing on these pages would tell a sceptic the goods are here. The positive claim has to be added, not just the negative one removed."
+  }
+ ],
+ "plan": {
+  "rows": [
+   {
+    "where": "LIVE MAIN theme «ElmsNest - Homepage v3 2026-08-29» → templates/index.json, custom-HTML block «v3-terms», row «זמן אספקה» (not in this repo)",
+    "text": "8–17 ימי עסקים — 1–3 ימי טיפול ועוד 7–14 ימי משלוח · מוצרים עשויים להישלח ממחסנים מחוץ לישראל",
+    "tier": "A",
+    "action": "delete",
+    "replacement": "מוחקים את הסעיף « · מוצרים עשויים להישלח ממחסנים מחוץ לישראל» ומשאירים את השורה כ־«8–17 ימי עסקים — 1–3 ימי טיפול ועוד 7–14 ימי משלוח». אין משפט מחליף: אמירה על מקור המשלוח אינה נחוצה כשההזמנות נשלחות מהארץ.",
+    "owner": "shopify",
+    "risk": "Highest-visibility false claim in the store, above the fold on the live homepage. Removing it makes the homepage disagree with /policies/shipping-policy, which still says the opposite — the owner must update the shipping policy first, or in the same sitting. The numbers left in this row are still the import-length window (question 1)."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-terms.liquid:23 (LIVE dev-theme homepage, sub-line of the «8–17 ימי עסקים» numeral)",
+    "text": "assign ens_s2 = 'כל ההזמנות נשלחות ממחסנינו בישראל.'",
+    "tier": "A",
+    "action": "keep-but-flag",
+    "replacement": "כל ההזמנות נשלחות ממחסנינו בישראל.  (already changed in commit 3c9c87b — the previous text was «ייתכן משלוח ממחסן מחוץ לישראל.»)",
+    "owner": "theme",
+    "risk": "Already fixed in the dev theme, but it now says the OPPOSITE of the binding shipping policy, which still publishes «מוצרים עשויים להישלח ממחסנים מחוץ לישראל». Shipping the dev theme before the policy is updated puts a contradiction between the homepage and /policies/shipping-policy. Also note the sentence sits under a 7–14-day transit leg, which reads as incoherent until question 1 is answered."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-terms.liquid:20-22 (LIVE dev-theme homepage, the middle of the three big numbers)",
+    "text": "assign ens_n2 = '8–17' / assign ens_u2 = 'ימי עסקים' / assign ens_h2 = 'לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.'",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלה 1). כשיינתנו, השורה נשארת באותו מבנה: «לאספקה: X ימי טיפול ו־Y ימי משלוח.»",
+    "owner": "theme",
+    "risk": "This is the number every other surface is anchored to (SPEC §5.3 says it is copied byte-for-byte from templates/collection.json coll_terms). Changing it here without changing the shipping policy, the ToS, the FAQ, processing-time and the Shopify shipping profile breaks the store's own promise «המספרים כאן זהים למדיניות המשלוחים המלאה — אין הבטחות נפרדות». Do not touch until the owner gives the real domestic window."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-pdp-terms-line.liquid:28 (LIVE — product page, directly under the buy button)",
+    "text": "משלוח חינם לנקודת איסוף · עד הבית <bdi dir=\"ltr\">29.90</bdi> ₪ · אספקה משוערת <bdi dir=\"ltr\">8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספר מבעל החנות (שאלה 1). המבנה נשאר: «... · אספקה משוערת <bdi dir=\"ltr\">X</bdi> ימי עסקים · ...»",
+    "owner": "theme",
+    "risk": "Point-of-purchase promise; it links to /pages/shipping-delivery. If this number is lowered before the shipping policy and the Shopify delivery-estimate profile are updated, the store promises at the button something the binding policy contradicts and the JSON-LD still reports 7–14 transit days to Google."
+   },
+   {
+    "where": "LIVE MAIN theme → templates/product.elms-pdp.json and templates/product.elmsnest.json, section «elms_policy» block «policy_time», section «elms_faq» block «faq_when», and «elms_trust» fact1_a (not in this repo)",
+    "text": "הזמן הכולל המשוער הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלה 1). מבנה זהה: «הזמן הכולל המשוער הוא X ימי עסקים: Y ימי טיפול ועוד Z ימי משלוח.»",
+    "owner": "shopify",
+    "risk": "Baked into two live product templates and three blocks, so it renders on every PDP and survives a template switch. Only the owner can edit the live theme's JSON. Must move together with the shipping policy and with the dev-theme PDP line above, or two product pages will quote different windows."
+   },
+   {
+    "where": "Product solar-wall-light-motion-sensor-ip65 → metafield custom.faq, answer to «מתי ההזמנה מגיעה?»",
+    "text": "הזמן הכולל המשוער ממועד ההזמנה הוא 8–17 ימי עסקים: 1–3 ימי טיפול ועוד 7–14 ימי משלוח. משלוח לנקודת איסוף בישראל — חינם; שליח עד הבית — 29.90 ₪.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלה 1). המחירים (חינם / 29.90 ₪) נשארים כמו שהם.",
+    "owner": "shopify",
+    "risk": "Lives in product data, not in the theme, so no theme change reaches it. If other product metafields carry the same answer they must all move together; a per-product FAQ that disagrees with the policy is the worst kind of inconsistency."
+   },
+   {
+    "where": "LIVE MAIN theme → section «elmsnest_cart_guidance» on the cart (mirrored at /home/user/ElmsNest/brief/inventory/cart-full/index.html)",
+    "text": "8–17 ימי עסקים בסך הכול: 1–3 ימי טיפול ועוד 7–14 ימי משלוח.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלה 1).",
+    "owner": "shopify",
+    "risk": "Last surface before checkout. Same number, fourth independent place; if it is missed the store contradicts itself between the PDP and the cart."
+   },
+   {
+    "where": "Shopify page «משלוחים והחזרות» (handle shipping-delivery, gid://shopify/Page/104093417646) — item 2 of «זמני טיפול ואספקה». Mirrors: /home/user/ElmsNest/brief/inventory/page-shipping/index.html, /home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-shipping/index.html",
+    "text": "מוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.",
+    "tier": "A",
+    "action": "delete",
+    "replacement": "מוחקים את שני המשפטים. אם בעל החנות רוצה אמירה חיובית במקומם: «ההזמנה נשלחת ממחסנינו בישראל.» — ותו לא. משפט החבילות הנפרדות אינו נמחק אוטומטית: ראו שאלה 4.",
+    "owner": "shopify",
+    "risk": "The page a buyer is sent to from the footer, the FAQ and every PDP terms line. It is a Shopify page body — editing it changes the live store. It also mirrors the binding shipping policy word for word, so the policy must be fixed in the same sitting or the page and the policy will disagree. Deleting the split-parcel sentence while the policy still promises free split parcels removes a disclosure the customer may still be entitled to."
+   },
+   {
+    "where": "Shopify page «משלוחים והחזרות» — <meta name=\"description\">, <meta property=\"og:description\">, <meta name=\"twitter:description\"> (auto-generated from the body)",
+    "text": "…2 זמן הובלה משוער: 7–14 ימי עסקיםמוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה…",
+    "tier": "A",
+    "action": "keep-but-flag",
+    "replacement": "אין טקסט להחליף — התיאור נבנה מחדש מגוף העמוד. אחרי תיקון הגוף יש לוודא את הסניפט (Google Search Console) ולרענן את התצוגה המקדימה של הקישור (Facebook/WhatsApp debugger).",
+    "owner": "shopify",
+    "risk": "Fixing the visible body is not enough on its own: the old snippet stays in Google's index and in cached link previews until it is re-crawled. If the page has a manually set SEO description in Shopify admin, it will NOT regenerate and must be edited by hand."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:543 (LIVE dev theme — /pages/shipping-delivery, `when 'ship'` branch)",
+    "text": "<p>ההזמנה נשלחת ממחסנינו בישראל.</p>",
+    "tier": "A",
+    "action": "keep-but-flag",
+    "replacement": "ההזמנה נשלחת ממחסנינו בישראל.  (already changed in commit 3c9c87b; the previous text was «מוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.»)",
+    "owner": "theme",
+    "risk": "Two things happened in one edit: the false origin claim went (good) and the split-parcel disclosure went with it (needs question 4). This page is the dev-theme copy of the Shopify page body; the two are now out of sync, and the page's own note still says «המספרים כאן זהים למדיניות המשלוחים המלאה» while the binding policy still says warehouses abroad."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:542,544 (LIVE — /pages/shipping-delivery, the delivery-times spine)",
+    "text": "טיפול בהזמנה: <bdi dir=\"ltr\">1–3</bdi> ימי עסקים … סה״כ משוער: <bdi dir=\"ltr\">8–17</bdi> ימי עסקים",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלות 1–3). מבנה השורות נשאר כפי שהוא.",
+    "owner": "theme",
+    "risk": "COPY-SOURCE.md lists these as «facts that must stay byte-identical» with the shipping policy. Change one side only and the page breaks its own promise of a single source of numbers."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:546 (LIVE — /pages/shipping-delivery note); same wording at :440 (/pages/help-faq «איך עוקבים אחרי ההזמנה?») and in the binding shipping policy",
+    "text": "כשמספר מעקב זמין, נשלח אותו לאימייל או לטלפון שנמסרו בהזמנה. לעיתים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.",
+    "tier": "B",
+    "action": "rewrite",
+    "replacement": "מספר מעקב נשלח לאימייל או לטלפון שנמסרו בהזמנה עם מסירת החבילה לחברת השילוח.  (רק אם בעל החנות מאשר שכל הזמנה מקבלת מעקב — שאלה 5; אחרת משאירים כפי שהוא)",
+    "owner": "theme",
+    "risk": "Only safe if every order really does get a tracking number and it scans on handover. If tracking is in fact sometimes missing or slow, this rewrite creates a new false promise — worse than the tell it removes. The same sentence is in the binding policy, so the policy must be changed with it."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:491-492 (LIVE — /pages/processing-time, spine «מה קורה אחרי שהזמנתם», steps 2–3)",
+    "text": "עד <bdi dir=\"ltr\">3</bdi> ימי עסקים. כשמספר מעקב זמין — נשלח לכם אותו. … זמן ההובלה המשוער הוא <bdi dir=\"ltr\">7–14</bdi> ימי עסקים. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.",
+    "tier": "B",
+    "action": "rewrite",
+    "replacement": "עד <bdi dir=\"ltr\">3</bdi> ימי עסקים. נשלח לכם מספר מעקב. … זמן ההובלה המשוער הוא <bdi dir=\"ltr\">X</bdi> ימי עסקים.  (X — שאלה 1; משפט החבילות הנפרדות נמחק רק אם בעל החנות מאשר שהזמנה יוצאת בחבילה אחת — שאלה 4)",
+    "owner": "theme",
+    "risk": "The split-parcel sentence is also in the binding shipping policy; deleting it from the page while the policy keeps it leaves the customer with two different answers. If orders genuinely do split, deleting it removes a legitimate disclosure."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:481-483 (LIVE — /pages/processing-time, the <dl> plate)",
+    "text": "<dt>טיפול בהזמנה</dt><dd><bdi dir=\"ltr\">1–3</bdi> ימי עסקים</dd> … <dt>זמן הובלה</dt><dd><bdi dir=\"ltr\">7–14</bdi> ימי עסקים</dd> … <dt>סה״כ משוער</dt><dd><bdi dir=\"ltr\">8–17</bdi> ימי עסקים</dd>",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלות 1–3). ה־<dl> נשאר במבנהו.",
+    "owner": "theme",
+    "risk": "Same three numbers, third surface. Binding policy first."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:436 (LIVE — /pages/help-faq, «תוך כמה זמן ההזמנה מגיעה?»)",
+    "text": "הזמן הכולל המשוער הוא <bdi dir=\"ltr\">8–17</bdi> ימי עסקים: <bdi dir=\"ltr\">1–3</bdi> ימי טיפול ועוד <bdi dir=\"ltr\">7–14</bdi> ימי משלוח.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלה 1).",
+    "owner": "theme",
+    "risk": "The FAQ is the answer a hesitating buyer reads before checkout, and it links to the shipping policy in the same sentence. Any mismatch is visible in one click."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:498 and :560 (LIVE — h2 on /pages/processing-time and /pages/shipping-delivery)",
+    "text": "עברו <bdi dir=\"ltr\">17</bdi> ימי עסקים והחבילה לא הגיעה?",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין לסף החדש מבעל החנות (שאלה 3). המבנה נשאר: «עברו <bdi dir=\"ltr\">N</bdi> ימי עסקים והחבילה לא הגיעה?»",
+    "owner": "theme",
+    "risk": "This threshold is also written into the binding shipping policy («אם חלפו 17 ימי עסקים…»). Lowering it on the pages only would give the customer a right the policy does not grant, and it must equal the new total window, not be picked independently."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:554 (LIVE — /pages/shipping-delivery, returns trio item 3); the same idea at :458 (/pages/help-faq)",
+    "text": "פתחו בקשת החזרה וקבלו מאיתנו הנחיות כתובות. כתובת ההחזרה נמסרת בהתאם למוצר ולמסלול המשלוח.",
+    "tier": "B",
+    "action": "rewrite",
+    "replacement": "פתחו בקשת החזרה וקבלו מאיתנו הנחיות כתובות. כתובת ההחזרה מופיעה בהנחיות.  (אם בעל החנות מוסר כתובת החזרה אחת ויחידה — שאלה 6 — עדיף לפרסם אותה כאן במלואה)",
+    "owner": "theme",
+    "risk": "«בהתאם למוצר ולמסלול המשלוח» is copied from the binding refund policy. Removing it from the page while the refund policy keeps it makes the page look like it promises one address when the contract says otherwise; the refund policy has to change first."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-page.liquid:830 (LIVE — schema default `lead_proc`, the lead sentence of /pages/processing-time)",
+    "text": "{ \"type\": \"text\", \"id\": \"lead_proc\", \"label\": \"משפט פתיחה\", \"default\": \"המספרים כאן זהים למדיניות המשלוחים המלאה — אין הבטחות נפרדות.\" },",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "המספרים כאן זהים למדיניות המשלוחים המלאה — אין הבטחות נפרדות.  (הנוסח נשאר; הוא נכון רק אם מדיניות המשלוחים מתוקנת באותה נשימה)",
+    "owner": "theme",
+    "risk": "This sentence is the store's own consistency guarantee. The moment any page number differs from the binding policy, this line becomes the store calling itself a liar. It is the reason the policy must be updated before, not after, the pages."
+   },
+   {
+    "where": "Shipping policy (מדיניות משלוחים) — ShopPolicy SHIPPING_POLICY gid://shopify/ShopPolicy/34732933294, section «מקור המשלוח וחבילות נפרדות», first sentence",
+    "text": "מוצרים עשויים להישלח ממחסנים מחוץ לישראל.",
+    "tier": "A",
+    "action": "delete",
+    "replacement": "מוחקים את המשפט ואת כותרת המשנה «מקור המשלוח וחבילות נפרדות» יחד איתו. אם בעל החנות רוצה אמירה מפורשת: «ההזמנות נשלחות ממחסנינו בישראל.»",
+    "owner": "shopify",
+    "risk": "THE blocker. Every other correction in this table depends on it: while it stands, any storefront sentence saying the goods ship from Israel contradicts the binding contract, and the two dev-theme lines already changed in commit 3c9c87b are already in that state. Only the owner can edit a Shopify policy."
+   },
+   {
+    "where": "Shipping policy — same section «מקור המשלוח וחבילות נפרדות», second sentence",
+    "text": "כאשר הזמנה כוללת מספר פריטים, ייתכן שהם יישלחו בחבילות נפרדות ויגיעו במועדים שונים, ללא חיוב נוסף מעבר למחיר המשלוח שהוצג בקופה.",
+    "tier": "B",
+    "action": "delete",
+    "replacement": "מוחקים — אך רק אחרי שבעל החנות מאשר שהזמנה עם כמה פריטים יוצאת בחבילה אחת (שאלה 4). אם היא עדיין עשויה להתפצל, המשפט נשאר כלשונו.",
+    "owner": "shopify",
+    "risk": "This is a customer-favourable clause (no extra charge for split parcels). Deleting it removes a benefit; keeping it while the store claims one Israeli warehouse keeps the dropship fingerprint. The owner must decide the fact, not us."
+   },
+   {
+    "where": "Shipping policy — section «זמני טיפול ואספקה»",
+    "text": "זמן הובלה משוער לאחר הטיפול: 7–14 ימי עסקים. … זמן כולל משוער ממועד ההזמנה: 8–17 ימי עסקים.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלות 1–2). זה המסמך שנקבע ראשון; כל שאר העמודים מועתקים ממנו.",
+    "owner": "shopify",
+    "risk": "Legally binding delivery promise, restated in the ToS. It is the root record: fix it first, then the pages, then the theme, then the Shopify delivery-estimate profile that feeds the JSON-LD."
+   },
+   {
+    "where": "Shipping policy — section «זמני טיפול ואספקה», business-day paragraph",
+    "text": "זמני האספקה הם הערכה ואינם כוללים עיכובים חריגים שאינם בשליטתנו.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "נשאר כלשונו. זו הגנה לגיטימית גם למשלוח מקומי (שביתות, מזג אוויר, חברת שילוח) ואינה מעידה על מקור זר בפני עצמה.",
+    "owner": "shopify",
+    "risk": "Deleting it removes a legitimate legal protection for the shop and changes nothing about the dropship impression. Flagged only so the owner sees it in context; no change recommended."
+   },
+   {
+    "where": "Shipping policy — section «מעקב אחר ההזמנה»",
+    "text": "לעיתים נדרשים מספר ימים עד שמידע המעקב מתעדכן אצל חברת השילוח.",
+    "tier": "B",
+    "action": "rewrite",
+    "replacement": "— תלוי בתשובה לשאלה 5. אם כל הזמנה מקבלת מעקב שנסרק במסירה: «מספר המעקב נמסר עם מסירת החבילה לחברת השילוח.» אחרת נשאר כלשונו.",
+    "owner": "shopify",
+    "risk": "Binding text. Promising immediate tracking that the carrier does not actually provide creates a new exposure; only change it on the owner's confirmation."
+   },
+   {
+    "where": "Shipping policy — section «עיכוב, חבילה חסרה או מוצר פגום»",
+    "text": "אם חלפו 17 ימי עסקים ממועד ההזמנה והחבילה טרם נמסרה, או אם התקבל מוצר פגום, חסר או שגוי, פנו אלינו עם מספר ההזמנה ותיאור הבעיה.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין לסף החדש (שאלה 3). הסף חייב להיות זהה לזמן הכולל המשוער החדש, ולהופיע גם בכותרות ב־processing-time ו־shipping-delivery.",
+    "owner": "shopify",
+    "risk": "Binding: it tells the customer when they may complain. It must move together with the total window and with the two page h2s, or the store will publish two different escalation thresholds."
+   },
+   {
+    "where": "Terms of service (תנאי שימוש ורכישה) — ShopPolicy TERMS_OF_SERVICE gid://shopify/ShopPolicy/34732671150, section «משלוחים»",
+    "text": "זמני הטיפול, זמני האספקה, מקור המשלוח והעלויות מפורטים במדיניות המשלוחים.",
+    "tier": "A",
+    "action": "rewrite",
+    "replacement": "זמני הטיפול, זמני האספקה והעלויות מפורטים במדיניות המשלוחים.",
+    "owner": "shopify",
+    "risk": "Dropping «מקור המשלוח» removes the contractual hook that makes the foreign-warehouse clause a term of every sale. Safe on its own, but pointless until the shipping policy's origin section is actually deleted — do both in one edit."
+   },
+   {
+    "where": "Terms of service — section «משלוחים», the numbers clause",
+    "text": "נכון למועד עדכון התנאים, טיפול בהזמנה אורך 1–3 ימי עסקים, זמן ההובלה המשוער הוא 7–14 ימי עסקים, והזמן הכולל המשוער הוא 8–17 ימי עסקים.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלות 1–2). חייב להיות זהה מילה במילה למדיניות המשלוחים.",
+    "owner": "shopify",
+    "risk": "The window is binding in two separate legal documents. Updating the shipping policy and forgetting the ToS leaves the old promise contractually alive."
+   },
+   {
+    "where": "Refund policy (מדיניות ביטולים, החזרות והחזרים) — ShopPolicy REFUND_POLICY gid://shopify/ShopPolicy/34732638382, section «החזרת המוצר»",
+    "text": "אין לשלוח מוצר לפני פתיחת בקשת החזרה וקבלת הנחיות כתובות משירות הלקוחות. כתובת ההחזרה המדויקת תימסר במסגרת ההנחיות, בהתאם למוצר ולמסלול המשלוח.",
+    "tier": "B",
+    "action": "rewrite",
+    "replacement": "אין לשלוח מוצר לפני פתיחת בקשת החזרה וקבלת הנחיות כתובות משירות הלקוחות. כתובת ההחזרה מופיעה בהנחיות.  (ואם יש כתובת החזרה קבועה — שאלה 6 — יש לפרסם אותה כאן במפורש)",
+    "owner": "shopify",
+    "risk": "Binding. It governs the page copy at elmsnest-s-page.liquid:554, so the policy must change first or the page will promise a single address the contract does not."
+   },
+   {
+    "where": "Contact information policy (Contact) — ShopPolicy CONTACT_INFORMATION gid://shopify/ShopPolicy/34732998830",
+    "text": "ElmsNest\nAddress: United Kingdom",
+    "tier": "A",
+    "action": "rewrite",
+    "replacement": "ElmsNest · [כתובת עסק מלאה בישראל] · info@elmsnest.com  — הכתובת נמסרת על ידי בעל החנות (שאלה 7). אין להמציא עיר, רחוב או מספר ח.פ.",
+    "owner": "shopify",
+    "risk": "The only address the store publishes anywhere, and it is a foreign country in a legally required disclosure. It contradicts «מחסנים בישראל» more loudly than any sentence in the theme. We cannot write a replacement — inventing an Israeli address would be a fabricated claim under BRIEF §3. Blocked on the owner."
+   },
+   {
+    "where": "Contact information policy (Contact) — same document",
+    "text": "Address: United Kingdom (أو ضع عنوان فعلي عند توفره) ... Phone: (إضافة رقم هاتف إذا توفر) ... VAT Number: (إن وجد)",
+    "tier": "A",
+    "action": "delete",
+    "replacement": "מוחקים את כל הערות העריכה בסוגריים. כל שדה שאין לו ערך אמיתי — מוחקים את השדה עצמו, לא משאירים placeholder.",
+    "owner": "shopify",
+    "risk": "Authoring placeholders in Arabic, live, in a public legal document of an all-Hebrew store. Zero downside to deleting them; the risk is only that deleting the brackets leaves an empty address field, which is why it must be done together with the row above."
+   },
+   {
+    "where": "Shopify page «זמני טיפול בהזמנה» (handle processing-time, gid://shopify/Page/104095449262) — full body",
+    "text": "זמני הטיפול והאספקה: 1–3 ימי עסקים לטיפול, 7–14 להובלה, 8–17 סה\"כ — בהתאם למדיניות המשלוחים.",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספרים מבעל החנות (שאלות 1–3). זהה מילה במילה למדיניות ולעמוד המשלוחים.",
+    "owner": "shopify",
+    "risk": "Third independent public surface for the same numbers, and a Shopify page body — editing it touches the live store. Must be edited in the same pass as the shipping page and the policy."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-terms.liquid:204 (LEGACY preset default — renders the moment the block is added in the theme editor)",
+    "text": "{ \"type\": \"line\", \"settings\": { \"number\": \"8–17\", \"unit\": \"ימי עסקים\", \"title\": \"מרגע ההזמנה עד הדלת.\", \"text\": \"1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל — ולכן אנחנו כותבים את זה כאן, ולא מגלים אחרי.\" } },",
+    "tier": "A",
+    "action": "rewrite",
+    "replacement": "\"text\": \"1–3 ימי טיפול ועוד 7–14 ימי משלוח.\"  — מוחקים את כל המשפט על המחסנים מחוץ לישראל; המספרים מתעדכנים לפי שאלה 1.",
+    "owner": "theme",
+    "risk": "Strongest wording of the false claim anywhere in the theme, and it is a preset — one click in the theme editor puts it on a customer page. Nothing breaks by removing it (the section is in no template order); SPEC §P7 says legacy files stay, so edit rather than delete the file."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-coll-terms.liquid:356 (LEGACY preset default, collection terms row)",
+    "text": "{ \"type\": \"number\", \"settings\": { \"numeral\": \"8–17\", \"unit\": \"ימי עסקים\", \"headline\": \"לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.\", \"sub\": \"ייתכן משלוח ממחסן מחוץ לישראל.\" } },",
+    "tier": "A",
+    "action": "rewrite",
+    "replacement": "\"sub\": \"\"  — מוחקים את שורת המשנה כולה. ה־headline נשאר עד שיינתנו המספרים (שאלה 1).",
+    "owner": "theme",
+    "risk": "Preset default; renders on block add. No template references it, so nothing on the storefront changes today — but leaving it is what re-introduces the claim on the next rebuild."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-pdp-terms.liquid:285 (LEGACY preset default, product-page terms row)",
+    "text": "{ \"type\": \"number\", \"settings\": { \"numeral\": \"8–17\", \"unit\": \"\", \"headline\": \"ימי עסקים מרגע ההזמנה ועד הדלת.\", \"sub\": \"1–3 ימי טיפול ועוד 7–14 ימי משלוח. חלק מהמוצרים נשלחים ממחסנים מחוץ לישראל.\", \"link_label\": \"\" } },",
+    "tier": "A",
+    "action": "rewrite",
+    "replacement": "\"sub\": \"1–3 ימי טיפול ועוד 7–14 ימי משלוח.\"  — מוחקים את המשפט על המחסנים מחוץ לישראל.",
+    "owner": "theme",
+    "risk": "Preset default on the product page — the foreign-origin claim at the moment of purchase if anyone adds the block. Same as above: no live surface today, but it is a loaded gun in the theme editor."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-coll-terms.liquid:14-17 (Hebrew file-header comment — the copy table the presets were built from); the same table is referenced from /home/user/ElmsNest/theme/sections/elmsnest-v2-terms.liquid:8",
+    "text": "8-17  - 4 -  ימי עסקים לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח. ייתכן משלוח ממחסן מחוץ לישראל.",
+    "tier": "A",
+    "action": "rewrite",
+    "replacement": "8-17  - 4 -  ימי עסקים לאספקה: 1–3 ימי טיפול ו־7–14 ימי משלוח.  — ובשורת ההסבר שמעליה: «הנוסח המחייב הוא מדיניות המשלוחים; אין לכתוב כאן אמירה על מקור המשלוח.»",
+    "owner": "theme",
+    "risk": "Not rendered, but it is the canonical copy source the presets were generated from. Leaving it uncorrected re-seeds the false sentence into any rebuilt terms section — exactly how it spread to five files in the first place."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-terms.liquid:6 (English file-header comment of the pre-v2 strip)",
+    "text": "8–17 day window, the «may ship from warehouses outside Israel» disclosure,",
+    "tier": "A",
+    "action": "rewrite",
+    "replacement": "8–17 day window and the 14-day cancellation right with its 5%/₪100 cap.  — plus a line: «There is no shipment-origin disclosure. The shop ships from its own warehouses in Israel; do not re-add an origin sentence.»",
+    "owner": "theme",
+    "risk": "This comment frames the false claim as a consumer-protection disclosure that must never be dropped — it is the instruction that keeps the sentence alive across rewrites. Harmless to customers, dangerous to the next editor."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-terms.liquid:139 (schema `note` richtext info — where the merchant is told to paste the legal text)",
+    "text": "{ \"type\": \"richtext\", \"id\": \"note\", \"label\": \"פירוט\", \"info\": \"נפתח בלחיצה. כאן נכנסים הנתונים המשפטיים המלאים — אין לקצר אותם.\" }",
+    "tier": "A",
+    "action": "keep-but-flag",
+    "replacement": "נפתח בלחיצה. כאן נכנסים הנתונים המשפטיים המלאים, כלשונם במדיניות המשלוחים — אין לקצר אותם ואין להוסיף אמירה על מקור המשלוח.",
+    "owner": "theme",
+    "risk": "Low risk either way; it is the field the old disclosure was meant to be pasted into. Worth the extra clause so the instruction points at the policy rather than at the old wording."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-goodnight.liquid:212 (LEGACY schema default `strip_text`)",
+    "text": "{ \"type\": \"text\", \"id\": \"strip_text\", … \"default\": \"משלוח חינם לנקודת איסוף · 8–17 ימי עסקים · ביטול תוך 14 יום לפי חוק הגנת הצרכן · לתנאים המלאים ←\" },",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספר מבעל החנות (שאלה 1). המבנה נשאר.",
+    "owner": "theme",
+    "risk": "Preset copy only; no live surface. Must not be forgotten when the number changes, or a re-added section will publish the old window."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-pdp-stage.liquid:1061 (LEGACY schema default `terms_strip`, under the buy button)",
+    "text": "{ \"type\": \"textarea\", \"id\": \"terms_strip\", … \"default\": \"משלוח לנקודת איסוף חינם · אספקה <bdi>8–17</bdi> ימי עסקים · ביטול עד <bdi>14</bdi> יום מקבלת המוצר.\" },",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— ממתין למספר מבעל החנות (שאלה 1).",
+    "owner": "theme",
+    "risk": "Same as above. Legacy default at the buy button; harmless until someone adds the section."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/snippets/elmsnest-s-pdp-terms-line.liquid:4-5 (Hebrew comment quoting the customer-facing window as the 'licence' for it)",
+    "text": "Wording licensed by the inventory (elmsnest-pdp-facts «אספקה משוערת: 8–17 ימי עסקים», elmsnest-pdp-trust «ניתן לבטל עסקה עד 14 יום מקבלת המוצר», coll_terms rows 0 ₪ / 8–17 / 14) and the",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— מתעדכן יחד עם המספר בשורה 28 (שאלה 1), ובנוסף: «המקור הקובע הוא מדיניות המשלוחים, לא מלאי הנוסחים הישן.»",
+    "owner": "theme",
+    "risk": "A comment, but it is the stated licence that authorises the same number elsewhere. If it keeps quoting 8–17 after the number changes, the next editor will 'restore' the old figure."
+   },
+   {
+    "where": "JSON-LD on every product page — ProductGroup → offers → shippingDetails → deliveryTime, generated from the Shopify shipping profile (seen in all mirrors under /home/user/ElmsNest/brief/inventory/*/index.html and /home/user/ElmsNest/brief/side-pages/pdp3/verify/mirrors/*/index.html)",
+    "text": "\"deliveryTime\":{\"@type\":\"ShippingDeliveryTime\",\"handlingTime\":{\"minValue\":1,\"maxValue\":3},\"transitTime\":{\"minValue\":7,\"maxValue\":14}}",
+    "tier": "B",
+    "action": "keep-but-flag",
+    "replacement": "— אין טקסט לערוך. הערכים נקבעים ב־Shopify Admin → Settings → Shipping and delivery → פרופיל המשלוח → זמן טיפול וזמן אספקה (שאלה 10).",
+    "owner": "shopify",
+    "risk": "Not editable from theme code at all. It keeps feeding Google Shopping and rich results the 7–14-day transit after every visible sentence is rewritten — the one place where fixing the copy provably does not fix the claim."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-s-pdp-facts.liquid:300-305 (LIVE — PDP <details> dumping the raw supplier-pasted description) and the same passthrough at /home/user/ElmsNest/theme/sections/elmsnest-v2-pdp-facts.liquid:489",
+    "text": "<details class=\"ens-facts__more\"><summary class=\"ens-facts__summary\">{{ more_label }}</summary><div class=\"ens-facts__desc\">{{ product.description }}</div></details>",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "אין שינוי בקוד. זהו צינור, לא טקסט: כל מה שמודבק בתיאור המוצר בשופיפיי מגיע ללקוח כלשונו. הניקוי נעשה בתיאורי המוצרים (השורות הבאות), לא כאן.",
+    "owner": "theme",
+    "risk": "Removing the passthrough would hide real product information and break the PDP's only full-description surface. It is listed so the owner understands why editing the theme cannot clean the supplier text — the fix is in product data."
+   },
+   {
+    "where": "Products modern-led-bollard-light-5w-ip65 and dual-head-garden-light-10w-ip65 → descriptionHtml, «פרטים טכניים» line (identical boilerplate on both)",
+    "text": "הספק: 5W · מתח: AC 85–265V · צבע גוף: שחור · גוון אור: חם · מקור אור: LED · גוף: אלומיניום · דירוג אטימות: IP65 · נורה כלולה · תקן CE · אחריות יצרן: שנתיים.",
+    "tier": "C",
+    "action": "rewrite",
+    "replacement": "— תלוי בעובדות שרק בעל החנות יודע (שאלה 11). המבנה המוצע: «הספק: 5W · מתח: [המתח בפועל] · צבע גוף: שחור · גוון אור: חם · מקור אור: LED · גוף: אלומיניום · דירוג אטימות: IP65 · נורה כלולה · אחריות: [מי נותן ולכמה זמן].» אין לכתוב 220–240V או ת\"י בלי אישור.",
+    "owner": "shopify",
+    "risk": "«AC 85–265V» and «תקן CE» may be the literal truth about the unit; replacing them with 230V / ת\"י without verification would swap one false claim for another, and a standards claim is a regulatory statement. Under BRIEF §3 («כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה») the safe move is to drop the unverified acronyms rather than invent replacements."
+   },
+   {
+    "where": "Product swaying-solar-path-lights-ip65 → descriptionHtml, «פרטים טכניים» line",
+    "text": "מקור מתח: סולארי · מתח עבודה: 5V · גוון אור: לבן חם · חומר: ABS · דירוג אטימות: IP65 · נורות LED כלולות · התקנה בהרכבה פשוטה · תקנים: CE, RoHS, UL, FCC, LVD.",
+    "tier": "C",
+    "action": "rewrite",
+    "replacement": "מקור מתח: סולארי · מתח עבודה: 5V · גוון אור: לבן חם · חומר: ABS · דירוג אטימות: IP65 · נורות LED כלולות · התקנה בהרכבה פשוטה.  — מוחקים את רשימת התקנים הזרה (שאלה 11).",
+    "owner": "shopify",
+    "risk": "UL / FCC / LVD are US and EU approvals with no meaning for an Israeli-sold product; publishing them is the clearest export-catalogue residue in the store. Deleting them removes nothing a buyer here can use, but it is product data — only the owner can edit it."
+   },
+   {
+    "where": "Product rechargeable-telescopic-camping-lantern → descriptionHtml, «פרטים טכניים» line",
+    "text": "זמן עבודה מוצהר: כ־3 שעות בפנס הקדמי וכ־5+ שעות בתאורת הצד",
+    "tier": "C",
+    "action": "rewrite",
+    "replacement": "זמן עבודה לפי היצרן: כ־3 שעות בפנס הקדמי וכ־5 שעות ומעלה בתאורת הצד.",
+    "owner": "shopify",
+    "risk": "«מוצהר» reads as the shop disclaiming its own product. Naming the manufacturer as the source is honest and keeps BRIEF §3; do not turn it into an unqualified promise, since the runtime was never measured by the shop."
+   },
+   {
+    "where": "Product powerful-solar-garden-light → descriptionHtml, «פרטים טכניים» line",
+    "text": "מקור מתח: סולארי · מקור אור: LED · התקנה בהרכבה פשוטה · מיועדת לגינה, למדשאה, לשביל, לחצר ולכניסה · יחידה אחת באריזה.",
+    "tier": "C",
+    "action": "rewrite",
+    "replacement": "מקור מתח: סולארי · מקור אור: LED · התקנה בהרכבה פשוטה · מיועדת לגינה, למדשאה, לשביל, לחצר ולכניסה.  — «יחידה אחת באריזה» היא שפת פריטה סיטונאית; אם חשוב לציין כמות: «באריזה: מנורה אחת».",
+    "owner": "shopify",
+    "risk": "Cosmetic. The only risk is that this description is so thin it may be the wrong product data entirely — worth the owner checking rather than us padding it with specs we cannot verify."
+   },
+   {
+    "where": "Product outdoor-bidirectional-led-wall-light-ip65 → descriptionHtml and variant option; same option shown on modern-led-wall-light-6w-up-down variant pickers («דגם A · דגם B»)",
+    "text": "שני עיצובים לבחירה — דגם A ו־דגם B מאפשרים לבחור את צורת האלומה והאופי שמתאימים לחזית.",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— אם בעל החנות יאמר במה הדגמים נבדלים, השמות משתנים לתיאור אמיתי (למשל «אלומה צרה» / «אלומה רחבה»). עד אז נשאר כלשונו; אין להמציא הבדל.",
+    "owner": "shopify",
+    "risk": "Renaming a variant changes variant option values, which breaks existing links, any saved carts and the JSON-LD offers. Not worth doing on a guess — and «דגם A/B» may simply be honest generic Hebrew."
+   },
+   {
+    "where": "Product stainless-steel-solar-path-light-ip65 → tags",
+    "text": "YN-PL3-BS",
+    "tier": "C",
+    "action": "delete",
+    "replacement": "מוחקים את התג. שאר התגים (IP65, מנורת שביל, נירוסטה) נשארים.",
+    "owner": "shopify",
+    "risk": "A factory part number, publicly visible and indexable. Deleting a tag is safe unless it is used by a collection rule or a filter — the owner should check Shopify's automated collections before removing it."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/sections/elmsnest-v2-hero.liquid:234 (schema default `card_title_override`; the hero IS live but index.json sets show_card:false) and /home/user/ElmsNest/theme/sections/elmsnest-v2-night-wall.liquid:218,236 (LEGACY)",
+    "text": "\"default\": \"מנורת שביל סולארית מנירוסטה, תאורה אוטומטית IP65\"  /  \"title_override\": \"מנורת קיר LED עמידה למים IP65, אור למעלה ולמטה\"",
+    "tier": "C",
+    "action": "rewrite",
+    "replacement": "\"default\": \"\"  — משאירים ריק כדי שהשם יימשך מהחנות (זה כבר ההסבר בתווית: «ריק = השם מהחנות»).",
+    "owner": "theme",
+    "risk": "Zero storefront risk today (the hero card is off, night-wall is in no template order) and it removes a hard-coded spec-string title. The only consequence is that switching the hero card on will show the Shopify product title instead of the baked one, which is what SPEC §P3 wants anyway."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/snippets/elmsnest-v2-coll-glyph.liquid:87,91 (LEGACY plate caption and alt text) and its file-header comment at :4-7",
+    "text": "assign env2_cap = 'איור · אין תצלום נקי'  /  assign env2_alt = 'איור של המנורה — אין תצלום נקי'",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— אין נוסח מחליף. הפתרון אינו טקסט אלא תמונות: לפי SPEC §P3 הכרטיסים כבר מציגים product.featured_image והפלטות אינן מרונדרות. הקובץ נשאר עד ניקוי הקבצים הישנים (SPEC §P7).",
+    "owner": "theme",
+    "risk": "Nothing renders it in the current templates, so changing the caption changes nothing a customer sees. Deleting the file is forbidden this round by SPEC §P7; the real fix is the photography task, which needs the owner's approval of an image sheet."
+   },
+   {
+    "where": "/home/user/ElmsNest/theme/snippets/elmsnest-v2-pdp-image.liquid:26-39,61,109-120 (LEGACY resolver whose audit lists the affected LIVE handles) — 16 of 27 products have only supplier marketing artwork; modern-led-bollard-light-5w-ip65 carries three conflicting wordmarks (LUMIERE / LUMORA / LUMIRA), waterproof-led-wall-light-6w-12w image 2 is a supplier contact sheet",
+    "text": "FIFTEEN handles have no text-free image at ANY index. Every one is a marketing poster — baked Hebrew headline, spec icon strip, cream or beige ground …",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— אין נוסח מחליף; זו משימת תוכן, לא משימת קוד (שאלה 12). התמונה החמורה ביותר היא גיליון הקשר של הספק ב־waterproof-led-wall-light-6w-12w ושלושת סימני המותג הזרים ב־modern-led-bollard-light-5w-ip65 — שתיהן להסרה מיידית.",
+    "owner": "shopify",
+    "risk": "The visual half of the dropship fingerprint, and it survives every copy fix. Removing images without replacements leaves products with no picture at all, so it must be sequenced: new renders first, then swap. A supplier contact sheet and three foreign wordmarks on a live PDP are the two that should not wait."
+   },
+   {
+    "where": "Shopify Files — 8 images named 202504151053086167.jpg and siblings (YYYYMMDDHHMMSSnnnn); product modern-led-wall-light-6w-up-down media 7 and 8: 3_f980b44a-…jpg, 6_86375a80-…jpg",
+    "text": "202504151053086167.jpg / 3_f980b44a-5262-4ec7-acb8-99e39ffdefc3.jpg",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— אין נוסח. יש לפתוח את עשר התמונות ולבדוק אם מוטבע בהן טקסט זר או אריזה של ספק (שאלה 12); רק אז להחליט על החלפה.",
+    "owner": "shopify",
+    "risk": "Unverified — nobody has looked at the pixels. Filenames alone prove nothing, and 163 of 165 catalogue images are AI renders, so replacing these two blind would cost images for no confirmed reason."
+   },
+   {
+    "where": "Product solar-wall-light-motion-sensor-ip65 → metafield custom.faq, answer to «האם המנורה עמידה בגשם?»",
+    "text": "אנחנו מסתמכים רק על נתונים שמפורסמים בעמוד — נתון שאינו מצוין כאן אינו מובטח.",
+    "tier": "C",
+    "action": "rewrite",
+    "replacement": "נתון שאינו מופיע בעמוד — שאלו אותנו לפני ההזמנה, נבדוק ונחזור אליכם.",
+    "owner": "shopify",
+    "risk": "The original reads as a shop that has never opened the box. The replacement is the store's own published principle («אם נתון אינו מופיע, איננו מציגים אותו כעובדה» — /pages/help-faq, מי אנחנו), so it makes no new claim; it does commit the shop to answering, which the FAQ already promises."
+   },
+   {
+    "where": "Product handles and their JSON-LD @id, e.g. /products/waterproof-led-wall-light-ip65-6w-12w, /products/modern-led-bollard-light-5w-ip65, /products/dual-head-garden-light-10w-ip65",
+    "text": "waterproof-led-wall-light-ip65-6w-12w",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— לא לשנות עכשיו. אם בעל החנות רוצה כתובות בעברית, כל שינוי handle מחייב הפניית 301 ועדכון של index.json, snippets/elmsnest-v2-pdp-image.liquid ושל כל מקום שבו ה־handle מקודד בקוד.",
+    "owner": "shopify",
+    "risk": "Changing a handle breaks every existing link, ad, share and the hard-coded handle lists in the theme, and drops the URL's search history. The English spec-string slug is a weak tell; the cost of fixing it is high. Recommend leaving it."
+   },
+   {
+    "where": "JSON-LD ProductGroup on every product page — \"category\":\"Uncategorized\"",
+    "text": "\"category\":\"Uncategorized\"",
+    "tier": "C",
+    "action": "rewrite",
+    "replacement": "— נקבע ב־Shopify Admin בשדה Product category של כל מוצר (למשל «Home & Garden > Lighting > Outdoor Lighting»). אין טקסט לערוך בתבנית.",
+    "owner": "shopify",
+    "risk": "Cosmetic and low risk, but it is a per-product admin change across 27 products. It also improves Google Shopping classification, so it is worth doing in the same pass as the shipping-profile fix."
+   },
+   {
+    "where": "Every page — the Shopify localization form at the end of <body> (all 56 mirrored pages)",
+    "text": "Choosing a selection results in a full page refresh.",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— מחרוזת מובנית של שופיפיי. מתורגמת ב־Admin → Settings → Languages → Edit default theme content (חיפוש: \"full page refresh\"), למשל: «בחירה תרענן את העמוד.»",
+    "owner": "shopify",
+    "risk": "Screen-reader-announced English in an all-Hebrew RTL store. Editing theme locale content is safe, but it is a theme-locale override the owner sets, not a file in this repo."
+   },
+   {
+    "where": "Shopify page «הצהרת נגישות» (handle accessibility-statement, gid://shopify/Page/119193895086) — section «נגישות פיזית»",
+    "text": "ElmsNest היא חנות מקוונת בלבד ואינה מפעילה חנות פיזית או מרכז שירות פרונטלי.",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— נשאר כלשונו אם אין חנות פרונטלית. אם בעל החנות רוצה להבהיר: «ElmsNest אינה מפעילה חנות פיזית או מרכז שירות פרונטלי. המחסנים שלנו בישראל אינם פתוחים לקהל.» (שאלה 8).",
+    "owner": "shopify",
+    "risk": "Strictly true as written — it denies a retail storefront, not warehouses. The risk of 'improving' it is that an accessibility statement is a regulated document; the clarification should be added only if the owner confirms the warehouses are real and closed to the public."
+   },
+   {
+    "where": "Shopify pages «מי אנחנו» and «צור קשר» — the only address printed anywhere on the storefront (mirrors: /home/user/ElmsNest/brief/side-pages/pages/verify/mirrors/page-about/index.html, page-contact/index.html)",
+    "text": "ElmsNest, ישראל",
+    "tier": "C",
+    "action": "keep-but-flag",
+    "replacement": "— תלוי בשאלה 7. ברגע שיש כתובת אמיתית, זה המקום הטבעי לומר במשפט אחד: «אנחנו מחזיקים מלאי במחסנים שלנו בישראל, וכל הזמנה נשלחת מהם.» ואת הכתובת המלאה.",
+    "owner": "shopify",
+    "risk": "An absence, not a false statement — but it is what lets the foreign-warehouse sentence stand as the only origin claim in the store. Adding a positive origin sentence here before the shipping policy is corrected would create yet another page contradicting the contract."
+   }
+  ],
+  "questions": [
+   "1. זמן ההובלה בפועל, ממחסן בישראל עד הלקוח: כמה ימי עסקים? (אפשרויות: 1–3 · 2–5 · 3–7 · אחר · להשאיר 7–14). זה המספר שמניע את כל השאר — הוא מופיע ב־14 מקומות לפחות: מדיניות המשלוחים, תנאי השימוש, עמוד המשלוחים, עמוד זמני הטיפול, השאלות הנפוצות, רצועת הבית, שורת התנאים מתחת לכפתור, העגלה, מטא־שדה FAQ של מוצר, ובפרופיל המשלוח של שופיפיי (שמזין את ה־JSON-LD ל־Google).",
+   "2. זמן הטיפול «1–3 ימי עסקים» — עדיין נכון עכשיו כשהמלאי אצלכם? (אפשרויות: 1–2 · 1–3 · יום עסקים אחד · אחר).",
+   "3. הזמן הכולל וסף הפנייה: אם ההובלה משתנה, מה הזמן הכולל המשוער, ואחרי כמה ימי עסקים לקוח מוזמן לפנות אלינו על חבילה שלא הגיעה? (היום: 8–17 סה\"כ, סף של 17 יום. הסף חייב להיות זהה לזמן הכולל החדש, והוא כתוב גם במדיניות המחייבת וגם בשתי כותרות H2).",
+   "4. חבילות נפרדות: הזמנה עם כמה פריטים יוצאת בחבילה אחת מהמחסן, או שהיא עדיין עשויה להתפצל? (אפשרויות: תמיד חבילה אחת → מוחקים את המשפט מהמדיניות ומהעמודים · עשויה להתפצל → המשפט נשאר כלשונו). שימו לב: המשפט כבר נמחק מעמוד המשלוחים בתמת הפיתוח (commit 3c9c87b) בעוד שבמדיניות המחייבת הוא עדיין קיים.",
+   "5. מעקב: האם כל הזמנה מקבלת מספר מעקב, והאם הוא נסרק מיד עם המסירה לחברת השילוח? (אפשרויות: כן, תמיד ומיד → מנסחים מחדש בארבעה מקומות · לא תמיד / לפעמים מתעדכן באיחור → משאירים את הנוסח הקיים).",
+   "6. החזרות: יש כתובת החזרה אחת קבועה בישראל שאפשר לפרסם? (אפשרויות: כן — נא למסור אותה, ואז היא נכנסת למדיניות הביטולים ולעמוד המשלוחים · לא, היא משתנה לפי המוצר → הנוסח הקיים נשאר, וזה נשאר סימן של אספקה מפוצלת).",
+   "7. פרטי העסק למסמך «Contact information»: מה הכתובת המלאה בישראל, מספר הטלפון, ומספר ח.פ. / עוסק מורשה / מע\"מ? היום המסמך מפרסם «Address: United Kingdom» יחד עם הערות עריכה בערבית («أو ضع عنوان فعلي عند توفره»). איננו יכולים להמציא כתובת — זה חסום עד לתשובה.",
+   "8. האם מותר לנו לומר בעמוד «מי אנחנו» ובעמוד המשלוחים שהמלאי מוחזק במחסנים שלכם בישראל, ואם כן — לנקוב בעיר, או להסתפק ב«מחסנים בישראל» בלי מיקום?",
+   "9. מי מעדכן את שלוש המדיניות המחייבות (משלוחים, ביטולים, תנאי שימוש) ואת שני עמודי התוכן בשופיפיי, ומתי? כל שינוי בתמה חייב לבוא אחרי זה, אחרת החנות תסתור את עצמה. שתי שורות בתמת הפיתוח כבר במצב הזה מאז commit 3c9c87b.",
+   "10. פרופיל המשלוח בשופיפיי (Settings → Shipping and delivery → זמן טיפול וזמן אספקה): אילו ערכים להזין? זה השדה שמזין את ה־deliveryTime ב־JSON-LD, והוא ימשיך לדווח 7–14 ימי הובלה ל־Google גם אחרי שכל משפט גלוי יתוקן.",
+   "11. תיאורי המוצרים: «מתח: AC 85–265V», «תקן CE», «תקנים: CE, RoHS, UL, FCC, LVD», «אחריות יצרן: שנתיים» — מה נכון בפועל? (א) מה המתח האמיתי של הפריטים שאתם מחזיקים? (ב) האם יש תו תקן ישראלי? (ג) האחריות היא שלכם או של היצרן, ולכמה זמן? בלי אישור לא נחליף CE ב־ת\"י ולא 85–265V ב־220–240V — זו הצהרה רגולטורית.",
+   "12. תמונות: 16 מ־27 המוצרים מוצגים בפוסטרים שיווקיים של ספק (כותרת מוטבעת, רצועת אייקונים), כולל גיליון קשר של ספק בתמונה 2 של waterproof-led-wall-light-6w-12w ושלושה סימני מותג זרים סותרים (LUMIERE / LUMORA / LUMIRA) על modern-led-bollard-light-5w-ip65. להסיר את שתי אלה מיד? ולהזמין רינדורים נקיים ל־14 הנותרים (משימת תוכן נפרדת שממתינה לאישור גיליון תמונות)?"
+  ],
+  "summary": "The store currently tells customers, in its own binding legal policies and on its most-read pages, that goods may ship from warehouses outside Israel — the sentence sits in the shipping policy, is incorporated by reference into the terms of service, is repeated on /pages/shipping-delivery (and in that page's Google and WhatsApp preview text), and is hard-coded into the live homepage's terms table, while the only address the shop publishes anywhere is «United Kingdom» in a legally required disclosure that still carries Arabic authoring placeholders. Two dev-theme lines were already corrected in commit 3c9c87b, which means the theme now says the opposite of the contract, and every remaining surface is anchored to a 1–3 / 7–14 / 8–17 business-day window that also lives in the Shopify shipping profile feeding Google — so nothing here is safe to ship until the owner updates the three policies and answers the delivery-time questions, because most of the corrections are on objects only he can edit."
+ }
+}
