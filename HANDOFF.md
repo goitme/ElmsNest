@@ -516,6 +516,15 @@ also the four collection links with live counts), **letter's signed About**, and
   policy numbers byte-identical, no broken link, About signed without a `mailto:`.
 - The verifier (`simplify/verify-mirror.js`) now carries the seven pages, a `pageCopy` probe (h1, photographs, numbers,
   collection titles, place labels, signature) and reads `textContent` for presence checks so the collapsed FAQ answers count.
+- **Critique**: five lenses on the deployed pages, a skeptic per finding — **65 findings, 9 confirmed, 56 refuted**
+  (`pages/critique/RESULT.json`; owner 5 · visitor 7 · honesty 8 · designer 6 · engineer 8). Fixed: the FAQ chevron
+  pointed sideways (logical borders turn the glyph in RTL — it takes physical sides now), the desktop trio and the label
+  column had collapsed to a 22-character measure, the dek orphaned its link at 46ch, the contact credit carried the
+  photographer's city as part of his name, and every CC credit now links to the file's source page (dropped when the
+  owner supplies their own picture). Refuted with measurements: «the why page repeats the home word for word» (the home
+  prints both halves plus its own foot; the why page prints the negative halves inside a two-column device) and «six of
+  seven pages open in daylight» (three dusk, two low light, two unstated, three daytime; the FAQ band is the darkest
+  frame in the set at 6.96:1). Re-verified after the fixes: **zero problems** on all seven pages, every page under target.
 
 ### Open for the owner (added to the artifact)
 1. An installation line per product («בלי חפירה, בלי חיווט» / «דיבל, בורג, וזהו») — the shopper's favourite sentence in the

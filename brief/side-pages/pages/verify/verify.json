@@ -789,17 +789,20 @@
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -940,42 +943,50 @@
         {
           "n": "חינם",
           "phrase": "לנקודת איסוף בישראל — חינם",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "29.90",
           "phrase": "שליח עד הבית — 29.90 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "14",
           "phrase": "עד 14 ימים מקבלת המוצר",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "5%",
           "phrase": "5% ממחיר העסקה",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "100",
           "phrase": "100 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -1927,17 +1938,20 @@
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -2078,42 +2092,50 @@
         {
           "n": "חינם",
           "phrase": "לנקודת איסוף בישראל — חינם",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "29.90",
           "phrase": "שליח עד הבית — 29.90 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "14",
           "phrase": "עד 14 ימים מקבלת המוצר",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "5%",
           "phrase": "5% ממחיר העסקה",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "100",
           "phrase": "100 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -2592,8 +2614,8 @@
     "overTarget": false
   },
   "page-about-d-js": {
-    "docH": 3005,
-    "screens": 3.34,
+    "docH": 2953,
+    "screens": 3.28,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2619,7 +2641,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 2486
+        "h": 2434
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -2764,8 +2786,8 @@
     "overTarget": false
   },
   "page-faq-d-js": {
-    "docH": 1862,
-    "screens": 2.07,
+    "docH": 1835,
+    "screens": 2.04,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2791,7 +2813,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 1342
+        "h": 1315
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -2948,8 +2970,8 @@
     "overTarget": false
   },
   "page-processing-d-js": {
-    "docH": 1772,
-    "screens": 1.97,
+    "docH": 1745,
+    "screens": 1.94,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -2975,7 +2997,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 1252
+        "h": 1225
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -3065,17 +3087,20 @@
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -3099,8 +3124,8 @@
     "overTarget": false
   },
   "page-shipping-d-js": {
-    "docH": 2146,
-    "screens": 2.38,
+    "docH": 2128,
+    "screens": 2.36,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -3126,7 +3151,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 1627
+        "h": 1608
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -3216,42 +3241,50 @@
         {
           "n": "חינם",
           "phrase": "לנקודת איסוף בישראל — חינם",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "29.90",
           "phrase": "שליח עד הבית — 29.90 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "14",
           "phrase": "עד 14 ימים מקבלת המוצר",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "5%",
           "phrase": "5% ממחיר העסקה",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "100",
           "phrase": "100 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -4203,17 +4236,20 @@
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -4354,42 +4390,50 @@
         {
           "n": "חינם",
           "phrase": "לנקודת איסוף בישראל — חינם",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "29.90",
           "phrase": "שליח עד הבית — 29.90 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "14",
           "phrase": "עד 14 ימים מקבלת המוצר",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "5%",
           "phrase": "5% ממחיר העסקה",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "100",
           "phrase": "100 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -5341,17 +5385,20 @@
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -5492,42 +5539,50 @@
         {
           "n": "חינם",
           "phrase": "לנקודת איסוף בישראל — חינם",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "29.90",
           "phrase": "שליח עד הבית — 29.90 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "14",
           "phrase": "עד 14 ימים מקבלת המוצר",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "5%",
           "phrase": "5% ממחיר העסקה",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "100",
           "phrase": "100 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -6006,8 +6061,8 @@
     "overTarget": false
   },
   "page-about-d-nojs": {
-    "docH": 3005,
-    "screens": 3.34,
+    "docH": 2953,
+    "screens": 3.28,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -6033,7 +6088,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 2486
+        "h": 2434
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -6178,8 +6233,8 @@
     "overTarget": false
   },
   "page-faq-d-nojs": {
-    "docH": 1862,
-    "screens": 2.07,
+    "docH": 1835,
+    "screens": 2.04,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -6205,7 +6260,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 1342
+        "h": 1315
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -6362,8 +6417,8 @@
     "overTarget": false
   },
   "page-processing-d-nojs": {
-    "docH": 1772,
-    "screens": 1.97,
+    "docH": 1745,
+    "screens": 1.94,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -6389,7 +6444,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 1252
+        "h": 1225
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -6479,17 +6534,20 @@
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],
@@ -6513,8 +6571,8 @@
     "overTarget": false
   },
   "page-shipping-d-nojs": {
-    "docH": 2146,
-    "screens": 2.38,
+    "docH": 2128,
+    "screens": 2.36,
     "overflowX": false,
     "liquidErrors": 0,
     "glyphPlates": 0,
@@ -6540,7 +6598,7 @@
       },
       {
         "id": "template--21567616352430__ens_page",
-        "h": 1627
+        "h": 1608
       },
       {
         "id": "sections--21567606390958__footer_KwXhWr",
@@ -6630,42 +6688,50 @@
         {
           "n": "חינם",
           "phrase": "לנקודת איסוף בישראל — חינם",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "29.90",
           "phrase": "שליח עד הבית — 29.90 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "1–3",
           "phrase": "1–3 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "7–14",
           "phrase": "7–14 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "8–17",
           "phrase": "8–17 ימי",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "14",
           "phrase": "עד 14 ימים מקבלת המוצר",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "5%",
           "phrase": "5% ממחיר העסקה",
-          "found": true
+          "found": true,
+          "visible": true
         },
         {
           "n": "100",
           "phrase": "100 ₪",
-          "found": true
+          "found": true,
+          "visible": true
         }
       ],
       "numbersMissing": [],

@@ -95,3 +95,41 @@ places and are never under a heading about lighting products. The Pexels kerosen
    are Mediterranean-looking but photographed elsewhere. One own photograph replaces any band in a picker.
 3. The contact page's Shopify body is never rendered by the template today; if it holds copy the owner wants shown,
    it goes into the section's contact branch.
+
+---
+
+## 7. Amendments after the build, the deploy and the critique (2026-09-08)
+
+Three lenses checked the files before deploy; five lenses and a skeptic per finding read the **real deployed pages**
+afterwards (65 findings, **9 confirmed**, 56 refuted with measurements — `critique/RESULT.json`; scores: owner 5 ·
+visitor 7 · honesty 8 · designer 6 · engineer 8).
+
+**Fixed after the critique**
+
+1. **The FAQ chevron pointed sideways.** `border-block-end` + `border-inline-end` build the glyph from logical sides, and
+   in RTL that turns the classic down-chevron into `‹`. The glyph is geometry, not layout, so it now takes physical
+   borders: closed points down, open points up (verified on the render).
+2. **The desktop trio collapsed to a 22-character measure** — it now spans the full section grid.
+3. **The label column broke the value off its label** (`משלוח לנקודת איסוף בישראל / — חינם`) — the term column is
+   `minmax(24ch,auto)`.
+4. **The dek was capped at 46ch** and orphaned the FAQ's contact link across a line break — 60ch.
+5. **The contact credit named the photographer's city as part of his name** («Josh Evnin from Chicago, IL, USA») — the
+   drawn credit is «צילום: Josh Evnin (CC BY-SA 2.0)»; `IMAGES.md` keeps the raw Commons author field in its own column.
+6. **Every CC credit now links to the file's source page** (`credit_url` on the photo snippet), which is what the licence
+   asks for. The link is dropped when the owner supplies their own photograph through the picker, so no one's work is
+   ever attributed to someone else's file.
+
+**Refuted, with what the skeptics measured** — the two loudest:
+
+- «The why page repeats the home page word for word»: the home block prints the place word, the positive line and the
+  negative line plus the guide link and the contact promise; the why page prints only the negative halves, as run-in
+  labels inside a two-column «מתי זה מתאים — ומתי עדיף פתרון אחר» whose left column exists nowhere else. The four
+  sentences are single-sourced from `elmsnest-s-place`, which is the licensed vocabulary, not a copied block. The
+  proposed fix also reversed ruling §4.2 and would have restored unlicensed clauses.
+- «Six of seven pages open in daylight»: of the ten photographs, three are explicitly at dusk, two at low light, two
+  state no hour and three are daytime. The FAQ band — named in the finding as «a grey winter park» — is the darkest
+  frame in the set (measured 6.96:1 against the ink), which is why it is the one page whose h1 sits on its band.
+
+**Measured after the fixes** (`verify/verify.json`, 2026-09-08): guide 4.05 · why-solar 3.57 · about 3.52 · FAQ 2.66 ·
+processing 2.63 · shipping 3.18 · contact 2.95 screens at 390×844, every page under its §5 target; one h1 per page,
+every photograph found with its kicker, caption and credit, every policy number present, no broken link — zero problems.
