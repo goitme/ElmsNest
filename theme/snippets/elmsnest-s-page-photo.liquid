@@ -1,0 +1,169 @@
+{%- comment -%}
+  ElmsNest S — the one photograph slot of the content pages (PAGES SPEC §2, §3).
+  Rendered only by sections/elmsnest-s-page.liquid, which owns ALL the CSS for the classes below
+  (this snippet emits no <style> and no JS).
+
+  Input (every value is passed by the section; the section resolves its schema settings into them):
+    image    image_picker (owner override). Blank -> the theme asset.
+    asset    'ens-page-<slug>.jpg' in assets/ (the ten of IMAGES.md). Blank + blank image -> nothing prints.
+    w, h     the REAL pixel size of that asset (IMAGES.md), so width/height are honest and no srcset
+             candidate is ever wider than the file. For a picked image the picker's own size wins.
+    kicker   the kind of picture, SPEC §1 R5: «מקום» or «מנגנון». Blank -> no kicker.
+    caption  the subject and the hour. Blank -> no caption line (and then no credit line either is
+             printed on its own: the credit still prints, it is the licence, not decoration).
+    credit   «צילום: … (CC …)». Blank -> nothing (a store-owned or CC0 frame owes no credit).
+    alt      blank = decorative: the caption carries the meaning (SPEC §3).
+    pos      object-position under 901 px.   pos_d  object-position from 901 px.
+    band     true  = the page's opening band: full-bleed, 220 px at 390 / 300 px at >= 901 (R3),
+                     loading="eager" fetchpriority="high" — the only eager image on the page.
+             false = an inline frame inside the reading wrap, lazy, 3:2.
+    h1_on    true only where the crop was MEASURED >= 4.5:1 against the ink under the h1 (R2); then
+             `h1` (already <bdi>-marked HTML from the section) is printed inside the band and the
+             section prints no h1 of its own. `h1_id` gives it its id.
+
+  <bdi>: the caption and the credit are owner-editable text, so every word that is Latin/numeric and
+  carries no Hebrew letter is isolated (P6). The loop is the one in sections/elmsnest-s-pdp-scene,
+  widened to whole words so «(CC BY 2.0)» stays one isolate instead of four fragments.
+{%- endcomment -%}
+{%- liquid
+  assign ens_pic = image
+  assign ens_asset = asset | default: '' | strip
+  assign ens_w = w | default: 0 | plus: 0
+  assign ens_h = h | default: 0 | plus: 0
+
+  assign ens_kind = ''
+  if ens_pic != blank
+    assign ens_kind = 'picker'
+    assign ens_w = ens_pic.width
+    assign ens_h = ens_pic.height
+  elsif ens_asset != '' and ens_w > 0
+    assign ens_kind = 'asset'
+  endif
+-%}
+{%- if ens_kind != '' -%}
+{%- liquid
+  assign ens_band = false
+  if band
+    assign ens_band = true
+  endif
+  assign ens_h1_on = false
+  if h1_on and h1 != blank
+    assign ens_h1_on = true
+  endif
+
+  # ---- the srcset: no candidate wider than the real file (home band R26 / pdp-scene E7) ----
+  assign ens_srcset = ''
+  assign ens_src = ''
+  assign ens_top = 0
+  assign ens_want = '600,900,1200,1600' | split: ','
+  for cw in ens_want
+    assign cn = cw | plus: 0
+    if cn <= ens_w
+      if ens_kind == 'picker'
+        assign curl = ens_pic | image_url: width: cn
+      else
+        assign csize = cw | append: 'x'
+        assign curl = ens_asset | asset_img_url: csize
+      endif
+      if ens_srcset != ''
+        assign ens_srcset = ens_srcset | append: ', '
+      endif
+      assign ens_srcset = ens_srcset | append: curl | append: ' ' | append: cw | append: 'w'
+      assign ens_src = curl
+      assign ens_top = cn
+    endif
+  endfor
+  if ens_top < ens_w
+    # a file that is not exactly 600/900/1200/1600 (960, 1064, 1067 …) offers its own width last
+    if ens_kind == 'picker'
+      assign curl = ens_pic | image_url: width: ens_w
+    else
+      assign csize = ens_w | append: 'x'
+      assign curl = ens_asset | asset_img_url: csize
+    endif
+    if ens_srcset != ''
+      assign ens_srcset = ens_srcset | append: ', '
+    endif
+    assign ens_srcset = ens_srcset | append: curl | append: ' ' | append: ens_w | append: 'w'
+    assign ens_src = curl
+  endif
+
+  assign ens_op = pos | default: '50% 50%' | strip | escape
+  assign ens_op_lg = pos_d | default: ens_op | strip | escape
+  assign ens_alt = alt | default: '' | strip | escape
+  assign ens_kick = kicker | default: '' | strip | escape
+  assign ens_cap = caption | default: '' | strip
+  assign ens_cred = credit | default: '' | strip
+-%}
+{%- liquid
+  # ---- the <bdi> word loop over the caption and the credit ----
+  assign ENS_LAT = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  assign ENS_HEB = 'אבגדהוזחטיכךלמםנןסעפףצץקרשת'
+  assign ens_rs = '~~R~~'
+  assign ens_sp = ' '
+  assign ens_cap_e = ens_cap | escape
+  assign ens_cred_e = ens_cred | escape
+  assign ens_parts = ens_cap_e | append: ens_rs | append: ens_cred_e | split: ens_rs
+-%}
+{%- capture ens_marked -%}
+  {%- for part in ens_parts -%}
+    {%- unless forloop.first -%}{{ ens_rs }}{%- endunless -%}
+    {%- assign ens_words = part | split: ' ' -%}
+    {%- for word in ens_words -%}
+      {%- liquid
+        assign has_lat = false
+        assign has_heb = false
+        assign ens_chars = word | split: ''
+        for ch in ens_chars
+          if ENS_HEB contains ch
+            assign has_heb = true
+          elsif ENS_LAT contains ch
+            assign has_lat = true
+          endif
+        endfor
+      -%}
+      {%- unless forloop.first -%}{{ ens_sp }}{%- endunless -%}
+      {%- if has_lat and has_heb == false -%}<bdi dir="ltr">{{ word }}</bdi>{%- else -%}{{ word }}{%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- liquid
+  assign ens_out = ens_marked | strip | replace: '</bdi> <bdi dir="ltr">', ' ' | split: ens_rs
+  assign ens_cap_html = ens_out[0] | default: '' | strip
+  assign ens_cred_html = ens_out[1] | default: '' | strip
+  if ens_cap == ''
+    assign ens_cap_html = ''
+  endif
+  if ens_cred == ''
+    assign ens_cred_html = ''
+  endif
+-%}
+<figure class="ens-page__fig{% if ens_band %} ens-page__fig--band{% else %} ens-page__fig--inline{% endif %}{% if ens_h1_on %} ens-page__fig--h1{% endif %}" style="--ens-op:{{ ens_op }};--ens-op-lg:{{ ens_op_lg }}">
+  <img
+    src="{{ ens_src }}"
+    srcset="{{ ens_srcset }}"
+    sizes="{% if ens_band %}100vw{% else %}(min-width: 1368px) 1240px, 100vw{% endif %}"
+    width="{{ ens_w }}" height="{{ ens_h }}"
+    {% if ens_band %}loading="eager" fetchpriority="high" decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}
+    alt="{{ ens_alt }}">
+  {%- if ens_h1_on -%}
+  <div class="ens-page__onband">
+    <div class="ens-page__onband-in">
+      <h1{% if h1_id != blank %} id="{{ h1_id }}"{% endif %} class="env2-h ens-page__h1 ens-page__h1--on">{{ h1 }}</h1>
+    </div>
+  </div>
+  {%- endif -%}
+  {%- if ens_cap_html != '' or ens_cred_html != '' -%}
+  <figcaption class="ens-page__figcap">
+    <div class="ens-page__figcap-in">
+      {%- if ens_cap_html != '' -%}
+      <p class="ens-page__cap">{% if ens_kick != '' %}<span class="ens-page__kick">{{ ens_kick }}</span><span class="ens-page__dot" aria-hidden="true">·</span>{% endif %}{{ ens_cap_html }}</p>
+      {%- endif -%}
+      {%- if ens_cred_html != '' -%}
+      <p class="ens-page__credit">{{ ens_cred_html }}</p>
+      {%- endif -%}
+    </div>
+  </figcaption>
+  {%- endif -%}
+</figure>
+{%- endif -%}

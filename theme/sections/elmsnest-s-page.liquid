@@ -1,0 +1,840 @@
+{%- comment -%}
+  ElmsNest S — the content pages (PAGES SPEC 2026-09-08). ONE section for the seven handles.
+
+  Structure = «atlas» (SPEC §1 R1): the device changes with the content and no device is drawn twice
+  on a page — the places frame for the guide's places, a lettered spine for the purposes, a
+  two-column definition list for the power sources, a hollow-square checklist for the checks, the
+  run-in trio and the link run on About. No TOC, no foot nav (§4.3), one gold pill per page.
+  Opening grammar = «band» (R2, R3): every one of the seven pages opens with one photograph band,
+  <= 220 px at 390 and <= 300 px at >= 901, so the page's first decision is at the fold.
+  The guide's four tiles are one frame with four labels (R4, «quiet»), each label carrying its
+  collection's LIVE Shopify title and products_count. About ends signed (R6, «letter»).
+
+  Where the h1 sits (R2 — measured, recorded, not assumed). The ten crops of assets/ens-page-*.jpg
+  were measured against the ink #f4eee3 in the zone the h1 occupies at the bottom of a 390x220 and a
+  1366x300 band, WITH the band's bottom fade composited (90th-percentile luminance, WCAG ratio):
+      guide 1.47 / 2.03 · why 4.15 / 4.17 · about 2.55 / 2.63 · FAQ 6.96 / 6.66
+      processing 4.48 / 5.15 · shipping 1.86 / 1.94 · contact 2.58 / 2.30
+  Only the FAQ crop clears 4.5:1 at BOTH widths, so only the FAQ h1 sits on its band; the other six
+  sit directly under the band on the night ground, which is what R2 asks for when the crop is bright.
+
+  Copy is COPY-SOURCE.md sentence for sentence. The changes are only the ones SPEC §4 lists: the four
+  collection names are the live Shopify titles (§4.1), why-solar's «does not suit» is the four
+  licensed pairs of snippets/elmsnest-s-place (§4.2), the TOCs / foot nav / the guide's second button
+  go (§4.3), and the only new copy is the ten captions and credits, the four labels of the places
+  frame and About's signature (§4.4). The guide's «בצל כבוד» typo is kept verbatim (§4.5, owner item).
+  The row numerals that COPY-SOURCE marks «labels, not facts» (guide §03 and §04, why-solar's three
+  checks, About's «מה זה אומר בפועל») are not drawn: those four ideas are the dl, the checklist and
+  the trio, which carry no numerals — the atlas device set of R1. Every numeral that IS a fact, and
+  every h2 numeral, is kept and wrapped in <bdi dir="ltr">.
+
+  Plumbing (SPEC §2): enabled_on templates ["page"]; one `case page.handle` with the seven
+  branches and an else that prints page.title + page.content as plain prose, so a page the owner adds
+  tomorrow is dressed without code. The long copy is literal Liquid inside its branch (the owner
+  edits page copy in code, as the retired elmsnest-content-page did); the h1 and the lead of every
+  page are schema text settings defaulted to the COPY-SOURCE string. The shipping numbers moved into
+  this file so the seven consumer figures live next to each other in ONE reviewable file with the
+  FAQ's answers and processing's plate; the Shopify page body is never edited and stays as the
+  rollback — the checkbox shipping_from_body prints page.content instead (P7).
+  Live data only: collections[handle].title / .products_count, pages[…].url, routes.*,
+  shop.shipping_policy.url, shop.refund_policy.url, and the four licensed pairs of elmsnest-s-place.
+  Tokens come from snippets/elmsnest-v2-core (global, --env2-*). Radius 0 except the one gold pill
+  (.env2-btn). Logical properties only. No JS: the FAQ is native <details>.
+{%- endcomment -%}
+{%- liquid
+  assign ens_key = ''
+  case page.handle
+    when 'guide-garden-lighting'
+      assign ens_key = 'guide'
+    when 'why-solar-lighting'
+      assign ens_key = 'why'
+    when 'מי-אנחנו'
+      assign ens_key = 'about'
+    when 'help-faq'
+      assign ens_key = 'faq'
+    when 'processing-time'
+      assign ens_key = 'proc'
+    when 'shipping-delivery'
+      assign ens_key = 'ship'
+    when 'contact-us'
+      assign ens_key = 'contact'
+  endcase
+
+  # ---- the four collections, in the main-menu order: titles and counts are live (SPEC §4.1) ----
+  assign ens_h4 = 'תאורת-שביל-סולארית,solar-wall-lights,ספוטים-ופרוז-קטורים-סולאריים,גרילנדות-ותאורה-דקורטיבית' | split: ','
+  assign ens_t4 = 'תאורת שביל, עמוד וגינה|תאורת קיר|ספוטים, פרוז׳קטורים ותאורה ניידת|גרילנדות ותאורה דקורטיבית' | split: '|'
+  assign ens_d4 = 'החצץ שמוביל אל הדלת|החזית המוארת|העץ בעציץ|השולחן והכיסאות' | split: '|'
+  assign ens_s4 = 'לסימון הדרך, לערוגות ולפינות הגינה|לדלת, לחזית ולאזורי מעבר|לעץ, לקיר, לפינה חשוכה או לשטח|לאור חם ולאווירה בפינת הישיבה' | split: '|'
+
+  assign ens_all = routes.all_products_collection_url
+  assign ens_contact = pages['contact-us'].url | default: routes.root_url
+  assign ens_guide = pages['guide-garden-lighting'].url | default: routes.root_url
+  assign ens_why = pages['why-solar-lighting'].url | default: routes.root_url
+  assign ens_proc = pages['processing-time'].url | default: routes.root_url
+  assign ens_ship_pol = shop.shipping_policy.url | default: routes.root_url
+  assign ens_ref_pol = shop.refund_policy.url | default: routes.root_url
+  assign ens_mail = section.settings.email | default: '' | strip
+
+  # ---- the h1 and the lead of this page (schema text settings, COPY-SOURCE defaults) ----
+  assign ens_kh = 'h1_' | append: ens_key
+  assign ens_kl = 'lead_' | append: ens_key
+  assign ens_h1 = section.settings[ens_kh] | default: page.title | strip
+  assign ens_lead = section.settings[ens_kl] | default: '' | strip
+  assign ens_h1_id = 'ens-page-h1-' | append: section.id
+  assign ens_h1_on = false
+  if ens_key == 'faq'
+    assign ens_h1_on = true
+  endif
+-%}
+{%- liquid
+  # ---- <bdi> word loop over the h1 and the lead (both owner-editable): every word that is
+  #      Latin/numeric and carries no Hebrew letter becomes one ltr isolate (P6) ----
+  assign ENS_LAT = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  assign ENS_HEB = 'אבגדהוזחטיכךלמםנןסעפףצץקרשת'
+  assign ens_rs = '~~R~~'
+  assign ens_sp = ' '
+  assign ens_h1_e = ens_h1 | escape
+  assign ens_lead_e = ens_lead | escape
+  assign ens_parts = ens_h1_e | append: ens_rs | append: ens_lead_e | split: ens_rs
+-%}
+{%- capture ens_marked -%}
+  {%- for part in ens_parts -%}
+    {%- unless forloop.first -%}{{ ens_rs }}{%- endunless -%}
+    {%- assign ens_words = part | split: ' ' -%}
+    {%- for word in ens_words -%}
+      {%- liquid
+        assign has_lat = false
+        assign has_heb = false
+        assign ens_chars = word | split: ''
+        for ch in ens_chars
+          if ENS_HEB contains ch
+            assign has_heb = true
+          elsif ENS_LAT contains ch
+            assign has_lat = true
+          endif
+        endfor
+      -%}
+      {%- unless forloop.first -%}{{ ens_sp }}{%- endunless -%}
+      {%- if has_lat and has_heb == false -%}<bdi dir="ltr">{{ word }}</bdi>{%- else -%}{{ word }}{%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- liquid
+  assign ens_out = ens_marked | strip | replace: '</bdi> <bdi dir="ltr">', ' ' | split: ens_rs
+  assign ens_h1_html = ens_out[0] | default: '' | strip
+  assign ens_lead_html = ens_out[1] | default: '' | strip
+  if ens_lead == ''
+    assign ens_lead_html = ''
+  endif
+-%}
+<section class="env2-section ens-page ens-page--{{ ens_key | default: 'plain' }}" dir="rtl" data-ens-page="{{ ens_key }}" aria-labelledby="{{ ens_h1_id }}" style="scroll-margin-top:90px">
+
+{%- case ens_key -%}
+
+{%- when 'guide' -%}
+{%- comment -%} ============================ 1. THE GUIDE ============================ {%- endcomment -%}
+  {%- render 'elmsnest-s-page-photo',
+      image: section.settings.img_guide_band, asset: 'ens-page-guide-band.jpg', w: 1600, h: 1067,
+      kicker: 'מקום', caption: section.settings.cap_guide_band, credit: section.settings.cred_guide_band,
+      alt: section.settings.alt_guide_band, pos: section.settings.pos_guide_band, pos_d: section.settings.posd_guide_band,
+      band: true -%}
+  <div class="env2-wrap ens-page__head">
+    <h1 id="{{ ens_h1_id }}" class="env2-h ens-page__h1">{{ ens_h1_html }}</h1>
+    {%- if ens_lead_html != '' -%}<p class="ens-page__lead">{{ ens_lead_html }}</p>{%- endif -%}
+  </div>
+
+  <section class="env2-wrap ens-page__sec" id="guide-place">
+    <h2 class="env2-h ens-page__h2"><bdi dir="ltr">01</bdi> · איפה צריך אור?</h2>
+    <p class="ens-page__intro">בחרו את האזור הקרוב ביותר לצורך שלכם והמשיכו לקולקציה המתאימה. כל קולקציה מכילה רק מוצרים לאותו מקום.</p>
+    <div class="ens-page__frame">
+      {%- render 'elmsnest-s-page-photo',
+          image: section.settings.img_guide_places, asset: 'ens-page-guide-places.jpg', w: 1600, h: 1064,
+          kicker: 'מקום', caption: section.settings.cap_guide_places, credit: section.settings.cred_guide_places,
+          alt: section.settings.alt_guide_places, pos: section.settings.pos_guide_places, pos_d: section.settings.posd_guide_places,
+          band: false -%}
+      <ul class="ens-page__places" role="list">
+        {%- for hh in ens_h4 -%}
+          {%- liquid
+            assign ix = forloop.index0
+            assign cc = collections[hh]
+            assign c_title = cc.title | default: ens_t4[ix]
+            assign c_url = cc.url | default: ens_all
+            capture c_word
+              render 'elmsnest-s-place', collection: cc, emit: 'word'
+            endcapture
+            assign c_word = c_word | strip
+            if c_word == ''
+              assign c_word = ens_d4[ix]
+            endif
+          -%}
+          <li>
+            <a class="ens-page__place" href="{{ c_url }}">
+              <span class="ens-page__place-w">{{ c_word }}</span>
+              <span class="ens-page__place-d">{{ ens_d4[ix] }}</span>
+              <span class="ens-page__place-t">{{ c_title | escape }}</span>
+              <span class="ens-page__place-s">{{ ens_s4[ix] }}</span>
+              <span class="ens-page__place-m">{% if cc.products_count > 0 %}<bdi dir="ltr">{{ cc.products_count }}</bdi> מוצרים {% endif %}<span aria-hidden="true">&#8592;</span></span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+
+  <section class="env2-wrap ens-page__sec" id="guide-purpose">
+    <h2 class="env2-h ens-page__h2"><bdi dir="ltr">02</bdi> · מה האור צריך לעשות?</h2>
+    <ol class="ens-page__spine" role="list">
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">א</bdi></span><span class="ens-page__spine-t">לעזור להתמצא</span><p>לשביל, למדרגות ולאזורי מעבר שבהם חשוב לראות את הדרך.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">ב</bdi></span><span class="ens-page__spine-t">להאיר נקודה</span><p>לכניסה, לקיר, לעץ או לאזור שרוצים להדגיש בצורה ברורה.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">ג</bdi></span><span class="ens-page__spine-t">ליצור אווירה</span><p>למרפסת, לפרגולה ולפינת ישיבה שבהן האור הוא חלק מהחוויה. תאורת אווירה אינה מיועדת להאיר חזק — וזה בסדר, זה תפקידה.</p></li>
+    </ol>
+  </section>
+
+  <section class="env2-wrap ens-page__sec" id="guide-power">
+    <h2 class="env2-h ens-page__h2"><bdi dir="ltr">03</bdi> · איזה מקור חשמל מתאים?</h2>
+    <p class="ens-page__intro">הנתונים משתנים בין מוצרים. בדקו תמיד את עמוד המוצר, ואל תניחו שמפרט של מוצר אחד נכון גם לאחר.</p>
+    <dl class="ens-page__pair">
+      <div>
+        <dt>סולארי — למקום שמקבל שמש</dt>
+        <dd>מתאים כשרוצים להימנע מחיבור קבוע. הפאנל צריך אור יום של ממש: בצל כבוד רוב היום, ובימים מעוננים או בחורף, הביצועים יורדים. אם המקום כמעט לא מקבל שמש — אל תבחרו סולארי, יש פתרון מתאים יותר.</dd>
+      </div>
+      <div>
+        <dt>סוללה או <bdi dir="ltr">USB</bdi> — לשליטה בטעינה</dt>
+        <dd>לא תלוי בשמש. בדקו איך טוענים או מחליפים סוללה, והאם שגרת התחזוקה מתאימה לכם.</dd>
+      </div>
+      <div>
+        <dt>חיבור לחשמל — להתקנה קבועה</dt>
+        <dd>לעוצמה קבועה בלי תלות בטעינה. כשנדרשת עבודת חשמל — היעזרו בבעל מקצוע מוסמך.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="env2-wrap ens-page__sec" id="guide-check">
+    <h2 class="env2-h ens-page__h2"><bdi dir="ltr">04</bdi> · מה בודקים לפני ההזמנה?</h2>
+    <ul class="ens-page__check" role="list">
+      <li>מידות המוצר והשטח הזמין</li>
+      <li>מקור החשמל ואופן ההתקנה</li>
+      <li>מה כלול באריזה</li>
+      <li>נתוני אור ועמידות שמופיעים במפורש</li>
+      <li>התאמה למיקום המתוכנן</li>
+    </ul>
+    <p class="ens-page__note">פרט חשוב חסר בעמוד המוצר? אל תנחשו. <a href="{{ ens_contact }}">שלחו לנו את שם המוצר ואת השאלה</a> — נבדוק לפני שתזמינו.</p>
+    <div class="ens-page__cta">
+      <a class="env2-btn" href="{{ ens_all }}">לכל גופי התאורה</a>
+    </div>
+  </section>
+
+{%- when 'why' -%}
+{%- comment -%} ============================ 2. WHY SOLAR ============================ {%- endcomment -%}
+  {%- render 'elmsnest-s-page-photo',
+      image: section.settings.img_why_band, asset: 'ens-page-why-band.jpg', w: 1200, h: 802,
+      kicker: 'מקום', caption: section.settings.cap_why_band, credit: section.settings.cred_why_band,
+      alt: section.settings.alt_why_band, pos: section.settings.pos_why_band, pos_d: section.settings.posd_why_band,
+      band: true -%}
+  <div class="env2-wrap ens-page__head">
+    <h1 id="{{ ens_h1_id }}" class="env2-h ens-page__h1">{{ ens_h1_html }}</h1>
+    {%- if ens_lead_html != '' -%}<p class="ens-page__lead">{{ ens_lead_html }}</p>{%- endif -%}
+  </div>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">איך זה עובד בפועל</h2>
+    <ol class="ens-page__spine" role="list">
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">1</bdi></span><span class="ens-page__spine-t">ביום</span><p>הפאנל הסולארי נטען מאור היום. צל, כיוון הפאנל ועונת השנה משפיעים על הטעינה.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">2</bdi></span><span class="ens-page__spine-t">בערב</span><p>התאורה נדלקת ועובדת על האנרגיה שנאגרה, בהתאם למוצר ולתנאי הטעינה.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">3</bdi></span><span class="ens-page__spine-t">מה זה אומר</span><p>השמש היא חלק מהמפרט. בימים מעוננים או בחורף הביצועים עשויים להיות חלשים יותר — זו לא תקלה, זה אופי הפתרון.</p></li>
+    </ol>
+  </section>
+
+  <div class="env2-wrap ens-page__brk">
+    {%- render 'elmsnest-s-page-photo',
+        image: section.settings.img_why_cell, asset: 'ens-page-why-cell.jpg', w: 1200, h: 800,
+        kicker: 'מנגנון', caption: section.settings.cap_why_cell, credit: section.settings.cred_why_cell,
+        alt: section.settings.alt_why_cell, pos: section.settings.pos_why_cell, pos_d: section.settings.posd_why_cell,
+        band: false -%}
+  </div>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">מתי זה מתאים — ומתי עדיף פתרון אחר</h2>
+    <div class="ens-page__cols">
+      <div>
+        <h3 class="ens-page__h3">יכול להתאים כאשר</h3>
+        <ul class="ens-page__plain" role="list">
+          <li>המיקום מקבל חשיפה טובה לאור יום</li>
+          <li>לא רוצים חיבור קבוע לחשמל או שאין נקודה קרובה</li>
+          <li>המטרה היא אווירה, סימון דרך או הארה נקודתית</li>
+          <li>נתוני המוצר תואמים לשימוש המתוכנן</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="ens-page__h3">עדיף פתרון אחר כאשר</h3>
+        <ul class="ens-page__plain ens-page__plain--pairs" role="list">
+          {%- for hh in ens_h4 -%}
+            {%- liquid
+              assign cc = collections[hh]
+              capture p_word
+                render 'elmsnest-s-place', collection: cc, emit: 'word'
+              endcapture
+              capture p_no
+                render 'elmsnest-s-place', collection: cc, emit: 'no'
+              endcapture
+              assign p_word = p_word | strip
+              assign p_no = p_no | strip
+            -%}
+            {%- if p_word != '' and p_no != '' -%}
+            <li><span class="ens-page__run">{{ p_word }}</span>{{ p_no }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">שלוש בדיקות לפני שבוחרים</h2>
+    <ul class="ens-page__check" role="list">
+      <li>כמה אור יום מגיע למקום?</li>
+      <li>האם המטרה היא אווירה, התמצאות או הארה ממוקדת?</li>
+      <li>אילו נתונים מופיעים במפורש בעמוד המוצר?</li>
+    </ul>
+    <p class="ens-page__note">חלק מהמוצרים בחנות מיועדים בעיקר לאווירה ולא לאור חזק. אם הנתון שחשוב לכם לא מופיע בעמוד המוצר — שאלו אותנו לפני ההזמנה.</p>
+    <div class="ens-page__cta">
+      <a class="env2-btn" href="{{ ens_guide }}">איך בוחרים תאורה לגינה?</a>
+      <a class="env2-link" href="{{ ens_all }}">לכל גופי התאורה <span aria-hidden="true">&#8592;</span></a>
+    </div>
+  </section>
+
+{%- when 'about' -%}
+{%- comment -%} ============================ 3. ABOUT ============================ {%- endcomment -%}
+  {%- render 'elmsnest-s-page-photo',
+      image: section.settings.img_about_band, asset: 'ens-page-about-band.jpg', w: 1200, h: 676,
+      kicker: 'מקום', caption: section.settings.cap_about_band, credit: section.settings.cred_about_band,
+      alt: section.settings.alt_about_band, pos: section.settings.pos_about_band, pos_d: section.settings.posd_about_band,
+      band: true -%}
+  <div class="env2-wrap ens-page__head">
+    <h1 id="{{ ens_h1_id }}" class="env2-h ens-page__h1">{{ ens_h1_html }}</h1>
+    {%- if ens_lead_html != '' -%}<p class="ens-page__lead">{{ ens_lead_html }}</p>{%- endif -%}
+  </div>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">למה הקמנו את ElmsNest</h2>
+    <p class="ens-page__prose">בחירת תאורה באינטרנט יכולה להיות מבלבלת: מקורות חשמל שונים, דרכי התקנה שונות ומוצרים שנראים דומים אך מיועדים לצרכים אחרים. ElmsNest עוסקת בתחום אחד — תאורת חוץ — ומארגנת את הבחירה לפי מקום, מטרה ואופן שימוש, כדי שיהיה ברור מה מתאים לפני שקונים.</p>
+  </section>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">העקרונות שמכוונים אותנו</h2>
+    <ol class="ens-page__spine" role="list">
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">01</bdi></span><span class="ens-page__spine-t">בהירות לפני הבטחות</span><p>כאשר מידע אינו מאומת, איננו צריכים להציג אותו כעובדה.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">02</bdi></span><span class="ens-page__spine-t">בחירה לפי צורך</span><p>העיצוב חשוב, אך ההתאמה למקום ולאופן ההתקנה חשובה לא פחות.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">03</bdi></span><span class="ens-page__spine-t">שאלה לפני הזמנה</span><p>אם פרט חיוני חסר, עדיף לעצור ולבדוק לפני שקונים.</p></li>
+    </ol>
+  </section>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">מה זה אומר בפועל</h2>
+    <div class="ens-page__trio">
+      <div><span class="ens-page__trio-t">אין אצלנו קטגוריה אחרת</span><p>לא מוצרי בית, לא גאדג׳טים — תאורת חוץ בלבד: סולארית, נטענת, בסוללה או בחיבור לחשמל.</p></div>
+      <div><span class="ens-page__trio-t">המפרט לפני הקנייה</span><p>בכל עמוד מוצר: מקור החשמל, המידות ואופן ההתקנה. נתון שלא מופיע — לא ממציאים.</p></div>
+      <div><span class="ens-page__trio-t">וכשמשהו לא מתאים — אומרים</span><p>במדריכים שלנו כתוב גם מתי תאורה סולארית היא לא הבחירה הנכונה. עדיף לקוח שקנה נכון מלקוח שהתאכזב.</p></div>
+    </div>
+  </section>
+
+  <div class="env2-wrap ens-page__brk">
+    {%- render 'elmsnest-s-page-photo',
+        image: section.settings.img_about_court, asset: 'ens-page-about-court.jpg', w: 1200, h: 751,
+        kicker: 'מקום', caption: section.settings.cap_about_court, credit: section.settings.cred_about_court,
+        alt: section.settings.alt_about_court, pos: section.settings.pos_about_court, pos_d: section.settings.posd_about_court,
+        band: false -%}
+  </div>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">מה תמצאו בחנות</h2>
+    <ul class="ens-page__run-list" role="list">
+      {%- for hh in ens_h4 -%}
+        {%- liquid
+          assign ix = forloop.index0
+          assign cc = collections[hh]
+          assign c_title = cc.title | default: ens_t4[ix]
+          assign c_url = cc.url | default: ens_all
+        -%}
+        <li><a class="env2-link" href="{{ c_url }}">{{ c_title | escape }} <span aria-hidden="true">&#8592;</span></a></li>
+      {%- endfor -%}
+    </ul>
+    <div class="ens-page__cta">
+      <a class="env2-btn" href="{{ ens_all }}">לכל גופי התאורה</a>
+      <a class="env2-link" href="{{ ens_guide }}">איך בוחרים תאורה לגינה? <span aria-hidden="true">&#8592;</span></a>
+    </div>
+    <p class="ens-page__sign">כתבו לנו.</p>
+    <p class="ens-page__sign-who"><bdi dir="ltr">ElmsNest</bdi>, ישראל{% if ens_mail != '' %}<br><a href="mailto:{{ ens_mail | escape }}"><bdi dir="ltr">{{ ens_mail | escape }}</bdi></a>{% endif %}</p>
+  </section>
+
+{%- when 'faq' -%}
+{%- comment -%} ============================ 4. FAQ ============================ {%- endcomment -%}
+  {%- render 'elmsnest-s-page-photo',
+      image: section.settings.img_faq_band, asset: 'ens-page-faq-band.jpg', w: 1200, h: 1176,
+      kicker: 'מקום', caption: section.settings.cap_faq_band, credit: section.settings.cred_faq_band,
+      alt: section.settings.alt_faq_band, pos: section.settings.pos_faq_band, pos_d: section.settings.posd_faq_band,
+      band: true, h1_on: ens_h1_on, h1: ens_h1_html, h1_id: ens_h1_id -%}
+  {%- if ens_lead_html != '' -%}
+  <div class="env2-wrap ens-page__head ens-page__head--lead">
+    <p class="ens-page__lead">{{ ens_lead_html }} <a href="{{ ens_contact }}">כתבו לנו</a>.</p>
+  </div>
+  {%- endif -%}
+
+  <section class="env2-wrap ens-page__sec" id="faq-products">
+    <h2 class="env2-h ens-page__h2">מוצרים והתאמה</h2>
+    <div class="ens-page__faq">
+      <details open>
+        <summary>האם כל המוצרים בחנות סולאריים?</summary>
+        <p>לא. ElmsNest מציעה תאורת חוץ בלבד, אבל מקורות החשמל שונים: סולארי, נטען ב־<bdi dir="ltr">USB</bdi>, סוללות או חיבור לחשמל. בדקו בכל עמוד מוצר את מקור החשמל ואופן ההתקנה.</p>
+      </details>
+      <details>
+        <summary>האם תאורה סולארית עובדת גם בחורף?</summary>
+        <p>היא עובדת, אבל חלש יותר: בימים מעוננים ובחורף הפאנל נטען פחות. אם המקום כמעט לא מקבל שמש — עדיף פתרון אחר, ואנחנו אומרים את זה גם כשזה אומר לוותר על מכירה. <a href="{{ ens_why }}">מתי תאורה סולארית מתאימה ומתי לא</a>.</p>
+      </details>
+      <details>
+        <summary>איך בוחרים תאורה שמתאימה למקום?</summary>
+        <p>מתחילים במקום ובמטרת האור, ורק אז בודקים מקור חשמל, מידות ואופן התקנה. <a href="{{ ens_guide }}">מדריך הבחירה המלא</a> עובר על זה בארבעה צעדים.</p>
+      </details>
+      <details>
+        <summary>נתון שחשוב לי לא מופיע בעמוד המוצר. מה עושים?</summary>
+        <p>לא מנחשים. שלחו לנו את שם המוצר ואת השאלה לפני ההזמנה — נבדוק את המידע הזמין ונחזור אליכם. אם נתון אינו מופיע, איננו מציגים אותו כעובדה.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="env2-wrap ens-page__sec" id="faq-orders">
+    <h2 class="env2-h ens-page__h2">הזמנות ומשלוח</h2>
+    <div class="ens-page__faq">
+      <details>
+        <summary>כמה עולה המשלוח?</summary>
+        <p>משלוח לנקודת איסוף בישראל — חינם. שליח עד הבית — <bdi dir="ltr">29.90</bdi> ₪. המחיר הסופי מוצג בקופה לפני התשלום.</p>
+      </details>
+      <details>
+        <summary>תוך כמה זמן ההזמנה מגיעה?</summary>
+        <p>הזמן הכולל המשוער הוא <bdi dir="ltr">8–17</bdi> ימי עסקים: <bdi dir="ltr">1–3</bdi> ימי טיפול ועוד <bdi dir="ltr">7–14</bdi> ימי משלוח. הפירוט המלא ב<a href="{{ ens_ship_pol }}">מדיניות המשלוחים</a>.</p>
+      </details>
+      <details>
+        <summary>איך עוקבים אחרי ההזמנה?</summary>
+        <p>כשמספר מעקב זמין, הוא נשלח לאימייל או לטלפון שנמסרו בהזמנה. לפעמים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח.</p>
+      </details>
+      <details>
+        <summary>איך פונים לגבי הזמנה קיימת?</summary>
+        <p>דרך <a href="{{ ens_contact }}">עמוד יצירת הקשר</a>, עם מספר ההזמנה והאימייל ששימש לרכישה.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="env2-wrap ens-page__sec" id="faq-policies">
+    <h2 class="env2-h ens-page__h2">ביטול והחזרות</h2>
+    <div class="ens-page__faq">
+      <details>
+        <summary>אפשר לבטל עסקה אחרי שהזמנתי?</summary>
+        <p>כן. בעסקת מכר מרחוק אפשר למסור הודעת ביטול עד <bdi dir="ltr">14</bdi> ימים מקבלת המוצר, לפי חוק הגנת הצרכן. כאשר הדין מאפשר גביית דמי ביטול, שיעורם <bdi dir="ltr">5%</bdi> ממחיר העסקה או <bdi dir="ltr">100</bdi> ₪ — הנמוך מביניהם. הפרטים המלאים ב<a href="{{ ens_ref_pol }}">מדיניות הביטולים וההחזרים</a>.</p>
+      </details>
+      <details>
+        <summary>קיבלתי מוצר פגום או שגוי. מה עושים?</summary>
+        <p>פנו אלינו בהקדם עם מספר ההזמנה ותמונות של הבעיה. בביטול שנובע מפגם, מאי־התאמה או מאי־אספקה במועד — לא נגבים דמי ביטול. אל תשלחו מוצר חזרה לפני שקיבלתם מאיתנו הנחיות כתובות.</p>
+      </details>
+    </div>
+    <div class="ens-page__cta">
+      <a class="env2-btn" href="{{ ens_contact }}">ליצירת קשר</a>
+      <a class="env2-link" href="{{ ens_ref_pol }}">למדיניות המלאה <span aria-hidden="true">&#8592;</span></a>
+    </div>
+  </section>
+
+{%- when 'proc' -%}
+{%- comment -%} ============================ 5. PROCESSING TIME ============================ {%- endcomment -%}
+  {%- render 'elmsnest-s-page-photo',
+      image: section.settings.img_proc_band, asset: 'ens-page-processing-band.jpg', w: 1200, h: 800,
+      kicker: 'מקום', caption: section.settings.cap_proc_band, credit: section.settings.cred_proc_band,
+      alt: section.settings.alt_proc_band, pos: section.settings.pos_proc_band, pos_d: section.settings.posd_proc_band,
+      band: true -%}
+  <div class="env2-wrap ens-page__head">
+    <h1 id="{{ ens_h1_id }}" class="env2-h ens-page__h1">{{ ens_h1_html }}</h1>
+    {%- if ens_lead_html != '' -%}<p class="ens-page__lead">{{ ens_lead_html }}</p>{%- endif -%}
+  </div>
+
+  <div class="env2-wrap ens-page__brk">
+    <dl class="ens-page__plate" aria-label="זמני טיפול ואספקה">
+      <div class="ens-page__cell"><dt>טיפול בהזמנה</dt><dd><bdi dir="ltr">1–3</bdi> ימי עסקים</dd></div>
+      <div class="ens-page__cell"><dt>זמן הובלה</dt><dd><bdi dir="ltr">7–14</bdi> ימי עסקים</dd></div>
+      <div class="ens-page__cell"><dt>סה״כ משוער</dt><dd><bdi dir="ltr">8–17</bdi> ימי עסקים</dd></div>
+    </dl>
+  </div>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">מה קורה אחרי שהזמנתם</h2>
+    <ol class="ens-page__spine" role="list">
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">1</bdi></span><span class="ens-page__spine-t">ההזמנה נקלטת</span><p>אישור נשלח לאימייל שהוזן ברכישה. בדקו שהשם, הטלפון והכתובת נכונים — ואם יש טעות, פנו אלינו מיד.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">2</bdi></span><span class="ens-page__spine-t">ההזמנה מטופלת ונמסרת לשילוח</span><p>עד <bdi dir="ltr">3</bdi> ימי עסקים. כשמספר מעקב זמין — נשלח לכם אותו.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">3</bdi></span><span class="ens-page__spine-t">ההזמנה בדרך</span><p>זמן ההובלה המשוער הוא <bdi dir="ltr">7–14</bdi> ימי עסקים. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.</p></li>
+    </ol>
+    <p class="ens-page__note">יום עסקים: ראשון עד חמישי, למעט ערבי חג, חגים וימי שבתון.</p>
+  </section>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">עברו <bdi dir="ltr">17</bdi> ימי עסקים והחבילה לא הגיעה?</h2>
+    <p class="ens-page__intro">פנו אלינו עם מספר ההזמנה והאימייל ששימש לרכישה — נבדוק את המשלוח מול חברת השילוח ונחזור אליכם עם תשובה.</p>
+    <div class="ens-page__cta">
+      <a class="env2-btn" href="{{ ens_contact }}">ליצירת קשר</a>
+      <a class="env2-link" href="{{ ens_ship_pol }}">למדיניות המשלוחים המלאה <span aria-hidden="true">&#8592;</span></a>
+    </div>
+  </section>
+
+{%- when 'ship' -%}
+{%- comment -%} ============================ 6. SHIPPING & RETURNS ============================ {%- endcomment -%}
+  {%- render 'elmsnest-s-page-photo',
+      image: section.settings.img_ship_band, asset: 'ens-page-shipping-band.jpg', w: 960, h: 1200,
+      kicker: 'מקום', caption: section.settings.cap_ship_band, credit: section.settings.cred_ship_band,
+      alt: section.settings.alt_ship_band, pos: section.settings.pos_ship_band, pos_d: section.settings.posd_ship_band,
+      band: true -%}
+  <div class="env2-wrap ens-page__head">
+    <h1 id="{{ ens_h1_id }}" class="env2-h ens-page__h1">{{ ens_h1_html }}</h1>
+    {%- if ens_lead_html != '' -%}<p class="ens-page__lead">{{ ens_lead_html }}</p>{%- endif -%}
+  </div>
+
+  {%- if section.settings.shipping_from_body -%}
+  {%- comment -%} the rollback: the Shopify page body prints instead of the copy below (SPEC §2) {%- endcomment -%}
+  <div class="env2-wrap ens-page__sec">
+    <div class="ens-page__prose ens-page__rte">{{ page.content }}</div>
+  </div>
+  {%- else -%}
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">עלויות משלוח</h2>
+    <dl class="ens-page__pair">
+      <div>
+        <dt>משלוח לנקודת איסוף בישראל — חינם</dt>
+        <dd>לכל הזמנה, בלי מינימום.</dd>
+      </div>
+      <div>
+        <dt>שליח עד הבית — <bdi dir="ltr">29.90</bdi> ₪</dt>
+        <dd>אפשרות המשלוח והמחיר הסופי מוצגים בקופה לפני התשלום.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">זמני טיפול ואספקה</h2>
+    <ol class="ens-page__spine" role="list">
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">1</bdi></span><span class="ens-page__spine-t">טיפול בהזמנה: <bdi dir="ltr">1–3</bdi> ימי עסקים</span><p>מרגע ההזמנה ועד המסירה לחברת השילוח.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">2</bdi></span><span class="ens-page__spine-t">זמן הובלה משוער: <bdi dir="ltr">7–14</bdi> ימי עסקים</span><p>מוצרים עשויים להישלח ממחסנים מחוץ לישראל. הזמנה עם כמה פריטים עשויה להגיע בחבילות נפרדות, בלי חיוב נוסף.</p></li>
+      <li><span class="ens-page__spine-n"><bdi dir="ltr">3</bdi></span><span class="ens-page__spine-t">סה״כ משוער: <bdi dir="ltr">8–17</bdi> ימי עסקים</span><p>ממועד ההזמנה ועד קבלתה. יום עסקים: ראשון עד חמישי, למעט ערבי חג, חגים וימי שבתון.</p></li>
+    </ol>
+    <p class="ens-page__note">כשמספר מעקב זמין, נשלח אותו לאימייל או לטלפון שנמסרו בהזמנה. לעיתים נדרשים כמה ימים עד שהמעקב מתעדכן אצל חברת השילוח. המספרים כאן זהים ל<a href="{{ ens_ship_pol }}">מדיניות המשלוחים המלאה</a>.</p>
+  </section>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">ביטול עסקה והחזרות</h2>
+    <div class="ens-page__trio">
+      <div><span class="ens-page__trio-t">ביטול עד <bdi dir="ltr">14</bdi> ימים מקבלת המוצר</span><p>לפי חוק הגנת הצרכן. כאשר הדין מאפשר דמי ביטול — <bdi dir="ltr">5%</bdi> ממחיר העסקה או <bdi dir="ltr">100</bdi> ₪, הנמוך מביניהם.</p></div>
+      <div><span class="ens-page__trio-t">מוצר פגום, חסר או שגוי</span><p>פנו אלינו בהקדם עם מספר ההזמנה ותמונות ברורות של הבעיה. בביטול שנובע מפגם, מאי־התאמה או מאי־אספקה במועד — לא נגבים דמי ביטול.</p></div>
+      <div><span class="ens-page__trio-t">אל תשלחו מוצר לפני קבלת הנחיות</span><p>פתחו בקשת החזרה וקבלו מאיתנו הנחיות כתובות. כתובת ההחזרה נמסרת בהתאם למוצר ולמסלול המשלוח.</p></div>
+    </div>
+    <p class="ens-page__note">הנוסח המחייב: <a href="{{ ens_ref_pol }}">מדיניות הביטולים, ההחזרות וההחזרים</a>.</p>
+  </section>
+
+  <section class="env2-wrap ens-page__sec">
+    <h2 class="env2-h ens-page__h2">עברו <bdi dir="ltr">17</bdi> ימי עסקים והחבילה לא הגיעה?</h2>
+    <p class="ens-page__intro">פנו אלינו עם מספר ההזמנה, האימייל ששימש לרכישה ותיאור קצר — נבדוק מול חברת השילוח ונחזור אליכם עם תשובה.</p>
+    <div class="ens-page__cta">
+      <a class="env2-btn" href="{{ ens_contact }}">ליצירת קשר</a>
+      <a class="env2-link" href="{{ ens_proc }}">מה קורה אחרי שהזמנתם <span aria-hidden="true">&#8592;</span></a>
+    </div>
+  </section>
+
+  {%- endif -%}
+
+{%- when 'contact' -%}
+{%- comment -%} ============================ 7. CONTACT ============================ {%- endcomment -%}
+  {%- render 'elmsnest-s-page-photo',
+      image: section.settings.img_contact_band, asset: 'ens-page-contact-band.jpg', w: 1200, h: 797,
+      kicker: 'מקום', caption: section.settings.cap_contact_band, credit: section.settings.cred_contact_band,
+      alt: section.settings.alt_contact_band, pos: section.settings.pos_contact_band, pos_d: section.settings.posd_contact_band,
+      band: true -%}
+  <div class="env2-wrap ens-page__head">
+    <h1 id="{{ ens_h1_id }}" class="env2-h ens-page__h1">{{ ens_h1_html }}</h1>
+    {%- if ens_lead_html != '' -%}<p class="ens-page__lead">{{ ens_lead_html }}</p>{%- endif -%}
+    {%- comment -%} the stock Kalles form column prints the same address; the checkbox drops this one without touching the template (P2: one email line per page) {%- endcomment -%}
+    {%- if ens_mail != '' and section.settings.contact_email_line -%}
+    <p class="ens-page__email">דוא״ל: <a href="mailto:{{ ens_mail | escape }}"><bdi dir="ltr">{{ ens_mail | escape }}</bdi></a></p>
+    {%- endif -%}
+  </div>
+
+{%- else -%}
+{%- comment -%} ==================== ELSE — any other page, plain prose ==================== {%- endcomment -%}
+  <div class="env2-wrap ens-page__head">
+    <h1 id="{{ ens_h1_id }}" class="env2-h ens-page__h1">{{ ens_h1_html }}</h1>
+  </div>
+  <div class="env2-wrap ens-page__sec">
+    <div class="ens-page__prose ens-page__rte">{{ page.content }}</div>
+  </div>
+
+{%- endcase -%}
+</section>
+
+<style>
+/* ---------- the page shell (tokens from elmsnest-v2-core; the night ground is painted on <body>) ---------- */
+.ens-page{--ens-page-line:#1f1e1d;padding-block:0 56px;font-size:16px;line-height:1.55;color:var(--env2-ink)}
+.ens-page p{margin:0}
+.ens-page__head{padding-block:26px 0}
+.ens-page__head--lead{padding-block-start:18px}
+.ens-page__h1.env2-h{font-size:32px;line-height:1.06;margin:0;color:var(--env2-ink);max-inline-size:19ch}
+.ens-page__lead{margin-block-start:14px;font-size:16px;line-height:1.5;color:var(--env2-ink-2);max-inline-size:46ch}
+.ens-page__lead a,.ens-page__note a,.ens-page__faq a,.ens-page__prose a,.ens-page__sign-who a,.ens-page__email a{color:var(--env2-ink);border-block-end:1px solid var(--env2-hair-btn);padding-block-end:1px;transition:color .3s,border-color .3s}
+.ens-page__lead a:hover,.ens-page__note a:hover,.ens-page__faq a:hover,.ens-page__prose a:hover,.ens-page__sign-who a:hover,.ens-page__email a:hover,
+.ens-page__lead a:focus-visible,.ens-page__note a:focus-visible,.ens-page__faq a:focus-visible,.ens-page__prose a:focus-visible,.ens-page__sign-who a:focus-visible,.ens-page__email a:focus-visible{color:var(--env2-glow);border-color:var(--env2-glow)}
+
+/* ---------- the photograph (snippets/elmsnest-s-page-photo) ----------
+   band: full-bleed, 220 px at 390 and 300 px at >= 901 — the R3 cap, so the first decision is at the
+   fold. inline: inside the reading wrap at 3:2. block-size:auto is required or the height attribute
+   (a presentational hint) beats aspect-ratio and the frame grows. */
+.ens-page__fig{margin:0;padding:0;background:#05070c;border:0;border-radius:0;overflow:hidden;position:relative;isolation:isolate}
+.ens-page__fig--band{inline-size:100%}
+.ens-page__fig--band img{inline-size:100%;block-size:220px;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+.ens-page__fig--inline img{inline-size:100%;block-size:auto;aspect-ratio:3 / 2;object-fit:cover;object-position:var(--ens-op,50% 50%)}
+/* the bottom fade guards the 4.5:1 floor under an on-band h1 and is drawn only there */
+.ens-page__fig--h1::after{content:"";position:absolute;inset-inline:0;inset-block-end:0;block-size:36%;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,0) 0%,rgba(2,3,6,.62) 100%);z-index:0}
+.ens-page__onband{position:absolute;inset-inline:0;inset-block-end:20px;z-index:1;pointer-events:none}
+.ens-page__onband-in{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.ens-page__h1--on.env2-h{text-shadow:0 2px 24px rgba(2,3,6,.6)}
+.ens-page__figcap{margin:0}
+.ens-page__fig--band .ens-page__figcap-in{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
+.ens-page__cap{padding-block-start:10px;font-size:13px;line-height:1.5;color:var(--env2-ink-2);max-inline-size:44ch}
+.ens-page__kick{font-family:var(--env2-serif);font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--env2-gold)}
+.ens-page__dot{margin-inline:7px;color:var(--env2-mute)}
+.ens-page__credit{padding-block-start:3px;font-size:12.5px;line-height:1.5;color:var(--env2-mute)}
+.ens-page__brk{margin-block-start:30px}
+
+/* ---------- a section: one h2, one device ---------- */
+.ens-page__sec{padding-block:32px 0;scroll-margin-top:90px}
+.ens-page__h2.env2-h{font-size:25px;line-height:1.1;margin:0 0 14px;color:var(--env2-ink)}
+.ens-page__h2 bdi{color:var(--env2-gold)}
+.ens-page__h3{margin:0 0 8px;font-family:var(--env2-serif);font-weight:700;font-size:18px;line-height:1.2;color:var(--env2-ink)}
+.ens-page__intro{margin-block-end:18px;font-size:16px;line-height:1.55;color:var(--env2-ink-2);max-inline-size:66ch}
+.ens-page__prose{font-size:16px;line-height:1.6;color:var(--env2-ink);max-inline-size:66ch}
+.ens-page__note{margin-block-start:22px;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-inline-size:66ch}
+.ens-page__rte h2,.ens-page__rte h3{font-family:var(--env2-serif);font-weight:700;color:var(--env2-ink)}
+.ens-page__rte img{border-radius:0}
+.ens-page__rte ul,.ens-page__rte ol{padding-inline-start:20px}
+
+/* ---------- DEVICE 1 — the places frame (guide §01, R4): one real courtyard, four labels ---------- */
+.ens-page__frame{margin-block-start:4px}
+.ens-page__places{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-block-end:1px solid var(--ens-page-line)}
+.ens-page__places li{border-block-start:1px solid var(--ens-page-line)}
+.ens-page__places li:nth-child(odd){padding-inline-end:18px}
+.ens-page__place{display:block;padding-block:13px;min-block-size:44px}
+.ens-page__place-w{display:block;font-family:var(--env2-serif);font-weight:700;font-size:17px;line-height:1.1;color:var(--env2-glow)}
+.ens-page__place-d{display:block;margin-block-start:3px;font-size:13px;line-height:1.4;color:var(--env2-ink-2)}
+.ens-page__place-t{display:block;margin-block-start:9px;font-family:var(--env2-serif);font-weight:700;font-size:17px;line-height:1.15;color:var(--env2-ink);transition:color .3s}
+.ens-page__place-s{display:block;margin-block-start:4px;font-size:13px;line-height:1.45;color:var(--env2-ink-2)}
+.ens-page__place-m{display:block;margin-block-start:6px;font-size:13px;line-height:1.3;color:var(--env2-ink)}
+.ens-page__place-m span{color:var(--env2-gold);margin-inline-start:4px}
+.ens-page__place:hover .ens-page__place-t,.ens-page__place:focus-visible .ens-page__place-t{color:var(--env2-glow)}
+
+/* ---------- DEVICE 2 — the spine: a hairline rail, the numeral on it ---------- */
+.ens-page__spine{list-style:none;margin:0;padding:0;border-inline-start:1px solid var(--env2-hair-num)}
+.ens-page__spine li{position:relative;padding-inline-start:52px;padding-block:4px 20px}
+.ens-page__spine li:last-child{padding-block-end:4px}
+.ens-page__spine-n{position:absolute;inset-inline-start:14px;inset-block-start:2px;font-family:var(--env2-serif);font-weight:700;font-size:22px;line-height:1.1;color:var(--env2-gold)}
+.ens-page__spine-t{display:block;font-family:var(--env2-serif);font-weight:700;font-size:19px;line-height:1.2;color:var(--env2-ink)}
+.ens-page__spine p{margin-block-start:6px;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-inline-size:62ch}
+
+/* ---------- DEVICE 3 — the two-column definition list (guide §03, shipping costs) ---------- */
+.ens-page__pair{margin:0;padding:0}
+.ens-page__pair > div{display:grid;grid-template-columns:minmax(0,1fr);gap:5px 20px;padding-block:14px;border-block-start:1px solid var(--ens-page-line)}
+.ens-page__pair > div:last-child{border-block-end:1px solid var(--ens-page-line)}
+.ens-page__pair dt{margin:0;font-family:var(--env2-serif);font-weight:700;font-size:17px;line-height:1.2;color:var(--env2-ink)}
+.ens-page__pair dd{margin:0;font-size:15px;line-height:1.55;color:var(--env2-ink-2)}
+
+/* ---------- DEVICE 4 — the checklist: a hollow square, one line each ---------- */
+.ens-page__check{list-style:none;margin:0;padding:0;max-inline-size:66ch}
+.ens-page__check li{position:relative;padding-inline-start:30px;padding-block:8px;font-weight:400;font-size:16px;line-height:1.45;color:var(--env2-ink)}
+.ens-page__check li::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:13px;inline-size:13px;block-size:13px;border:1px solid var(--env2-hair-num)}
+
+/* ---------- DEVICE 5 — the trio: run-in blocks on top hairlines ---------- */
+.ens-page__trio{display:grid;grid-template-columns:minmax(0,1fr);gap:0 32px;margin:0}
+.ens-page__trio > div{border-block-start:1px solid var(--ens-page-line);padding-block:14px 18px}
+.ens-page__trio-t{display:block;font-family:var(--env2-serif);font-weight:700;font-size:18px;line-height:1.25;color:var(--env2-ink)}
+.ens-page__trio p{margin-block-start:6px;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-inline-size:52ch}
+
+/* ---------- DEVICE 6 — the link run (About «מה תמצאו בחנות») ---------- */
+.ens-page__run-list{list-style:none;display:flex;flex-wrap:wrap;gap:14px 28px;margin:0;padding:0}
+
+/* ---------- DEVICE 7 — the two columns (why-solar), the licensed pairs on the second ---------- */
+.ens-page__cols{display:grid;grid-template-columns:minmax(0,1fr);gap:26px 40px;margin:0}
+.ens-page__plain{list-style:none;margin:0;padding:0}
+.ens-page__plain li{border-block-start:1px solid var(--ens-page-line);padding-block:11px;font-size:15px;line-height:1.5;color:var(--env2-ink-2)}
+.ens-page__plain li:last-child{border-block-end:1px solid var(--ens-page-line)}
+.ens-page__run{font-family:var(--env2-serif);font-weight:700;font-size:16px;color:var(--env2-glow);margin-inline-end:8px}
+
+/* ---------- DEVICE 8 — the FAQ: native <details>, a chevron of two borders, no JS ---------- */
+.ens-page__faq details{border-block-start:1px solid var(--ens-page-line)}
+.ens-page__faq details:last-child{border-block-end:1px solid var(--ens-page-line)}
+.ens-page__faq summary{position:relative;list-style:none;cursor:pointer;padding-block:14px;padding-inline-end:28px;min-block-size:44px;font-size:16px;font-weight:400;line-height:1.4;color:var(--env2-ink)}
+.ens-page__faq summary::-webkit-details-marker{display:none}
+.ens-page__faq summary::after{content:"";position:absolute;inset-inline-end:6px;inset-block-start:20px;inline-size:8px;block-size:8px;border-block-end:1px solid var(--env2-gold);border-inline-end:1px solid var(--env2-gold);transform:rotate(45deg);transition:transform .3s}
+.ens-page__faq details[open] summary::after{transform:rotate(-135deg);inset-block-start:24px}
+.ens-page__faq details p{padding-block:0 16px;font-size:15px;line-height:1.55;color:var(--env2-ink-2);max-inline-size:66ch}
+
+/* ---------- DEVICE 9 — the plate (processing): three cells of one figure each ---------- */
+.ens-page__plate{display:grid;grid-template-columns:minmax(0,1fr);margin:0;padding:0;border-block-end:1px solid var(--ens-page-line)}
+.ens-page__cell{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;padding-block:13px;border-block-start:1px solid var(--ens-page-line)}
+.ens-page__cell dt{margin:0;font-size:15px;line-height:1.35;color:var(--env2-ink-2)}
+.ens-page__cell dd{margin:0;font-family:var(--env2-serif);font-weight:700;font-size:18px;line-height:1.2;color:var(--env2-ink)}
+.ens-page__cell dd bdi{color:var(--env2-gold)}
+
+/* ---------- the signature (About ends signed, R6) and the contact page's email line ---------- */
+.ens-page__sign{margin-block-start:34px;font-size:16px;line-height:1.55;color:var(--env2-ink)}
+.ens-page__sign-who{margin-block-start:8px;font-family:var(--env2-serif);font-weight:700;font-size:20px;line-height:1.45;color:var(--env2-ink)}
+.ens-page__sign-who a{font-family:var(--env2-sans);font-weight:400;font-size:15px;color:var(--env2-ink-2)}
+.ens-page__email{margin-block-start:16px;font-size:16px;line-height:1.55;color:var(--env2-ink-2)}
+
+/* ---------- the page's one call to action: one gold pill, at most one text link ---------- */
+.ens-page__cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-block-start:28px}
+
+/* ---------- desktop: a designed layout, not a phone column centred in 1366 (R9) ----------
+   every section is a two-column grid — the heading in the inline-start column, the reading
+   measure (68ch) beside it; the captions sit in the same inline-start margin. */
+@media (min-width:901px){
+  .ens-page{padding-block-end:76px}
+  .ens-page__head{padding-block-start:44px}
+  .ens-page__h1.env2-h{font-size:44px}
+  .ens-page__lead{font-size:18px;margin-block-start:16px}
+  .ens-page__fig--band img{block-size:300px;object-position:var(--ens-op-lg,var(--ens-op,50% 50%))}
+  .ens-page__fig--inline img{object-position:var(--ens-op-lg,var(--ens-op,50% 50%))}
+  .ens-page__onband{inset-block-end:28px}
+  .ens-page__figcap-in{display:grid;grid-template-columns:minmax(0,300px) minmax(0,68ch);gap:2px 64px;justify-content:start}
+  .ens-page__cap,.ens-page__credit{grid-column:1}
+  .ens-page__brk{margin-block-start:40px}
+  .ens-page__sec{display:grid;grid-template-columns:minmax(0,300px) minmax(0,68ch);gap:14px 64px;justify-content:start;align-items:start;padding-block-start:48px}
+  .ens-page__sec > :not(.ens-page__h2){grid-column:2}
+  .ens-page__h2.env2-h{grid-column:1;font-size:30px;margin:0}
+  .ens-page__sec > .ens-page__frame{grid-column:1 / -1;margin-block-start:6px}
+  .ens-page__places{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ens-page__places li:nth-child(odd){padding-inline-end:0}
+  .ens-page__places li{padding-inline-end:24px}
+  .ens-page__spine li{padding-inline-start:60px}
+  .ens-page__spine-n{font-size:26px}
+  .ens-page__spine-t{font-size:21px}
+  .ens-page__spine p,.ens-page__trio p,.ens-page__pair dd,.ens-page__plain li,.ens-page__faq details p,.ens-page__note{font-size:16px}
+  .ens-page__pair > div{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:0 24px}
+  .ens-page__trio{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ens-page__cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ens-page__plate{grid-template-columns:repeat(3,minmax(0,1fr));border-block-end:0}
+  .ens-page__cell{flex-direction:column;justify-content:flex-start;gap:6px;padding-inline-end:24px;border-block-end:1px solid var(--ens-page-line)}
+}
+@media (prefers-reduced-motion:reduce){
+  .ens-page,.ens-page *,.ens-page *::before,.ens-page *::after{transition:none!important;animation:none!important}
+}
+</style>
+
+{% schema %}
+{
+  "name": "ElmsNest S — עמוד תוכן",
+  "tag": "section",
+  "class": "ens-page-section hdt-section",
+  "settings": [
+    { "type": "paragraph", "content": "עיצוב אחד לשבעת עמודי התוכן. הטקסט הארוך יושב בקוד; כאן נמצאים הכותרת הראשית ומשפט הפתיחה של כל עמוד, ותמונה אחת לכל שלב עם הכיתוב והקרדיט שלה." },
+
+    { "type": "header", "content": "מדריך הבחירה" },
+    { "type": "text", "id": "h1_guide", "label": "כותרת ראשית", "default": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה" },
+    { "type": "text", "id": "lead_guide", "label": "משפט פתיחה", "default": "ארבע החלטות קצרות: איפה צריך אור, מה הוא צריך לעשות, איזה מקור חשמל מתאים, ומה בודקים לפני שמזמינים." },
+    { "type": "image_picker", "id": "img_guide_band", "label": "תמונת הפתיחה (ריק = ens-page-guide-band.jpg)" },
+    { "type": "text", "id": "cap_guide_band", "label": "כיתוב תמונת הפתיחה (ריק = בלי כיתוב)", "default": "שמיים בין ערביים, מעל גינה" },
+    { "type": "text", "id": "cred_guide_band", "label": "קרדיט תמונת הפתיחה", "default": "צילום: aenigmatēs (CC BY 2.0)" },
+    { "type": "text", "id": "alt_guide_band", "label": "טקסט חלופי לתמונת הפתיחה", "info": "ריק = תמונה דקורטיבית; הכיתוב נושא את המשמעות." },
+    { "type": "text", "id": "pos_guide_band", "label": "חיתוך בנייד (object-position)", "default": "50% 60%" },
+    { "type": "text", "id": "posd_guide_band", "label": "חיתוך במחשב (object-position)", "default": "50% 65%" },
+    { "type": "image_picker", "id": "img_guide_places", "label": "תמונת החצר (ריק = ens-page-guide-places.jpg)" },
+    { "type": "text", "id": "cap_guide_places", "label": "כיתוב תמונת החצר (ריק = בלי כיתוב)", "default": "חצר אחת בשעת בין ערביים" },
+    { "type": "text", "id": "cred_guide_places", "label": "קרדיט תמונת החצר", "default": "צילום: Jeremy Levine Design (CC BY 2.0)" },
+    { "type": "text", "id": "alt_guide_places", "label": "טקסט חלופי לתמונת החצר" },
+    { "type": "text", "id": "pos_guide_places", "label": "חיתוך החצר בנייד", "default": "50% 50%" },
+    { "type": "text", "id": "posd_guide_places", "label": "חיתוך החצר במחשב", "default": "50% 50%" },
+
+    { "type": "header", "content": "למה תאורה סולארית" },
+    { "type": "text", "id": "h1_why", "label": "כותרת ראשית", "default": "למה תאורה סולארית — ומתי לא" },
+    { "type": "text", "id": "lead_why", "label": "משפט פתיחה", "default": "היתרון: פחות תלות בחיבור קבוע לחשמל. ההתאמה תלויה בשמש שהמקום מקבל, במטרת האור ובנתוני המוצר הספציפי." },
+    { "type": "image_picker", "id": "img_why_band", "label": "תמונת הפתיחה (ריק = ens-page-why-band.jpg)" },
+    { "type": "text", "id": "cap_why_band", "label": "כיתוב תמונת הפתיחה", "default": "זריחה בין עצים" },
+    { "type": "text", "id": "cred_why_band", "label": "קרדיט תמונת הפתיחה", "default": "צילום: Dietmar Rabich (CC BY-SA 4.0)" },
+    { "type": "text", "id": "alt_why_band", "label": "טקסט חלופי לתמונת הפתיחה" },
+    { "type": "text", "id": "pos_why_band", "label": "חיתוך בנייד", "default": "50% 45%" },
+    { "type": "text", "id": "posd_why_band", "label": "חיתוך במחשב", "default": "50% 45%" },
+    { "type": "image_picker", "id": "img_why_cell", "label": "תמונת התא הסולארי (ריק = ens-page-why-cell.jpg)" },
+    { "type": "text", "id": "cap_why_cell", "label": "כיתוב תמונת התא", "default": "תא סולארי מקרוב, באור יום" },
+    { "type": "text", "id": "cred_why_cell", "label": "קרדיט תמונת התא", "default": "צילום: Guilhem Vellut (CC BY 2.0)" },
+    { "type": "text", "id": "alt_why_cell", "label": "טקסט חלופי לתמונת התא" },
+    { "type": "text", "id": "pos_why_cell", "label": "חיתוך התא בנייד", "default": "50% 50%" },
+    { "type": "text", "id": "posd_why_cell", "label": "חיתוך התא במחשב", "default": "50% 50%" },
+
+    { "type": "header", "content": "מי אנחנו" },
+    { "type": "text", "id": "h1_about", "label": "כותרת ראשית", "default": "רק תאורת חוץ. וזה בכוונה." },
+    { "type": "text", "id": "lead_about", "label": "משפט פתיחה", "default": "אנחנו עוזרים להתאים גוף תאורה למקום שלכם — וגם אומרים כשמשהו לא מתאים." },
+    { "type": "image_picker", "id": "img_about_band", "label": "תמונת הפתיחה (ריק = ens-page-about-band.jpg)" },
+    { "type": "text", "id": "cap_about_band", "label": "כיתוב תמונת הפתיחה", "default": "חורשה בירושלים, בצל של צהריים" },
+    { "type": "text", "id": "cred_about_band", "label": "קרדיט תמונת הפתיחה", "default": "צילום: זאב שטיין (CC BY 2.5)" },
+    { "type": "text", "id": "alt_about_band", "label": "טקסט חלופי לתמונת הפתיחה" },
+    { "type": "text", "id": "pos_about_band", "label": "חיתוך בנייד", "default": "50% 50%" },
+    { "type": "text", "id": "posd_about_band", "label": "חיתוך במחשב", "default": "50% 55%" },
+    { "type": "image_picker", "id": "img_about_court", "label": "תמונת החצר (ריק = ens-page-about-court.jpg)" },
+    { "type": "text", "id": "cap_about_court", "label": "כיתוב תמונת החצר", "default": "חצר בירושלים, בצל" },
+    { "type": "text", "id": "cred_about_court", "label": "קרדיט תמונת החצר", "default": "צילום: RonAlmog (CC BY 2.0)" },
+    { "type": "text", "id": "alt_about_court", "label": "טקסט חלופי לתמונת החצר" },
+    { "type": "text", "id": "pos_about_court", "label": "חיתוך החצר בנייד", "default": "50% 50%" },
+    { "type": "text", "id": "posd_about_court", "label": "חיתוך החצר במחשב", "default": "50% 50%" },
+
+    { "type": "header", "content": "שאלות נפוצות" },
+    { "type": "text", "id": "h1_faq", "label": "כותרת ראשית", "default": "שאלות נפוצות" },
+    { "type": "text", "id": "lead_faq", "label": "משפט פתיחה", "info": "אחריו נדפס הקישור «כתבו לנו».", "default": "תשובות קצרות לפני ואחרי ההזמנה. לא מצאתם תשובה?" },
+    { "type": "image_picker", "id": "img_faq_band", "label": "תמונת הפתיחה (ריק = ens-page-faq-band.jpg)" },
+    { "type": "text", "id": "cap_faq_band", "label": "כיתוב תמונת הפתיחה", "default": "שביל בגינה, בין ערביים" },
+    { "type": "text", "id": "cred_faq_band", "label": "קרדיט תמונת הפתיחה", "default": "צילום: PumpkinSky (CC BY-SA 3.0)" },
+    { "type": "text", "id": "alt_faq_band", "label": "טקסט חלופי לתמונת הפתיחה" },
+    { "type": "text", "id": "pos_faq_band", "label": "חיתוך בנייד", "info": "הכותרת יושבת על התמונה הזו; החיתוך נמדד 6.96:1 מול הדיו.", "default": "50% 50%" },
+    { "type": "text", "id": "posd_faq_band", "label": "חיתוך במחשב", "info": "נמדד 6.66:1 מול הדיו.", "default": "50% 50%" },
+
+    { "type": "header", "content": "זמני טיפול בהזמנה" },
+    { "type": "text", "id": "h1_proc", "label": "כותרת ראשית", "default": "זמני טיפול בהזמנה" },
+    { "type": "text", "id": "lead_proc", "label": "משפט פתיחה", "default": "המספרים כאן זהים למדיניות המשלוחים המלאה — אין הבטחות נפרדות." },
+    { "type": "image_picker", "id": "img_proc_band", "label": "תמונת הפתיחה (ריק = ens-page-processing-band.jpg)" },
+    { "type": "text", "id": "cap_proc_band", "label": "כיתוב תמונת הפתיחה", "default": "גינה ים-תיכונית, אחר הצהריים" },
+    { "type": "text", "id": "cred_proc_band", "label": "קרדיט תמונת הפתיחה", "default": "צילום: Swphotouk (CC BY 4.0)" },
+    { "type": "text", "id": "alt_proc_band", "label": "טקסט חלופי לתמונת הפתיחה" },
+    { "type": "text", "id": "pos_proc_band", "label": "חיתוך בנייד", "default": "50% 50%" },
+    { "type": "text", "id": "posd_proc_band", "label": "חיתוך במחשב", "default": "50% 50%" },
+
+    { "type": "header", "content": "משלוחים והחזרות" },
+    { "type": "text", "id": "h1_ship", "label": "כותרת ראשית", "default": "משלוחים והחזרות" },
+    { "type": "text", "id": "lead_ship", "label": "משפט פתיחה", "info": "ריק = בלי משפט פתיחה, כמו במקור." },
+    { "type": "checkbox", "id": "shipping_from_body", "label": "להדפיס את גוף העמוד מהאדמין במקום הטקסט שבקוד", "default": false, "info": "כבוי = המספרים מגיעים מהקובץ הזה, יחד עם השאלות הנפוצות ועם זמני הטיפול. דלוק = חזרה לטקסט שבעמוד השופיפיי." },
+    { "type": "image_picker", "id": "img_ship_band", "label": "תמונת הפתיחה (ריק = ens-page-shipping-band.jpg)" },
+    { "type": "text", "id": "cap_ship_band", "label": "כיתוב תמונת הפתיחה", "default": "מטע זיתים, יום מעונן" },
+    { "type": "text", "id": "cred_ship_band", "label": "קרדיט תמונת הפתיחה", "default": "צילום: Dimitry B (CC BY 2.0)" },
+    { "type": "text", "id": "alt_ship_band", "label": "טקסט חלופי לתמונת הפתיחה" },
+    { "type": "text", "id": "pos_ship_band", "label": "חיתוך בנייד", "default": "50% 50%" },
+    { "type": "text", "id": "posd_ship_band", "label": "חיתוך במחשב", "default": "50% 40%" },
+
+    { "type": "header", "content": "יצירת קשר" },
+    { "type": "text", "id": "h1_contact", "label": "כותרת ראשית", "default": "יצירת קשר" },
+    { "type": "text", "id": "lead_contact", "label": "משפט פתיחה", "info": "ריק = בלי משפט פתיחה, כמו במקור." },
+    { "type": "image_picker", "id": "img_contact_band", "label": "תמונת הפתיחה (ריק = ens-page-contact-band.jpg)" },
+    { "type": "text", "id": "cap_contact_band", "label": "כיתוב תמונת הפתיחה", "default": "חצר בחיפה, בצהריים" },
+    { "type": "text", "id": "cred_contact_band", "label": "קרדיט תמונת הפתיחה", "default": "צילום: Josh Evnin (CC BY-SA 2.0)" },
+    { "type": "text", "id": "alt_contact_band", "label": "טקסט חלופי לתמונת הפתיחה" },
+    { "type": "text", "id": "pos_contact_band", "label": "חיתוך בנייד", "default": "50% 55%" },
+    { "type": "text", "id": "posd_contact_band", "label": "חיתוך במחשב", "default": "50% 45%" },
+    { "type": "checkbox", "id": "contact_email_line", "label": "להדפיס את שורת הדוא״ל מעל הטופס", "default": true, "info": "טור הטקסט של טופס הקשר מדפיס את אותה כתובת; אם הוא נשאר, כבו את השורה הזו." },
+
+    { "type": "header", "content": "כתובת הדוא״ל" },
+    { "type": "text", "id": "email", "label": "כתובת הדוא״ל של החנות", "default": "info@elmsnest.com", "info": "נדפסת בחתימה של «מי אנחנו» ובעמוד יצירת הקשר. ריק = לא נדפסת בכלל." }
+  ],
+  "presets": [
+    { "name": "ElmsNest S — עמוד תוכן" }
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
+}
+{% endschema %}

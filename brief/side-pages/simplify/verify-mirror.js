@@ -124,6 +124,59 @@ async function audit(page, name, vw, vh) {
     const bareDesc = [];
     while ((n = walker.nextNode())) { if (/\d\s?–\s?\d/.test(n.nodeValue) && !n.parentElement.closest('bdi') && !n.parentElement.closest('script,style,noscript')) { (n.parentElement.closest('details') ? bareDesc : bare).push(n.nodeValue.trim().slice(0, 40)); } }
     res.rangesOutsideBdi = bare.slice(0, 8); res.rangesOutsideBdiCount = bare.length; res.rangesInRawDescription = bareDesc.length;
+    // content-page copy probe (pages/SPEC.md §3 photographs, §4 copy changes, §5 verification) — the seven page-* targets only.
+    // Everything is read from the rendered text, not from class names, so it holds whatever markup elmsnest-s-page ships.
+    if (name.startsWith('page-')) {
+      const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const TX = (main.innerText || '').replace(/\s+/g, ' ').trim();
+      const has = s => TX.includes(s);
+      const H1 = { 'page-guide': 'בוחרים תאורת גינה לפי המקום — לא לפי התמונה', 'page-why': 'למה תאורה סולארית — ומתי לא', 'page-about': 'רק תאורת חוץ. וזה בכוונה.', 'page-faq': 'שאלות נפוצות', 'page-processing': 'זמני טיפול בהזמנה', 'page-shipping': 'משלוחים והחזרות', 'page-contact': 'יצירת קשר' };
+      // SPEC §3, the ten photographs: [kicker, caption, credit] per page, in document order
+      const PHOTO = {
+        'page-guide': [['מקום', 'שמיים בין ערביים, מעל גינה', 'צילום: aenigmatēs (CC BY 2.0)'], ['מקום', 'חצר אחת בשעת בין ערביים', 'צילום: Jeremy Levine Design (CC BY 2.0)']],
+        'page-why': [['מקום', 'זריחה בין עצים', 'צילום: Dietmar Rabich (CC BY-SA 4.0)'], ['מנגנון', 'תא סולארי מקרוב, באור יום', 'צילום: Guilhem Vellut (CC BY 2.0)']],
+        'page-about': [['מקום', 'חורשה בירושלים, בצל של צהריים', 'צילום: זאב שטיין (CC BY 2.5)'], ['מקום', 'חצר בירושלים, בצל', 'צילום: RonAlmog (CC BY 2.0)']],
+        'page-faq': [['מקום', 'שביל בגינה, בין ערביים', 'צילום: PumpkinSky (CC BY-SA 3.0)']],
+        'page-processing': [['מקום', 'גינה ים-תיכונית, אחר הצהריים', 'צילום: Swphotouk (CC BY 4.0)']],
+        'page-shipping': [['מקום', 'מטע זיתים, יום מעונן', 'צילום: Dimitry B (CC BY 2.0)']],
+        'page-contact': [['מקום', 'חצר בחיפה, בצהריים', 'צילום: Josh Evnin (CC BY-SA 2.0)']],
+      };
+      // SPEC §4.1: the four live Shopify titles, in main-menu order, with the collection handle each must link to
+      const COLL = [['תאורת שביל, עמוד וגינה', 'תאורת-שביל-סולארית'], ['תאורת קיר', 'solar-wall-lights'], ['ספוטים, פרוז׳קטורים ותאורה ניידת', 'ספוטים-ופרוז-קטורים-סולאריים'], ['גרילנדות ותאורה דקורטיבית', 'גרילנדות-ותאורה-דקורטיבית']];
+      const COLL_ON = ['page-guide', 'page-about'];              // guide §01 and About «מה תמצאו בחנות»
+      const STALE = ['כניסה וקיר', 'הארה ממוקדת', 'מרפסת ואירוח', 'ספוטים ותאורה ניידת', 'אווירה ודקורציה'];  // the pre-§4.1 names
+      // the seven policy numbers, each tested through the sentence it lives in (COPY-SOURCE «Facts that must stay byte-identical»)
+      const NUM = [['חינם', 'לנקודת איסוף בישראל — חינם'], ['29.90', 'שליח עד הבית — 29.90 ₪'], ['1–3', '1–3 ימי'], ['7–14', '7–14 ימי'], ['8–17', '8–17 ימי'], ['14', 'עד 14 ימים מקבלת המוצר'], ['5%', '5% ממחיר העסקה'], ['100', '100 ₪']];
+      const NUM_ON = { 'page-faq': ['חינם', '29.90', '1–3', '7–14', '8–17', '14', '5%', '100'], 'page-shipping': ['חינם', '29.90', '1–3', '7–14', '8–17', '14', '5%', '100'], 'page-processing': ['1–3', '7–14', '8–17'] };
+      const scope = document.querySelector('.ens-page') || main;
+      const imgs = [...scope.querySelectorAll('img')];
+      const leaves = [...scope.querySelectorAll('*')].filter(e => !e.children.length);
+      const pc = {};
+      pc.h1 = q('h1').map(h => h.textContent.trim()).filter(Boolean)[0] || '';
+      pc.h1Expected = H1[name] || null;
+      pc.h1Ok = pc.h1Expected ? pc.h1 === pc.h1Expected : null;
+      pc.h1Count = q('h1').length;                                // SPEC §4.3: the template swap leaves exactly one
+      pc.h1CountInMain = [...main.querySelectorAll('h1')].length;
+      pc.photos = (PHOTO[name] || []).map(([k, c, cr]) => ({ kicker: k, caption: c, captionFound: has(c), kickerFound: new RegExp(esc(k) + '\\s*(?:[·:|—–-]\\s*)?' + esc(c)).test(TX), creditFound: has(cr) }));
+      pc.photosMissing = pc.photos.filter(p => !p.captionFound || !p.kickerFound || !p.creditFound).map(p => p.caption);
+      pc.kickerMarks = (TX.match(/(?:מקום|מנגנון)\s*·/g) || []).length;   // R5: every caption opens with its kicker
+      if (COLL_ON.includes(name)) {
+        pc.collections = COLL.map(([t, h]) => ({ title: t, found: has(t), linked: q('a[href*="/collections/"]').some(a => decodeURIComponent(a.getAttribute('href') || '').includes('/collections/' + h) && a.textContent.replace(/\s+/g, ' ').includes(t)) }));
+        pc.collectionsMissing = pc.collections.filter(c => !c.found || !c.linked).map(c => c.title);
+        pc.staleCollectionNames = STALE.filter(has);
+      }
+      const expect = NUM_ON[name] || [];
+      pc.numbers = NUM.filter(([n]) => expect.includes(n)).map(([n, phrase]) => ({ n, phrase, found: has(phrase) }));
+      pc.numbersMissing = pc.numbers.filter(x => !x.found).map(x => x.n);
+      pc.numbersUnexpected = NUM.filter(([n, phrase]) => !expect.includes(n) && has(phrase)).map(([n]) => n);
+      pc.images = { imgs: imgs.length, sized: imgs.filter(i => i.getAttribute('width') && i.getAttribute('height')).length, lazy: imgs.filter(i => i.getAttribute('loading') === 'lazy').length, sizedAndLazy: imgs.filter(i => i.getAttribute('width') && i.getAttribute('height') && i.getAttribute('loading') === 'lazy').length, eager: imgs.filter(i => i.getAttribute('loading') !== 'lazy').length, loaded: imgs.filter(i => i.complete && i.naturalWidth > 0).length, files: imgs.map(i => decodeURIComponent((i.currentSrc || i.getAttribute('src') || '').split('?')[0].split('/').pop())).slice(0, 12) };
+      const bad = q('a').filter(a => scope.contains(a)).filter(a => { const h = a.getAttribute('href'); return h === null || h.trim() === '' || h.trim() === '#'; });
+      pc.badLinks = bad.map(a => ({ href: a.getAttribute('href'), text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40) })).slice(0, 8);
+      pc.badLinksCount = bad.length;
+      if (name === 'page-guide') pc.placeLabels = ['שביל', 'קיר', 'גינה', 'מרפסת'].filter(w => leaves.some(e => e.textContent.trim() === w));   // R4: the four labels of the places frame
+      if (name === 'page-about') pc.signature = { line: has('כתבו לנו.'), who: has('ישראל'), mailto: [...scope.querySelectorAll('a[href^="mailto:"]')].length };   // R6
+      res.pageCopy = pc;
+    }
     res.cardTransition = cards[0] ? getComputedStyle(cards[0]).transitionDuration : null;
     return res;
   }, { name, vh, FEAT });
