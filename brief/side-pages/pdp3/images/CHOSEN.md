@@ -1,0 +1,9 @@
+| asset | id (crop) | px | weight | source | licence | author | page | credit line |
+|---|---|---|---|---|---|---|---|---|
+| `ens-pdp-rain-panel.jpg` | ov_dbe4a3f1-c6e9-4900-84ef-34a5c41e30b1 | 1066×1600 | 188 KB q62 | openverse:flickr | CC BY-SA 2.0 | h080 | https://www.flickr.com/photos/7718908@N04/5916382055 | צילום: h080 (CC BY-SA 2.0) |
+| `ens-pdp-rain-stem.jpg` | ov_5795ed8a-cd8b-4588-9ae7-110f9a3ed0e4 | 1600×1067 | 152 KB q82 | openverse:flickr | CC BY 2.0 | jenny downing | https://www.flickr.com/photos/7941044@N06/15062597779 | צילום: jenny downing (CC BY 2.0) |
+| `ens-pdp-print-wall.jpg` | ov_93506e94-8866-47c0-b94c-fc3d19a91f92 | 1600×1063 | 189 KB q82 | openverse:flickr | CC BY 2.0 | BPPrice | https://www.flickr.com/photos/73082817@N03/15386993505 | צילום: BPPrice (CC BY 2.0) |
+| `ens-pdp-print-balcony.jpg` | ov_c3ee8ae1-df10-4137-93dd-1ae268c66148 | 1600×1067 | 166 KB q82 | openverse:flickr | CC BY-SA 2.0 | tillwe | https://www.flickr.com/photos/98652633@N00/3727563858 | צילום: tillwe (CC BY-SA 2.0) |
+| `ens-pdp-sun-wall.jpg` | ov_7379ba54-775e-4044-b839-56ce83f7deb1 | 1200×900 | 196 KB q66 | openverse:rawpixel | CC CC0 1.0 | Carol M Highsmith | https://www.rawpixel.com/image/582428/carol-highsmiths-arizona-photograph | צילום: Carol M Highsmith (CC CC0 1.0) |
+| `ens-pdp-print-path.jpg` | ov_42864d07-e921-4b30-b71c-adbcb12f7869 | 1200×781 | 188 KB q74 | openverse:flickr | CC BY 2.0 | Corey Leopold | https://www.flickr.com/photos/97708873@N00/51485607579 | צילום: Corey Leopold (CC BY 2.0) |
+| `ens-pdp-print-garden.jpg` | wm_faf95922bd | 1000×667 | 197 KB q74 | wikimedia-commons | CC BY-SA 4.0 | Basile Morin | https://commons.wikimedia.org/wiki/File:Outdoor_wooden_bench_in_Singapore_Botanic_Gardens_at_golden_hour.jpg | צילום: Basile Morin (CC BY-SA 4.0) |

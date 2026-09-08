@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PDP3 concept «pair» — ביום ובערב · לפני שקונים — A / B / C</title>
+<title>PDP3 concept «pair» — בין הצהריים לשקיעה · לפני שקונים — A / B / C</title>
 <style>
 /* ---- the offline font pack (the store's faces): Frank Ruhl Libre (serif) + Heebo (sans) ---- */
 @font-face{font-family:"Frank Ruhl Libre";font-weight:700;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/FrankRuhlLibre-hebrew-700.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
@@ -17,7 +17,7 @@
 @font-face{font-family:"Heebo";font-weight:500;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-hebrew-500.woff2") format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
 @font-face{font-family:"Heebo";font-weight:500;font-display:block;src:url("file:///home/user/ElmsNest/brief/assets/fonts/Heebo-latin-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
-/* ---- the store's tokens (elmsnest-v2-core :root, verbatim) + the side-page ground ---- */
+/* ---- the store's tokens (elmsnest-v2-core :root) + the side-page ground ---- */
 :root{
   --env2-sky-0:#4a6a9c;--env2-sky-1:#1f3357;--env2-sky-2:#0f1a2f;--env2-sky-3:#070b15;--env2-sky-4:#020306;
   --env2-ink:#f4eee3;--env2-ink-2:#c9c4b8;--env2-mute:#8f95a3;
@@ -30,262 +30,318 @@
 html{background:#020306}
 body{margin:0;background:#020306;color:#f4eee3;font-family:var(--env2-sans)}
 /* every archetype block is one product page: the side-page ground, sky-2 -> sky-3 -> sky-4 */
-.arch{position:relative;background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%;min-height:100vh}
-.arch + .arch{border-block-start:6px solid #4a6a9c}
+.arch{position:relative;background-image:linear-gradient(180deg,#0f1a2f 0%,#070b15 45%,#020306 100%);background-repeat:no-repeat;background-size:100% 100%}
+.arch+.arch{border-block-start:6px solid #4a6a9c}
 /* the existing sections, as labelled grey bands of their true heights at 390 (BRIEF §5) */
-.band{display:grid;place-items:center;background:rgba(143,149,163,.16);border-block:1px dashed rgba(244,238,227,.14);color:#8f95a3;font:12px/1.4 ui-monospace,Menlo,monospace;text-align:center;letter-spacing:.04em}
-.band small{display:block;font-size:11px;opacity:.75}
+.band{display:grid;place-items:center;background:rgba(143,149,163,.16);border-block:1px dashed rgba(244,238,227,.14);color:#8f95a3;font:12px/1.4 ui-monospace,Menlo,monospace;text-align:center;letter-spacing:.03em;padding-inline:10px}
+.band small{display:block;font-size:10.5px;opacity:.75;margin-block-start:4px}
 .band--header{height:60px;background:rgba(143,149,163,.10)}
-.arch__id{position:absolute;inset-inline-end:12px;inset-block-start:8px;font:11px ui-monospace,monospace;color:#8f95a3;opacity:.7}
+.arch__id{position:absolute;inset-inline-end:12px;inset-block-start:8px;font:11px ui-monospace,monospace;color:#8f95a3;opacity:.75;z-index:2}
 
-/* ---- env2 primitives used by the sections (elmsnest-v2-core) ---- */
+/* ---- env2 primitives used by the two sections (elmsnest-v2-core) ---- */
 .env2-section{position:relative;background:transparent;color:var(--env2-ink);font-family:var(--env2-sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
 .env2-section img{display:block;max-width:100%}
 .env2-section bdi{unicode-bidi:isolate}
 .env2-wrap{width:min(var(--env2-w),100% - 2*var(--env2-gut));margin-inline:auto}
-.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
+.env2-h{font-family:var(--env2-serif);font-weight:700;line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0;color:var(--env2-ink)}
 .env2-section :focus-visible{outline:2px solid #ffd394;outline-offset:4px}
 
 /* =====================================================================
-   ens-pdp-pair — «ביום ובערב» (sections/elmsnest-s-pdp-pair.liquid)
-   Every family (the place word picks the pair; image slots per family, day + evening).
-   One heading, one line, then TWO framed photographs of one kind of place — by day and at dusk —
-   the same crop, on the night ground, a 1 px hairline of ground between them; no scrim, no word on
-   a photograph. 390: the two frames stack (2.7:1 bands, 1 px gap) and read as one split image;
-   ≥ 901: side by side. Under the pair, one caption per frame naming what it is (a place, never the
-   product) with its credit. Framed inside the wrap, daylight tones — not the scene's full-bleed night band.
+   ens-pdp-pair — «בין הצהריים לשקיעה»  (sections/elmsnest-s-pdp-pair.liquid)
+   THE DEVICE: two photographs of one KIND of place — a stone path beside a wall — at two hours of
+   the day, standing SIDE BY SIDE inside the wrap at the same crop (4:5), with a 1 px hairline of the
+   night ground between them. The pairing is the whole idea: no scrim, no word on a photograph, no
+   full-bleed band, no hairline row. One heading, one line, then one caption per frame naming the
+   hour and the place, so neither photograph can read as this product. Daylight and sunset tones on
+   the night ground — the «different colour» the owner asked for. Side by side at every width.
    ===================================================================== */
-.ens-pdp-pair{padding-block:28px 26px;margin:0}
-.ens-pdp-pair__head{margin-block-end:16px}
-.ens-pdp-pair__h2.env2-h{font-size:clamp(24px,2.6vw,34px);line-height:1.08;margin:0 0 8px}
-.ens-pdp-pair__line{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.5;color:var(--env2-ink);max-inline-size:46ch;text-wrap:pretty}
-.ens-pdp-pair__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1px}
-.ens-pdp-pair__fig{position:relative;margin:0;aspect-ratio:2.7/1;overflow:hidden;background:#05070c;border-radius:0}
+.ens-pdp-pair{padding-block:30px 26px;margin:0}
+.ens-pdp-pair__head{margin-block-end:18px}
+.ens-pdp-pair__h2.env2-h{font-size:clamp(23px,2.4vw,32px);margin:0 0 8px}
+.ens-pdp-pair__line{margin:0;font-family:var(--env2-sans);font-weight:300;font-size:16px;line-height:1.5;color:var(--env2-ink-2);max-inline-size:44ch;text-wrap:pretty}
+.ens-pdp-pair__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1px}
+.ens-pdp-pair__fig{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:#05070c;border-radius:0}
 .ens-pdp-pair__fig img{inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
-.ens-pdp-pair__caps{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin-block-start:10px}
-.ens-pdp-pair__cap{margin:0;font-family:var(--env2-sans);font-weight:400;font-size:12px;line-height:1.5;color:var(--env2-ink-2);text-wrap:pretty}
-.ens-pdp-pair__tag{display:inline-block;margin-inline-end:8px;font-weight:500;font-size:11px;letter-spacing:.1em;color:var(--env2-gold)}
-.ens-pdp-pair__credit{display:inline-block;margin-inline-start:8px;font-weight:400;font-size:11.5px;color:var(--env2-mute)}
+.ens-pdp-pair__caps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1px;margin-block-start:9px}
+.ens-pdp-pair__cap{margin:0;padding-inline-end:0;font-family:var(--env2-sans);font-weight:300;font-size:12px;line-height:1.45;color:var(--env2-ink-2);text-wrap:pretty}
+.ens-pdp-pair__tag{display:block;margin-block-end:3px;font-weight:500;font-size:10.5px;letter-spacing:.14em;color:var(--env2-ink-2)}
+.ens-pdp-pair__cap--eve .ens-pdp-pair__tag{color:var(--env2-gold)}
+.ens-pdp-pair__credit{display:block;margin-block-start:3px;font-size:11px;line-height:1.45;color:var(--env2-mute)}
 @media (min-width:901px){
-  .ens-pdp-pair{padding-block:48px 40px}
-  .ens-pdp-pair__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px 40px;flex-wrap:wrap;margin-block-end:22px}
-  .ens-pdp-pair__h2.env2-h{margin:0}
-  .ens-pdp-pair__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .ens-pdp-pair__fig{aspect-ratio:2.7/1}
-  .ens-pdp-pair__fig img{object-position:var(--ens-op-lg,var(--ens-op,50% 50%))}
-  .ens-pdp-pair__caps{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 24px;margin-block-start:12px}
+  /* editorial two columns: the heading and the line hold the right (start) column, the pair holds
+     the wide left column — the same side the facts' dl and the dusk row sit on, so the page keeps
+     one desktop rhythm. Nothing on the page uses this composition today. */
+  .ens-pdp-pair{padding-block:52px 44px}
+  .ens-pdp-pair__inner{display:grid;grid-template-columns:minmax(200px,300px) minmax(0,1fr);gap:0 56px;align-items:start}
+  .ens-pdp-pair__head{grid-column:1;grid-row:1;margin:0;padding-block-start:4px}
+  .ens-pdp-pair__h2.env2-h{margin:0 0 12px}
+  .ens-pdp-pair__grid{grid-column:2;grid-row:1;gap:2px}
+  .ens-pdp-pair__caps{grid-column:2;grid-row:2;gap:2px;margin-block-start:12px}
+  .ens-pdp-pair__cap{font-size:13px}
+  .ens-pdp-pair__tag{font-size:11px}
 }
 @media (prefers-reduced-motion:reduce){.ens-pdp-pair *{transition:none!important;animation:none!important}}
 
 /* =====================================================================
-   ens-pdp-checks — «לפני שקונים» (sections/elmsnest-s-pdp-checks.liquid)
-   Every family. Three tiny square photographs in a row, a three-word statement under each — the
-   guide's three checks (sun · distance · outdoors) as pictures, not as questions and not as a list —
-   then the guide link. The first tile is gated as elmsnest-s-pdp-dusk: solar -> «שמש ישירה במקום»
-   with a solar-cell photograph; anything else -> «החיבור כתוב במפרט» with the lit-house tile.
-   The credits of every CC BY / BY-SA tile in one muted 11.5 px line inside the section.
+   ens-pdp-checks — «לפני שקונים»  (sections/elmsnest-s-pdp-checks.liquid)
+   Three tiny square photographs in a row, a short statement under each: the three things you look
+   at in your own place before you choose. Image-led, not a checklist and not three questions.
+   The three squares are three windows into ONE photograph of a sunlit garden wall — a strip cut
+   from one frame, said so in the caption — so the section costs the page one file and nothing in
+   it can be mistaken for a lamp. Then the guide link, which this section takes over from the scene.
+   No gate: the three checks and the photograph are the same for every family and every power
+   source, so the section needs no product data at all.
    ===================================================================== */
-.ens-pdp-checks{padding-block:22px 26px;margin:0}
-.ens-pdp-checks__h{margin:0 0 14px;font-family:var(--env2-serif);font-weight:700;font-size:20px;line-height:1.1;color:#f4eee3}
-.ens-pdp-checks__row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.ens-pdp-checks{padding-block:26px 30px;margin:0}
+.ens-pdp-checks__h{margin:0 0 14px;font-family:var(--env2-serif);font-weight:700;font-size:20px;line-height:1.1;color:var(--env2-ink)}
+.ens-pdp-checks__row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}
 .ens-pdp-checks__item{margin:0;min-width:0}
-.ens-pdp-checks__fig{margin:0;aspect-ratio:1/1;overflow:hidden;background:#05070c;border-radius:0}
-.ens-pdp-checks__fig img{inline-size:100%;block-size:100%;object-fit:cover;object-position:var(--ens-op,50% 50%)}
-.ens-pdp-checks__s{margin:8px 0 0;font-family:var(--env2-serif);font-weight:500;font-size:16px;line-height:1.25;color:var(--env2-ink);text-wrap:balance}
-.ens-pdp-checks__credit{margin:12px 0 0;font-family:var(--env2-sans);font-weight:400;font-size:11.5px;line-height:1.5;color:var(--env2-mute)}
-.ens-pdp-checks__link{position:relative;display:inline-block;margin-block-start:12px;font-family:var(--env2-sans);font-weight:400;font-size:15px;line-height:1.6;color:#f4eee3;text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;white-space:nowrap}
+/* the window: the file sits at 260 % of the tile and is panned to the detail (a CSS crop, no editing).
+   dir=ltr on the figure so the logical insets map to the photograph's own left/top. */
+.ens-pdp-checks__fig{position:relative;margin:0;aspect-ratio:1/1;overflow:hidden;background:#05070c;border-radius:0}
+.ens-pdp-checks__fig img{position:absolute;inline-size:260%;block-size:auto;max-width:none;inset-inline-start:var(--ens-x,0);inset-block-start:var(--ens-y,0)}
+.ens-pdp-checks__s{margin:9px 0 0;font-family:var(--env2-serif);font-weight:500;font-size:14.5px;line-height:1.25;color:var(--env2-ink);text-wrap:balance}
+.ens-pdp-checks__cap{margin:14px 0 0;font-family:var(--env2-sans);font-weight:300;font-size:11.5px;line-height:1.5;color:var(--env2-mute)}
+.ens-pdp-checks__link{position:relative;display:inline-block;margin-block-start:14px;font-family:var(--env2-sans);font-weight:400;font-size:15px;line-height:1.6;color:var(--env2-ink);text-decoration:none;border-block-end:1px solid rgba(244,238,227,.25);padding-block-end:1px;white-space:nowrap;transition:color .3s,border-color .3s}
 .ens-pdp-checks__link:hover,.ens-pdp-checks__link:focus-visible{color:#ffd394;border-color:#ffd394}
 .ens-pdp-checks__link::before{content:"";position:absolute;inset-block:-11px;inset-inline:-6px}
 @media (min-width:901px){
-  .ens-pdp-checks{padding-block:8px 40px}
-  /* the dusk row's column: the right 55 % of the wrap, so the checks sit in the text column's rhythm */
+  .ens-pdp-checks{padding-block:12px 56px}
+  /* the dusk row's column, verbatim (elmsnest-s-pdp-dusk): the checks line up with the facts' dl
+     above them instead of opening a new column */
   .ens-pdp-checks__col{inline-size:calc((100% - 64px) * .55);margin-inline-start:auto}
   .ens-pdp-checks__h{font-size:22px}
-  .ens-pdp-checks__row{gap:16px}
-  .ens-pdp-checks__s{font-size:17px}
+  .ens-pdp-checks__row{gap:12px}
+  .ens-pdp-checks__s{font-size:16px;margin-block-start:11px}
 }
+@media (prefers-reduced-motion:reduce){.ens-pdp-checks *{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 
 <!-- =====================================================================
-     ARCHETYPE A — stainless path light (solar, own photo). Family word: שביל.
-     Template order proposed: main-product → ens_pdp_scene → ens_pdp_dusk → [ens_pdp_pair] → [ens_pdp_checks] → ens_pdp_facts → ens_related.
-     The pair is inserted right after the dusk hairline row (the round-2 device ends, daylight opens);
-     the checks sit right before the facts (the checks point at the specs; the facts are what you read next).
-     Files on this page (3): ov_7379ba54 (CC0) · wm_a17b65ac2a (CC BY-SA 3.0) · wm_5869e6ea3a (CC BY 2.0).
+     ARCHETYPE A — stainless steel solar path light. Solar, own night photograph in the scene.
+     Place word: שביל.
+     TEMPLATE ORDER (templates/product.elmsnest.json):
+       main-product → ens_pdp_scene → ens_pdp_dusk → [ens_pdp_pair] → ens_pdp_facts
+       → [ens_pdp_checks] → ens_related
+     ens_pdp_pair is inserted immediately AFTER the dusk hairline row: the night story of round 2
+     ends there, and the pair opens the day. ens_pdp_checks is inserted AFTER ens_pdp_facts and
+     before ens_related: the specs are read, then the three things to look at in your own place,
+     then the guide link — the last thing before the related cards.
+     Photographs on this page (3): ov_e2bc06ac (CC0) · ov_42864d07 (CC BY 2.0) · ov_7379ba54 (CC0)
      ===================================================================== -->
 <div class="arch" id="arch-a">
   <span class="arch__id">A · stainless path light · solar · photo scene</span>
   <div class="band band--header">header</div>
-  <div class="band" style="height:1085px">main-product<small>gallery, buy box, terms line, not-for line, contact · 1085</small></div>
-  <div class="band" style="height:596px">ens_pdp_scene<small>one night photograph of THIS product · «בלילה, על השביל» · line · guide link · 596</small></div>
-  <div class="band" style="height:152px">ens_pdp_dusk<small>«כשמחשיך» hairline row · 152</small></div>
+  <div class="band" style="height:1085px">main-product<small>gallery · buy box · terms line · not-for line · contact — 1085</small></div>
+  <div class="band" style="height:596px">ens_pdp_scene<small>night photograph of THIS product · «בלילה, על השביל» · one line — 596<br>(link_label emptied: the guide link moves to «לפני שקונים»)</small></div>
+  <div class="band" style="height:152px">ens_pdp_dusk<small>«כשמחשיך» hairline row, solar only — 152</small></div>
 
-  <section id="pair-a" class="env2-section ens-pdp-pair" dir="rtl" aria-labelledby="pair-a-h" style="scroll-margin-top:0">
-    <div class="env2-wrap">
+  <!-- ▼ NEW SECTION 1 of 2 — ens_pdp_pair, inserted after ens_pdp_dusk -->
+  <section id="pair-a" class="env2-section ens-pdp-pair" dir="rtl" aria-labelledby="pair-a-h">
+    <div class="env2-wrap"><div class="ens-pdp-pair__inner">
       <div class="ens-pdp-pair__head">
-        <h2 class="env2-h ens-pdp-pair__h2" id="pair-a-h">השביל, ביום ובערב</h2>
-        <p class="ens-pdp-pair__line">ביום רואים הכול. בערב רואים רק את מה שמואר.</p>
+        <h2 class="env2-h ens-pdp-pair__h2" id="pair-a-h">בין הצהריים לשקיעה</h2>
+        <p class="ens-pdp-pair__line">השעה משנה את מה שרואים בחוץ.</p>
       </div>
       <div class="ens-pdp-pair__grid">
-        <figure class="ens-pdp-pair__fig" style="--ens-op:50% 62%;--ens-op-lg:50% 62%">
-          <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="שביל חצץ לאורך קיר לבן עם בוגנוויליה, בצהריים">
+        <figure class="ens-pdp-pair__fig" style="--ens-op:0% 50%">
+          <img src="../../images/candidates/ov_e2bc06ac-f491-4032-b9cd-81e1391be7e9.jpg" width="1920" height="1440" loading="lazy" decoding="async" alt="סמטת אבן צרה בין קירות אבן, כד חרס וצמחייה, בשמש של צהריים">
         </figure>
-        <figure class="ens-pdp-pair__fig" style="--ens-op:50% 22%;--ens-op-lg:50% 22%">
-          <img src="../../images/candidates/wm_a17b65ac2a.jpg" width="3840" height="3764" loading="lazy" decoding="async" alt="שביל בגינה בין ערביים, השמיים עוד בהירים">
+        <figure class="ens-pdp-pair__fig" style="--ens-op:57% 50%">
+          <img src="../../images/candidates/ov_42864d07-e921-4b30-b71c-adbcb12f7869.jpg" width="2047" height="1333" loading="lazy" decoding="async" alt="שביל אבן מתעקל לצד קיר אבנים, שמי שקיעה כתומים מעל העצים">
         </figure>
       </div>
       <div class="ens-pdp-pair__caps">
-        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">יום</span>שביל חצץ לאורך קיר, בצהריים</p>
-        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">ערב</span>שביל בגינה, בין ערביים<span class="ens-pdp-pair__credit">צילום: <bdi dir="ltr">PumpkinSky (CC BY-SA 3.0)</bdi></span></p>
+        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">צהריים</span>סמטת אבן בין קירות</p>
+        <p class="ens-pdp-pair__cap ens-pdp-pair__cap--eve"><span class="ens-pdp-pair__tag">שקיעה</span>שביל אבן וקיר אבנים<span class="ens-pdp-pair__credit">צילום: <bdi dir="ltr">Corey Leopold (CC BY 2.0)</bdi></span></p>
       </div>
-    </div>
+    </div></div>
   </section>
+  <!-- ▲ end ens_pdp_pair -->
 
-  <section id="checks-a" class="env2-section ens-pdp-checks" dir="rtl" aria-labelledby="checks-a-h" style="scroll-margin-top:0">
+  <div class="band" style="height:723px">ens_pdp_facts<small>IP numeral · specs dl · description — 723</small></div>
+
+  <!-- ▼ NEW SECTION 2 of 2 — ens_pdp_checks, inserted after ens_pdp_facts, before ens_related -->
+  <section id="checks-a" class="env2-section ens-pdp-checks" dir="rtl" aria-labelledby="checks-a-h">
     <div class="env2-wrap"><div class="ens-pdp-checks__col">
       <h2 class="ens-pdp-checks__h" id="checks-a-h">לפני שקונים</h2>
       <ul class="ens-pdp-checks__row">
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:50% 50%"><img src="../../images/candidates/wm_5869e6ea3a.jpg" width="3840" height="2560" loading="lazy" decoding="async" alt="תא סולארי בשמש, מקרוב"></figure>
-          <p class="ens-pdp-checks__s">שמש ישירה במקום</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-0.7%;--ens-y:-4.6%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="שמי תכלת מעל שפת קיר לבן ובוגנוויליה">
+          </figure>
+          <p class="ens-pdp-checks__s">המקום נמצא בחוץ</p>
         </li>
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:50% 70%"><img src="../../images/candidates/wm_a17b65ac2a.jpg" width="3840" height="3764" loading="lazy" decoding="async" alt="שביל בגינה נמשך למרחק, בין ערביים"></figure>
-          <p class="ens-pdp-checks__s">מרחק ממה שמאירים</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-35.8%;--ens-y:-57.3%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="קיר טיח לבן ושפתו, בשמש חזקה">
+          </figure>
+          <p class="ens-pdp-checks__s">הגובה שבו מתקינים</p>
         </li>
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:100% 45%"><img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="בוגנוויליה על קיר צהוב בשמש"></figure>
-          <p class="ens-pdp-checks__s">מקום פתוח בחוץ</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-106%;--ens-y:-94.3%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="חצץ וצל חד לרגלי הקיר">
+          </figure>
+          <p class="ens-pdp-checks__s">המרחק בין הנקודות</p>
         </li>
       </ul>
-      <p class="ens-pdp-checks__credit">צילום: <bdi dir="ltr">Guilhem Vellut (CC BY 2.0)</bdi> · <bdi dir="ltr">PumpkinSky (CC BY-SA 3.0)</bdi></p>
+      <p class="ens-pdp-checks__cap">שלושה חלונות בתמונה אחת של קיר גינה</p>
       <a class="ens-pdp-checks__link" href="/pages/guide-garden-lighting">למדריך לבחירת תאורה <span aria-hidden="true">&#8592;</span></a>
     </div></div>
   </section>
+  <!-- ▲ end ens_pdp_checks -->
 
-  <div class="band" style="height:723px">ens_pdp_facts<small>IP numeral · specs dl · description · 723</small></div>
-  <div class="band" style="height:781px">ens_related<small>«מה שנדלק ראשון» four cards · 781</small></div>
+  <div class="band" style="height:781px">ens_related<small>«עוד לאותו מקום» four cards — 781</small></div>
 </div>
 
 <!-- =====================================================================
-     ARCHETYPE B — waterproof wall light (mains). Family word: קיר. No dusk row on this page.
-     Template order: main-product → ens_pdp_scene → [ens_pdp_pair] → [ens_pdp_checks] → ens_pdp_facts → ens_related.
-     Same slots, the wall pair (per-family image settings); the checks' first tile takes the not-solar branch.
-     Files on this page (3): ov_e2bc06ac (CC0) · ov_b59b37d7 (CC BY 2.0) · ov_5795ed8a (CC BY 2.0).
+     ARCHETYPE B — waterproof LED wall light. Mains, own night photograph, NO dusk row.
+     Place word: קיר.
+     TEMPLATE ORDER: main-product → ens_pdp_scene → [ens_pdp_pair] → ens_pdp_facts
+                     → [ens_pdp_checks] → ens_related
+     Same two slots. The dusk row does not print on a mains product, so ens_pdp_pair follows the
+     scene directly; neither new section is gated, so both print exactly as on A.
+     Photographs on this page (3): the same three files.
      ===================================================================== -->
 <div class="arch" id="arch-b">
   <span class="arch__id">B · waterproof wall light · mains · photo scene · no dusk row</span>
   <div class="band band--header">header</div>
-  <div class="band" style="height:1085px">main-product<small>gallery, buy box, terms line, not-for line, contact · 1085</small></div>
-  <div class="band" style="height:596px">ens_pdp_scene<small>one night photograph of THIS product · «בלילה, על הקיר» · line · guide link · 596</small></div>
+  <div class="band" style="height:1085px">main-product<small>gallery · buy box · terms line · not-for line · contact — 1085</small></div>
+  <div class="band" style="height:596px">ens_pdp_scene<small>night photograph of THIS product · «בלילה, על הקיר» · one line — 596<br>(link_label emptied: the guide link moves to «לפני שקונים»)</small></div>
 
-  <section id="pair-b" class="env2-section ens-pdp-pair" dir="rtl" aria-labelledby="pair-b-h" style="scroll-margin-top:0">
-    <div class="env2-wrap">
+  <!-- ▼ NEW SECTION 1 of 2 — ens_pdp_pair, inserted after ens_pdp_scene (no dusk row on B) -->
+  <section id="pair-b" class="env2-section ens-pdp-pair" dir="rtl" aria-labelledby="pair-b-h">
+    <div class="env2-wrap"><div class="ens-pdp-pair__inner">
       <div class="ens-pdp-pair__head">
-        <h2 class="env2-h ens-pdp-pair__h2" id="pair-b-h">הקיר, ביום ובערב</h2>
-        <p class="ens-pdp-pair__line">ביום רואים הכול. בערב רואים רק את מה שמואר.</p>
+        <h2 class="env2-h ens-pdp-pair__h2" id="pair-b-h">בין הצהריים לשקיעה</h2>
+        <p class="ens-pdp-pair__line">השעה משנה את מה שרואים בחוץ.</p>
       </div>
       <div class="ens-pdp-pair__grid">
-        <figure class="ens-pdp-pair__fig" style="--ens-op:50% 100%;--ens-op-lg:50% 100%">
-          <img src="../../images/candidates/ov_e2bc06ac-f491-4032-b9cd-81e1391be7e9.jpg" width="1920" height="1440" loading="lazy" decoding="async" alt="קיר אבן וסמטה מרוצפת בשמש, בצהריים">
+        <figure class="ens-pdp-pair__fig" style="--ens-op:0% 50%">
+          <img src="../../images/candidates/ov_e2bc06ac-f491-4032-b9cd-81e1391be7e9.jpg" width="1920" height="1440" loading="lazy" decoding="async" alt="סמטת אבן צרה בין קירות אבן, כד חרס וצמחייה, בשמש של צהריים">
         </figure>
-        <figure class="ens-pdp-pair__fig" style="--ens-op:50% 50%;--ens-op-lg:50% 50%">
-          <img src="../../images/candidates/ov_b59b37d7-b683-414d-ab57-8aa936fd6833.jpg" width="2048" height="1362" loading="lazy" decoding="async" alt="קיר טיח וכניסה מוארת מבפנים, בין ערביים">
+        <figure class="ens-pdp-pair__fig" style="--ens-op:57% 50%">
+          <img src="../../images/candidates/ov_42864d07-e921-4b30-b71c-adbcb12f7869.jpg" width="2047" height="1333" loading="lazy" decoding="async" alt="שביל אבן מתעקל לצד קיר אבנים, שמי שקיעה כתומים מעל העצים">
         </figure>
       </div>
       <div class="ens-pdp-pair__caps">
-        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">יום</span>קיר אבן וסמטה, בצהריים</p>
-        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">ערב</span>קיר וכניסה, בין ערביים<span class="ens-pdp-pair__credit">צילום: <bdi dir="ltr">Jeremy Levine Design (CC BY 2.0)</bdi></span></p>
+        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">צהריים</span>סמטת אבן בין קירות</p>
+        <p class="ens-pdp-pair__cap ens-pdp-pair__cap--eve"><span class="ens-pdp-pair__tag">שקיעה</span>שביל אבן וקיר אבנים<span class="ens-pdp-pair__credit">צילום: <bdi dir="ltr">Corey Leopold (CC BY 2.0)</bdi></span></p>
       </div>
-    </div>
+    </div></div>
   </section>
+  <!-- ▲ end ens_pdp_pair -->
 
-  <section id="checks-b" class="env2-section ens-pdp-checks" dir="rtl" aria-labelledby="checks-b-h" style="scroll-margin-top:0">
+  <div class="band" style="height:723px">ens_pdp_facts<small>IP numeral · specs dl · description — 723</small></div>
+
+  <!-- ▼ NEW SECTION 2 of 2 — ens_pdp_checks, inserted after ens_pdp_facts, before ens_related -->
+  <section id="checks-b" class="env2-section ens-pdp-checks" dir="rtl" aria-labelledby="checks-b-h">
     <div class="env2-wrap"><div class="ens-pdp-checks__col">
       <h2 class="ens-pdp-checks__h" id="checks-b-h">לפני שקונים</h2>
       <ul class="ens-pdp-checks__row">
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:100% 50%"><img src="../../images/candidates/ov_b59b37d7-b683-414d-ab57-8aa936fd6833.jpg" width="2048" height="1362" loading="lazy" decoding="async" alt="דלת וחלון מוארים מבפנים, בין ערביים"></figure>
-          <p class="ens-pdp-checks__s">החיבור כתוב במפרט</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-0.7%;--ens-y:-4.6%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="שמי תכלת מעל שפת קיר לבן ובוגנוויליה">
+          </figure>
+          <p class="ens-pdp-checks__s">המקום נמצא בחוץ</p>
         </li>
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:0% 50%"><img src="../../images/candidates/ov_b59b37d7-b683-414d-ab57-8aa936fd6833.jpg" width="2048" height="1362" loading="lazy" decoding="async" alt="שולחן וכיסאות במרחק מהכניסה המוארת"></figure>
-          <p class="ens-pdp-checks__s">מרחק ממה שמאירים</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-35.8%;--ens-y:-57.3%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="קיר טיח לבן ושפתו, בשמש חזקה">
+          </figure>
+          <p class="ens-pdp-checks__s">הגובה שבו מתקינים</p>
         </li>
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:60% 50%"><img src="../../images/candidates/ov_5795ed8a-cd8b-4588-9ae7-110f9a3ed0e4.jpg" width="2047" height="1365" loading="lazy" decoding="async" alt="טיפות מים על גבעול, מקרוב"></figure>
-          <p class="ens-pdp-checks__s">מקום פתוח בחוץ</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-106%;--ens-y:-94.3%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="חצץ וצל חד לרגלי הקיר">
+          </figure>
+          <p class="ens-pdp-checks__s">המרחק בין הנקודות</p>
         </li>
       </ul>
-      <p class="ens-pdp-checks__credit">צילום: <bdi dir="ltr">Jeremy Levine Design (CC BY 2.0)</bdi> · <bdi dir="ltr">jenny downing (CC BY 2.0)</bdi></p>
+      <p class="ens-pdp-checks__cap">שלושה חלונות בתמונה אחת של קיר גינה</p>
       <a class="ens-pdp-checks__link" href="/pages/guide-garden-lighting">למדריך לבחירת תאורה <span aria-hidden="true">&#8592;</span></a>
     </div></div>
   </section>
+  <!-- ▲ end ens_pdp_checks -->
 
-  <div class="band" style="height:723px">ens_pdp_facts<small>IP numeral · specs dl · description · 723</small></div>
-  <div class="band" style="height:781px">ens_related<small>«מה שנדלק ראשון» four cards · 781</small></div>
+  <div class="band" style="height:781px">ens_related<small>«עוד לאותו מקום» four cards — 781</small></div>
 </div>
 
 <!-- =====================================================================
-     ARCHETYPE C — solar floodlight (text-only scene). Family word: גינה.
-     Template order: main-product → ens_pdp_scene (text) → ens_pdp_dusk → [ens_pdp_pair] → [ens_pdp_checks] → ens_pdp_facts → ens_related.
-     On a text-only page the pair is the page's first photograph after the gallery.
-     Files on this page (3): ov_f33051a3 (CC BY 2.0) · wm_54cd152739 (public domain) · wm_5869e6ea3a (CC BY 2.0).
+     ARCHETYPE C — solar floodlight. Solar, TEXT-ONLY scene (no clean own frame).
+     Place word: גינה.
+     TEMPLATE ORDER: main-product → ens_pdp_scene (text) → ens_pdp_dusk → [ens_pdp_pair]
+                     → ens_pdp_facts → [ens_pdp_checks] → ens_related
+     Same two slots. On this page the pair is the first photograph after the gallery, so the two
+     text rows above it are followed by daylight instead of by the facts — this is the archetype
+     the sections help most.
+     Photographs on this page (3): the same three files.
      ===================================================================== -->
 <div class="arch" id="arch-c">
   <span class="arch__id">C · solar floodlight · solar · text-only scene</span>
   <div class="band band--header">header</div>
-  <div class="band" style="height:1085px">main-product<small>gallery, buy box, terms line, not-for line, contact · 1085</small></div>
-  <div class="band" style="height:135px">ens_pdp_scene<small>text only · «בלילה, בגינה» · line · guide link · 135</small></div>
-  <div class="band" style="height:135px">ens_pdp_dusk<small>«כשמחשיך» hairline row · 135</small></div>
+  <div class="band" style="height:1085px">main-product<small>gallery · buy box · terms line · not-for line · contact — 1085</small></div>
+  <div class="band" style="height:135px">ens_pdp_scene<small>text only · «בלילה, בגינה» · one line — 135<br>(link_label emptied: the guide link moves to «לפני שקונים»)</small></div>
+  <div class="band" style="height:135px">ens_pdp_dusk<small>«כשמחשיך» hairline row, solar only — 135</small></div>
 
-  <section id="pair-c" class="env2-section ens-pdp-pair" dir="rtl" aria-labelledby="pair-c-h" style="scroll-margin-top:0">
-    <div class="env2-wrap">
+  <!-- ▼ NEW SECTION 1 of 2 — ens_pdp_pair, inserted after ens_pdp_dusk -->
+  <section id="pair-c" class="env2-section ens-pdp-pair" dir="rtl" aria-labelledby="pair-c-h">
+    <div class="env2-wrap"><div class="ens-pdp-pair__inner">
       <div class="ens-pdp-pair__head">
-        <h2 class="env2-h ens-pdp-pair__h2" id="pair-c-h">הגינה, ביום ובערב</h2>
-        <p class="ens-pdp-pair__line">ביום רואים הכול. בערב רואים רק את מה שמואר.</p>
+        <h2 class="env2-h ens-pdp-pair__h2" id="pair-c-h">בין הצהריים לשקיעה</h2>
+        <p class="ens-pdp-pair__line">השעה משנה את מה שרואים בחוץ.</p>
       </div>
       <div class="ens-pdp-pair__grid">
-        <figure class="ens-pdp-pair__fig" style="--ens-op:50% 100%;--ens-op-lg:50% 100%">
-          <img src="../../images/candidates/ov_f33051a3-3351-42fb-8212-32c670264164.jpg" width="2048" height="1282" loading="lazy" decoding="async" alt="חצר אבן בירושלים עם אבן ריחיים וצמחייה, בצל">
+        <figure class="ens-pdp-pair__fig" style="--ens-op:0% 50%">
+          <img src="../../images/candidates/ov_e2bc06ac-f491-4032-b9cd-81e1391be7e9.jpg" width="1920" height="1440" loading="lazy" decoding="async" alt="סמטת אבן צרה בין קירות אבן, כד חרס וצמחייה, בשמש של צהריים">
         </figure>
-        <figure class="ens-pdp-pair__fig" style="--ens-op:50% 75%;--ens-op-lg:50% 75%">
-          <img src="../../../home2/images/candidates/wm_54cd152739.jpg" width="3840" height="2563" loading="lazy" decoding="async" alt="שביל חול בין קקטוסים באור שקיעה">
+        <figure class="ens-pdp-pair__fig" style="--ens-op:57% 50%">
+          <img src="../../images/candidates/ov_42864d07-e921-4b30-b71c-adbcb12f7869.jpg" width="2047" height="1333" loading="lazy" decoding="async" alt="שביל אבן מתעקל לצד קיר אבנים, שמי שקיעה כתומים מעל העצים">
         </figure>
       </div>
       <div class="ens-pdp-pair__caps">
-        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">יום</span>חצר בירושלים, בצל<span class="ens-pdp-pair__credit">צילום: <bdi dir="ltr">RonAlmog (CC BY 2.0)</bdi></span></p>
-        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">ערב</span>גינת קקטוסים, בשקיעה</p>
+        <p class="ens-pdp-pair__cap"><span class="ens-pdp-pair__tag">צהריים</span>סמטת אבן בין קירות</p>
+        <p class="ens-pdp-pair__cap ens-pdp-pair__cap--eve"><span class="ens-pdp-pair__tag">שקיעה</span>שביל אבן וקיר אבנים<span class="ens-pdp-pair__credit">צילום: <bdi dir="ltr">Corey Leopold (CC BY 2.0)</bdi></span></p>
       </div>
-    </div>
+    </div></div>
   </section>
+  <!-- ▲ end ens_pdp_pair -->
 
-  <section id="checks-c" class="env2-section ens-pdp-checks" dir="rtl" aria-labelledby="checks-c-h" style="scroll-margin-top:0">
+  <div class="band" style="height:723px">ens_pdp_facts<small>IP numeral · specs dl · description — 723</small></div>
+
+  <!-- ▼ NEW SECTION 2 of 2 — ens_pdp_checks, inserted after ens_pdp_facts, before ens_related -->
+  <section id="checks-c" class="env2-section ens-pdp-checks" dir="rtl" aria-labelledby="checks-c-h">
     <div class="env2-wrap"><div class="ens-pdp-checks__col">
       <h2 class="ens-pdp-checks__h" id="checks-c-h">לפני שקונים</h2>
       <ul class="ens-pdp-checks__row">
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:50% 50%"><img src="../../images/candidates/wm_5869e6ea3a.jpg" width="3840" height="2560" loading="lazy" decoding="async" alt="תא סולארי בשמש, מקרוב"></figure>
-          <p class="ens-pdp-checks__s">שמש ישירה במקום</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-0.7%;--ens-y:-4.6%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="שמי תכלת מעל שפת קיר לבן ובוגנוויליה">
+          </figure>
+          <p class="ens-pdp-checks__s">המקום נמצא בחוץ</p>
         </li>
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:50% 70%"><img src="../../../home2/images/candidates/wm_54cd152739.jpg" width="3840" height="2563" loading="lazy" decoding="async" alt="שביל נמשך למרחק בין קקטוסים"></figure>
-          <p class="ens-pdp-checks__s">מרחק ממה שמאירים</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-35.8%;--ens-y:-57.3%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="קיר טיח לבן ושפתו, בשמש חזקה">
+          </figure>
+          <p class="ens-pdp-checks__s">הגובה שבו מתקינים</p>
         </li>
         <li class="ens-pdp-checks__item">
-          <figure class="ens-pdp-checks__fig" style="--ens-op:100% 30%"><img src="../../../home2/images/candidates/wm_54cd152739.jpg" width="3840" height="2563" loading="lazy" decoding="async" alt="קקטוסים והרים באור אחרון"></figure>
-          <p class="ens-pdp-checks__s">מקום פתוח בחוץ</p>
+          <figure class="ens-pdp-checks__fig" dir="ltr" style="--ens-x:-106%;--ens-y:-94.3%">
+            <img src="../../images/candidates/ov_7379ba54-775e-4044-b839-56ce83f7deb1.jpg" width="3840" height="2881" loading="lazy" decoding="async" alt="חצץ וצל חד לרגלי הקיר">
+          </figure>
+          <p class="ens-pdp-checks__s">המרחק בין הנקודות</p>
         </li>
       </ul>
-      <p class="ens-pdp-checks__credit">צילום: <bdi dir="ltr">Guilhem Vellut (CC BY 2.0)</bdi></p>
+      <p class="ens-pdp-checks__cap">שלושה חלונות בתמונה אחת של קיר גינה</p>
       <a class="ens-pdp-checks__link" href="/pages/guide-garden-lighting">למדריך לבחירת תאורה <span aria-hidden="true">&#8592;</span></a>
     </div></div>
   </section>
+  <!-- ▲ end ens_pdp_checks -->
 
-  <div class="band" style="height:723px">ens_pdp_facts<small>IP numeral · specs dl · description · 723</small></div>
-  <div class="band" style="height:781px">ens_related<small>«מה שנדלק ראשון» four cards · 781</small></div>
+  <div class="band" style="height:781px">ens_related<small>«עוד לאותו מקום» four cards — 781</small></div>
 </div>
 
 </body>
