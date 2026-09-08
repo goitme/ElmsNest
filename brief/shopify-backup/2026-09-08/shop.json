@@ -1,0 +1,23 @@
+{
+ "data": {
+  "shop": {
+   "id": "gid://shopify/Shop/68949278894",
+   "name": "ElmsNest",
+   "email": "mohamad.abo.helal1w@gmail.com",
+   "myshopifyDomain": "vcw4sm-r3.myshopify.com",
+   "primaryDomain": {
+    "url": "https://elmsnest.com"
+   },
+   "billingAddress": {
+    "address1": "Arara",
+    "address2": "",
+    "city": "Ar'ara",
+    "province": null,
+    "country": "Israel",
+    "zip": "3002600",
+    "phone": "+972523630906"
+   },
+   "contactEmail": "info@elmsnest.com"
+  }
+ }
+}
