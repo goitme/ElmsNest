@@ -121,3 +121,42 @@ warm breath between the numbers and the related grid. Nothing between the galler
    The captions say what each place is, honestly — but the owner's own dusk photograph of a garden here would replace
    any of them in one picker.
 3. **The dusk row's second sentence** and the twelve products without a clean night frame remain open from round 2.
+
+---
+
+## 7. Amendments after the build, the deploy and the critique (2026-09-08)
+
+Three checking lenses read the two files before deploy; five lenses and a skeptic per finding read the **real deployed
+pages** afterwards (67 findings, **3 confirmed**, 64 refuted with measurements — `critique/RESULT.json`; scores: owner 5 ·
+shopper 5 · honesty 8.5 · designer 5.5 · engineer 7.5, the two low scores resting mainly on two blockers the skeptics
+disproved: that the scene photograph shows a different lamp — it is pixel-identical to the product's own gallery frame —
+and that the floodlight print lost its credit — its photograph is public domain and owes none).
+
+**The copy that shipped differs from §2 and §3 above. These strings are the contract now:**
+
+| setting | §2/§3 draft | shipped | why |
+|---|---|---|---|
+| `line_rain` | גשם של ינואר. התאורה נשארת בחוץ. | **גשם של ינואר.** | the second sentence restated the IP numeral printed 380 px below it (honesty lens). |
+| `line_sun` | שמש של אוגוסט. אותו הדבר. | **שמש של אוגוסט.** | «אותו הדבר» carried the rain sentence's endurance over to heat and UV — a claim the listings do not state. |
+| `cap_sun` | קיר לבן בשמש של צהריים | **בוגנוויליה על קיר, בשמש של צהריים** | the photograph is bougainvillea against a yellow wall; the draft caption described a frame that does not exist. |
+| `cap_path` | שביל אבן בשעת בין ערביים | **שביל אבן** | the hour is said once, by the serif line above. |
+| `cap_wall` | גינה של בית, באור אחרון | **גינה של בית** | same. |
+| `cap_garden` | ספסל בגינה, לפנות ערב | **גן קקטוסים, בשקיעה** | the bench frame is midday and contradicted the line above it; the גינה family now uses a real garden at sunset (`wm_54cd152739`, public domain, no credit owed). |
+| `cap_balcony` | מרפסת בשעת בין ערביים | **מרפסת בעיר** | same as cap_path. |
+
+The engineer's objection that the two shortened lines «state nothing» is recorded and **not** followed: the section's
+statement is carried by the heading «בחוץ, כל השנה» over the two seasons, and the guardian's objection to the dropped
+clauses outranks a completeness one. The owner may restore either clause in the theme editor — both are settings.
+
+**Other changes made after §2/§3 were written:** the credit is bound to the file (while a theme asset is in use its
+licensed credit cannot be emptied; an owner-uploaded photograph never carries the licensed photographer's name); the
+solar rain crop moved to `50% 80%` / `50% 72%` so the tile reads as wet glass rather than a countable array; the print's
+`sizes` gained the 901–1347 px band; both photographs carry their caption as `alt`; the escape chain in the `<bdi>` loop
+was rewritten per value (it double-escaped); the dead `!important` reduced-motion blocks were removed; and the `alt`
+attribute is escaped at the print site (the last confirmed critique finding).
+
+**Measured on the deployed dev theme** (`verify/verify.json`, 2026-09-08): screens at 390×844 with JS — path 5.76 ·
+rope 5.55 · deck 5.27 · wall 5.72 · flood 5.33 (cap 7.5); section heights 333–366 px (weather) and 340–379 px (print),
+both inside §5; every sentence present on every page (`copyMissing=0`); credits drawn per gate; no Liquid error, no
+horizontal overflow. At 360×640 the path page reaches 7.65 screens — the cap is defined at 390×844, and the extra is the
+shorter viewport, not more content.

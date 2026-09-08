@@ -241,6 +241,7 @@
             assign ens_cap_html = ens_cap_a_html
             assign ens_cred_line = ens_cred_a_html
             assign ens_alt = ens_cap_a
+            assign ens_alt_e = ens_cap_a_e
             assign ens_slot = 'rain'
           else
             assign ens_pic = ens_pic_b
@@ -253,6 +254,7 @@
             assign ens_cap_html = ens_cap_b_html
             assign ens_cred_line = ens_cred_b_html
             assign ens_alt = ens_cap_b
+            assign ens_alt_e = ens_cap_b_e
             assign ens_slot = 'sun'
           endif
 
@@ -304,9 +306,9 @@
       <figure class="ens-pdp-weather__tile ens-pdp-weather__tile--{{ ens_slot }}">
         <div class="ens-pdp-weather__frame" style="--ens-op:{{ ens_op }};--ens-op-lg:{{ ens_op_lg }}">
           {%- if ens_pic != blank -%}
-            {{ ens_pic | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_widths, sizes: ens_sizes, alt: ens_alt }}
+            {{ ens_pic | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: ens_widths, sizes: ens_sizes, alt: ens_alt_e }}
           {%- else -%}
-            <img src="{{ ens_src }}" srcset="{{ ens_srcset }}" sizes="{{ ens_sizes }}" width="{{ ens_fw }}" height="{{ ens_fh }}" loading="lazy" decoding="async" alt="{{ ens_alt }}">
+            <img src="{{ ens_src }}" srcset="{{ ens_srcset }}" sizes="{{ ens_sizes }}" width="{{ ens_fw }}" height="{{ ens_fh }}" loading="lazy" decoding="async" alt="{{ ens_alt | escape }}">
           {%- endif -%}
         </div>
         {%- if ens_line_html != '' or ens_cap_html != '' or ens_cred_line != '' -%}
