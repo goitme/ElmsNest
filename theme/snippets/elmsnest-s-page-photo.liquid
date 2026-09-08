@@ -12,6 +12,8 @@
     caption  the subject and the hour. Blank -> no caption line (and then no credit line either is
              printed on its own: the credit still prints, it is the licence, not decoration).
     credit   «צילום: … (CC …)». Blank -> nothing (a store-owned or CC0 frame owes no credit).
+    credit_url  the source page of the file, so the credit can be followed to it (the licence asks for
+             the source). Used only while the theme asset is in use, never for an owner's own picture.
     alt      blank = decorative: the caption carries the meaning (SPEC §3).
     pos      object-position under 901 px.   pos_d  object-position from 901 px.
     sizes    optional `sizes` attribute. Blank -> 100vw for a band, and the full reading wrap
@@ -112,6 +114,12 @@
   assign ens_kick = kicker | default: '' | strip | escape
   assign ens_cap = caption | default: '' | strip
   assign ens_cred = credit | default: '' | strip
+  # the licence asks for the source: the credit links to the file's own page, but only while the
+  # theme asset is in use — an owner-uploaded photograph is never linked to someone else's file
+  assign ens_cred_url = ''
+  if ens_pic == blank
+    assign ens_cred_url = credit_url | default: '' | strip
+  endif
 -%}
 {%- liquid
   # ---- the <bdi> word loop over the caption and the credit ----
@@ -180,7 +188,7 @@
       <p class="ens-page__cap">{% if ens_kick != '' %}<span class="ens-page__kick">{{ ens_kick }}</span><span class="ens-page__dot" aria-hidden="true">·</span>{% endif %}{{ ens_cap_html }}</p>
       {%- endif -%}
       {%- if ens_cred_html != '' -%}
-      <p class="ens-page__credit">{{ ens_cred_html }}</p>
+      <p class="ens-page__credit">{%- if ens_cred_url != '' -%}<a href="{{ ens_cred_url | escape }}" rel="nofollow noopener">{{ ens_cred_html }}</a>{%- else -%}{{ ens_cred_html }}{%- endif -%}</p>
       {%- endif -%}
     </div>
   </figcaption>

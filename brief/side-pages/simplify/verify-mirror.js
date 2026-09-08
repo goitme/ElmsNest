@@ -143,7 +143,7 @@ async function audit(page, name, vw, vh) {
         'page-faq': [['מקום', 'שביל בגינה, בין ערביים', 'צילום: PumpkinSky (CC BY-SA 3.0)']],
         'page-processing': [['מקום', 'גינה ים-תיכונית בקיו', 'צילום: Swphotouk (CC BY 4.0)']],
         'page-shipping': [['מקום', 'מטע זיתים, יום מעונן', 'צילום: Dimitry B (CC BY 2.0)']],
-        'page-contact': [['מקום', 'גן בחיפה, בצהריים', 'צילום: Josh Evnin from Chicago, IL, USA (CC BY-SA 2.0)']],
+        'page-contact': [['מקום', 'גן בחיפה, בצהריים', 'צילום: Josh Evnin (CC BY-SA 2.0)']],
       };
       // SPEC §4.1: the four live Shopify titles, in main-menu order, with the collection handle each must link to
       const COLL = [['תאורת שביל, עמוד וגינה', 'תאורת-שביל-סולארית'], ['תאורת קיר', 'solar-wall-lights'], ['ספוטים, פרוז׳קטורים ותאורה ניידת', 'ספוטים-ופרוז-קטורים-סולאריים'], ['גרילנדות ותאורה דקורטיבית', 'גרילנדות-ותאורה-דקורטיבית']];
