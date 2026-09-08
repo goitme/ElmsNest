@@ -1,0 +1,6830 @@
+{
+  "page-guide-m-js": {
+    "docH": 3418,
+    "screens": 4.05,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2509
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "בוחרים תאורת גינה לפי המקום — לא לפי התמונה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Expected": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שמיים בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "חצר אחת בשעת בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "12ce766919e231ac9d05436ac15c2114.jpg",
+          "18a5530fe9f247d0de09677dc1053ded.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "placeLabels": [
+        "שביל",
+        "קיר",
+        "גינה",
+        "מרפסת"
+      ]
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-why-m-js": {
+    "docH": 3009,
+    "screens": 3.57,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2100
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "למה תאורה סולארית — ומתי לא"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "למה תאורה סולארית — ומתי לא",
+      "h1Expected": "למה תאורה סולארית — ומתי לא",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "אור נמוך בין עצים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מנגנון",
+          "caption": "תא סולארי מקרוב, באור יום",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "e67b8da9397a543e38a451adaf039503.jpg",
+          "5b841a04587320dc831dd3915becb40c.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-about-m-js": {
+    "docH": 2973,
+    "screens": 3.52,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2064
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "רק תאורת חוץ. וזה בכוונה."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Expected": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "חצר בירושלים, בצל",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "ספסל בגינה",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "744c097843998b78049531b4296cf217.jpg",
+          "48d11692d8b07b2cb1ac8e440114f709.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "signature": {
+        "line": true,
+        "who": true,
+        "mailto": 0
+      }
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-faq-m-js": {
+    "docH": 2242,
+    "screens": 2.66,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1333
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שאלות נפוצות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "שאלות נפוצות",
+      "h1Expected": "שאלות נפוצות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שביל בגינה, בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true,
+          "visible": false
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "c6db190b91a6e1cf87566cea18ed5d09.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-processing-m-js": {
+    "docH": 2216,
+    "screens": 2.63,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1307
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "זמני טיפול בהזמנה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "זמני טיפול בהזמנה",
+      "h1Expected": "זמני טיפול בהזמנה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גינה ים-תיכונית בקיו",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "055cf766f0564f59f6b91fc959bd1ac6.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-shipping-m-js": {
+    "docH": 2688,
+    "screens": 3.18,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1779
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "משלוחים והחזרות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "משלוחים והחזרות",
+      "h1Expected": "משלוחים והחזרות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "מטע זיתים, יום מעונן",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "a2c66ba51b3674ad663806b1274d1711.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-contact-m-js": {
+    "docH": 2494,
+    "screens": 2.95,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616221358__ens_page",
+        "h": 387
+      },
+      {
+        "id": "template--21567616221358__contact_form_zzPDf3",
+        "h": 1198
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "יצירת קשר"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "יצירת קשר",
+      "h1Expected": "יצירת קשר",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גן בחיפה, בצהריים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "7762f3686de49d8749d1c433f6622384.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-guide-s-js": {
+    "docH": 3466,
+    "screens": 5.42,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2557
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "בוחרים תאורת גינה לפי המקום — לא לפי התמונה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Expected": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שמיים בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "חצר אחת בשעת בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "12ce766919e231ac9d05436ac15c2114.jpg",
+          "18a5530fe9f247d0de09677dc1053ded.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "placeLabels": [
+        "שביל",
+        "קיר",
+        "גינה",
+        "מרפסת"
+      ]
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-why-s-js": {
+    "docH": 3094,
+    "screens": 4.83,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2185
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "למה תאורה סולארית — ומתי לא"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "למה תאורה סולארית — ומתי לא",
+      "h1Expected": "למה תאורה סולארית — ומתי לא",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "אור נמוך בין עצים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מנגנון",
+          "caption": "תא סולארי מקרוב, באור יום",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "e67b8da9397a543e38a451adaf039503.jpg",
+          "5b841a04587320dc831dd3915becb40c.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-about-s-js": {
+    "docH": 3014,
+    "screens": 4.71,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2105
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "רק תאורת חוץ. וזה בכוונה."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Expected": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "חצר בירושלים, בצל",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "ספסל בגינה",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "744c097843998b78049531b4296cf217.jpg",
+          "48d11692d8b07b2cb1ac8e440114f709.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "signature": {
+        "line": true,
+        "who": true,
+        "mailto": 0
+      }
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-faq-s-js": {
+    "docH": 2242,
+    "screens": 3.5,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1333
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שאלות נפוצות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "שאלות נפוצות",
+      "h1Expected": "שאלות נפוצות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שביל בגינה, בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true,
+          "visible": false
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "c6db190b91a6e1cf87566cea18ed5d09.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-processing-s-js": {
+    "docH": 2254,
+    "screens": 3.52,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1345
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "זמני טיפול בהזמנה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "זמני טיפול בהזמנה",
+      "h1Expected": "זמני טיפול בהזמנה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גינה ים-תיכונית בקיו",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "055cf766f0564f59f6b91fc959bd1ac6.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-shipping-s-js": {
+    "docH": 2734,
+    "screens": 4.27,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1826
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "משלוחים והחזרות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "משלוחים והחזרות",
+      "h1Expected": "משלוחים והחזרות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "מטע זיתים, יום מעונן",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "a2c66ba51b3674ad663806b1274d1711.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-contact-s-js": {
+    "docH": 2494,
+    "screens": 3.9,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616221358__ens_page",
+        "h": 387
+      },
+      {
+        "id": "template--21567616221358__contact_form_zzPDf3",
+        "h": 1198
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "יצירת קשר"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "יצירת קשר",
+      "h1Expected": "יצירת קשר",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גן בחיפה, בצהריים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "7762f3686de49d8749d1c433f6622384.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-guide-d-js": {
+    "docH": 3207,
+    "screens": 3.56,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2687
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "בוחרים תאורת גינה לפי המקום — לא לפי התמונה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Expected": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שמיים בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "חצר אחת בשעת בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "a3a0f6cef50c5f2a45722d4d4c14ae01.jpg",
+          "3107b07c529a90234631915e0b99dba3.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "placeLabels": [
+        "שביל",
+        "קיר",
+        "גינה",
+        "מרפסת"
+      ]
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-why-d-js": {
+    "docH": 3037,
+    "screens": 3.37,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2517
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "למה תאורה סולארית — ומתי לא"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "למה תאורה סולארית — ומתי לא",
+      "h1Expected": "למה תאורה סולארית — ומתי לא",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "אור נמוך בין עצים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מנגנון",
+          "caption": "תא סולארי מקרוב, באור יום",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "599b1d3d9f58d5e636c7742dadf86066.jpg",
+          "802c53ccb6ff121ab5a66e1d6b796490.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-about-d-js": {
+    "docH": 3005,
+    "screens": 3.34,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2486
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "רק תאורת חוץ. וזה בכוונה."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Expected": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "חצר בירושלים, בצל",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "ספסל בגינה",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 2,
+        "loaded": 2,
+        "files": [
+          "120747c8d9a9a79b69fc61eecfdf8b03.jpg",
+          "fc7872ad113798d87bdf6dda87e8dc82.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "signature": {
+        "line": true,
+        "who": true,
+        "mailto": 0
+      }
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-faq-d-js": {
+    "docH": 1862,
+    "screens": 2.07,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1342
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שאלות נפוצות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "שאלות נפוצות",
+      "h1Expected": "שאלות נפוצות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שביל בגינה, בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true,
+          "visible": false
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "1c8f73887c1ae0e04504ad5112252261.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-processing-d-js": {
+    "docH": 1772,
+    "screens": 1.97,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1252
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "זמני טיפול בהזמנה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "זמני טיפול בהזמנה",
+      "h1Expected": "זמני טיפול בהזמנה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גינה ים-תיכונית בקיו",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "895702a7a1696899f9f1a0c644bd6305.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-shipping-d-js": {
+    "docH": 2146,
+    "screens": 2.38,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1627
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "משלוחים והחזרות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "משלוחים והחזרות",
+      "h1Expected": "משלוחים והחזרות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "מטע זיתים, יום מעונן",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "fd49f73d4d2770a912585c87b5d4da3f.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-contact-d-js": {
+    "docH": 1693,
+    "screens": 1.88,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616221358__ens_page",
+        "h": 520
+      },
+      {
+        "id": "template--21567616221358__contact_form_zzPDf3",
+        "h": 654
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "יצירת קשר"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "יצירת קשר",
+      "h1Expected": "יצירת קשר",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גן בחיפה, בצהריים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "06613ed37ab4cf3a3ecc5f3f0b55918d.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-guide-m-nojs": {
+    "docH": 3418,
+    "screens": 4.05,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2509
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "בוחרים תאורת גינה לפי המקום — לא לפי התמונה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Expected": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שמיים בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "חצר אחת בשעת בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "12ce766919e231ac9d05436ac15c2114.jpg",
+          "18a5530fe9f247d0de09677dc1053ded.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "placeLabels": [
+        "שביל",
+        "קיר",
+        "גינה",
+        "מרפסת"
+      ]
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-why-m-nojs": {
+    "docH": 3009,
+    "screens": 3.57,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2100
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "למה תאורה סולארית — ומתי לא"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "למה תאורה סולארית — ומתי לא",
+      "h1Expected": "למה תאורה סולארית — ומתי לא",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "אור נמוך בין עצים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מנגנון",
+          "caption": "תא סולארי מקרוב, באור יום",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "e67b8da9397a543e38a451adaf039503.jpg",
+          "5b841a04587320dc831dd3915becb40c.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-about-m-nojs": {
+    "docH": 2973,
+    "screens": 3.52,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2064
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "רק תאורת חוץ. וזה בכוונה."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Expected": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "חצר בירושלים, בצל",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "ספסל בגינה",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "744c097843998b78049531b4296cf217.jpg",
+          "48d11692d8b07b2cb1ac8e440114f709.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "signature": {
+        "line": true,
+        "who": true,
+        "mailto": 0
+      }
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-faq-m-nojs": {
+    "docH": 2242,
+    "screens": 2.66,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1333
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שאלות נפוצות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "שאלות נפוצות",
+      "h1Expected": "שאלות נפוצות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שביל בגינה, בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true,
+          "visible": false
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "c6db190b91a6e1cf87566cea18ed5d09.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-processing-m-nojs": {
+    "docH": 2216,
+    "screens": 2.63,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1307
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "זמני טיפול בהזמנה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "זמני טיפול בהזמנה",
+      "h1Expected": "זמני טיפול בהזמנה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גינה ים-תיכונית בקיו",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "055cf766f0564f59f6b91fc959bd1ac6.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-shipping-m-nojs": {
+    "docH": 2688,
+    "screens": 3.18,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1779
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "משלוחים והחזרות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "משלוחים והחזרות",
+      "h1Expected": "משלוחים והחזרות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "מטע זיתים, יום מעונן",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "a2c66ba51b3674ad663806b1274d1711.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-contact-m-nojs": {
+    "docH": 2494,
+    "screens": 2.95,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616221358__ens_page",
+        "h": 387
+      },
+      {
+        "id": "template--21567616221358__contact_form_zzPDf3",
+        "h": 1198
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "יצירת קשר"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "יצירת קשר",
+      "h1Expected": "יצירת קשר",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גן בחיפה, בצהריים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "7762f3686de49d8749d1c433f6622384.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-guide-s-nojs": {
+    "docH": 3466,
+    "screens": 5.42,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2557
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "בוחרים תאורת גינה לפי המקום — לא לפי התמונה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Expected": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שמיים בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "חצר אחת בשעת בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "12ce766919e231ac9d05436ac15c2114.jpg",
+          "18a5530fe9f247d0de09677dc1053ded.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "placeLabels": [
+        "שביל",
+        "קיר",
+        "גינה",
+        "מרפסת"
+      ]
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-why-s-nojs": {
+    "docH": 3094,
+    "screens": 4.83,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2185
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "למה תאורה סולארית — ומתי לא"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "למה תאורה סולארית — ומתי לא",
+      "h1Expected": "למה תאורה סולארית — ומתי לא",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "אור נמוך בין עצים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מנגנון",
+          "caption": "תא סולארי מקרוב, באור יום",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "e67b8da9397a543e38a451adaf039503.jpg",
+          "5b841a04587320dc831dd3915becb40c.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-about-s-nojs": {
+    "docH": 3014,
+    "screens": 4.71,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2105
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "רק תאורת חוץ. וזה בכוונה."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Expected": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "חצר בירושלים, בצל",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "ספסל בגינה",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "744c097843998b78049531b4296cf217.jpg",
+          "48d11692d8b07b2cb1ac8e440114f709.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "signature": {
+        "line": true,
+        "who": true,
+        "mailto": 0
+      }
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-faq-s-nojs": {
+    "docH": 2242,
+    "screens": 3.5,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1333
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שאלות נפוצות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "שאלות נפוצות",
+      "h1Expected": "שאלות נפוצות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שביל בגינה, בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true,
+          "visible": false
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "c6db190b91a6e1cf87566cea18ed5d09.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-processing-s-nojs": {
+    "docH": 2254,
+    "screens": 3.52,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1345
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "זמני טיפול בהזמנה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "זמני טיפול בהזמנה",
+      "h1Expected": "זמני טיפול בהזמנה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גינה ים-תיכונית בקיו",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "055cf766f0564f59f6b91fc959bd1ac6.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-shipping-s-nojs": {
+    "docH": 2734,
+    "screens": 4.27,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1826
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "משלוחים והחזרות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "משלוחים והחזרות",
+      "h1Expected": "משלוחים והחזרות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "מטע זיתים, יום מעונן",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "a2c66ba51b3674ad663806b1274d1711.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-contact-s-nojs": {
+    "docH": 2494,
+    "screens": 3.9,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 60
+      },
+      {
+        "id": "template--21567616221358__ens_page",
+        "h": 387
+      },
+      {
+        "id": "template--21567616221358__contact_form_zzPDf3",
+        "h": 1198
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 797
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 52
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "יצירת קשר"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "יצירת קשר",
+      "h1Expected": "יצירת קשר",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גן בחיפה, בצהריים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "7762f3686de49d8749d1c433f6622384.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-guide-d-nojs": {
+    "docH": 3207,
+    "screens": 3.56,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2687
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "בוחרים תאורת גינה לפי המקום — לא לפי התמונה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Expected": "בוחרים תאורת גינה לפי המקום — לא לפי התמונה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שמיים בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "חצר אחת בשעת בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "a3a0f6cef50c5f2a45722d4d4c14ae01.jpg",
+          "3107b07c529a90234631915e0b99dba3.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "placeLabels": [
+        "שביל",
+        "קיר",
+        "גינה",
+        "מרפסת"
+      ]
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-why-d-nojs": {
+    "docH": 3037,
+    "screens": 3.37,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2517
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "למה תאורה סולארית — ומתי לא"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "למה תאורה סולארית — ומתי לא",
+      "h1Expected": "למה תאורה סולארית — ומתי לא",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "אור נמוך בין עצים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מנגנון",
+          "caption": "תא סולארי מקרוב, באור יום",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "599b1d3d9f58d5e636c7742dadf86066.jpg",
+          "802c53ccb6ff121ab5a66e1d6b796490.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-about-d-nojs": {
+    "docH": 3005,
+    "screens": 3.34,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 2486
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "רק תאורת חוץ. וזה בכוונה."
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Expected": "רק תאורת חוץ. וזה בכוונה.",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "חצר בירושלים, בצל",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        },
+        {
+          "kicker": "מקום",
+          "caption": "ספסל בגינה",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 2,
+      "collections": [
+        {
+          "title": "תאורת שביל, עמוד וגינה",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "תאורת קיר",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "ספוטים, פרוז׳קטורים ותאורה ניידת",
+          "found": true,
+          "linked": true
+        },
+        {
+          "title": "גרילנדות ותאורה דקורטיבית",
+          "found": true,
+          "linked": true
+        }
+      ],
+      "collectionsMissing": [],
+      "staleCollectionNames": [],
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 2,
+        "sized": 2,
+        "lazy": 1,
+        "sizedAndLazy": 1,
+        "eager": 1,
+        "loaded": 2,
+        "files": [
+          "120747c8d9a9a79b69fc61eecfdf8b03.jpg",
+          "fc7872ad113798d87bdf6dda87e8dc82.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0,
+      "signature": {
+        "line": true,
+        "who": true,
+        "mailto": 0
+      }
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-faq-d-nojs": {
+    "docH": 1862,
+    "screens": 2.07,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1342
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 1,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "שאלות נפוצות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "שאלות נפוצות",
+      "h1Expected": "שאלות נפוצות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "שביל בגינה, בין ערביים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true,
+          "visible": false
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true,
+          "visible": false
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "1c8f73887c1ae0e04504ad5112252261.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 6,
+    "overTarget": false
+  },
+  "page-processing-d-nojs": {
+    "docH": 1772,
+    "screens": 1.97,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1252
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "זמני טיפול בהזמנה"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "זמני טיפול בהזמנה",
+      "h1Expected": "זמני טיפול בהזמנה",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גינה ים-תיכונית בקיו",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "895702a7a1696899f9f1a0c644bd6305.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  },
+  "page-shipping-d-nojs": {
+    "docH": 2146,
+    "screens": 2.38,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 0,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616352430__ens_page",
+        "h": 1627
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "משלוחים והחזרות"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "משלוחים והחזרות",
+      "h1Expected": "משלוחים והחזרות",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "מטע זיתים, יום מעונן",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [
+        {
+          "n": "חינם",
+          "phrase": "לנקודת איסוף בישראל — חינם",
+          "found": true
+        },
+        {
+          "n": "29.90",
+          "phrase": "שליח עד הבית — 29.90 ₪",
+          "found": true
+        },
+        {
+          "n": "1–3",
+          "phrase": "1–3 ימי",
+          "found": true
+        },
+        {
+          "n": "7–14",
+          "phrase": "7–14 ימי",
+          "found": true
+        },
+        {
+          "n": "8–17",
+          "phrase": "8–17 ימי",
+          "found": true
+        },
+        {
+          "n": "14",
+          "phrase": "עד 14 ימים מקבלת המוצר",
+          "found": true
+        },
+        {
+          "n": "5%",
+          "phrase": "5% ממחיר העסקה",
+          "found": true
+        },
+        {
+          "n": "100",
+          "phrase": "100 ₪",
+          "found": true
+        }
+      ],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "fd49f73d4d2770a912585c87b5d4da3f.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 5,
+    "overTarget": false
+  },
+  "page-contact-d-nojs": {
+    "docH": 1693,
+    "screens": 1.88,
+    "overflowX": false,
+    "liquidErrors": 0,
+    "glyphPlates": 0,
+    "glyphCaption": 0,
+    "whatsapp": 0,
+    "enWa": 0,
+    "bestSelling": 0,
+    "mailtoInMain": 0,
+    "mailtoInFooter": 1,
+    "photoLineInMain": 1,
+    "termsStrips": 0,
+    "termsLine": 0,
+    "cartForms": 0,
+    "mainProductForms": 0,
+    "stickyForms": 0,
+    "noscriptSelect": false,
+    "qtyInputs": 0,
+    "atcButtons": 0,
+    "sections": [
+      {
+        "id": "sections--21567606587566__header_inline_blocks_xePFbC",
+        "h": 70
+      },
+      {
+        "id": "template--21567616221358__ens_page",
+        "h": 520
+      },
+      {
+        "id": "template--21567616221358__contact_form_zzPDf3",
+        "h": 654
+      },
+      {
+        "id": "sections--21567606390958__footer_KwXhWr",
+        "h": 390
+      },
+      {
+        "id": "sections--21567606390958__footer_bottom",
+        "h": 60
+      },
+      {
+        "id": "sections--21567608946862__cart-drawer",
+        "h": 0
+      },
+      {
+        "id": "sections--21567608946862__back_top_RQdR9c",
+        "h": 0
+      }
+    ],
+    "homeImages": [],
+    "pdpSections": [],
+    "guideLinksInMain": 0,
+    "pdpCopy": {
+      "family": null,
+      "missing": [],
+      "dusk": 0,
+      "credit": false,
+      "weather": 0,
+      "print": 0,
+      "credits": [],
+      "printCap": ""
+    },
+    "homeCopyOk": [
+      "איך עובדת תאורה סולארית?",
+      "ביום נטען.",
+      "בלילה נדלק.",
+      "בלי חיבור לחשמל, בלי חשמלאי.",
+      "ובחורף?",
+      "בחורף השמש קצרה יותר, והפאנל נטען פחות.",
+      "פחות טעינה ביום, פחות אור בלילה.",
+      "זה נכון לכל תאורה סולארית, גם שלנו.",
+      "חושך הוא לא סוף הערב."
+    ],
+    "cards": 0,
+    "cardForms": 0,
+    "cardBigSvgs": 0,
+    "cardButtons": 0,
+    "cardImgs": [],
+    "smallTaps": 0,
+    "pillsUnder44": 0,
+    "h1": [
+      "יצירת קשר"
+    ],
+    "placeOrder": [],
+    "headerMenuOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "footerOrder": [
+      "תאורת-שביל-סולארית",
+      "solar-wall-lights",
+      "ספוטים-ופרוז-קטורים-סולאריים",
+      "גרילנדות-ותאורה-דקורטיבית"
+    ],
+    "rangesOutsideBdi": [],
+    "rangesOutsideBdiCount": 0,
+    "rangesInRawDescription": 0,
+    "pageCopy": {
+      "h1": "יצירת קשר",
+      "h1Expected": "יצירת קשר",
+      "h1Ok": true,
+      "h1Count": 1,
+      "h1CountInMain": 1,
+      "photos": [
+        {
+          "kicker": "מקום",
+          "caption": "גן בחיפה, בצהריים",
+          "captionFound": true,
+          "kickerFound": true,
+          "creditFound": true
+        }
+      ],
+      "photosMissing": [],
+      "kickerMarks": 1,
+      "numbers": [],
+      "numbersMissing": [],
+      "numbersUnexpected": [],
+      "images": {
+        "imgs": 1,
+        "sized": 1,
+        "lazy": 0,
+        "sizedAndLazy": 0,
+        "eager": 1,
+        "loaded": 1,
+        "files": [
+          "06613ed37ab4cf3a3ecc5f3f0b55918d.jpg"
+        ]
+      },
+      "badLinks": [],
+      "badLinksCount": 0
+    },
+    "cardTransition": null,
+    "target": 4,
+    "overTarget": false
+  }
+}

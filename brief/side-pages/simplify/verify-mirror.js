@@ -130,6 +130,10 @@ async function audit(page, name, vw, vh) {
       const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const TX = (main.innerText || '').replace(/\s+/g, ' ').trim();
       const has = s => TX.includes(s);
+      // the FAQ answers live in collapsed <details>, so their text is in the DOM but not in innerText:
+      // presence checks (the policy numbers) read textContent, visibility checks keep using innerText
+      const TXALL = (main.textContent || '').replace(/\s+/g, ' ').trim();
+      const hasAny = s => TXALL.includes(s);
       const H1 = { 'page-guide': 'בוחרים תאורת גינה לפי המקום — לא לפי התמונה', 'page-why': 'למה תאורה סולארית — ומתי לא', 'page-about': 'רק תאורת חוץ. וזה בכוונה.', 'page-faq': 'שאלות נפוצות', 'page-processing': 'זמני טיפול בהזמנה', 'page-shipping': 'משלוחים והחזרות', 'page-contact': 'יצירת קשר' };
       // SPEC §3, the ten photographs: [kicker, caption, credit] per page, in document order
       const PHOTO = {
@@ -166,9 +170,9 @@ async function audit(page, name, vw, vh) {
         pc.staleCollectionNames = STALE.filter(has);
       }
       const expect = NUM_ON[name] || [];
-      pc.numbers = NUM.filter(([n]) => expect.includes(n)).map(([n, phrase]) => ({ n, phrase, found: has(phrase) }));
+      pc.numbers = NUM.filter(([n]) => expect.includes(n)).map(([n, phrase]) => ({ n, phrase, found: hasAny(phrase), visible: has(phrase) }));
       pc.numbersMissing = pc.numbers.filter(x => !x.found).map(x => x.n);
-      pc.numbersUnexpected = NUM.filter(([n, phrase]) => !expect.includes(n) && has(phrase)).map(([n]) => n);
+      pc.numbersUnexpected = NUM.filter(([n, phrase]) => !expect.includes(n) && hasAny(phrase)).map(([n]) => n);
       pc.images = { imgs: imgs.length, sized: imgs.filter(i => i.getAttribute('width') && i.getAttribute('height')).length, lazy: imgs.filter(i => i.getAttribute('loading') === 'lazy').length, sizedAndLazy: imgs.filter(i => i.getAttribute('width') && i.getAttribute('height') && i.getAttribute('loading') === 'lazy').length, eager: imgs.filter(i => i.getAttribute('loading') !== 'lazy').length, loaded: imgs.filter(i => i.complete && i.naturalWidth > 0).length, files: imgs.map(i => decodeURIComponent((i.currentSrc || i.getAttribute('src') || '').split('?')[0].split('/').pop())).slice(0, 12) };
       const bad = q('a').filter(a => scope.contains(a)).filter(a => { const h = a.getAttribute('href'); return h === null || h.trim() === '' || h.trim() === '#'; });
       pc.badLinks = bad.map(a => ({ href: a.getAttribute('href'), text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40) })).slice(0, 8);
